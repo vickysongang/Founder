@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/jacob"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/jcom"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/jodconverter"/>
+	<classpathentry kind="lib" path="lib/jacob/jacob.jar"/>
+	<classpathentry kind="lib" path="lib/JCom/jcom.jar"/>
+	<classpathentry kind="lib" path="lib/JODConverter/jodconverter-core-3.0-beta-4.jar"/>
+	<classpathentry kind="lib" path="lib/JODConverter/juh-3.2.1.jar"/>
+	<classpathentry kind="lib" path="lib/JODConverter/jurt-3.2.1.jar"/>
+	<classpathentry kind="lib" path="lib/JODConverter/ridl-3.2.1.jar"/>
+	<classpathentry kind="lib" path="lib/JODConverter/unoil-3.2.1.jar"/>
+	<classpathentry kind="lib" path="lib/JODConverter/jodconverter-core-3.0-beta-4-sources.jar"/>
+	<classpathentry kind="lib" path="lib/pafbox/bcmail-jdk14-132.jar"/>
+	<classpathentry kind="lib" path="lib/pafbox/bcprov-jdk14-132.jar"/>
+	<classpathentry kind="lib" path="lib/pafbox/checkstyle-all-4.2.jar"/>
+	<classpathentry kind="lib" path="lib/pafbox/FontBox-0.1.0-dev.jar"/>
+	<classpathentry kind="lib" path="lib/pafbox/fontbox-1.7.0.jar"/>
+	<classpathentry kind="lib" path="lib/pafbox/lucene-core-2.0.0.jar"/>
+	<classpathentry kind="lib" path="lib/pafbox/PDFBox-0.7.3.jar"/>
+	<classpathentry kind="lib" path="lib/pafbox/pdfbox-1.0-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="lib/pafbox/pdfbox-1.7.1.jar"/>
+	<classpathentry kind="lib" path="lib/commons-io.jar"/>
+	<classpathentry kind="lib" path="lib/commons-logging-1[1][1].1.jar"/>
+	<classpathentry kind="lib" path="lib/core-renderer.jar"/>
+	<classpathentry kind="lib" path="lib/iText-2.0.8.jar"/>
+	<classpathentry kind="lib" path="lib/iTextAsian.jar"/>
+	<classpathentry kind="lib" path="lib/iTextAsianCmaps.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
