@@ -1,0 +1,187 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core">
+    <af:panelStretchLayout id="psl1" inlineStyle="border:1px solid #BAC6CA;background:#F3F8FC;" topHeight="40px"
+                           bottomHeight="0px" partialTriggers="d1 d2">
+        <f:facet name="top">
+            <af:panelStretchLayout id="psl4" inlineStyle="height:40px;" startWidth="auto" endWidth="auto"
+                                   styleClass="AFStretchWidth">
+                <f:facet name="start">
+                    <af:panelGroupLayout id="pgl1" partialTriggers="soc2  t1" layout="horizontal"
+                                         inlineStyle="margin:5px 5px 5px 15px;padding-left:20px;">
+                        <af:commandImageLink text="新建" id="cil1" icon="/resources/images/xinjian.gif"
+                                             partialSubmit="true" shortDesc="新建条目入库任务" styleClass="imagelink_length_2"
+                                             action="toNewOfflineEntryProcess" useWindow="true" windowWidth="850"
+                                             windowHeight="500"/>
+                        <af:commandImageLink text="删除" id="cil2" icon="/resources/images/delete.gif"
+                                             partialSubmit="true" shortDesc="删除非处理状态的任务" styleClass="imagelink_length_2"
+                                             visible="#{backingBeanScope.offlineEntryProcessManagedBean.commonRenderer.currSelectedListSize >= 1}">
+                            <af:showPopupBehavior triggerType="action" popupId="p1"/>
+                        </af:commandImageLink>
+                        <!--<af:commandImageLink text="强制删除" id="cil3" icon="/resources/images/gif-0610.gif"
+                                             partialSubmit="true" styleClass="imagelink_length_4"
+                                             shortDesc="强制删除任务，包括正在处理中的任务"
+                                             visible="#{pageFlowScope.currStatusCode == 'IMPORTING_OFFLINE_ENTRY_PROCESS' and backingBeanScope.offlineEntryProcessManagedBean.commonRenderer.currSelectedListSize == 1}">
+                            <af:showPopupBehavior triggerType="action" popupId="p2"/>
+                        </af:commandImageLink>-->
+                        <af:commandImageLink text="浏览任务" id="cil5" icon="/resources/images/task.gif"
+                                             partialSubmit="true" styleClass="imagelink_length_4" shortDesc="浏览任务的信息"
+                                             visible="#{backingBeanScope.offlineEntryProcessManagedBean.commonRenderer.currSelectedListSize == 1}"
+                                             actionListener="#{backingBeanScope.offlineEntryProcessManagedBean.viewTaskActionListener}"/>
+                        <af:commandImageLink text="下载" id="cil6" icon="/resources/images/publish.gif"
+                                             partialSubmit="true" styleClass="imagelink_length_2"
+                                             shortDesc="下载条目入库任务的文档附件"
+                                             visible="#{backingBeanScope.offlineEntryProcessManagedBean.commonRenderer.currSelectedListSize >= 1}"
+                                             actionListener="#{backingBeanScope.offlineEntryProcessManagedBean.downloadTaskInfoActionListener}"/>
+                        <af:commandButton binding="#{backingBeanScope.offlineEntryProcessManagedBean.batchDownloadButton}"
+                                          clientComponent="true" text="BatchDownload" visible="false" id="ctb7"
+                                          partialSubmit="true" styleClass="">
+                            <af:fileDownloadActionListener method="#{backingBeanScope.offlineEntryProcessManagedBean.batchDownloadActionListener}"
+                                                           contentType="application/octet-stream"
+                                                           filename="#{pageFlowScope.downloadFileName}"/>
+                        </af:commandButton>
+                    </af:panelGroupLayout>
+                </f:facet>
+            </af:panelStretchLayout>
+        </f:facet>
+        <f:facet name="bottom">
+            <af:panelGroupLayout layout="scroll" id="pgl2">
+                <af:popup childCreation="deferred" autoCancel="disabled" id="p1"
+                          binding="#{backingBeanScope.offlineEntryProcessManagedBean.deletePopup}">
+                    <af:dialog id="d1" title="提示"
+                               dialogListener="#{backingBeanScope.offlineEntryProcessManagedBean.deleteTaskDialogListener}">
+                        <f:facet name="buttonBar"/>
+                        <af:outputText value="确定删除？" id="ot12"/>
+                    </af:dialog>
+                </af:popup>
+                <af:popup childCreation="deferred" autoCancel="disabled" id="p2"
+                          binding="#{backingBeanScope.offlineEntryProcessManagedBean.forceDeletePopup}">
+                    <af:dialog id="d2" title="提示"
+                               dialogListener="#{backingBeanScope.offlineEntryProcessManagedBean.forceDeleteTaskDialogListener}">
+                        <f:facet name="buttonBar"/>
+                        <af:outputText value="确定强制删除？" id="ot13"/>
+                    </af:dialog>
+                </af:popup>
+            </af:panelGroupLayout>
+        </f:facet>
+        <f:facet name="center">
+            <af:panelStretchLayout id="psl2" topHeight="auto" dimensionsFrom="children" partialTriggers="cil1">
+                <f:facet name="center">
+                    <af:table var="row" rowBandingInterval="0" id="t1" varStatus="vs"
+                              styleClass="AFStretchWidth custom_table_striped" contentDelivery="immediate"
+                              value="#{backingBeanScope.offlineEntryProcessManagedBean.tableModel.model}" emptyText=""
+                              autoHeightRows="0" inlineStyle="margin-top:2px;" columnStretching="multiple"
+                              binding="#{backingBeanScope.offlineEntryProcessManagedBean.commonRenderer.table}"
+                              sortListener="#{backingBeanScope.offlineEntryProcessManagedBean.commonRenderer.tableSortListener}"
+                              rowSelection="multiple">
+                        <af:column sortable="false" headerText="序号" id="c1"
+                                   inlineStyle="background:#{row.checked ? '#D6E5EB':(vs.index%2==0 ? '#F1F1F1' :'white')};"
+                                   align="center" width="50">
+                            <af:outputText value="#{vs.index+1}" id="ot18"/>
+                        </af:column>
+                        <af:column sortable="false" headerText="任务名称" id="c4" width="40%"
+                                   inlineStyle="background:#{row.checked ? '#D6E5EB':(vs.index%2==0 ? '#F1F1F1' :'white')};">
+                            <af:outputText value="#{row.taskName}" id="ot1"/>
+                        </af:column>
+                        <af:column sortable="false" headerText="发起人" id="c6" width="100" align="center"
+                                   inlineStyle="background:#{row.checked ? '#D6E5EB':(vs.index%2==0 ? '#F1F1F1' :'white')};">
+                            <af:outputText value="#{row.taskSponsorName}" id="ot6"/>
+                        </af:column>
+                        <af:column sortable="false" headerText="当前处理人" id="c2" width="100" align="center"
+                                   inlineStyle="background:#{row.checked ? '#D6E5EB':(vs.index%2==0 ? '#F1F1F1' :'white')};">
+                            <af:outputText value="#{row.currOperatorName}" id="ot7"/>
+                        </af:column>
+                        <af:column sortable="false" headerText="当前状态" id="c3" width="100" align="center"
+                                   inlineStyle="background:#{row.checked ? '#D6E5EB':(vs.index%2==0 ? '#F1F1F1' :'white')};">
+                            <af:outputText value="#{row.statusName}" id="ot8"/>
+                        </af:column>
+                        <af:column sortable="false" headerText="详细状态" id="c5" width="60%"
+                                   inlineStyle="background:#{row.checked ? '#D6E5EB':(vs.index%2==0 ? '#F1F1F1' :'white')};">
+                            <af:outputText value="#{row.description}" id="ot10"/>
+                        </af:column>
+                        <af:column sortable="false" headerText="最后修改时间" id="c7" width="100" align="center"
+                                   inlineStyle="background:#{row.checked ? '#D6E5EB':(vs.index%2==0 ? '#F1F1F1' :'white')};">
+                            <af:outputText value="#{row.lastUpdateDate}" id="ot11"></af:outputText>
+                        </af:column>
+                        <af:clientListener type="click" method="tableDblSelect"/>
+                         
+                        <af:serverListener type="TableSelectionAction"
+                                           method="#{backingBeanScope.offlineEntryProcessManagedBean.commonRenderer.tableSelectAction}"/>
+                         
+                        <af:serverListener type="TableDblSelectAction"
+                                           method="#{backingBeanScope.offlineEntryProcessManagedBean.commonRenderer.tableDblSelectAction}"/>
+                         
+                        <af:clientListener type="dblClick" method="tableDblClick"/>
+                         
+                        <af:serverListener type="TableDblClickEvent"
+                                           method="#{backingBeanScope.offlineEntryProcessManagedBean.tableDblClick}"/>
+                    </af:table>
+                </f:facet>
+                <f:facet name="top">
+                    <af:panelStretchLayout id="psl3" inlineStyle="height:26px;background:#E7ECE5;margin-top:3px;"
+                                           startWidth="auto" styleClass="AFStretchWidth" partialTriggers="cl1 cl2"
+                                           endWidth="auto">
+                        <f:facet name="start">
+                            <af:panelGroupLayout id="pgl6" layout="horizontal"
+                                                 inlineStyle="padding-top:3px;padding-left:15px;">
+                                <af:outputText value="总个数:#{backingBeanScope.offlineEntryProcessManagedBean.tableModel.rowCount}"
+                                               id="ot2"/>
+                                <af:spacer width="10" height="10" id="s2"/>
+                                <af:outputText value="每页[20]" id="ot3"/>
+                                <af:spacer width="10" height="10" id="s7"/>
+                                <af:outputText value="页数[" id="ot9"/>
+                                <af:outputText value="#{backingBeanScope.offlineEntryProcessManagedBean.tableModel.currPageIndex}"
+                                               id="ot5" inlineStyle="color:Red;"/>
+                                <af:outputText value="/#{backingBeanScope.offlineEntryProcessManagedBean.tableModel.totalPageCount}]"
+                                               id="ot4"/>
+                                <af:spacer width="10" height="10" id="s4"/>
+                                <af:commandLink text="前一页" id="cl1"
+                                                disabled="#{backingBeanScope.offlineEntryProcessManagedBean.tableModel.isPrevDisabled}"
+                                                actionListener="#{backingBeanScope.offlineEntryProcessManagedBean.commonRenderer.prevPage}"/>
+                                <af:spacer width="10" height="10" id="s1"/>
+                                <af:commandLink text="后一页" id="cl2"
+                                                disabled="#{backingBeanScope.offlineEntryProcessManagedBean.tableModel.isNextDisabled}"
+                                                actionListener="#{backingBeanScope.offlineEntryProcessManagedBean.commonRenderer.nextPage}"/>
+                                <af:spacer width="10" height="10" id="s3"/>
+                                <af:selectOneChoice valueChangeListener="#{backingBeanScope.offlineEntryProcessManagedBean.commonRenderer.goPageIndex}"
+                                                    id="soc1" simple="true" autoSubmit="true" shortDesc=" "
+                                                    value="#{backingBeanScope.offlineEntryProcessManagedBean.tableModel.currItem.value}">
+                                    <f:selectItems value="#{backingBeanScope.offlineEntryProcessManagedBean.tableModel.pageSelectItems}"
+                                                   id="si1"/>
+                                </af:selectOneChoice>
+                                <af:spacer width="10" height="10" id="s6"/>
+                                <af:commandImageLink id="cil4" icon="/resources/images/shuaxin.gif" shortDesc="刷新"
+                                                     actionListener="#{backingBeanScope.offlineEntryProcessManagedBean.refreshTaskActionListener}"/>
+                            </af:panelGroupLayout>
+                        </f:facet>
+                        <f:facet name="end">
+                            <af:panelGroupLayout layout="horizontal" id="pgl7"
+                                                 inlineStyle="margin-right:40px;padding-top:3px;">
+                                <af:forEach items="#{backingBeanScope.offlineEntryProcessManagedBean.commonRenderer.statusMapList}"
+                                            var="status">
+                                    <af:panelGroupLayout layout="horizontal" id="pgl13"
+                                                         styleClass="#{pageFlowScope.currStatusCode == status['statusCode'] ? 'statusSelected' : 'none'}">
+                                        <af:commandLink text="#{status['displayName']}" id="cl5"
+                                                        visible="#{pageFlowScope.deleteFlag != 'Y'}"
+                                                        actionListener="#{backingBeanScope.offlineEntryProcessManagedBean.commonRenderer.switchStatusActionListener}">
+                                            <f:attribute name="statusCode" value="#{status['statusCode']}"/>
+                                            <af:setPropertyListener to="#{pageFlowScope.currStatusCode}" type="action"
+                                                                    from="#{status['statusCode']}"/>
+                                        </af:commandLink>
+                                    </af:panelGroupLayout>
+                                    <af:spacer width="5" height="10" id="s11"/>
+                                </af:forEach>
+                                <af:selectOneChoice value="#{pageFlowScope.currStatusCode}" autoSubmit="true" id="soc2"
+                                                    shortDesc=" " rendered="false"
+                                                    valueChangeListener="#{backingBeanScope.offlineEntryProcessManagedBean.commonRenderer.statusValueChangeListener}">
+                                    <f:selectItems value="#{backingBeanScope.offlineEntryProcessManagedBean.commonRenderer.statusList}"
+                                                   id="si2"/>
+                                </af:selectOneChoice>
+                            </af:panelGroupLayout>
+                        </f:facet>
+                    </af:panelStretchLayout>
+                </f:facet>
+            </af:panelStretchLayout>
+        </f:facet>
+    </af:panelStretchLayout>
+</ui:composition>

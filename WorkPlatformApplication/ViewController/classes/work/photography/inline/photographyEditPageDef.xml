@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="photographyEditPageDef"
+                Package="work.photography.inline">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <taskFlow id="category_pick_taskflow1"
+              taskFlowId="/WEB-INF/common/category_pick_taskflow.xml#category_pick_taskflow" activation="deferred"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+    <iterator Binds="Root.PhotographyFigureAM.CmsPhotographyFigureTVO" DataControl="WorkAMDataControl" RangeSize="25"
+              id="CmsPhotographyFigureTVOIterator"/>
+    <iterator Binds="Root.PhotographyFigureAM.CmsPhotographyEditVO" DataControl="WorkAMDataControl" RangeSize="25"
+              id="CmsPhotographyEditVOIterator"/>
+    <iterator id="CmsDocCategoryRelTVOIterator" Binds="Root.PhotographyFigureAM.CmsDocCategoryRelTVO"
+              DataControl="WorkAMDataControl" RangeSize="25"/>
+    <taskFlow id="extend_attr_taskflow1" taskFlowId="/WEB-INF/common/extend_attr_taskflow.xml#extend_attr_taskflow"
+              activation="deferred" xmlns="http://xmlns.oracle.com/adf/controller/binding">
+      <parameters>
+        <parameter id="compCode" value="#{pageFlowScope.compCode}"/>
+        <parameter id="libCode" value="#{pageFlowScope.libCode}"/>
+        <parameter id="docId" value="#{pageFlowScope.docId}"/>
+        <parameter id="operType" value="#{pageFlowScope.mode}"/>
+        <parameter id="labelWidth" value="80"/>
+      </parameters>
+    </taskFlow>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="CmsPhotographyFigureTVOIterator" id="FigureName">
+      <AttrNames>
+        <Item Value="FigureName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsPhotographyFigureTVOIterator" id="SeriesName">
+      <AttrNames>
+        <Item Value="SeriesName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsPhotographyFigureTVOIterator" id="Photographer">
+      <AttrNames>
+        <Item Value="Photographer"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsPhotographyFigureTVOIterator" id="PhotographyTime">
+      <AttrNames>
+        <Item Value="PhotographyTime"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsPhotographyFigureTVOIterator" id="PhotographyLocation">
+      <AttrNames>
+        <Item Value="PhotographyLocation"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsPhotographyFigureTVOIterator" id="CategoryName">
+      <AttrNames>
+        <Item Value="CategoryName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsPhotographyFigureTVOIterator" id="CompCode">
+      <AttrNames>
+        <Item Value="CompCode"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsPhotographyFigureTVOIterator" id="Keyword">
+      <AttrNames>
+        <Item Value="Keyword"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsPhotographyFigureTVOIterator" id="FigureDesc">
+      <AttrNames>
+        <Item Value="FigureDesc"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsPhotographyFigureTVOIterator" id="Remarks">
+      <AttrNames>
+        <Item Value="Remarks"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsPhotographyEditVOIterator" id="SeriesName1">
+      <AttrNames>
+        <Item Value="SeriesName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsPhotographyEditVOIterator" id="Photographer1">
+      <AttrNames>
+        <Item Value="Photographer"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsPhotographyEditVOIterator" id="PhotographyType">
+      <AttrNames>
+        <Item Value="PhotographyType"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsPhotographyEditVOIterator" id="PhotographyLocation1">
+      <AttrNames>
+        <Item Value="PhotographyLocation"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsPhotographyEditVOIterator" id="CompCode1">
+      <AttrNames>
+        <Item Value="CompCode"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsPhotographyEditVOIterator" id="Keyword1">
+      <AttrNames>
+        <Item Value="Keyword"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsPhotographyEditVOIterator" id="FigureDesc1">
+      <AttrNames>
+        <Item Value="FigureDesc"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsPhotographyEditVOIterator" id="Remarks1">
+      <AttrNames>
+        <Item Value="Remarks"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsPhotographyEditVOIterator" id="PhotographyTime1">
+      <AttrNames>
+        <Item Value="PhotographyTime"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsPhotographyEditVOIterator" id="CategoryName1">
+      <AttrNames>
+        <Item Value="CategoryName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsPhotographyEditVOIterator" id="CategoryId1">
+      <AttrNames>
+        <Item Value="CategoryId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsDocCategoryRelTVOIterator" id="CategoryId">
+      <AttrNames>
+        <Item Value="CategoryId"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

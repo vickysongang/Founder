@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core">
+    <af:panelStretchLayout id="psl1" styleClass="AFStretchWidth" topHeight="auto" inlineStyle="margin:5px 0px 0px 5px;">
+        <f:facet name="bottom"/>
+        <f:facet name="center">
+            <af:region value="#{bindings.theme_export_log_show_taskflow1.regionModel}" id="r1"
+                       binding="#{backingBeanScope.themeExportManagedBean.logRegion}"/>
+        </f:facet>
+        <f:facet name="start"/>
+        <f:facet name="end"/>
+        <f:facet name="top">
+            <af:panelGroupLayout id="pgl1" layout="vertical" halign="center">
+                <af:panelGroupLayout id="pgl2" layout="horizontal">
+                    <af:poll id="pol2" interval="-1"
+                             pollListener="#{backingBeanScope.themeExportManagedBean.pollListener}"
+                             binding="#{backingBeanScope.themeExportManagedBean.poll}"/>
+                    <af:commandButton text="导出" id="cil9" styleClass="min-btn blue-min-btn" partialSubmit="true"
+                                      actionListener="#{backingBeanScope.themeExportManagedBean.exportThemeActionListener}"></af:commandButton>
+                    <af:commandButton binding="#{backingBeanScope.themeExportManagedBean.exportButton}"
+                                      clientComponent="true" text="导出" id="ctb7" partialSubmit="true" visible="false"
+                                      styleClass="min-btn blue-min-btn">
+                        <af:fileDownloadActionListener method="#{backingBeanScope.themeExportManagedBean.themeExportListener}"
+                                                       contentType="application/octet-stream"
+                                                       filename="#{pageFlowScope.downloadFileName}"/>
+                    </af:commandButton>
+                </af:panelGroupLayout>
+            </af:panelGroupLayout>
+        </f:facet>
+    </af:panelStretchLayout>
+</ui:composition>

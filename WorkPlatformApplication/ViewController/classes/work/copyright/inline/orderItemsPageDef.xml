@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="orderItemsPageDef"
+                Package="work.copyright.inline">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="Root.CopyrightAM.Cms3rdAuthorizationItemVO" DataControl="WorkAMDataControl" RangeSize="25"
+              id="Cms3rdAuthorizationItemVOIterator"/>
+    <iterator id="CmsAuthorCopyrightVO4QueryIterator" Binds="Root.CopyrightAM.CmsAuthorCopyrightVO4Query"
+              DataControl="WorkAMDataControl" RangeSize="25"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="Cms3rdAuthorizationItemVOIterator" id="Cms3rdAuthorizationItemVO">
+      <nodeDefinition DefName="com.zypg.cms.work.model.viewobject.copyright.query.Cms3rdAuthorizationItemVO"
+                      Name="Cms3rdAuthorizationItemVO0">
+        <AttrNames>
+          <Item Value="BookName"/>
+          <Item Value="Isbn"/>
+          <Item Value="Author"/>
+          <Item Value="AuthorizedCompany"/>
+          <Item Value="OrderName"/>
+          <Item Value="AuthorizedStartTime"/>
+          <Item Value="ExclusiveCopyrightFlag"/>
+          <Item Value="DocId"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="CmsAuthorCopyrightVO4QueryIterator" id="CmsAuthorCopyrightVO4Query">
+      <nodeDefinition DefName="com.zypg.cms.work.model.viewobject.copyright.query.CmsAuthorCopyrightVO"
+                      Name="CmsAuthorCopyrightVO4Query0">
+        <AttrNames>
+          <Item Value="CopyrightId"/>
+          <Item Value="Author"/>
+          <Item Value="BookName"/>
+          <Item Value="CategoryGroupType"/>
+          <Item Value="CategoryId"/>
+          <Item Value="CategoryName"/>
+          <Item Value="Checked"/>
+          <Item Value="CompCode"/>
+          <Item Value="CopyrightForm"/>
+          <Item Value="CopyrightFormDisplay"/>
+          <Item Value="DeleteFlag"/>
+          <Item Value="DocId"/>
+          <Item Value="ExclusiveCopyrightFlag"/>
+          <Item Value="Isbn"/>
+          <Item Value="LibCode"/>
+          <Item Value="PublicCopyrightFlag"/>
+          <Item Value="Status"/>
+          <Item Value="AudioVideoCopyrightFlag"/>
+          <Item Value="AuthorizedArea"/>
+          <Item Value="AuthorizedLang"/>
+          <Item Value="BroadcastCopyrightFlag"/>
+          <Item Value="ElectronicCopyrightFlag"/>
+          <Item Value="ExclusiveCopyrightDisplay"/>
+          <Item Value="NetworkCopyrightFlag"/>
+          <Item Value="PaperMediumCopyrightFlag"/>
+          <Item Value="PublicCopyrightDisplay"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+  </bindings>
+</pageDefinition>

@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <af:document title="回退" id="d1">
+        <af:messages id="m1"/>
+        <af:form id="f1">
+            <af:panelStretchLayout id="psl1">
+                <f:facet name="bottom">
+                    <af:panelGroupLayout id="pgl1" halign="center" layout="horizontal">
+                        <af:commandButton text="保存" id="cb1" action="toReturn"
+                                          actionListener="#{backingBeanScope.logMainManagedBean.commonRenderer.saveActionListener}"/>
+                        <af:commandButton text="取消" id="cb2" action="toReturn"
+                                          actionListener="#{backingBeanScope.logMainManagedBean.commonRenderer.cancelActionListener}"/>
+                    </af:panelGroupLayout>
+                </f:facet>
+                <f:facet name="center">
+                    <af:panelFormLayout id="pfl1">
+                        <af:inputText value="#{bindings.Operator1.inputValue}" label="#{bindings.Operator1.hints.label}"
+                                      required="#{bindings.Operator1.hints.mandatory}"
+                                      columns="#{bindings.Operator1.hints.displayWidth}"
+                                      maximumLength="#{bindings.Operator1.hints.precision}"
+                                      contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                      shortDesc="#{bindings.Operator1.hints.tooltip}" id="it1">
+                            <f:validator binding="#{bindings.Operator1.validator}"/>
+                        </af:inputText>
+                        <af:inputDate value="#{bindings.OperationTime.inputValue}"
+                                      label="#{bindings.OperationTime.hints.label}"
+                                      required="#{bindings.OperationTime.hints.mandatory}"
+                                      columns="#{bindings.OperationTime.hints.displayWidth}"
+                                      contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                      shortDesc="#{bindings.OperationTime.hints.tooltip}" id="id1">
+                            <f:validator binding="#{bindings.OperationTime.validator}"/>
+                            <af:convertDateTime pattern="#{bindings.OperationTime.format}"/>
+                        </af:inputDate>
+                        <af:inputText value="#{bindings.RollbackReason.inputValue}"
+                                      label="#{bindings.RollbackReason.hints.label}"
+                                      required="#{bindings.RollbackReason.hints.mandatory}"
+                                      columns="#{bindings.RollbackReason.hints.displayWidth}"
+                                      maximumLength="#{bindings.RollbackReason.hints.precision}"
+                                      contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                      shortDesc="#{bindings.RollbackReason.hints.tooltip}" id="it2">
+                            <f:validator binding="#{bindings.RollbackReason.validator}"/>
+                        </af:inputText>
+                    </af:panelFormLayout>
+                </f:facet>
+                <f:facet name="start"/>
+                <f:facet name="end"/>
+                <f:facet name="top"/>
+            </af:panelStretchLayout>
+        </af:form>
+    </af:document>
+</f:view>

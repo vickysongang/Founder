@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="activityViewPageDef"
+                Package="work.activity.fragment">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <taskFlow id="related_info_view_taskflow1"
+              taskFlowId="/WEB-INF/common/related_info_view_taskflow.xml#related_info_view_taskflow"
+              activation="deferred" xmlns="http://xmlns.oracle.com/adf/controller/binding">
+      <parameters>
+        <parameter id="docId" value="#{pageFlowScope.docId}"/>
+        <parameter id="position" value="LEFT"/>
+        <parameter id="displayWidth" value="200"/>
+      </parameters>
+    </taskFlow>
+    <taskFlow id="related_info_view_taskflow2"
+              taskFlowId="/WEB-INF/common/related_info_view_taskflow.xml#related_info_view_taskflow"
+              activation="deferred" xmlns="http://xmlns.oracle.com/adf/controller/binding">
+      <parameters>
+        <parameter id="docId" value="#{pageFlowScope.docId}"/>
+        <parameter id="position" value="RIGHT"/>
+        <parameter id="displayWidth" value="200"/>
+      </parameters>
+    </taskFlow>
+    <iterator Binds="Root.ActivityAM.CmsActivityTVO4View" DataControl="WorkAMDataControl" RangeSize="25"
+              id="CmsActivityTVO4ViewIterator"/>
+    <iterator Binds="Root.ActivityAM.CmsDocUcmRelTVO4FileList" DataControl="WorkAMDataControl" RangeSize="25"
+              id="CmsDocUcmRelTVO4FileListIterator"/>
+    <taskFlow id="extend_attr_view_taskflow1"
+              taskFlowId="/WEB-INF/common/extend_attr_view_taskflow.xml#extend_attr_view_taskflow" activation="deferred"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding">
+      <parameters>
+        <parameter id="docId" value="#{pageFlowScope.docId}"/>
+      </parameters>
+    </taskFlow>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="CmsActivityTVO4ViewIterator" id="ActivityTheme">
+      <AttrNames>
+        <Item Value="ActivityTheme"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsActivityTVO4ViewIterator" id="ActivityStartTime">
+      <AttrNames>
+        <Item Value="ActivityStartTime"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsActivityTVO4ViewIterator" id="ActivityEndTime">
+      <AttrNames>
+        <Item Value="ActivityEndTime"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsActivityTVO4ViewIterator" id="ActivityLocation">
+      <AttrNames>
+        <Item Value="ActivityLocation"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsActivityTVO4ViewIterator" id="ActivityType">
+      <AttrNames>
+        <Item Value="ActivityType"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsActivityTVO4ViewIterator" id="CompCode">
+      <AttrNames>
+        <Item Value="CompCode"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsActivityTVO4ViewIterator" id="ActivityStoreTime">
+      <AttrNames>
+        <Item Value="ActivityStoreTime"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsActivityTVO4ViewIterator" id="ActivityDesc">
+      <AttrNames>
+        <Item Value="ActivityDesc"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsActivityTVO4ViewIterator" id="Remarks">
+      <AttrNames>
+        <Item Value="Remarks"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsActivityTVO4ViewIterator" id="CategoryName">
+      <AttrNames>
+        <Item Value="CategoryName"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="CmsDocUcmRelTVO4FileListIterator" id="CmsDocUcmRelTVO4FileList">
+      <nodeDefinition DefName="com.zypg.cms.work.model.viewobject.common.CmsDocUcmRelTVO"
+                      Name="CmsDocUcmRelTVO4FileList0">
+        <AttrNames>
+          <Item Value="FileName"/>
+          <Item Value="DocId"/>
+          <Item Value="UcmDid"/>
+          <Item Value="UcmDocname"/>
+          <Item Value="RefDocId"/>
+          <Item Value="FileCategory"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="CmsActivityTVO4ViewIterator" id="DocId">
+      <AttrNames>
+        <Item Value="DocId"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

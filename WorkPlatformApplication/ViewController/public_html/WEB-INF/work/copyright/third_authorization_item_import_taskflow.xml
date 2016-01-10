@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="third_authorization_item_import_taskflow">
+    <default-activity>itemImport</default-activity>
+    <return-value-definition id="__1">
+      <name>operation</name>
+      <value>#{pageFlowScope.operation}</value>
+      <class>java.lang.String</class>
+    </return-value-definition>
+    <managed-bean id="__2">
+      <managed-bean-name>copyrightItemImportManagedBean</managed-bean-name>
+      <managed-bean-class>com.zypg.cms.work.view.bean.CopyrightItemImportManagedBean</managed-bean-class>
+      <managed-bean-scope>backingBean</managed-bean-scope>
+    </managed-bean>
+    <view id="itemImport">
+      <page>/work/copyright/inline/itemImport.jsf</page>
+    </view>
+    <task-flow-return id="taskFlowReturn">
+      <outcome>
+        <name>taskFlowReturn</name>
+      </outcome>
+    </task-flow-return>
+    <control-flow-rule id="__3">
+      <from-activity-id>itemImport</from-activity-id>
+      <control-flow-case id="__4">
+        <from-outcome>toReturn</from-outcome>
+        <to-activity-id>taskFlowReturn</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+  </task-flow-definition>
+</adfc-config>

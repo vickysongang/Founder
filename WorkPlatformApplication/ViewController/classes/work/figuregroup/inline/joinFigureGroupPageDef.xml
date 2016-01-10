@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="joinFigureGroupPageDef"
+                Package="work.figuregroup.inline">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="Root.FigureGroupAM.CmsFigureGroupVO" DataControl="WorkAMDataControl" RangeSize="25"
+              id="CmsFigureGroupVOIterator"/>
+    <iterator id="CmsFigureGroupTVO4EditIterator" Binds="Root.FigureGroupAM.CmsFigureGroupTVO4Edit"
+              DataControl="WorkAMDataControl" RangeSize="25"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="CmsFigureGroupVOIterator" id="CmsFigureGroupVO">
+      <nodeDefinition DefName="com.zypg.cms.work.model.viewobject.figuregroup.query.CmsFigureGroupVO"
+                      Name="CmsFigureGroupVO0">
+        <AttrNames>
+          <Item Value="GroupName"/>
+          <Item Value="GroupDesc"/>
+          <Item Value="CreationDate"/>
+          <Item Value="GroupId"/>
+          <Item Value="LastUpdateDate"/>
+          <Item Value="LibCode"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="CmsFigureGroupTVO4EditIterator" id="GroupName">
+      <AttrNames>
+        <Item Value="GroupName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsFigureGroupTVO4EditIterator" id="GroupDesc">
+      <AttrNames>
+        <Item Value="GroupDesc"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

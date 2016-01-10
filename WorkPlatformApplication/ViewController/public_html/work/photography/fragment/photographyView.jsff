@@ -1,0 +1,419 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core">
+    <af:panelStretchLayout id="psl1" inlineStyle="width:1050px;height:540px;" bottomHeight="0px">
+        <f:facet name="center">
+            <af:panelGroupLayout id="pgl1" layout="scroll" valign="top" inlineStyle="margin-top:10px;">
+                <af:panelGroupLayout id="pgl4" layout="horizontal" valign="top">
+                    <af:panelGroupLayout id="pgl3" layout="vertical" inlineStyle="width:200px;" valign="top">
+                        <af:region value="#{bindings.related_info_view_taskflow2.regionModel}" id="r2"/>
+                    </af:panelGroupLayout>
+                    <af:spacer width="5" height="10" id="s24"/>
+                    <af:panelGroupLayout id="pgl6" layout="vertical" inlineStyle="width:600px;">
+                        <af:panelGroupLayout id="pgl7" layout="vertical" inlineStyle="background:#D9EDF8;height:30px;"
+                                             styleClass="AFStretchWidth">
+                            <af:panelGroupLayout id="pgl2" layout="horizontal" inlineStyle="padding-top:8px;">
+                                <af:spacer width="10" height="10" id="s1"/>
+                                <af:outputText value="摄影图信息" id="ot1" inlineStyle="font-weight:bold;color:#024D91;"/>
+                            </af:panelGroupLayout>
+                        </af:panelGroupLayout>
+                        <af:spacer width="10" height="10" id="s4"/>
+                        <af:panelGroupLayout id="pgl8" layout="vertical">
+                            <af:panelGroupLayout id="pgl11" layout="horizontal" halign="center">
+                                <af:activeImage source="/resources/images/lack_image.gif" id="ai1"
+                                                inlineStyle="margin:20px;"
+                                                rendered="#{bindings.ThumbnailUrl.inputValue== null}"/>
+                                <af:commandImageLink id="cil2" partialSubmit="true" inlineStyle="margin:20px;"
+                                                     rendered="#{bindings.ThumbnailUrl.inputValue != null}"
+                                                     icon="#{bindings.ThumbnailUrl.inputValue}"
+                                                     actionListener="#{backingBeanScope.photographyViewManagedBean.viewOriginalFigureActionListener}">
+                                    <f:attribute name="docId" value="#{bindings.DocId.inputValue}"/>
+                                </af:commandImageLink>
+                            </af:panelGroupLayout>
+                        </af:panelGroupLayout>
+                        <af:panelGroupLayout id="pgl10" layout="vertical">
+                            <af:spacer width="40" height="10" id="s2"/>
+                            <af:panelFormLayout id="pfl1" maxColumns="2" rows="3" labelWidth="100px">
+                                <af:panelLabelAndMessage label="#{bindings.FigureName.hints.label}" id="plam1">
+                                    <af:outputText value="#{bindings.FigureName.inputValue}"
+                                                   shortDesc="#{bindings.FigureName.hints.tooltip}" id="ot2"/>
+                                </af:panelLabelAndMessage>
+                                <af:panelLabelAndMessage label="#{bindings.FigureFormat.hints.label}" id="plam4">
+                                    <af:outputText value="#{bindings.FigureFormat.inputValue}"
+                                                   shortDesc="#{bindings.FigureFormat.hints.tooltip}" id="ot3"/>
+                                </af:panelLabelAndMessage>
+                                <af:panelLabelAndMessage label="#{bindings.FigureSize.hints.label}" id="plam5">
+                                    <af:outputText value="#{bindings.FigureSize.inputValue}"
+                                                   shortDesc="#{bindings.FigureSize.hints.tooltip}" id="ot4"/>
+                                </af:panelLabelAndMessage>
+                                <af:panelLabelAndMessage label="#{bindings.FigureDimension.hints.label}" id="plam9">
+                                    <af:outputText value="#{bindings.FigureDimension.inputValue}"
+                                                   shortDesc="#{bindings.FigureDimension.hints.tooltip}" id="ot5"/>
+                                </af:panelLabelAndMessage>
+                                <af:panelLabelAndMessage label="#{bindings.FigureResolution.hints.label}" id="plam13">
+                                    <af:outputText value="#{bindings.FigureResolution.inputValue}"
+                                                   shortDesc="#{bindings.FigureResolution.hints.tooltip}" id="ot9"/>
+                                </af:panelLabelAndMessage>
+                                <af:panelLabelAndMessage label="#{bindings.CoverDesign.hints.label}" id="plam15">
+                                    <af:outputText value="#{bindings.CoverDesign.inputValue}"
+                                                   shortDesc="#{bindings.CoverDesign.hints.tooltip}" id="ot13"/>
+                                </af:panelLabelAndMessage>
+                            </af:panelFormLayout>
+                            <af:panelFormLayout id="pfl4" labelWidth="100px">
+                                <af:panelLabelAndMessage label="#{bindings.Keyword.hints.label}" id="plam19">
+                                    <af:outputText value="#{bindings.Keyword.inputValue}"
+                                                   shortDesc="#{bindings.Keyword.hints.tooltip}" id="ot19"/>
+                                </af:panelLabelAndMessage>
+                                <af:panelLabelAndMessage label="#{bindings.Remarks.hints.label}" id="plam21">
+                                    <af:outputText value="#{bindings.Remarks.inputValue}"
+                                                   shortDesc="#{bindings.Remarks.hints.tooltip}" id="ot21"/>
+                                </af:panelLabelAndMessage>
+                            </af:panelFormLayout>
+                        </af:panelGroupLayout>
+                        <af:panelGroupLayout id="pgl63" layout="vertical" halign="right" valign="bottom">
+                            <af:panelGroupLayout id="pgl64" layout="horizontal" inlineStyle="margin-right:15px;">
+                                <af:commandImageLink id="cil1" icon="/resources/images/button_viewall.jpg"
+                                                     partialSubmit="true">
+                                    <af:showPopupBehavior triggerType="action" popupId="p1"/>
+                                </af:commandImageLink>
+                                <af:spacer width="10" height="10" id="s12"/>
+                                <af:commandImageLink id="cil3" icon="/resources/images/button_vieExif.jpg"
+                                                     partialSubmit="true"
+                                                     rendered="#{pageFlowScope.exif == true ? true : false}">
+                                    <af:showPopupBehavior triggerType="action" popupId="p2"/>
+                                </af:commandImageLink>
+                            </af:panelGroupLayout>
+                        </af:panelGroupLayout>
+                        <af:spacer width="5" height="10" id="s5"/>
+                        <af:panelGroupLayout id="pgl12" layout="vertical"
+                                             rendered="#{bindings.CmsAttachTVO4View.estimatedRowCount > 0}">
+                            <af:panelGroupLayout id="pgl13" layout="vertical"
+                                                 inlineStyle="background:#D9EDF8;height:30px;"
+                                                 styleClass="AFStretchWidth">
+                                <af:panelGroupLayout id="pgl14" layout="horizontal" inlineStyle="padding-top:8px;">
+                                    <af:spacer width="10" height="10" id="s6"/>
+                                    <af:outputText value="附件列表" id="ot30"
+                                                   inlineStyle="font-weight:bold;color:#024D91;"/>
+                                </af:panelGroupLayout>
+                            </af:panelGroupLayout>
+                            <af:spacer width="10" height="2" id="s7"/>
+                            <af:table value="#{bindings.CmsAttachTVO4View.collectionModel}" var="row"
+                                      rows="#{bindings.CmsAttachTVO4View.rangeSize}" autoHeightRows="0"
+                                      contentDelivery="immediate" styleClass="AFStretchWidth custom_table_striped"
+                                      columnStretching="multiple"
+                                      emptyText="#{bindings.CmsAttachTVO4View.viewable ? '' : 'Access Denied.'}"
+                                      fetchSize="#{bindings.CmsAttachTVO4View.rangeSize}" rowBandingInterval="0"
+                                      selectedRowKeys="#{bindings.CmsAttachTVO4View.collectionModel.selectedRow}"
+                                      selectionListener="#{bindings.CmsAttachTVO4View.collectionModel.makeCurrent}"
+                                      rowSelection="single" id="t1">
+                                <af:column sortProperty="#{bindings.CmsAttachTVO4View.hints.Title.name}"
+                                           sortable="false" width="16%"
+                                           headerText="#{bindings.CmsAttachTVO4View.hints.Title.label}" id="c1">
+                                    <af:outputText value="#{row.Title}"
+                                                   shortDesc="#{bindings.CmsAttachTVO4View.hints.Title.tooltip}"
+                                                   id="ot31"/>
+                                </af:column>
+                                <af:column sortProperty="#{bindings.CmsAttachTVO4View.hints.Format.name}"
+                                           sortable="false" width="16%"
+                                           headerText="#{bindings.CmsAttachTVO4View.hints.Format.label}" id="c3">
+                                    <af:outputText value="#{row.Format}"
+                                                   shortDesc="#{bindings.CmsAttachTVO4View.hints.Format.tooltip}"
+                                                   id="ot73"/>
+                                </af:column>
+                                <af:column sortProperty="#{bindings.CmsAttachTVO4View.hints.AttachId.name}"
+                                           sortable="false" width="16%"
+                                           headerText="#{bindings.CmsAttachTVO4View.hints.AttachId.label}" id="c4">
+                                    <af:outputText value="#{row.AttachId}"
+                                                   shortDesc="#{bindings.CmsAttachTVO4View.hints.AttachId.tooltip}"
+                                                   id="ot74">
+                                        <af:convertNumber groupingUsed="false"
+                                                          pattern="#{bindings.CmsAttachTVO4View.hints.AttachId.format}"/>
+                                    </af:outputText>
+                                </af:column>
+                                <af:column headerText="#{bindings.CmsAttachTVO4View.hints.UcmDocname.label}" id="c5"
+                                           width="16%">
+                                    <af:outputText value="#{row.UcmDocname}"
+                                                   shortDesc="#{bindings.CmsAttachTVO4View.hints.UcmDocname.tooltip}"
+                                                   id="ot75"/>
+                                </af:column>
+                            </af:table>
+                            <af:spacer width="10" height="2" id="s3"/>
+                        </af:panelGroupLayout>
+                    </af:panelGroupLayout>
+                    <af:spacer width="5" height="10" id="s23"/>
+                    <af:panelGroupLayout id="pgl5" layout="scroll" inlineStyle="width:200px;" valign="top">
+                        <af:region value="#{bindings.related_info_view_taskflow1.regionModel}" id="r1"/>
+                    </af:panelGroupLayout>
+                </af:panelGroupLayout>
+            </af:panelGroupLayout>
+        </f:facet>
+        <f:facet name="bottom">
+            <af:panelGroupLayout id="pgl9">
+                <af:popup childCreation="deferred" autoCancel="disabled" id="p1" contentDelivery="lazyUncached">
+                    <af:panelWindow id="nw1" title="查看所有属性">
+                        <af:panelGroupLayout id="pgl69" layout="scroll"
+                                             inlineStyle="background:#F6F6F6;line-height:20px;">
+                            <af:panelFormLayout id="pfl2" maxColumns="2" rows="7" labelWidth="100" fieldWidth="200">
+                                <af:panelLabelAndMessage label="#{bindings.FigureName.hints.label}" id="plam2">
+                                    <af:outputText value="#{bindings.FigureName.inputValue}"
+                                                   shortDesc="#{bindings.FigureName.hints.tooltip}" id="ot6"/>
+                                </af:panelLabelAndMessage>
+                                <af:panelLabelAndMessage label="#{bindings.SeriesName.hints.label}" id="plam3">
+                                    <af:outputText value="#{bindings.SeriesName.inputValue}"
+                                                   shortDesc="#{bindings.SeriesName.hints.tooltip}" id="ot7"/>
+                                </af:panelLabelAndMessage>
+                                <af:panelLabelAndMessage label="#{bindings.Photographer.hints.label}" id="plam6">
+                                    <af:outputText value="#{bindings.Photographer.inputValue}"
+                                                   shortDesc="#{bindings.Photographer.hints.tooltip}" id="ot8"/>
+                                </af:panelLabelAndMessage>
+                                <af:panelLabelAndMessage label="#{bindings.PhotographyType.hints.label}" id="plam7">
+                                    <af:outputText value="#{bindings.PhotographyType.inputValue}"
+                                                   shortDesc="#{bindings.PhotographyType.hints.tooltip}" id="ot10"/>
+                                </af:panelLabelAndMessage>
+                                <af:panelLabelAndMessage label="#{bindings.PhotographyTime.hints.label}" id="plam8">
+                                    <af:outputText value="#{bindings.PhotographyTime.inputValue}"
+                                                   shortDesc="#{bindings.PhotographyTime.hints.tooltip}" id="ot11">
+                                        <af:convertDateTime pattern="#{bindings.PhotographyTime.format}"/>
+                                    </af:outputText>
+                                </af:panelLabelAndMessage>
+                                <af:panelLabelAndMessage label="#{bindings.PhotographyLocation.hints.label}"
+                                                         id="plam10">
+                                    <af:outputText value="#{bindings.PhotographyLocation.inputValue}"
+                                                   shortDesc="#{bindings.PhotographyLocation.hints.tooltip}" id="ot12"/>
+                                </af:panelLabelAndMessage>
+                                <af:panelLabelAndMessage label="#{bindings.CategoryName.hints.label}" id="plam26">
+                                    <af:outputText value="#{bindings.CategoryName.inputValue}"
+                                                   shortDesc="#{bindings.CategoryName.hints.tooltip}" id="ot27"/>
+                                </af:panelLabelAndMessage>
+                                <af:panelLabelAndMessage label="#{bindings.FigureFormat.hints.label}" id="plam17">
+                                    <af:outputText value="#{bindings.FigureFormat.inputValue}"
+                                                   shortDesc="#{bindings.FigureFormat.hints.tooltip}" id="ot18"/>
+                                </af:panelLabelAndMessage>
+                                <af:panelLabelAndMessage label="#{bindings.FigureSize.hints.label}" id="plam18">
+                                    <af:outputText value="#{bindings.FigureSize.inputValue}"
+                                                   shortDesc="#{bindings.FigureSize.hints.tooltip}" id="ot20"/>
+                                </af:panelLabelAndMessage>
+                                <af:panelLabelAndMessage label="#{bindings.FigureDimension.hints.label}" id="plam20">
+                                    <af:outputText value="#{bindings.FigureDimension.inputValue}"
+                                                   shortDesc="#{bindings.FigureDimension.hints.tooltip}" id="ot22"/>
+                                </af:panelLabelAndMessage>
+                                <af:panelLabelAndMessage label="#{bindings.FigureResolution.hints.label}" id="plam22">
+                                    <af:outputText value="#{bindings.FigureResolution.inputValue}"
+                                                   shortDesc="#{bindings.FigureResolution.hints.tooltip}" id="ot23"/>
+                                </af:panelLabelAndMessage>
+                                <af:panelLabelAndMessage label="#{bindings.FigureXResolution.hints.label}" id="plam23">
+                                    <af:outputText value="#{bindings.FigureXResolution.inputValue}"
+                                                   shortDesc="#{bindings.FigureXResolution.hints.tooltip}" id="ot24"/>
+                                </af:panelLabelAndMessage>
+                                <af:panelLabelAndMessage label="#{bindings.FigureYResolution.hints.label}" id="plam24">
+                                    <af:outputText value="#{bindings.FigureYResolution.inputValue}"
+                                                   shortDesc="#{bindings.FigureYResolution.hints.tooltip}" id="ot25"/>
+                                </af:panelLabelAndMessage>
+                                <af:panelLabelAndMessage label="#{bindings.CoverDesign.hints.label}" id="plam25">
+                                    <af:outputText value="#{bindings.CoverDesign.inputValue}"
+                                                   shortDesc="#{bindings.CoverDesign.hints.tooltip}" id="ot26"/>
+                                </af:panelLabelAndMessage>
+                            </af:panelFormLayout>
+                            <af:panelFormLayout id="pfl3" labelWidth="100">
+                                <af:panelLabelAndMessage label="#{bindings.Keyword.hints.label}" id="plam12">
+                                    <af:outputText value="#{bindings.Keyword.inputValue}"
+                                                   shortDesc="#{bindings.Keyword.hints.tooltip}" id="ot15"/>
+                                </af:panelLabelAndMessage>
+                                <af:panelLabelAndMessage label="#{bindings.FigureDesc.hints.label}" id="plam14">
+                                    <af:outputText value="#{bindings.FigureDesc.inputValue}"
+                                                   shortDesc="#{bindings.FigureDesc.hints.tooltip}" id="ot71"/>
+                                </af:panelLabelAndMessage>
+                                <af:panelLabelAndMessage label="#{bindings.Remarks.hints.label}" id="plam16">
+                                    <af:outputText value="#{bindings.Remarks.inputValue}"
+                                                   shortDesc="#{bindings.Remarks.hints.tooltip}" id="ot17"/>
+                                </af:panelLabelAndMessage>
+                            </af:panelFormLayout>
+                            <af:region value="#{bindings.extend_attr_view_taskflow1.regionModel}" id="r3"/>
+                        </af:panelGroupLayout>
+                    </af:panelWindow>
+                </af:popup>
+                <af:popup childCreation="deferred" autoCancel="disabled" id="p2" contentDelivery="lazyUncached">
+                    <af:panelWindow id="pw1" title="查看EXIF属性">
+                        <af:panelFormLayout id="pfl5" maxColumns="2" rows="9" labelWidth="100" fieldWidth="200">
+                            <af:panelLabelAndMessage label="#{bindings.ImageDescription.hints.label}" id="plam27">
+                                <af:outputText value="#{bindings.ImageDescription.inputValue}"
+                                               shortDesc="#{bindings.ImageDescription.hints.tooltip}" id="ot28"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.Make.hints.label}" id="plam28">
+                                <af:outputText value="#{bindings.Make.inputValue}"
+                                               shortDesc="#{bindings.Make.hints.tooltip}" id="ot29"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.Model.hints.label}" id="plam29">
+                                <af:outputText value="#{bindings.Model.inputValue}"
+                                               shortDesc="#{bindings.Model.hints.tooltip}" id="ot76"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.Orientation.hints.label}" id="plam30">
+                                <af:outputText value="#{bindings.Orientation.inputValue}"
+                                               shortDesc="#{bindings.Orientation.hints.tooltip}" id="ot77"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.XResolution.hints.label}" id="plam31">
+                                <af:outputText value="#{bindings.XResolution.inputValue}"
+                                               shortDesc="#{bindings.XResolution.hints.tooltip}" id="ot32"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.YResolution.hints.label}" id="plam32">
+                                <af:outputText value="#{bindings.YResolution.inputValue}"
+                                               shortDesc="#{bindings.YResolution.hints.tooltip}" id="ot33"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.ResolutionUnit.hints.label}" id="plam33">
+                                <af:outputText value="#{bindings.ResolutionUnit.inputValue}"
+                                               shortDesc="#{bindings.ResolutionUnit.hints.tooltip}" id="ot34"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.DateTime.hints.label}" id="plam34">
+                                <af:outputText value="#{bindings.DateTime.inputValue}"
+                                               shortDesc="#{bindings.DateTime.hints.tooltip}" id="ot35"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.YcbcrPositioning.hints.label}" id="plam35">
+                                <af:outputText value="#{bindings.YcbcrPositioning.inputValue}"
+                                               shortDesc="#{bindings.YcbcrPositioning.hints.tooltip}" id="ot36"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.ExposureTime.hints.label}" id="plam36">
+                                <af:outputText value="#{bindings.ExposureTime.inputValue}"
+                                               shortDesc="#{bindings.ExposureTime.hints.tooltip}" id="ot37"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.FNumber.hints.label}" id="plam37">
+                                <af:outputText value="#{bindings.FNumber.inputValue}"
+                                               shortDesc="#{bindings.FNumber.hints.tooltip}" id="ot38"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.IsoSpeedRatings.hints.label}" id="plam38">
+                                <af:outputText value="#{bindings.IsoSpeedRatings.inputValue}"
+                                               shortDesc="#{bindings.IsoSpeedRatings.hints.tooltip}" id="ot39"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.ExifVersion.hints.label}" id="plam39">
+                                <af:outputText value="#{bindings.ExifVersion.inputValue}"
+                                               shortDesc="#{bindings.ExifVersion.hints.tooltip}" id="ot40"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.DateTimeOriginal.hints.label}" id="plam40">
+                                <af:outputText value="#{bindings.DateTimeOriginal.inputValue}"
+                                               shortDesc="#{bindings.DateTimeOriginal.hints.tooltip}" id="ot41"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.DateTimeDigitized.hints.label}" id="plam41">
+                                <af:outputText value="#{bindings.DateTimeDigitized.inputValue}"
+                                               shortDesc="#{bindings.DateTimeDigitized.hints.tooltip}" id="ot42"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.ComponentsConfiguration.hints.label}"
+                                                     id="plam42">
+                                <af:outputText value="#{bindings.ComponentsConfiguration.inputValue}"
+                                               shortDesc="#{bindings.ComponentsConfiguration.hints.tooltip}" id="ot43"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.CompressedBitsPerPixel.hints.label}" id="plam43">
+                                <af:outputText value="#{bindings.CompressedBitsPerPixel.inputValue}"
+                                               shortDesc="#{bindings.CompressedBitsPerPixel.hints.tooltip}" id="ot44"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.ShutterSpeedValue.hints.label}" id="plam44">
+                                <af:outputText value="#{bindings.ShutterSpeedValue.inputValue}"
+                                               shortDesc="#{bindings.ShutterSpeedValue.hints.tooltip}" id="ot45"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.ApertureValue.hints.label}" id="plam45">
+                                <af:outputText value="#{bindings.ApertureValue.inputValue}"
+                                               shortDesc="#{bindings.ApertureValue.hints.tooltip}" id="ot46"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.ExposureBiasValue.hints.label}" id="plam46">
+                                <af:outputText value="#{bindings.ExposureBiasValue.inputValue}"
+                                               shortDesc="#{bindings.ExposureBiasValue.hints.tooltip}" id="ot47"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.MaxApertureValue.hints.label}" id="plam47">
+                                <af:outputText value="#{bindings.MaxApertureValue.inputValue}"
+                                               shortDesc="#{bindings.MaxApertureValue.hints.tooltip}" id="ot48"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.MeteringMode.hints.label}" id="plam48">
+                                <af:outputText value="#{bindings.MeteringMode.inputValue}"
+                                               shortDesc="#{bindings.MeteringMode.hints.tooltip}" id="ot49"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.Flash.hints.label}" id="plam49">
+                                <af:outputText value="#{bindings.Flash.inputValue}"
+                                               shortDesc="#{bindings.Flash.hints.tooltip}" id="ot50"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.FocalLength.hints.label}" id="plam50">
+                                <af:outputText value="#{bindings.FocalLength.inputValue}"
+                                               shortDesc="#{bindings.FocalLength.hints.tooltip}" id="ot51"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.UserComment.hints.label}" id="plam51">
+                                <af:outputText value="#{bindings.UserComment.inputValue}"
+                                               shortDesc="#{bindings.UserComment.hints.tooltip}" id="ot52"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.FlashpixVersion.hints.label}" id="plam52">
+                                <af:outputText value="#{bindings.FlashpixVersion.inputValue}"
+                                               shortDesc="#{bindings.FlashpixVersion.hints.tooltip}" id="ot53"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.ColorSpace.hints.label}" id="plam53">
+                                <af:outputText value="#{bindings.ColorSpace.inputValue}"
+                                               shortDesc="#{bindings.ColorSpace.hints.tooltip}" id="ot54"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.ExifImageWidth.hints.label}" id="plam54">
+                                <af:outputText value="#{bindings.ExifImageWidth.inputValue}"
+                                               shortDesc="#{bindings.ExifImageWidth.hints.tooltip}" id="ot55"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.ExifImageHeight.hints.label}" id="plam55">
+                                <af:outputText value="#{bindings.ExifImageHeight.inputValue}"
+                                               shortDesc="#{bindings.ExifImageHeight.hints.tooltip}" id="ot56"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.FocalPlaneXResolution.hints.label}" id="plam56">
+                                <af:outputText value="#{bindings.FocalPlaneXResolution.inputValue}"
+                                               shortDesc="#{bindings.FocalPlaneXResolution.hints.tooltip}" id="ot57"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.FocalPlaneYResolution.hints.label}" id="plam57">
+                                <af:outputText value="#{bindings.FocalPlaneYResolution.inputValue}"
+                                               shortDesc="#{bindings.FocalPlaneYResolution.hints.tooltip}" id="ot58"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.FocalPlaneResolutionUnit.hints.label}"
+                                                     id="plam58">
+                                <af:outputText value="#{bindings.FocalPlaneResolutionUnit.inputValue}"
+                                               shortDesc="#{bindings.FocalPlaneResolutionUnit.hints.tooltip}"
+                                               id="ot59"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.SensingMethod.hints.label}" id="plam59">
+                                <af:outputText value="#{bindings.SensingMethod.inputValue}"
+                                               shortDesc="#{bindings.SensingMethod.hints.tooltip}" id="ot60"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.FileSource.hints.label}" id="plam60">
+                                <af:outputText value="#{bindings.FileSource.inputValue}"
+                                               shortDesc="#{bindings.FileSource.hints.tooltip}" id="ot61"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.CustomRendered.hints.label}" id="plam61">
+                                <af:outputText value="#{bindings.CustomRendered.inputValue}"
+                                               shortDesc="#{bindings.CustomRendered.hints.tooltip}" id="ot62"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.ExposureMode.hints.label}" id="plam62">
+                                <af:outputText value="#{bindings.ExposureMode.inputValue}"
+                                               shortDesc="#{bindings.ExposureMode.hints.tooltip}" id="ot63"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.WhiteBalance.hints.label}" id="plam63">
+                                <af:outputText value="#{bindings.WhiteBalance.inputValue}"
+                                               shortDesc="#{bindings.WhiteBalance.hints.tooltip}" id="ot64"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.DigitalZoomRatio.hints.label}" id="plam64">
+                                <af:outputText value="#{bindings.DigitalZoomRatio.inputValue}"
+                                               shortDesc="#{bindings.DigitalZoomRatio.hints.tooltip}" id="ot65"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.SceneCaptureType.hints.label}" id="plam65">
+                                <af:outputText value="#{bindings.SceneCaptureType.inputValue}"
+                                               shortDesc="#{bindings.SceneCaptureType.hints.tooltip}" id="ot66"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.Compression.hints.label}" id="plam66">
+                                <af:outputText value="#{bindings.Compression.inputValue}"
+                                               shortDesc="#{bindings.Compression.hints.tooltip}" id="ot67"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.ThumbnailOffset.hints.label}" id="plam67">
+                                <af:outputText value="#{bindings.ThumbnailOffset.inputValue}"
+                                               shortDesc="#{bindings.ThumbnailOffset.hints.tooltip}" id="ot72"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.ThumbnailLength.hints.label}" id="plam68">
+                                <af:outputText value="#{bindings.ThumbnailLength.inputValue}"
+                                               shortDesc="#{bindings.ThumbnailLength.hints.tooltip}" id="ot14"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.ThumbnailData.hints.label}" id="plam69">
+                                <af:outputText value="#{bindings.ThumbnailData.inputValue}"
+                                               shortDesc="#{bindings.ThumbnailData.hints.tooltip}" id="ot70"/>
+                            </af:panelLabelAndMessage>
+                        </af:panelFormLayout>
+                    </af:panelWindow>
+                </af:popup>
+            </af:panelGroupLayout>
+        </f:facet>
+    </af:panelStretchLayout>
+</ui:composition>

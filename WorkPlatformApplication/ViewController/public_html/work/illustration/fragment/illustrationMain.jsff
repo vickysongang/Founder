@@ -1,0 +1,214 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core">
+    <af:panelStretchLayout id="psl1" inlineStyle="border:1px solid #BAC6CA;background:#F3F8FC;" topHeight="auto">
+        <f:facet name="top">
+            <af:panelStretchLayout id="psl4" inlineStyle="height:66px;" startWidth="auto" endWidth="auto"
+                                   styleClass="AFStretchWidth" bottomHeight="auto">
+                <f:facet name="start">
+                    <af:panelGroupLayout id="pgl1" partialTriggers="soc1 soc2 it1"
+                                         inlineStyle="margin:5px 5px 5px 15px;padding-left:20px;" layout="horizontal"
+                                         binding="#{backingBeanScope.illustrationMainManagedBean.buttonPanelGroupLayout}">
+                        <af:commandImageLink text="标引" id="cil14" icon="/resources/images/edit.gif" windowHeight="460"
+                                             windowWidth="620" partialSubmit="true" action="toEdit" useWindow="true"
+                                             styleClass="imagelink_length_2"
+                                             returnListener="#{backingBeanScope.illustrationMainManagedBean.commonRenderer.createOrEditReturnListener}"
+                                             visible="#{backingBeanScope.illustrationMainManagedBean.commonRenderer.indexEnable  and backingBeanScope.illustrationMainManagedBean.commonRenderer.currSelectedListSize == 1}"
+                                             actionListener="#{backingBeanScope.illustrationMainManagedBean.commonRenderer.docIdSetActionListener}">
+                            <af:setPropertyListener from="EDIT" to="#{pageFlowScope.mode}" type="action"/>
+                            <af:setPropertyListener from="N" to="#{pageFlowScope.batchFlag}" type="action"/>
+                        </af:commandImageLink>
+                        <af:commandImageLink text="批量标引" id="cil6" icon="/resources/images/batch_edit.gif"
+                                             windowHeight="360" windowWidth="620" partialSubmit="true" action="toEdit"
+                                             useWindow="true" styleClass="imagelink_length_4"
+                                             returnListener="#{backingBeanScope.illustrationMainManagedBean.commonRenderer.createOrEditReturnListener}"
+                                             actionListener="#{backingBeanScope.illustrationMainManagedBean.commonRenderer.docIdBatchSetActionListener}"
+                                             visible="#{backingBeanScope.illustrationMainManagedBean.commonRenderer.batchIndexEnable  and backingBeanScope.illustrationMainManagedBean.commonRenderer.currSelectedListSize > 1}">
+                            <af:setPropertyListener from="EDIT" to="#{pageFlowScope.mode}" type="action"/>
+                            <af:setPropertyListener from="Y" to="#{pageFlowScope.batchFlag}" type="action"/>
+                        </af:commandImageLink>
+                        <af:commandImageLink text="设置关联" id="cil16" icon="/resources/images/relation.gif"
+                                             windowHeight="600" windowWidth="850" partialSubmit="true" useWindow="true"
+                                             action="toRelationSet" styleClass="imagelink_length_4"
+                                             actionListener="#{backingBeanScope.illustrationMainManagedBean.commonRenderer.docIdSetActionListener}"
+                                             visible="#{backingBeanScope.illustrationMainManagedBean.commonRenderer.relationEnable and backingBeanScope.illustrationMainManagedBean.commonRenderer.currSelectedListSize == 1}"/>
+                        <af:commandImageLink text="附件管理" id="cil12" icon="/resources/images/edit.gif" windowHeight="560"
+                                             windowWidth="650" partialSubmit="true" action="toAttach" useWindow="true"
+                                             styleClass="imagelink_length_4"
+                                             visible="#{backingBeanScope.illustrationMainManagedBean.commonRenderer.attachmentMgmtEnable  and backingBeanScope.illustrationMainManagedBean.commonRenderer.currSelectedListSize == 1}"
+                                             actionListener="#{backingBeanScope.illustrationMainManagedBean.commonRenderer.docIdSetActionListener}"></af:commandImageLink>
+                        <af:commandImageLink text="添加到暂存架" id="cil19" icon="/resources/images/catlog_view.gif"
+                                             styleClass="imagelink_length_6" partialSubmit="true"
+                                             visible="#{backingBeanScope.illustrationMainManagedBean.commonRenderer.addToTempShelfEnable and backingBeanScope.illustrationMainManagedBean.commonRenderer.currSelectedListSize >= 1}"
+                                             actionListener="#{backingBeanScope.illustrationMainManagedBean.commonRenderer.addToTempShelf}"/>
+                    </af:panelGroupLayout>
+                </f:facet>
+                <f:facet name="end">
+                    <af:panelGroupLayout layout="horizontal" id="pgl9" inlineStyle="margin-top:10px;margin-right:15px;">
+                        <af:inputText label="searchInput" id="it1" simple="true" shortDesc="输入关键字,可以对以下内容[图片名称]进行快速检索"
+                                      contentStyle="width:150px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                      binding="#{backingBeanScope.illustrationMainManagedBean.commonRenderer.searchInput}">
+                            <af:clientListener type="keyPress" method="queryWhenPressEnter"/>
+                            <af:serverListener type="queryWhenPressAction"
+                                               method="#{backingBeanScope.illustrationMainManagedBean.queryWhenPressEnterListener}"/>
+                        </af:inputText>
+                        <af:commandImageLink text="" id="cil9" icon="/resources/images/search.gif"
+                                             inlineStyle="margin-left:2px;"
+                                             actionListener="#{backingBeanScope.illustrationMainManagedBean.searchActionListenser}"/>
+                        <af:commandImageLink text="" id="cil25" icon="/resources/images/icon_hzddsh.gif"
+                                             partialSubmit="true" inlineStyle="margin-left:5px;"
+                                             action="toComplexSearch" useWindow="true" windowHeight="500"
+                                             windowWidth="650" shortDesc="高级搜索"
+                                             returnListener="#{backingBeanScope.illustrationMainManagedBean.complexRearchReturnListener}"/>
+                    </af:panelGroupLayout>
+                </f:facet>
+                <f:facet name="bottom">
+                    <af:panelStretchLayout id="psl3" inlineStyle="height:26px;background:#E7ECE5;margin-top:3px;"
+                                           topHeight="0px" bottomHeight="0px" startWidth="auto"
+                                           styleClass="AFStretchWidth" partialTriggers="cl1 cl2 soc1 soc2 it1 cil25"
+                                           endWidth="auto">
+                        <f:facet name="bottom"/>
+                        <f:facet name="center"/>
+                        <f:facet name="start">
+                            <af:panelGroupLayout id="pgl10" layout="horizontal"
+                                                 inlineStyle="padding-top:3px;padding-left:15px;">
+                                <af:outputText value="总个数:#{backingBeanScope.illustrationMainManagedBean.tableModel.rowCount}"
+                                               id="ot2"/>
+                                <af:spacer width="10" height="10" id="s2"/>
+                                <af:outputText value="每页[20]" id="ot8"/>
+                                <af:spacer width="10" height="10" id="s7"/>
+                                <af:outputText value="页数[" id="ot9"/>
+                                <af:outputText value="#{backingBeanScope.illustrationMainManagedBean.tableModel.currPageIndex}"
+                                               id="ot6" inlineStyle="color:Red;"/>
+                                <af:outputText value="/#{backingBeanScope.illustrationMainManagedBean.tableModel.totalPageCount}]"
+                                               id="ot4"/>
+                                <af:spacer width="10" height="10" id="s4"/>
+                                <af:commandLink text="前一页" id="cl1"
+                                                disabled="#{backingBeanScope.illustrationMainManagedBean.tableModel.isPrevDisabled}"
+                                                action="#{backingBeanScope.illustrationMainManagedBean.refreshCoverAction}"
+                                                actionListener="#{backingBeanScope.illustrationMainManagedBean.commonRenderer.prevPage}"/>
+                                <af:spacer width="10" height="10" id="s1"/>
+                                <af:commandLink text="后一页" id="cl2"
+                                                disabled="#{backingBeanScope.illustrationMainManagedBean.tableModel.isNextDisabled}"
+                                                action="#{backingBeanScope.illustrationMainManagedBean.refreshCoverAction}"
+                                                actionListener="#{backingBeanScope.illustrationMainManagedBean.commonRenderer.nextPage}"/>
+                                <af:spacer width="10" height="10" id="s3"/>
+                                <af:selectOneChoice valueChangeListener="#{backingBeanScope.illustrationMainManagedBean.goPageIndex}"
+                                                    id="soc1" simple="true" autoSubmit="true" shortDesc=" "
+                                                    value="#{backingBeanScope.illustrationMainManagedBean.tableModel.currItem.value}">
+                                    <f:selectItems value="#{backingBeanScope.illustrationMainManagedBean.tableModel.pageSelectItems}"
+                                                   id="si1"/>
+                                </af:selectOneChoice>
+                                <af:spacer width="10" height="10" id="s6"/>
+                                <af:commandImageLink id="cl3" icon="/resources/images/shuaxin.gif" shortDesc="刷新"
+                                                     actionListener="#{backingBeanScope.illustrationMainManagedBean.refreshActionListener}"/>
+                            </af:panelGroupLayout>
+                        </f:facet>
+                        <f:facet name="end">
+                            <af:panelGroupLayout layout="horizontal" id="pgl7"
+                                                 inlineStyle="margin-right:40px;padding-top:3px;">
+                                <af:forEach items="#{backingBeanScope.illustrationMainManagedBean.commonRenderer.statusMapList}"
+                                            var="status">
+                                    <af:panelGroupLayout layout="horizontal" id="pgl13"
+                                                         styleClass="#{pageFlowScope.currStatusCode == status['statusCode'] ? 'statusSelected' : 'none'}">
+                                        <af:commandLink text="#{status['displayName']}" id="cl5"
+                                                        visible="#{pageFlowScope.deleteFlag != 'Y'}"
+                                                        actionListener="#{backingBeanScope.illustrationMainManagedBean.commonRenderer.switchStatusActionListener}">
+                                            <f:attribute name="statusCode" value="#{status['statusCode']}"/>
+                                            <af:setPropertyListener to="#{pageFlowScope.currStatusCode}" type="action"
+                                                                    from="#{status['statusCode']}"/>
+                                        </af:commandLink>
+                                    </af:panelGroupLayout>
+                                    <af:spacer width="5" height="10" id="s11"/>
+                                </af:forEach>
+                                <af:selectOneChoice value="#{pageFlowScope.currStatusCode}" autoSubmit="true" id="soc2"
+                                                    shortDesc=" " visible="#{pageFlowScope.deleteFlag != 'Y'}"
+                                                    rendered="false"
+                                                    valueChangeListener="#{backingBeanScope.illustrationMainManagedBean.commonRenderer.statusValueChangeListener}">
+                                    <f:selectItems value="#{backingBeanScope.illustrationMainManagedBean.commonRenderer.statusList}"
+                                                   id="si2"/>
+                                </af:selectOneChoice>
+                            </af:panelGroupLayout>
+                        </f:facet>
+                    </af:panelStretchLayout>
+                </f:facet>
+            </af:panelStretchLayout>
+        </f:facet>
+        <f:facet name="bottom"></f:facet>
+        <f:facet name="center">
+            <af:panelStretchLayout id="psl2" topHeight="auto" dimensionsFrom="children" partialTriggers="soc1 cil6 it1">
+                <f:facet name="center">
+                    <af:panelGroupLayout id="pgl2" inlineStyle="border:1px solid #F1F1F1;" layout="scroll"
+                                         binding="#{backingBeanScope.illustrationMainManagedBean.commonRenderer.coverPanelGroupLayout}">
+                        <af:forEach items="#{backingBeanScope.illustrationMainManagedBean.illustrationList}"
+                                    var="illustrationList" varStatus="listVs">
+                            <af:panelGroupLayout id="pgl11" layout="vertical" clientComponent="true">
+                                <table width="100%">
+                                    <tr>
+                                        <af:forEach items="#{illustrationList}" var="illustration" varStatus="prodVs">
+                                            <td width="20%">
+                                                <af:panelGroupLayout id="pgl3" layout="vertical" halign="center"
+                                                                     styleClass="coverListCell"
+                                                                     inlineStyle="background:#{illustration['checked'] ? '#D6E5EB':'white'};"
+                                                                     visible="#{illustration['illustrationId'] == null ? 'false' : 'true'}">
+                                                    <af:panelGroupLayout id="pgl8" layout="horizontal" halign="center"
+                                                                         styleClass="coverStyle">
+                                                        <af:commandImageLink id="cil13" partialSubmit="true"
+                                                                             styleClass="#{illustration['thumbnailUrl']== null ? 'noCoverImage' : 'coverImage'}"
+                                                                             icon="#{illustration['thumbnailUrl']== null ? '/resources/images/lack_image.gif' : illustration['thumbnailUrl']}">
+                                                            <af:setPropertyListener from="#{illustration['illustrationId']}"
+                                                                                    to="#{pageFlowScope.illustrationId}"
+                                                                                    type="action"/>
+                                                            <af:setPropertyListener from="EDIT"
+                                                                                    to="#{pageFlowScope.mode}"
+                                                                                    type="action"/>
+                                                            <f:attribute name="checked"
+                                                                         value="#{illustration['checked']== null ? true : !illustration['checked']}"/>
+                                                            <f:attribute name="docId" value="#{illustration['docId']}"/>
+                                                            <f:attribute name="illustrationName"
+                                                                         value="#{illustration['illustrationName']}"/>
+                                                            <!--双击事件-->
+                                                            <af:clientListener type="dblClick"
+                                                                               method="imageGroupDblClick"/>
+                                                            <af:serverListener type="ImageGroupDblClickEvent"
+                                                                               method="#{backingBeanScope.illustrationMainManagedBean.illustrationImageDblClick}"/>
+                                                            <af:clientListener type="click" method="imageDblSelect"/>
+                                                            <!--图片单选 -->
+                                                            <af:serverListener type="ImageSelectAction"
+                                                                               method="#{backingBeanScope.illustrationMainManagedBean.imageSelectAction}"/>
+                                                            <!--图片多选 -->
+                                                            <af:serverListener type="ImageDblSelectAction"
+                                                                               method="#{backingBeanScope.illustrationMainManagedBean.imageDblSelectAction}"/>
+                                                            <af:resource type="javascript"
+                                                                         source="/resources/js/work_platform.js"/>
+                                                        </af:commandImageLink>
+                                                    </af:panelGroupLayout>
+                                                    <af:spacer width="10" height="5" id="s9"/>
+                                                    <af:panelGroupLayout id="pgl5" layout="vertical"
+                                                                         inlineStyle="background:#fff;margin:0 -11px 0 -11px;height:22px;line-height:22px;border:1px solid #F1F1F1;">
+                                                        <af:outputText value="#{illustration['illustrationName']}"
+                                                                       id="ot10"/>
+                                                    </af:panelGroupLayout>
+                                                    <af:panelGroupLayout id="pgl4" layout="vertical"
+                                                                         inlineStyle="background:#AAAAAA;margin:0 -10px 0 -10px;height:22px;line-height:22px;">
+                                                        <af:outputText value="来源：#{illustration['illustrationSource']}"
+                                                                       id="ot5"/>
+                                                    </af:panelGroupLayout>
+                                                </af:panelGroupLayout>
+                                            </td>
+                                        </af:forEach>
+                                    </tr>
+                                </table>
+                            </af:panelGroupLayout>
+                        </af:forEach>
+                    </af:panelGroupLayout>
+                </f:facet>
+                <f:facet name="top">
+                    <af:panelGroupLayout id="pgl6"/>
+                </f:facet>
+                <f:facet name="start"/>
+                <f:facet name="end"/>
+            </af:panelStretchLayout>
+        </f:facet>
+    </af:panelStretchLayout>
+</ui:composition>

@@ -1,0 +1,169 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core">
+    <af:panelStretchLayout id="psl1" styleClass="AFStretchWidth" topHeight="auto">
+        <f:facet name="top">
+            <af:panelGroupLayout id="pgl1" layout="vertical" halign="center"
+                                 inlineStyle="height: 40px;background:#42c6ff;" styleClass="AFStretchWidth">
+                <af:spacer width="15" height="3" id="s1"/>
+                <af:panelGroupLayout id="pgl2" layout="horizontal" halign="center">
+                    <af:image source="/resources/images/write_item_icon.png" id="i1"/>
+                    <af:spacer width="15" height="10" id="s4"/>
+                    <af:outputText value="#{pageFlowScope.goPage=='addResource' ?  '添加资源':'主题制作'} " id="ot1"
+                                   inlineStyle="font-size:20px; font-weight:900;color:white;"/>
+                </af:panelGroupLayout>
+            </af:panelGroupLayout>
+        </f:facet>
+        <f:facet name="bottom"/>
+        <f:facet name="center">
+            <af:panelSplitter id="ps1" styleClass="AFStretchWidth" dimensionsFrom="parent" splitterPosition="150">
+                <f:facet name="first">
+                    <af:panelGroupLayout id="pgl3" layout="vertical" inlineStyle="background:#D9EDF8;"
+                                         partialTriggers="cl4 cl5 cl6 cl7 cl8 cl9 cl10 cl11 cl1 cl13 cl2 cl12 cl3">
+                        <af:panelGroupLayout id="pgl4"
+                                             styleClass="#{(pageFlowScope.libCode == 'BOOK' or pageFlowScope.libCode == null)? 'theme-lib-selected' : 'theme-lib-no-selected'}"
+                                             layout="horizontal">
+                            <af:commandLink text="图书库" id="cl4" partialSubmit="true"
+                                            actionListener="#{backingBeanScope.themeResourceHomeManagedBean.swithcLibActionListener}">
+                                <f:attribute value="BOOK" name="libCode"/>
+                                <f:attribute value="TABLE" name="displayModel"/>
+                            </af:commandLink>
+                        </af:panelGroupLayout>
+                        <af:separator id="s10" styleClass="theme-separator"
+                                      rendered="#{pageFlowScope.goPage=='addResource'}"/>
+                        <af:panelGroupLayout id="pgl12" rendered="#{pageFlowScope.goPage=='addResource'}"
+                                             styleClass="#{pageFlowScope.libCode == 'PERIODICAL' ? 'theme-lib-selected' : 'theme-lib-no-selected'}"
+                                             layout="horizontal">
+                            <af:commandLink text="期刊库" id="cl1" partialSubmit="true"
+                                            actionListener="#{backingBeanScope.themeResourceHomeManagedBean.swithcLibActionListener}">
+                                <f:attribute value="PERIODICAL" name="libCode"/>
+                                <f:attribute value="TABLE" name="displayModel"/>
+                            </af:commandLink>
+                        </af:panelGroupLayout>
+                        <af:separator id="s7" styleClass="theme-separator"
+                                      rendered="#{pageFlowScope.goPage=='addResource'}"/>
+                        <af:panelGroupLayout id="pgl16" rendered="#{pageFlowScope.goPage=='addResource'}"
+                                             styleClass="#{pageFlowScope.libCode == 'NEWSPAPER' ? 'theme-lib-selected' : 'theme-lib-no-selected'}"
+                                             layout="horizontal">
+                            <af:commandLink text="报纸库" id="cl13" partialSubmit="true"
+                                            actionListener="#{backingBeanScope.themeResourceHomeManagedBean.swithcLibActionListener}">
+                                <f:attribute value="NEWSPAPER" name="libCode"/>
+                                <f:attribute value="TABLE" name="displayModel"/>
+                            </af:commandLink>
+                        </af:panelGroupLayout>
+                        <af:separator id="s2" styleClass="theme-separator"/>
+                        <af:panelGroupLayout id="pgl5"
+                                             styleClass="#{pageFlowScope.libCode == 'ILLUSTRATION' ? 'theme-lib-selected' : 'theme-lib-no-selected'}"
+                                             layout="horizontal">
+                            <af:commandLink text="插图库" id="cl5" partialSubmit="true"
+                                            actionListener="#{backingBeanScope.themeResourceHomeManagedBean.swithcLibActionListener}">
+                                <f:attribute value="ILLUSTRATION" name="libCode"/>
+                                <f:attribute value="COVER" name="displayModel"/>
+                            </af:commandLink>
+                        </af:panelGroupLayout>
+                        <af:separator id="s12" styleClass="theme-separator"/>
+                        <af:panelGroupLayout id="pgl6"
+                                             styleClass="#{pageFlowScope.libCode == 'MATERIAL_FIGURE' ? 'theme-lib-selected' : 'theme-lib-no-selected'}"
+                                             layout="horizontal">
+                            <af:commandLink text="素材图库" id="cl6" partialSubmit="true"
+                                            actionListener="#{backingBeanScope.themeResourceHomeManagedBean.swithcLibActionListener}">
+                                <f:attribute value="MATERIAL_FIGURE" name="libCode"/>
+                                <f:attribute value="COVER" name="displayModel"/>
+                            </af:commandLink>
+                        </af:panelGroupLayout>
+                        <af:separator id="s13" styleClass="theme-separator"/>
+                        <af:panelGroupLayout id="pgl7"
+                                             styleClass="#{pageFlowScope.libCode == 'PHOTOGRAPHY_FIGURE' ? 'theme-lib-selected' : 'theme-lib-no-selected'}"
+                                             layout="horizontal">
+                            <af:commandLink text="摄影图库" id="cl7" partialSubmit="true"
+                                            actionListener="#{backingBeanScope.themeResourceHomeManagedBean.swithcLibActionListener}">
+                                <f:attribute value="PHOTOGRAPHY_FIGURE" name="libCode"/>
+                                <f:attribute value="COVER" name="displayModel"/>
+                            </af:commandLink>
+                        </af:panelGroupLayout>
+                        <af:separator id="s14" styleClass="theme-separator"/>
+                        <af:panelGroupLayout id="pgl8"
+                                             styleClass="#{pageFlowScope.libCode == 'AUDIO' ? 'theme-lib-selected' : 'theme-lib-no-selected'}"
+                                             layout="horizontal">
+                            <af:commandLink text="音频库" id="cl8" partialSubmit="true"
+                                            actionListener="#{backingBeanScope.themeResourceHomeManagedBean.swithcLibActionListener}">
+                                <f:attribute value="AUDIO" name="libCode"/>
+                                <f:attribute value="TABLE" name="displayModel"/>
+                            </af:commandLink>
+                        </af:panelGroupLayout>
+                        <af:separator id="s15" styleClass="theme-separator"/>
+                        <af:panelGroupLayout id="pgl9"
+                                             styleClass="#{pageFlowScope.libCode == 'VIDEO' ? 'theme-lib-selected' : 'theme-lib-no-selected'}"
+                                             layout="horizontal">
+                            <af:commandLink text="视频库" id="cl9" partialSubmit="true"
+                                            actionListener="#{backingBeanScope.themeResourceHomeManagedBean.swithcLibActionListener}">
+                                <f:attribute value="VIDEO" name="libCode"/>
+                                <f:attribute value="TABLE" name="displayModel"/>
+                            </af:commandLink>
+                        </af:panelGroupLayout>
+                        <af:separator id="s16" styleClass="theme-separator"
+                                      rendered="#{pageFlowScope.goPage=='addResource'}"/>
+                        <af:panelGroupLayout id="pgl13" rendered="#{pageFlowScope.goPage=='addResource'}"
+                                             styleClass="#{pageFlowScope.libCode == 'ELEC_PROD' ? 'theme-lib-selected' : 'theme-lib-no-selected'}"
+                                             layout="horizontal">
+                            <af:commandLink text="电子音像产品库" id="cl2" partialSubmit="true"
+                                            actionListener="#{backingBeanScope.themeResourceHomeManagedBean.swithcLibActionListener}">
+                                <f:attribute value="ELEC_PROD" name="libCode"/>
+                                <f:attribute value="TABLE" name="displayModel"/>
+                            </af:commandLink>
+                        </af:panelGroupLayout>
+                        <af:separator id="s3" styleClass="theme-separator"/>
+                        <af:panelGroupLayout id="pgl10"
+                                             styleClass="#{pageFlowScope.libCode == 'ENCYCLOPEDIAS_ENTRY' ? 'theme-lib-selected' : 'theme-lib-no-selected'}"
+                                             layout="horizontal">
+                            <af:commandLink text="百科条目库" id="cl10" partialSubmit="true"
+                                            actionListener="#{backingBeanScope.themeResourceHomeManagedBean.swithcLibActionListener}">
+                                <f:attribute value="ENCYCLOPEDIAS_ENTRY" name="libCode"/>
+                                <f:attribute value="TABLE" name="displayModel"/>
+                            </af:commandLink>
+                        </af:panelGroupLayout>
+                        <af:separator id="s6" styleClass="theme-separator"/>
+                        <af:panelGroupLayout id="pgl15"
+                                             styleClass="#{pageFlowScope.libCode == 'WORKS_ENTRY' ? 'theme-lib-selected' : 'theme-lib-no-selected'}"
+                                             layout="horizontal">
+                            <af:commandLink text="论著条目库" id="cl12" partialSubmit="true"
+                                            actionListener="#{backingBeanScope.themeResourceHomeManagedBean.swithcLibActionListener}">
+                                <f:attribute value="WORKS_ENTRY" name="libCode"/>
+                                <f:attribute value="TABLE" name="displayModel"/>
+                            </af:commandLink>
+                        </af:panelGroupLayout>
+                        <af:separator id="s5" styleClass="theme-separator"
+                                      rendered="#{pageFlowScope.goPage=='addResource'}"/>
+                        <af:panelGroupLayout id="pgl14" rendered="#{pageFlowScope.goPage=='addResource'}"
+                                             styleClass="#{pageFlowScope.libCode == 'TEACHING_PLAN' ? 'theme-lib-selected' : 'theme-lib-no-selected'}"
+                                             layout="horizontal">
+                            <af:commandLink text="教案库" id="cl3" partialSubmit="true"
+                                            actionListener="#{backingBeanScope.themeResourceHomeManagedBean.swithcLibActionListener}">
+                                <f:attribute value="TEACHING_PLAN" name="libCode"/>
+                                <f:attribute value="TABLE" name="displayModel"/>
+                            </af:commandLink>
+                        </af:panelGroupLayout>
+                        <af:separator id="s17" styleClass="theme-separator"
+                                      rendered="#{pageFlowScope.goPage=='addResource'}"/>
+                        <af:panelGroupLayout id="pgl11"
+                                             styleClass="#{pageFlowScope.libCode == 'COURSEWARE' ? 'theme-lib-selected' : 'theme-lib-no-selected'}"
+                                             layout="horizontal">
+                            <af:commandLink text="课件库" id="cl11" partialSubmit="true"
+                                            rendered="#{pageFlowScope.goPage=='addResource'}"
+                                            actionListener="#{backingBeanScope.themeResourceHomeManagedBean.swithcLibActionListener}">
+                                <f:attribute value="COURSEWARE" name="libCode"/>
+                                <f:attribute value="TABLE" name="displayModel"/>
+                            </af:commandLink>
+                        </af:panelGroupLayout>
+                    </af:panelGroupLayout>
+                </f:facet>
+                <f:facet name="second">
+                    <af:region value="#{bindings.theme_resource_origin_taskflow1.regionModel}" id="r1"
+                               binding="#{backingBeanScope.themeResourceHomeManagedBean.resourceRegion}"/>
+                </f:facet>
+            </af:panelSplitter>
+        </f:facet>
+        <f:facet name="start"/>
+        <f:facet name="end"/>
+    </af:panelStretchLayout>
+</ui:composition>

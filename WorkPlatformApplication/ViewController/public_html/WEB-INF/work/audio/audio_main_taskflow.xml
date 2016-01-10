@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="audio_main_taskflow">
+    <default-activity>initAudioMain</default-activity>
+      <input-parameter-definition id="__4">
+      <name>libCode</name>
+      <value>#{pageFlowScope.libCode}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__7">
+      <name>currStatusCode</name>
+      <value>#{pageFlowScope.currStatusCode}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__8">
+      <name>categoryId</name>
+      <value>#{pageFlowScope.categoryId}</value>
+      <class>oracle.jbo.domain.Number</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__9">
+      <name>categoryGroupType</name>
+      <value>#{pageFlowScope.categoryGroupType}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__12">
+      <name>defaultDisplayWay</name>
+      <value>#{pageFlowScope.defaultDisplayWay}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__13">
+      <name>deleteFlag</name>
+      <value>#{pageFlowScope.deleteFlag}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__30">
+      <name>compCode</name>
+      <value>#{pageFlowScope.compCode}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__33">
+      <name>libTypeCode</name>
+      <value>#{pageFlowScope.libTypeCode}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <managed-bean id="__1">
+      <managed-bean-name>audioMainManagedBean</managed-bean-name>
+      <managed-bean-class>com.zypg.cms.work.view.bean.AudioMainManagedBean</managed-bean-class>
+      <managed-bean-scope>backingBean</managed-bean-scope>
+    </managed-bean>
+    <view id="audioMain">
+      <page>/work/audio/fragment/audioMain.jsff</page>
+    </view>
+    <method-call id="initAudioMain">
+      <method>#{backingBeanScope.audioMainManagedBean.initAudioMain}</method>
+      <outcome>
+        <fixed-outcome>init</fixed-outcome>
+      </outcome>
+    </method-call>
+    <task-flow-call id="audio_edit_taskflow">
+      <task-flow-reference>
+        <document>/WEB-INF/work/audio/audio_edit_taskflow.xml</document>
+        <id>audio_edit_taskflow</id>
+      </task-flow-reference>
+      <input-parameter id="__10">
+        <name>mode</name>
+        <value>#{pageFlowScope.mode}</value>
+      </input-parameter>
+      <input-parameter id="__14">
+        <name>docId</name>
+        <value>#{pageFlowScope.docId}</value>
+      </input-parameter>
+      <input-parameter id="__11">
+        <name>batchFlag</name>
+        <value>#{pageFlowScope.batchFlag}</value>
+      </input-parameter>
+      <input-parameter id="__31">
+        <name>compCode</name>
+        <value>#{pageFlowScope.compCode}</value>
+      </input-parameter>
+      <input-parameter id="__34">
+        <name>libTypeCode</name>
+        <value>#{pageFlowScope.libTypeCode}</value>
+      </input-parameter>
+      <input-parameter id="__35">
+        <name>libCode</name>
+        <value>#{pageFlowScope.libCode}</value>
+      </input-parameter>
+      <run-as-dialog>
+        <display-type>
+          <inline-popup/>
+        </display-type>
+      </run-as-dialog>
+    </task-flow-call>
+    <task-flow-call id="process_log_taskflow">
+      <task-flow-reference>
+        <document>/WEB-INF/work/log/process_log_taskflow.xml</document>
+        <id>process_log_taskflow</id>
+      </task-flow-reference>
+      <input-parameter id="__15">
+        <name>docId</name>
+        <value>#{pageFlowScope.docId}</value>
+      </input-parameter>
+      <run-as-dialog>
+        <display-type>
+          <inline-popup/>
+        </display-type>
+      </run-as-dialog>
+    </task-flow-call>
+    <task-flow-call id="rollback_log_taskflow">
+      <task-flow-reference>
+        <document>/WEB-INF/work/log/rollback_log_taskflow.xml</document>
+        <id>rollback_log_taskflow</id>
+      </task-flow-reference>
+      <input-parameter id="__17">
+        <name>docId</name>
+        <value>#{pageFlowScope.docId}</value>
+      </input-parameter>
+      <run-as-dialog>
+        <display-type>
+          <inline-popup/>
+        </display-type>
+      </run-as-dialog>
+    </task-flow-call>
+    <task-flow-call id="rollback_taskflow">
+      <task-flow-reference>
+        <document>/WEB-INF/work/log/rollback_taskflow.xml</document>
+        <id>rollback_taskflow</id>
+      </task-flow-reference>
+      <input-parameter id="__20">
+        <name>docId</name>
+        <value>#{pageFlowScope.docId}</value>
+      </input-parameter>
+      <input-parameter id="__36">
+        <name>type</name>
+        <value>#{pageFlowScope.type}</value>
+      </input-parameter>
+      <return-value id="__21">
+        <name>docId</name>
+        <value>#{pageFlowScope.docId}</value>
+      </return-value>
+      <return-value id="__22">
+        <name>operatorResult</name>
+        <value>#{pageFlowScope.operatorResult}</value>
+      </return-value>
+      <run-as-dialog>
+        <display-type>
+          <inline-popup/>
+        </display-type>
+      </run-as-dialog>
+    </task-flow-call>
+    <task-flow-call id="attach_mgmt_taskflow">
+      <task-flow-reference>
+        <document>/WEB-INF/work/attach/attach_mgmt_taskflow.xml</document>
+        <id>attach_mgmt_taskflow</id>
+      </task-flow-reference>
+      <input-parameter id="__29">
+        <name>libCode</name>
+        <value>#{pageFlowScope.libCode}</value>
+      </input-parameter>
+      <input-parameter id="__32">
+        <name>docId</name>
+        <value>#{pageFlowScope.docId}</value>
+      </input-parameter>
+      <run-as-dialog>
+        <display-type>
+          <inline-popup/>
+        </display-type>
+      </run-as-dialog>
+    </task-flow-call>
+    <task-flow-call id="audio_scipt_taskflow">
+      <task-flow-reference>
+        <document>/WEB-INF/work/audio/audio_scipt_taskflow.xml</document>
+        <id>audio_scipt_taskflow</id>
+      </task-flow-reference>
+      <input-parameter id="__23">
+        <name>docId</name>
+        <value>#{pageFlowScope.docId}</value>
+      </input-parameter>
+      <run-as-dialog>
+        <display-type>
+          <inline-popup/>
+        </display-type>
+      </run-as-dialog>
+    </task-flow-call>
+    <task-flow-call id="relation_set_taskflow">
+      <task-flow-reference>
+        <document>/WEB-INF/work/relation/relation_set_taskflow.xml</document>
+        <id>relation_set_taskflow</id>
+      </task-flow-reference>
+      <input-parameter id="__26">
+        <name>docId</name>
+        <value>#{pageFlowScope.docId}</value>
+      </input-parameter>
+      <input-parameter id="__27">
+        <name>libCode</name>
+        <value>#{pageFlowScope.libCode}</value>
+      </input-parameter>
+      <run-as-dialog>
+        <display-type>
+          <inline-popup/>
+        </display-type>
+      </run-as-dialog>
+    </task-flow-call>
+    <task-flow-call id="batch_sync_log_taskflow">
+      <task-flow-reference>
+        <document>/WEB-INF/work/common/batch_sync_log_taskflow.xml</document>
+        <id>batch_sync_log_taskflow</id>
+      </task-flow-reference>
+      <input-parameter id="__38">
+        <name>compCode</name>
+        <value>#{pageFlowScope.compCode}</value>
+      </input-parameter>
+      <input-parameter id="__39">
+        <name>libCode</name>
+        <value>#{pageFlowScope.libCode}</value>
+      </input-parameter>
+      <run-as-dialog>
+        <display-type>
+          <inline-popup/>
+        </display-type>
+      </run-as-dialog>
+    </task-flow-call>
+    <task-flow-call id="complex_search_taskflow">
+      <task-flow-reference>
+        <document>/WEB-INF/common/complex_search_taskflow.xml</document>
+        <id>complex_search_taskflow</id>
+      </task-flow-reference>
+      <input-parameter id="__41">
+        <name>libCode</name>
+        <value>#{pageFlowScope.libCode}</value>
+      </input-parameter>
+      <run-as-dialog>
+        <display-type>
+          <inline-popup/>
+        </display-type>
+      </run-as-dialog>
+    </task-flow-call>
+    <control-flow-rule id="__2">
+      <from-activity-id>initAudioMain</from-activity-id>
+      <control-flow-case id="__3">
+        <from-outcome>init</from-outcome>
+        <to-activity-id>audioMain</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__5">
+      <from-activity-id>audioMain</from-activity-id>
+      <control-flow-case id="__6">
+        <from-outcome>toEdit</from-outcome>
+        <to-activity-id>audio_edit_taskflow</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__16">
+        <from-outcome>toProcessLog</from-outcome>
+        <to-activity-id>process_log_taskflow</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__18">
+        <from-outcome>toRollbackLog</from-outcome>
+        <to-activity-id>rollback_log_taskflow</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__19">
+        <from-outcome>toRollback</from-outcome>
+        <to-activity-id>rollback_taskflow</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__24">
+        <from-outcome>toAttach</from-outcome>
+        <to-activity-id>attach_mgmt_taskflow</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__25">
+        <from-outcome>toScript</from-outcome>
+        <to-activity-id>audio_scipt_taskflow</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__28">
+        <from-outcome>toRelationSet</from-outcome>
+        <to-activity-id>relation_set_taskflow</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__37">
+        <from-outcome>toBatchSyncLog</from-outcome>
+        <to-activity-id>batch_sync_log_taskflow</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__40">
+        <from-outcome>toComplexSearch</from-outcome>
+        <to-activity-id>complex_search_taskflow</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

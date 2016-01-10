@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="CmsPhotographyEditVO"
+  Version="11.1.2.64.36"
+  BindingStyle="OracleName"
+  CustomQuery="true"
+  PageIterMode="Full"
+  UseGlueCode="false"
+  RowClass="com.zypg.cms.work.model.viewobject.photography.CmsPhotographyEditVORowImpl"
+  ComponentClass="com.zypg.cms.work.model.viewobject.photography.CmsPhotographyEditVOImpl">
+  <DesignTime>
+    <Attr Name="_isExpertMode" Value="true"/>
+    <Attr Name="_codeGenFlag2" Value="Access|Coll|VarAccess"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="com.zypg.cms.work.model.viewobject.photography.CmsPhotographyEditVO_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <SQLQuery><![CDATA[SELECT NULL SERIES_NAME,--系列名称
+       NULL PHOTOGRAPHER,--摄影人
+       NULL PHOTOGRAPHY_TYPE,--摄影分类
+       NULL PHOTOGRAPHY_TIME,--摄影时间
+       NULL PHOTOGRAPHY_LOCATION,--摄影地点
+       NULL COMP_CODE,--分社
+       NULL KEYWORD,--关键词
+       NULL FIGURE_DESC,--照片说明
+       NULL REMARKS,--备注,
+       NULL category_id,
+       NULL category_name  --摄影图分类
+  FROM dual]]></SQLQuery>
+  <ViewAttribute
+    Name="SeriesName"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="255"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="SERIES_NAME"
+    Expression="SERIES_NAME"
+    SQLType="VARCHAR">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.work.model.viewobject.photography.CmsPhotographyEditVO.SeriesName_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Photographer"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="PHOTOGRAPHER"
+    Expression="PHOTOGRAPHER"
+    SQLType="VARCHAR">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.work.model.viewobject.photography.CmsPhotographyEditVO.Photographer_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PhotographyType"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="PHOTOGRAPHY_TYPE"
+    Expression="PHOTOGRAPHY_TYPE"
+    SQLType="VARCHAR">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.work.model.viewobject.photography.CmsPhotographyEditVO.PhotographyType_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PhotographyTime"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="oracle.jbo.domain.Date"
+    ColumnType="DATE"
+    AliasName="PHOTOGRAPHY_TIME"
+    Expression="PHOTOGRAPHY_TIME"
+    SQLType="DATE">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.work.model.viewobject.photography.CmsPhotographyEditVO.PhotographyTime_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PhotographyLocation"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="PHOTOGRAPHY_LOCATION"
+    Expression="PHOTOGRAPHY_LOCATION"
+    SQLType="VARCHAR">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.work.model.viewobject.photography.CmsPhotographyEditVO.PhotographyLocation_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="CompCode"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="COMP_CODE"
+    Expression="COMP_CODE"
+    SQLType="VARCHAR">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.work.model.viewobject.photography.CmsPhotographyEditVO.CompCode_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Keyword"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="KEYWORD"
+    Expression="KEYWORD"
+    SQLType="VARCHAR">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.work.model.viewobject.photography.CmsPhotographyEditVO.Keyword_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="FigureDesc"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="FIGURE_DESC"
+    Expression="FIGURE_DESC"
+    SQLType="VARCHAR">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.work.model.viewobject.photography.CmsPhotographyEditVO.FigureDesc_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Remarks"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="REMARKS"
+    Expression="REMARKS"
+    SQLType="VARCHAR">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.work.model.viewobject.photography.CmsPhotographyEditVO.Remarks_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="CategoryId"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="oracle.jbo.domain.Number"
+    ColumnType="NUMBER"
+    AliasName="CATEGORY_ID"
+    Expression="CATEGORY_ID"
+    SQLType="NUMERIC"/>
+  <ViewAttribute
+    Name="CategoryName"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="CATEGORY_NAME"
+    Expression="CATEGORY_NAME"
+    SQLType="VARCHAR">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.work.model.viewobject.photography.CmsPhotographyEditVO.CategoryName_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="com.zypg.cms.work.model.ModelBundle"/>
+  </ResourceBundle>
+</ViewObject>

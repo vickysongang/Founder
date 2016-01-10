@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="CmsEntryDupMasterEntryVO"
+  Version="11.1.2.64.36"
+  BindingStyle="OracleName"
+  CustomQuery="true"
+  RowClass="com.zypg.cms.work.model.viewobject.entry.query.CmsEntryDupMasterEntryVORowImpl"
+  ComponentClass="com.zypg.cms.work.model.viewobject.entry.query.CmsEntryDupMasterEntryVOImpl"
+  PageIterMode="Full"
+  UseGlueCode="false">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="Access|Coll|VarAccess"/>
+    <Attr Name="_isExpertMode" Value="true"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="com.zypg.cms.work.model.viewobject.entry.query.CmsEntryDupMasterEntryVO_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <Variable
+    Name="bvDocId"
+    Kind="viewcriteria"
+    Type="oracle.jbo.domain.Number"/>
+  <SQLQuery><![CDATA[SELECT wt.entry_id,
+       wt.doc_id,
+       wt.title entry_name,
+       wt.SOURCE,
+       wt.entry_content,
+       d.status
+  FROM cms_works_entry_t wt, cms_doc_t d
+ WHERE wt.doc_id = d.doc_id
+UNION ALL
+SELECT et.entry_id,
+       et.doc_id,
+       et.entry_header entry_name,
+       et.SOURCE,
+       et.entry_content,
+       d.status
+  FROM cms_encyclopedias_entry_t et, cms_doc_t d
+ WHERE et.doc_id = d.doc_id]]></SQLQuery>
+  <ViewAttribute
+    Name="EntryId"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="oracle.jbo.domain.Number"
+    ColumnType="NUMBER"
+    AliasName="ENTRY_ID"
+    Expression="ENTRY_ID"
+    SQLType="NUMERIC"/>
+  <ViewAttribute
+    Name="DocId"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="oracle.jbo.domain.Number"
+    ColumnType="NUMBER"
+    AliasName="DOC_ID"
+    Expression="DOC_ID"
+    SQLType="NUMERIC"/>
+  <ViewAttribute
+    Name="EntryName"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="4000"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="ENTRY_NAME"
+    Expression="ENTRY_NAME"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="4000"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Source"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="200"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="SOURCE"
+    Expression="SOURCE"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="200"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="EntryContent"
+    IsUpdateable="false"
+    IsQueriable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="oracle.jbo.domain.ClobDomain"
+    ColumnType="CLOB"
+    AliasName="ENTRY_CONTENT"
+    Expression="ENTRY_CONTENT"
+    SQLType="CLOB"/>
+  <ViewAttribute
+    Name="Status"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="40"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="STATUS"
+    Expression="STATUS"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="40"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewCriteria
+    Name="findMasterEntryByDocId"
+    ViewObjectName="com.zypg.cms.work.model.viewobject.entry.query.CmsEntryDupMasterEntryVO"
+    Conjunction="AND">
+    <Properties>
+      <CustomProperties>
+        <Property
+          Name="displayOperators"
+          Value="InAdvancedMode"/>
+        <Property
+          Name="autoExecute"
+          Value="false"/>
+        <Property
+          Name="allowConjunctionOverride"
+          Value="true"/>
+        <Property
+          Name="showInList"
+          Value="true"/>
+        <Property
+          Name="mode"
+          Value="Basic"/>
+      </CustomProperties>
+    </Properties>
+    <ViewCriteriaRow
+      Name="CmsEntryDupMasterEntryVOCriteria_row_0"
+      UpperColumns="1">
+      <ViewCriteriaItem
+        Name="CmsEntryDupMasterEntryVOCriteria_CmsEntryDupMasterEntryVOCriteria_row_0_DocId"
+        ViewAttribute="DocId"
+        Operator="="
+        Conjunction="AND"
+        Value=":bvDocId"
+        IsBindVarValue="true"
+        Required="Optional"/>
+    </ViewCriteriaRow>
+  </ViewCriteria>
+  <AttrArray Name="KeyAttributes">
+    <Item Value="EntryId"/>
+  </AttrArray>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="com.zypg.cms.work.model.ModelBundle"/>
+  </ResourceBundle>
+</ViewObject>

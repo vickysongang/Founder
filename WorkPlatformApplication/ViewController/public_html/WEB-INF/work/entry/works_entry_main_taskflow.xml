@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="works_entry_main_taskflow">
+    <default-activity>initWorksEntry</default-activity>
+    <input-parameter-definition id="__1">
+      <name>compCode</name>
+      <value>#{pageFlowScope.compCode}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__2">
+      <name>libCode</name>
+      <value>#{pageFlowScope.libCode}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__3">
+      <name>currStatusCode</name>
+      <value>#{pageFlowScope.currStatusCode}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__4">
+      <name>categoryId</name>
+      <value>#{pageFlowScope.categoryId}</value>
+      <class>oracle.jbo.domain.Number</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__5">
+      <name>categoryGroupType</name>
+      <value>#{pageFlowScope.categoryGroupType}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__6">
+      <name>deleteFlag</name>
+      <value>#{pageFlowScope.deleteFlag}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__7">
+      <name>libTypeCode</name>
+      <value>#{pageFlowScope.libTypeCode}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <managed-bean id="__10">
+      <managed-bean-name>worksEntryMainManagedBean</managed-bean-name>
+      <managed-bean-class>com.zypg.cms.work.view.bean.WorksEntryMainManagedBean</managed-bean-class>
+      <managed-bean-scope>backingBean</managed-bean-scope>
+    </managed-bean>
+    <view id="worksEntryMain">
+      <page>/work/entry/fragment/worksEntryMain.jsff</page>
+    </view>
+    <method-call id="initWorksEntry">
+      <method>#{backingBeanScope.worksEntryMainManagedBean.initWorksEntry}</method>
+      <outcome>
+        <fixed-outcome>toWorksEntry</fixed-outcome>
+      </outcome>
+    </method-call>
+    <task-flow-call id="rollback_taskflow">
+      <task-flow-reference>
+        <document>/WEB-INF/work/log/rollback_taskflow.xml</document>
+        <id>rollback_taskflow</id>
+      </task-flow-reference>
+      <input-parameter id="__14">
+        <name>docId</name>
+        <value>#{pageFlowScope.docId}</value>
+      </input-parameter>
+      <input-parameter id="__15">
+        <name>type</name>
+        <value>#{pageFlowScope.type}</value>
+      </input-parameter>
+      <return-value id="__16">
+        <name>operatorResult</name>
+        <value>#{pageFlowScope.operatorResult}</value>
+      </return-value>
+      <return-value id="__17">
+        <name>docId</name>
+        <value>#{pageFlowScope.docId}</value>
+      </return-value>
+      <run-as-dialog>
+        <display-type>
+          <inline-popup/>
+        </display-type>
+      </run-as-dialog>
+    </task-flow-call>
+    <task-flow-call id="process_log_taskflow">
+      <task-flow-reference>
+        <document>/WEB-INF/work/log/process_log_taskflow.xml</document>
+        <id>process_log_taskflow</id>
+      </task-flow-reference>
+      <input-parameter id="__18">
+        <name>docId</name>
+        <value>#{pageFlowScope.docId}</value>
+      </input-parameter>
+      <run-as-dialog>
+        <display-type>
+          <inline-popup/>
+        </display-type>
+      </run-as-dialog>
+    </task-flow-call>
+    <task-flow-call id="rollback_log_taskflow">
+      <task-flow-reference>
+        <document>/WEB-INF/work/log/rollback_log_taskflow.xml</document>
+        <id>rollback_log_taskflow</id>
+      </task-flow-reference>
+      <input-parameter id="__20">
+        <name>docId</name>
+        <value>#{pageFlowScope.docId}</value>
+      </input-parameter>
+      <run-as-dialog>
+        <display-type>
+          <inline-popup/>
+        </display-type>
+      </run-as-dialog>
+    </task-flow-call>
+    <task-flow-call id="works_entry_edit_taskflow">
+      <task-flow-reference>
+        <document>/WEB-INF/work/entry/works_entry_edit_taskflow.xml</document>
+        <id>works_entry_edit_taskflow</id>
+      </task-flow-reference>
+      <input-parameter id="__22">
+        <name>mode</name>
+        <value>#{pageFlowScope.mode}</value>
+      </input-parameter>
+      <input-parameter id="__23">
+        <name>batchFlag</name>
+        <value>#{pageFlowScope.batchFlag}</value>
+      </input-parameter>
+      <input-parameter id="__24">
+        <name>docId</name>
+        <value>#{pageFlowScope.docId}</value>
+      </input-parameter>
+      <input-parameter id="__25">
+        <name>compCode</name>
+        <value>#{pageFlowScope.compCode}</value>
+      </input-parameter>
+      <input-parameter id="__26">
+        <name>libCode</name>
+        <value>#{pageFlowScope.libCode}</value>
+      </input-parameter>
+      <input-parameter id="__27">
+        <name>libTypeCode</name>
+        <value>#{pageFlowScope.libTypeCode}</value>
+      </input-parameter>
+      <run-as-dialog>
+        <display-type>
+          <inline-popup/>
+        </display-type>
+      </run-as-dialog>
+    </task-flow-call>
+    <task-flow-call id="relation_set_taskflow">
+      <task-flow-reference>
+        <document>/WEB-INF/work/relation/relation_set_taskflow.xml</document>
+        <id>relation_set_taskflow</id>
+      </task-flow-reference>
+      <input-parameter id="__29">
+        <name>docId</name>
+        <value>#{pageFlowScope.docId}</value>
+      </input-parameter>
+      <input-parameter id="__30">
+        <name>libCode</name>
+        <value>#{pageFlowScope.libCode}</value>
+      </input-parameter>
+      <run-as-dialog>
+        <display-type>
+          <inline-popup/>
+        </display-type>
+      </run-as-dialog>
+    </task-flow-call>
+    <task-flow-call id="attach_mgmt_taskflow">
+      <task-flow-reference>
+        <document>/WEB-INF/work/attach/attach_mgmt_taskflow.xml</document>
+        <id>attach_mgmt_taskflow</id>
+      </task-flow-reference>
+      <input-parameter id="__32">
+        <name>libCode</name>
+        <value>#{pageFlowScope.libCode}</value>
+      </input-parameter>
+      <input-parameter id="__33">
+        <name>docId</name>
+        <value>#{pageFlowScope.docId}</value>
+      </input-parameter>
+      <run-as-dialog>
+        <display-type>
+          <inline-popup/>
+        </display-type>
+      </run-as-dialog>
+    </task-flow-call>
+    <control-flow-rule id="__8">
+      <from-activity-id>initWorksEntry</from-activity-id>
+      <control-flow-case id="__9">
+        <from-outcome>toWorksEntry</from-outcome>
+        <to-activity-id>worksEntryMain</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__12">
+      <from-activity-id>worksEntryMain</from-activity-id>
+      <control-flow-case id="__13">
+        <from-outcome>toRollback</from-outcome>
+        <to-activity-id>rollback_taskflow</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__11">
+        <from-outcome>toProcessLog</from-outcome>
+        <to-activity-id>process_log_taskflow</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__19">
+        <from-outcome>toRollbackLog</from-outcome>
+        <to-activity-id>rollback_log_taskflow</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__21">
+        <from-outcome>toEdit</from-outcome>
+        <to-activity-id>works_entry_edit_taskflow</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__28">
+        <from-outcome>toRelationSet</from-outcome>
+        <to-activity-id>relation_set_taskflow</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__31">
+        <from-outcome>toAttach</from-outcome>
+        <to-activity-id>attach_mgmt_taskflow</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

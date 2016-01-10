@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="bookMainPageDef"
+                Package="work.book.fragment">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="CmsDocStatusVO" RangeSize="25" DataControl="WorkAMDataControl" id="CmsDocStatusVOIterator"/>
+    <iterator Binds="Root.BookAM.CmsDocStatus4ExportBook" DataControl="WorkAMDataControl" RangeSize="25"
+              id="CmsDocStatus4ExportBookIterator"/>
+  </executables>
+  <bindings>
+    <list IterBinding="CmsDocStatusVOIterator" ListOperMode="navigation" ListIter="CmsDocStatusVOIterator"
+          id="CmsDocStatusVO" DTSupportsMRU="true" SelectItemValueMode="ListObject">
+      <AttrNames>
+        <Item Value="StatusDisplayName"/>
+      </AttrNames>
+    </list>
+    <list IterBinding="CmsDocStatus4ExportBookIterator" ListOperMode="multiSelect"
+          ListIter="CmsDocStatus4ExportBookIterator" id="CmsDocStatus4ExportBook" SelectItemValueMode="ListObject">
+      <AttrNames>
+        <Item Value="StatusCode"/>
+      </AttrNames>
+      <ListDisplayAttrNames>
+        <Item Value="StatusName"/>
+      </ListDisplayAttrNames>
+    </list>
+  </bindings>
+</pageDefinition>

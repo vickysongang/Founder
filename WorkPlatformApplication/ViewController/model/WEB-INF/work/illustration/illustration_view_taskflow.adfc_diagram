@@ -1,0 +1,76 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<SDM>
+   <OverallProperties
+      id="OverallProperties1"/>
+   <MethodCall
+      id="MethodCall2">
+      <property
+         name="activityId">initInfo4View</property>
+      <property
+         name="start">true</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>initInfo4View&lt;/b> (Default Activity)&lt;/p>&lt;p>Activity Type:  Method Call&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">165.94824</property>
+      <property
+         name="x">159.0</property>
+   </MethodCall>
+   <View
+      id="View3">
+      <property
+         name="activityId">illustrationView</property>
+      <property
+         name="page">/work/illustration/fragment/illustrationView.jsff</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>illustrationView&lt;/b>&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">154.59766</property>
+      <property
+         name="pageFragment">true</property>
+      <property
+         name="x">344.0</property>
+   </View>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase4"
+      from="MethodCall2"
+      to="View3">
+      <property
+         name="fromOutcome">toView</property>
+      <property
+         name="sdm:polyPoints">R50,200.0,165.59766,303.0,154.24707,L50</property>
+   </ControlFlowCase>
+   <TaskFlowCall
+      id="TaskFlowCall5">
+      <property
+         name="taskFlowId">view_more_files_taskflow</property>
+      <property
+         name="activityId">view_more_files_taskflow</property>
+      <property
+         name="documentReference">/WEB-INF/common/view_more_files_taskflow.xml</property>
+      <property
+         name="runAsDialog">true</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>view_more_files_taskflow&lt;/b>&lt;/p>&lt;p>Activity Type:  Task Flow Call&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">157.0459</property>
+      <property
+         name="x">550.02734</property>
+   </TaskFlowCall>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase6"
+      from="View3"
+      to="TaskFlowCall5">
+      <property
+         name="fromOutcome">toMore</property>
+      <property
+         name="sdm:polyPoints">R50,385.0,154.24707,509.02734,156.69531,L50</property>
+   </ControlFlowCase>
+</SDM>

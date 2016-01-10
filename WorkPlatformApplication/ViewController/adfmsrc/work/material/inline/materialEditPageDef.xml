@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="materialEditPageDef"
+                Package="work.material.inline">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <taskFlow id="category_pick_taskflow1"
+              taskFlowId="/WEB-INF/common/category_pick_taskflow.xml#category_pick_taskflow" activation="deferred"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+    <iterator Binds="Root.MaterialFigureAM.CmsMaterialFigureTVO" DataControl="WorkAMDataControl" RangeSize="25"
+              id="CmsMaterialFigureTVOIterator"/>
+    <iterator Binds="Root.MaterialFigureAM.CmsMaterialFigureEditVO" DataControl="WorkAMDataControl" RangeSize="25"
+              id="CmsMaterialFigureEditVOIterator"/>
+    <iterator Binds="Root.MaterialFigureAM.CmsDocCategoryRelTVO" DataControl="WorkAMDataControl" RangeSize="10"
+              id="CmsDocCategoryRelTVOIterator"/>
+    <taskFlow id="extend_attr_taskflow1" taskFlowId="/WEB-INF/common/extend_attr_taskflow.xml#extend_attr_taskflow"
+              activation="deferred" xmlns="http://xmlns.oracle.com/adf/controller/binding">
+      <parameters>
+        <parameter id="compCode" value="#{pageFlowScope.compCode}"/>
+        <parameter id="libCode" value="#{pageFlowScope.libCode}"/>
+        <parameter id="docId" value="#{pageFlowScope.docId}"/>
+        <parameter id="operType" value="#{pageFlowScope.mode}"/>
+        <parameter id="labelWidth" value="80"/>
+      </parameters>
+    </taskFlow>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="CmsMaterialFigureTVOIterator" id="FigureName">
+      <AttrNames>
+        <Item Value="FigureName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsMaterialFigureTVOIterator" id="SeriesName">
+      <AttrNames>
+        <Item Value="SeriesName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsMaterialFigureTVOIterator" id="FigureAuthor">
+      <AttrNames>
+        <Item Value="FigureAuthor"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsMaterialFigureTVOIterator" id="FigureType">
+      <AttrNames>
+        <Item Value="FigureType"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="CmsMaterialFigureTVOIterator" StaticList="false" Uses="LOV_FigureStyle" id="FigureStyle"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <attributeValues IterBinding="CmsMaterialFigureTVOIterator" id="CategoryName">
+      <AttrNames>
+        <Item Value="CategoryName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsMaterialFigureTVOIterator" id="CompCode">
+      <AttrNames>
+        <Item Value="CompCode"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsMaterialFigureTVOIterator" id="Keyword">
+      <AttrNames>
+        <Item Value="Keyword"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsMaterialFigureTVOIterator" id="FigureDesc">
+      <AttrNames>
+        <Item Value="FigureDesc"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsMaterialFigureTVOIterator" id="Remarks">
+      <AttrNames>
+        <Item Value="Remarks"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsMaterialFigureEditVOIterator" id="SeriesName1">
+      <AttrNames>
+        <Item Value="SeriesName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsMaterialFigureEditVOIterator" id="FigureAuthor1">
+      <AttrNames>
+        <Item Value="FigureAuthor"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsMaterialFigureEditVOIterator" id="FigureType1">
+      <AttrNames>
+        <Item Value="FigureType"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="CmsMaterialFigureEditVOIterator" StaticList="false" Uses="LOV_FigureStyle" id="FigureStyle1"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <attributeValues IterBinding="CmsMaterialFigureEditVOIterator" id="CompCode1">
+      <AttrNames>
+        <Item Value="CompCode"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsMaterialFigureEditVOIterator" id="Keyword1">
+      <AttrNames>
+        <Item Value="Keyword"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsMaterialFigureEditVOIterator" id="FigureDesc1">
+      <AttrNames>
+        <Item Value="FigureDesc"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsMaterialFigureEditVOIterator" id="Remarks1">
+      <AttrNames>
+        <Item Value="Remarks"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsMaterialFigureEditVOIterator" id="CategoryId1">
+      <AttrNames>
+        <Item Value="CategoryId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsMaterialFigureEditVOIterator" id="CategoryName1">
+      <AttrNames>
+        <Item Value="CategoryName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsDocCategoryRelTVOIterator" id="CategoryId">
+      <AttrNames>
+        <Item Value="CategoryId"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

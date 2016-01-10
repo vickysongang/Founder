@@ -1,0 +1,179 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:facelets="http://xmlns.oracle.com/jdev/webapp/facelets"
+                xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <af:panelSplitter id="ps1" splitterPosition="150"
+                      inlineStyle="margin-top:1px;border:1px solid #BAC6CA;background:#F3F8FC;"
+                      partialTriggers="cl3 d5 d1 cb7 cb3"
+                      binding="#{backingBeanScope.tempShelfMainManagedBean.panelSplitter}">
+        <f:facet name="first">
+            <af:panelGroupLayout id="pgl1" layout="vertical" inlineStyle="margin-top:5px;">
+                <af:iterator id="i1" value="#{bindings.CmsLib4TempShelfVO.collectionModel}" var="lib" varStatus="vs">
+                    <af:panelGroupLayout id="pgl3" layout="vertical"
+                                         styleClass="#{(pageFlowScope.categoryCode == null and vs.index == 0) or pageFlowScope.categoryCode == lib.LibCode ? 'libSelected' : 'libUnSelected'}">
+                        <af:commandLink text="#{lib.LibNameWithSum}" id="cl1"
+                                        actionListener="#{backingBeanScope.tempShelfMainManagedBean.libActionListener}">
+                            <f:attribute name="categoryCode" value="#{lib.LibCode}"/>
+                        </af:commandLink>
+                    </af:panelGroupLayout>
+                </af:iterator>
+            </af:panelGroupLayout>
+        </f:facet>
+        <f:facet name="second">
+            <af:panelStretchLayout id="psl1" topHeight="auto">
+                <f:facet name="top">
+                    <af:panelStretchLayout id="psl4" inlineStyle="height:40px;" startWidth="auto" endWidth="auto"
+                                           styleClass="AFStretchWidth" partialTriggers="t1:sbc1 t1:sbc2 t1">
+                        <f:facet name="start">
+                            <af:panelGroupLayout id="pgl2" layout="horizontal"
+                                                 inlineStyle="margin:5px 5px 5px 15px;padding-left:10px;"
+                                                 binding="#{backingBeanScope.tempShelfMainManagedBean.panelGroup}">
+                                <af:commandImageLink text="提交申请" id="cb3" icon="/resources/images/submit.gif"
+                                                     visible="#{backingBeanScope.tempShelfMainManagedBean.commonRenderer.submitEnable and backingBeanScope.tempShelfMainManagedBean.tableModel.rowCount > 0 and pageFlowScope.deleteFlag != 'Y'}"
+                                                     actionListener="#{backingBeanScope.tempShelfMainManagedBean.submitActionListener}"
+                                                     action="toResTemplate" useWindow="true" windowHeight="400"
+                                                     windowWidth="800" styleClass="imagelink_length_4"
+                                                     shortDesc="若未选择申请，则提交所有申请"
+                                                     returnListener="#{backingBeanScope.tempShelfMainManagedBean.applyReturnListener}"/>
+                                <af:commandImageLink text="添加资源" id="cil7" icon="/resources/images/subject_manager.gif"
+                                                     styleClass="imagelink_length_4" partialSubmit="true"
+                                                     visible="#{pageFlowScope.deleteFlag != 'Y'}"
+                                                     actionListener="#{backingBeanScope.tempShelfMainManagedBean.addResourceActionListener}"/>
+                                <af:commandImageLink text="删除" id="cb6" icon="/resources/images/delete.gif"
+                                                     styleClass="imagelink_length_2"
+                                                     visible="#{backingBeanScope.tempShelfMainManagedBean.commonRenderer.deleteEnable and backingBeanScope.tempShelfMainManagedBean.commonRenderer.currSelectedListSize >= 1}">
+                                    <af:showPopupBehavior popupId="p3" triggerType="action"/>
+                                </af:commandImageLink>
+                                <af:commandImageLink text="还原" id="cb7" icon="/resources/images/recycle.gif"
+                                                     styleClass="imagelink_length_2"
+                                                     visible="#{backingBeanScope.tempShelfMainManagedBean.commonRenderer.recoverEnable and backingBeanScope.tempShelfMainManagedBean.commonRenderer.currSelectedListSize >= 1}"
+                                                     actionListener="#{backingBeanScope.tempShelfMainManagedBean.recoverActionListener}"/>
+                                <af:commandImageLink text="彻底删除" id="cil10" icon="/resources/images/delete_final.gif"
+                                                     styleClass="imagelink_length_4"
+                                                     visible="#{backingBeanScope.tempShelfMainManagedBean.commonRenderer.destroyEnable and backingBeanScope.tempShelfMainManagedBean.commonRenderer.currSelectedListSize >= 1}">
+                                    <af:showPopupBehavior popupId="p1" triggerType="action"/>
+                                </af:commandImageLink>
+                                <af:commandImageLink text="导出图书HTML" id="cil1" icon="/resources/images/publish.gif"
+                                                     styleClass="imagelink_length_6" action="toExportBookHtml"
+                                                     useWindow="true" windowHeight="600" windowWidth="650"
+                                                     visible="#{backingBeanScope.tempShelfMainManagedBean.commonRenderer.currSelectedListSize >= 1 and pageFlowScope.deleteFlag != 'Y'}"
+                                                     actionListener="#{backingBeanScope.tempShelfMainManagedBean.gotoExportBookHtml}"
+                                                     returnListener="#{backingBeanScope.tempShelfMainManagedBean.exportBookReturnListener}"/>
+                                <af:popup childCreation="deferred" autoCancel="disabled" id="p3"
+                                          binding="#{backingBeanScope.tempShelfMainManagedBean.commonRenderer.deletePopup}">
+                                    <af:dialog id="d5" title="提示"
+                                               dialogListener="#{backingBeanScope.tempShelfMainManagedBean.deleteResDialogActionListener}">
+                                        <af:outputText value="确定要删除吗?" id="ot12"/>
+                                    </af:dialog>
+                                </af:popup>
+                                <af:popup childCreation="deferred" autoCancel="disabled" id="p1"
+                                          binding="#{backingBeanScope.tempShelfMainManagedBean.commonRenderer.destoryPopup}">
+                                    <af:dialog id="d1" title="提示"
+                                               dialogListener="#{backingBeanScope.tempShelfMainManagedBean.destroyResActionListener}">
+                                        <af:outputText value="确定彻底删除?" id="ot14"/>
+                                    </af:dialog>
+                                </af:popup>
+                            </af:panelGroupLayout>
+                        </f:facet>
+                    </af:panelStretchLayout>
+                </f:facet>
+                <f:facet name="center">
+                    <af:panelStretchLayout id="psl2" topHeight="auto" dimensionsFrom="children"
+                                           inlineStyle="margin:0px 5px 5px 5px;">
+                        <f:facet name="center">
+                            <af:table var="row" rowBandingInterval="0" id="t1" varStatus="vs"
+                                      styleClass="AFStretchWidth custom_table_striped" contentDelivery="immediate"
+                                      partialTriggers="::cb3 sbc1 ::cl3" autoHeightRows="0"
+                                      inlineStyle="margin-top:2px;"
+                                      value="#{backingBeanScope.tempShelfMainManagedBean.tableModel.model}" emptyText=""
+                                      sortListener="#{backingBeanScope.tempShelfMainManagedBean.commonRenderer.tableSortListener}"
+                                      binding="#{backingBeanScope.tempShelfMainManagedBean.commonRenderer.table}"
+                                      rowSelection="multiple" columnStretching="multiple">
+                                <af:column width="25" align="center" id="c19" sortable="false" headerText="">
+                                    <f:facet name="header">
+                                        <af:selectBooleanCheckbox label="Label 1" simple="true" id="sbc1"
+                                                                  autoSubmit="true"
+                                                                  binding="#{backingBeanScope.tempShelfMainManagedBean.commonRenderer.selectAllCheckBox}">
+                                            <af:clientListener type="valueChange" method="clickSelectAllCheckBox"/>
+                                            <af:serverListener type="SelectAllCheckBoxClickEvent"
+                                                               method="#{backingBeanScope.tempShelfMainManagedBean.commonRenderer.selectAllAction}"/>
+                                        </af:selectBooleanCheckbox>
+                                    </f:facet>
+                                    <af:selectBooleanCheckbox id="sbc2" value="#{row.checked}" label="#{row.checked}"
+                                                              simple="false">
+                                        <af:clientListener type="valueChange" method="clickSelectOneCheckBox"/>
+                                        <af:serverListener type="SelectCheckBoxClickEvent"
+                                                           method="#{backingBeanScope.tempShelfMainManagedBean.commonRenderer.selectOneAction}"/>
+                                        <af:clientAttribute name="docId" value="#{row.docId}"/>
+                                    </af:selectBooleanCheckbox>
+                                </af:column>
+                                <af:column sortable="false" headerText="序号" id="c1" align="center" width="50">
+                                    <af:outputText value="#{vs.index+1}" id="ot18"/>
+                                </af:column>
+                                <af:column sortable="false" headerText="资源名" id="c6" width="30%" align="center">
+                                    <af:outputText value="#{row.resName}" id="ot6"/>
+                                </af:column>
+                                <af:column sortable="false" headerText="关键字" id="c3" width="10%" align="center">
+                                    <af:outputText value="#{row.keyword}" id="ot20"/>
+                                </af:column>
+                                <af:column sortable="false" headerText="作者" id="c5" width="20%" align="center">
+                                    <af:outputText value="#{row.author}" id="ot22"/>
+                                </af:column>
+                                <af:column sortable="false" headerText="上架时间" id="c2" width="20%" align="center">
+                                    <af:outputText value="#{row.creationDate}" id="ot1"/>
+                                </af:column>
+                                <!--<af:clientListener type="click" method="tableDblSelect"/>-->
+                                <!--<af:serverListener type="TableSelectionAction"
+                                                   method="#{backingBeanScope.tempShelfMainManagedBean.commonRenderer.tableSelectAction}"/>-->
+                                <!--<af:serverListener type="TableDblSelectAction"
+                                                   method="#{backingBeanScope.tempShelfMainManagedBean.commonRenderer.tableDblSelectAction}"/>-->
+                            </af:table>
+                        </f:facet>
+                        <f:facet name="top">
+                            <af:panelStretchLayout id="psl3"
+                                                   inlineStyle="height:26px;background:#E7ECE5;margin-top:3px;"
+                                                   topHeight="0px" bottomHeight="0px" startWidth="auto"
+                                                   styleClass="AFStretchWidth" partialTriggers="cb3 cl4 cl2 soc1 d5 d1"
+                                                   endWidth="auto">
+                                <f:facet name="start">
+                                    <af:panelGroupLayout id="pgl6" layout="horizontal"
+                                                         inlineStyle="padding-top:3px;padding-left:15px;">
+                                        <af:outputText value="总个数:#{backingBeanScope.tempShelfMainManagedBean.tableModel.rowCount}"
+                                                       id="ot2"/>
+                                        <af:spacer width="10" height="10" id="s2"/>
+                                        <af:outputText value="每页[20]" id="ot3"/>
+                                        <af:spacer width="10" height="10" id="s7"/>
+                                        <af:outputText value="页数[" id="ot9"/>
+                                        <af:outputText value="#{backingBeanScope.tempShelfMainManagedBean.tableModel.currPageIndex}"
+                                                       id="ot8" inlineStyle="color:Red;"/>
+                                        <af:outputText value="/#{backingBeanScope.tempShelfMainManagedBean.tableModel.totalPageCount}]"
+                                                       id="ot4"/>
+                                        <af:spacer width="10" height="10" id="s4"/>
+                                        <af:commandLink text="前一页" id="cl4"
+                                                        disabled="#{backingBeanScope.tempShelfMainManagedBean.tableModel.isPrevDisabled}"
+                                                        actionListener="#{backingBeanScope.tempShelfMainManagedBean.commonRenderer.prevPage}"/>
+                                        <af:spacer width="10" height="10" id="s1"/>
+                                        <af:commandLink text="后一页" id="cl2"
+                                                        disabled="#{backingBeanScope.tempShelfMainManagedBean.tableModel.isNextDisabled}"
+                                                        actionListener="#{backingBeanScope.tempShelfMainManagedBean.commonRenderer.nextPage}"/>
+                                        <af:spacer width="10" height="10" id="s8"/>
+                                        <af:selectOneChoice valueChangeListener="#{backingBeanScope.tempShelfMainManagedBean.commonRenderer.goPageIndex}"
+                                                            id="soc1" simple="true" autoSubmit="true"
+                                                            value="#{backingBeanScope.tempShelfMainManagedBean.tableModel.currItem.value}">
+                                            <f:selectItems value="#{backingBeanScope.tempShelfMainManagedBean.tableModel.pageSelectItems}"
+                                                           id="si1"/>
+                                        </af:selectOneChoice>
+                                        <af:spacer width="10" height="10" id="s6"/>
+                                        <af:commandImageLink id="cl3" icon="/resources/images/shuaxin.gif"
+                                                             shortDesc="刷新"
+                                                             actionListener="#{backingBeanScope.tempShelfMainManagedBean.refreshActionListener}"/>
+                                    </af:panelGroupLayout>
+                                </f:facet>
+                            </af:panelStretchLayout>
+                        </f:facet>
+                    </af:panelStretchLayout>
+                </f:facet>
+            </af:panelStretchLayout>
+        </f:facet>
+    </af:panelSplitter>
+</ui:composition>

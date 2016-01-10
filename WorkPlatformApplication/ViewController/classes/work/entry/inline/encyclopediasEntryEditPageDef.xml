@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="encyclopediasEntryEditPageDef"
+                Package="work.entry.inline">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="Root.EntryAM.CmsEncyclopediasEntryTVO" DataControl="WorkAMDataControl" RangeSize="25"
+              id="CmsEncyclopediasEntryTVOIterator"/>
+    <iterator Binds="Root.EntryAM.CmsEncyclopediasEntryEditVO" DataControl="WorkAMDataControl" RangeSize="25"
+              id="CmsEncyclopediasEntryEditVOIterator"/>
+    <taskFlow id="category_pick_taskflow1"
+              taskFlowId="/WEB-INF/common/category_pick_taskflow.xml#category_pick_taskflow" activation="deferred"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+    <iterator id="CmsDocCategoryRelTVOIterator" Binds="Root.EntryAM.CmsDocCategoryRelTVO"
+              DataControl="WorkAMDataControl" RangeSize="25"/>
+    <taskFlow id="extend_attr_taskflow1" taskFlowId="/WEB-INF/common/extend_attr_taskflow.xml#extend_attr_taskflow"
+              activation="deferred" xmlns="http://xmlns.oracle.com/adf/controller/binding">
+      <parameters>
+        <parameter id="compCode" value="#{pageFlowScope.compCode}"/>
+        <parameter id="libCode" value="#{pageFlowScope.libCode}"/>
+        <parameter id="docId" value="#{pageFlowScope.docId}"/>
+        <parameter id="operType" value="#{pageFlowScope.mode}"/>
+        <parameter id="labelWidth" value="80"/>
+      </parameters>
+    </taskFlow>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="CmsEncyclopediasEntryTVOIterator" id="EntryHeader">
+      <AttrNames>
+        <Item Value="EntryHeader"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsEncyclopediasEntryTVOIterator" id="Source">
+      <AttrNames>
+        <Item Value="Source"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsEncyclopediasEntryTVOIterator" id="KnowledgePoint">
+      <AttrNames>
+        <Item Value="KnowledgePoint"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsEncyclopediasEntryTVOIterator" id="Keyword">
+      <AttrNames>
+        <Item Value="Keyword"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsEncyclopediasEntryEditVOIterator" id="Source1">
+      <AttrNames>
+        <Item Value="Source"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsEncyclopediasEntryEditVOIterator" id="CategoryName1">
+      <AttrNames>
+        <Item Value="CategoryName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsEncyclopediasEntryEditVOIterator" id="KnowledgePoint1">
+      <AttrNames>
+        <Item Value="KnowledgePoint"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsEncyclopediasEntryEditVOIterator" id="Keyword1">
+      <AttrNames>
+        <Item Value="Keyword"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsEncyclopediasEntryTVOIterator" id="CategoryName">
+      <AttrNames>
+        <Item Value="CategoryName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsDocCategoryRelTVOIterator" id="CategoryId">
+      <AttrNames>
+        <Item Value="CategoryId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsEncyclopediasEntryEditVOIterator" id="CategoryId1">
+      <AttrNames>
+        <Item Value="CategoryId"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

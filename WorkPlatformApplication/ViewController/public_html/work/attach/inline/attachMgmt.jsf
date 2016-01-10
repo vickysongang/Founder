@@ -1,0 +1,137 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <af:document title="附件管理" id="d1">
+        <af:messages id="m1"/>
+        <af:form id="f1" usesUpload="true">
+            <af:panelStretchLayout id="psl1">
+                <f:facet name="bottom">
+                    <af:panelGroupLayout id="pgl1" layout="vertical" halign="center">
+                        <af:panelGroupLayout id="pgl3" layout="horizontal">
+                            <af:commandButton text="保存" id="cb1" styleClass="popup-btn"
+                                              actionListener="#{pageFlowScope.attachMainManagedBean.saveActionListener}"/>
+                            <af:spacer width="10" height="10" id="s1"/>
+                            <af:commandButton text="取消" id="cb2" action="toReturn" immediate="true"
+                                              styleClass="popup-btn"
+                                              actionListener="#{pageFlowScope.attachMainManagedBean.cancelActionListener}"/>
+                        </af:panelGroupLayout>
+                    </af:panelGroupLayout>
+                </f:facet>
+                <f:facet name="center">
+                    <af:panelGroupLayout layout="scroll" id="pgl2" partialTriggers="cb1">
+                        <af:panelGroupLayout id="pgl10" layout="vertical" inlineStyle="background:#D9EDF8;height:30px;"
+                                             styleClass="AFStretchWidth">
+                            <af:panelGroupLayout id="pgl11" layout="horizontal" inlineStyle="padding-top:8px;"
+                                                 halign="center">
+                                <af:spacer width="10" height="10" id="s3"/>
+                                <af:outputText value="上传附件" id="ot27" inlineStyle="font-weight:bold;color:#024D91;"/>
+                            </af:panelGroupLayout>
+                        </af:panelGroupLayout>
+                        <af:panelFormLayout id="pfl1">
+                            <af:inputFile label="上传文件" id="if1"
+                                          value="#{pageFlowScope.attachMainManagedBean.uploadedFile}"
+                                          valueChangeListener="#{pageFlowScope.attachMainManagedBean.uploadFileValueChangeListener}"
+                                          showRequired="true" required="true"/>
+                            <af:inputText value="#{bindings.Title.inputValue}" label="#{bindings.Title.hints.label}"
+                                          required="true" columns="#{bindings.Title.hints.displayWidth}"
+                                          maximumLength="#{bindings.Title.hints.precision}"
+                                          shortDesc="#{bindings.Title.hints.tooltip}" id="it1" showRequired="true">
+                                <f:validator binding="#{bindings.Title.validator}"/>
+                            </af:inputText>
+                            <af:selectOneChoice value="#{bindings.AttachType.inputValue}"
+                                                label="#{bindings.AttachType.label}" required="false"
+                                                shortDesc="#{bindings.AttachType.hints.tooltip}" id="soc1"
+                                                showRequired="false">
+                                <f:selectItems value="#{bindings.AttachType.items}" id="si1"/>
+                            </af:selectOneChoice>
+                            <af:inputText value="#{bindings.Remarks.inputValue}" label="#{bindings.Remarks.hints.label}"
+                                          required="#{bindings.Remarks.hints.mandatory}"
+                                          columns="#{bindings.Remarks.hints.displayWidth}"
+                                          maximumLength="#{bindings.Remarks.hints.precision}"
+                                          contentStyle="width:540px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                          shortDesc="#{bindings.Remarks.hints.tooltip}" id="it3" rows="3">
+                                <f:validator binding="#{bindings.Remarks.validator}"/>
+                            </af:inputText>
+                        </af:panelFormLayout>
+                        <af:spacer width="10" height="10" id="s5"/>
+                        <af:panelGroupLayout id="pgl5" layout="vertical" inlineStyle="background:#D9EDF8;height:30px;"
+                                             styleClass="AFStretchWidth">
+                            <af:panelGroupLayout id="pgl6" layout="horizontal" inlineStyle="padding-top:8px;"
+                                                 halign="center">
+                                <af:spacer width="10" height="10" id="s4"/>
+                                <af:outputText value="已上传附件列表" id="ot6" inlineStyle="font-weight:bold;color:#024D91;"/>
+                            </af:panelGroupLayout>
+                        </af:panelGroupLayout>
+                        <af:spacer width="10" height="2" id="s6"/>
+                        <af:table value="#{bindings.CmsAttachTVO4View.collectionModel}" var="row"
+                                  rows="#{bindings.CmsAttachTVO4View.rangeSize}" autoHeightRows="0"
+                                  contentDelivery="immediate" styleClass="AFStretchWidth custom_table_striped"
+                                  columnStretching="multiple"
+                                  emptyText="#{bindings.CmsAttachTVO4View.viewable ? '' : 'Access Denied.'}"
+                                  fetchSize="#{bindings.CmsAttachTVO4View.rangeSize}" rowBandingInterval="0"
+                                  selectedRowKeys="#{bindings.CmsAttachTVO4View.collectionModel.selectedRow}"
+                                  selectionListener="#{bindings.CmsAttachTVO4View.collectionModel.makeCurrent}"
+                                  rowSelection="single" id="t1">
+                            <af:column sortProperty="#{bindings.CmsAttachTVO4View.hints.Title.name}" sortable="false"
+                                       width="16%" headerText="#{bindings.CmsAttachTVO4View.hints.Title.label}" id="c1">
+                                <af:outputText value="#{row.Title}"
+                                               shortDesc="#{bindings.CmsAttachTVO4View.hints.Title.tooltip}" id="ot1"/>
+                            </af:column>
+                            <af:column sortProperty="#{bindings.CmsAttachTVO4View.hints.Format.name}" sortable="false"
+                                       width="16%" headerText="#{bindings.CmsAttachTVO4View.hints.Format.label}"
+                                       id="c3">
+                                <af:outputText value="#{row.Format}"
+                                               shortDesc="#{bindings.CmsAttachTVO4View.hints.Format.tooltip}" id="ot3"/>
+                            </af:column>
+                            <af:column sortProperty="#{bindings.CmsAttachTVO4View.hints.AttachId.name}" sortable="false"
+                                       width="16%" headerText="#{bindings.CmsAttachTVO4View.hints.AttachId.label}"
+                                       id="c4">
+                                <af:outputText value="#{row.AttachId}"
+                                               shortDesc="#{bindings.CmsAttachTVO4View.hints.AttachId.tooltip}"
+                                               id="ot4">
+                                    <af:convertNumber groupingUsed="false"
+                                                      pattern="#{bindings.CmsAttachTVO4View.hints.AttachId.format}"/>
+                                </af:outputText>
+                            </af:column>
+                            <af:column headerText="#{bindings.CmsAttachTVO4View.hints.UcmDocname.label}" id="c5"
+                                       width="16%">
+                                <af:outputText value="#{row.UcmDocname}"
+                                               shortDesc="#{bindings.CmsAttachTVO4View.hints.UcmDocname.tooltip}"
+                                               id="ot5"/>
+                            </af:column>
+                            <af:column headerText="操作" id="c19" width="100">
+                                <af:panelGroupLayout id="pgl4" layout="horizontal" halign="center">
+                                    <af:commandImageLink id="cb6" icon="/resources/images/delete.gif" immediate="true"
+                                                         partialSubmit="true">
+                                        <af:showPopupBehavior popupId="p3" triggerType="action"/>
+                                    </af:commandImageLink>
+                                    <af:spacer width="10" height="10" id="s2"/>
+                                    <af:commandImageLink id="cil1" icon="/resources/images/download.jpg"
+                                                         partialSubmit="true" immediate="true">
+                                        <af:setPropertyListener from="#{row.UcmDid}" to="#{pageFlowScope.ucmDid}"
+                                                                type="action"/>
+                                        <af:fileDownloadActionListener contentType="application/vnd.ms-excel;charset=utf-8"
+                                                                       filename="#{row.Title}.#{row.Format}"
+                                                                       method="#{pageFlowScope.attachMainManagedBean.downloadListener}"/>
+                                    </af:commandImageLink>
+                                    <af:popup childCreation="deferred" autoCancel="disabled" id="p3"
+                                              binding="#{pageFlowScope.attachMainManagedBean.deletePopup}">
+                                        <af:dialog id="d5" title="提示"
+                                                   dialogListener="#{pageFlowScope.attachMainManagedBean.deleteDialogActionListener}">
+                                            <af:outputText value="你确定要删除吗?" id="ot12"/>
+                                            <f:attribute name="ucmDocname" value="#{row.UcmDocname}"/>
+                                            <f:attribute name="attachId" value="#{row.AttachId}"/>
+                                        </af:dialog>
+                                    </af:popup>
+                                </af:panelGroupLayout>
+                            </af:column>
+                        </af:table>
+                    </af:panelGroupLayout>
+                </f:facet>
+                <f:facet name="start"/>
+                <f:facet name="end"/>
+                <f:facet name="top"/>
+            </af:panelStretchLayout>
+        </af:form>
+    </af:document>
+</f:view>

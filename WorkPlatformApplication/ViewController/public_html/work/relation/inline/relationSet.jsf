@@ -1,0 +1,255 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <af:document title="设置关联" id="d1">
+        <af:messages id="m1"/>
+        <af:form id="f1">
+            <af:panelStretchLayout id="psl1" topHeight="auto">
+                <f:facet name="top">
+                    <af:panelGroupLayout id="pgl1" layout="vertical" partialTriggers="cl1 cl2 soc1 t1:cil1 t2:cb3">
+                        <af:panelGroupLayout id="pgl7" layout="vertical" halign="center"
+                                             inlineStyle="background: url('./resources/images/import_item_top_bg.gif') repeat-x;height: 40px;"
+                                             styleClass="AFStretchWidth">
+                            <af:panelGroupLayout id="pgl2" layout="horizontal" halign="center">
+                                <af:image source="/resources/images/pic-6.gif" id="i1"/>
+                                <af:spacer width="15" height="10" id="s9"/>
+                                <af:outputText value="本文档已关联资源列表" id="ot19"
+                                               inlineStyle="font-size:16px; font-weight:bold;color:white;"/>
+                            </af:panelGroupLayout>
+                        </af:panelGroupLayout>
+                        <af:panelStretchLayout id="psl3" inlineStyle="height:26px;background:#E7ECE5;margin-top:3px;"
+                                               topHeight="0px" bottomHeight="0px" startWidth="auto"
+                                               styleClass="AFStretchWidth" endWidth="auto">
+                            <f:facet name="bottom"/>
+                            <f:facet name="center"></f:facet>
+                            <f:facet name="start">
+                                <af:panelGroupLayout id="pgl6" layout="horizontal"
+                                                     inlineStyle="padding-top:3px;padding-left:15px;">
+                                    <af:outputText value="总个数:#{backingBeanScope.relationSetManagedBean.tableModel.rowCount}"
+                                                   id="ot2"/>
+                                    <af:spacer width="10" height="10" id="s2"/>
+                                    <af:outputText value="每页[#{backingBeanScope.relationSetManagedBean.pageCount}]"
+                                                   id="ot3"/>
+                                    <af:spacer width="10" height="10" id="s7"/>
+                                    <af:outputText value="页数[" id="ot9"/>
+                                    <af:outputText value="#{backingBeanScope.relationSetManagedBean.tableModel.currPageIndex}"
+                                                   id="ot8" inlineStyle="color:Red;"/>
+                                    <af:outputText value="/#{backingBeanScope.relationSetManagedBean.tableModel.totalPageCount}]"
+                                                   id="ot4"/>
+                                    <af:spacer width="10" height="10" id="s4"/>
+                                    <af:commandLink text="前一页" id="cl1" partialSubmit="true"
+                                                    disabled="#{backingBeanScope.relationSetManagedBean.tableModel.isPrevDisabled}"
+                                                    actionListener="#{backingBeanScope.relationSetManagedBean.commonRenderer.prevPage}"/>
+                                    <af:spacer width="10" height="10" id="s1"/>
+                                    <af:commandLink text="后一页" id="cl2" partialSubmit="true"
+                                                    disabled="#{backingBeanScope.relationSetManagedBean.tableModel.isNextDisabled}"
+                                                    actionListener="#{backingBeanScope.relationSetManagedBean.commonRenderer.nextPage}"/>
+                                    <af:spacer width="10" height="10" id="s8"/>
+                                    <af:selectOneChoice valueChangeListener="#{backingBeanScope.relationSetManagedBean.commonRenderer.goPageIndex}"
+                                                        id="soc1" simple="true" autoSubmit="true"
+                                                        value="#{backingBeanScope.relationSetManagedBean.tableModel.currItem.value}">
+                                        <f:selectItems value="#{backingBeanScope.relationSetManagedBean.tableModel.pageSelectItems}"
+                                                       id="si1"/>
+                                    </af:selectOneChoice>
+                                </af:panelGroupLayout>
+                            </f:facet>
+                            <f:facet name="end"></f:facet>
+                            <f:facet name="top"/>
+                        </af:panelStretchLayout>
+                        <af:table var="row" rowBandingInterval="0" id="t1" varStatus="vs"
+                                  styleClass="AFStretchWidth custom_table_striped" contentDelivery="immediate"
+                                  autoHeightRows="0" inlineStyle="margin-top:2px;" emptyText=""
+                                  sortListener="#{backingBeanScope.relationSetManagedBean.commonRenderer.tableSortListener}"
+                                  value="#{backingBeanScope.relationSetManagedBean.tableModel.model}"
+                                  rowSelection="multiple" columnStretching="multiple">
+                            <af:column sortable="false" headerText="序号" id="c1" align="center" width="50">
+                                <af:outputText value="#{vs.index+1}" id="ot18"/>
+                            </af:column>
+                            <af:column sortable="false" headerText="标题" id="c2" align="center" width="20%">
+                                <af:outputText value="#{row.title}" id="ot5"/>
+                            </af:column>
+                            <af:column sortable="false" headerText="最后修改时间" id="c3" align="center" width="20%">
+                                <af:outputText value="#{row.lastUpdateDate}" id="ot6"/>
+                            </af:column>
+                            <af:column sortable="false" headerText="类型" id="c4" align="center" width="20%">
+                                <af:outputText value="#{row.libName}" id="ot7"/>
+                            </af:column>
+                            <af:column sortable="false" headerText="状态" id="c5" align="center" width="20%">
+                                <af:outputText value="#{row.statusName}" id="ot10"/>
+                            </af:column>
+                            <af:column sortable="false" headerText="ID" id="c6" align="center" width="20%">
+                                <af:outputText value="#{row.docIdDisplay}" id="ot11"/>
+                            </af:column>
+                            <af:column sortable="false" headerText="操作" id="c7" align="center" width="80">
+                                <af:commandImageLink text="" id="cil1" icon="/resources/images/pubcancel.gif"
+                                                     partialSubmit="true"
+                                                     actionListener="#{backingBeanScope.relationSetManagedBean.deleteDocRelActionListener}">
+                                    <f:attribute name="docId" value="#{row.docId}"/>
+                                    <f:attribute name="parentDocId" value="#{row.parentDocId}"/>
+                                </af:commandImageLink>
+                            </af:column>
+                        </af:table>
+                        <af:spacer width="10" height="10" id="s3"/>
+                        <af:panelGroupLayout id="pgl9" layout="vertical" halign="center"
+                                             inlineStyle="background: url('./resources/images/import_item_top_bg.gif') repeat-x;height: 40px;"
+                                             styleClass="AFStretchWidth">
+                            <af:spacer width="10" height="3" id="s11"/>
+                            <af:panelGroupLayout id="pgl10" layout="horizontal" halign="center">
+                                <af:image source="/resources/images/write_item_icon.png" id="i3"/>
+                                <af:spacer width="15" height="10" id="s12"/>
+                                <af:outputText value="下面输入检索条件，进行资源检索" id="ot1"
+                                               inlineStyle="font-size:16px; font-weight:bold;color:white;"/>
+                            </af:panelGroupLayout>
+                        </af:panelGroupLayout>
+                        <af:panelGroupLayout layout="vertical"
+                                             inlineStyle="background: url('./resources/images/bg-2.gif') repeat-x;"
+                                             id="pgl11">
+                            <af:panelGroupLayout id="pgl8" layout="horizontal" inlineStyle="margin:0px 5px 0px 5px;"
+                                                 partialTriggers="cl3 cl4">
+                                <af:panelFormLayout id="pfl2" maxColumns="10" rows="2">
+                                    <af:iterator id="i2" value="#{bindings.CmsLibRetrivalVO.collectionModel}" var="row">
+                                        <af:selectBooleanCheckbox id="smc1" value="#{row.bindings.Checked.inputValue}"
+                                                                  text="#{row.LibName}"></af:selectBooleanCheckbox>
+                                    </af:iterator>
+                                </af:panelFormLayout>
+                                <af:spacer width="20" height="10" id="s6"/>
+                                <af:commandLink text="[全选]" id="cl3" partialSubmit="true"
+                                                actionListener="#{backingBeanScope.relationSetManagedBean.selectAllActionListener}"/>
+                                <af:commandLink text="[全取消]" id="cl4" partialSubmit="true"
+                                                actionListener="#{backingBeanScope.relationSetManagedBean.selectNoneActionListener}"/>
+                            </af:panelGroupLayout>
+                            <!--<af:panelGroupLayout id="pgl8" layout="horizontal" inlineStyle="margin:0px 5px 0px 5px;"
+                                                 partialTriggers="cl3 cl4"></af:panelGroupLayout>-->
+                            <af:panelFormLayout id="pfl1" maxColumns="2" rows="3">
+                                <af:inputText value="#{bindings.Title.inputValue}" label="#{bindings.Title.hints.label}"
+                                              required="#{bindings.Title.hints.mandatory}"
+                                              contentStyle="width:250px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                              columns="#{bindings.Title.hints.displayWidth}"
+                                              maximumLength="#{bindings.Title.hints.precision}"
+                                              shortDesc="#{bindings.Title.hints.tooltip}" id="it1">
+                                    <f:validator binding="#{bindings.Title.validator}"/>
+                                </af:inputText>
+                                <af:panelLabelAndMessage label="出版时间" id="plam1">
+                                    <af:panelGroupLayout id="pgl5" layout="horizontal">
+                                        <af:inputDate value="#{bindings.StartTime.inputValue}"
+                                                      label="#{bindings.StartTime.hints.label}" simple="true"
+                                                      required="#{bindings.StartTime.hints.mandatory}"
+                                                      contentStyle="width:100px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                      columns="#{bindings.StartTime.hints.displayWidth}"
+                                                      shortDesc="#{bindings.StartTime.hints.tooltip}" id="id1">
+                                            <f:validator binding="#{bindings.StartTime.validator}"/>
+                                            <af:convertDateTime pattern="#{bindings.StartTime.format}"/>
+                                        </af:inputDate>
+                                        <af:inputDate value="#{bindings.EndTime.inputValue}"
+                                                      label="#{bindings.EndTime.hints.label}"
+                                                      required="#{bindings.EndTime.hints.mandatory}" simple="true"
+                                                      columns="#{bindings.EndTime.hints.displayWidth}"
+                                                      contentStyle="width:100px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                      shortDesc="#{bindings.EndTime.hints.tooltip}" id="id2">
+                                            <f:validator binding="#{bindings.EndTime.validator}"/>
+                                            <af:convertDateTime pattern="#{bindings.EndTime.format}"/>
+                                        </af:inputDate>
+                                           
+                                    </af:panelGroupLayout>
+                                </af:panelLabelAndMessage>
+                                <af:inputText value="#{bindings.Keyword.inputValue}"
+                                              label="#{bindings.Keyword.hints.label}"
+                                              required="#{bindings.Keyword.hints.mandatory}"
+                                              columns="#{bindings.Keyword.hints.displayWidth}"
+                                              contentStyle="width:250px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                              maximumLength="#{bindings.Keyword.hints.precision}"
+                                              shortDesc="#{bindings.Keyword.hints.tooltip}" id="it2">
+                                    <f:validator binding="#{bindings.Keyword.validator}"/>
+                                </af:inputText>
+                                <af:inputText value="#{bindings.Author.inputValue}"
+                                              label="#{bindings.Author.hints.label}"
+                                              required="#{bindings.Author.hints.mandatory}"
+                                              columns="#{bindings.Author.hints.displayWidth}"
+                                              maximumLength="#{bindings.Author.hints.precision}"
+                                              contentStyle="width:250px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                              shortDesc="#{bindings.Author.hints.tooltip}" id="it3">
+                                    <f:validator binding="#{bindings.Author.validator}"/>
+                                </af:inputText>
+                                <af:inputText value="#{bindings.Isbn.inputValue}" label="#{bindings.Isbn.hints.label}"
+                                              required="#{bindings.Isbn.hints.mandatory}"
+                                              columns="#{bindings.Isbn.hints.displayWidth}"
+                                              maximumLength="#{bindings.Isbn.hints.precision}"
+                                              contentStyle="width:250px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                              shortDesc="#{bindings.Isbn.hints.tooltip}" id="it4">
+                                    <f:validator binding="#{bindings.Isbn.validator}"/>
+                                </af:inputText>
+                                <f:facet name="footer">
+                                    <af:panelGroupLayout id="pgl3" layout="vertical" halign="center">
+                                        <af:panelGroupLayout id="pgl4" layout="horizontal">
+                                            <af:commandButton text="检索" id="cb1" styleClass="min-btn blue-min-btn"
+                                                              actionListener="#{backingBeanScope.relationSetManagedBean.searchActionListener}"
+                                                              partialSubmit="true"/>
+                                            <af:spacer width="10" height="10" id="s5"/>
+                                            <af:commandButton text="重置" id="cb2" styleClass="min-btn blue-min-btn"
+                                                              actionListener="#{backingBeanScope.relationSetManagedBean.resetActionListener}"
+                                                              partialSubmit="true"/>
+                                        </af:panelGroupLayout>
+                                    </af:panelGroupLayout>
+                                </f:facet>
+                            </af:panelFormLayout>
+                        </af:panelGroupLayout>
+                        <af:table value="#{bindings.CmsDocRetrivalVO.collectionModel}" var="row"
+                                  rows="#{bindings.CmsDocRetrivalVO.rangeSize}" contentDelivery="immediate"
+                                  emptyText="#{bindings.CmsDocRetrivalVO.viewable ? '' : 'Access Denied.'}"
+                                  fetchSize="#{bindings.CmsDocRetrivalVO.rangeSize}" rowBandingInterval="0"
+                                  styleClass="AFStretchWidth custom_table_striped" columnStretching="multiple"
+                                  inlineStyle="margin-top:5px;"
+                                  selectedRowKeys="#{bindings.CmsDocRetrivalVO.collectionModel.selectedRow}"
+                                  selectionListener="#{bindings.CmsDocRetrivalVO.collectionModel.makeCurrent}"
+                                  rowSelection="single" id="t2">
+                            <af:column sortProperty="#{bindings.CmsDocRetrivalVO.hints.Title.name}" width="40%"
+                                       sortable="false" headerText="#{bindings.CmsDocRetrivalVO.hints.Title.label}"
+                                       id="c8">
+                                <af:outputText value="#{row.Title}"
+                                               shortDesc="#{bindings.CmsDocRetrivalVO.hints.Title.tooltip}" id="ot13"/>
+                            </af:column>
+                            <af:column sortProperty="#{bindings.CmsDocRetrivalVO.hints.CreationDate.name}"
+                                       sortable="false" width="15%"
+                                       headerText="#{bindings.CmsDocRetrivalVO.hints.CreationDate.label}" id="c9">
+                                <af:outputText value="#{row.CreationDate}"
+                                               shortDesc="#{bindings.CmsDocRetrivalVO.hints.CreationDate.tooltip}"
+                                               id="ot14">
+                                    <af:convertDateTime pattern="#{bindings.CmsDocRetrivalVO.hints.CreationDate.format}"/>
+                                </af:outputText>
+                            </af:column>
+                            <af:column sortProperty="#{bindings.CmsDocRetrivalVO.hints.LibName.name}" sortable="false"
+                                       width="15%" headerText="#{bindings.CmsDocRetrivalVO.hints.LibName.label}"
+                                       id="c10">
+                                <af:outputText value="#{row.LibName}"
+                                               shortDesc="#{bindings.CmsDocRetrivalVO.hints.LibName.tooltip}"
+                                               id="ot15"/>
+                            </af:column>
+                            <af:column sortProperty="#{bindings.CmsDocRetrivalVO.hints.Author.name}" sortable="false"
+                                       width="15%" headerText="#{bindings.CmsDocRetrivalVO.hints.Author.label}"
+                                       id="c11">
+                                <af:outputText value="#{row.Author}"
+                                               shortDesc="#{bindings.CmsDocRetrivalVO.hints.Author.tooltip}" id="ot16"/>
+                            </af:column>
+                            <af:column sortProperty="#{bindings.CmsDocRetrivalVO.hints.DocIdDisplay.name}"
+                                       sortable="false" width="15%"
+                                       headerText="#{bindings.CmsDocRetrivalVO.hints.DocIdDisplay.label}" id="c12">
+                                <af:outputText value="#{row.DocIdDisplay}"
+                                               shortDesc="#{bindings.CmsDocRetrivalVO.hints.DocId.tooltip}" id="ot17"></af:outputText>
+                            </af:column>
+                            <af:column sortProperty="#{bindings.CmsDocRetrivalVO.hints.DocId.name}" width="80"
+                                       sortable="false" headerText="操作" id="c13" align="center">
+                                <af:commandButton text="关联" id="cb3" partialSubmit="true"
+                                                  styleClass="min-btn blue-min-btn"
+                                                  actionListener="#{backingBeanScope.relationSetManagedBean.setRelationActionListener}">
+                                    <f:attribute name="relDocId" value="#{row.DocId}"/>
+                                    <f:attribute name="relLibCode" value="#{row.LibCode}"/>
+                                </af:commandButton>
+                            </af:column>
+                        </af:table>
+                    </af:panelGroupLayout>
+                </f:facet>
+                <f:facet name="center"/>
+            </af:panelStretchLayout>
+        </af:form>
+    </af:document>
+</f:view>

@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core">
+    <af:panelSplitter id="ps1" disabled="true">
+        <f:facet name="first">
+            <af:panelGroupLayout id="pgl2" layout="vertical" inlineStyle="margin:10px 0px 0px 10px;">
+                <af:panelGroupLayout id="pgl36" layout="vertical">
+                    <af:panelGroupLayout id="pgl37" layout="vertical" inlineStyle="background:#D9EDF8;height:30px;"
+                                         styleClass="AFStretchWidth">
+                        <af:panelGroupLayout id="pgl38" layout="horizontal" inlineStyle="padding-top:8px;">
+                            <af:spacer width="10" height="10" id="s14"/>
+                            <af:outputText value="目录列表" id="ot29" inlineStyle="font-weight:bold;color:#024D91;"/>
+                        </af:panelGroupLayout>
+                    </af:panelGroupLayout>
+                </af:panelGroupLayout>
+                <af:spacer width="10" height="10" id="s1"/>
+                <af:iterator id="i10" value="#{bindings.CmsDocUcmRelTVO4OnlineRead.collectionModel}" var="row"
+                             rows="1000">
+                    <af:commandLink text="#{row.FileName}" id="cl1">
+                        <af:setPropertyListener from="#{row.Attribute1}" to="#{sessionScope.swfUrl}" type="action"/>
+                    </af:commandLink>
+                </af:iterator>
+            </af:panelGroupLayout>
+        </f:facet>
+        <f:facet name="second">
+            <af:panelGroupLayout id="pgl1" layout="scroll" partialTriggers="i10:cl1">
+                <html xmlns="http://www.w3.org/1999/xhtml">
+                    <head>
+                        <script type="text/javascript" src="../../../resources/js/flexpaper_flash.js"></script>
+                    </head>
+                    <body>
+                        <div style="position:absolute;left:10px;top:10px;">
+                            <input type="hidden" value="#{sessionScope.swfUrl}" id="swfUrl"></input>
+                             
+                            <a id="viewerPlaceHolder" style="width:760px;height:600px;display:block"></a>
+                            <script type="text/javascript">
+                              var swfFileUrl = document.getElementById('swfUrl').value;
+                              var fp = new FlexPaperViewer('../../../../resources/flash/FlexPaperViewer', 'viewerPlaceHolder', 
+                              {
+                                  config :  {
+                                      SwfFile : swfFileUrl, Scale : 0.6, ZoomTransition : 'easeOut', ZoomTime : 0.5, ZoomInterval : 0.2, FitPageOnLoad : true, FitWidthOnLoad : false, FullScreenAsMaxWindow : false, ProgressiveLoading : false, MinZoomSize : 0.2, MaxZoomSize : 5, SearchMatchAll : false, InitViewMode : 'Portrait', PrintPaperAsBitmap : false, ViewModeToolsVisible : true, ZoomToolsVisible : true, NavToolsVisible : true, CursorToolsVisible : true, SearchToolsVisible : true, localeChain : 'en_US'
+                                  }
+                              });
+                            </script>
+                        </div>
+                    </body>
+                </html>
+            </af:panelGroupLayout>
+        </f:facet>
+    </af:panelSplitter>
+</ui:composition>

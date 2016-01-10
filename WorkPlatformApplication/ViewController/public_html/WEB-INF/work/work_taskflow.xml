@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="work_taskflow">
+    <default-activity>findFirstLevelLib</default-activity>
+    <input-parameter-definition id="__4">
+      <name>compCode</name>
+      <value>#{pageFlowScope.compCode}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__5">
+      <name>currTime</name>
+      <value>#{pageFlowScope.currTime}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__6">
+      <name>groupUserFlag</name>
+      <value>#{pageFlowScope.groupUserFlag}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <managed-bean id="__1">
+      <managed-bean-name>workManagedBean</managed-bean-name>
+      <managed-bean-class>com.zypg.cms.work.view.bean.WorkManagedBean</managed-bean-class>
+      <managed-bean-scope>backingBean</managed-bean-scope>
+    </managed-bean>
+    <view id="work">
+      <page>/work/fragment/work.jsff</page>
+    </view>
+    <method-call id="findFirstLevelLib">
+      <method>#{bindings.findFirstLevelLib.execute}</method>
+      <return-value>#{pageFlowScope.libCode}</return-value>
+      <outcome>
+        <fixed-outcome>findFirstLevelLib</fixed-outcome>
+      </outcome>
+    </method-call>
+    <control-flow-rule id="__2">
+      <from-activity-id>findFirstLevelLib</from-activity-id>
+      <control-flow-case id="__3">
+        <from-outcome>findFirstLevelLib</from-outcome>
+        <to-activity-id>work</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

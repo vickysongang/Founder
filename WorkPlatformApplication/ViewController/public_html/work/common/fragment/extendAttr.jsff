@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core">
+    <af:resource type="javascript" source="/resources/js/jquery_min.js"/>
+    <af:resource type="javascript" source="/resources/js/work_platform.js"/>
+    <af:panelStretchLayout id="psl1" styleClass="AFStretchWidth" dimensionsFrom="auto">
+        <f:facet name="center">
+            <af:panelFormLayout id="pfl1" maxColumns="2" inlineStyle="margin-bottom:5px;"
+                                labelWidth="#{pageFlowScope.labelWidth == null ? 80 : pageFlowScope.labelWidth}"
+                                rows="#{backingBeanScope.extendAttrManagedBean.extendAttrListSize/2}"
+                                binding="#{backingBeanScope.extendAttrManagedBean.extendAttrFormLayout}">
+                <f:facet name="footer"/>
+                <af:forEach var="extendAttr" items="#{backingBeanScope.extendAttrManagedBean.extendAttrList}">
+                    <af:inputText label="#{extendAttr['AttrMeaning']}" id="it1"
+                                  rendered="#{extendAttr['AttrType'] == 'VARCHAR'}"
+                                  value="#{backingBeanScope.extendAttrManagedBean.defaultExtendAttrValueMap[extendAttr['AttrCode']]}"
+                                  shortDesc="#{extendAttr['AttrMeaning']}"
+                                  changedDesc="#{extendAttr['AttrCode']},#{extendAttr['AttrType']}"
+                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"/>
+                    <af:inputDate label="#{extendAttr['AttrMeaning']}" id="id1"
+                                  changedDesc="#{extendAttr['AttrCode']},#{extendAttr['AttrType']}"
+                                  rendered="#{extendAttr['AttrType'] == 'DATE'}"
+                                  shortDesc="#{extendAttr['AttrMeaning']}"
+                                  value="#{backingBeanScope.extendAttrManagedBean.defaultExtendAttrValueMap[extendAttr['AttrCode']]}"
+                                  contentStyle="width:202px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"/>
+                    <af:inputText label="#{extendAttr['AttrMeaning']}" id="it2"
+                                  rendered="#{extendAttr['AttrType'] == 'NUMBER'}"
+                                  shortDesc="#{extendAttr['AttrMeaning']}"
+                                  value="#{backingBeanScope.extendAttrManagedBean.defaultExtendAttrValueMap[extendAttr['AttrCode']]}"
+                                  changedDesc="#{extendAttr['AttrCode']},#{extendAttr['AttrType']}"
+                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;">
+                        <af:convertNumber type="number"/>
+                    </af:inputText>
+                    <af:selectOneChoice label="#{extendAttr['AttrMeaning']}" id="soc1"
+                                        rendered="#{extendAttr['AttrType'] == 'CHOICE'}"
+                                        shortDesc="#{extendAttr['AttrMeaning']}"
+                                        value="#{backingBeanScope.extendAttrManagedBean.defaultExtendAttrValueMap[extendAttr['AttrCode']]}"
+                                        changedDesc="#{extendAttr['AttrCode']},#{extendAttr['AttrType']}"
+                                        contentStyle="width:207px;height:22px;line-height:22px;border-color:#ABADB3;font-size:12px;">
+                        <f:selectItems value="#{backingBeanScope.extendAttrManagedBean.choiceValueList[extendAttr['AttrCode']]}"
+                                       id="si1"/>
+                    </af:selectOneChoice>
+                </af:forEach>
+            </af:panelFormLayout>
+        </f:facet>
+        <f:facet name="bottom">
+            <af:panelGroupLayout id="pgl1" layout="horizontal" visible="true">
+                <!--<af:spacer id="saveExtendAttrHandler" visible="true" clientComponent="true">
+                    <af:serverListener type="saveExtendAttr"
+                                       method="#{backingBeanScope.extendAttrManagedBean.saveServerListener}"/>
+                </af:spacer>-->
+                <af:commandButton text="保存" id="saveExtendAttrBtn" partialSubmit="true" visible="false"
+                                  actionListener="#{backingBeanScope.extendAttrManagedBean.saveActionListener}"
+                                  clientComponent="true"/>
+            </af:panelGroupLayout>
+        </f:facet>
+    </af:panelStretchLayout>
+</jsp:root>

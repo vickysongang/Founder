@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="search_export_main_taskflow">
+    <default-activity>initSearchExport</default-activity>
+    <input-parameter-definition id="__1">
+      <name>compCode</name>
+      <value>#{pageFlowScope.compCode}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__2">
+      <name>libCode</name>
+      <value>#{pageFlowScope.libCode}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__5">
+      <name>groupUserFlag</name>
+      <value>#{pageFlowScope.groupUserFlag}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <managed-bean id="__6">
+      <managed-bean-name>searchExportManagedBean</managed-bean-name>
+      <managed-bean-class>com.zypg.cms.work.view.bean.SearchExportManagedBean</managed-bean-class>
+      <managed-bean-scope>backingBean</managed-bean-scope>
+    </managed-bean>
+    <method-call id="initSearchExport">
+      <method>#{backingBeanScope.searchExportManagedBean.initSearchExport}</method>
+      <outcome>
+        <fixed-outcome>toSearchExport</fixed-outcome>
+      </outcome>
+    </method-call>
+    <view id="searchExportMain">
+      <page>/work/resexp/fragment/searchExportMain.jsff</page>
+    </view>
+    <control-flow-rule id="__3">
+      <from-activity-id>initSearchExport</from-activity-id>
+      <control-flow-case id="__4">
+        <from-outcome>toSearchExport</from-outcome>
+        <to-activity-id>searchExportMain</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

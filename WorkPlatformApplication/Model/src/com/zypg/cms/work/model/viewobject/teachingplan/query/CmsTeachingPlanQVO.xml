@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="CmsTeachingPlanQVO"
+  Version="11.1.2.64.36"
+  BindingStyle="OracleName"
+  CustomQuery="true"
+  RowClass="com.zypg.cms.work.model.viewobject.teachingplan.query.CmsTeachingPlanQVORowImpl"
+  ComponentClass="com.zypg.cms.work.model.viewobject.teachingplan.query.CmsTeachingPlanQVOImpl"
+  PageIterMode="Full"
+  UseGlueCode="false">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="Access|Coll|VarAccess"/>
+    <Attr Name="_isExpertMode" Value="true"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="com.zypg.cms.work.model.viewobject.teachingplan.query.CmsTeachingPlanQVO_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <ViewAccessor
+    Name="Lookup4TeachingPlanType"
+    ViewObjectName="com.zypg.cms.work.model.viewobject.common.lov.CmsLookupValueVO"
+    RowLevelBinds="true">
+    <ViewCriteriaUsage
+      Name="findTeachingPlanType"
+      FullName="com.zypg.cms.work.model.viewobject.common.lov.CmsLookupValueVO.findTeachingPlanType"/>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="Lookup4YouOrWu"
+    ViewObjectName="com.zypg.cms.work.model.viewobject.common.lov.CmsLookupValueVO"
+    RowLevelBinds="true">
+    <ViewCriteriaUsage
+      Name="findYouOrWuVC"
+      FullName="com.zypg.cms.work.model.viewobject.common.lov.CmsLookupValueVO.findYouOrWuVC"/>
+  </ViewAccessor>
+  <ListBinding
+    Name="LOV_TeachingPlanType"
+    ListVOName="Lookup4TeachingPlanType"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="TeachingPlanType"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="LookupTypeCode"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Meaning"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_CopyrightFlag"
+    ListVOName="Lookup4YouOrWu"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="CopyrightFlag"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="LookupTypeCode"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Meaning"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <SQLQuery><![CDATA[SELECT NULL SOURCE_BOOK_NAME,
+       NULL SOURCE_BOOK_ISBN,
+       NULL PUBLISHING_HOUSE,
+       NULL EDITOR,
+       NULL TEACHING_PLAN_NAME,
+       NULL PRODUCER,
+       NULL TEACHING_PLAN_TYPE,
+       NULL COPYRIGHT_FLAG,
+       NULL KEYWORD,
+       NULL REMARKS,
+       NULL TEACHING_PLAN_STORE_TIME
+  FROM dual]]></SQLQuery>
+  <ViewAttribute
+    Name="SourceBookName"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="255"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="SOURCE_BOOK_NAME"
+    Expression="SOURCE_BOOK_NAME"
+    SQLType="VARCHAR">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.work.model.viewobject.teachingplan.query.CmsTeachingPlanQVO.SourceBookName_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="SourceBookIsbn"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="SOURCE_BOOK_ISBN"
+    Expression="SOURCE_BOOK_ISBN"
+    SQLType="VARCHAR">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.work.model.viewobject.teachingplan.query.CmsTeachingPlanQVO.SourceBookIsbn_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PublishingHouse"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="PUBLISHING_HOUSE"
+    Expression="PUBLISHING_HOUSE"
+    SQLType="VARCHAR">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.work.model.viewobject.teachingplan.query.CmsTeachingPlanQVO.PublishingHouse_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Editor"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="EDITOR"
+    Expression="EDITOR"
+    SQLType="VARCHAR">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.work.model.viewobject.teachingplan.query.CmsTeachingPlanQVO.Editor_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="TeachingPlanName"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="TEACHING_PLAN_NAME"
+    Expression="TEACHING_PLAN_NAME"
+    SQLType="VARCHAR">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.work.model.viewobject.teachingplan.query.CmsTeachingPlanQVO.TeachingPlanName_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Producer"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="PRODUCER"
+    Expression="PRODUCER"
+    SQLType="VARCHAR">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.work.model.viewobject.teachingplan.query.CmsTeachingPlanQVO.Producer_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="TeachingPlanType"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="TEACHING_PLAN_TYPE"
+    Expression="TEACHING_PLAN_TYPE"
+    SQLType="VARCHAR"
+    LOVName="LOV_TeachingPlanType">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.work.model.viewobject.teachingplan.query.CmsTeachingPlanQVO.TeachingPlanType_LABEL"/>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="CopyrightFlag"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="COPYRIGHT_FLAG"
+    Expression="COPYRIGHT_FLAG"
+    SQLType="VARCHAR"
+    LOVName="LOV_CopyrightFlag">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.work.model.viewobject.teachingplan.query.CmsTeachingPlanQVO.CopyrightFlag_LABEL"/>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Keyword"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="KEYWORD"
+    Expression="KEYWORD"
+    SQLType="VARCHAR">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.work.model.viewobject.teachingplan.query.CmsTeachingPlanQVO.Keyword_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Remarks"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="REMARKS"
+    Expression="REMARKS"
+    SQLType="VARCHAR">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.work.model.viewobject.teachingplan.query.CmsTeachingPlanQVO.Remarks_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="TeachingPlanStoreTime"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="oracle.jbo.domain.Date"
+    ColumnType="DATE"
+    AliasName="TEACHING_PLAN_STORE_TIME"
+    Expression="TEACHING_PLAN_STORE_TIME"
+    SQLType="VARCHAR">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.work.model.viewobject.teachingplan.query.CmsTeachingPlanQVO.TeachingPlanStoreTime_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="com.zypg.cms.work.model.ModelBundle"/>
+  </ResourceBundle>
+</ViewObject>

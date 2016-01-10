@@ -1,0 +1,103 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <af:document id="d1" title="精编">
+        <af:messages id="m1"/>
+        <af:form id="f1">
+            <af:panelStretchLayout id="psl1" styleClass="AFStretchWidth">
+                <f:facet name="bottom">
+                    <af:panelGroupLayout id="pgl1" layout="vertical" halign="center">
+                        <af:panelGroupLayout id="pgl3" layout="horizontal">
+                            <af:commandButton text="确定" id="cb1" action="toReturn" styleClass="popup-btn"
+                                              actionListener="#{backingBeanScope.jbInfoManagedBean.saveActionListener}"/>
+                            <af:spacer width="10" height="10" id="s1"/>
+                            <af:commandButton text="关闭" id="cb2" action="toReturn" immediate="true"
+                                              styleClass="popup-btn"
+                                              actionListener="#{backingBeanScope.jbInfoManagedBean.cancelActionListener}"/>
+                        </af:panelGroupLayout>
+                    </af:panelGroupLayout>
+                </f:facet>
+                <f:facet name="center">
+                    <af:panelTabbed id="pt1">
+                        <af:showDetailItem text="简介" id="sdi1"
+                                           rendered="#{pageFlowScope.libCode == 'BOOK' or pageFlowScope.libCode == 'ELEC_PROD'}">
+                            <af:richTextEditor value="#{bindings.BriefIntroduction.inputValue}" simple="true"
+                                               label="#{bindings.BriefIntroduction.hints.label}"
+                                               required="#{bindings.BriefIntroduction.hints.mandatory}"
+                                               contentStyle="width:640px;" rows="20"
+                                               columns="#{bindings.BriefIntroduction.hints.displayWidth}"
+                                               shortDesc="#{bindings.BriefIntroduction.hints.tooltip}" id="rte1"
+                                               converter="oracle.genericDomain"></af:richTextEditor>
+                        </af:showDetailItem>
+                        <af:showDetailItem text="目录" id="sdi2" rendered="#{pageFlowScope.libCode == 'BOOK'}">
+                            <af:richTextEditor value="#{bindings.Catalog.inputValue}" simple="true"
+                                               label="#{bindings.Catalog.hints.label}"
+                                               required="#{bindings.Catalog.hints.mandatory}"
+                                               converter="oracle.genericDomain" contentStyle="width:640px;" rows="20"
+                                               columns="#{bindings.Catalog.hints.displayWidth}"
+                                               shortDesc="#{bindings.Catalog.hints.tooltip}" id="rte2"></af:richTextEditor>
+                        </af:showDetailItem>
+                        <af:showDetailItem text="前言" id="sdi3" rendered="#{pageFlowScope.libCode == 'BOOK'}">
+                            <af:richTextEditor value="#{bindings.Foreword.inputValue}" simple="true"
+                                               label="#{bindings.Foreword.hints.label}" converter="oracle.genericDomain"
+                                               required="#{bindings.Foreword.hints.mandatory}"
+                                               contentStyle="width:640px;" rows="20"
+                                               columns="#{bindings.Foreword.hints.displayWidth}"
+                                               shortDesc="#{bindings.Foreword.hints.tooltip}" id="rte3"></af:richTextEditor>
+                        </af:showDetailItem>
+                        <af:showDetailItem text="后记" id="sdi4" rendered="#{pageFlowScope.libCode == 'BOOK'}">
+                            <af:richTextEditor value="#{bindings.Postscript.inputValue}" simple="true"
+                                               label="#{bindings.Postscript.hints.label}"
+                                               converter="oracle.genericDomain" contentStyle="width:640px;" rows="20"
+                                               required="#{bindings.Postscript.hints.mandatory}"
+                                               columns="#{bindings.Postscript.hints.displayWidth}"
+                                               shortDesc="#{bindings.Postscript.hints.tooltip}" id="rte4"></af:richTextEditor>
+                        </af:showDetailItem>
+                        <af:showDetailItem text="精彩片段" id="sdi5" rendered="#{pageFlowScope.libCode == 'BOOK'}">
+                            <af:richTextEditor value="#{bindings.Highlights.inputValue}"
+                                               converter="oracle.genericDomain" contentStyle="width:640px;" rows="20"
+                                               label="#{bindings.Highlights.hints.label}" simple="true"
+                                               required="#{bindings.Highlights.hints.mandatory}"
+                                               columns="#{bindings.Highlights.hints.displayWidth}"
+                                               shortDesc="#{bindings.Highlights.hints.tooltip}" id="rte5"></af:richTextEditor>
+                        </af:showDetailItem>
+                        <af:showDetailItem text="序言" id="sdi6" rendered="#{pageFlowScope.libCode == 'BOOK'}">
+                            <af:richTextEditor value="#{bindings.Preface.inputValue}" simple="true"
+                                               label="#{bindings.Preface.hints.label}" converter="oracle.genericDomain"
+                                               required="#{bindings.Preface.hints.mandatory}"
+                                               columns="#{bindings.Preface.hints.displayWidth}"
+                                               contentStyle="width:640px;" rows="20"
+                                               shortDesc="#{bindings.Preface.hints.tooltip}" id="rte6"></af:richTextEditor>
+                        </af:showDetailItem>
+                        <af:showDetailItem text="术语表" id="sdi7" rendered="#{pageFlowScope.libCode == 'BOOK'}">
+                            <af:richTextEditor value="#{bindings.Glossary.inputValue}" converter="oracle.genericDomain"
+                                               label="#{bindings.Glossary.hints.label}" simple="true"
+                                               required="#{bindings.Glossary.hints.mandatory}"
+                                               contentStyle="width:640px;" rows="20"
+                                               columns="#{bindings.Glossary.hints.displayWidth}"
+                                               shortDesc="#{bindings.Glossary.hints.tooltip}" id="rte7"></af:richTextEditor>
+                        </af:showDetailItem>
+                        <af:showDetailItem text="参考文献" id="sdi8" rendered="#{pageFlowScope.libCode == 'BOOK'}">
+                            <af:richTextEditor value="#{bindings.References1.inputValue}"
+                                               converter="oracle.genericDomain" contentStyle="width:640px;" rows="20"
+                                               label="#{bindings.References1.hints.label}" simple="true"
+                                               required="#{bindings.References1.hints.mandatory}"
+                                               columns="#{bindings.References1.hints.displayWidth}"
+                                               shortDesc="#{bindings.References1.hints.tooltip}" id="rte8"></af:richTextEditor>
+                        </af:showDetailItem>
+                        <af:showDetailItem text="作者简介" id="sdi9" rendered="#{pageFlowScope.libCode == 'BOOK'}">
+                            <af:richTextEditor value="#{bindings.AuthorIntroduction.inputValue}"
+                                               converter="oracle.genericDomain" contentStyle="width:640px;" rows="20"
+                                               label="#{bindings.AuthorIntroduction.hints.label}" simple="true"
+                                               required="#{bindings.AuthorIntroduction.hints.mandatory}"
+                                               columns="#{bindings.AuthorIntroduction.hints.displayWidth}"
+                                               shortDesc="#{bindings.AuthorIntroduction.hints.tooltip}" id="rte9"></af:richTextEditor>
+                        </af:showDetailItem>
+                    </af:panelTabbed>
+                </f:facet>
+                <f:facet name="start"/>
+                <f:facet name="end"/>
+                <f:facet name="top"/>
+            </af:panelStretchLayout>
+        </af:form>
+    </af:document>
+</f:view>

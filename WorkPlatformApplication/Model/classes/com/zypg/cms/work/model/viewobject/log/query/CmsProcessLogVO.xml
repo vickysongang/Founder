@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="CmsProcessLogVO"
+  Version="11.1.2.64.36"
+  BindingStyle="OracleName"
+  CustomQuery="true"
+  PageIterMode="Full"
+  UseGlueCode="false"
+  RowClass="com.zypg.cms.work.model.viewobject.log.query.CmsProcessLogVORowImpl"
+  ComponentClass="com.zypg.cms.work.model.viewobject.log.query.CmsProcessLogVOImpl"
+  OrderBy='"OPERATION_TIME" DESC'>
+  <DesignTime>
+    <Attr Name="_isExpertMode" Value="true"/>
+    <Attr Name="_codeGenFlag2" Value="Access|Coll|VarAccess"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="com.zypg.cms.work.model.viewobject.log.query.CmsProcessLogVO_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <Variable
+    Name="bvDocId"
+    Kind="viewcriteria"
+    Type="oracle.jbo.domain.Number"/>
+  <SQLQuery><![CDATA[SELECT l.LOG_ID              LOG_ID,
+       l.DOC_ID              DOC_ID,
+       l.PROCESS_OPERATOR    PROCESS_OPERATOR,
+       u.diplay_name         PROCESS_OPERATOR_NAME,
+       l.OPERATION           OPERATION,
+       l.PROCESS_START_POINT PROCESS_START_POINT,
+       l.PROCESS_END_POINT   PROCESS_END_POINT,
+       l.OPERATION_TIME      OPERATION_TIME
+  FROM CMS_PROCESS_LOG_T l, cms_user_t u
+ WHERE l.process_operator = u.user_id]]></SQLQuery>
+  <ViewAttribute
+    Name="LogId"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="oracle.jbo.domain.Number"
+    ColumnType="NUMBER"
+    AliasName="LOG_ID"
+    Expression="LOG_ID"
+    SQLType="NUMERIC"/>
+  <ViewAttribute
+    Name="DocId"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    AliasName="DOC_ID"
+    Expression="DOC_ID"
+    SQLType="NUMERIC"/>
+  <ViewAttribute
+    Name="ProcessOperator"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="40"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="PROCESS_OPERATOR"
+    Expression="PROCESS_OPERATOR"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="40"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.work.model.viewobject.log.query.CmsProcessLogVO.ProcessOperator_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="ProcessOperatorName"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="80"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="PROCESS_OPERATOR_NAME"
+    Expression="PROCESS_OPERATOR_NAME"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="80"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.work.model.viewobject.log.query.CmsProcessLogVO.ProcessOperatorName_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Operation"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="80"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="OPERATION"
+    Expression="OPERATION"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="80"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.work.model.viewobject.log.query.CmsProcessLogVO.Operation_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="ProcessStartPoint"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="80"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="PROCESS_START_POINT"
+    Expression="PROCESS_START_POINT"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="80"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.work.model.viewobject.log.query.CmsProcessLogVO.ProcessStartPoint_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="ProcessEndPoint"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="80"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="PROCESS_END_POINT"
+    Expression="PROCESS_END_POINT"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="80"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.work.model.viewobject.log.query.CmsProcessLogVO.ProcessEndPoint_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="OperationTime"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="oracle.jbo.domain.Date"
+    ColumnType="DATE"
+    AliasName="OPERATION_TIME"
+    Expression="OPERATION_TIME"
+    SQLType="DATE">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.work.model.viewobject.log.query.CmsProcessLogVO.OperationTime_LABEL"/>
+        <FMT_FORMATTER
+          ResId="com.zypg.cms.work.model.viewobject.log.query.CmsProcessLogVO.OperationTime_FMT_FORMATTER"/>
+        <FMT_FORMAT
+          ResId="com.zypg.cms.work.model.viewobject.log.query.CmsProcessLogVO.OperationTime_FMT_FORMAT"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewCriteria
+    Name="findProcessLogByDocId"
+    ViewObjectName="com.zypg.cms.work.model.viewobject.log.query.CmsProcessLogVO"
+    Conjunction="AND">
+    <Properties>
+      <CustomProperties>
+        <Property
+          Name="displayOperators"
+          Value="InAdvancedMode"/>
+        <Property
+          Name="autoExecute"
+          Value="false"/>
+        <Property
+          Name="allowConjunctionOverride"
+          Value="true"/>
+        <Property
+          Name="showInList"
+          Value="true"/>
+        <Property
+          Name="mode"
+          Value="Basic"/>
+      </CustomProperties>
+    </Properties>
+    <ViewCriteriaRow
+      Name="CmsProcessLogVOCriteria_row_0"
+      UpperColumns="1">
+      <ViewCriteriaItem
+        Name="DocId"
+        ViewAttribute="DocId"
+        Operator="="
+        Conjunction="AND"
+        Value=":bvDocId"
+        UpperColumns="0"
+        IsBindVarValue="true"
+        Required="Optional"/>
+    </ViewCriteriaRow>
+  </ViewCriteria>
+  <AttrArray Name="KeyAttributes">
+    <Item Value="LogId"/>
+  </AttrArray>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="com.zypg.cms.work.model.ModelBundle"/>
+  </ResourceBundle>
+</ViewObject>

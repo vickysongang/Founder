@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="companyEditPageDef"
+                Package="work.copyright.inline">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="Root.CopyrightAM.CmsCompanyCopyrightTVO" DataControl="WorkAMDataControl" RangeSize="25"
+              id="CmsCompanyCopyrightTVOIterator"/>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="CmsCompanyCopyrightTVOIterator" id="CompanyName">
+      <AttrNames>
+        <Item Value="CompanyName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsCompanyCopyrightTVOIterator" id="CompanyContact">
+      <AttrNames>
+        <Item Value="CompanyContact"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsCompanyCopyrightTVOIterator" id="CompanyAddr">
+      <AttrNames>
+        <Item Value="CompanyAddr"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsCompanyCopyrightTVOIterator" id="CompanyPhone">
+      <AttrNames>
+        <Item Value="CompanyPhone"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsCompanyCopyrightTVOIterator" id="Remarks">
+      <AttrNames>
+        <Item Value="Remarks"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

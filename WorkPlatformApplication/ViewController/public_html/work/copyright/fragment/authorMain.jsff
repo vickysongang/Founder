@@ -1,0 +1,296 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core">
+    <af:panelSplitter id="ps1" splitterPosition="170">
+        <f:facet name="first">
+            <af:tree value="#{bindings.CmsCategory4AuthorCopyrightVO.treeModel}" var="node" rowSelection="single"
+                     id="t2" inlineStyle="border:1px solid #BAC6CA;margin-right:1px;padding-left:10px;"
+                     contentDelivery="immediate" partialTriggers="::cb1 ::cil1 ::cb2"
+                     selectionListener="#{backingBeanScope.copyrightAuthorMainManagedBean.categoryTreeSelectionListener}"
+                     binding="#{backingBeanScope.copyrightAuthorMainManagedBean.categoryTree}">
+                <f:facet name="nodeStamp">
+                    <af:outputText value="#{node.CategoryDisplayName}" id="ot11"/>
+                </f:facet>
+            </af:tree>
+        </f:facet>
+        <f:facet name="second">
+            <af:panelStretchLayout id="psl1" topHeight="40px" partialTriggers="t2"
+                                   inlineStyle="border:1px solid #BAC6CA;background:#F3F8FC;">
+                <f:facet name="start"/>
+                <f:facet name="top">
+                    <af:panelStretchLayout id="psl4" styleClass="AFStretchWidth" inlineStyle="height:40px;"
+                                           startWidth="auto" endWidth="auto">
+                        <f:facet name="start">
+                            <af:panelGroupLayout id="pgl1" layout="horizontal"
+                                                 partialTriggers="soc1 soc2 t1:sbc1 t1:sbc2 t1 cb11 d5 d1 it1"
+                                                 inlineStyle="margin:5px 5px 5px 15px;padding-left:20px;"
+                                                 binding="#{backingBeanScope.copyrightAuthorMainManagedBean.buttonPanelGroupLayout}">
+                                <af:commandImageLink text="新建" id="cb1" partialSubmit="true" action="toEdit"
+                                                     useWindow="true" windowHeight="580" windowWidth="750"
+                                                     visible="#{backingBeanScope.copyrightAuthorMainManagedBean.commonRenderer.createEnable}"
+                                                     styleClass="imagelink_length_2" icon="/resources/images/new.gif"
+                                                     iconPosition="leading">
+                                    <af:setPropertyListener from="CREATE" to="#{pageFlowScope.mode}" type="action"/>
+                                    <af:setPropertyListener from="N" to="#{pageFlowScope.batchFlag}" type="action"/>
+                                </af:commandImageLink>
+                                <af:commandImageLink text="标引" id="cil1" icon="/resources/images/edit.gif"
+                                                     windowHeight="580" windowWidth="750" partialSubmit="true"
+                                                     action="toEdit" useWindow="true" styleClass="imagelink_length_2"
+                                                     visible="#{backingBeanScope.copyrightAuthorMainManagedBean.commonRenderer.indexEnable  and backingBeanScope.copyrightAuthorMainManagedBean.commonRenderer.currSelectedListSize == 1}"
+                                                     actionListener="#{backingBeanScope.copyrightAuthorMainManagedBean.commonRenderer.docIdSetActionListener}">
+                                    <af:setPropertyListener from="EDIT" to="#{pageFlowScope.mode}" type="action"/>
+                                </af:commandImageLink>
+                                <af:commandImageLink text="附件管理" id="cil2" icon="/resources/images/edit.gif"
+                                                     windowHeight="560" windowWidth="650" partialSubmit="true"
+                                                     action="toAttach" useWindow="true" styleClass="imagelink_length_4"
+                                                     visible="#{backingBeanScope.copyrightAuthorMainManagedBean.commonRenderer.indexEnable  and backingBeanScope.copyrightAuthorMainManagedBean.commonRenderer.currSelectedListSize == 1}"
+                                                     actionListener="#{backingBeanScope.copyrightAuthorMainManagedBean.commonRenderer.docIdSetActionListener}"/>
+                                <af:commandImageLink text="导入版权信息" id="cb2"
+                                                     icon="/resources/images/item_import_icon.png" partialSubmit="true"
+                                                     action="toImport" useWindow="true" windowHeight="400"
+                                                     visible="#{pageFlowScope.deleteFlag == 'N'}" windowWidth="600"
+                                                     styleClass="imagelink_length_6" inlineStyle="text-align:center;"
+                                                     iconPosition="leading"
+                                                     actionListener="#{backingBeanScope.copyrightAuthorMainManagedBean.importAuthorInfoListener}"
+                                                     returnListener="#{backingBeanScope.copyrightAuthorMainManagedBean.importAuthorInfoReturnListener}"/>
+                                <af:commandImageLink text="提交" id="cb3" icon="/resources/images/submit.gif"
+                                                     styleClass="imagelink_length_2"
+                                                     visible="#{backingBeanScope.copyrightAuthorMainManagedBean.commonRenderer.submitEnable and backingBeanScope.copyrightAuthorMainManagedBean.commonRenderer.currSelectedListSize >= 1}"
+                                                     actionListener="#{backingBeanScope.copyrightAuthorMainManagedBean.commonRenderer.updateDocStatusActionListener}">
+                                    <f:attribute name="operation" value="提交"/>
+                                    <f:attribute name="LIB_CODE" value="AUTHOR"/>
+                                </af:commandImageLink>
+                                <af:commandImageLink text="审核" id="cb4" icon="/resources/images/review.gif"
+                                                     windowHeight="560" windowWidth="750" partialSubmit="true"
+                                                     action="toEdit" useWindow="true" styleClass="imagelink_length_2"
+                                                     visible="#{backingBeanScope.copyrightAuthorMainManagedBean.commonRenderer.approveEnable  and backingBeanScope.copyrightAuthorMainManagedBean.commonRenderer.currSelectedListSize == 1}"
+                                                     actionListener="#{backingBeanScope.copyrightAuthorMainManagedBean.commonRenderer.docIdSetActionListener}">
+                                    <af:setPropertyListener from="APPROVE" to="#{pageFlowScope.mode}" type="action"/>
+                                    <af:setPropertyListener from="N" to="#{pageFlowScope.batchFlag}" type="action"/>
+                                </af:commandImageLink>
+                                <af:commandImageLink text="删除" id="cb6" icon="/resources/images/delete.gif"
+                                                     styleClass="imagelink_length_2"
+                                                     visible="#{backingBeanScope.copyrightAuthorMainManagedBean.commonRenderer.deleteEnable and backingBeanScope.copyrightAuthorMainManagedBean.commonRenderer.currSelectedListSize >= 1}">
+                                    <af:showPopupBehavior popupId="p3" triggerType="action"/>
+                                </af:commandImageLink>
+                                <af:commandImageLink text="回退" id="cb11" icon="/resources/images/recycle.gif"
+                                                     styleClass="imagelink_length_2"
+                                                     visible="#{backingBeanScope.copyrightAuthorMainManagedBean.commonRenderer.backEnable and backingBeanScope.copyrightAuthorMainManagedBean.commonRenderer.currSelectedListSize == 1}"
+                                                     actionListener="#{backingBeanScope.copyrightAuthorMainManagedBean.commonRenderer.docIdBatchSetActionListener}"
+                                                     action="toRollback" useWindow="true" windowHeight="200"
+                                                     windowWidth="620"
+                                                     returnListener="#{backingBeanScope.copyrightAuthorMainManagedBean.commonRenderer.rollbackReturnListener}">
+                                    <af:setPropertyListener to="#{pageFlowScope.type}" type="action" from="ROLLBACK"/>
+                                </af:commandImageLink>
+                                <af:commandImageLink text="操作日志" id="cil4" icon="/resources/images/log.gif"
+                                                     visible="#{backingBeanScope.copyrightAuthorMainManagedBean.commonRenderer.currSelectedListSize == 1 and pageFlowScope.deleteFlag == 'N'}"
+                                                     action="toProcessLog" styleClass="imagelink_length_4"
+                                                     actionListener="#{backingBeanScope.copyrightAuthorMainManagedBean.commonRenderer.docIdSetActionListener}"
+                                                     useWindow="true" partialSubmit="true" windowHeight="400"
+                                                     windowWidth="600"/>
+                                <af:commandImageLink text="回退记录" id="cil5" icon="/resources/images/catlog_view.gif"
+                                                     styleClass="imagelink_length_4"
+                                                     visible="#{backingBeanScope.copyrightAuthorMainManagedBean.commonRenderer.currSelectedListSize == 1 and pageFlowScope.deleteFlag == 'N'}"
+                                                     actionListener="#{backingBeanScope.copyrightAuthorMainManagedBean.commonRenderer.docIdSetActionListener}"
+                                                     action="toRollbackLog" useWindow="true" windowHeight="400"
+                                                     windowWidth="600"/>
+                                <af:commandImageLink text="还原" id="cb7" icon="/resources/images/recycle.gif"
+                                                     styleClass="imagelink_length_2"
+                                                     visible="#{backingBeanScope.copyrightAuthorMainManagedBean.commonRenderer.recoverEnable and backingBeanScope.copyrightAuthorMainManagedBean.commonRenderer.currSelectedListSize >= 1}"
+                                                     actionListener="#{backingBeanScope.copyrightAuthorMainManagedBean.commonRenderer.recoverDocActionListener}"/>
+                                <af:commandImageLink text="彻底删除" id="cil3" icon="/resources/images/delete_final.gif"
+                                                     styleClass="imagelink_length_4" partialSubmit="true"
+                                                     visible="#{backingBeanScope.copyrightAuthorMainManagedBean.commonRenderer.destroyEnable and backingBeanScope.copyrightAuthorMainManagedBean.commonRenderer.currSelectedListSize >= 1}">
+                                    <af:showPopupBehavior popupId="p1" triggerType="action"/>
+                                </af:commandImageLink>
+                                <af:commandImageLink text="导出" id="cil7" icon="/resources/images/edit.gif"
+                                                     actionListener="#{backingBeanScope.copyrightAuthorMainManagedBean.exportAuthorInfoListener}"
+                                                     iconPosition="leading" styleClass="imagelink_length_2"
+                                                     visible="#{backingBeanScope.copyrightAuthorMainManagedBean.commonRenderer.indexEnable  and backingBeanScope.copyrightAuthorMainManagedBean.commonRenderer.currSelectedListSize >= 1}"
+                                                     rendered="true"/>
+                                <af:popup childCreation="deferred" autoCancel="disabled" id="p3"
+                                          binding="#{backingBeanScope.copyrightAuthorMainManagedBean.commonRenderer.deletePopup}">
+                                    <af:dialog id="d5" title="提示"
+                                               dialogListener="#{backingBeanScope.copyrightAuthorMainManagedBean.commonRenderer.deleteDocDialogActionListener}">
+                                        <af:outputText value="你确定要删除吗?" id="ot12"/>
+                                    </af:dialog>
+                                </af:popup>
+                                <af:popup childCreation="deferred" autoCancel="disabled" id="p1"
+                                          binding="#{backingBeanScope.copyrightAuthorMainManagedBean.commonRenderer.destoryPopup}">
+                                    <af:dialog id="d1" title="提示"
+                                               dialogListener="#{backingBeanScope.copyrightAuthorMainManagedBean.commonRenderer.destroyDocActionListener}">
+                                        <af:outputText value="你确定要彻底删除吗?" id="ot14"/>
+                                    </af:dialog>
+                                </af:popup>
+                                <af:commandButton id="cb5" text="导出"
+                                                  binding="#{backingBeanScope.copyrightAuthorMainManagedBean.exportButton}"
+                                                  rendered="true" visible="false">
+                                    <af:fileDownloadActionListener contentType="application/octet-stream"
+                                                                   method="#{backingBeanScope.copyrightAuthorMainManagedBean.exportAuthorFileListener}"
+                                                                   filename="作者版权信息.zip"/>
+                                </af:commandButton>
+                            </af:panelGroupLayout>
+                        </f:facet>
+                        <f:facet name="end">
+                            <af:panelGroupLayout layout="horizontal" id="pgl9"
+                                                 inlineStyle="margin-top:10px;margin-right:15px;">
+                                <af:inputText label="searchInput" id="it1" simple="true"
+                                              shortDesc="输入关键字,可以对以下内容[图书名称，ISBN]进行快速检索"
+                                              contentStyle="width:150px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                              binding="#{backingBeanScope.copyrightAuthorMainManagedBean.commonRenderer.searchInput}">
+                                    <af:clientListener type="keyPress" method="queryWhenPressEnter"/>
+                                    <af:serverListener type="queryWhenPressAction"
+                                                       method="#{backingBeanScope.copyrightAuthorMainManagedBean.commonRenderer.queryWhenPressEnterListener}"/>
+                                </af:inputText>
+                                <af:commandImageLink text="" id="cil9" icon="/resources/images/search.gif"
+                                                     inlineStyle="margin-left:10px;"
+                                                     actionListener="#{backingBeanScope.copyrightAuthorMainManagedBean.commonRenderer.searchActionListenser}"/>
+                            </af:panelGroupLayout>
+                        </f:facet>
+                    </af:panelStretchLayout>
+                </f:facet>
+                <f:facet name="bottom"/>
+                <f:facet name="center">
+                    <af:panelStretchLayout id="psl2" topHeight="auto" dimensionsFrom="parent"
+                                           partialTriggers="cb1 soc1 soc2 cil1 cb11 d5 d1 it1 cb2">
+                        <f:facet name="center">
+                            <af:table var="row" rowBandingInterval="0" id="t1" varStatus="vs"
+                                      styleClass="AFStretchWidth custom_table_striped" contentDelivery="immediate"
+                                      columnStretching="multiple" autoHeightRows="0" inlineStyle="margin-top:2px;"
+                                      value="#{backingBeanScope.copyrightAuthorMainManagedBean.tableModel.model}"
+                                      emptyText=""
+                                      binding="#{backingBeanScope.copyrightAuthorMainManagedBean.commonRenderer.table}"
+                                      sortListener="#{backingBeanScope.copyrightAuthorMainManagedBean.commonRenderer.tableSortListener}"
+                                      partialTriggers="sbc1" rowSelection="multiple">
+                                <af:column width="25" align="center" id="c19" frozen="true">
+                                    <f:facet name="header">
+                                        <af:selectBooleanCheckbox label="Label 1" simple="true" id="sbc1"
+                                                                  autoSubmit="true"
+                                                                  binding="#{backingBeanScope.copyrightAuthorMainManagedBean.commonRenderer.selectAllCheckBox}"
+                                                                  partialTriggers="::soc2">
+                                            <af:clientListener type="valueChange" method="clickSelectAllCheckBox"/>
+                                            <af:serverListener type="SelectAllCheckBoxClickEvent"
+                                                               method="#{backingBeanScope.copyrightAuthorMainManagedBean.commonRenderer.selectAllAction}"/>
+                                        </af:selectBooleanCheckbox>
+                                    </f:facet>
+                                    <af:selectBooleanCheckbox id="sbc2" value="#{row.checked}" label="#{row.checked}"
+                                                              autoSubmit="true" simple="false">
+                                        <af:clientListener type="valueChange" method="clickSelectOneCheckBox"/>
+                                        <af:serverListener type="SelectCheckBoxClickEvent"
+                                                           method="#{backingBeanScope.copyrightAuthorMainManagedBean.commonRenderer.selectOneAction}"/>
+                                        <af:clientAttribute name="docId" value="#{row.docId}"/>
+                                    </af:selectBooleanCheckbox>
+                                </af:column>
+                                <af:column sortable="false" headerText="序号" id="c1" width="50" align="center">
+                                    <af:outputText value="#{vs.index+1}" id="ot18"/>
+                                </af:column>
+                                <af:column sortable="false" headerText="图书名称" id="c6" width="30%">
+                                    <af:outputText value="#{row.bookName}" id="ot6"/>
+                                </af:column>
+                                <af:column sortable="false" headerText="图书ISBN" id="c2" width="25%" align="center">
+                                    <af:outputText value="#{row.isbn}" id="ot19"/>
+                                </af:column>
+                                <af:column sortable="false" headerText="图书分类" id="c3" width="15%" align="center">
+                                    <af:outputText value="#{row.categoryName}" id="ot20"/>
+                                </af:column>
+                                <af:column sortable="false" headerText="图书作者" id="c4" width="25%" align="center">
+                                    <af:outputText value="#{row.author}" id="ot21"/>
+                                </af:column>
+                                <af:column sortable="false" headerText="独有版权" id="c5" width="10%" align="center">
+                                    <af:outputText value="#{row.exclusiveCopyrightDisplay}" id="ot22"/>
+                                </af:column>
+                                <af:column sortable="false" headerText="公众版" id="c7" width="10%" align="center">
+                                    <af:outputText value="#{row.publicCopyrightDisplay}" id="ot5"/>
+                                </af:column>
+                                <af:column sortable="false" headerText="版权形式" id="c8" width="15%" align="center">
+                                    <af:outputText value="#{row.copyrightFormDisplay}" id="ot8"/>
+                                </af:column>
+                                <!--<af:clientListener type="click" method="tableDblSelect"/>-->
+                                <!--<af:serverListener type="TableSelectionAction"
+                                                   method="#{backingBeanScope.copyrightAuthorMainManagedBean.commonRenderer.tableSelectAction}"/>-->
+                                <!--<af:serverListener type="TableDblSelectAction"
+                                                   method="#{backingBeanScope.copyrightAuthorMainManagedBean.commonRenderer.tableDblSelectAction}"/>-->
+                                <af:clientListener type="dblClick" method="tableDblClick"/>
+                                 
+                                <af:serverListener type="TableDblClickEvent"
+                                                   method="#{backingBeanScope.copyrightAuthorMainManagedBean.tableDblClick}"/>
+                            </af:table>
+                        </f:facet>
+                        <f:facet name="top">
+                            <af:panelStretchLayout id="psl3"
+                                                   inlineStyle="height:26px;background:#E7ECE5;margin-top:3px;"
+                                                   topHeight="0px" bottomHeight="0px" startWidth="auto"
+                                                   styleClass="AFStretchWidth"
+                                                   partialTriggers="cl1 cl2 soc1 soc2 cb1 it1 d5 d1 cb2 cb11"
+                                                   endWidth="auto">
+                                <f:facet name="bottom"/>
+                                <f:facet name="center"/>
+                                <f:facet name="start">
+                                    <af:panelGroupLayout id="pgl6" layout="horizontal"
+                                                         inlineStyle="padding-top:3px;padding-left:15px;">
+                                        <af:outputText value="总个数:#{backingBeanScope.copyrightAuthorMainManagedBean.tableModel.rowCount}"
+                                                       id="ot2"/>
+                                        <af:spacer width="10" height="10" id="s2"/>
+                                        <af:outputText value="每页[20]" id="ot3"/>
+                                        <af:spacer width="10" height="10" id="s7"/>
+                                        <af:outputText value="页数[" id="ot9"/>
+                                        <af:outputText value="#{backingBeanScope.copyrightAuthorMainManagedBean.tableModel.currPageIndex}"
+                                                       id="ot1" inlineStyle="color:Red;"/>
+                                        <af:outputText value="/#{backingBeanScope.copyrightAuthorMainManagedBean.tableModel.totalPageCount}]"
+                                                       id="ot4"/>
+                                        <af:spacer width="10" height="10" id="s4"/>
+                                        <af:commandLink text="前一页" id="cl1"
+                                                        disabled="#{backingBeanScope.copyrightAuthorMainManagedBean.tableModel.isPrevDisabled}"
+                                                        actionListener="#{backingBeanScope.copyrightAuthorMainManagedBean.commonRenderer.prevPage}"/>
+                                        <af:spacer width="10" height="10" id="s1"/>
+                                        <af:commandLink text="后一页" id="cl2"
+                                                        disabled="#{backingBeanScope.copyrightAuthorMainManagedBean.tableModel.isNextDisabled}"
+                                                        actionListener="#{backingBeanScope.copyrightAuthorMainManagedBean.commonRenderer.nextPage}"/>
+                                        <af:spacer width="10" height="10" id="s3"/>
+                                        <af:selectOneChoice valueChangeListener="#{backingBeanScope.copyrightAuthorMainManagedBean.commonRenderer.goPageIndex}"
+                                                            id="soc1" simple="true" autoSubmit="true" shortDesc=" "
+                                                            value="#{backingBeanScope.copyrightAuthorMainManagedBean.tableModel.currItem.value}">
+                                            <f:selectItems value="#{backingBeanScope.copyrightAuthorMainManagedBean.tableModel.pageSelectItems}"
+                                                           id="si1"/>
+                                        </af:selectOneChoice>
+                                        <af:spacer width="10" height="10" id="s5"/>
+                                        <af:commandImageLink id="cl3" icon="/resources/images/shuaxin.gif"
+                                                             shortDesc="刷新"
+                                                             actionListener="#{backingBeanScope.copyrightAuthorMainManagedBean.refreshActionListener}"/>
+                                    </af:panelGroupLayout>
+                                </f:facet>
+                                <f:facet name="end">
+                                    <af:panelGroupLayout layout="horizontal" id="pgl7"
+                                                         inlineStyle="margin-right:40px;padding-top:3px;">
+                                        <af:forEach items="#{backingBeanScope.copyrightAuthorMainManagedBean.commonRenderer.statusMapList}"
+                                                    var="status">
+                                            <af:panelGroupLayout layout="horizontal" id="pgl13"
+                                                                 styleClass="#{pageFlowScope.currStatusCode == status['statusCode'] ? 'statusSelected' : 'none'}">
+                                                <af:commandLink text="#{status['displayName']}" id="cl5"
+                                                                visible="#{pageFlowScope.deleteFlag != 'Y'}"
+                                                                actionListener="#{backingBeanScope.copyrightAuthorMainManagedBean.commonRenderer.switchStatusActionListener}">
+                                                    <f:attribute name="statusCode" value="#{status['statusCode']}"/>
+                                                    <af:setPropertyListener to="#{pageFlowScope.currStatusCode}"
+                                                                            type="action"
+                                                                            from="#{status['statusCode']}"/>
+                                                </af:commandLink>
+                                            </af:panelGroupLayout>
+                                            <af:spacer width="5" height="10" id="s11"/>
+                                        </af:forEach>
+                                        <af:selectOneChoice value="#{pageFlowScope.currStatusCode}" autoSubmit="true"
+                                                            id="soc2" shortDesc=" " rendered="false"
+                                                            valueChangeListener="#{backingBeanScope.copyrightAuthorMainManagedBean.statusValueChangeListener}">
+                                            <f:selectItems value="#{backingBeanScope.copyrightAuthorMainManagedBean.statusList}"
+                                                           id="si2"/>
+                                        </af:selectOneChoice>
+                                    </af:panelGroupLayout>
+                                </f:facet>
+                            </af:panelStretchLayout>
+                        </f:facet>
+                    </af:panelStretchLayout>
+                </f:facet>
+                <f:facet name="end"/>
+            </af:panelStretchLayout>
+        </f:facet>
+    </af:panelSplitter>
+</ui:composition>

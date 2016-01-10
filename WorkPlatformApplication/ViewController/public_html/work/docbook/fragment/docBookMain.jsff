@@ -1,0 +1,208 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core">
+    <af:panelStretchLayout id="psl1" inlineStyle="border:1px solid #BAC6CA;background:#F3F8FC;" topHeight="40px">
+        <f:facet name="top">
+            <af:panelStretchLayout id="psl4" inlineStyle="height:40px;" startWidth="auto" endWidth="auto"
+                                   styleClass="AFStretchWidth">
+                <f:facet name="start">
+                    <af:panelGroupLayout id="pgl1" partialTriggers="soc2 t1:sbc1 t1:sbc2 t1 cil1 cil2"
+                                         layout="horizontal" inlineStyle="margin:5px 5px 5px 15px;padding-left:20px;">
+                        <af:commandImageLink text="入库" id="cil1" icon="/resources/images/file_manager.gif"
+                                             styleClass="imagelink_length_2"
+                                             visible="#{backingBeanScope.docBookMainManagedBean.commonRenderer.impEnable and backingBeanScope.docBookMainManagedBean.commonRenderer.currSelectedListSize >= 1}"
+                                             actionListener="#{backingBeanScope.docBookMainManagedBean.impActionListener}"/>
+                        <af:commandImageLink text="删除" id="cil2" icon="/resources/images/delete.gif"
+                                             styleClass="imagelink_length_2"
+                                             visible="#{backingBeanScope.docBookMainManagedBean.commonRenderer.deleteEnable and backingBeanScope.docBookMainManagedBean.commonRenderer.currSelectedListSize >= 1}"
+                                             actionListener="#{backingBeanScope.docBookMainManagedBean.deleteActionListener}"/>
+                    </af:panelGroupLayout>
+                </f:facet>
+            </af:panelStretchLayout>
+        </f:facet>
+        <f:facet name="bottom">
+            <af:popup childCreation="deferred" autoCancel="disabled" contentDelivery="lazyUncached" id="p1"
+                      binding="#{backingBeanScope.docBookMainManagedBean.monitorPopup}">
+                <af:dialog id="d1" type="ok" title="日志查看">
+                    <f:facet name="buttonBar"/>
+                    <af:panelStretchLayout id="psl5" topHeight="auto" inlineStyle="width:800px;">
+                        <f:facet name="center">
+                            <af:table value="#{bindings.CmsDocBookMonitorVO.collectionModel}" var="row"
+                                      rows="#{bindings.CmsDocBookMonitorVO.rangeSize}"
+                                      emptyText="#{bindings.CmsDocBookMonitorVO.viewable ? '' : 'Access Denied.'}"
+                                      fetchSize="#{bindings.CmsDocBookMonitorVO.rangeSize}" rowBandingInterval="0"
+                                      id="t2" columnStretching="column:c9">
+                                <af:column sortProperty="#{bindings.CmsDocBookMonitorVO.hints.StartDate.name}"
+                                           sortable="false" align="center"
+                                           headerText="#{bindings.CmsDocBookMonitorVO.hints.StartDate.label}" id="c3">
+                                    <af:outputText value="#{row.StartDate}"
+                                                   shortDesc="#{bindings.CmsDocBookMonitorVO.hints.StartDate.tooltip}"
+                                                   id="ot7">
+                                        <af:convertDateTime pattern="#{bindings.CmsDocBookMonitorVO.hints.StartDate.format}"/>
+                                    </af:outputText>
+                                </af:column>
+                                <af:column sortProperty="#{bindings.CmsDocBookMonitorVO.hints.EndDate.name}"
+                                           sortable="false" align="center"
+                                           headerText="#{bindings.CmsDocBookMonitorVO.hints.EndDate.label}" id="c5">
+                                    <af:outputText value="#{row.EndDate}"
+                                                   shortDesc="#{bindings.CmsDocBookMonitorVO.hints.EndDate.tooltip}"
+                                                   id="ot10">
+                                        <af:convertDateTime pattern="#{bindings.CmsDocBookMonitorVO.hints.EndDate.format}"/>
+                                    </af:outputText>
+                                </af:column>
+                                <af:column sortProperty="#{bindings.CmsDocBookMonitorVO.hints.StatusMeaning.name}"
+                                           sortable="false" align="center"
+                                           headerText="#{bindings.CmsDocBookMonitorVO.hints.StatusMeaning.label}"
+                                           id="c7">
+                                    <af:outputText value="#{row.StatusMeaning}"
+                                                   shortDesc="#{bindings.CmsDocBookMonitorVO.hints.StatusMeaning.tooltip}"
+                                                   id="ot11"/>
+                                </af:column>
+                                <af:column sortProperty="#{bindings.CmsDocBookMonitorVO.hints.Result.name}"
+                                           sortable="false" align="center"
+                                           headerText="#{bindings.CmsDocBookMonitorVO.hints.Result.label}" id="c8">
+                                    <af:outputText value="#{row.Result}"
+                                                   shortDesc="#{bindings.CmsDocBookMonitorVO.hints.Result.tooltip}"
+                                                   id="ot12"/>
+                                </af:column>
+                                <af:column sortProperty="#{bindings.CmsDocBookMonitorVO.hints.Remarks.name}"
+                                           sortable="false"
+                                           headerText="#{bindings.CmsDocBookMonitorVO.hints.Remarks.label}" id="c9">
+                                    <af:outputText value="#{row.Remarks}"
+                                                   shortDesc="#{bindings.CmsDocBookMonitorVO.hints.Remarks.tooltip}"
+                                                   id="ot13"/>
+                                </af:column>
+                            </af:table>
+                        </f:facet>
+                        <f:facet name="top">
+                            <af:commandImageLink id="cil3" icon="/resources/images/shuaxin.gif" shortDesc="刷新"
+                                                 actionListener="#{backingBeanScope.docBookMainManagedBean.refreshMonitorActionListener}"/>
+                        </f:facet>
+                    </af:panelStretchLayout>
+                </af:dialog>
+            </af:popup>
+        </f:facet>
+        <f:facet name="center">
+            <af:panelStretchLayout id="psl2" topHeight="auto" dimensionsFrom="children"
+                                   partialTriggers="cil1 cil2 soc2">
+                <f:facet name="center">
+                    <af:table var="row" rowBandingInterval="0" id="t1" varStatus="vs"
+                              styleClass="AFStretchWidth custom_table_striped" contentDelivery="immediate"
+                              value="#{backingBeanScope.docBookMainManagedBean.tableModel.model}" autoHeightRows="0"
+                              inlineStyle="margin-top:2px;" columnStretching="multiple" emptyText=""
+                              sortListener="#{backingBeanScope.docBookMainManagedBean.commonRenderer.tableSortListener}"
+                              binding="#{backingBeanScope.docBookMainManagedBean.commonRenderer.table}"
+                              rowSelection="multiple" partialTriggers="sbc1">
+                        <af:column width="25" align="center" id="c19" frozen="true">
+                            <f:facet name="header">
+                                <af:selectBooleanCheckbox label="Label 1" simple="true" id="sbc1" autoSubmit="true"
+                                                          binding="#{backingBeanScope.docBookMainManagedBean.commonRenderer.selectAllCheckBox}"
+                                                          partialTriggers="::soc2">
+                                    <af:clientListener type="valueChange" method="clickSelectAllCheckBox"/>
+                                    <af:serverListener type="SelectAllCheckBoxClickEvent"
+                                                       method="#{backingBeanScope.docBookMainManagedBean.commonRenderer.selectAllAction}"/>
+                                </af:selectBooleanCheckbox>
+                            </f:facet>
+                            <af:selectBooleanCheckbox id="sbc2" value="#{row.checked}" label="#{row.checked}"
+                                                      autoSubmit="true" simple="false">
+                                <af:clientListener type="valueChange" method="clickSelectOneCheckBox"/>
+                                <af:serverListener type="SelectCheckBoxClickEvent"
+                                                   method="#{backingBeanScope.docBookMainManagedBean.commonRenderer.selectOneAction}"/>
+                                <af:clientAttribute name="docId" value="#{row.docId}"/>
+                            </af:selectBooleanCheckbox>
+                        </af:column>
+                        <af:column sortable="false" headerText="序号" id="c1" align="center" width="50">
+                            <af:outputText value="#{vs.index+1}" id="ot18"/>
+                        </af:column>
+                        <af:column sortable="false" headerText="任务名称" id="c4" width="20%">
+                            <af:outputText value="#{row.jobName}" id="ot1"/>
+                        </af:column>
+                        <af:column sortable="false" headerText="ISBN" id="c6" width="20%">
+                            <af:outputText value="#{row.isbn}" id="ot6"/>
+                        </af:column>
+                        <af:column sortable="false" headerText="任务创建时间" id="c2" width="20%">
+                            <af:outputText value="#{row.creationDate}"
+                                           shortDesc="#{bindings.CmsDocBookJobVO.hints.CreationDate.tooltip}" id="ot8">
+                                <af:convertDateTime pattern="#{bindings.CmsDocBookJobVO.hints.CreationDate.format}"/>
+                            </af:outputText>
+                        </af:column>
+                        <!--<af:clientListener type="click" method="tableDblSelect"/>-->
+                        <!--<af:serverListener type="TableSelectionAction"
+                                           method="#{backingBeanScope.docBookMainManagedBean.commonRenderer.tableSelectAction}"/>-->
+                        <!--<af:serverListener type="TableDblSelectAction"
+                                           method="#{backingBeanScope.docBookMainManagedBean.commonRenderer.tableDblSelectAction}"/>-->
+                        <af:clientListener type="dblClick" method="tableDblClick"/>
+                         
+                        <af:serverListener type="TableDblClickEvent"
+                                           method="#{backingBeanScope.docBookMainManagedBean.tableDblClick}"/>
+                    </af:table>
+                </f:facet>
+                <f:facet name="top">
+                    <af:panelStretchLayout id="psl3" inlineStyle="height:26px;background:#E7ECE5;margin-top:3px;"
+                                           startWidth="auto" styleClass="AFStretchWidth"
+                                           partialTriggers="cl1 cl2 soc1 soc2 cil1 cil2" endWidth="auto">
+                        <f:facet name="start">
+                            <af:panelGroupLayout id="pgl6" layout="horizontal"
+                                                 inlineStyle="padding-top:3px;padding-left:15px;">
+                                <af:outputText value="总个数:#{backingBeanScope.docBookMainManagedBean.tableModel.rowCount}"
+                                               id="ot2"/>
+                                <af:spacer width="10" height="10" id="s2"/>
+                                <af:outputText value="每页[20]" id="ot3"/>
+                                <af:spacer width="10" height="10" id="s7"/>
+                                <af:outputText value="页数[" id="ot9"/>
+                                <af:outputText value="#{backingBeanScope.docBookMainManagedBean.tableModel.currPageIndex}"
+                                               id="ot5" inlineStyle="color:Red;"/>
+                                <af:outputText value="/#{backingBeanScope.docBookMainManagedBean.tableModel.totalPageCount}]"
+                                               id="ot4"/>
+                                <af:spacer width="10" height="10" id="s4"/>
+                                <af:commandLink text="前一页" id="cl1"
+                                                disabled="#{backingBeanScope.docBookMainManagedBean.tableModel.isPrevDisabled}"
+                                                actionListener="#{backingBeanScope.docBookMainManagedBean.commonRenderer.prevPage}"/>
+                                <af:spacer width="10" height="10" id="s1"/>
+                                <af:commandLink text="后一页" id="cl2"
+                                                disabled="#{backingBeanScope.docBookMainManagedBean.tableModel.isNextDisabled}"
+                                                actionListener="#{backingBeanScope.docBookMainManagedBean.commonRenderer.nextPage}"/>
+                                <af:spacer width="10" height="10" id="s3"/>
+                                <af:selectOneChoice valueChangeListener="#{backingBeanScope.docBookMainManagedBean.commonRenderer.goPageIndex}"
+                                                    id="soc1" simple="true" autoSubmit="true" shortDesc=" "
+                                                    value="#{backingBeanScope.docBookMainManagedBean.tableModel.currItem.value}">
+                                    <f:selectItems value="#{backingBeanScope.docBookMainManagedBean.tableModel.pageSelectItems}"
+                                                   id="si1"/>
+                                </af:selectOneChoice>
+                                <af:spacer width="10" height="10" id="s6"/>
+                                <af:commandImageLink id="cil4" icon="/resources/images/shuaxin.gif" shortDesc="刷新"
+                                                     actionListener="#{backingBeanScope.docBookMainManagedBean.refreshJobActionListener}"/>
+                            </af:panelGroupLayout>
+                        </f:facet>
+                        <f:facet name="end">
+                            <af:panelGroupLayout layout="horizontal" id="pgl7" partialTriggers="t1:sbc1 t1:sbc2"
+                                                 inlineStyle="margin-right:40px;padding-top:3px;">
+                                <af:forEach items="#{backingBeanScope.docBookMainManagedBean.commonRenderer.statusMapList}"
+                                            var="status">
+                                    <af:panelGroupLayout layout="horizontal" id="pgl13"
+                                                         styleClass="#{pageFlowScope.currStatusCode == status['statusCode'] ? 'statusSelected' : 'none'}">
+                                        <af:commandLink text="#{status['displayName']}" id="cl5"
+                                                        visible="#{pageFlowScope.deleteFlag != 'Y'}"
+                                                        actionListener="#{backingBeanScope.docBookMainManagedBean.commonRenderer.switchStatusActionListener}">
+                                            <f:attribute name="statusCode" value="#{status['statusCode']}"/>
+                                            <af:setPropertyListener to="#{pageFlowScope.currStatusCode}" type="action"
+                                                                    from="#{status['statusCode']}"/>
+                                        </af:commandLink>
+                                    </af:panelGroupLayout>
+                                    <af:spacer width="5" height="10" id="s11"/>
+                                </af:forEach>
+                                <af:selectOneChoice value="#{pageFlowScope.currStatusCode}" autoSubmit="true" id="soc2"
+                                                    shortDesc=" " rendered="false"
+                                                    valueChangeListener="#{backingBeanScope.docBookMainManagedBean.commonRenderer.statusValueChangeListener}"
+                                                    partialTriggers="t1:sbc1 t1:sbc2">
+                                    <f:selectItems value="#{backingBeanScope.docBookMainManagedBean.commonRenderer.statusList}"
+                                                   id="si2"/>
+                                </af:selectOneChoice>
+                            </af:panelGroupLayout>
+                        </f:facet>
+                    </af:panelStretchLayout>
+                </f:facet>
+            </af:panelStretchLayout>
+        </f:facet>
+    </af:panelStretchLayout>
+</ui:composition>

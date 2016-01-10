@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="relatedIllustrationViewPageDef"
+                Package="work.illustration.inline">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <taskFlow id="illustration_view_taskflow1"
+              taskFlowId="/WEB-INF/work/illustration/illustration_view_taskflow.xml#illustration_view_taskflow"
+              activation="deferred" xmlns="http://xmlns.oracle.com/adf/controller/binding">
+      <parameters>
+        <parameter id="docId"
+                   value="#{pageFlowScope.docId == null ? facesContext.externalContext.requestParameterMap['docId'] : pageFlowScope.docId}"/>
+      </parameters>
+    </taskFlow>
+  </executables>
+  <bindings/>
+</pageDefinition>

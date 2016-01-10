@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="onlineReadPageDef"
+                Package="work.common.inline">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <taskFlow id="online_read_taskflow1" taskFlowId="/WEB-INF/common/online_read_taskflow.xml#online_read_taskflow"
+              activation="deferred" xmlns="http://xmlns.oracle.com/adf/controller/binding">
+      <parameters>
+        <parameter id="docId" value="#{facesContext.externalContext.requestParameterMap['docId']}"/>
+      </parameters>
+    </taskFlow>
+  </executables>
+  <bindings/>
+</pageDefinition>

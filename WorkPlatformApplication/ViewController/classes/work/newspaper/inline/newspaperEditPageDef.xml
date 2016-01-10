@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="newspaperEditPageDef"
+                Package="work.newspaper.inline">
+    <parameters/>
+    <executables>
+        <variableIterator id="variables"/>
+        <iterator Binds="Root.NewspaperAM.CmsNewspaperTVO" DataControl="WorkAMDataControl" RangeSize="25"
+                  id="CmsNewspaperTVOIterator"/>
+        <iterator Binds="Root.NewspaperAM.CmsNewspaperEditVO" DataControl="WorkAMDataControl" RangeSize="25"
+                  id="CmsNewspaperEditVOIterator"/>
+        <taskFlow id="extend_attr_taskflow1" taskFlowId="/WEB-INF/common/extend_attr_taskflow.xml#extend_attr_taskflow"
+                  activation="deferred" xmlns="http://xmlns.oracle.com/adf/controller/binding">
+            <parameters>
+                <parameter id="compCode" value="#{pageFlowScope.compCode}"/>
+                <parameter id="libCode" value="#{pageFlowScope.libCode}"/>
+                <parameter id="docId" value="#{pageFlowScope.docId}"/>
+                <parameter id="operType" value="#{pageFlowScope.mode}"/>
+                <parameter id="labelWidth" value="80"/>
+            </parameters>
+        </taskFlow>
+    </executables>
+    <bindings>
+        <attributeValues IterBinding="CmsNewspaperTVOIterator" id="NewspaperId">
+            <AttrNames>
+                <Item Value="NewspaperId"/>
+            </AttrNames>
+        </attributeValues>
+        <list IterBinding="CmsNewspaperTVOIterator" StaticList="false" Uses="LOV_NewspaperCategoryId"
+              id="NewspaperCategoryId" DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+        <attributeValues IterBinding="CmsNewspaperTVOIterator" id="NewspaperCategoryName">
+            <AttrNames>
+                <Item Value="NewspaperCategoryName"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsNewspaperTVOIterator" id="NewspaperType">
+            <AttrNames>
+                <Item Value="NewspaperType"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsNewspaperTVOIterator" id="NewspaperTypeMeaning">
+            <AttrNames>
+                <Item Value="NewspaperTypeMeaning"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsNewspaperTVOIterator" id="Issn">
+            <AttrNames>
+                <Item Value="Issn"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsNewspaperTVOIterator" id="Cn">
+            <AttrNames>
+                <Item Value="Cn"/>
+            </AttrNames>
+        </attributeValues>
+        <list IterBinding="CmsNewspaperTVOIterator" StaticList="false" Uses="LOV_Year" id="Year" DTSupportsMRU="false"
+              SelectItemValueMode="ListObject"/>
+        <list IterBinding="CmsNewspaperTVOIterator" StaticList="false" Uses="LOV_NewsId" id="NewsId"
+              DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+        <attributeValues IterBinding="CmsNewspaperTVOIterator" id="NewsNum">
+            <AttrNames>
+                <Item Value="NewsNum"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsNewspaperTVOIterator" id="Total">
+            <AttrNames>
+                <Item Value="Total"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsNewspaperTVOIterator" id="ChiefEditor">
+            <AttrNames>
+                <Item Value="ChiefEditor"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsNewspaperTVOIterator" id="Editor">
+            <AttrNames>
+                <Item Value="Editor"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsNewspaperTVOIterator" id="FormatDesign">
+            <AttrNames>
+                <Item Value="FormatDesign"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsNewspaperTVOIterator" id="CoverDesign">
+            <AttrNames>
+                <Item Value="CoverDesign"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsNewspaperTVOIterator" id="Price">
+            <AttrNames>
+                <Item Value="Price"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsNewspaperTVOIterator" id="Pagination">
+            <AttrNames>
+                <Item Value="Pagination"/>
+            </AttrNames>
+        </attributeValues>
+        <list IterBinding="CmsNewspaperTVOIterator" StaticList="false" Uses="LOV_MainPage" id="MainPage"
+              DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+        <list IterBinding="CmsNewspaperTVOIterator" StaticList="false" Uses="LOV_MainTypeset" id="MainTypeset"
+              DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+        <list IterBinding="CmsNewspaperTVOIterator" StaticList="false" Uses="LOV_ColorNum" id="ColorNum"
+              DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+        <attributeValues IterBinding="CmsNewspaperTVOIterator" id="TypesetComp">
+            <AttrNames>
+                <Item Value="TypesetComp"/>
+            </AttrNames>
+        </attributeValues>
+        <list IterBinding="CmsNewspaperTVOIterator" StaticList="false" Uses="LOV_CoverTypeset" id="CoverTypeset"
+              DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+        <list IterBinding="CmsNewspaperTVOIterator" StaticList="false" Uses="LOV_AssortProd" id="AssortProd"
+              DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+        <attributeValues IterBinding="CmsNewspaperTVOIterator" id="Suggestion">
+            <AttrNames>
+                <Item Value="Suggestion"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsNewspaperTVOIterator" id="Keyword">
+            <AttrNames>
+                <Item Value="Keyword"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsNewspaperTVOIterator" id="Remarks">
+            <AttrNames>
+                <Item Value="Remarks"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsNewspaperTVOIterator" id="DocId">
+            <AttrNames>
+                <Item Value="DocId"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsNewspaperTVOIterator" id="LastUpdatedBy">
+            <AttrNames>
+                <Item Value="LastUpdatedBy"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsNewspaperTVOIterator" id="LastUpdateDate">
+            <AttrNames>
+                <Item Value="LastUpdateDate"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsNewspaperTVOIterator" id="PubTime">
+            <AttrNames>
+                <Item Value="PubTime"/>
+            </AttrNames>
+        </attributeValues>
+        <list IterBinding="CmsNewspaperTVOIterator" StaticList="false" Uses="LOV_BookSize" id="BookSize"
+              DTSupportsMRU="true" SelectItemValueMode="ListObject"/>
+        <list IterBinding="CmsNewspaperTVOIterator" StaticList="false" Uses="LOV_ProdSize" id="ProdSize"
+              DTSupportsMRU="true" SelectItemValueMode="ListObject"/>
+        <list IterBinding="CmsNewspaperTVOIterator" StaticList="false" Uses="LOV_ReaderGroup" id="ReaderGroup"
+              DTSupportsMRU="true" SelectItemValueMode="ListObject"/>
+        <list IterBinding="CmsNewspaperTVOIterator" StaticList="false" Uses="LOV_Lang" id="Lang" DTSupportsMRU="true"
+              SelectItemValueMode="ListObject"/>
+        <attributeValues IterBinding="CmsNewspaperTVOIterator" id="PublicDate">
+            <AttrNames>
+                <Item Value="PublicDate"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsNewspaperTVOIterator" id="Publishing">
+            <AttrNames>
+                <Item Value="Publishing"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsNewspaperTVOIterator" id="LangMeaning">
+            <AttrNames>
+                <Item Value="LangMeaning"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsNewspaperTVOIterator" id="BookSizeMeaning">
+            <AttrNames>
+                <Item Value="BookSizeMeaning"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsNewspaperTVOIterator" id="ProdSizeMeaning">
+            <AttrNames>
+                <Item Value="ProdSizeMeaning"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsNewspaperTVOIterator" id="ReaderGroupMeaning">
+            <AttrNames>
+                <Item Value="ReaderGroupMeaning"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsNewspaperTVOIterator" id="TotalNum">
+            <AttrNames>
+                <Item Value="TotalNum"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsNewspaperEditVOIterator" id="CompCode">
+            <AttrNames>
+                <Item Value="CompCode"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsNewspaperEditVOIterator" id="FormatDesign1">
+            <AttrNames>
+                <Item Value="FormatDesign"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsNewspaperEditVOIterator" id="CoverDesign1">
+            <AttrNames>
+                <Item Value="CoverDesign"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsNewspaperEditVOIterator" id="Price1">
+            <AttrNames>
+                <Item Value="Price"/>
+            </AttrNames>
+        </attributeValues>
+        <list IterBinding="CmsNewspaperEditVOIterator" StaticList="false" Uses="LOV_MainPage" id="MainPage1"
+              DTSupportsMRU="true" SelectItemValueMode="ListObject"/>
+        <list IterBinding="CmsNewspaperEditVOIterator" StaticList="false" Uses="LOV_ColorNum" id="ColorNum1"
+              DTSupportsMRU="true" SelectItemValueMode="ListObject"/>
+        <list IterBinding="CmsNewspaperEditVOIterator" StaticList="false" Uses="LOV_MainTypeset" id="MainTypeset1"
+              DTSupportsMRU="true" SelectItemValueMode="ListObject"/>
+        <list IterBinding="CmsNewspaperEditVOIterator" StaticList="false" Uses="LOV_CoverTypeset" id="CoverTypeset1"
+              DTSupportsMRU="true" SelectItemValueMode="ListObject"/>
+        <attributeValues IterBinding="CmsNewspaperEditVOIterator" id="TypesetComp1">
+            <AttrNames>
+                <Item Value="TypesetComp"/>
+            </AttrNames>
+        </attributeValues>
+        <list IterBinding="CmsNewspaperEditVOIterator" StaticList="false" Uses="LOV_AssortProd" id="AssortProd1"
+              DTSupportsMRU="true" SelectItemValueMode="ListObject"/>
+        <attributeValues IterBinding="CmsNewspaperEditVOIterator" id="Editor1">
+            <AttrNames>
+                <Item Value="Editor"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsNewspaperEditVOIterator" id="Pagination1">
+            <AttrNames>
+                <Item Value="Pagination"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsNewspaperEditVOIterator" id="Keyword1">
+            <AttrNames>
+                <Item Value="Keyword"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsNewspaperEditVOIterator" id="Suggestion1">
+            <AttrNames>
+                <Item Value="Suggestion"/>
+            </AttrNames>
+        </attributeValues>
+    </bindings>
+</pageDefinition>

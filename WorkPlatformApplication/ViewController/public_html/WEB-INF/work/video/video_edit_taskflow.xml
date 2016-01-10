@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+    <task-flow-definition id="video_edit_taskflow">
+        <default-activity>preEditVideo</default-activity>
+        <data-control-scope>
+            <isolated/>
+        </data-control-scope>
+        <input-parameter-definition id="__1">
+            <name>mode</name>
+            <value>#{pageFlowScope.mode}</value>
+            <class>java.lang.String</class>
+        </input-parameter-definition>
+        <input-parameter-definition id="__2">
+            <name>docId</name>
+            <value>#{pageFlowScope.docId}</value>
+            <class>java.lang.String</class>
+        </input-parameter-definition>
+        <input-parameter-definition id="__8">
+            <name>batchFlag</name>
+            <value>#{pageFlowScope.batchFlag}</value>
+            <class>java.lang.String</class>
+        </input-parameter-definition>
+        <input-parameter-definition id="__9">
+            <name>compCode</name>
+            <value>#{pageFlowScope.compCode}</value>
+            <class>java.lang.String</class>
+        </input-parameter-definition>
+        <input-parameter-definition id="__10">
+            <name>libCode</name>
+            <value>#{pageFlowScope.libCode}</value>
+            <class>java.lang.String</class>
+        </input-parameter-definition>
+        <input-parameter-definition id="__11">
+            <name>libTypeCode</name>
+            <value>#{pageFlowScope.libTypeCode}</value>
+            <class>java.lang.String</class>
+        </input-parameter-definition>
+        <return-value-definition id="__12">
+            <name>comfirmFlag</name>
+            <value>#{pageFlowScope.comfirmFlag}</value>
+            <class>java.lang.String</class>
+        </return-value-definition>
+        <managed-bean id="__7">
+            <managed-bean-name>videoEditManagedBean</managed-bean-name>
+            <managed-bean-class>com.zypg.cms.work.view.bean.VideoEditManagedBean</managed-bean-class>
+            <managed-bean-scope>backingBean</managed-bean-scope>
+        </managed-bean>
+        <view id="videoEdit">
+            <page>/work/video/inline/videoEdit.jsf</page>
+        </view>
+        <task-flow-return id="taskFlowReturn1">
+            <outcome>
+                <name>taskFlowReturn1</name>
+            </outcome>
+        </task-flow-return>
+        <method-call id="preEditVideo">
+            <method>#{backingBeanScope.videoEditManagedBean.preEditVideo}</method>
+            <outcome>
+                <fixed-outcome>preEditVideo</fixed-outcome>
+            </outcome>
+        </method-call>
+        <control-flow-rule id="__5">
+            <from-activity-id>videoEdit</from-activity-id>
+            <control-flow-case id="__6">
+                <from-outcome>toReturn</from-outcome>
+                <to-activity-id>taskFlowReturn1</to-activity-id>
+            </control-flow-case>
+        </control-flow-rule>
+        <control-flow-rule id="__3">
+            <from-activity-id>preEditVideo</from-activity-id>
+            <control-flow-case id="__4">
+                <from-outcome>preEditVideo</from-outcome>
+                <to-activity-id>videoEdit</to-activity-id>
+            </control-flow-case>
+        </control-flow-rule>
+    </task-flow-definition>
+</adfc-config>

@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <af:document id="d1" title="编辑模版">
+        <af:form id="f1">
+            <af:panelStretchLayout id="psl1" bottomHeight="30px" inlineStyle="margin:5px;">
+                <f:facet name="bottom">
+                    <af:panelGroupLayout id="pgl1" layout="vertical" halign="center">
+                        <af:panelGroupLayout id="pgl4" layout="horizontal">
+                            <af:commandButton text="保存" id="cb1" styleClass="popup-btn"
+                                              actionListener="#{backingBeanScope.resTemplateManagedBean.saveActionListener}"/>
+                            <af:commandButton text="返回" id="cb2" action="toMain" immediate="true" styleClass="popup-btn"
+                                              actionListener="#{backingBeanScope.resTemplateManagedBean.returnBackActionListener}"/>
+                        </af:panelGroupLayout>
+                    </af:panelGroupLayout>
+                </f:facet>
+                <f:facet name="center">
+                    <af:panelGroupLayout id="pgl3" layout="scroll">
+                        <af:inputText label="模板名称" id="it1" value="#{pageFlowScope.templateName}" required="true"
+                                      contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"/>
+                        <af:iterator id="i1" value="#{bindings.CmsFirstLevelExpResVO.collectionModel}" var="first">
+                            <af:spacer width="10" height="5" id="s2"/>
+                            <af:panelGroupLayout id="pgl5" layout="horizontal">
+                                <af:selectBooleanCheckbox label="Label 1" id="sbc1" simple="true"
+                                                          value="#{first.Checked}" autoSubmit="true"/>
+                                <af:outputText value="#{first.ResTypeName}" id="ot1"/>
+                            </af:panelGroupLayout>
+                            <af:panelFormLayout id="pfl1" maxColumns="10" rows="1" partialTriggers="sbc1">
+                                <af:iterator id="i2" value="#{first.CmsSecondLevelExpResVO}" var="second">
+                                    <f:facet name="footer"/>
+                                    <af:panelGroupLayout id="pgl2" layout="horizontal">
+                                        <af:selectBooleanCheckbox label="Label 1" id="sbc2" simple="true"
+                                                                  value="#{second.Checked}" autoSubmit="true"/>
+                                        <af:outputText value="#{second.ResName}" id="ot2"/>
+                                    </af:panelGroupLayout>
+                                </af:iterator>
+                            </af:panelFormLayout>
+                        </af:iterator>
+                    </af:panelGroupLayout>
+                </f:facet>
+            </af:panelStretchLayout>
+        </af:form>
+    </af:document>
+</f:view>

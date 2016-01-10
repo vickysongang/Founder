@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <af:document title="上传台本" id="d1">
+        <f:facet name="metaContainer">
+            <af:resource type="javascript" source="/resources/js/work_platform.js"/>
+        </f:facet>
+        <af:form id="f1">
+            <af:panelGroupLayout id="pgl5" layout="scroll" halign="center">
+                <af:spacer width="10" height="10" id="s2"/>
+                <af:inputFile label="上传文件" simple="true" id="if1"/>
+                <af:spacer width="10" height="10" id="s3"/>
+                <af:outputText value="提示:上传文件为txt格式" id="ot1"/>
+            </af:panelGroupLayout>
+            <af:spacer height="10" width="10" id="s4"/>
+            <af:panelGroupLayout id="pgl3" layout="horizontal" halign="center">
+                <af:commandButton text="保存" id="cb1" styleClass="popup-btn">
+                    <af:clientAttribute name="docFormId" value="f1"/>
+                    <af:clientAttribute name="inputFileId" value="if1"/>
+                    <af:clientAttribute name="format" value="txt"/>
+                    <af:clientAttribute name="maxSize" value="5000000000"/>
+                    <af:clientAttribute name="serverListenerName" value="elecprod_uploadFileServerListener"/>
+                    <af:clientListener method="uploadFileListener" type="action"/>
+                    <af:serverListener type="elecprod_uploadFileServerListener"
+                                       method="#{backingBeanScope.elecProdScriptManagedBean.saveActionListener}"/>
+                </af:commandButton>
+                <af:spacer width="10" height="10" id="s1"/>
+                <af:commandButton text="取消" id="cb2" action="toReturn" styleClass="popup-btn"
+                                  actionListener="#{backingBeanScope.elecProdScriptManagedBean.cancelActionListener}"/>
+            </af:panelGroupLayout>
+        </af:form>
+    </af:document>
+</f:view>

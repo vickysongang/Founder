@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+    <task-flow-definition id="tempshelf_main_taskflow">
+        <default-activity>initTempShelf</default-activity>
+        <data-control-scope>
+            <shared/>
+        </data-control-scope>
+        <input-parameter-definition id="__2">
+            <name>libCode</name>
+            <value>#{pageFlowScope.libCode}</value>
+            <class>java.lang.String</class>
+        </input-parameter-definition>
+        <input-parameter-definition id="__3">
+            <name>compCode</name>
+            <value>#{pageFlowScope.compCode}</value>
+            <class>java.lang.String</class>
+        </input-parameter-definition>
+        <input-parameter-definition id="__7">
+            <name>currStatusCode</name>
+            <value>#{pageFlowScope.currStatusCode}</value>
+            <class>java.lang.String</class>
+        </input-parameter-definition>
+        <input-parameter-definition id="__15">
+            <name>groupUserFlag</name>
+            <value>#{pageFlowScope.groupUserFlag}</value>
+            <class>java.lang.String</class>
+        </input-parameter-definition>
+        <managed-bean id="__14">
+            <managed-bean-name>tempShelfMainManagedBean</managed-bean-name>
+            <managed-bean-class>com.zypg.cms.work.view.bean.TempShelfMainManagedBean</managed-bean-class>
+            <managed-bean-scope>backingBean</managed-bean-scope>
+        </managed-bean>
+        <view id="tempShelfMain">
+            <page>/work/resexp/fragment/tempShelfMain.jsff</page>
+        </view>
+        <method-call id="initTempShelf">
+            <method>#{backingBeanScope.tempShelfMainManagedBean.initTempShelf}</method>
+            <outcome>
+                <fixed-outcome>toMain</fixed-outcome>
+            </outcome>
+        </method-call>
+        <task-flow-call id="restemplate_main_taskflow">
+            <task-flow-reference>
+                <document>/WEB-INF/work/resexp/restemplate_main_taskflow.xml</document>
+                <id>restemplate_main_taskflow</id>
+            </task-flow-reference>
+            <input-parameter id="__4">
+                <name>compCode</name>
+                <value>#{pageFlowScope.compCode}</value>
+            </input-parameter>
+            <input-parameter id="__5">
+                <name>categoryCode</name>
+                <value>#{pageFlowScope.categoryCode}</value>
+            </input-parameter>
+            <input-parameter id="__1">
+                <name>shelfDocIdList</name>
+                <value>#{pageFlowScope.shelfDocIdList}</value>
+            </input-parameter>
+            <run-as-dialog>
+                <display-type>
+                    <inline-popup/>
+                </display-type>
+            </run-as-dialog>
+        </task-flow-call>
+        <task-flow-call id="export_book_html_taskflow">
+            <task-flow-reference>
+                <document>/WEB-INF/work/resexp/export_book_html_taskflow.xml</document>
+                <id>export_book_html_taskflow</id>
+            </task-flow-reference>
+            <input-parameter id="__12">
+                <name>docIds</name>
+                <value>#{pageFlowScope.shelfIdList}</value>
+            </input-parameter>
+            <input-parameter id="__13">
+                <name>compCode</name>
+                <value>#{pageFlowScope.compCode}</value>
+            </input-parameter>
+            <run-as-dialog>
+                <display-type>
+                    <inline-popup/>
+                </display-type>
+            </run-as-dialog>
+        </task-flow-call>
+        <control-flow-rule id="__9">
+            <from-activity-id>initTempShelf</from-activity-id>
+            <control-flow-case id="__10">
+                <from-outcome>toMain</from-outcome>
+                <to-activity-id>tempShelfMain</to-activity-id>
+            </control-flow-case>
+        </control-flow-rule>
+        <control-flow-rule id="__6">
+            <from-activity-id>tempShelfMain</from-activity-id>
+            <control-flow-case id="__8">
+                <from-outcome>toResTemplate</from-outcome>
+                <to-activity-id>restemplate_main_taskflow</to-activity-id>
+            </control-flow-case>
+            <control-flow-case id="__11">
+                <from-outcome>toExportBookHtml</from-outcome>
+                <to-activity-id>export_book_html_taskflow</to-activity-id>
+            </control-flow-case>
+        </control-flow-rule>
+        <use-page-fragments/>
+    </task-flow-definition>
+</adfc-config>

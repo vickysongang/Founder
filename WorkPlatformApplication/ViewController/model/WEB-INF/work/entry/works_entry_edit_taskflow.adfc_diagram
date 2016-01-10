@@ -1,0 +1,74 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<SDM>
+   <OverallProperties
+      id="OverallProperties1"/>
+   <TaskFlowReturn
+      id="TaskFlowReturn4">
+      <property
+         name="activityId">taskFlowReturn1</property>
+      <property
+         name="finish">true</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>taskFlowReturn1&lt;/b>&lt;/p>&lt;p>Activity Type:  Task Flow Return&lt;/p>&lt;p>Outcome:  taskFlowReturn1&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">207.5459</property>
+      <property
+         name="x">588.0</property>
+   </TaskFlowReturn>
+   <View
+      id="View13">
+      <property
+         name="activityId">worksEntryEdit</property>
+      <property
+         name="page">/work/entry/inline/worksEntryEdit.jsf</property>
+      <property
+         name="thumbnailExpanded">false</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>worksEntryEdit&lt;/b>&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">201.09766</property>
+      <property
+         name="pageFragment">false</property>
+      <property
+         name="x">362.01074</property>
+   </View>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase15"
+      from="View13"
+      to="TaskFlowReturn4">
+      <property
+         name="fromOutcome">toReturn</property>
+      <property
+         name="sdm:polyPoints">R50,403.01074,200.74707,547.0,207.19531,L50</property>
+   </ControlFlowCase>
+   <MethodCall
+      id="MethodCall9">
+      <property
+         name="activityId">preEditWorksEntry</property>
+      <property
+         name="start">true</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>preEditWorksEntry&lt;/b> (Default Activity)&lt;/p>&lt;p>Activity Type:  Method Call&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">210.59766</property>
+      <property
+         name="x">162.0</property>
+   </MethodCall>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase10"
+      from="MethodCall9"
+      to="View13">
+      <property
+         name="fromOutcome">init</property>
+      <property
+         name="sdm:polyPoints">R50,203.0,210.24707,321.01074,200.74707,L50</property>
+   </ControlFlowCase>
+</SDM>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewLink SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewLink
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="CmsDoc2PhotographyVL"
+  Version="11.1.2.64.36">
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="com.zypg.cms.work.model.viewobject.viewlink.CmsDoc2PhotographyVL_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <ViewLinkDefEnd
+    Name="CmsDocTVO"
+    Cardinality="1"
+    Source="true"
+    Owner="com.zypg.cms.work.model.viewobject.common.CmsDocTVO">
+    <DesignTime>
+      <Attr Name="_finderName" Value="CmsDocTVO"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="com.zypg.cms.work.model.viewobject.common.CmsDocTVO.DocId"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+  <ViewLinkDefEnd
+    Name="CmsPhotographyFigureTVO"
+    Cardinality="-1"
+    Owner="com.zypg.cms.work.model.viewobject.photography.CmsPhotographyFigureTVO">
+    <DesignTime>
+      <Attr Name="_finderName" Value="CmsPhotographyFigureTVO"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="com.zypg.cms.work.model.viewobject.photography.CmsPhotographyFigureTVO.DocId"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="com.zypg.cms.work.model.ModelBundle"/>
+  </ResourceBundle>
+</ViewLink>

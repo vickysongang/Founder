@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="rollBackLogViewPageDef"
+                Package="work.log.inline">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="Root.LogAM.CmsRollbackLogVO" DataControl="WorkAMDataControl" RangeSize="25"
+              id="CmsRollbackLogVOIterator"/>
+    <searchRegion Criteria="findRollbakLogByDocId" Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="CmsRollbackLogVOIterator" id="findRollbakLogByDocIdQuery"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="CmsRollbackLogVOIterator" id="CmsRollbackLogVO">
+      <nodeDefinition DefName="com.zypg.cms.work.model.viewobject.log.query.CmsRollbackLogVO" Name="CmsRollbackLogVO0">
+        <AttrNames>
+          <Item Value="RollbackOperator"/>
+          <Item Value="OperationTime"/>
+          <Item Value="RollbackReason"/>
+          <Item Value="DocId"/>
+          <Item Value="LogId"/>
+          <Item Value="RollbackOperatorName"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+  </bindings>
+</pageDefinition>

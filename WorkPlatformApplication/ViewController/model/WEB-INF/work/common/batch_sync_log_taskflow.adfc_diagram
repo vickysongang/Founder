@@ -1,0 +1,47 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<SDM>
+   <OverallProperties
+      id="OverallProperties1"/>
+   <MethodCall
+      id="MethodCall2">
+      <property
+         name="activityId">initBatchSyncLog</property>
+      <property
+         name="start">true</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>initBatchSyncLog&lt;/b> (Default Activity)&lt;/p>&lt;p>Activity Type:  Method Call&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">57.24707</property>
+      <property
+         name="x">186.0</property>
+   </MethodCall>
+   <View
+      id="View3">
+      <property
+         name="activityId">batchSyncLog</property>
+      <property
+         name="page">/work/common/inline/batchSyncLog.jsf</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>batchSyncLog&lt;/b>&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">55.143555</property>
+      <property
+         name="x">489.0</property>
+      <property
+         name="pageFragment">false</property>
+   </View>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase4"
+      from="MethodCall2"
+      to="View3">
+      <property
+         name="fromOutcome">toBatchSyncLog</property>
+      <property
+         name="sdm:polyPoints">R50,227.0,56.896484,448.0,54.79297,L50</property>
+   </ControlFlowCase>
+</SDM>

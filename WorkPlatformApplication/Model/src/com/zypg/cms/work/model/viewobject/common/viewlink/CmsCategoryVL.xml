@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewLink SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewLink
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="CmsCategoryVL"
+  Version="11.1.2.64.36"
+  Where="(:Bind_CategoryId = PARENT_NODE_ID) AND (:Bind_CompCode = COMP_CODE) AND 'CATEGORY' = PARENT_NODE_TYPE">
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="com.zypg.cms.work.model.viewobject.common.viewlink.CmsCategoryVL_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <ViewLinkDefEnd
+    Name="ParentNodeIdCmsCategoryVO"
+    Cardinality="1"
+    Source="true"
+    Owner="com.zypg.cms.work.model.viewobject.common.query.CmsCategoryVO">
+    <DesignTime>
+      <Attr Name="_finderName" Value="ParentNodeIdCmsCategoryVO"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="com.zypg.cms.work.model.viewobject.common.query.CmsCategoryVO.CategoryId"/>
+      <Item Value="com.zypg.cms.work.model.viewobject.common.query.CmsCategoryVO.CompCode"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+  <ViewLinkDefEnd
+    Name="CategoryIdCmsCategoryVO"
+    Cardinality="-1"
+    Owner="com.zypg.cms.work.model.viewobject.common.query.CmsCategoryVO">
+    <DesignTime>
+      <Attr Name="_finderName" Value="CategoryIdCmsCategoryVO"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="com.zypg.cms.work.model.viewobject.common.query.CmsCategoryVO.ParentNodeId"/>
+      <Item Value="com.zypg.cms.work.model.viewobject.common.query.CmsCategoryVO.CompCode"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="com.zypg.cms.work.model.ModelBundle"/>
+  </ResourceBundle>
+</ViewLink>

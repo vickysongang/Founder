@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core">
+    <af:panelStretchLayout id="psl1" dimensionsFrom="auto" bottomHeight="0" topHeight="0">
+        <f:facet name="bottom"/>
+        <f:facet name="center">
+            <af:panelFormLayout id="pfl1" maxColumns="2" inlineStyle="margin-bottom:5px;" labelWidth="100"
+                                fieldWidth="200"
+                                rows="#{backingBeanScope.extendAttrViewManagedBean.extendAttrListSize/2}">
+                <f:facet name="footer"/>
+                <af:forEach var="extendAttr" items="#{backingBeanScope.extendAttrViewManagedBean.extendAttrList}">
+                    <af:panelLabelAndMessage label="#{extendAttr['AttrMeaning']}" id="plam1"
+                                             rendered="#{extendAttr['AttrType'] == 'VARCHAR'}">
+                        <af:inputText label="" id="it1" readOnly="true"
+                                      value="#{backingBeanScope.extendAttrViewManagedBean.defaultExtendAttrValueMap[extendAttr['AttrCode']]}"
+                                      shortDesc="#{extendAttr['AttrMeaning']}"/>
+                    </af:panelLabelAndMessage>
+                    <af:panelLabelAndMessage label="#{extendAttr['AttrMeaning']}" id="plam2"
+                                             rendered="#{extendAttr['AttrType'] == 'DATE'}">
+                        <af:inputDate label="" id="id1" shortDesc="#{extendAttr['AttrMeaning']}" readOnly="true"
+                                      value="#{backingBeanScope.extendAttrViewManagedBean.defaultExtendAttrValueMap[extendAttr['AttrCode']]}"/>
+                    </af:panelLabelAndMessage>
+                    <af:panelLabelAndMessage label="#{extendAttr['AttrMeaning']}" id="plam3"
+                                             rendered="#{extendAttr['AttrType'] == 'NUMBER'}">
+                        <af:inputText label="" id="it2" shortDesc="#{extendAttr['AttrMeaning']}" readOnly="true"
+                                      value="#{backingBeanScope.extendAttrViewManagedBean.defaultExtendAttrValueMap[extendAttr['AttrCode']]}">
+                            <af:convertNumber type="number"/>
+                        </af:inputText>
+                    </af:panelLabelAndMessage>
+                    <af:panelLabelAndMessage label="#{extendAttr['AttrMeaning']}" id="plam4"
+                                             rendered="#{extendAttr['AttrType'] == 'CHOICE'}">
+                        <af:selectOneChoice label="" id="soc1" shortDesc="#{extendAttr['AttrMeaning']}" readOnly="true"
+                                            value="#{backingBeanScope.extendAttrViewManagedBean.defaultExtendAttrValueMap[extendAttr['AttrCode']]}">
+                            <f:selectItems value="#{backingBeanScope.extendAttrViewManagedBean.choiceValueList[extendAttr['AttrCode']]}"
+                                           id="si1"/>
+                        </af:selectOneChoice>
+                    </af:panelLabelAndMessage>
+                </af:forEach>
+            </af:panelFormLayout>
+        </f:facet>
+        <f:facet name="start"/>
+        <f:facet name="end"/>
+        <f:facet name="top"/>
+    </af:panelStretchLayout>
+</jsp:root>

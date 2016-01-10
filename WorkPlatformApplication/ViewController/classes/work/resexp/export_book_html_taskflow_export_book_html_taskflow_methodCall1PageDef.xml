@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36"
+                id="export_book_html_taskflow_export_book_html_taskflow_methodCall1PageDef" Package="work.resexp"
+                SkipValidation="true">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator id="CmsBookExportHtmlTVO1Iterator" Binds="CmsBookExportHtmlTVO1" DataControl="ResExpAMDataControl"
+              RangeSize="25"/>
+    <iterator id="CmsSelectedExportFieldTVO1Iterator" Binds="CmsSelectedExportFieldTVO1"
+              DataControl="ResExpAMDataControl" RangeSize="25"/>
+  </executables>
+  <bindings>
+    <action id="Rollback" InstanceName="ResExpAMDataControl" DataControl="ResExpAMDataControl"
+            RequiresUpdateModel="false" Action="rollbackTransaction"/>
+  </bindings>
+</pageDefinition>

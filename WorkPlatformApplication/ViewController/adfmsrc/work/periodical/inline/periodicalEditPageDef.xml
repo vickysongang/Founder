@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="periodicalEditPageDef"
+                Package="work.periodical.inline">
+    <parameters/>
+    <executables>
+        <variableIterator id="variables"/>
+        <taskFlow id="category_pick_taskflow1"
+                  taskFlowId="/WEB-INF/common/category_pick_taskflow.xml#category_pick_taskflow" activation="deferred"
+                  xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+        <iterator Binds="Root.PeriodicalAM.CmsPeriodicalTVO" DataControl="WorkAMDataControl" RangeSize="25"
+                  id="CmsPeriodicalTVOIterator"/>
+        <iterator Binds="Root.PeriodicalAM.CmsPeriodicalEditVO" DataControl="WorkAMDataControl" RangeSize="25"
+                  id="CmsPeriodicalEditVOIterator"/>
+        <taskFlow id="extend_attr_taskflow1" taskFlowId="/WEB-INF/common/extend_attr_taskflow.xml#extend_attr_taskflow"
+                  activation="deferred" xmlns="http://xmlns.oracle.com/adf/controller/binding">
+            <parameters>
+                <parameter id="compCode" value="#{pageFlowScope.compCode}"/>
+                <parameter id="libCode" value="#{pageFlowScope.libCode}"/>
+                <parameter id="docId" value="#{pageFlowScope.docId}"/>
+                <parameter id="operType" value="#{pageFlowScope.mode}"/>
+                <parameter id="labelWidth" value="80"/>
+            </parameters>
+        </taskFlow>
+    </executables>
+    <bindings>
+        <attributeValues IterBinding="CmsPeriodicalTVOIterator" id="PeriodicalId">
+            <AttrNames>
+                <Item Value="PeriodicalId"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsPeriodicalTVOIterator" id="PeriodicalTypeMeaning">
+            <AttrNames>
+                <Item Value="PeriodicalTypeMeaning"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsPeriodicalTVOIterator" id="Issn">
+            <AttrNames>
+                <Item Value="Issn"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsPeriodicalTVOIterator" id="Cn">
+            <AttrNames>
+                <Item Value="Cn"/>
+            </AttrNames>
+        </attributeValues>
+        <list IterBinding="CmsPeriodicalTVOIterator" StaticList="false" Uses="LOV_Year" id="Year" DTSupportsMRU="false"
+              SelectItemValueMode="ListObject"/>
+        <attributeValues IterBinding="CmsPeriodicalTVOIterator" id="Total">
+            <AttrNames>
+                <Item Value="Total"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsPeriodicalTVOIterator" id="Lang">
+            <AttrNames>
+                <Item Value="Lang"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsPeriodicalTVOIterator" id="ChiefEditor">
+            <AttrNames>
+                <Item Value="ChiefEditor"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsPeriodicalTVOIterator" id="Editor">
+            <AttrNames>
+                <Item Value="Editor"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsPeriodicalTVOIterator" id="FormatDesign">
+            <AttrNames>
+                <Item Value="FormatDesign"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsPeriodicalTVOIterator" id="CoverDesign">
+            <AttrNames>
+                <Item Value="CoverDesign"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsPeriodicalTVOIterator" id="Price">
+            <AttrNames>
+                <Item Value="Price"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsPeriodicalTVOIterator" id="Pagination">
+            <AttrNames>
+                <Item Value="Pagination"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsPeriodicalTVOIterator" id="MainPage">
+            <AttrNames>
+                <Item Value="MainPage"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsPeriodicalTVOIterator" id="BookSize">
+            <AttrNames>
+                <Item Value="BookSize"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsPeriodicalTVOIterator" id="BookSizeMeaning">
+            <AttrNames>
+                <Item Value="BookSizeMeaning"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsPeriodicalTVOIterator" id="MainTypeset">
+            <AttrNames>
+                <Item Value="MainTypeset"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsPeriodicalTVOIterator" id="ColorNum">
+            <AttrNames>
+                <Item Value="ColorNum"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsPeriodicalTVOIterator" id="TypesetComp">
+            <AttrNames>
+                <Item Value="TypesetComp"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsPeriodicalTVOIterator" id="CoverTypeset">
+            <AttrNames>
+                <Item Value="CoverTypeset"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsPeriodicalTVOIterator" id="ProdSizeMeaning">
+            <AttrNames>
+                <Item Value="ProdSizeMeaning"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsPeriodicalTVOIterator" id="AssortProd">
+            <AttrNames>
+                <Item Value="AssortProd"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsPeriodicalTVOIterator" id="ReaderGroupMeaning">
+            <AttrNames>
+                <Item Value="ReaderGroupMeaning"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsPeriodicalTVOIterator" id="Suggestion">
+            <AttrNames>
+                <Item Value="Suggestion"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsPeriodicalTVOIterator" id="Keyword">
+            <AttrNames>
+                <Item Value="Keyword"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsPeriodicalTVOIterator" id="Remarks">
+            <AttrNames>
+                <Item Value="Remarks"/>
+            </AttrNames>
+        </attributeValues>
+        <list IterBinding="CmsPeriodicalTVOIterator" StaticList="false" Uses="LOV_PeriodicalCategoryId"
+              id="PeriodicalCategoryId" DTSupportsMRU="true" SelectItemValueMode="ListObject"/>
+        <list IterBinding="CmsPeriodicalTVOIterator" StaticList="false" Uses="LOV_MainPage" id="MainPage1"
+              DTSupportsMRU="true" SelectItemValueMode="ListObject"/>
+        <list IterBinding="CmsPeriodicalTVOIterator" StaticList="false" Uses="LOV_MainTypeset" id="MainTypeset1"
+              DTSupportsMRU="true" SelectItemValueMode="ListObject"/>
+        <list IterBinding="CmsPeriodicalTVOIterator" StaticList="false" Uses="LOV_CoverTypeset" id="CoverTypeset1"
+              DTSupportsMRU="true" SelectItemValueMode="ListObject"/>
+        <list IterBinding="CmsPeriodicalTVOIterator" StaticList="false" Uses="LOV_ColorNum" id="ColorNum1"
+              DTSupportsMRU="true" SelectItemValueMode="ListObject"/>
+        <list IterBinding="CmsPeriodicalTVOIterator" StaticList="false" Uses="LOV_AssortProd" id="AssortProd1"
+              DTSupportsMRU="true" SelectItemValueMode="ListObject"/>
+        <attributeValues IterBinding="CmsPeriodicalTVOIterator" id="PeriodicalType">
+            <AttrNames>
+                <Item Value="PeriodicalType"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsPeriodicalEditVOIterator" id="ChiefEditor1">
+            <AttrNames>
+                <Item Value="ChiefEditor"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsPeriodicalEditVOIterator" id="CompCode1">
+            <AttrNames>
+                <Item Value="CompCode"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsPeriodicalEditVOIterator" id="FormatDesign1">
+            <AttrNames>
+                <Item Value="FormatDesign"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsPeriodicalEditVOIterator" id="CoverDesign1">
+            <AttrNames>
+                <Item Value="CoverDesign"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsPeriodicalEditVOIterator" id="Price1">
+            <AttrNames>
+                <Item Value="Price"/>
+            </AttrNames>
+        </attributeValues>
+        <list IterBinding="CmsPeriodicalEditVOIterator" StaticList="false" Uses="LOV_MainPage" id="MainPage2"
+              DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+        <list IterBinding="CmsPeriodicalEditVOIterator" StaticList="false" Uses="LOV_ColorNum" id="ColorNum2"
+              DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+        <list IterBinding="CmsPeriodicalEditVOIterator" StaticList="false" Uses="LOV_MainTypeset" id="MainTypeset2"
+              DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+        <list IterBinding="CmsPeriodicalEditVOIterator" StaticList="false" Uses="LOV_CoverTypeset" id="CoverTypeset2"
+              DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+        <attributeValues IterBinding="CmsPeriodicalEditVOIterator" id="TypesetComp1">
+            <AttrNames>
+                <Item Value="TypesetComp"/>
+            </AttrNames>
+        </attributeValues>
+        <list IterBinding="CmsPeriodicalEditVOIterator" StaticList="false" Uses="LOV_AssortProd" id="AssortProd2"
+              DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+        <attributeValues IterBinding="CmsPeriodicalEditVOIterator" id="Suggestion1">
+            <AttrNames>
+                <Item Value="Suggestion"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsPeriodicalEditVOIterator" id="Editor1">
+            <AttrNames>
+                <Item Value="Editor"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsPeriodicalEditVOIterator" id="Pagination1">
+            <AttrNames>
+                <Item Value="Pagination"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsPeriodicalEditVOIterator" id="Keyword1">
+            <AttrNames>
+                <Item Value="Keyword"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsPeriodicalTVOIterator" id="PubTime">
+            <AttrNames>
+                <Item Value="PubTime"/>
+            </AttrNames>
+        </attributeValues>
+        <list IterBinding="CmsPeriodicalTVOIterator" StaticList="false" Uses="LOV_PeriodNum" id="PeriodNum"
+              DTSupportsMRU="true" SelectItemValueMode="ListObject"/>
+        <attributeValues IterBinding="CmsPeriodicalTVOIterator" id="LangMeaning">
+            <AttrNames>
+                <Item Value="LangMeaning"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsPeriodicalTVOIterator" id="PublicDate">
+            <AttrNames>
+                <Item Value="PublicDate"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsPeriodicalTVOIterator" id="Publishing">
+            <AttrNames>
+                <Item Value="Publishing"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsPeriodicalTVOIterator" id="TotalNum">
+            <AttrNames>
+                <Item Value="TotalNum"/>
+            </AttrNames>
+        </attributeValues>
+    </bindings>
+</pageDefinition>

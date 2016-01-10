@@ -1,0 +1,315 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <af:document title="标引论著条目" id="d1">
+        <f:facet name="metaContainer">
+            <af:resource type="javascript" source="/resources/js/jquery_min.js"/>
+            <af:resource type="javascript" source="/resources/js/work_platform.js"/>
+            <af:resource type="javascript" source="/resources/js/jsupload.js"/>
+        </f:facet>
+        <af:messages id="m1"/>
+        <af:form id="f1" usesUpload="true">
+            <af:panelStretchLayout id="psl1" bottomHeight="30px">
+                <f:facet name="bottom">
+                    <af:panelGroupLayout id="pgl1" layout="vertical" halign="center">
+                        <af:panelGroupLayout id="pgl3" layout="horizontal">
+                            <af:commandButton text="保存" id="cb1" styleClass="popup-btn" partialSubmit="true"
+                                              action="#{backingBeanScope.WorksEntryEditManagedBean.saveAction}">
+                                <af:setPropertyListener to="#{pageFlowScope.comfirmFlag}" type="action" from="Y"/>
+                            </af:commandButton>
+                            <af:commandButton text="Return" id="returnBtn" partialSubmit="true" action="toReturn"
+                                              styleClass="popup-btn" visible="false"></af:commandButton>
+                            <af:spacer width="10" height="10" id="s1"/>
+                            <af:commandButton text="取消" id="cb2" action="toReturn" immediate="true"
+                                              styleClass="popup-btn"
+                                              actionListener="#{backingBeanScope.WorksEntryEditManagedBean.cancelWorksEntryActionListener}">
+                                <af:setPropertyListener to="#{pageFlowScope.comfirmFlag}" type="action" from="N"/>
+                            </af:commandButton>
+                            <af:popup childCreation="deferred" autoCancel="disabled" id="p1"
+                                      contentDelivery="lazyUncached">
+                                <af:dialog id="d2" contentWidth="100" contentHeight="100" title="选择分类"
+                                           dialogListener="#{backingBeanScope.WorksEntryEditManagedBean.attributePicker.categoryDialogListener}">
+                                    <f:facet name="buttonBar"/>
+                                    <af:region value="#{bindings.category_pick_taskflow1.regionModel}" id="r1"/>
+                                </af:dialog>
+                            </af:popup>
+                            <af:spacer id="categoryHandler" clientComponent="true">
+                                <af:serverListener type="passCategory"
+                                                   method="#{backingBeanScope.WorksEntryEditManagedBean.attributePicker.passCategoryServerListener}"/>
+                            </af:spacer>
+                        </af:panelGroupLayout>
+                    </af:panelGroupLayout>
+                </f:facet>
+                <f:facet name="center">
+                    <af:switcher id="s2" facetName="#{pageFlowScope.batchFlag}">
+                        <f:facet name="N">
+                            <af:panelGroupLayout layout="scroll" id="pgl2">
+                                <af:panelFormLayout id="pfl1" maxColumns="2" rows="1" labelWidth="80px">
+                                    <af:inputText value="#{bindings.Title.inputValue}"
+                                                  label="#{bindings.Title.hints.label}"
+                                                  required="#{bindings.Title.hints.mandatory}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  columns="#{bindings.Title.hints.displayWidth}"
+                                                  maximumLength="#{bindings.Title.hints.precision}"
+                                                  shortDesc="#{bindings.Title.hints.tooltip}" id="it1"
+                                                  showRequired="true"
+                                                  binding="#{backingBeanScope.WorksEntryEditManagedBean.fileNameInputText}">
+                                        <f:validator binding="#{bindings.Title.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.EnglishTitle.inputValue}"
+                                                  label="#{bindings.EnglishTitle.hints.label}"
+                                                  required="#{bindings.EnglishTitle.hints.mandatory}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  columns="#{bindings.EnglishTitle.hints.displayWidth}"
+                                                  maximumLength="#{bindings.EnglishTitle.hints.precision}"
+                                                  shortDesc="#{bindings.EnglishTitle.hints.tooltip}" id="it2">
+                                        <f:validator binding="#{bindings.EnglishTitle.validator}"/>
+                                    </af:inputText>
+                                    <af:panelLabelAndMessage label="#{bindings.CategoryName.hints.label}" id="plam1">
+                                        <af:inputText value="#{bindings.CategoryName.inputValue}" simple="true"
+                                                      required="true" disabled="true"
+                                                      columns="#{bindings.CategoryName.hints.displayWidth}"
+                                                      contentStyle="width:95px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                      maximumLength="#{bindings.CategoryName.hints.precision}"
+                                                      shortDesc="#{bindings.CategoryName.hints.tooltip}" id="it3"
+                                                      showRequired="true">
+                                            <f:validator binding="#{bindings.CategoryName.validator}"/>
+                                        </af:inputText>
+                                        <f:facet name="end">
+                                            <af:group id="g1">
+                                                <af:commandButton text="选择" id="cb3" partialSubmit="true"
+                                                                  styleClass="min-btn blue-min-btn" immediate="true">
+                                                    <af:showPopupBehavior popupId="p1" triggerType="action"
+                                                                          align="afterStart" alignId="cb3"/>
+                                                </af:commandButton>
+                                                <af:commandButton text="清除" id="cb4" partialSubmit="true"
+                                                                  styleClass="min-btn blue-min-btn" immediate="true"
+                                                                  actionListener="#{backingBeanScope.WorksEntryEditManagedBean.attributePicker.clearCategoryActionListener}"></af:commandButton>
+                                            </af:group>
+                                        </f:facet>
+                                    </af:panelLabelAndMessage>
+                                    <af:inputText value="#{bindings.Author.inputValue}"
+                                                  label="#{bindings.Author.hints.label}"
+                                                  required="#{bindings.Author.hints.mandatory}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  columns="#{bindings.Author.hints.displayWidth}"
+                                                  maximumLength="#{bindings.Author.hints.precision}"
+                                                  shortDesc="#{bindings.Author.hints.tooltip}" id="it4">
+                                        <f:validator binding="#{bindings.Author.validator}"/>
+                                    </af:inputText>
+                                    <af:selectOneChoice value="#{bindings.Lang.inputValue}"
+                                                        label="#{bindings.Lang.label}"
+                                                        required="#{bindings.Lang.hints.mandatory}"
+                                                        shortDesc="#{bindings.Lang.hints.tooltip}" id="soc1">
+                                        <f:selectItems value="#{bindings.Lang.items}" id="si1"/>
+                                    </af:selectOneChoice>
+                                    <af:inputDate value="#{bindings.WritingTime.inputValue}"
+                                                  label="#{bindings.WritingTime.hints.label}"
+                                                  required="#{bindings.WritingTime.hints.mandatory}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  columns="#{bindings.WritingTime.hints.displayWidth}"
+                                                  shortDesc="#{bindings.WritingTime.hints.tooltip}" id="id1">
+                                        <f:validator binding="#{bindings.WritingTime.validator}"/>
+                                        <af:convertDateTime pattern="#{bindings.WritingTime.format}"/>
+                                    </af:inputDate>
+                                    <af:inputText value="#{bindings.Subtitle.inputValue}"
+                                                  label="#{bindings.Subtitle.hints.label}"
+                                                  required="#{bindings.Subtitle.hints.mandatory}"
+                                                  columns="#{bindings.Subtitle.hints.displayWidth}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  maximumLength="#{bindings.Subtitle.hints.precision}"
+                                                  shortDesc="#{bindings.Subtitle.hints.tooltip}" id="it5">
+                                        <f:validator binding="#{bindings.Subtitle.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.EnglishSubtitle.inputValue}"
+                                                  label="#{bindings.EnglishSubtitle.hints.label}"
+                                                  required="#{bindings.EnglishSubtitle.hints.mandatory}"
+                                                  columns="#{bindings.EnglishSubtitle.hints.displayWidth}"
+                                                  maximumLength="#{bindings.EnglishSubtitle.hints.precision}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  shortDesc="#{bindings.EnglishSubtitle.hints.tooltip}" id="it6">
+                                        <f:validator binding="#{bindings.EnglishSubtitle.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.Source.inputValue}"
+                                                  label="#{bindings.Source.hints.label}"
+                                                  required="#{bindings.Source.hints.mandatory}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  columns="#{bindings.Source.hints.displayWidth}"
+                                                  maximumLength="#{bindings.Source.hints.precision}"
+                                                  shortDesc="#{bindings.Source.hints.tooltip}" id="it7">
+                                        <f:validator binding="#{bindings.Source.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.Translator.inputValue}"
+                                                  label="#{bindings.Translator.hints.label}"
+                                                  required="#{bindings.Translator.hints.mandatory}"
+                                                  columns="#{bindings.Translator.hints.displayWidth}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  maximumLength="#{bindings.Translator.hints.precision}"
+                                                  shortDesc="#{bindings.Translator.hints.tooltip}" id="it8">
+                                        <f:validator binding="#{bindings.Translator.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.WordCount.inputValue}"
+                                                  label="#{bindings.WordCount.hints.label}"
+                                                  required="#{bindings.WordCount.hints.mandatory}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  columns="#{bindings.WordCount.hints.displayWidth}"
+                                                  maximumLength="#{bindings.WordCount.hints.precision}"
+                                                  shortDesc="#{bindings.WordCount.hints.tooltip}" id="it9">
+                                        <f:validator binding="#{bindings.WordCount.validator}"/>
+                                        <af:convertNumber groupingUsed="false" pattern="#{bindings.WordCount.format}"/>
+                                    </af:inputText>
+                                    <af:inputDate value="#{bindings.StoreTime.inputValue}"
+                                                  label="#{bindings.StoreTime.hints.label}"
+                                                  required="#{bindings.StoreTime.hints.mandatory}"
+                                                  columns="#{bindings.StoreTime.hints.displayWidth}"
+                                                  shortDesc="#{bindings.StoreTime.hints.tooltip}" id="id2">
+                                        <f:validator binding="#{bindings.StoreTime.validator}"/>
+                                        <af:convertDateTime pattern="#{bindings.StoreTime.format}"/>
+                                    </af:inputDate>
+                                </af:panelFormLayout>
+                                <af:panelFormLayout id="pfl2" labelWidth="80px">
+                                    <af:inputText value="#{bindings.Keyword.inputValue}"
+                                                  label="#{bindings.Keyword.hints.label}"
+                                                  required="#{bindings.Keyword.hints.mandatory}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  columns="#{bindings.Keyword.hints.displayWidth}"
+                                                  maximumLength="#{bindings.Keyword.hints.precision}"
+                                                  shortDesc="#{bindings.Keyword.hints.tooltip}" id="it11"
+                                                  partialTriggers="cl1"
+                                                  binding="#{backingBeanScope.WorksEntryEditManagedBean.commonRenderer.keywordsInputText}">
+                                        <f:validator binding="#{bindings.Keyword.validator}"/>
+                                        <af:clientListener type="keyDown" method="forbidInput"/>
+                                        <af:serverListener type="forbidInputKeyword"
+                                                           method="#{backingBeanScope.WorksEntryEditManagedBean.commonRenderer.forbidInputKeywordAction}"/>
+                                    </af:inputText>
+                                    <af:panelLabelAndMessage label="" id="plam2">
+                                        <af:inputText label="Label 1" id="it12" simple="true" partialTriggers="cl1"
+                                                      contentStyle="width:240px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                      binding="#{backingBeanScope.WorksEntryEditManagedBean.commonRenderer.keyworkInputText}"/>
+                                        <f:facet name="end">
+                                            <af:commandImageLink id="cl1" icon="/resources/images/add.png"
+                                                                 partialSubmit="true"
+                                                                 actionListener="#{backingBeanScope.WorksEntryEditManagedBean.commonRenderer.addKeyworkActionListener}"/>
+                                        </f:facet>
+                                    </af:panelLabelAndMessage>
+                                    <af:inputText value="#{bindings.AbstarctDesc.inputValue}"
+                                                  label="#{bindings.AbstarctDesc.hints.label}"
+                                                  required="#{bindings.AbstarctDesc.hints.mandatory}"
+                                                  columns="#{bindings.AbstarctDesc.hints.displayWidth}"
+                                                  contentStyle="width:510px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  maximumLength="#{bindings.AbstarctDesc.hints.precision}"
+                                                  shortDesc="#{bindings.AbstarctDesc.hints.tooltip}" id="it13" rows="5">
+                                        <f:validator binding="#{bindings.AbstarctDesc.validator}"/>
+                                    </af:inputText>
+                                </af:panelFormLayout>
+                                <af:region value="#{bindings.extend_attr_taskflow1.regionModel}" id="r2"/>
+                            </af:panelGroupLayout>
+                        </f:facet>
+                        <f:facet name="Y">
+                            <af:panelGroupLayout id="pgl4" layout="scroll">
+                                <af:panelFormLayout id="pfl4" rows="3" maxColumns="2" labelWidth="80px">
+                                    <af:panelLabelAndMessage label="#{bindings.CategoryName1.hints.label}" id="plam4">
+                                        <af:inputText value="#{bindings.CategoryName1.inputValue}" showRequired="true"
+                                                      label="#{bindings.CategoryName1.hints.label}" required="true"
+                                                      contentStyle="width:95px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                      columns="#{bindings.CategoryName1.hints.displayWidth}"
+                                                      maximumLength="#{bindings.CategoryName1.hints.precision}"
+                                                      shortDesc="#{bindings.CategoryName1.hints.tooltip}" id="it30"
+                                                      simple="true" disabled="true" partialTriggers="d2">
+                                            <f:validator binding="#{bindings.CategoryName1.validator}"/>
+                                        </af:inputText>
+                                        <f:facet name="end">
+                                            <af:group id="g2">
+                                                <af:commandButton text="选择" id="cb5" partialSubmit="true"
+                                                                  immediate="true" styleClass="min-btn blue-min-btn">
+                                                    <af:showPopupBehavior popupId="p1" triggerType="action"
+                                                                          align="afterStart" alignId="cb3"/>
+                                                </af:commandButton>
+                                                <af:commandButton text="清除" id="cb6" partialSubmit="true"
+                                                                  immediate="true" styleClass="min-btn blue-min-btn"
+                                                                  actionListener="#{backingBeanScope.WorksEntryEditManagedBean.attributePicker.clearCategoryActionListener}"/>
+                                            </af:group>
+                                        </f:facet>
+                                    </af:panelLabelAndMessage>
+                                    <af:inputText value="#{bindings.Author1.inputValue}"
+                                                  label="#{bindings.Author1.hints.label}"
+                                                  required="#{bindings.Author1.hints.mandatory}"
+                                                  columns="#{bindings.Author1.hints.displayWidth}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  maximumLength="#{bindings.Author1.hints.precision}"
+                                                  shortDesc="#{bindings.Author1.hints.tooltip}" id="it14">
+                                        <f:validator binding="#{bindings.Author1.validator}"/>
+                                    </af:inputText>
+                                    <af:selectOneChoice value="#{bindings.Lang1.inputValue}"
+                                                        label="#{bindings.Lang1.label}"
+                                                        required="#{bindings.Lang1.hints.mandatory}"
+                                                        contentStyle="width:207px;height:22px;line-height:22px;border-color:#ABADB3;font-size:12px;"
+                                                        shortDesc="#{bindings.Lang1.hints.tooltip}" id="soc2">
+                                        <f:selectItems value="#{bindings.Lang1.items}" id="si2"/>
+                                    </af:selectOneChoice>
+                                    <af:inputText value="#{bindings.Source1.inputValue}"
+                                                  label="#{bindings.Source1.hints.label}"
+                                                  required="#{bindings.Source1.hints.mandatory}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  columns="#{bindings.Source1.hints.displayWidth}"
+                                                  maximumLength="#{bindings.Source1.hints.precision}"
+                                                  shortDesc="#{bindings.Source1.hints.tooltip}" id="it15">
+                                        <f:validator binding="#{bindings.Source1.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.Translator1.inputValue}"
+                                                  label="#{bindings.Translator1.hints.label}"
+                                                  required="#{bindings.Translator1.hints.mandatory}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  columns="#{bindings.Translator1.hints.displayWidth}"
+                                                  maximumLength="#{bindings.Translator1.hints.precision}"
+                                                  shortDesc="#{bindings.Translator1.hints.tooltip}" id="it16">
+                                        <f:validator binding="#{bindings.Translator1.validator}"/>
+                                    </af:inputText>
+                                </af:panelFormLayout>
+                                <af:panelFormLayout id="pfl5" labelWidth="80px">
+                                    <af:inputText value="#{bindings.Keyword1.inputValue}"
+                                                  label="#{bindings.Keyword1.hints.label}"
+                                                  required="#{bindings.Keyword1.hints.mandatory}"
+                                                  contentStyle="width:510px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  columns="#{bindings.Keyword1.hints.displayWidth}"
+                                                  maximumLength="#{bindings.Keyword1.hints.precision}"
+                                                  shortDesc="#{bindings.Keyword1.hints.tooltip}" id="it17"
+                                                  partialTriggers="cl2"
+                                                  binding="#{backingBeanScope.WorksEntryEditManagedBean.commonRenderer.keywords4BatchEditInputText}">
+                                        <af:clientListener type="keyDown" method="forbidInput"/>
+                                        <af:serverListener type="forbidInputKeyword"
+                                                           method="#{backingBeanScope.WorksEntryEditManagedBean.commonRenderer.forbidInputKeywordAction}"/>
+                                        <f:validator binding="#{bindings.Keyword1.validator}"/>
+                                    </af:inputText>
+                                    <af:panelLabelAndMessage label="" id="plam3">
+                                        <af:inputText label="Label 1" id="it31" simple="true" partialTriggers="cl2"
+                                                      contentStyle="width:240px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                      binding="#{backingBeanScope.WorksEntryEditManagedBean.commonRenderer.keywork4BatchEditInputText}"/>
+                                        <f:facet name="end">
+                                            <af:commandImageLink id="cl2" partialSubmit="true"
+                                                                 actionListener="#{backingBeanScope.WorksEntryEditManagedBean.commonRenderer.addKeyworkActionListener}"
+                                                                 icon="/resources/images/add.png"/>
+                                        </f:facet>
+                                    </af:panelLabelAndMessage>
+                                    <af:inputText value="#{bindings.AbstarctDesc1.inputValue}"
+                                                  label="#{bindings.AbstarctDesc1.hints.label}"
+                                                  required="#{bindings.AbstarctDesc1.hints.mandatory}"
+                                                  columns="#{bindings.AbstarctDesc1.hints.displayWidth}"
+                                                  contentStyle="width:510px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  maximumLength="#{bindings.AbstarctDesc1.hints.precision}"
+                                                  shortDesc="#{bindings.AbstarctDesc1.hints.tooltip}" id="it18"
+                                                  rows="5">
+                                        <f:validator binding="#{bindings.AbstarctDesc1.validator}"/>
+                                    </af:inputText>
+                                </af:panelFormLayout>
+                            </af:panelGroupLayout>
+                        </f:facet>
+                    </af:switcher>
+                </f:facet>
+                <f:facet name="start"/>
+                <f:facet name="end"/>
+                <f:facet name="top"></f:facet>
+            </af:panelStretchLayout>
+        </af:form>
+    </af:document>
+</f:view>

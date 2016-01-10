@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="jbInfoPageDef"
+                Package="work.book.inline">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="Root.BookAM.CmsJbInfoTVO" DataControl="WorkAMDataControl" RangeSize="25"
+              id="CmsJbInfoTVOIterator"/>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="CmsJbInfoTVOIterator" id="BriefIntroduction">
+      <AttrNames>
+        <Item Value="BriefIntroduction"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsJbInfoTVOIterator" id="Catalog">
+      <AttrNames>
+        <Item Value="Catalog"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsJbInfoTVOIterator" id="Foreword">
+      <AttrNames>
+        <Item Value="Foreword"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsJbInfoTVOIterator" id="Postscript">
+      <AttrNames>
+        <Item Value="Postscript"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsJbInfoTVOIterator" id="Highlights">
+      <AttrNames>
+        <Item Value="Highlights"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsJbInfoTVOIterator" id="Preface">
+      <AttrNames>
+        <Item Value="Preface"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsJbInfoTVOIterator" id="Glossary">
+      <AttrNames>
+        <Item Value="Glossary"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsJbInfoTVOIterator" id="References1">
+      <AttrNames>
+        <Item Value="References1"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsJbInfoTVOIterator" id="AuthorIntroduction">
+      <AttrNames>
+        <Item Value="AuthorIntroduction"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

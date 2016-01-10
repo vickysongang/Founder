@@ -1,0 +1,1180 @@
+/**ADFFaces_Skin_File / DO NOT REMOVE**/
+@namespace af "http://xmlns.oracle.com/adf/faces/rich";
+
+@namespace dvt "http://xmlns.oracle.com/dss/adf/faces";
+
+af|document {
+    background: White;
+}
+/**template css**/
+af|panelGroupLayout.header_middle_bg {
+    background: url('/resources/images/top-pict_bg.jpg')repeat-x;
+    height: 68px;
+}
+
+af|panelGroupLayout.header_end_bg {
+    background-image: url('/resources/images/top-pict_2.jpg');
+    height: 68px;
+    background-repeat: repeat-x;
+    width: 397px;
+}
+
+.AFDefaultFont:alias {
+    font-family: SimSun;
+    font-size: 12px;
+}
+
+.AFDefaultBoldFont:alias {
+    font-size: 12px;
+}
+
+.AFDefaultFontFamily:alias {
+    font-family: SimSun;
+}
+
+.AFRequiredIconStyle {
+    color: red;
+}
+
+.AFPanelFormLayoutContentCell {
+    padding-top: 5px;
+    vertical-align: middle;
+}
+
+.AFNoteWindowHintText {
+    display: none;
+}
+
+.AFNoteWindowSeparator {
+    display: none;
+}
+
+.AFAutoSuggestItem {
+    font-size: 12px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.AFAutoSuggestItemsContainer {
+    overflow-x: hidden;
+}
+
+.AFNoteWindowShortDesc {
+    font-size: 12px;
+}
+
+af|selectBooleanCheckbox::content-input {
+    padding-left: 2px;
+}
+/*custom table*/
+.custom_table .headTr {
+    height: 22px;
+    line-height: 22px;
+    background: url('/resources/images/af_table_th_bg.png')repeat-x;
+    border-color: #dddddd;
+    color: black;
+}
+
+.custom_table th {
+    border: 1px solid #ddd;
+    height: 22px;
+    line-height: 22px;
+    font-weight: normal;
+    font-size: 12px;
+}
+
+.custom_table td {
+    border: 1px solid #ddd;
+    font-size: 12px;
+    line-height: 30px;
+    text-align: center;
+}
+
+.chapter af|panelSplitter::horizontal-restore-icon {
+    content: url('/resources/images/chapter_split_right.gif') !important;
+    width: 8px !important;
+    height: 65px;
+    outline: none;
+}
+
+.chapter af|panelSplitter::horizontal-collapse-icon {
+    content: url('/resources/images/chapter_split_left.gif') !important;
+    width: 8px !important;
+    height: 65px;
+    outline: none;
+}
+/*custom panelSplitter style*/
+af|panelSplitter::horizontal-collapse-icon {
+    content: url('/resources/images/to_left.jpg');
+    width: 5px;
+    height: 65px;
+    outline: none;
+}
+
+af|panelSplitter::horizontal-restore-icon {
+    content: url('/resources/images/to_right.jpg');
+    width: 5px;
+    height: 65px;
+    outline: none;
+}
+
+af|panelSplitter {
+    -tr-divider-size: 16;
+}
+
+af|panelSplitter {
+    -tr-collapse-animation-duration: 500;
+}
+
+af|panelSplitter.verticel-align-center::vertical-icon-container {
+    border: 0 none;
+    background: none;
+    text-align: center;
+}
+
+af|panelSplitter.verticel-align-center::vertical-divider {
+    background-color: #fff;
+}
+
+af|panelSplitter::horizontal-divider {
+    border-right: 1px solid #EDEDED;
+    border-right-width: 1px;
+}
+
+.AFPrivatePositionAbsoluteHeightFull {
+    background-color: #FAFAFA;
+    width: 8px;
+}
+
+af|table {
+    border-color: #dddddd;
+    background-color: #fff;
+    border-style: none none none solid;
+}
+@agent ie,mozilla{ 
+  af|table{border-color:#dddddd;background-color:#fff;border-style:none none none solid ;}
+}
+
+af|column::column-header-cell {
+    height: 22px;
+    line-height: 22px;
+    background: url(/resources/images/af_table_th_bg.png)repeat-x;
+    border-color: #dddddd;
+    color: black;
+    border-bottom: none;
+    text-align: center;
+}
+
+af|column::column-header-cell.p_AFFocused {
+    height: 22px;
+    line-height: 22px;
+    background: url(/resources/images/af_table_th_bg.png)repeat-x;
+    border-color: #dddddd;
+    color: black;
+    border-bottom: none;
+    text-align: center;
+}
+
+af|column::column-header-table {
+    border-bottom-color: #ddd;
+}
+
+af|column::data-cell {
+    border-bottom: none;
+    height: 28px;
+}
+
+af|column::banded-data-cell {
+    background: #FAFAFA;
+    height: 28px;
+}
+
+af|column::column-header {
+    border-right-color: #ddd;
+}
+
+af|column::detail-cell {
+    background-color: #F2F7FD;
+    background-image: none;
+}
+
+af|column::detail-column-header-cell {
+    background-color: #F2F7FD;
+    background-image: none;
+}
+
+af|column::column-filter-cell {
+    background-color: #F2F7FD;
+    border-right-color: #F2F7FD;
+}
+
+af|table::data-table-VH-lines af|column::data-cell {
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+
+af|table::data-table-VH-lines af|column::banded-data-cell {
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+
+af|table::data-row.p_AFSelected.p_AFInactive af|column::data-cell, af|column::data-cell.p_AFSelected.p_AFInactive, af|table::data-row.p_AFSelected.p_AFInactive af|column::banded-data-cell, af|column::banded-data-cell.p_AFSelected.p_AFInactive, af|table::data-row.p_AFHighlighted af|column::data-cell, af|table::data-row.p_AFHighlighted af|column::banded-data-cell {
+    background: #fff;
+}
+
+af|table::data-row.p_AFSelected af|column::data-cell, af|table::data-row.p_AFSelected.p_AFInactive af|column::data-cell, af|column::data-cell.p_AFSelected.p_AFInactive {
+    background: #fff;
+}
+
+af|table::data-row.p_AFSelected af|column::banded-data-cell, af|table::data-row.p_AFSelected.p_AFInactive af|column::banded-data-cell, af|column::banded-data-cell.p_AFSelected.p_AFInactive {
+    background: #FAFAFA;
+}
+
+af|table::data-row.p_AFSelected.p_AFFocused af|column::data-cell, af|table::data-row.p_AFSelected.p_AFFocused af|column::banded-data-cell {
+    background: rgb(132, 132, 255);
+}
+
+af|table.custom_table_striped {
+    border-style: none solid solid solid;
+}
+
+af|table.custom_table_striped::data-table-VH-lines af|column::data-cell {
+    border-right: 1px solid #ddd;;
+    border-bottom: 1px solid #ddd;
+}
+
+af|table.custom_table_striped::data-table-VH-lines af|column::banded-data-cell {
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+
+.custom_table_striped af|column::column-header-cell {
+    height: 22px;
+    line-height: 18px;
+    background: #92CDEB;
+    border-color: #C5DDF1;
+    border-right: 1px solid #ddd;
+    color: #333;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.multipleRowsInputtext af|inputText::content {
+    resize: none;
+}
+
+af|tree::collapsed-icon {
+    content: url("/resources/images/+.png");
+    color: blue;
+    cursor: default;
+}
+
+af|tree::expanded-icon {
+    content: url("/resources/images/-.jpg");
+    color: blue;
+    cursor: default;
+}
+
+af|tree::node-anim-icon {
+    content: url("/resources/images/-.jpg");
+    cursor: default;
+}
+
+af|tree::leaf-icon {
+    content: url("/resources/images/folder_leaf.png");
+    cursor: default;
+}
+
+af|tree::selector-icon {
+    content: url("/resources/images/-.jpg");
+    cursor: default;
+}
+
+af|tree::collapsed-icon-style {
+    -tr-inhibit: background-image;
+    padding-right: 0px;
+}
+
+af|tree::expanded-icon-style {
+    -tr-inhibit: background-image;
+    padding-right: 0px;
+}
+
+af|tree::leaf-icon-style {
+    -tr-inhibit: background-image;
+    padding-right: 0px;
+}
+
+af|tree::node-anim-icon-style {
+    -tr-inhibit: background-image;
+    padding-right: 0px;
+}
+
+af|tree::selector-icon-style {
+    -tr-inhibit: background-image;
+}
+/*af|tree::leaf-icon-style {
+    background-image: url("/resources/images/tb.png");
+}*/
+af|tree::data-row {
+    height: 18px;
+    line-height: 18px;
+}
+
+af|tree::data-row:hover {
+    background-color: #8cc6ec;
+}
+
+af|tree::data-row:selected {
+    background-color: #65a5d3;
+}
+/*af|tree::data-row:selected af|tree::node-stamp-text{-tr-inhibit:all;background-color:#65a5d3;border:none;}*/
+af|tree::data-row.p_AFSelected.p_AFFocused af|tree::node-stamp-text {
+    background: none;
+    border: none;
+    font-weight: normal;
+}
+
+af|tree::data-row.p_AFSelected.p_AFInactive af|tree::node-stamp-text {
+    background: none;
+    border: none;
+    font-weight: normal;
+}
+
+af|panelGroupLayout.coverListCell {
+    position: relative;
+    padding: 10px 10px 0px 10px;
+    width: 159px;
+    border-top: 5px solid #F1F1F1;
+    border-right: 10px solid #F1F1F1;
+    border-bottom: 5px solid #F1F1F1;
+    border-left: 10px solid #F1F1F1;
+}
+
+af|panelGroupLayout.coverListCell:hover {
+    position: relative;
+    padding: 10px 10px 0px 10px;
+    width: 159px;
+    border-top: 5px solid #FFFEE0;
+    border-right: 10px solid #FFFEE0;
+    border-bottom: 5px solid #FFFEE0;
+    border-left: 10px solid #FFFEE0;
+}
+
+af|panelGroupLayout.libSelected {
+    background: #DDECFE;
+    margin: 0 10px 0 10px;
+    padding: 5px;
+    border: 1px solid #C1D4EC;
+    /*width:100px;*/
+}
+
+af|panelGroupLayout.libUnSelected {
+    margin: 0 10px 0 10px;
+    padding: 5px;
+}
+
+af|showDetailItem {
+    background: #F3F8FC;
+}
+/*弹出组件的css放在下面*/
+af|dialog {
+    border: 5px solid #cacacc;
+}
+
+af|dialog::header-start {
+    background: none #fff;
+    border: solid #cccccc;
+    border-width: 1px 0 0 1px;
+    background: url('/resources/images/dialog-head-bg.png')repeat-x;
+}
+
+af|dialog::header-end {
+    background: none #fff;
+    border: solid #cccccc;
+    border-width: 1px 1px 0 0;
+    background: url('/resources/images/dialog-head-bg.png')repeat-x;
+}
+
+af|dialog::footer-start {
+    background: none #fff;
+    border: solid #cccccc;
+    border-width: 0 0 1px 1px;
+}
+
+af|dialog::footer-end {
+    background: none #fff;
+    border: solid #cccccc;
+    border-width: 0 1px 1px 0;
+}
+
+af|dialog::content-start {
+    background: none #fff;
+    border: solid #cccccc;
+    border-width: 0 0 0 1px;
+    border-top: 1px solid #ebebeb
+}
+
+af|dialog::content-end {
+    background: none #fff;
+    border: solid #cccccc;
+    border-width: 0 1px 0 0;
+    border-top: 1px solid #ebebeb
+}
+
+af|dialog::header {
+    background: none #fff;
+    border-bottom: 1px solid #ebebeb;
+    border-top: 1px solid #ccc;
+    background: url('/resources/images/dialog-head-bg.png')repeat-x;
+}
+
+af|dialog::footer {
+    background: none #fff;
+    border-bottom: 1px solid #ccc;
+}
+
+af|dialog::content {
+    background: none #fff;
+    padding-top: 13px;
+    padding-left: 18px;
+    padding-right: 18px;
+    padding-bottom: 10px;
+}
+
+af|dialog::content-center {
+    background: none #fff;
+}
+
+af|dialog::close-icon-style {
+    background-image: url('/resources/images/dialog-close-icon.png');
+    cursor: pointer;
+}
+@agent mozilla{ 
+  af|dialog::footer-button{padding:0 0 4px 0px;}
+}
+
+@agent ie{ 
+   af|dialog::footer-button{padding:0;}
+}
+
+af|dialog::footer-button {
+    padding: 0 0 1px 0px;
+}
+
+af|dialog::footer-button.p_AFTextOnly {
+    background: #fbfbfb;
+    color: #555555;
+    border: 1px solid #c3c3c3;
+    border-radius: 2px;
+    width: 70px;
+    height: 25px;
+    font-size: 12px;
+    outline: none;
+}
+
+af|dialog::footer-button.p_AFTextOnly:hover {
+    background: #ff7d0b;
+    color: white;
+    border-color: #fa8600;
+    font-size: 12px;
+    outline: none;
+}
+
+af|dialog::title {
+    font-size: 14px;
+}
+
+af|dialog::close-icon-region {
+    margin-right: 2px;
+    margin-top: 6px;
+}
+
+.AFModalGlassPane {
+    background: #000;
+    opacity: 0.5;
+}
+
+.x165 {
+    display: none;
+}
+
+af|commandImageLink {
+    outline: none;
+}
+
+af|commandImageLink.imagelink_length_2 {
+    margin-left: -10px;
+}
+
+.imagelink_length_2 af|commandImageLink::image {
+    cursor: pointer;
+    position: absolute;
+    padding-left: 3px;
+    margin-left: -9px;
+    margin-top: -1px;
+}
+
+.imagelink_length_2 af|commandImageLink::text {
+    position: relative;
+    top: 17px;
+    left: -25px;
+    cursor: pointer;
+    margin-left: 15px;
+}
+
+af|commandImageLink.imagelink_length_4 {
+    margin-left: -10px;
+}
+
+.imagelink_length_4 af|commandImageLink::image {
+    cursor: pointer;
+    position: absolute;
+    padding-left: 3px;
+    margin-left: 4px;
+    margin-top: -1px;
+}
+
+.imagelink_length_4 af|commandImageLink::text {
+    position: relative;
+    top: 17px;
+    left: -25px;
+    cursor: pointer;
+    margin-left: 15px;
+}
+
+af|commandImageLink.imagelink_length_6 {
+    margin-left: -10px;
+}
+
+.imagelink_length_6 af|commandImageLink::image {
+    cursor: pointer;
+    position: absolute;
+    padding-left: 3px;
+    margin-left: 15px;
+    margin-top: -1px;
+}
+
+.imagelink_length_6 af|commandImageLink::text {
+    position: relative;
+    top: 17px;
+    left: -25px;
+    cursor: pointer;
+    margin-left: 15px;
+}
+@agent ie{ 
+ af|commandImageLink.imagelink_length_2 {
+    margin-left: -10px;
+}
+
+.imagelink_length_2 af|commandImageLink::image {
+    cursor: pointer;
+    position: absolute;
+    padding-left: 3px;
+    margin-top: -1px;
+}
+
+.imagelink_length_2 af|commandImageLink::text {
+    position: relative;
+    top: 17px;
+    left: -35px;
+    cursor: pointer;
+    margin-left: 15px;
+}
+
+af|commandImageLink.imagelink_length_4 {
+    margin-left: -10px;
+}
+
+.imagelink_length_4 af|commandImageLink::image {
+    cursor: pointer;
+    position: absolute;
+    padding-left: 3px;
+    margin-left: 4px;
+    margin-top: -1px;
+}
+
+.imagelink_length_4 af|commandImageLink::text {
+    position: relative;
+    top: 17px;
+    left: -35px;
+    cursor: pointer;
+    margin-left: 15px;
+}
+
+af|commandImageLink.imagelink_length_6 {
+    margin-left: -10px;
+}
+
+.imagelink_length_6 af|commandImageLink::image {
+    cursor: pointer;
+    position: absolute;
+    padding-left: 3px;
+    margin-left: 15px;
+    margin-top: -1px;
+}
+
+.imagelink_length_6 af|commandImageLink::text {
+    position: relative;
+    top: 17px;
+    left: -35px;
+    cursor: pointer;
+    margin-left: 15px;
+}
+}
+
+.bookCoverImage af|commandImageLink::image {
+    cursor: pointer;
+    width: 100%;
+    height : 110px;
+}
+
+.coverImage af|commandImageLink::image {
+    cursor: pointer;
+    width: 150px;
+    height: 100px;
+}
+
+.noCoverImage af|commandImageLink::image {
+    cursor: pointer;
+}
+/*popup button*/
+af|commandButton.popup-btn {
+    margin-right: 5px;
+    padding: 0 5px;
+    background: #fbfbfb;
+    color: #555555;
+    border: 1px solid #c3c3c3;
+    border-radius: 2px;
+    width: 70px;
+    height: 25px;
+    font-size: 12px;
+    vertical-align: middle;
+    outline: none;
+}
+
+af|commandButton.popup-btn:hover {
+    background: #ff7d0b;
+    color: white;
+    border-color: #fa8600;
+    font-size: 12px;
+    vertical-align: middle;
+    outline: none;
+}
+/* default min-btn   gray */
+af|commandButton.min-btn {
+    cursor: pointer;
+    color: #333;
+    border-color: #c3c3c2;
+    border-radius: 2px;
+    height: 22px;
+    line-height: 18px;
+    background: url('/resources/images/gray-btn-bg.png')repeat-x 0px 0px;
+}
+
+af|commandButton.min-btn:hover {
+    color: #666;
+    border-color: #aaa8a7;
+}
+
+af|commandButton.min-btn:disabled {
+    color: #ccc;
+    border-color: #c6c6c6;
+    background: #f2f2f2 none;
+}
+
+af|commandButton.min-btn.p_AFDisabled:hover {
+    border-color: #C6C6C6;
+}
+/* blue min-btn */
+af|commandButton.blue-min-btn {
+    color: black;
+    border-color: #98c9f5;
+    border-radius: 2px;
+    background: url('/resources/images/blue-btn-bg.png');
+}
+
+af|commandButton.blue-min-btn:hover {
+    border-color: #5eb2d6;
+    background: url('/resources/images/blue-btn-bg-hover.png');
+    color: black;
+}
+
+af|panelWindow.downloadWindow::header-start {
+    height: 19px;
+}
+
+af|panelWindow.downloadWindow::header {
+    height: 19px;
+}
+
+af|panelWindow.downloadWindow::header-end {
+    height: 19px;
+}
+
+af|panelWindow.downloadWindow::content {
+    padding: 0px;
+}
+
+af|panelWindow.downloadWindow::footer-start {
+    background-image: none;
+    height: 0px;
+}
+
+af|panelWindow.downloadWindow::footer {
+    background-image: none;
+    height: 0px;
+}
+
+af|panelWindow.downloadWindow::footer-end {
+    background-image: none;
+    height: 0px;
+}
+
+.coverStyle {
+    height: 125px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+af|panelWindow {
+    resize: none;
+}
+
+af|panelWindow::title {
+    font-size: 14px;
+}
+
+af|panelWindow::header-start {
+    background: none #fff;
+    border: solid #cccccc;
+    border-width: 1px 0 0 1px;
+    background: url('/resources/images/dialog-head-bg.png')repeat-x;
+}
+
+af|panelWindow::header-end {
+    background: none #fff;
+    border: solid #cccccc;
+    border-width: 1px 1px 0 0;
+    background: url('/resources/images/dialog-head-bg.png')repeat-x;
+}
+
+af|panelWindow::header {
+    background: none #fff;
+    border-bottom: 1px solid #ebebeb;
+    border-top: 1px solid #ccc;
+    background: url('/resources/images/dialog-head-bg.png')repeat-x;
+}
+
+af|panelWindow::content-start {
+    border-top: 1px solid #f0f0f0;
+}
+
+af|panelWindow::content-end {
+    border-top: 1px solid #f0f0f0;
+}
+
+af|panelWindow::content-center.iframe {
+    outline: none;
+}
+
+af|panelWindow::content {
+    background: white;
+}
+
+af|panelWindow::footer-start {
+    background-repeat: no-repeat;
+    background: #f0f0f0;
+    border: solid #cccccc;
+    border-width: 0 0 1px 1px;
+}
+
+af|panelWindow::footer-end {
+    background-repeat: no-repeat;
+    background: #f0f0f0;
+    border: solid #cccccc;
+    border-width: 0 1px 1px 0;
+}
+
+af|panelWindow::footer {
+    background-repeat: no-repeat;
+    background: #f0f0f0;
+    border: solid #cccccc;
+    border-width: 0 0 1px 0;
+}
+
+af|panelWindow::resize-icon-style {
+    display: none;
+}
+
+af|query::button {
+    cursor: pointer;
+    color: #333;
+    border-color: #c3c3c2;
+    border-radius: 2px;
+    height: 22px;
+    line-height: 18px;
+    background: url('/resources/images/gray-btn-bg.png')repeat-x 0px 0px;
+}
+
+af|query::undisclosed-icon {
+    content: url(/resources/images/panel_header_folded_icon.png);
+    width: 14px;
+    height: 14px;
+}
+
+af|query::undisclosed-icon-style {
+    display: none;
+}
+
+af|query::disclosed-icon {
+    content: url(/resources/images/panel_header_collapse_icon.png);
+    width: 14px;
+    height: 14px;
+}
+
+af|query::disclosed-icon-style {
+    display: none;
+}
+
+af|query::disclosure-icon-container {
+    width: 14px;
+    padding: 0px;
+}
+
+af|query::content-footer.p_AFCore.p_AFDefault {
+    background: none;
+}
+
+af|query::criterion-content {
+    width: 100px;
+}
+
+af|panelGroupLayout.theme-lib-selected {
+    position: relative;
+    width: 150px;
+    height: 30px;
+    background: #F1F8FC;
+    padding-left: 30px;
+    margin-right: 10px;
+}
+
+af|panelGroupLayout.theme-lib-no-selected {
+    position: relative;
+    width: 150px;
+    height: 30px;
+    background: #D9EDF8;
+    padding-left: 30px;
+}
+
+af|separator.theme-separator {
+    margin: 0px 10px 0px 0px;
+}
+
+af|panelTabbed {
+    -tr-tab-bar-height: 30px;
+}
+
+.platform_panelTabbed af|panelTabbed::tab {
+    margin: 0 1px 0 0;
+}
+
+.platform_panelTabbed af|panelTabbed::tab:hover {
+    margin: 0 1px 0 0;
+    color: #000;
+}
+
+.platform_panelTabbed af|panelTabbed::header af|panelTabbed::tab-start {
+    width: 1px;
+    height: 30px;
+    background: url('/resources/images/paneltab-start-bg.png')no-repeat right top;
+    border-right: 1px solid #dddddd;
+}
+
+.platform_panelTabbed af|panelTabbed::header af|panelTabbed::tab-end {
+    width: 1px;
+    height: 30px;
+    background: url('/resources/images/paneltab-end-bg.png')no-repeat left top;;
+    border-left: 1px solid #dddddd;
+}
+
+.platform_panelTabbed af|panelTabbed::header af|panelTabbed::tab-content {
+    padding: 0;
+    font-size: 12px;
+    width: 93px;
+    height: 30px;
+    line-height: 30px;
+    background: url('/resources/images/paneltab-center-bg.png')no-repeat;
+    text-align: center;
+}
+
+.platform_panelTabbed af|panelTabbed::tab-text-link {
+    color: #000;
+    font-weight: normal;
+}
+
+.platform_panelTabbed af|panelTabbed::tab-text-link:hover {
+    color: #000;
+    font-weight: normal;
+}
+
+.platform_panelTabbed af|panelTabbed::tab-text-link:selected {
+    color: #000;
+    font-weight: bold;
+}
+
+.platform_panelTabbed af|panelTabbed::tab-text-link:selected:hover {
+    color: #000;
+    font-weight: bold;
+}
+
+.platform_panelTabbed af|panelTabbed::header-end {
+    background: none #fff;
+}
+
+.platform_panelTabbed af|panelTabbed::header-center {
+    background: url('/resources/images/paneltab-head-center.png')repeat-x 0px bottom;
+}
+
+.platform_panelTabbed af|panelTabbed::header-start {
+    background: none;
+}
+
+.platform_panelTabbed af|panelTabbed::body-start {
+    background: none;
+}
+
+.platform_panelTabbed af|panelTabbed::body {
+    margin: 8px 0px 5px -5px;
+    background: none #fff;
+}
+
+.platform_panelTabbed af|panelTabbed::body-end {
+    background: none #fff;
+}
+
+.platform_panelTabbed af|panelTabbed::header af|panelTabbed::tab:selected af|panelTabbed::tab-content {
+    background: url('/resources/images/paneltab-center-bg-selected.png');
+}
+
+.platform_panelTabbed af|panelTabbed::footer-start {
+    background: none #fff;
+}
+
+.platform_panelTabbed af|panelTabbed::footer {
+    background: none #fff;
+}
+
+.platform_panelTabbed af|panelTabbed::footer-center {
+    background: none #fff;
+}
+
+.platform_panelTabbed af|panelTabbed::footer-end {
+    background: none #fff;
+}
+
+af|panelGroupLayout.coverListCell af|activeOutputText.left-nav-tb-newV {
+    margin-left: -18px;
+    top: -5px;
+    position: absolute;
+    width: 40px;
+    font-size: 8px;
+    font-family: "宋体";
+    line-height: 15px;
+    height: 15px;
+    text-align: center;
+    background-color: #FF6702;
+    border-radius: 2px;
+    color: #fff;
+    font-weight: bold;
+    background: rgb(82,82,255);
+}
+
+af|activeOutputText.table-tb-newV {
+    width: 40px;
+    font-size: 8px;
+    font-family: "宋体";
+    line-height: 18px;
+    height: 18px;
+    text-align: center;
+    background-color: #FF6702;
+    border-radius: 2px;
+    color: #fff;
+    font-weight: bold;
+    background:rgb(82,82,255) ;
+}
+
+
+af|panelGroupLayout.coverListCell af|activeOutputText.left-nav-tb-fail {
+    margin-left: -18px;
+    top: -5px;
+    position: absolute;
+    width: 54px;
+    font-size: 8px;
+    font-family: "宋体";
+    line-height: 15px;
+    height: 15px;
+    text-align: center;
+    background-color: #FF6702;
+    border-radius: 2px;
+    color: #fff;
+    font-weight: bold;
+    background: red;
+}
+
+af|activeOutputText.table-tb-fail {
+    width: 54px;
+    font-size: 8px;
+    font-family: "宋体";
+    line-height: 18px;
+    height: 18px;
+    text-align: center;
+    background-color: #FF6702;
+    border-radius: 2px;
+    color: #fff;
+    font-weight: bold;
+    background:red ;
+}
+
+af|panelGroupLayout.coverListCell af|commandLink.left-nav-tb-link {
+    margin-left: -18px;
+    top: -5px;
+    position: absolute;
+    width: 40px;
+    font-size: 8px;
+    font-family: "宋体";
+    line-height: 15px;
+    height: 15px;
+    text-align: center;
+    background-color: #FF6702;
+    border-radius: 2px;
+    color: #fff;
+    font-weight: bold;
+    background: rgb(82,82,255);
+}
+
+af|commandLink.table-tb-link {
+    width: 40px;
+    font-size: 8px;
+    font-family: "宋体";
+    line-height: 18px;
+    height: 18px;
+    text-align: center;
+    background-color: #FF6702;
+    border-radius: 2px;
+    color: #fff;
+    font-weight: bold;
+    background:rgb(82,82,255) ;
+}
+
+af|panelGroupLayout.statusSelected{
+    background: #92CDEB;
+    padding: 2px;
+    border: 1px solid #92CDEB;
+}
+
+/*panelBox no border + - icon*/
+.collapse_panelBox {
+    padding: 5px 10px 0 15px;
+}
+
+af|panelBox.collapse_panelBox::header-center.p_AFCore.p_AFDefault {
+    background: none;
+    height: 0px;
+}
+
+af|panelBox.collapse_panelBox::header-end.p_AFCore.p_AFDefault {
+    background: none;
+    height: 0px;
+}
+
+af|panelBox.collapse_panelBox::header-start.p_AFCore.p_AFDefault {
+    background: none;
+    display: none;
+    height: 0px;
+}
+
+af|panelBox.collapse_panelBox::footer-start.p_AFCore.p_AFDefault {
+    background: none;
+    height: 0px;
+}
+
+af|panelBox.collapse_panelBox::footer-end.p_AFCore.p_AFDefault {
+    background: none;
+    height: 0px;
+}
+
+af|panelBox.collapse_panelBox::footer-center.p_AFCore.p_AFDefault {
+    background: none;
+    height: 0px;
+}
+
+af|panelBox.collapse_panelBox::center.p_AFCore.p_AFDefault {
+    background: none;
+    border: none;
+}
+
+af|panelBox.collapse_panelBox::undisclosed-icon-style {
+    background: url('/resources/images/+.png') no-repeat;
+    width: 14px;
+    height: 14px;
+}
+
+af|panelBox.collapse_panelBox::disclosed-icon-style {
+    background: url('/resources/images/-.jpg') no-repeat;
+    width: 14px;
+    height: 14px;
+}
+
+af|panelBox.collapse_panelBox::disclosure-icon-container {
+    width: 14px;
+    padding: 0px;
+}
+
+af|panelBox.collapse_panelBox::header-element {
+    color: #333;
+    font-size: 12px;
+    font-weight: bold;
+    padding-left: 6px;
+}
+
+af|commandButton.btn {
+    font-size: 14px;
+    font-weight: 700;
+    padding: 0;
+    cursor: pointer;
+    height: 35px;
+    border-radius: 2px;
+    color: #fff;
+    border-color: #ff6a02;
+    background: url('/resources/images/orange-bigBtn-bg.png');
+}
+
+/* btn-search */
+af|commandButton.btn-search, af|commandButton.btn-search:hover, af|commandButton.btn-search:active, af|commandButton.btn-search:focus {
+    font-weight: normal;
+    font-size: 12px;
+    color: #000;
+    width: 50px;
+    height: 30px;
+    line-height: 27px;
+    border: 0 none;
+    background: url('/resources/images/btn-search.png') no-repeat 2px center;
+    text-align: center;
+}
+/* btn-reset */
+af|commandButton.btn-reset, af|commandButton.btn-reset:hover, af|commandButton.btn-reset:active, af|commandButton.btn-reset:focus {
+    font-weight: normal;
+    font-size: 12px;
+    color: #000;
+    width: 50px;
+    height: 30px;
+    line-height: 27px;
+    border: 0 none;
+    background: url('/resources/images/btn-reset.png') no-repeat 2px center;
+    text-align: center;
+}
+@agent ie  { 
+  af|selectBooleanCheckbox{
+    cursor: pointer;
+  }
+} 

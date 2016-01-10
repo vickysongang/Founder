@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="elecProdViewPageDef"
+                Package="work.elecprod.fragment">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <taskFlow id="related_info_view_taskflow1"
+              taskFlowId="/WEB-INF/common/related_info_view_taskflow.xml#related_info_view_taskflow"
+              activation="deferred" xmlns="http://xmlns.oracle.com/adf/controller/binding">
+      <parameters>
+        <parameter id="docId" value="#{pageFlowScope.docId}"/>
+        <parameter id="position" value="LEFT"/>
+        <parameter id="displayWidth" value="200"/>
+      </parameters>
+    </taskFlow>
+    <iterator Binds="Root.ElecProdAM.CmsElecProdTVO4ViewL" DataControl="WorkAMDataControl" RangeSize="25"
+              id="CmsElecProdTVO4ViewLIterator"/>
+    <taskFlow id="related_info_view_taskflow2"
+              taskFlowId="/WEB-INF/common/related_info_view_taskflow.xml#related_info_view_taskflow"
+              activation="deferred" xmlns="http://xmlns.oracle.com/adf/controller/binding">
+      <parameters>
+        <parameter id="docId" value="#{pageFlowScope.docId}"/>
+        <parameter id="position" value="RIGHT"/>
+        <parameter id="displayWidth" value="200"/>
+      </parameters>
+    </taskFlow>
+    <iterator Binds="Root.ElecProdAM.CmsElecProdTVO4View" DataControl="WorkAMDataControl" RangeSize="25"
+              id="CmsElecProdTVO4ViewIterator"/>
+    <iterator Binds="Root.ElecProdAM.CmsDocUcmRelTVO4FileList" DataControl="WorkAMDataControl" RangeSize="25"
+              id="CmsDocUcmRelTVO4FileListIterator"/>
+    <iterator Binds="Root.ElecProdAM.CmsJbInfoTVO4View" DataControl="WorkAMDataControl" RangeSize="25"
+              id="CmsJbInfoTVO4ViewIterator"/>
+    <iterator Binds="Root.ElecProdAM.CmsXcInfoTVO4View" DataControl="WorkAMDataControl" RangeSize="25"
+              id="CmsXcInfoTVO4ViewIterator"/>
+    <taskFlow id="extend_attr_view_taskflow1"
+              taskFlowId="/WEB-INF/common/extend_attr_view_taskflow.xml#extend_attr_view_taskflow" activation="deferred"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding">
+      <parameters>
+        <parameter id="docId" value="#{pageFlowScope.docId}"/>
+      </parameters>
+    </taskFlow>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="CmsElecProdTVO4ViewIterator" id="ElecProdName">
+      <AttrNames>
+        <Item Value="ElecProdName"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="CmsElecProdTVO4ViewIterator" StaticList="false" Uses="LOV_CarrierType" id="CarrierType"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <attributeValues IterBinding="CmsElecProdTVO4ViewIterator" id="TimeLength">
+      <AttrNames>
+        <Item Value="TimeLength"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsElecProdTVO4ViewIterator" id="Editor">
+      <AttrNames>
+        <Item Value="Editor"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsElecProdTVO4ViewIterator" id="PubTime">
+      <AttrNames>
+        <Item Value="PubTime"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsElecProdTVO4ViewIterator" id="ContentDesc">
+      <AttrNames>
+        <Item Value="ContentDesc"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsElecProdTVO4ViewIterator" id="Isbn">
+      <AttrNames>
+        <Item Value="Isbn"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsElecProdTVO4ViewIterator" id="ItemCode">
+      <AttrNames>
+        <Item Value="ItemCode"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsElecProdTVO4ViewIterator" id="AssortBook">
+      <AttrNames>
+        <Item Value="AssortBook"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsElecProdTVO4ViewIterator" id="PublishingHouse">
+      <AttrNames>
+        <Item Value="PublishingHouse"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="CmsElecProdTVO4ViewIterator" StaticList="false" Uses="LOV_Lang" id="Lang"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <attributeValues IterBinding="CmsElecProdTVO4ViewIterator" id="Amount">
+      <AttrNames>
+        <Item Value="Amount"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsElecProdTVO4ViewIterator" id="DiskDesign">
+      <AttrNames>
+        <Item Value="DiskDesign"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsElecProdTVO4ViewIterator" id="TextEditor">
+      <AttrNames>
+        <Item Value="TextEditor"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsElecProdTVO4ViewIterator" id="Producer">
+      <AttrNames>
+        <Item Value="Producer"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsElecProdTVO4ViewIterator" id="Keyword">
+      <AttrNames>
+        <Item Value="Keyword"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsElecProdTVO4ViewIterator" id="Remarks">
+      <AttrNames>
+        <Item Value="Remarks"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsElecProdTVO4ViewIterator" id="Script">
+      <AttrNames>
+        <Item Value="Script"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="CmsDocUcmRelTVO4FileListIterator" id="CmsDocUcmRelTVO4FileList">
+      <nodeDefinition DefName="com.zypg.cms.work.model.viewobject.common.CmsDocUcmRelTVO"
+                      Name="CmsDocUcmRelTVO4FileList0">
+        <AttrNames>
+          <Item Value="FileName"/>
+          <Item Value="FileCategory"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="CmsElecProdTVO4ViewIterator" id="CategoryName">
+      <AttrNames>
+        <Item Value="CategoryName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsElecProdTVO4ViewIterator" id="CompName">
+      <AttrNames>
+        <Item Value="CompName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsJbInfoTVO4ViewIterator" id="BriefIntroduction">
+      <AttrNames>
+        <Item Value="BriefIntroduction"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="CmsXcInfoTVO4ViewIterator" id="CmsXcInfoTVO4View">
+      <nodeDefinition DefName="com.zypg.cms.work.model.viewobject.book.CmsXcInfoTVO" Name="CmsXcInfoTVO4View0">
+        <AttrNames>
+          <Item Value="Content"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="CmsElecProdTVO4ViewIterator" id="DocId">
+      <AttrNames>
+        <Item Value="DocId"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

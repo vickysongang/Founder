@@ -1,0 +1,156 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core">
+    <af:panelStretchLayout id="psl1" topHeight="40px" inlineStyle="border:1px solid #BAC6CA;background:#F3F8FC;">
+        <f:facet name="top">
+            <af:panelStretchLayout id="psl4" styleClass="AFStretchWidth" inlineStyle="height:40px;" startWidth="auto"
+                                   endWidth="auto">
+                <f:facet name="start">
+                    <af:panelGroupLayout id="pgl1" layout="horizontal"
+                                         inlineStyle="margin:5px 5px 5px 15px;padding-left:20px;"
+                                         binding="#{backingBeanScope.copyrightCompanyMainManagedBean.buttonPanelGroupLayout}"
+                                         partialTriggers="soc1 cil2 cil1 t1">
+                        <af:commandImageLink text="新建" id="cb1" partialSubmit="true" action="toEdit" useWindow="true"
+                                             windowHeight="400" windowWidth="600" icon="/resources/images/new.gif"
+                                             iconPosition="leading" styleClass="imagelink_length_2"
+                                             visible="#{backingBeanScope.copyrightCompanyMainManagedBean.commonRenderer.createEnable}"
+                                             returnListener="#{backingBeanScope.copyrightCompanyMainManagedBean.refreshReturnListener}">
+                            <af:setPropertyListener from="CREATE" to="#{pageFlowScope.mode}" type="action"/>
+                        </af:commandImageLink>
+                        <af:spacer width="10" height="10" id="s5"/>
+                        <af:commandImageLink text="标引" id="cil1" icon="/resources/images/edit.gif" windowHeight="350"
+                                             windowWidth="650" partialSubmit="true" action="toEdit" useWindow="true"
+                                             visible="#{pageFlowScope.companyId !=null and backingBeanScope.copyrightCompanyMainManagedBean.commonRenderer.commonIndexEnable}"
+                                             styleClass="imagelink_length_2" iconPosition="leading"
+                                             returnListener="#{backingBeanScope.copyrightCompanyMainManagedBean.refreshReturnListener}">
+                            <af:setPropertyListener from="EDIT" to="#{pageFlowScope.mode}" type="action"/>
+                        </af:commandImageLink>
+                        <af:spacer width="10" height="10" id="s6"/>
+                        <af:commandImageLink text="删除" icon="/resources/images/delete.gif" id="cil2"
+                                             styleClass="imagelink_length_2" iconPosition="leading"
+                                             visible="#{pageFlowScope.companyId !=null and  backingBeanScope.copyrightCompanyMainManagedBean.commonRenderer.commonDeleteEnable}">
+                            <af:showPopupBehavior popupId="p3" triggerType="action"/>
+                        </af:commandImageLink>
+                        <af:popup childCreation="deferred" autoCancel="disabled" id="p1" contentDelivery="lazyUncached">
+                            <af:dialog id="d1" type="ok">
+                                <af:outputText value="outputText1" id="ot7"/>
+                                <f:facet name="buttonBar"/>
+                            </af:dialog>
+                        </af:popup>
+                        <af:popup childCreation="deferred" autoCancel="disabled" id="p3"
+                                  binding="#{backingBeanScope.copyrightCompanyMainManagedBean.commonRenderer.deletePopup}">
+                            <af:dialog id="d5" title="提示"
+                                       dialogListener="#{backingBeanScope.copyrightCompanyMainManagedBean.deleteActionListener}">
+                                <af:outputText value="你确定要删除吗?" id="ot12"/>
+                            </af:dialog>
+                        </af:popup>
+                    </af:panelGroupLayout>
+                </f:facet>
+                <f:facet name="end"></f:facet>
+            </af:panelStretchLayout>
+        </f:facet>
+        <f:facet name="bottom"></f:facet>
+        <f:facet name="center">
+            <af:panelStretchLayout id="psl2" topHeight="auto" dimensionsFrom="parent"
+                                   partialTriggers="cb1 soc1 cil1 d5">
+                <f:facet name="center">
+                    <af:panelGroupLayout layout="scroll" id="pgl2" partialTriggers="cb1">
+                        <af:table value="#{bindings.CmsCompanyCopyrightVO4View.collectionModel}" var="row"
+                                  rows="#{bindings.CmsCompanyCopyrightVO4View.rangeSize}"
+                                  styleClass="AFStretchWidth custom_table_striped" contentDelivery="immediate"
+                                  columnStretching="multiple" autoHeightRows="0"
+                                  emptyText="#{bindings.CmsCompanyCopyrightVO4View.viewable ? '' : 'Access Denied.'}"
+                                  fetchSize="#{bindings.CmsCompanyCopyrightVO4View.rangeSize}" rowBandingInterval="0"
+                                  selectionListener="#{backingBeanScope.copyrightCompanyMainManagedBean.setCompanyId}"
+                                  sortListener="#{backingBeanScope.copyrightCompanyMainManagedBean.commonRenderer.tableSortListener}"
+                                  rowSelection="single" id="t1">
+                            <af:column sortProperty="#{bindings.CmsCompanyCopyrightVO4View.hints.CompanyName.name}"
+                                       width="20%" sortable="false"
+                                       headerText="#{bindings.CmsCompanyCopyrightVO4View.hints.CompanyName.label}"
+                                       id="c1">
+                                <af:outputText value="#{row.CompanyName}"
+                                               shortDesc="#{bindings.CmsCompanyCopyrightVO4View.hints.CompanyName.tooltip}"
+                                               id="ot5"/>
+                            </af:column>
+                            <af:column sortProperty="#{bindings.CmsCompanyCopyrightVO4View.hints.CompanyAddr.name}"
+                                       width="20%" sortable="false"
+                                       headerText="#{bindings.CmsCompanyCopyrightVO4View.hints.CompanyAddr.label}"
+                                       id="c2">
+                                <af:outputText value="#{row.CompanyAddr}"
+                                               shortDesc="#{bindings.CmsCompanyCopyrightVO4View.hints.CompanyAddr.tooltip}"
+                                               id="ot6"/>
+                            </af:column>
+                            <af:column sortProperty="#{bindings.CmsCompanyCopyrightVO4View.hints.CompanyContact.name}"
+                                       width="20%" sortable="false"
+                                       headerText="#{bindings.CmsCompanyCopyrightVO4View.hints.CompanyContact.label}"
+                                       id="c3">
+                                <af:outputText value="#{row.CompanyContact}"
+                                               shortDesc="#{bindings.CmsCompanyCopyrightVO4View.hints.CompanyContact.tooltip}"
+                                               id="ot8"/>
+                            </af:column>
+                            <af:column sortProperty="#{bindings.CmsCompanyCopyrightVO4View.hints.CompanyPhone.name}"
+                                       width="20%" sortable="false"
+                                       headerText="#{bindings.CmsCompanyCopyrightVO4View.hints.CompanyPhone.label}"
+                                       id="c4">
+                                <af:outputText value="#{row.CompanyPhone}"
+                                               shortDesc="#{bindings.CmsCompanyCopyrightVO4View.hints.CompanyPhone.tooltip}"
+                                               id="ot10"/>
+                            </af:column>
+                            <af:column sortProperty="#{bindings.CmsCompanyCopyrightVO4View.hints.Remarks.name}"
+                                       width="20%" sortable="false"
+                                       headerText="#{bindings.CmsCompanyCopyrightVO4View.hints.Remarks.label}" id="c5">
+                                <af:outputText value="#{row.Remarks}"
+                                               shortDesc="#{bindings.CmsCompanyCopyrightVO4View.hints.Remarks.tooltip}"
+                                               id="ot11"/>
+                            </af:column>
+                        </af:table>
+                    </af:panelGroupLayout>
+                </f:facet>
+                <f:facet name="top">
+                    <af:panelStretchLayout id="psl3" inlineStyle="height:26px;background:#E7ECE5;margin-top:3px;"
+                                           topHeight="0px" bottomHeight="0px" startWidth="auto"
+                                           styleClass="AFStretchWidth" partialTriggers="cl1 cl2 soc1 cb1 d5"
+                                           endWidth="auto">
+                        <f:facet name="bottom"/>
+                        <f:facet name="center"></f:facet>
+                        <f:facet name="start">
+                            <af:panelGroupLayout id="pgl6" layout="horizontal"
+                                                 inlineStyle="padding-top:3px;padding-left:15px;">
+                                <af:outputText value="总个数:#{backingBeanScope.copyrightCompanyMainManagedBean.tableModel.rowCount}"
+                                               id="ot2"/>
+                                <af:spacer width="10" height="10" id="s2"/>
+                                <af:outputText value="每页[20]" id="ot3"/>
+                                <af:spacer width="10" height="10" id="s7"/>
+                                <af:outputText value="页数[" id="ot9"/>
+                                <af:outputText value="#{backingBeanScope.copyrightCompanyMainManagedBean.tableModel.currPageIndex}"
+                                               id="ot1" inlineStyle="color:Red;"/>
+                                <af:outputText value="/#{backingBeanScope.copyrightCompanyMainManagedBean.tableModel.totalPageCount}]"
+                                               id="ot4"/>
+                                <af:spacer width="10" height="10" id="s4"/>
+                                <af:commandLink text="前一页" id="cl1"
+                                                disabled="#{backingBeanScope.copyrightCompanyMainManagedBean.tableModel.isPrevDisabled}"
+                                                actionListener="#{backingBeanScope.copyrightCompanyMainManagedBean.commonRenderer.prevPage}"/>
+                                <af:spacer width="10" height="10" id="s1"/>
+                                <af:commandLink text="后一页" id="cl2"
+                                                disabled="#{backingBeanScope.copyrightCompanyMainManagedBean.tableModel.isNextDisabled}"
+                                                actionListener="#{backingBeanScope.copyrightCompanyMainManagedBean.commonRenderer.nextPage}"/>
+                                <af:spacer width="10" height="10" id="s3"/>
+                                <af:selectOneChoice valueChangeListener="#{backingBeanScope.copyrightCompanyMainManagedBean.commonRenderer.goPageIndex}"
+                                                    id="soc1" simple="true" autoSubmit="true" shortDesc=" "
+                                                    value="#{backingBeanScope.copyrightCompanyMainManagedBean.tableModel.currItem.value}">
+                                    <f:selectItems value="#{backingBeanScope.copyrightCompanyMainManagedBean.tableModel.pageSelectItems}"
+                                                   id="si1"/>
+                                </af:selectOneChoice>
+                                <af:spacer width="10" height="10" id="s8"/>
+                                <af:commandImageLink id="cl3" icon="/resources/images/shuaxin.gif" shortDesc="刷新"
+                                                     actionListener="#{backingBeanScope.copyrightCompanyMainManagedBean.refreshActionListener}"/>
+                            </af:panelGroupLayout>
+                        </f:facet>
+                    </af:panelStretchLayout>
+                </f:facet>
+            </af:panelStretchLayout>
+        </f:facet>
+        <f:facet name="start"/>
+        <f:facet name="end"/>
+    </af:panelStretchLayout>
+</ui:composition>

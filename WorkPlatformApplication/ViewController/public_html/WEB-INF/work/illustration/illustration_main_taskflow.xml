@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="illustration_main_taskflow">
+    <default-activity>initIllustration</default-activity>
+    <input-parameter-definition id="__4">
+      <name>libCode</name>
+      <value>#{pageFlowScope.libCode}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__5">
+      <name>currStatusCode</name>
+      <value>#{pageFlowScope.currStatusCode}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__6">
+      <name>categoryId</name>
+      <value>#{pageFlowScope.categoryId}</value>
+      <class>oracle.jbo.domain.Number</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__7">
+      <name>categoryGroupType</name>
+      <value>#{pageFlowScope.categoryGroupType}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__8">
+      <name>defaultDisplayWay</name>
+      <value>#{pageFlowScope.defaultDisplayWay}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__9">
+      <name>deleteFlag</name>
+      <value>#{pageFlowScope.deleteFlag}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__19">
+      <name>compCode</name>
+      <value>#{pageFlowScope.compCode}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__22">
+      <name>libTypeCode</name>
+      <value>#{pageFlowScope.libTypeCode}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <managed-bean id="__1">
+      <managed-bean-name>illustrationMainManagedBean</managed-bean-name>
+      <managed-bean-class>com.zypg.cms.work.view.bean.IllustrationMainManagedBean</managed-bean-class>
+      <managed-bean-scope>backingBean</managed-bean-scope>
+    </managed-bean>
+    <view id="illustrationMain">
+      <page>/work/illustration/fragment/illustrationMain.jsff</page>
+    </view>
+    <method-call id="initIllustration">
+      <method>#{backingBeanScope.illustrationMainManagedBean.initIllustration}</method>
+      <outcome>
+        <fixed-outcome>toMain</fixed-outcome>
+      </outcome>
+    </method-call>
+    <task-flow-call id="illustration_edit_taskflow">
+      <task-flow-reference>
+        <document>/WEB-INF/work/illustration/illustration_edit_taskflow.xml</document>
+        <id>illustration_edit_taskflow</id>
+      </task-flow-reference>
+      <input-parameter id="__10">
+        <name>docId</name>
+        <value>#{pageFlowScope.docId}</value>
+      </input-parameter>
+      <input-parameter id="__11">
+        <name>batchFlag</name>
+        <value>#{pageFlowScope.batchFlag}</value>
+      </input-parameter>
+      <input-parameter id="__20">
+        <name>compCode</name>
+        <value>#{pageFlowScope.compCode}</value>
+      </input-parameter>
+      <input-parameter id="__23">
+        <name>libTypeCode</name>
+        <value>#{pageFlowScope.libTypeCode}</value>
+      </input-parameter>
+      <input-parameter id="__24">
+        <name>libCode</name>
+        <value>#{pageFlowScope.libCode}</value>
+      </input-parameter>
+      <run-as-dialog>
+        <display-type>
+          <inline-popup/>
+        </display-type>
+      </run-as-dialog>
+    </task-flow-call>
+    <task-flow-call id="relation_set_taskflow">
+      <task-flow-reference>
+        <document>/WEB-INF/work/relation/relation_set_taskflow.xml</document>
+        <id>relation_set_taskflow</id>
+      </task-flow-reference>
+      <input-parameter id="__15">
+        <name>docId</name>
+        <value>#{pageFlowScope.docId}</value>
+      </input-parameter>
+      <input-parameter id="__16">
+        <name>libCode</name>
+        <value>#{pageFlowScope.libCode}</value>
+      </input-parameter>
+      <run-as-dialog>
+        <display-type>
+          <inline-popup/>
+        </display-type>
+      </run-as-dialog>
+    </task-flow-call>
+    <task-flow-call id="attach_mgmt_taskflow">
+      <task-flow-reference>
+        <document>/WEB-INF/work/attach/attach_mgmt_taskflow.xml</document>
+        <id>attach_mgmt_taskflow</id>
+      </task-flow-reference>
+      <input-parameter id="__18">
+        <name>libCode</name>
+        <value>#{pageFlowScope.libCode}</value>
+      </input-parameter>
+      <input-parameter id="__21">
+        <name>docId</name>
+        <value>#{pageFlowScope.docId}</value>
+      </input-parameter>
+      <run-as-dialog>
+        <display-type>
+          <inline-popup/>
+        </display-type>
+      </run-as-dialog>
+    </task-flow-call>
+    <task-flow-call id="complex_search_taskflow">
+      <task-flow-reference>
+        <document>/WEB-INF/common/complex_search_taskflow.xml</document>
+        <id>complex_search_taskflow</id>
+      </task-flow-reference>
+      <input-parameter id="__26">
+        <name>libCode</name>
+        <value>#{pageFlowScope.libCode}</value>
+      </input-parameter>
+      <run-as-dialog>
+        <display-type>
+          <inline-popup/>
+        </display-type>
+      </run-as-dialog>
+    </task-flow-call>
+    <control-flow-rule id="__2">
+      <from-activity-id>initIllustration</from-activity-id>
+      <control-flow-case id="__3">
+        <from-outcome>toMain</from-outcome>
+        <to-activity-id>illustrationMain</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__12">
+      <from-activity-id>illustrationMain</from-activity-id>
+      <control-flow-case id="__13">
+        <from-outcome>toEdit</from-outcome>
+        <to-activity-id>illustration_edit_taskflow</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__14">
+        <from-outcome>toRelationSet</from-outcome>
+        <to-activity-id>relation_set_taskflow</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__17">
+        <from-outcome>toAttach</from-outcome>
+        <to-activity-id>attach_mgmt_taskflow</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__25">
+        <from-outcome>toComplexSearch</from-outcome>
+        <to-activity-id>complex_search_taskflow</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

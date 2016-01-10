@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="related_info_view_taskflow">
+    <default-activity>initRelatedInfo</default-activity>
+    <data-control-scope>
+      <isolated/>
+    </data-control-scope>
+    <input-parameter-definition id="__2">
+      <name>docId</name>
+      <value>#{pageFlowScope.docId}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__3">
+      <name>position</name>
+      <value>#{pageFlowScope.position}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__1">
+      <name>displayWidth</name>
+      <value>#{pageFlowScope.displayWidth}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <managed-bean id="__6">
+      <managed-bean-name>relatedInfoViewManagedBean</managed-bean-name>
+      <managed-bean-class>com.zypg.cms.work.view.bean.RelatedInfoViewManagedBean</managed-bean-class>
+      <managed-bean-scope>backingBean</managed-bean-scope>
+    </managed-bean>
+    <view id="relatedInfo">
+      <page>/work/common/fragment/relatedInfo.jsff</page>
+    </view>
+    <method-call id="initRelatedInfo">
+      <method>#{backingBeanScope.relatedInfoViewManagedBean.initRelatedInfo}</method>
+      <outcome>
+        <fixed-outcome>toRelatedInfo</fixed-outcome>
+      </outcome>
+    </method-call>
+    <task-flow-call id="view_more_related_info_taskflow">
+      <task-flow-reference>
+        <document>/WEB-INF/common/view_more_related_info_taskflow.xml</document>
+        <id>view_more_related_info_taskflow</id>
+      </task-flow-reference>
+      <input-parameter id="__9">
+        <name>docIdList</name>
+        <value>#{pageFlowScope.docIdList}</value>
+      </input-parameter>
+      <run-as-dialog>
+        <display-type>
+          <external-window/>
+        </display-type>
+      </run-as-dialog>
+    </task-flow-call>
+    <control-flow-rule id="__4">
+      <from-activity-id>initRelatedInfo</from-activity-id>
+      <control-flow-case id="__5">
+        <from-outcome>toRelatedInfo</from-outcome>
+        <to-activity-id>relatedInfo</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__7">
+      <from-activity-id>relatedInfo</from-activity-id>
+      <control-flow-case id="__8">
+        <from-outcome>toMore</from-outcome>
+        <to-activity-id>view_more_related_info_taskflow</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

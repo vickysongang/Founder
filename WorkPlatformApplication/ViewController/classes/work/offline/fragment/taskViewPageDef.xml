@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="taskViewPageDef"
+                Package="work.offline.fragment">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="Root.OfflineAM.CmsTaskMonitorLogVO" DataControl="WorkAMDataControl" RangeSize="25"
+              id="CmsTaskMonitorLogVOIterator"/>
+    <iterator Binds="Root.OfflineAM.CmsOfflineEntryProcessTaskVO4Query" DataControl="WorkAMDataControl" RangeSize="25"
+              id="CmsOfflineEntryProcessTaskVO4QueryIterator"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="CmsTaskMonitorLogVOIterator" id="CmsTaskMonitorLogVO">
+      <nodeDefinition DefName="com.zypg.cms.work.model.viewobject.offline.query.CmsTaskMonitorLogVO"
+                      Name="CmsTaskMonitorLogVO0">
+        <AttrNames>
+          <Item Value="LogId"/>
+          <Item Value="TaskOperator"/>
+          <Item Value="ProcessInfo"/>
+          <Item Value="Seq"/>
+          <Item Value="LastUpdateDate"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="CmsOfflineEntryProcessTaskVO4QueryIterator" id="TaskName">
+      <AttrNames>
+        <Item Value="TaskName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsOfflineEntryProcessTaskVO4QueryIterator" id="StatusName">
+      <AttrNames>
+        <Item Value="StatusName"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

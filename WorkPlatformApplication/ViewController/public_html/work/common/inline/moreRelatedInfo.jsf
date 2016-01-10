@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <af:document title="查看更多..." id="d1">
+        <af:form id="f1">
+            <af:panelStretchLayout id="psl1">
+                <f:facet name="bottom"/>
+                <f:facet name="center">
+                    <af:panelGroupLayout layout="scroll" id="pgl4">
+                        <af:panelGridLayout id="pgl2" inlineStyle="border:1px solid #F1F1F1;">
+                            <af:iterator value="#{backingBeanScope.moreRelatedInfoManagedBean.docList}" var="docList"
+                                         id="i1">
+                                <af:gridRow marginTop="5px" height="auto" id="gr1">
+                                    <af:iterator value="#{docList}" var="doc" id="i2">
+                                        <af:gridCell marginStart="5px" width="20%" id="gc2" halign="center"
+                                                     valign="middle">
+                                            <af:panelGroupLayout id="pgl3" layout="vertical" halign="center"
+                                                                 styleClass="coverListCell"
+                                                                 visible="#{doc['docId'] == null ? 'false' : 'true'}">
+                                                <af:panelGroupLayout id="pgl8" layout="horizontal" halign="center"
+                                                                     styleClass="coverStyle">
+                                                    <af:commandImageLink id="cil2" partialSubmit="true"
+                                                                         clientComponent="true"
+                                                                         styleClass="#{doc['thumbnailUrl']== null ? 'noCoverImage' : (doc['coverFlag'] == 'Y'? 'bookCoverImage' : 'coverImage')}"
+                                                                         icon="#{doc['thumbnailUrl']== null ? (doc['coverFlag'] == 'Y'? '/resources/images/cover.jpg' : '/resources/images/lack_image.gif') : doc['thumbnailUrl']}"
+                                                                         actionListener="#{backingBeanScope.moreRelatedInfoManagedBean.viewRelatedDocActionListener}">
+                                                        <f:attribute name="relatedDocId" value="#{doc['docId']}"/>
+                                                        <f:attribute name="libCode" value="#{doc['libCode']}"/>
+                                                    </af:commandImageLink>
+                                                </af:panelGroupLayout>
+                                                <af:spacer width="10" height="5" id="s9"/>
+                                                <af:panelGroupLayout id="pgl5" layout="vertical"
+                                                                     inlineStyle="background:#AAAAAA;margin:0 -10px 0 -10px;height:20px;line-height:20px;">
+                                                    <af:outputText value="#{doc['docName']}" id="ot1"/>
+                                                </af:panelGroupLayout>
+                                            </af:panelGroupLayout>
+                                        </af:gridCell>
+                                    </af:iterator>
+                                </af:gridRow>
+                            </af:iterator>
+                        </af:panelGridLayout>
+                    </af:panelGroupLayout>
+                </f:facet>
+                <f:facet name="start"/>
+                <f:facet name="end"/>
+                <f:facet name="top"/>
+            </af:panelStretchLayout>
+        </af:form>
+    </af:document>
+</f:view>

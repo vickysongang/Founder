@@ -1,0 +1,107 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <af:document title="#{pageFlowScope.mode == 'CREATE'?'新建授权单': pageFlowScope.mode == 'EDIT' ? '修改授权单':'审核'}" id="d1">
+        <af:messages id="m1"/>
+        <f:facet name="metaContainer">
+            <af:resource type="javascript" source="/resources/js/work_platform.js"/>
+        </f:facet>
+        <af:form id="f1">
+            <af:panelStretchLayout id="psl1">
+                <f:facet name="bottom">
+                    <af:panelGroupLayout id="pgl1" layout="vertical" halign="center">
+                        <af:panelGroupLayout id="pgl3" layout="horizontal">
+                            <af:commandButton text="保存" id="cb1" styleClass="popup-btn"
+                                              actionListener="#{backingBeanScope.copyrightOrderEditManagedBean.saveActionListener}"
+                                              action="toReturn"/>
+                            <af:commandButton text="取消" id="cb2" styleClass="popup-btn" immediate="true"
+                                              actionListener="#{backingBeanScope.copyrightOrderEditManagedBean.cancelActionListener}"
+                                              action="toReturn"/>
+                        </af:panelGroupLayout>
+                    </af:panelGroupLayout>
+                </f:facet>
+                <f:facet name="center">
+                    <af:panelGroupLayout id="pgl2">
+                        <af:panelFormLayout id="pfl1" rows="5" maxColumns="2">
+                            <af:inputText value="#{bindings.OrderName.inputValue}"
+                                          label="#{bindings.OrderName.hints.label}"
+                                          contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                          required="true" columns="#{bindings.OrderName.hints.displayWidth}"
+                                          maximumLength="#{bindings.OrderName.hints.precision}"
+                                          shortDesc="#{bindings.OrderName.hints.tooltip}" id="it1" showRequired="true">
+                                <f:validator binding="#{bindings.OrderName.validator}"/>
+                            </af:inputText>
+                            <af:selectOneChoice value="#{bindings.AuthorizedCompany.inputValue}"
+                                                label="#{bindings.AuthorizedCompany.label}" required="true"
+                                                contentStyle="width:207px;height:22px;line-height:22px;border-color:#ABADB3;font-size:12px;"
+                                                shortDesc="#{bindings.AuthorizedCompany.hints.tooltip}" id="soc1"
+                                                showRequired="true">
+                                <f:selectItems value="#{bindings.AuthorizedCompany.items}" id="si1"/>
+                            </af:selectOneChoice>
+                            <af:selectManyCheckbox value="#{pageFlowScope.area}" label="授权地区" id="smc3"
+                                                   layout="horizontal" autoSubmit="true">
+                                <f:selectItems value="#{bindings.Lookup4Area.items}" id="si6"/>
+                            </af:selectManyCheckbox>
+                            <af:selectOneChoice value="#{bindings.AuthorizedType.inputValue}"
+                                                label="#{bindings.AuthorizedType.label}" required="true"
+                                                contentStyle="width:207px;height:22px;line-height:22px;border-color:#ABADB3;font-size:12px;"
+                                                shortDesc="#{bindings.AuthorizedType.hints.tooltip}" id="soc2"
+                                                showRequired="true">
+                                <f:selectItems value="#{bindings.AuthorizedType.items}" id="si2"/>
+                            </af:selectOneChoice>
+                            <af:inputDate value="#{bindings.AuthorizedStartTime.inputValue}"
+                                          label="#{bindings.AuthorizedStartTime.hints.label}" required="true"
+                                          columns="#{bindings.AuthorizedStartTime.hints.displayWidth}"
+                                          contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                          shortDesc="#{bindings.AuthorizedStartTime.hints.tooltip}" id="id1"
+                                          showRequired="true">
+                                <f:validator binding="#{bindings.AuthorizedStartTime.validator}"/>
+                                <af:convertDateTime pattern="#{bindings.AuthorizedStartTime.format}"/>
+                            </af:inputDate>
+                            <af:selectOneChoice value="#{bindings.AuthorizedValidPeriod.inputValue}"
+                                                label="#{bindings.AuthorizedValidPeriod.label}" required="true"
+                                                contentStyle="width:207px;height:22px;line-height:22px;border-color:#ABADB3;font-size:12px;"
+                                                shortDesc="#{bindings.AuthorizedValidPeriod.hints.tooltip}" id="soc4"
+                                                showRequired="true">
+                                <f:selectItems value="#{bindings.AuthorizedValidPeriod.items}" id="si4"/>
+                            </af:selectOneChoice>
+                            <af:selectOneChoice value="#{bindings.AuthorizedFileType.inputValue}"
+                                                label="#{bindings.AuthorizedFileType.label}"
+                                                contentStyle="width:207px;height:22px;line-height:22px;border-color:#ABADB3;font-size:12px;"
+                                                required="true" shortDesc="#{bindings.AuthorizedFileType.hints.tooltip}"
+                                                id="soc3" showRequired="true">
+                                <f:selectItems value="#{bindings.AuthorizedFileType.items}" id="si3"/>
+                            </af:selectOneChoice>
+                            <af:selectManyCheckbox value="#{pageFlowScope.lang}" label="授权语种" id="smc1"
+                                                   layout="horizontal">
+                                <f:selectItems value="#{bindings.Lookup4Lang.items}" id="si7"/>
+                            </af:selectManyCheckbox>
+                            <af:selectOneChoice value="#{bindings.IncludePublicCopyrightFlag.inputValue}"
+                                                label="#{bindings.IncludePublicCopyrightFlag.label}"
+                                                contentStyle="width:207px;height:22px;line-height:22px;border-color:#ABADB3;font-size:12px;"
+                                                required="true"
+                                                shortDesc="#{bindings.IncludePublicCopyrightFlag.hints.tooltip}"
+                                                id="soc5" showRequired="true">
+                                <f:selectItems value="#{bindings.IncludePublicCopyrightFlag.items}" id="si5"/>
+                            </af:selectOneChoice>
+                        </af:panelFormLayout>
+                        <af:panelFormLayout id="pfl2" inlineStyle="margin-left:37px;" maxColumns="1">
+                            <af:inputText value="#{bindings.Remarks.inputValue}" label="#{bindings.Remarks.hints.label}"
+                                          required="#{bindings.Remarks.hints.mandatory}"
+                                          columns="#{bindings.Remarks.hints.displayWidth}"
+                                          contentStyle="width:525px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                          maximumLength="#{bindings.Remarks.hints.precision}"
+                                          shortDesc="#{bindings.Remarks.hints.tooltip}" id="it4"
+                                          styleClass="multipleRowsInputtext" rows="5">
+                                <f:validator binding="#{bindings.Remarks.validator}"/>
+                            </af:inputText>
+                        </af:panelFormLayout>
+                    </af:panelGroupLayout>
+                </f:facet>
+                <f:facet name="start"/>
+                <f:facet name="end"/>
+                <f:facet name="top"/>
+            </af:panelStretchLayout>
+        </af:form>
+    </af:document>
+</f:view>

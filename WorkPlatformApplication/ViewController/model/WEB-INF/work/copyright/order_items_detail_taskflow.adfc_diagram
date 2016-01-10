@@ -1,0 +1,72 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<SDM>
+   <OverallProperties
+      id="OverallProperties1"/>
+   <MethodCall
+      id="MethodCall2">
+      <property
+         name="activityId">initOrderItemsDetail</property>
+      <property
+         name="start">true</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>initOrderItemsDetail&lt;/b> (Default Activity)&lt;/p>&lt;p>Activity Type:  Method Call&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">279.1953</property>
+      <property
+         name="x">187.0</property>
+   </MethodCall>
+   <View
+      id="View3">
+      <property
+         name="activityId">orderItemsDetail</property>
+      <property
+         name="page">/work/copyright/inline/orderItemsDetail.jsf</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>orderItemsDetail&lt;/b>&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">278.0918</property>
+      <property
+         name="x">347.0</property>
+      <property
+         name="pageFragment">false</property>
+   </View>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase4"
+      from="MethodCall2"
+      to="View3">
+      <property
+         name="fromOutcome">toOrderItems</property>
+      <property
+         name="sdm:polyPoints">R50,228.0,278.84473,306.0,277.7412,L50</property>
+   </ControlFlowCase>
+   <TaskFlowReturn
+      id="TaskFlowReturn5">
+      <property
+         name="activityId">taskFlowReturn</property>
+      <property
+         name="finish">true</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>taskFlowReturn&lt;/b>&lt;/p>&lt;p>Activity Type:  Task Flow Return&lt;/p>&lt;p>Outcome:  taskFlowReturn&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">267.94824</property>
+      <property
+         name="x">468.0</property>
+   </TaskFlowReturn>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase6"
+      from="View3"
+      to="TaskFlowReturn5">
+      <property
+         name="fromOutcome">toReturn</property>
+      <property
+         name="sdm:polyPoints">R50,388.0,277.7412,427.0,267.59766,L50</property>
+   </ControlFlowCase>
+</SDM>

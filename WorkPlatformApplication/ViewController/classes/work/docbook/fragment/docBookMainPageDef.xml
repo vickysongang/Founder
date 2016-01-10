@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="docBookMainPageDef"
+                Package="work.docbook.fragment">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="CmsDocBookJobVO" RangeSize="25" DataControl="DocBookAMDataControl"
+              id="CmsDocBookJobVOIterator"/>
+    <iterator Binds="CmsDocBookMonitorVO" RangeSize="25" DataControl="DocBookAMDataControl"
+              id="CmsDocBookMonitorVOIterator"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="CmsDocBookJobVOIterator" id="CmsDocBookJobVO">
+      <nodeDefinition DefName="com.zypg.cms.work.model.viewobject.docbook.CmsDocBookJobTVO" Name="CmsDocBookJobVO0">
+        <AttrNames>
+          <Item Value="CreationDate"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="CmsDocBookMonitorVOIterator" id="CmsDocBookMonitorVO">
+      <nodeDefinition DefName="com.zypg.cms.work.model.viewobject.docbook.query.CmsDocBookMonitorVO"
+                      Name="CmsDocBookMonitorVO0">
+        <AttrNames>
+          <Item Value="StartDate"/>
+          <Item Value="EndDate"/>
+          <Item Value="Status"/>
+          <Item Value="Result"/>
+          <Item Value="Remarks"/>
+          <Item Value="StatusMeaning"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <methodAction id="findMonitorByJobId" InstanceName="data.DocBookAMDataControl.dataProvider"
+                  DataControl="DocBookAMDataControl" RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="findMonitorByJobId" IsViewObjectMethod="false"
+                  ReturnName="data.DocBookAMDataControl.methodResults.findMonitorByJobId_DocBookAMDataControl_dataProvider_findMonitorByJobId_result">
+      <NamedData NDName="jobId" NDValue="#{pageFlowScope.docId}" NDType="oracle.jbo.domain.Number"/>
+    </methodAction>
+  </bindings>
+</pageDefinition>

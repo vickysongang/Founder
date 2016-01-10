@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+    <task-flow-definition id="restemplate_main_taskflow">
+        <default-activity>initResTemplate</default-activity>
+        <data-control-scope>
+            <isolated/>
+        </data-control-scope>
+        <input-parameter-definition id="__6">
+            <name>shelfDocIdList</name>
+            <value>#{pageFlowScope.shelfDocIdList}</value>
+            <class>java.util.List</class>
+        </input-parameter-definition>
+        <input-parameter-definition id="__7">
+            <name>compCode</name>
+            <value>#{pageFlowScope.compCode}</value>
+            <class>java.lang.String</class>
+        </input-parameter-definition>
+        <input-parameter-definition id="__8">
+            <name>categoryCode</name>
+            <value>#{pageFlowScope.categoryCode}</value>
+            <class>java.lang.String</class>
+        </input-parameter-definition>
+        <input-parameter-definition id="__12">
+            <name>deleteFlag</name>
+            <value>#{pageFlowScope.deleteFlag}</value>
+            <class>java.lang.String</class>
+        </input-parameter-definition>
+        <managed-bean id="__1">
+            <managed-bean-name>resTemplateManagedBean</managed-bean-name>
+            <managed-bean-class>com.zypg.cms.work.view.bean.ResTemplateManagedBean</managed-bean-class>
+            <managed-bean-scope>backingBean</managed-bean-scope>
+        </managed-bean>
+        <view id="resTemplateMain">
+            <page>/work/resexp/inline/resTemplateMain.jsf</page>
+        </view>
+        <view id="resTemplateEdit">
+            <page>/work/resexp/inline/resTemplateEdit.jsf</page>
+        </view>
+        <method-call id="initResTemplate">
+            <method>#{backingBeanScope.resTemplateManagedBean.initResTemplate}</method>
+            <outcome>
+                <fixed-outcome>toMain</fixed-outcome>
+            </outcome>
+        </method-call>
+        <task-flow-return id="taskFlowReturn">
+            <outcome>
+                <name>taskFlowReturn</name>
+            </outcome>
+        </task-flow-return>
+        <control-flow-rule id="__2">
+            <from-activity-id>initResTemplate</from-activity-id>
+            <control-flow-case id="__3">
+                <from-outcome>toMain</from-outcome>
+                <to-activity-id>resTemplateMain</to-activity-id>
+            </control-flow-case>
+        </control-flow-rule>
+        <control-flow-rule id="__4">
+            <from-activity-id>resTemplateMain</from-activity-id>
+            <control-flow-case id="__5">
+                <from-outcome>toEdit</from-outcome>
+                <to-activity-id>resTemplateEdit</to-activity-id>
+            </control-flow-case>
+            <control-flow-case id="__9">
+                <from-outcome>toReturn</from-outcome>
+                <to-activity-id>taskFlowReturn</to-activity-id>
+            </control-flow-case>
+        </control-flow-rule>
+        <control-flow-rule id="__10">
+            <from-activity-id>resTemplateEdit</from-activity-id>
+            <control-flow-case id="__11">
+                <from-outcome>toMain</from-outcome>
+                <to-activity-id>resTemplateMain</to-activity-id>
+            </control-flow-case>
+        </control-flow-rule>
+    </task-flow-definition>
+</adfc-config>

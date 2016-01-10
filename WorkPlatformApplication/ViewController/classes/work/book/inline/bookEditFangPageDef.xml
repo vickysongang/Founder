@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="bookEditFangPageDef"
+                Package="work.book.inline">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="Root.BookAM.CmsBookTVO" DataControl="WorkAMDataControl" RangeSize="25" id="CmsBookTVOIterator"/>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="CmsBookTVOIterator" id="BookName">
+      <AttrNames>
+        <Item Value="BookName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsBookTVOIterator" id="ItemCode">
+      <AttrNames>
+        <Item Value="ItemCode"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsBookTVOIterator" id="Editor">
+      <AttrNames>
+        <Item Value="Editor"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsBookTVOIterator" id="Author">
+      <AttrNames>
+        <Item Value="Author"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsBookTVOIterator" id="PublishingHouse">
+      <AttrNames>
+        <Item Value="PublishingHouse"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsBookTVOIterator" id="ChiefEditor">
+      <AttrNames>
+        <Item Value="ChiefEditor"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsBookTVOIterator" id="Impression">
+      <AttrNames>
+        <Item Value="Impression"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsBookTVOIterator" id="PubTime">
+      <AttrNames>
+        <Item Value="PubTime"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsBookTVOIterator" id="Price">
+      <AttrNames>
+        <Item Value="Price"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsBookTVOIterator" id="Suggestion">
+      <AttrNames>
+        <Item Value="Suggestion"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsBookTVOIterator" id="Isbn">
+      <AttrNames>
+        <Item Value="Isbn"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsBookTVOIterator" id="CategoryName">
+      <AttrNames>
+        <Item Value="CategoryName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsBookTVOIterator" id="Series">
+      <AttrNames>
+        <Item Value="Series"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsBookTVOIterator" id="Lang">
+      <AttrNames>
+        <Item Value="Lang"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsBookTVOIterator" id="FormatDesign">
+      <AttrNames>
+        <Item Value="FormatDesign"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsBookTVOIterator" id="CoverDesign">
+      <AttrNames>
+        <Item Value="CoverDesign"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsBookTVOIterator" id="Translator">
+      <AttrNames>
+        <Item Value="Translator"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsBookTVOIterator" id="Edition">
+      <AttrNames>
+        <Item Value="Edition"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsBookTVOIterator" id="Pagination">
+      <AttrNames>
+        <Item Value="Pagination"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="CmsBookTVOIterator" StaticList="false" Uses="LOV_ReaderGroup" id="ReaderGroup"
+          DTSupportsMRU="true" SelectItemValueMode="ListObject"/>
+    <list IterBinding="CmsBookTVOIterator" StaticList="false" Uses="LOV_BookSize" id="BookSize" DTSupportsMRU="true"
+          SelectItemValueMode="ListObject"/>
+    <list IterBinding="CmsBookTVOIterator" StaticList="false" Uses="LOV_ProdSize" id="ProdSize1" DTSupportsMRU="true"
+          SelectItemValueMode="ListObject"/>
+    <list IterBinding="CmsBookTVOIterator" StaticList="false" Uses="LOV_ColorNum" id="ColorNum1" DTSupportsMRU="true"
+          SelectItemValueMode="ListObject"/>
+    <list IterBinding="CmsBookTVOIterator" StaticList="false" Uses="LOV_CoverTypeset" id="CoverTypeset1"
+          DTSupportsMRU="true" SelectItemValueMode="ListObject"/>
+    <list IterBinding="CmsBookTVOIterator" StaticList="false" Uses="LOV_AssortProd" id="AssortProd1"
+          DTSupportsMRU="true" SelectItemValueMode="ListObject"/>
+    <list IterBinding="CmsBookTVOIterator" StaticList="false" Uses="LOV_MainPage" id="MainPage" DTSupportsMRU="true"
+          SelectItemValueMode="ListObject"/>
+    <list IterBinding="CmsBookTVOIterator" StaticList="false" Uses="LOV_MainTypeset" id="MainTypeset"
+          DTSupportsMRU="true" SelectItemValueMode="ListObject"/>
+    <attributeValues IterBinding="CmsBookTVOIterator" id="FormatComp">
+      <AttrNames>
+        <Item Value="FormatComp"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsBookTVOIterator" id="Keyword">
+      <AttrNames>
+        <Item Value="Keyword"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsBookTVOIterator" id="Remarks">
+      <AttrNames>
+        <Item Value="Remarks"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+    <task-flow-definition id="illustration_edit_taskflow">
+        <default-activity>preEditIllustration</default-activity>
+        <data-control-scope>
+            <isolated/>
+        </data-control-scope>
+        <input-parameter-definition id="__6">
+            <name>docId</name>
+            <value>#{pageFlowScope.docId}</value>
+            <class>java.lang.String</class>
+        </input-parameter-definition>
+        <input-parameter-definition id="__7">
+            <name>batchFlag</name>
+            <value>#{pageFlowScope.batchFlag}</value>
+            <class>java.lang.String</class>
+        </input-parameter-definition>
+        <input-parameter-definition id="__8">
+            <name>compCode</name>
+            <value>#{pageFlowScope.compCode}</value>
+            <class>java.lang.String</class>
+        </input-parameter-definition>
+        <input-parameter-definition id="__9">
+            <name>libCode</name>
+            <value>#{pageFlowScope.libCode}</value>
+            <class>java.lang.String</class>
+        </input-parameter-definition>
+        <input-parameter-definition id="__10">
+            <name>libTypeCode</name>
+            <value>#{pageFlowScope.libTypeCode}</value>
+            <class>java.lang.String</class>
+        </input-parameter-definition>
+        <return-value-definition id="__12">
+            <name>comfirmFlag</name>
+            <value>#{pageFlowScope.comfirmFlag}</value>
+            <class>java.lang.String</class>
+        </return-value-definition>
+        <managed-bean id="__1">
+            <managed-bean-name>illustrationEditManagedBean</managed-bean-name>
+            <managed-bean-class>com.zypg.cms.work.view.bean.IllustrationEditManagedBean</managed-bean-class>
+            <managed-bean-scope>backingBean</managed-bean-scope>
+        </managed-bean>
+        <view id="illustrationEdit">
+            <page>/work/illustration/inline/illustrationEdit.jsf</page>
+        </view>
+        <method-call id="preEditIllustration">
+            <method>#{backingBeanScope.illustrationEditManagedBean.preEditIllustration}</method>
+            <outcome>
+                <fixed-outcome>toEdit</fixed-outcome>
+            </outcome>
+        </method-call>
+        <task-flow-return id="taskFlowReturn">
+            <outcome>
+                <name>taskFlowReturn</name>
+            </outcome>
+        </task-flow-return>
+        <control-flow-rule id="__2">
+            <from-activity-id>preEditIllustration</from-activity-id>
+            <control-flow-case id="__3">
+                <from-outcome>toEdit</from-outcome>
+                <to-activity-id>illustrationEdit</to-activity-id>
+            </control-flow-case>
+        </control-flow-rule>
+        <control-flow-rule id="__4">
+            <from-activity-id>illustrationEdit</from-activity-id>
+            <control-flow-case id="__5">
+                <from-outcome>toReturn</from-outcome>
+                <to-activity-id>taskFlowReturn</to-activity-id>
+            </control-flow-case>
+        </control-flow-rule>
+    </task-flow-definition>
+</adfc-config>

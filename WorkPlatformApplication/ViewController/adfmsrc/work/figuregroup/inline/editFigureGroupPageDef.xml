@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="editFigureGroupPageDef"
+                Package="work.figuregroup.inline">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="Root.FigureGroupAM.CmsFigureGroupTVO4Edit" DataControl="WorkAMDataControl" RangeSize="25"
+              id="CmsFigureGroupTVO4EditIterator"/>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="CmsFigureGroupTVO4EditIterator" id="GroupId">
+      <AttrNames>
+        <Item Value="GroupId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsFigureGroupTVO4EditIterator" id="DiplayName">
+      <AttrNames>
+        <Item Value="DiplayName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsFigureGroupTVO4EditIterator" id="CreationDateDisplay">
+      <AttrNames>
+        <Item Value="CreationDateDisplay"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsFigureGroupTVO4EditIterator" id="GroupName">
+      <AttrNames>
+        <Item Value="GroupName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsFigureGroupTVO4EditIterator" id="GroupDesc">
+      <AttrNames>
+        <Item Value="GroupDesc"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

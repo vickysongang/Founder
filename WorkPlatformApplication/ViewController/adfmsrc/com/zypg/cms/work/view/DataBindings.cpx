@@ -1,0 +1,414 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Application xmlns="http://xmlns.oracle.com/adfm/application" version="11.1.2.64.36" id="DataBindings"
+             SeparateXMLFiles="false" Package="com.zypg.cms.work.view" ClientType="Generic">
+    <definitionFactories>
+        <factory nameSpace="http://xmlns.oracle.com/adf/controller/binding"
+                 className="oracle.adf.controller.internal.binding.TaskFlowBindingDefFactoryImpl"/>
+        <dtfactory className="oracle.adf.controller.internal.dtrt.binding.BindingDTObjectFactory"/>
+    </definitionFactories>
+    <pageMap>
+        <page path="/work/fragment/home.jsff" usageId="com_zypg_pm_work_view_homePageDef"/>
+        <page path="/work/homeTest.jsf" usageId="com_zypg_pm_work_view_homeTestPageDef"/>
+        <page path="/work/fragment/work.jsff" usageId="com_zypg_cms_work_view_workPageDef"/>
+        <page path="/work/book/fragment/bookMain.jsff" usageId="com_zypg_cms_work_view_bookMainPageDef"/>
+        <page path="/work/book/inline/bookEdit.jsf" usageId="com_zypg_cms_work_view_bookEditPageDef"/>
+        <page path="/work/elecprod/inline/elecProdEdit.jsf" usageId="com_zypg_cms_work_view_elecProdEditPageDef"/>
+        <page path="/work/elecprod/fragment/elecProdMain.jsff" usageId="com_zypg_cms_work_view_elecProdMainPageDef"/>
+        <page path="/work/common/fragment/categoryPick.jsff" usageId="com_zypg_cms_work_view_categoryPickPageDef"/>
+        <page path="/WEB-INF/work/work_router_taskflow.xml#work_router_taskflow@getDefaultDocDisplayWay"
+              usageId="com_zypg_cms_work_view_work_router_taskflow_work_router_taskflow_getDefaultDocDisplayWayPageDef"/>
+        <page path="/WEB-INF/work/work_router_taskflow.xml#work_router_taskflow@getDefaultStatusCode"
+              usageId="com_zypg_cms_work_view_work_router_taskflow_work_router_taskflow_getDefaultStatusCodePageDef"/>
+        <page path="/work/audio/inline/audioEdit.jsf" usageId="com_zypg_cms_work_view_audioEditPageDef"/>
+        <page path="/work/video/inline/videoEdit.jsf" usageId="com_zypg_cms_work_view_videoEditPageDef"/>
+        <page path="/work/material/inline/materialEdit.jsf" usageId="com_zypg_cms_work_view_materialEditPageDef"/>
+        <page path="/work/photography/inline/photographyEdit.jsf"
+              usageId="com_zypg_cms_work_view_photographyEditPageDef"/>
+        <page path="/work/activity/fragment/activityMain.jsff" usageId="com_zypg_cms_work_view_activityMainPageDef"/>
+        <page path="/work/teachingplan/fragment/teachingPlanMain.jsff"
+              usageId="com_zypg_cms_work_view_teachingPlanMainPageDef"/>
+        <page path="/work/courseware/fragment/coursewareMain.jsff"
+              usageId="com_zypg_cms_work_view_coursewareMainPageDef"/>
+        <page path="/work/activity/inline/activityEdit.jsf" usageId="com_zypg_cms_work_view_activityEditPageDef"/>
+        <page path="/work/teachingplan/inline/teachingPlanEdit.jsf"
+              usageId="com_zypg_cms_work_view_teachingPlanEditPageDef"/>
+        <page path="/work/courseware/inline/coursewareEdit.jsf" usageId="com_zypg_cms_work_view_coursewareEditPageDef"/>
+        <page path="/work/common/inline/processLog.jsf" usageId="com_zypg_cms_work_view_processLogPageDef"/>
+        <page path="/work/log/inline/doc_back.jsf" usageId="com_zypg_cms_work_view_backDocPageDef"/>
+        <page path="/work/log/inline/rollBackLogView.jsf" usageId="com_zypg_cms_work_view_rollBackLogViewPageDef"/>
+        <page path="/work/common/inline/jbInfo.jsf" usageId="com_zypg_cms_work_view_jbInfoPageDef"/>
+        <page path="/work/common/inline/xcInfo.jsf" usageId="com_zypg_cms_work_view_xcInfoPageDef"/>
+        <page path="/work/attach/inline/attachMgmt.jsf" usageId="com_zypg_cms_work_view_attachMgmtPageDef"/>
+        <page path="/work/periodical/fragment/periodicalMain.jsff"
+              usageId="com_zypg_cms_work_view_periodicalMainPageDef"/>
+        <page path="/work/periodical/inline/periodicalEdit.jsf" usageId="com_zypg_cms_work_view_periodicalEditPageDef"/>
+        <page path="/work/figuregroup/inline/newFigureGroup.jsf"
+              usageId="com_zypg_cms_work_view_newFigureGroupPageDef"/>
+        <page path="/work/figuregroup/inline/joinFigureGroup.jsf"
+              usageId="com_zypg_cms_work_view_joinFigureGroupPageDef"/>
+        <page path="/work/docbook/fragment/docBookMain.jsff"
+              usageId="com_zypg_cms_work_view_docBookMainPageDef"/>
+        <page path="/work/periodical/fragment/periodicalView.jsff"
+              usageId="com_zypg_cms_work_view_periodicalViewPageDef"/>
+        <page path="/work/relation/inline/relationSet.jsf" usageId="com_zypg_cms_work_view_relationSetPageDef"/>
+        <page path="/work/audio/fragment/audioMain.jsff" usageId="com_zypg_cms_work_view_audioMainPageDef"/>
+        <page path="/work/video/fragment/videoMain.jsff" usageId="com_zypg_cms_work_view_videoMainPageDef"/>
+        <page path="/work/video/fragment/videoView.jsff" usageId="com_zypg_cms_work_view_videoViewPageDef"/>
+        <page path="/WEB-INF/work/book/book_chapter_view_taskflow.xml#book_chapter_view_taskflow@prepareChapterData"
+              usageId="com_zypg_cms_work_view_book_chapter_view_taskflow_book_chapter_view_taskflow_prepareChapterDataPageDef"/>
+        <page path="/work/book/inline/chapterView.jsf" usageId="com_zypg_cms_work_view_chapterViewPageDef"/>
+        <page path="/work/book/inline/chapterSort.jsf" usageId="com_zypg_cms_work_view_chapterSortPageDef"/>
+        <page path="/WEB-INF/work/book/book_chapter_sort_taskflow.xml#book_chapter_sort_taskflow@init"
+              usageId="com_zypg_cms_work_view_book_chapter_sort_taskflow_book_chapter_sort_taskflow_initPageDef"/>
+        <page path="/work/figuregroup/inline/editFigureGroup.jsf"
+              usageId="com_zypg_cms_work_view_editFigureGroupPageDef"/>
+        <page path="/work/resexp/fragment/tempShelfMain.jsff" usageId="com_zypg_cms_work_view_tempShelfMainPageDef"/>
+        <page path="/work/resexp/inline/resTemplateMain.jsf" usageId="com_zypg_cms_work_view_resTemplateMainPageDef"/>
+        <page path="/work/resexp/inline/resTemplateEdit.jsf" usageId="com_zypg_cms_work_view_resTemplateEditPageDef"/>
+        <page path="/work/illustration/inline/illustrationEdit.jsf"
+              usageId="com_zypg_cms_work_view_illustrationEditPageDef"/>
+        <page path="/work/common/fragment/relatedInfo.jsff" usageId="com_zypg_cms_work_view_relatedInfoPageDef"/>
+        <page path="/work/book/inline/relatedBookView.jsf" usageId="com_zypg_cms_work_view_relatedBookViewPageDef"/>
+        <page path="/work/book/fragment/bookView.jsff" usageId="com_zypg_cms_work_view_bookViewPageDef"/>
+        <page path="/work/newspaper/fragment/newspaperMain.jsff" usageId="com_zypg_cms_work_view_newspaperMainPageDef"/>
+        <page path="/work/newspaper/inline/newspaperEdit.jsf" usageId="com_zypg_cms_work_view_newspaperEditPageDef"/>
+        <page path="/work/resexp/respTest.jsf" usageId="com_zypg_cms_work_view_respTestPageDef"/>
+        <page path="/work/elecprod/inline/relatedElecProdView.jsf"
+              usageId="com_zypg_cms_work_view_relatedElecProdViewPageDef"/>
+        <page path="/work/audio/inline/relatedAudioView.jsf" usageId="com_zypg_cms_work_view_relatedAudioViewPageDef"/>
+        <page path="/work/courseware/inline/relatedCoursewareView.jsf"
+              usageId="com_zypg_cms_work_view_relatedCoursewareViewPageDef"/>
+        <page path="/work/material/inline/relatedMaterialView.jsf"
+              usageId="com_zypg_cms_work_view_relatedMaterialViewPageDef"/>
+        <page path="/work/periodical/inline/relatedPeriodicalView.jsf"
+              usageId="com_zypg_cms_work_view_relatedPeriodicalViewPageDef"/>
+        <page path="/work/photography/inline/relatedPhotographyView.jsf"
+              usageId="com_zypg_cms_work_view_relatedPhotographyViewPageDef"/>
+        <page path="/work/teachingplan/inline/relatedTeachingPlanView.jsf"
+              usageId="com_zypg_cms_work_view_relatedTeachingPlanViewPageDef"/>
+        <page path="/work/video/inline/relatedVideoView.jsf" usageId="com_zypg_cms_work_view_relatedVideoViewPageDef"/>
+        <page path="/work/activity/inline/relatedActivityView.jsf"
+              usageId="com_zypg_cms_work_view_relatedActivityViewPageDef"/>
+        <page path="/work/newspaper/fragment/newspaperView.jsff" usageId="com_zypg_cms_work_view_newspaperViewPageDef"/>
+        <page path="/work/newspaper/inline/relatedNewspaperView.jsf"
+              usageId="com_zypg_cms_work_view_relatedNewspaperViewPageDef"/>
+        <page path="/work/audio/fragment/audioView.jsff" usageId="com_zypg_cms_work_view_audioViewPageDef"/>
+        <page path="/work/activity/fragment/activityView.jsff" usageId="com_zypg_cms_work_view_activityViewPageDef"/>
+        <page path="/work/courseware/fragment/coursewareView.jsff"
+              usageId="com_zypg_cms_work_view_coursewareViewPageDef"/>
+        <page path="/work/teachingplan/fragment/teachingPlanView.jsff"
+              usageId="com_zypg_cms_work_view_teachingPlanViewPageDef"/>
+        <page path="/work/photography/fragment/photographyView.jsff"
+              usageId="com_zypg_cms_work_view_photographyViewPageDef"/>
+        <page path="/work/illustration/fragment/illustrationView.jsff"
+              usageId="com_zypg_cms_work_view_illustrationViewPageDef"/>
+        <page path="/work/illustration/inline/relatedIllustrationView.jsf"
+              usageId="com_zypg_cms_work_view_relatedIllustrationViewPageDef"/>
+        <page path="/work/material/fragment/materialView.jsff" usageId="com_zypg_cms_work_view_materialViewPageDef"/>
+        <page path="/work/copyright/fragment/companyMain.jsff" usageId="com_zypg_cms_work_view_companyMainPageDef"/>
+        <page path="/work/copyright/inline/companyEdit.jsf" usageId="com_zypg_cms_work_view_companyEditPageDef"/>
+        <page path="/work/copyright/fragment/authorMain.jsff" usageId="com_zypg_cms_work_view_authorMainPageDef"/>
+        <page path="/work/copyright/inline/authorEdit.jsf" usageId="com_zypg_cms_work_view_authorEditPageDef"/>
+        <page path="/work/copyright/inline/orderEdit.jsf" usageId="com_zypg_cms_work_view_orderEditPageDef"/>
+        <page path="/work/copyright/inline/orderItems.jsf" usageId="com_zypg_cms_work_view_orderItemsPageDef"/>
+        <page path="/work/copyright/inline/orderItemsDetail.jsf"
+              usageId="com_zypg_cms_work_view_orderItemsDetailPageDef"/>
+        <page path="/work/copyright/fragment/itemMain.jsff" usageId="com_zypg_cms_work_view_itemMainPageDef"/>
+        <page path="/work/copyright/inline/templateSelect.jsf" usageId="com_zypg_cms_work_view_templateSelectPageDef"/>
+        <page path="/work/copyright/fragment/itemView.jsff" usageId="com_zypg_cms_work_view_itemViewPageDef"/>
+        <page path="/work/copyright/inline/copyrightItemView.jsf"
+              usageId="com_zypg_cms_work_view_copyrightItemViewPageDef"/>
+        <page path="/work/copyright/fragment/orderView.jsff" usageId="com_zypg_cms_work_view_orderViewPageDef"/>
+        <page path="/work/copyright/inline/copyrightOrderView.jsf"
+              usageId="com_zypg_cms_work_view_copyrightOrderViewPageDef"/>
+        <page path="/work/copyright/fragment/authorView.jsff" usageId="com_zypg_cms_work_view_authorViewPageDef"/>
+        <page path="/work/copyright/inline/copyrightAuthorView.jsf"
+              usageId="com_zypg_cms_work_view_copyrightAuthorViewPageDef"/>
+        <page path="/work/elecprod/fragment/elecProdView.jsff" usageId="com_zypg_cms_work_view_elecProdViewPageDef"/>
+        <page path="/WEB-INF/work/work_taskflow.xml#work_taskflow@findFirstLevelLib"
+              usageId="com_zypg_cms_work_view_work_taskflow_work_taskflow_findFirstLevelLibPageDef"/>
+        <page path="/work/common/inline/batchSyncLog.jsf" usageId="com_zypg_cms_work_view_batchSyncLogPageDef"/>
+        <page path="/work/common/inline/onlineRead.jsf" usageId="com_zypg_cms_work_view_onlineReadPageDef"/>
+        <page path="/work/common/fragment/onlineRead.jsff" usageId="com_zypg_cms_work_view_onlineReadPageDef1"/>
+        <page path="/work/entry/inline/worksEntryEdit.jsf" usageId="com_zypg_cms_work_view_worksEntryEditPageDef"/>
+        <page path="/work/entry/inline/encyclopediasEntryEdit.jsf"
+              usageId="com_zypg_cms_work_view_encyclopediasEntryEditPageDef"/>
+        <page path="/work/entry/inline/relatedWorksEntryView.jsf"
+              usageId="com_zypg_cms_work_view_relatedWorksEntryViewPageDef"/>
+        <page path="/work/entry/fragment/worksEntryView.jsff" usageId="com_zypg_cms_work_view_worksEntryViewPageDef"/>
+        <page path="/work/entry/inline/relatedEncyclopediasEntryView.jsf"
+              usageId="com_zypg_cms_work_view_relatedEncyclopediasEntryViewPageDef"/>
+        <page path="/work/entry/fragment/encyclopediasEntryView.jsff"
+              usageId="com_zypg_cms_work_view_encyclopediasEntryViewPageDef"/>
+        <page path="/work/offline/inline/taskView.jsf" usageId="com_zypg_cms_work_view_taskViewPageDef"/>
+        <page path="/work/offline/fragment/taskView.jsff" usageId="com_zypg_cms_work_view_taskViewPageDef1"/>
+        <page path="/work/theme/inline/ThemeEdit.jsf" usageId="com_zypg_cms_work_view_ThemeEditPageDef"/>
+        <page path="/work/entry/inline/relatedEntryDupView.jsf"
+              usageId="com_zypg_cms_work_view_relatedEntryDupViewPageDef"/>
+        <page path="/work/entry/fragment/entryDupView.jsff" usageId="com_zypg_cms_work_view_entryDupViewPageDef"/>
+        <page path="/work/theme/inline/themeResource.jsf" usageId="com_zypg_cms_work_view_themeResourcePageDef"/>
+        <page path="/work/theme/inline/resourceOrigin.jsf" usageId="com_zypg_cms_work_view_resourceOriginPageDef"/>
+        <page path="/work/theme/fragment/themeResourceOrigin.jsff"
+              usageId="com_zypg_cms_work_view_themeResourceOriginPageDef"/>
+        <page path="/work/theme/fragment/themeResourceHome.jsff"
+              usageId="com_zypg_cms_work_view_themeResourceHomePageDef"/>
+        <page path="/work/common/inline/gatherMonitor.jsf" usageId="com_zypg_cms_work_view_gatherMonitorPageDef"/>
+        <page path="/work/resexp/inline/exportBookHtml.jsf" usageId="com_zypg_cms_work_view_exportBookHtmlPageDef"/>
+        <page path="/WEB-INF/work/resexp/export_book_html_taskflow.xml#export_book_html_taskflow@CreateInsert"
+              usageId="com_zypg_cms_work_view_export_book_html_taskflow_export_book_html_taskflow_CreateInsertPageDef"/>
+        <page path="/WEB-INF/work/resexp/export_book_html_taskflow.xml#export_book_html_taskflow@methodCall1"
+              usageId="com_zypg_cms_work_view_export_book_html_taskflow_export_book_html_taskflow_methodCall1PageDef"/>
+        <page path="/WEB-INF/work/theme/theme_export_log_show_task-flow.xml#theme_export_log_show_task-flow@Execute"
+              usageId="com_zypg_cms_work_view_theme_export_log_show_task_flow_theme_export_log_show_task_flow_ExecutePageDef"/>
+        <page path="/work/theme/inline/themeExport.jsf" usageId="com_zypg_cms_work_view_themeExportPageDef"/>
+        <page path="/work/theme/fragment/themeExportLogShow.jsff"
+              usageId="com_zypg_cms_work_view_themeExportLogShowPageDef"/>
+        <page path="/work/theme/fragment/themeExport.jsff" usageId="com_zypg_cms_work_view_themeExportPageDef1"/>
+        <page path="/work/theme/inline/themeExportLogShow.jsf"
+              usageId="com_zypg_cms_work_view_themeExportLogShowPageDef"/>
+        <page path="/work/resexp/inline/applyDownload.jsf" usageId="com_zypg_cms_work_view_applyDownloadPageDef"/>
+        <page path="/work/resexp/fragment/applyDownload.jsff" usageId="com_zypg_cms_work_view_applyDownloadPageDef1"/>
+        <page path="/work/resexp/fragment/searchExportMain.jsff"
+              usageId="com_zypg_cms_work_view_searchExportMainPageDef"/>
+        <page path="/work/common/fragment/extendAttr.jsff" usageId="com_zypg_cms_work_view_extendAttrPageDef"/>
+        <page path="/work/extendAttrTest.jsf" usageId="com_zypg_cms_work_view_extendAttrTestPageDef"/>
+        <page path="/WEB-INF/work/home-taskflow.xml#home-taskflow@findUserComp"
+              usageId="com_zypg_cms_work_view_home_taskflow_home_taskflow_findUserCompPageDef"/>
+        <page path="/work/common/inline/complexSearch.jsf" usageId="com_zypg_cms_work_view_complexSearchPageDef"/>
+    </pageMap>
+    <pageDefinitionUsages>
+        <page id="com_zypg_pm_work_view_homePageDef" path="work.fragment.homePageDef"/>
+        <page id="com_zypg_pm_work_view_homeTestPageDef" path="work.homeTestPageDef"/>
+        <page id="com_zypg_cms_work_view_workPageDef" path="work.fragment.workPageDef"/>
+        <page id="com_zypg_cms_work_view_bookEditPageDef" path="work.book.fragment.bookEditPageDef"/>
+        <page id="com_zypg_cms_work_view_bookMainPageDef" path="work.book.fragment.bookMainPageDef"/>
+        <page id="com_zypg_cms_work_view_elecProdEditPageDef" path="work.elecprod.inline.elecProdEditPageDef"/>
+        <page id="com_zypg_cms_work_view_elecProdMainPageDef" path="work.elecprod.fragment.elecProdMainPageDef"/>
+        <page id="com_zypg_cms_work_view_categoryPickPageDef" path="work.common.fragment.categoryPickPageDef"/>
+        <page id="com_zypg_cms_work_view_work_router_taskflow_work_router_taskflow_getDefaultDocDisplayWayPageDef"
+              path="work.work_router_taskflow_work_router_taskflow_getDefaultDocDisplayWayPageDef"/>
+        <page id="com_zypg_cms_work_view_work_router_taskflow_work_router_taskflow_getDefaultStatusCodePageDef"
+              path="work.work_router_taskflow_work_router_taskflow_getDefaultStatusCodePageDef"/>
+        <page id="com_zypg_cms_work_view_audioEditPageDef" path="work.audio.inline.audioEditPageDef"/>
+        <page id="com_zypg_cms_work_view_videoEditPageDef" path="work.video.inline.videoEditPageDef"/>
+        <page id="com_zypg_cms_work_view_materialEditPageDef" path="work.material.inline.materialEditPageDef"/>
+        <page id="com_zypg_cms_work_view_photographyEditPageDef" path="work.photography.inline.photographyEditPageDef"/>
+        <page id="com_zypg_cms_work_view_activityMainPageDef" path="work.activity.fragment.activityMainPageDef"/>
+        <page id="com_zypg_cms_work_view_teachingPlanMainPageDef"
+              path="work.teachingplan.fragment.teachingPlanMainPageDef"/>
+        <page id="com_zypg_cms_work_view_coursewareMainPageDef" path="work.courseware.fragment.coursewareMainPageDef"/>
+        <page id="com_zypg_cms_work_view_testPageDef" path="work.activity.inline.testPageDef"/>
+        <page id="com_zypg_cms_work_view_activity_edit_taskflow_activity_edittaskflow_preEidtActivityPageDef"
+              path="work.activity.activity_edit_taskflow_activity_edittaskflow_preEidtActivityPageDef"/>
+        <page id="com_zypg_cms_work_view_activityEditPageDef" path="work.activity.inline.activityEditPageDef"/>
+        <page id="com_zypg_cms_work_view_activityMainPageDef1" path="work.activity.fragment.activityMainPageDef1"/>
+        <page id="com_zypg_cms_work_view_teachingPlanEditPageDef"
+              path="work.teachingplan.inline.teachingPlanEditPageDef"/>
+        <page id="com_zypg_cms_work_view_coursewareEditPageDef" path="work.courseware.inline.coursewareEditPageDef"/>
+        <page id="com_zypg_cms_work_view_processLogPageDef" path="work.common.fragment.processLogPageDef"/>
+        <page id="com_zypg_cms_work_view_backDocPageDef" path="work.common.inline.backDocPageDef"/>
+        <page id="com_zypg_cms_work_view_rollBackLogViewPageDef" path="work.log.inline.rollBackLogViewPageDef"/>
+        <page id="com_zypg_cms_work_view_doc_back_taskflow_rollback_log_taskflow_preDocBackPageDef"
+              path="work.log.doc_back_taskflow_rollback_log_taskflow_preDocBackPageDef"/>
+        <page id="com_zypg_cms_work_view_doc_back_taskflow_doc_back_taskflow_preDocBackPageDef"
+              path="work.log.doc_back_taskflow_doc_back_taskflow_preDocBackPageDef"/>
+        <page id="com_zypg_cms_work_view_jbInfoPageDef" path="work.book.inline.jbInfoPageDef"/>
+        <page id="com_zypg_cms_work_view_xcInfoPageDef" path="work.book.inline.xcInfoPageDef"/>
+        <page id="com_zypg_cms_work_view_audio_attach_taskflow_audio_attach_taskflow_preEidtAttachPageDef"
+              path="work.audio.audio_attach_taskflow_audio_attach_taskflow_preEidtAttachPageDef"/>
+        <page id="com_zypg_cms_work_view_attachMgmtPageDef" path="work.attach.inline.attachMgmtPageDef"/>
+        <page id="com_zypg_cms_work_view_periodicalMainPageDef" path="work.periodical.fragment.periodicalMainPageDef"/>
+        <page id="com_zypg_cms_work_view_periodicalEditPageDef" path="work.periodical.inline.periodicalEditPageDef"/>
+        <page id="com_zypg_cms_work_view_newFigureGroupPageDef" path="work.figuregroup.inline.newFigureGroupPageDef"/>
+        <page id="com_zypg_cms_work_view_joinFigureGroupPageDef" path="work.figuregroup.inline.joinFigureGroupPageDef"/>
+        <page id="com_zypg_cms_work_view_docBookMainPageDef" path="work.docbook.fragment.docBookMainPageDef"/>
+        <page id="com_zypg_cms_work_view_bookViewPageDef" path="work.book.fragment.bookViewPageDef"/>
+        <page id="com_zypg_cms_work_view_periodicalViewPageDef" path="work.periodical.fragment.periodicalViewPageDef"/>
+        <page id="com_zypg_cms_work_view_relationSetPageDef" path="work.relation.inline.relationSetPageDef"/>
+        <page id="com_zypg_cms_work_view_audioMainPageDef" path="work.audio.fragment.audioMainPageDef"/>
+        <page id="com_zypg_cms_work_view_videoMainPageDef" path="work.video.fragment.videoMainPageDef"/>
+        <page id="com_zypg_cms_work_view_videoViewPageDef" path="work.video.fragment.videoViewPageDef"/>
+        <page id="com_zypg_cms_work_view_bookTestPageDef" path="work.book.bookTestPageDef"/>
+        <page id="com_zypg_cms_work_view_book_chapter_view_taskflow_book_chapter_view_taskflow_prepareChapterDataPageDef"
+              path="work.book.book_chapter_view_taskflow_book_chapter_view_taskflow_prepareChapterDataPageDef"/>
+        <page id="com_zypg_cms_work_view_tempShelfMainPageDef" path="work.resexp.fragment.tempShelfMainPageDef"/>
+        <page id="com_zypg_cms_work_view_chapterViewPageDef" path="work.book.inline.chapterViewPageDef"/>
+        <page id="com_zypg_cms_work_view_chapterSortPageDef" path="work.book.inline.chapterSortPageDef"/>
+        <page id="com_zypg_cms_work_view_book_chapter_sort_taskflow_book_chapter_sort_taskflow_initPageDef"
+              path="work.book.book_chapter_sort_taskflow_book_chapter_sort_taskflow_initPageDef"/>
+        <page id="com_zypg_cms_work_view_editFigureGroupPageDef" path="work.figuregroup.inline.editFigureGroupPageDef"/>
+        <page id="com_zypg_cms_work_view_resTemplateMainPageDef" path="work.resexp.inline.resTemplateMainPageDef"/>
+        <page id="com_zypg_cms_work_view_resTemplateEditPageDef" path="work.resexp.inline.resTemplateEditPageDef"/>
+        <page id="com_zypg_cms_work_view_illustrationEditPageDef"
+              path="work.illustration.inline.illustrationEditPageDef"/>
+        <page id="com_zypg_cms_work_view_relatedInfoPageDef" path="work.common.fragment.relatedInfoPageDef"/>
+        <page id="com_zypg_cms_work_view_relatedBookViewPageDef" path="work.book.inline.relatedBookViewPageDef"/>
+        <page id="com_zypg_cms_work_view_newspaperMainPageDef" path="work.newspaper.fragment.newspaperMainPageDef"/>
+        <page id="com_zypg_cms_work_view_newspaperEditPageDef" path="work.newspaper.inline.newspaperEditPageDef"/>
+        <page id="com_zypg_cms_work_view_respTestPageDef" path="work.resexp.respTestPageDef"/>
+        <page id="com_zypg_cms_work_view_relatedElecProdViewPageDef"
+              path="work.elecprod.inline.relatedElecProdViewPageDef"/>
+        <page id="com_zypg_cms_work_view_relatedAudioViewPageDef" path="work.audio.inline.relatedAudioViewPageDef"/>
+        <page id="com_zypg_cms_work_view_relatedCoursewareViewPageDef"
+              path="work.courseware.inline.relatedCoursewareViewPageDef"/>
+        <page id="com_zypg_cms_work_view_relatedMaterialViewPageDef"
+              path="work.material.inline.relatedMaterialViewPageDef"/>
+        <page id="com_zypg_cms_work_view_relatedPeriodicalViewPageDef"
+              path="work.periodical.inline.relatedPeriodicalViewPageDef"/>
+        <page id="com_zypg_cms_work_view_relatedPhotographyViewPageDef"
+              path="work.photography.inline.relatedPhotographyViewPageDef"/>
+        <page id="com_zypg_cms_work_view_relatedTeachingPlanViewPageDef"
+              path="work.teachingplan.inline.relatedTeachingPlanViewPageDef"/>
+        <page id="com_zypg_cms_work_view_relatedVideoViewPageDef" path="work.video.inline.relatedVideoViewPageDef"/>
+        <page id="com_zypg_cms_work_view_relatedActivityViewPageDef"
+              path="work.activity.inline.relatedActivityViewPageDef"/>
+        <page id="com_zypg_cms_work_view_newspaperViewPageDef" path="work.newspaper.fragment.newspaperViewPageDef"/>
+        <page id="com_zypg_cms_work_view_relatedNewspaperViewPageDef"
+              path="work.newspaper.inline.relatedNewspaperViewPageDef"/>
+        <page id="com_zypg_cms_work_view_audioViewPageDef" path="work.audio.fragment.audioViewPageDef"/>
+        <page id="com_zypg_cms_work_view_activityViewPageDef" path="work.activity.fragment.activityViewPageDef"/>
+        <page id="com_zypg_cms_work_view_coursewareViewPageDef" path="work.courseware.fragment.coursewareViewPageDef"/>
+        <page id="com_zypg_cms_work_view_teachingPlanViewPageDef"
+              path="work.teachingplan.fragment.teachingPlanViewPageDef"/>
+        <page id="com_zypg_cms_work_view_photographyViewPageDef"
+              path="work.photography.fragment.photographyViewPageDef"/>
+        <page id="com_zypg_cms_work_view_illustrationViewPageDef"
+              path="work.illustration.fragment.illustrationViewPageDef"/>
+        <page id="com_zypg_cms_work_view_relatedIllustrationViewPageDef"
+              path="work.illustration.inline.relatedIllustrationViewPageDef"/>
+        <page id="com_zypg_cms_work_view_materialViewPageDef" path="work.material.fragment.materialViewPageDef"/>
+        <page id="com_zypg_cms_work_view_companyMainPageDef" path="work.copyright.fragment.companyMainPageDef"/>
+        <page id="com_zypg_cms_work_view_companyEditPageDef" path="work.copyright.inline.companyEditPageDef"/>
+        <page id="com_zypg_cms_work_view_authorMainPageDef" path="work.copyright.fragment.authorMainPageDef"/>
+        <page id="com_zypg_cms_work_view_authorEditPageDef" path="work.copyright.inline.authorEditPageDef"/>
+        <page id="com_zypg_cms_work_view_orderEditPageDef" path="work.copyright.inline.orderEditPageDef"/>
+        <page id="com_zypg_cms_work_view_orderItemsPageDef" path="work.copyright.inline.orderItemsPageDef"/>
+        <page id="com_zypg_cms_work_view_orderItemsDetailPageDef" path="work.copyright.inline.orderItemsDetailPageDef"/>
+        <page id="com_zypg_cms_work_view_itemMainPageDef" path="work.copyright.fragment.itemMainPageDef"/>
+        <page id="com_zypg_cms_work_view_templateSelectPageDef" path="work.copyright.inline.templateSelectPageDef"/>
+        <page id="com_zypg_cms_work_view_gatherMonitorPageDef" path="work.common.fragment.gatherMonitorPageDef"/>
+        <page id="com_zypg_cms_work_view_itemViewPageDef" path="work.copyright.fragment.itemViewPageDef"/>
+        <page id="com_zypg_cms_work_view_copyrightItemViewPageDef"
+              path="work.copyright.inline.copyrightItemViewPageDef"/>
+        <page id="com_zypg_cms_work_view_orderViewPageDef" path="work.copyright.fragment.orderViewPageDef"/>
+        <page id="com_zypg_cms_work_view_copyrightOrderViewPageDef"
+              path="work.copyright.inline.copyrightOrderViewPageDef"/>
+        <page id="com_zypg_cms_work_view_authorViewPageDef" path="work.copyright.fragment.authorViewPageDef"/>
+        <page id="com_zypg_cms_work_view_copyrightAuthorViewPageDef"
+              path="work.copyright.inline.copyrightAuthorViewPageDef"/>
+        <page id="com_zypg_cms_work_view_elecProdViewPageDef" path="work.elecprod.fragment.elecProdViewPageDef"/>
+        <page id="com_zypg_cms_work_view_work_taskflow_work_taskflow_findFirstLevelLibPageDef"
+              path="work.work_taskflow_work_taskflow_findFirstLevelLibPageDef"/>
+        <page id="com_zypg_cms_work_view_batchSyncLogPageDef" path="work.common.inline.batchSyncLogPageDef"/>
+        <page id="com_zypg_cms_work_view_onlineReadPageDef" path="work.common.inline.onlineReadPageDef"/>
+        <page id="com_zypg_cms_work_view_onlineReadPageDef1" path="work.common.fragment.onlineReadPageDef"/>
+        <page id="com_zypg_cms_work_view_worksEntryEditPageDef" path="work.entry.inline.worksEntryEditPageDef"/>
+        <page id="com_zypg_cms_work_view_encyclopediasEntryEditPageDef"
+              path="work.entry.inline.encyclopediasEntryEditPageDef"/>
+        <page id="com_zypg_cms_work_view_relatedWorksEntryViewPageDef"
+              path="work.entry.inline.relatedWorksEntryViewPageDef"/>
+        <page id="com_zypg_cms_work_view_worksEntryViewPageDef" path="work.entry.fragment.worksEntryViewPageDef"/>
+        <page id="com_zypg_cms_work_view_relatedEncyclopediasEntryViewPageDef"
+              path="work.entry.inline.relatedEncyclopediasEntryViewPageDef"/>
+        <page id="com_zypg_cms_work_view_encyclopediasEntryViewPageDef"
+              path="work.entry.fragment.encyclopediasEntryViewPageDef"/>
+        <page id="com_zypg_cms_work_view_taskViewPageDef" path="work.offline.inline.taskViewPageDef"/>
+        <page id="com_zypg_cms_work_view_taskViewPageDef1" path="work.offline.fragment.taskViewPageDef"/>
+        <page id="com_zypg_cms_work_view_ThemeEditPageDef" path="work.theme.inline.ThemeEditPageDef"/>
+        <page id="com_zypg_cms_work_view_themeMakerPageDef" path="work.theme.inline.themeMakerPageDef"/>
+        <page id="com_zypg_cms_work_view_relatedEntryDupViewPageDef"
+              path="work.entry.inline.relatedEntryDupViewPageDef"/>
+        <page id="com_zypg_cms_work_view_entryDupViewPageDef" path="work.entry.fragment.entryDupViewPageDef"/>
+        <page id="com_zypg_cms_work_view_themeResourcePageDef" path="work.theme.inline.themeResourcePageDef"/>
+        <page id="com_zypg_cms_work_view_resourceOriginPageDef" path="work.theme.inline.resourceOriginPageDef"/>
+        <page id="com_zypg_cms_work_view_themeResourceOriginPageDef"
+              path="work.theme.fragment.themeResourceOriginPageDef"/>
+        <page id="com_zypg_cms_work_view_themeResourceHomePageDef" path="work.theme.fragment.themeResourceHomePageDef"/>
+        <page id="com_zypg_cms_work_view_exportBookHtmlPageDef" path="work.resexp.inline.exportBookHtmlPageDef"/>
+        <page id="com_zypg_cms_work_view_export_book_html_taskflow_export_book_html_taskflow_CreateInsertPageDef"
+              path="work.resexp.export_book_html_taskflow_export_book_html_taskflow_CreateInsertPageDef"/>
+        <page id="com_zypg_cms_work_view_export_book_html_taskflow_export_book_html_taskflow_methodCall1PageDef"
+              path="work.resexp.export_book_html_taskflow_export_book_html_taskflow_methodCall1PageDef"/>
+        <page id="com_zypg_cms_work_view_themeExportLogShowPageDef" path="work.theme.inline.themeExportLogShowPageDef"/>
+        <page id="com_zypg_cms_work_view_theme_export_log_show_task_flow_theme_export_log_show_task_flow_ExecutePageDef"
+              path="work.theme.theme_export_log_show_task_flow_theme_export_log_show_task_flow_ExecutePageDef"/>
+        <page id="com_zypg_cms_work_view_themeExportPageDef" path="work.theme.inline.themeExportPageDef"/>
+        <page id="com_zypg_cms_work_view_themeExportPageDef1" path="work.theme.fragment.themeExportPageDef"/>
+        <page id="com_zypg_cms_work_view_applyDownloadPageDef" path="work.resexp.inline.applyDownloadPageDef"/>
+        <page id="com_zypg_cms_work_view_applyDownloadPageDef1" path="work.resexp.fragment.applyDownloadPageDef"/>
+        <page id="com_zypg_cms_work_view_searchExportMainPageDef" path="work.resexp.fragment.searchExportMainPageDef"/>
+        <page id="com_zypg_cms_work_view_extendAttrPageDef" path="work.common.fragment.extendAttrPageDef"/>
+        <page id="com_zypg_cms_work_view_extendAttrTestPageDef" path="work.extendAttrTestPageDef"/>
+        <page id="com_zypg_cms_work_view_home_taskflow_home_taskflow_findUserCompPageDef"
+              path="work.home_taskflow_home_taskflow_findUserCompPageDef"/>
+        <page id="com_zypg_cms_work_view_complexSearchPageDef" path="work.common.inline.complexSearchPageDef"/>
+    </pageDefinitionUsages>
+    <dataControlUsages>
+        <dc id="RefreshDataControl" path="com.zypg.cms.work.view.RefreshDataControl"/>
+        <BC4JDataControl id="WorkAMDataControl" Package="com.zypg.cms.work.model"
+                         FactoryClass="oracle.adf.model.bc4j.DataControlFactoryImpl" SupportsTransactions="true"
+                         SupportsFindMode="true" SupportsRangesize="true" SupportsResetState="true"
+                         SupportsSortCollection="true" Configuration="WorkAMLocal" syncMode="Immediate"
+                         xmlns="http://xmlns.oracle.com/adfm/datacontrol"/>
+        <!--BC4JDataControl id="AudioAMDataControl" Package="com.zypg.cms.work.model.am"
+                         FactoryClass="oracle.adf.model.bc4j.DataControlFactoryImpl" SupportsTransactions="true"
+                         SupportsFindMode="true" SupportsRangesize="true" SupportsResetState="true"
+                         SupportsSortCollection="true" Configuration="AudioAMLocal" syncMode="Immediate"
+                         xmlns="http://xmlns.oracle.com/adfm/datacontrol"/ -->
+        <!--BC4JDataControl id="ElecProdAMDataControl" Package="com.zypg.cms.work.model.am"
+                         FactoryClass="oracle.adf.model.bc4j.DataControlFactoryImpl" SupportsTransactions="true"
+                         SupportsFindMode="true" SupportsRangesize="true" SupportsResetState="true"
+                         SupportsSortCollection="true" Configuration="ElecProdAMLocal" syncMode="Immediate"
+                         xmlns="http://xmlns.oracle.com/adfm/datacontrol"/ -->
+        <!-- BC4JDataControl id="BookAMDataControl" Package="com.zypg.cms.work.model.am"
+                         FactoryClass="oracle.adf.model.bc4j.DataControlFactoryImpl" SupportsTransactions="true"
+                         SupportsFindMode="true" SupportsRangesize="true" SupportsResetState="true"
+                         SupportsSortCollection="true" Configuration="BookAMLocal" syncMode="Immediate"
+                         xmlns="http://xmlns.oracle.com/adfm/datacontrol"/ -->
+        <BC4JDataControl id="ActivityAMDataControl" Package="com.zypg.cms.work.model.am"
+                         FactoryClass="oracle.adf.model.bc4j.DataControlFactoryImpl" SupportsTransactions="true"
+                         SupportsFindMode="true" SupportsRangesize="true" SupportsResetState="true"
+                         SupportsSortCollection="true" Configuration="ActivityAMLocal" syncMode="Immediate"
+                         xmlns="http://xmlns.oracle.com/adfm/datacontrol"/>
+        <BC4JDataControl id="ElecProdAMDataControl" Package="com.zypg.cms.work.model.am"
+                         FactoryClass="oracle.adf.model.bc4j.DataControlFactoryImpl" SupportsTransactions="true"
+                         SupportsFindMode="true" SupportsRangesize="true" SupportsResetState="true"
+                         SupportsSortCollection="true" Configuration="ElecProdAMLocal" syncMode="Immediate"
+                         xmlns="http://xmlns.oracle.com/adfm/datacontrol"/>
+        <BC4JDataControl id="DocBookAMDataControl" Package="com.zypg.cms.work.model.am"
+                         FactoryClass="oracle.adf.model.bc4j.DataControlFactoryImpl" SupportsTransactions="true"
+                         SupportsFindMode="true" SupportsRangesize="true" SupportsResetState="true"
+                         SupportsSortCollection="true" Configuration="DocBookAMLocal" syncMode="Immediate"
+                         xmlns="http://xmlns.oracle.com/adfm/datacontrol"/>
+        <BC4JDataControl id="DocBookAMDataControl1" Package="com.zypg.cms.work.model.am"
+                         FactoryClass="oracle.adf.model.bc4j.DataControlFactoryImpl" SupportsTransactions="true"
+                         SupportsFindMode="true" SupportsRangesize="true" SupportsResetState="true"
+                         SupportsSortCollection="true" Configuration="DocBookAMLocal" syncMode="Immediate"
+                         xmlns="http://xmlns.oracle.com/adfm/datacontrol"/>
+        <BC4JDataControl id="ResExpAMDataControl" Package="com.zypg.cms.work.model.am"
+                         FactoryClass="oracle.adf.model.bc4j.DataControlFactoryImpl" SupportsTransactions="true"
+                         SupportsFindMode="true" SupportsRangesize="true" SupportsResetState="true"
+                         SupportsSortCollection="true" Configuration="ResExpAMLocal" syncMode="Immediate"
+                         xmlns="http://xmlns.oracle.com/adfm/datacontrol"/>
+        <BC4JDataControl id="BookAMDataControl" Package="com.zypg.cms.work.model.am"
+                         FactoryClass="oracle.adf.model.bc4j.DataControlFactoryImpl" SupportsTransactions="true"
+                         SupportsFindMode="true" SupportsRangesize="true" SupportsResetState="true"
+                         SupportsSortCollection="true" Configuration="BookAMLocal" syncMode="Immediate"
+                         xmlns="http://xmlns.oracle.com/adfm/datacontrol"/>
+        <BC4JDataControl id="CommonAMDataControl" Package="com.zypg.cms.work.model.am"
+                         FactoryClass="oracle.adf.model.bc4j.DataControlFactoryImpl" SupportsTransactions="true"
+                         SupportsFindMode="true" SupportsRangesize="true" SupportsResetState="true"
+                         SupportsSortCollection="true" Configuration="CommonAMLocal" syncMode="Immediate"
+                         xmlns="http://xmlns.oracle.com/adfm/datacontrol"/>
+        <BC4JDataControl id="ThemeAMDataControl" Package="com.zypg.cms.work.model.am"
+                         FactoryClass="oracle.adf.model.bc4j.DataControlFactoryImpl" SupportsTransactions="true"
+                         SupportsFindMode="true" SupportsRangesize="true" SupportsResetState="true"
+                         SupportsSortCollection="true" Configuration="ThemeAMLocal" syncMode="Immediate"
+                         xmlns="http://xmlns.oracle.com/adfm/datacontrol"/>
+        <BC4JDataControl id="ExtendAttrAMDataControl" Package="com.zypg.cms.work.model.am"
+                         FactoryClass="oracle.adf.model.bc4j.DataControlFactoryImpl" SupportsTransactions="true"
+                         SupportsFindMode="true" SupportsRangesize="true" SupportsResetState="true"
+                         SupportsSortCollection="true" Configuration="ExtendAttrAMLocal" syncMode="Immediate"
+                         xmlns="http://xmlns.oracle.com/adfm/datacontrol"/>
+    </dataControlUsages>
+</Application>

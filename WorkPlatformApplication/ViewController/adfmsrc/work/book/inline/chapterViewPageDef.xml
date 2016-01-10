@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="chapterViewPageDef"
+                Package="work.book.inline">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="Root.BookAM.CmsChapterVO" DataControl="WorkAMDataControl" RangeSize="25"
+              id="CmsChapterVOIterator"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="CmsChapterVOIterator" id="CmsChapterVO">
+      <nodeDefinition DefName="com.zypg.cms.work.model.viewobject.book.query.CmsChapterVO" Name="CmsChapterVO0">
+        <AttrNames>
+          <Item Value="ChapterId"/>
+          <Item Value="DocId"/>
+          <Item Value="ChapterCode"/>
+          <Item Value="ChapterName"/>
+          <Item Value="Content"/>
+          <Item Value="Seq"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+  </bindings>
+</pageDefinition>

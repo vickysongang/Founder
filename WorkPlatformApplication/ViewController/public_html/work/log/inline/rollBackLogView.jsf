@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <af:document title="回退记录" id="d1">
+        <af:messages id="m1"/>
+        <af:form id="f1">
+            <af:table value="#{bindings.CmsRollbackLogVO.collectionModel}" var="row"
+                      styleClass="AFStretchWidth custom_table_striped" columnStretching="multiple"
+                      rows="#{bindings.CmsRollbackLogVO.rangeSize}" rowBandingInterval="0"
+                      contentDelivery="immediate"
+                      emptyText="#{bindings.CmsRollbackLogVO.viewable ? '' : 'Access Denied.'}"
+                      fetchSize="#{bindings.CmsRollbackLogVO.rangeSize}"
+                      selectedRowKeys="#{bindings.CmsRollbackLogVO.collectionModel.selectedRow}"
+                      selectionListener="#{bindings.CmsRollbackLogVO.collectionModel.makeCurrent}" rowSelection="single"
+                      id="t1">
+                <af:column sortProperty="#{bindings.CmsRollbackLogVO.hints.RollbackOperatorName.name}" sortable="false"
+                           width="33%" align="center"
+                           headerText="#{bindings.CmsRollbackLogVO.hints.RollbackOperatorName.label}" id="c1">
+                    <af:outputText value="#{row.RollbackOperatorName}"
+                                   shortDesc="#{bindings.CmsRollbackLogVO.hints.RollbackOperatorName.tooltip}"
+                                   id="ot1"/>
+                </af:column>
+                <af:column sortProperty="#{bindings.CmsRollbackLogVO.hints.OperationTime.name}" sortable="false"
+                           align="center" width="33%"
+                           headerText="#{bindings.CmsRollbackLogVO.hints.OperationTime.label}" id="c2">
+                    <af:outputText value="#{row.OperationTime}"
+                                   shortDesc="#{bindings.CmsRollbackLogVO.hints.OperationTime.tooltip}" id="ot2">
+                        <af:convertDateTime pattern="#{bindings.CmsRollbackLogVO.hints.OperationTime.format}"/>
+                    </af:outputText>
+                </af:column>
+                <af:column sortProperty="#{bindings.CmsRollbackLogVO.hints.RollbackReason.name}" sortable="false"
+                           width="34%" headerText="#{bindings.CmsRollbackLogVO.hints.RollbackReason.label}" id="c3">
+                    <af:outputText value="#{row.RollbackReason}"
+                                   shortDesc="#{bindings.CmsRollbackLogVO.hints.RollbackReason.tooltip}" id="ot3"/>
+                </af:column>
+            </af:table>
+        </af:form>
+    </af:document>
+</f:view>

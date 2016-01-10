@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="orderEditPageDef"
+                Package="work.copyright.inline">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="Root.CopyrightAM.Cms3rdAuthorizationOrderTVO" DataControl="WorkAMDataControl" RangeSize="25"
+              id="Cms3rdAuthorizationOrderTVOIterator"/>
+    <iterator Binds="Root.CopyrightAM.Lookup4Lang" DataControl="WorkAMDataControl" RangeSize="25"
+              id="Lookup4LangIterator"/>
+    <iterator Binds="Root.CopyrightAM.Lookup4Area" DataControl="WorkAMDataControl" RangeSize="25"
+              id="Lookup4AreaIterator"/>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="Cms3rdAuthorizationOrderTVOIterator" id="OrderName">
+      <AttrNames>
+        <Item Value="OrderName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="Cms3rdAuthorizationOrderTVOIterator" id="AuthorizedStartTime">
+      <AttrNames>
+        <Item Value="AuthorizedStartTime"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="Cms3rdAuthorizationOrderTVOIterator" id="AuthorizedLang">
+      <AttrNames>
+        <Item Value="AuthorizedLang"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="Cms3rdAuthorizationOrderTVOIterator" id="AuthorizedArea">
+      <AttrNames>
+        <Item Value="AuthorizedArea"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="Cms3rdAuthorizationOrderTVOIterator" id="Remarks">
+      <AttrNames>
+        <Item Value="Remarks"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="Lookup4LangIterator" ListOperMode="multiSelect" ListIter="Lookup4LangIterator" id="Lookup4Lang"
+          SelectItemValueMode="ListObject">
+      <AttrNames>
+        <Item Value="Meaning"/>
+      </AttrNames>
+      <ListDisplayAttrNames>
+        <Item Value="Meaning"/>
+      </ListDisplayAttrNames>
+    </list>
+    <list IterBinding="Lookup4AreaIterator" ListOperMode="multiSelect" ListIter="Lookup4AreaIterator" id="Lookup4Area"
+          SelectItemValueMode="ListObject">
+      <AttrNames>
+        <Item Value="Meaning"/>
+      </AttrNames>
+      <ListDisplayAttrNames>
+        <Item Value="Meaning"/>
+      </ListDisplayAttrNames>
+    </list>
+    <list IterBinding="Cms3rdAuthorizationOrderTVOIterator" StaticList="false" Uses="LOV_AuthorizedCompany"
+          id="AuthorizedCompany" DTSupportsMRU="true" SelectItemValueMode="ListObject"/>
+    <list IterBinding="Cms3rdAuthorizationOrderTVOIterator" StaticList="false" Uses="LOV_AuthorizedType"
+          id="AuthorizedType" DTSupportsMRU="true" SelectItemValueMode="ListObject"/>
+    <list IterBinding="Cms3rdAuthorizationOrderTVOIterator" StaticList="false" Uses="LOV_AuthorizedFileType"
+          id="AuthorizedFileType" DTSupportsMRU="true" SelectItemValueMode="ListObject"/>
+    <list IterBinding="Cms3rdAuthorizationOrderTVOIterator" StaticList="false" Uses="LOV_AuthorizedValidPeriod"
+          id="AuthorizedValidPeriod" DTSupportsMRU="true" SelectItemValueMode="ListObject"/>
+    <list IterBinding="Cms3rdAuthorizationOrderTVOIterator" StaticList="false" Uses="LOV_IncludePublicCopyrightFlag"
+          id="IncludePublicCopyrightFlag" DTSupportsMRU="true" SelectItemValueMode="ListObject"/>
+  </bindings>
+</pageDefinition>

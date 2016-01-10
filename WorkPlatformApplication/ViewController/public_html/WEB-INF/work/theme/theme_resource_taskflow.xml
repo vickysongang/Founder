@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="theme_resource_taskflow">
+    <default-activity>initThemeResource</default-activity>
+    <input-parameter-definition id="__4">
+      <name>nodeId</name>
+      <value>#{pageFlowScope.nodeId}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__5">
+      <name>compCode</name>
+      <value>#{pageFlowScope.compCode}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__6">
+      <name>groupUserFlag</name>
+      <value>#{pageFlowScope.groupUserFlag}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <managed-bean id="__3">
+      <managed-bean-name>themeResourceManagedBean</managed-bean-name>
+      <managed-bean-class>com.zypg.cms.work.view.bean.ThemeResourceManagedBean</managed-bean-class>
+      <managed-bean-scope>backingBean</managed-bean-scope>
+    </managed-bean>
+    <view id="themeResource">
+      <page>/work/theme/fragment/themeResource.jsff</page>
+    </view>
+    <method-call id="initThemeResource">
+      <method>#{backingBeanScope.themeResourceManagedBean.initThemeResource}</method>
+      <outcome>
+        <fixed-outcome>toThemeResource</fixed-outcome>
+      </outcome>
+    </method-call>
+    <control-flow-rule id="__1">
+      <from-activity-id>initThemeResource</from-activity-id>
+      <control-flow-case id="__2">
+        <from-outcome>toThemeResource</from-outcome>
+        <to-activity-id>themeResource</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

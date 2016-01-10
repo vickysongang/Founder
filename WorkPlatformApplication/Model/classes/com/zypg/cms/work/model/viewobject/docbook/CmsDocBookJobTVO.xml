@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="CmsDocBookJobTVO"
+  Version="11.1.2.64.36"
+  BindingStyle="OracleName"
+  CustomQuery="true"
+  PageIterMode="Full"
+  UseGlueCode="false"
+  ComponentClass="com.zypg.cms.work.model.viewobject.docbook.CmsDocBookJobTVOImpl">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="Coll|VarAccess"/>
+    <Attr Name="_isExpertMode" Value="true"/>
+  </DesignTime>
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="com.zypg.cms.work.model.viewobject.docbook.CmsDocBookJobTVO_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <SQLQuery><![CDATA[SELECT cmsdocbookjobteo.creation_date,
+       cmsdocbookjobteo.isbn,
+       cmsdocbookjobteo.job_id,
+       cmsdocbookjobteo.job_name,
+       cmsdocbookjobteo.comp_code,
+       cmsdocbookjobteo.status,
+       cmsdocbookjobteo.RESULT,
+       c.comp_name
+  FROM cms_docbook_job_t cmsdocbookjobteo, cms_comp_v c
+ WHERE cmsdocbookjobteo.comp_code = c.comp_code(+)]]></SQLQuery>
+  <EntityUsage
+    Name="CmsDocBookJobTEO"
+    Entity="com.zypg.cms.work.model.entity.CmsDocBookJobTEO"/>
+  <ViewAttribute
+    Name="CreationDate"
+    PrecisionRule="true"
+    EntityAttrName="CreationDate"
+    EntityUsage="CmsDocBookJobTEO"
+    AliasName="CREATION_DATE"/>
+  <ViewAttribute
+    Name="Isbn"
+    PrecisionRule="true"
+    EntityAttrName="Isbn"
+    EntityUsage="CmsDocBookJobTEO"
+    AliasName="ISBN"/>
+  <ViewAttribute
+    Name="JobId"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="JobId"
+    EntityUsage="CmsDocBookJobTEO"
+    AliasName="JOB_ID"/>
+  <ViewAttribute
+    Name="JobName"
+    PrecisionRule="true"
+    EntityAttrName="JobName"
+    EntityUsage="CmsDocBookJobTEO"
+    AliasName="JOB_NAME"/>
+  <ViewAttribute
+    Name="CompCode"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="40"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="COMP_CODE"
+    Expression="COMP_CODE"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="40"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Status"
+    PrecisionRule="true"
+    EntityAttrName="Status"
+    EntityUsage="CmsDocBookJobTEO"
+    AliasName="STATUS"/>
+  <ViewAttribute
+    Name="Result"
+    PrecisionRule="true"
+    EntityAttrName="Result"
+    EntityUsage="CmsDocBookJobTEO"
+    AliasName="RESULT"/>
+  <ViewAttribute
+    Name="CompName"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="80"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="COMP_NAME"
+    Expression="COMP_NAME"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="80"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="com.zypg.cms.work.model.ModelBundle"/>
+  </ResourceBundle>
+</ViewObject>

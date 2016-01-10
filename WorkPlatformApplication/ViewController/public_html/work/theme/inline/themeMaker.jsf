@@ -1,0 +1,310 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <af:document title="主题制作" id="d1">
+        <f:facet name="metaContainer">
+            <af:resource type="css" source="/resources/css/demo.css"/>
+            <af:resource type="css" source="/resources/css/zTreeStyle/zTreeStyle.css"/>
+            <af:resource type="javascript" source="/resources/js/ztree/jquery-1.4.4.min.js"/>
+            <af:resource type="javascript" source="/resources/js/ztree/jquery.ztree.core-3.5.js"/>
+            <af:resource type="javascript" source="/resources/js/ztree/jquery.ztree.excheck-3.5.js"/>
+            <af:resource type="javascript" source="/resources/js/ztree/jquery.ztree.exedit-3.5.js"/>
+            <af:resource type="css">
+                .ztree li span.button.add {
+                    margin-left: 2px;
+                    margin-right: -1px;
+                    background-position: -144px 0px;
+                    vertical-align: top;
+                }
+            </af:resource>
+             <af:resource type="javascript">
+             var setting = {
+                        async: {
+                                enable: true,
+                                url:"/cms/work_platform/themeTree?method=init",
+                                autoParam:["id","pid", "name=n", "level=lv"],
+                                dataFilter: filter
+                                },
+			view: {
+				addHoverDom: addHoverDom,
+				removeHoverDom: removeHoverDom,
+				selectedMulti: false
+			},
+			edit: {
+				enable: true,
+				editNameSelectAll: true,
+                                removeTitle:"删除节点",
+                                renameTitle:"编辑节点名称",
+				showRemoveBtn: showRemoveBtn,
+				showRenameBtn: showRenameBtn
+			},
+			data: {
+				simpleData: {
+					enable: true
+				}
+			},
+			callback: {
+				beforeDrag: beforeDrag,
+				beforeEditName: beforeEditName,
+				beforeRemove: beforeRemove,
+				beforeRename: beforeRename,
+				onRemove: onRemove,
+				onRename: onRename,
+                                onClick: onClick,
+                                beforeAsync: beforeAsync,
+				onAsyncSuccess: onAsyncSuccess
+			}
+		};
+                
+                function filter(treeId, parentNode, childNodes) {
+                    if (!childNodes) return null;
+                    for (var i=0, l=childNodes.length; i &lt;l; i++) {
+                            childNodes[i].name = childNodes[i].name.replace(/\.n/g, '.');
+                    }
+                    return childNodes;
+		}
+                
+                function beforeAsync() {
+                   curAsyncCount++;
+		}
+                
+                function onAsyncSuccess(event, treeId, treeNode, msg) {
+                    curAsyncCount--;
+                    if (curStatus == "expand") {
+                        expandNodes(treeNode.children);
+                    } else if (curStatus == "async") {
+                        asyncNodes(treeNode.children);
+                    }else{
+                        expandAll();
+                    }
+
+                    if (curAsyncCount &lt; 0 || curAsyncCount == 0 ) {
+                        if (curStatus != "init" &amp;&amp; curStatus != "") {
+                                asyncForAll = true;
+                        }
+                        curStatus = "";
+                    }
+		}
+                
+                var curStatus = "init", curAsyncCount = 0, asyncForAll = false,
+		goAsync = false;
+                
+                function expandAll() {
+			if (!check()) {
+				return;
+			}
+			var zTree = $.fn.zTree.getZTreeObj("treeDemo");
+			if (asyncForAll) {
+				zTree.expandAll(true);
+			} else {
+				expandNodes(zTree.getNodes());
+				if (!goAsync) {
+					curStatus = "";
+				}
+			}
+		}
+                
+                function expandNodes(nodes) {
+			if (!nodes) return;
+			curStatus = "expand";
+			var zTree = $.fn.zTree.getZTreeObj("treeDemo");
+			for (var i=0, l=nodes.length; i &lt; l; i++) {
+				zTree.expandNode(nodes[i], true, false, false);
+				if (nodes[i].isParent &amp;&amp; nodes[i].zAsync) {
+					expandNodes(nodes[i].children);
+				} else {
+					goAsync = true;
+				}
+			}
+		}
+                
+                function asyncAll() {
+			if (!check()) {
+				return;
+			}
+			var zTree = $.fn.zTree.getZTreeObj("treeDemo");
+			if (asyncForAll) {
+				
+			} else {
+				asyncNodes(zTree.getNodes());
+				if (!goAsync) {
+					curStatus = "";
+				}
+			}
+		}
+                
+                function asyncNodes(nodes) {
+			if (!nodes) return;
+			curStatus = "async";
+			var zTree = $.fn.zTree.getZTreeObj("treeDemo");
+			for (var i=0, l=nodes.length; i &lt; l; i++) {
+				if (nodes[i].isParent &amp;&amp; nodes[i].zAsync) {
+					asyncNodes(nodes[i].children);
+				} else {
+					goAsync = true;
+					zTree.reAsyncChildNodes(nodes[i], "refresh", true);
+				}
+			}
+		}
+                
+                function check() {
+                    if (curAsyncCount > 0) {
+                            return false;
+                    }
+                    return true;
+		}
+
+		var log, className = "dark";
+		function beforeDrag(treeId, treeNodes) {
+			return false;
+		}
+                
+		function beforeEditName(treeId, treeNode) {
+			className = (className === "dark" ? "":"dark");
+			var zTree = $.fn.zTree.getZTreeObj("treeDemo");
+			zTree.selectNode(treeNode);
+			return true;
+		}
+		function beforeRemove(treeId, treeNode) {
+			className = (className === "dark" ? "":"dark");
+			var zTree = $.fn.zTree.getZTreeObj("treeDemo");
+			zTree.selectNode(treeNode);
+                        if(confirm("确认删除 节点 -- " + treeNode.name + " 吗？")){
+                            var param = "id=" + treeNode.id;
+                            $.post("/cms/work_platform/themeTree?method=delete&amp;"+param);
+                        }else{
+                            return false;
+                        };
+		}
+		function onRemove(e, treeId, treeNode) {
+			
+		}
+		function beforeRename(treeId, treeNode, newName, isCancel) {
+			className = (className === "dark" ? "":"dark");
+			if (newName.length == 0) {
+				alert("节点名称不能为空.");
+				var zTree = $.fn.zTree.getZTreeObj("treeDemo");
+				setTimeout(function(){zTree.editName(treeNode)}, 10);
+				return false;
+			}
+                        var param = "id="+treeNode.id+"&amp;name="+newName;
+                        $.post("/cms/work_platform/themeTree?method=update&amp;"+param,function(data){});
+		}
+		function onRename(e, treeId, treeNode, isCancel) {
+			
+		}
+		function showRemoveBtn(treeId, treeNode) {
+                    if(treeNode.parentTId == null){
+                        return false;
+                    }
+                    return true;
+		}
+		function showRenameBtn(treeId, treeNode) {
+                    if(treeNode.parentTId == null){
+                        return false;
+                    }
+                    return true;
+		}
+               
+		var newCount = 1;
+		function addHoverDom(treeId, treeNode) {
+			var sObj = $("#" + treeNode.tId + "_span");
+			if (treeNode.editNameFlag || $("#addBtn_"+treeNode.tId).length>0) return;
+			var addStr = "&lt;span class='button add' id='addBtn_" + treeNode.tId
+				+ "' title='新增节点' onfocus='this.blur();'>&lt;/span>";
+			sObj.after(addStr);
+			var btn = $("#addBtn_"+treeNode.tId);
+			if (btn) btn.bind("click", function(){
+				var zTree = $.fn.zTree.getZTreeObj("treeDemo"); 
+                                var param = "pid="+treeNode.id+"&amp;name="+"分类名";
+                                $.post("/cms/work_platform/themeTree?method=add&amp;"+param,function(data){
+                                   if($.trim(data)!=null){
+                                    var newNode = $.trim(data);
+                                    zTree.addNodes(treeNode, {name:"分类名",id:newNode,pId:treeNode.id});
+                                   }
+                                });
+				return false;
+			});
+		};
+		function removeHoverDom(treeId, treeNode) {
+			$("#addBtn_"+treeNode.tId).unbind().remove();
+		};
+	   
+               function GetRequest(url) {
+                   var theRequest = new Object();
+                   if (url.indexOf("?") != -1) {
+                      var str = url.substr(1);
+                      strs = str.split("&amp;");
+                      for(var i = 0; i &lt; strs.length; i ++) {
+                         theRequest[strs[i].split("=")[0]]=(strs[i].split("=")[1]);
+                      }
+                   }
+                   return theRequest;
+                }
+           
+                function onClick(e, treeId, treeNode) {  
+                  var zTree = $.fn.zTree.getZTreeObj("treeDemo"),  
+                  nodes = zTree.getSelectedNodes();
+                  var frame = document.getElementById('if1::f');
+                  if(nodes.length>0){
+                    var parmas = new Object(); 
+                    var oldSrc = frame.src;
+                    parmas = GetRequest(oldSrc);
+                    var newSrc = oldSrc.substring(0,oldSrc.indexOf('faces'));
+                    frame.src = newSrc + "/faces/work/theme/inline/themeResource.jsf?nodeId="+ nodes[0].id+"&amp;groupUserFlag="+parmas['groupUserFlag'];
+                  }
+              }  
+              
+		
+		$(document).ready(function(){
+			$.fn.zTree.init($("#treeDemo"), setting);
+		});
+                
+                function refreshZTree(){
+                     var zTree = $.fn.zTree.getZTreeObj("treeDemo");
+                     zTree.reAsyncChildNodes(null, "refresh");
+                   
+                    //var zTree = $.fn.zTree.getZTreeObj("treeDemo");
+                    //var nodes = zTree.getNodes();
+                    
+                    //var nodes = zTree.getSelectedNodes();
+               //     zTree.expandAll(true);
+                    //zTree.reAsyncChildNodes(null, "refresh");
+                    
+                 //   if (nodes.length>0) {
+                        // var node = nodes[0];
+                        // if(node.isParent){
+                            //  alert(node.name);
+                             // zTree.reAsyncChildNodes(null, "refresh");
+                              //expandNodes(nodes);
+                           // zTree.updateNode(node);
+                         //}else{
+                           //   zTree.reAsyncChildNodes(null, "refresh");
+                        // }
+                   // }else{
+                    //  zTree.reAsyncChildNodes(null, "refresh");
+                  // }
+                }
+             </af:resource>
+        </f:facet>
+        <af:form id="f1">
+            <af:panelStretchLayout id="psl1" startWidth="auto">
+                <f:facet name="bottom"/>
+                <f:facet name="center">
+                  <af:inlineFrame id="if1" source="/faces/work/theme/inline/themeResource.jsf?nodeId=#{facesContext.externalContext.requestParameterMap['nodeId']}&amp;groupUserFlag=#{facesContext.externalContext.requestParameterMap['groupUserFlag']}"/>
+                </f:facet>
+                <f:facet name="start">
+                 <af:panelGroupLayout id="pgl1" layout="scroll">
+                      <div class="content_wrap" style="margin-left:10px;">
+                           <div class="zTreeDemoBackground left">
+                                <ul id="treeDemo" class="ztree"></ul>
+                           </div>
+                      </div>
+                    </af:panelGroupLayout>
+                </f:facet>
+                <f:facet name="end"/>
+                <f:facet name="top"/>
+            </af:panelStretchLayout>
+        </af:form>
+    </af:document>
+</f:view>

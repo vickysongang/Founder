@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:facelets="http://xmlns.oracle.com/jdev/webapp/facelets"
+                xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <af:messages id="m1"/>
+    <af:panelStretchLayout id="psl1" startWidth="auto" endWidth="auto" bottomHeight="auto" topHeight="30px"
+                           inlineStyle="margin:5px;height:600px;" styleClass="AFStretchWidth" dimensionsFrom="parent">
+        <f:facet name="center">
+            <af:table value="#{bindings.showExportLogVO1.collectionModel}" var="row"
+                      rows="#{bindings.showExportLogVO1.rangeSize}" columnStretching="column:c2"
+                      contentDelivery="immediate" styleClass="AFStretchWidth" autoHeightRows="0"
+                      emptyText="#{bindings.showExportLogVO1.viewable ? '' : 'Access Denied.'}"
+                      fetchSize="#{bindings.showExportLogVO1.rangeSize}" rowBandingInterval="0"
+                      selectedRowKeys="#{bindings.showExportLogVO1.collectionModel.selectedRow}"
+                      selectionListener="#{bindings.showExportLogVO1.collectionModel.makeCurrent}" rowSelection="single"
+                      id="t1" partialTriggers="::cb2">
+                <af:column sortProperty="#{bindings.showExportLogVO1.hints.DiplayName.name}" sortable="false"
+                           align="center" headerText="操作人" id="c1">
+                    <af:inputText value="#{row.bindings.DiplayName.inputValue}"
+                                  label="#{bindings.showExportLogVO1.hints.DiplayName.label}"
+                                  required="#{bindings.showExportLogVO1.hints.DiplayName.mandatory}"
+                                  columns="#{bindings.showExportLogVO1.hints.DiplayName.displayWidth}"
+                                  maximumLength="#{bindings.showExportLogVO1.hints.DiplayName.precision}"
+                                  shortDesc="#{bindings.showExportLogVO1.hints.DiplayName.tooltip}" id="it1">
+                        <f:validator binding="#{row.bindings.DiplayName.validator}"/>
+                    </af:inputText>
+                </af:column>
+                <af:column sortProperty="#{bindings.showExportLogVO1.hints.LogContent.name}" sortable="false"
+                           headerText="导出日志" id="c2">
+                    <af:inputText value="#{row.bindings.LogContent.inputValue}"
+                                  label="#{bindings.showExportLogVO1.hints.LogContent.label}"
+                                  required="#{bindings.showExportLogVO1.hints.LogContent.mandatory}"
+                                  columns="#{bindings.showExportLogVO1.hints.LogContent.displayWidth}"
+                                  maximumLength="#{bindings.showExportLogVO1.hints.LogContent.precision}"
+                                  shortDesc="#{bindings.showExportLogVO1.hints.LogContent.tooltip}" id="it2">
+                        <f:validator binding="#{row.bindings.LogContent.validator}"/>
+                    </af:inputText>
+                </af:column>
+                <af:column sortProperty="#{bindings.showExportLogVO1.hints.BatchNumber.name}" sortable="false"
+                           align="center" headerText="导出批次" id="c3" width="80">
+                    <af:inputText value="#{row.bindings.BatchNumber.inputValue}"
+                                  label="#{bindings.showExportLogVO1.hints.BatchNumber.label}"
+                                  required="#{bindings.showExportLogVO1.hints.BatchNumber.mandatory}"
+                                  columns="#{bindings.showExportLogVO1.hints.BatchNumber.displayWidth}"
+                                  maximumLength="#{bindings.showExportLogVO1.hints.BatchNumber.precision}"
+                                  shortDesc="#{bindings.showExportLogVO1.hints.BatchNumber.tooltip}" id="it3">
+                        <f:validator binding="#{row.bindings.BatchNumber.validator}"/>
+                    </af:inputText>
+                </af:column>
+                <af:column sortProperty="#{bindings.showExportLogVO1.hints.CreateDateDisplay.name}" sortable="false"
+                           headerText="导出时间" id="c6" width="150">
+                    <af:outputText value="#{row.bindings.CreateDateDisplay.inputValue}" id="ot1"/>
+                </af:column>
+                <af:column sortProperty="#{bindings.showExportLogVO1.hints.CreationDate.name}" sortable="false"
+                           headerText="导出状态" id="c4">
+                    <af:inputText value="#{row.bindings.Attribute1.inputValue=='0' ? '未开始': (row.bindings.Attribute1.inputValue=='1' ? '导出进行中...' : '完成') }"
+                                  id="it4">
+                        <f:validator binding="#{row.bindings.Attribute1.validator}"/>
+                    </af:inputText>
+                </af:column>
+            </af:table>
+        </f:facet>
+        <f:facet name="top">
+            <af:panelGroupLayout layout="scroll" id="pgl2">
+                <af:panelGroupLayout id="pgl1" layout="vertical" inlineStyle="margin:3px 0px 3px 5px;">
+                    <!--<af:commandButton actionListener="#{bindings.Execute.execute}" text="刷新"
+                                            id="cb2"/>-->
+                    <af:commandImageLink id="cb2" icon="/resources/images/shuaxin.gif" shortDesc="刷新"
+                                         actionListener="#{bindings.Execute.execute}"/>
+                    <!--<af:commandButton text="刷新"  id="cb1"/>-->
+                </af:panelGroupLayout>
+            </af:panelGroupLayout>
+        </f:facet>
+    </af:panelStretchLayout>
+</ui:composition>

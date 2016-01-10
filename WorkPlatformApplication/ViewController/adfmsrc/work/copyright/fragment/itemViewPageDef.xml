@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="itemViewPageDef"
+                Package="work.copyright.fragment">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="Root.CopyrightAM.Cms3rdAuthorizationItemVO4View" DataControl="WorkAMDataControl" RangeSize="25"
+              id="Cms3rdAuthorizationItemVO4ViewIterator"/>
+    <iterator Binds="Root.CopyrightAM.Cms3rdAuthorizationItemsVO4View" DataControl="WorkAMDataControl" RangeSize="25"
+              id="Cms3rdAuthorizationItemsVO4ViewIterator"/>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="Cms3rdAuthorizationItemVO4ViewIterator" id="BookName">
+      <AttrNames>
+        <Item Value="BookName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="Cms3rdAuthorizationItemVO4ViewIterator" id="Isbn">
+      <AttrNames>
+        <Item Value="Isbn"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="Cms3rdAuthorizationItemVO4ViewIterator" id="Author">
+      <AttrNames>
+        <Item Value="Author"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="Cms3rdAuthorizationItemVO4ViewIterator" id="OrderName">
+      <AttrNames>
+        <Item Value="OrderName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="Cms3rdAuthorizationItemVO4ViewIterator" id="CompanyName">
+      <AttrNames>
+        <Item Value="CompanyName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="Cms3rdAuthorizationItemVO4ViewIterator" id="AuthorizedStartTime">
+      <AttrNames>
+        <Item Value="AuthorizedStartTime"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="Cms3rdAuthorizationItemVO4ViewIterator" id="ExclusiveCopyrightFlag">
+      <AttrNames>
+        <Item Value="ExclusiveCopyrightFlag"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="Cms3rdAuthorizationItemVO4ViewIterator" id="SalesTotalCost">
+      <AttrNames>
+        <Item Value="SalesTotalCost"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="Cms3rdAuthorizationItemVO4ViewIterator" id="SalesTotalNum">
+      <AttrNames>
+        <Item Value="SalesTotalNum"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="Cms3rdAuthorizationItemsVO4ViewIterator" id="CompanyName1">
+      <AttrNames>
+        <Item Value="CompanyName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="Cms3rdAuthorizationItemsVO4ViewIterator" id="OrderName1">
+      <AttrNames>
+        <Item Value="OrderName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="Cms3rdAuthorizationItemsVO4ViewIterator" id="SalesCost">
+      <AttrNames>
+        <Item Value="SalesCost"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="Cms3rdAuthorizationItemsVO4ViewIterator" id="SalesNum">
+      <AttrNames>
+        <Item Value="SalesNum"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="Cms3rdAuthorizationItemsVO4ViewIterator" id="Cms3rdAuthorizationItemsVO4View">
+      <nodeDefinition DefName="com.zypg.cms.work.model.viewobject.copyright.query.Cms3rdAuthorizationItemsVO"
+                      Name="Cms3rdAuthorizationItemsVO4View0">
+        <AttrNames>
+          <Item Value="CompanyName"/>
+          <Item Value="OrderName"/>
+          <Item Value="SalesCost"/>
+          <Item Value="SalesNum"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="Cms3rdAuthorizationItemVO4ViewIterator" id="ExclusiveCopyrightDisplay">
+      <AttrNames>
+        <Item Value="ExclusiveCopyrightDisplay"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

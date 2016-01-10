@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<skins xmlns="http://myfaces.apache.org/trinidad/skin">
+  <skin>
+    <id>work_platform.desktop</id>
+    <family>work_platform</family>
+    <extends>fusionFx-simple-v2.1.desktop</extends>
+    <render-kit-id>org.apache.myfaces.trinidad.desktop</render-kit-id>
+    <style-sheet-name>skins/work_platform/work_platform.css</style-sheet-name>
+    <bundle-name>com/zypg/cms/work/view.skinBundle</bundle-name>
+  </skin>
+</skins>

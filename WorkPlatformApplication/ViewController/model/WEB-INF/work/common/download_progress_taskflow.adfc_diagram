@@ -1,0 +1,45 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<SDM>
+   <OverallProperties
+      id="OverallProperties1"/>
+   <MethodCall
+      id="MethodCall2">
+      <property
+         name="activityId">initDownloadProgress</property>
+      <property
+         name="start">true</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>initDownloadProgress&lt;/b> (Default Activity)&lt;/p>&lt;p>Activity Type:  Method Call&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">123.19531</property>
+      <property
+         name="x">181.0</property>
+   </MethodCall>
+   <View
+      id="View3">
+      <property
+         name="activityId">downloadProgress</property>
+      <property
+         name="page">/work/common/inline/downloadProgress.jsf</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>downloadProgress&lt;/b>&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">119.19531</property>
+      <property
+         name="x">460.0</property>
+   </View>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase4"
+      from="MethodCall2"
+      to="View3">
+      <property
+         name="fromOutcome">toDownloadProgress</property>
+      <property
+         name="sdm:polyPoints">R50,222.0,122.84473,419.0,118.84473,L50</property>
+   </ControlFlowCase>
+</SDM>

@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="CmsNewspaperEditVO"
+  Version="11.1.2.64.36"
+  BindingStyle="OracleName"
+  CustomQuery="true"
+  PageIterMode="Full"
+  UseGlueCode="false"
+  RowClass="com.zypg.cms.work.model.viewobject.newspaper.CmsNewspaperEditVORowImpl"
+  ComponentClass="com.zypg.cms.work.model.viewobject.newspaper.CmsNewspaperEditVOImpl">
+  <DesignTime>
+    <Attr Name="_isExpertMode" Value="true"/>
+    <Attr Name="_codeGenFlag2" Value="Access|Coll|VarAccess"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="com.zypg.cms.work.model.viewobject.newspaper.CmsNewspaperEditVO_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <ViewAccessor
+    Name="CmsLookupValueVO1"
+    ViewObjectName="com.zypg.cms.work.model.viewobject.common.lov.CmsLookupValueVO"
+    RowLevelBinds="true">
+    <ViewCriteriaUsage
+      Name="findAssortProdVC"
+      FullName="com.zypg.cms.work.model.viewobject.common.lov.CmsLookupValueVO.findAssortProdVC"/>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="CmsLookupValueVO2"
+    ViewObjectName="com.zypg.cms.work.model.viewobject.common.lov.CmsLookupValueVO"
+    RowLevelBinds="true">
+    <ViewCriteriaUsage
+      Name="findColorNumVC"
+      FullName="com.zypg.cms.work.model.viewobject.common.lov.CmsLookupValueVO.findColorNumVC"/>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="CmsLookupValueVO3"
+    ViewObjectName="com.zypg.cms.work.model.viewobject.common.lov.CmsLookupValueVO"
+    RowLevelBinds="true">
+    <ViewCriteriaUsage
+      Name="findMainPageVC"
+      FullName="com.zypg.cms.work.model.viewobject.common.lov.CmsLookupValueVO.findMainPageVC"/>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="CmsLookupValueVO4"
+    ViewObjectName="com.zypg.cms.work.model.viewobject.common.lov.CmsLookupValueVO"
+    RowLevelBinds="true">
+    <ViewCriteriaUsage
+      Name="findTypesetVC"
+      FullName="com.zypg.cms.work.model.viewobject.common.lov.CmsLookupValueVO.findTypesetVC"/>
+  </ViewAccessor>
+  <ListBinding
+    Name="LOV_MainPage"
+    ListVOName="CmsLookupValueVO1"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="MainPage"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="LookupValueCode"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Meaning"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_ColorNum"
+    ListVOName="CmsLookupValueVO4"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="ColorNum"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="LookupValueCode"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Meaning"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_MainTypeset"
+    ListVOName="CmsLookupValueVO3"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="MainTypeset"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="LookupValueCode"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Meaning"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_CoverTypeset"
+    ListVOName="CmsLookupValueVO4"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="CoverTypeset"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="LookupValueCode"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Meaning"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_AssortProd"
+    ListVOName="CmsLookupValueVO1"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="AssortProd"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="LookupValueCode"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Meaning"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <SQLQuery><![CDATA[SELECT NULL YEAR,--年份
+       NULL CHIEF_EDITOR,--主编
+       NULL COMP_CODE,--出版社
+       NULL FORMAT_DESIGN,--版面设计
+       NULL COVER_DESIGN,--封面设计
+       NULL PRICE,--定价。
+       NULL MAIN_PAGE,--正文用纸。
+       NULL COLOR_NUM,--正文色数
+       NULL MAIN_TYPESET,--正文排版软件。
+       NULL COVER_TYPESET,--封面排版软件。
+       NULL TYPESET_COMP,--排版公司
+       NULL ASSORT_PROD,--配套产品。
+       NULL SUGGESTION,--上架建议。
+       NULL EDITOR,--责任编辑。
+       NULL PAGINATION,--页数。
+       NULL KEYWORD --关键字
+  FROM dual]]></SQLQuery>
+  <ViewAttribute
+    Name="Year"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="YEAR"
+    Expression="YEAR"
+    SQLType="VARCHAR">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.work.model.viewobject.newspaper.CmsNewspaperEditVO.Year_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="ChiefEditor"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="CHIEF_EDITOR"
+    Expression="CHIEF_EDITOR"
+    SQLType="VARCHAR">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.work.model.viewobject.newspaper.CmsNewspaperEditVO.ChiefEditor_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="CompCode"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="COMP_CODE"
+    Expression="COMP_CODE"
+    SQLType="VARCHAR">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.work.model.viewobject.newspaper.CmsNewspaperEditVO.CompCode_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="FormatDesign"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="FORMAT_DESIGN"
+    Expression="FORMAT_DESIGN"
+    SQLType="VARCHAR">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.work.model.viewobject.newspaper.CmsNewspaperEditVO.FormatDesign_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="CoverDesign"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="COVER_DESIGN"
+    Expression="COVER_DESIGN"
+    SQLType="VARCHAR">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.work.model.viewobject.newspaper.CmsNewspaperEditVO.CoverDesign_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Price"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="PRICE"
+    Expression="PRICE"
+    SQLType="VARCHAR">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.work.model.viewobject.newspaper.CmsNewspaperEditVO.Price_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="MainPage"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="MAIN_PAGE"
+    Expression="MAIN_PAGE"
+    SQLType="VARCHAR"
+    LOVName="LOV_MainPage">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+        <LABEL
+          ResId="com.zypg.cms.work.model.viewobject.newspaper.CmsNewspaperEditVO.MainPage_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="ColorNum"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="COLOR_NUM"
+    Expression="COLOR_NUM"
+    SQLType="VARCHAR"
+    LOVName="LOV_ColorNum">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+        <LABEL
+          ResId="com.zypg.cms.work.model.viewobject.newspaper.CmsNewspaperEditVO.ColorNum_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="MainTypeset"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="MAIN_TYPESET"
+    Expression="MAIN_TYPESET"
+    SQLType="VARCHAR"
+    LOVName="LOV_MainTypeset">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+        <LABEL
+          ResId="com.zypg.cms.work.model.viewobject.newspaper.CmsNewspaperEditVO.MainTypeset_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="CoverTypeset"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="COVER_TYPESET"
+    Expression="COVER_TYPESET"
+    SQLType="VARCHAR"
+    LOVName="LOV_CoverTypeset">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+        <LABEL
+          ResId="com.zypg.cms.work.model.viewobject.newspaper.CmsNewspaperEditVO.CoverTypeset_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="TypesetComp"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="TYPESET_COMP"
+    Expression="TYPESET_COMP"
+    SQLType="VARCHAR">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.work.model.viewobject.newspaper.CmsNewspaperEditVO.TypesetComp_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="AssortProd"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="ASSORT_PROD"
+    Expression="ASSORT_PROD"
+    SQLType="VARCHAR"
+    LOVName="LOV_AssortProd">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+        <LABEL
+          ResId="com.zypg.cms.work.model.viewobject.newspaper.CmsNewspaperEditVO.AssortProd_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Suggestion"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="SUGGESTION"
+    Expression="SUGGESTION"
+    SQLType="VARCHAR">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.work.model.viewobject.newspaper.CmsNewspaperEditVO.Suggestion_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Editor"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="EDITOR"
+    Expression="EDITOR"
+    SQLType="VARCHAR">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.work.model.viewobject.newspaper.CmsNewspaperEditVO.Editor_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Pagination"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="PAGINATION"
+    Expression="PAGINATION"
+    SQLType="VARCHAR">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.work.model.viewobject.newspaper.CmsNewspaperEditVO.Pagination_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Keyword"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="KEYWORD"
+    Expression="KEYWORD"
+    SQLType="VARCHAR">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.work.model.viewobject.newspaper.CmsNewspaperEditVO.Keyword_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="com.zypg.cms.work.model.ModelBundle"/>
+  </ResourceBundle>
+</ViewObject>

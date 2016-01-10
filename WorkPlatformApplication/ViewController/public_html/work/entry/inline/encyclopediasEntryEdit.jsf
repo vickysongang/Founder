@@ -1,0 +1,211 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <af:document title="标引百科条目" id="d1">
+        <f:facet name="metaContainer">
+            <af:resource type="javascript" source="/resources/js/jquery_min.js"/>
+            <af:resource type="javascript" source="/resources/js/work_platform.js"/>
+            <af:resource type="javascript" source="/resources/js/jsupload.js"/>
+        </f:facet>
+        <af:messages id="m1"/>
+        <af:form id="f1" usesUpload="true">
+            <af:panelStretchLayout id="psl1" bottomHeight="30px">
+                <f:facet name="bottom">
+                    <af:panelGroupLayout id="pgl1" layout="vertical" halign="center">
+                        <af:panelGroupLayout id="pgl3" layout="horizontal">
+                            <af:commandButton text="保存" id="cb1" styleClass="popup-btn" partialSubmit="true"
+                                              action="#{backingBeanScope.EncyclopediasEntryEditManagedBean.saveAction}">
+                                <af:setPropertyListener to="#{pageFlowScope.comfirmFlag}" type="action" from="Y"/>
+                            </af:commandButton>
+                            <af:commandButton text="Return" id="returnBtn" partialSubmit="true" action="toReturn"
+                                              styleClass="popup-btn" visible="false"></af:commandButton>
+                            <af:spacer width="10" height="10" id="s1"/>
+                            <af:commandButton text="取消" id="cb2" action="toReturn" immediate="true"
+                                              styleClass="popup-btn"
+                                              actionListener="#{backingBeanScope.EncyclopediasEntryEditManagedBean.cancelEncyclopediasEntryActionListener}">
+                                <af:setPropertyListener to="#{pageFlowScope.comfirmFlag}" type="action" from="N"/>
+                            </af:commandButton>
+                            <af:popup childCreation="deferred" autoCancel="disabled" id="p1"
+                                      contentDelivery="lazyUncached">
+                                <af:dialog id="d2" contentWidth="100" contentHeight="100" title="选择分类"
+                                           dialogListener="#{backingBeanScope.EncyclopediasEntryEditManagedBean.attributePicker.categoryDialogListener}">
+                                    <f:facet name="buttonBar"/>
+                                    <af:region value="#{bindings.category_pick_taskflow1.regionModel}" id="r1"/>
+                                </af:dialog>
+                            </af:popup>
+                            <af:spacer id="categoryHandler" clientComponent="true">
+                                <af:serverListener type="passCategory"
+                                                   method="#{backingBeanScope.EncyclopediasEntryEditManagedBean.attributePicker.passCategoryServerListener}"/>
+                            </af:spacer>
+                        </af:panelGroupLayout>
+                    </af:panelGroupLayout>
+                </f:facet>
+                <f:facet name="center">
+                    <af:switcher id="s2" facetName="#{pageFlowScope.batchFlag}">
+                        <f:facet name="N">
+                            <af:panelGroupLayout layout="scroll" id="pgl2">
+                                <af:panelFormLayout id="pfl1" maxColumns="2" rows="1" labelWidth="80px">
+                                    <af:inputText value="#{bindings.EntryHeader.inputValue}"
+                                                  label="#{bindings.EntryHeader.hints.label}"
+                                                  required="#{bindings.EntryHeader.hints.mandatory}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  columns="#{bindings.EntryHeader.hints.displayWidth}"
+                                                  maximumLength="#{bindings.EntryHeader.hints.precision}"
+                                                  shortDesc="#{bindings.EntryHeader.hints.tooltip}" id="it1"
+                                                  showRequired="true"
+                                                  binding="#{backingBeanScope.EncyclopediasEntryEditManagedBean.fileNameInputText}">
+                                        <f:validator binding="#{bindings.EntryHeader.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.Source.inputValue}"
+                                                  label="#{bindings.Source.hints.label}"
+                                                  required="#{bindings.Source.hints.mandatory}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  columns="#{bindings.Source.hints.displayWidth}"
+                                                  maximumLength="#{bindings.Source.hints.precision}"
+                                                  shortDesc="#{bindings.Source.hints.tooltip}" id="it2">
+                                        <f:validator binding="#{bindings.Source.validator}"/>
+                                    </af:inputText>
+                                    <!--<af:inputText value="#{bindings.KnowledgePoint.inputValue}"
+                                                  label="#{bindings.KnowledgePoint.hints.label}"
+                                                  required="#{bindings.KnowledgePoint.hints.mandatory}"
+                                                  columns="#{bindings.KnowledgePoint.hints.displayWidth}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  maximumLength="#{bindings.KnowledgePoint.hints.precision}"
+                                                  shortDesc="#{bindings.KnowledgePoint.hints.tooltip}" id="it3">
+                                        <f:validator binding="#{bindings.KnowledgePoint.validator}"/>
+                                    </af:inputText>-->
+                                    <af:panelLabelAndMessage label="#{bindings.CategoryName.hints.label}" id="plam1">
+                                        <af:inputText value="#{bindings.CategoryName.inputValue}" simple="true"
+                                                      required="true" disabled="true"
+                                                      columns="#{bindings.CategoryName.hints.displayWidth}"
+                                                      contentStyle="width:95px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                      maximumLength="#{bindings.CategoryName.hints.precision}"
+                                                      shortDesc="#{bindings.CategoryName.hints.tooltip}" id="it9"
+                                                      showRequired="true">
+                                            <f:validator binding="#{bindings.CategoryName.validator}"/>
+                                        </af:inputText>
+                                        <f:facet name="end">
+                                            <af:group id="g1">
+                                                <af:commandButton text="选择" id="cb3" partialSubmit="true"
+                                                                  styleClass="min-btn blue-min-btn" immediate="true">
+                                                    <af:showPopupBehavior popupId="p1" triggerType="action"
+                                                                          align="afterStart" alignId="cb3"/>
+                                                </af:commandButton>
+                                                <af:commandButton text="清除" id="cb4" partialSubmit="true"
+                                                                  styleClass="min-btn blue-min-btn" immediate="true"
+                                                                  actionListener="#{backingBeanScope.EncyclopediasEntryEditManagedBean.attributePicker.clearCategoryActionListener}"></af:commandButton>
+                                            </af:group>
+                                        </f:facet>
+                                    </af:panelLabelAndMessage>
+                                </af:panelFormLayout>
+                                <af:panelFormLayout id="pfl2" labelWidth="80px">
+                                    <af:inputText value="#{bindings.Keyword.inputValue}"
+                                                  label="#{bindings.Keyword.hints.label}"
+                                                  required="#{bindings.Keyword.hints.mandatory}"
+                                                  contentStyle="width:400px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  columns="#{bindings.Keyword.hints.displayWidth}"
+                                                  maximumLength="#{bindings.Keyword.hints.precision}"
+                                                  shortDesc="#{bindings.Keyword.hints.tooltip}" id="it4"
+                                                  partialTriggers="cl1"
+                                                  binding="#{backingBeanScope.EncyclopediasEntryEditManagedBean.commonRenderer.keywordsInputText}">
+                                        <f:validator binding="#{bindings.Keyword.validator}"/>
+                                        <af:clientListener type="keyDown" method="forbidInput"/>
+                                        <af:serverListener type="forbidInputKeyword"
+                                                           method="#{backingBeanScope.EncyclopediasEntryEditManagedBean.commonRenderer.forbidInputKeywordAction}"/>
+                                    </af:inputText>
+                                    <af:panelLabelAndMessage label="" id="plam2">
+                                        <af:inputText label="Label 1" id="it12" simple="true" partialTriggers="cl1"
+                                                      contentStyle="width:240px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                      binding="#{backingBeanScope.EncyclopediasEntryEditManagedBean.commonRenderer.keyworkInputText}"/>
+                                        <f:facet name="end">
+                                            <af:commandImageLink id="cl1" icon="/resources/images/add.png"
+                                                                 partialSubmit="true"
+                                                                 actionListener="#{backingBeanScope.EncyclopediasEntryEditManagedBean.commonRenderer.addKeyworkActionListener}"/>
+                                        </f:facet>
+                                    </af:panelLabelAndMessage>
+                                </af:panelFormLayout>
+                                <af:region value="#{bindings.extend_attr_taskflow1.regionModel}" id="r2"/>
+                            </af:panelGroupLayout>
+                        </f:facet>
+                        <f:facet name="Y">
+                            <af:panelGroupLayout id="pgl4" layout="scroll">
+                                <af:panelFormLayout id="pfl4" rows="2" maxColumns="2" labelWidth="80px">
+                                    <af:inputText value="#{bindings.Source1.inputValue}"
+                                                  label="#{bindings.Source1.hints.label}"
+                                                  required="#{bindings.Source1.hints.mandatory}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  columns="#{bindings.Source1.hints.displayWidth}"
+                                                  maximumLength="#{bindings.Source1.hints.precision}"
+                                                  shortDesc="#{bindings.Source1.hints.tooltip}" id="it5">
+                                        <f:validator binding="#{bindings.Source1.validator}"/>
+                                    </af:inputText>
+                                    <!--<af:inputText value="#{bindings.KnowledgePoint1.inputValue}"
+                                                  label="#{bindings.KnowledgePoint1.hints.label}"
+                                                  required="#{bindings.KnowledgePoint1.hints.mandatory}"
+                                                  columns="#{bindings.KnowledgePoint1.hints.displayWidth}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  maximumLength="#{bindings.KnowledgePoint1.hints.precision}"
+                                                  shortDesc="#{bindings.KnowledgePoint1.hints.tooltip}" id="it7">
+                                        <f:validator binding="#{bindings.KnowledgePoint1.validator}"/>
+                                    </af:inputText>-->
+                                    <af:panelLabelAndMessage label="#{bindings.CategoryName1.hints.label}" id="plam4">
+                                        <af:inputText value="#{bindings.CategoryName1.inputValue}" showRequired="true"
+                                                      label="#{bindings.CategoryName1.hints.label}" required="true"
+                                                      contentStyle="width:95px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                      columns="#{bindings.CategoryName1.hints.displayWidth}"
+                                                      maximumLength="#{bindings.CategoryName1.hints.precision}"
+                                                      shortDesc="#{bindings.CategoryName1.hints.tooltip}" id="it30"
+                                                      simple="true" disabled="true" partialTriggers="d2">
+                                            <f:validator binding="#{bindings.CategoryName1.validator}"/>
+                                        </af:inputText>
+                                        <f:facet name="end">
+                                            <af:group id="g2">
+                                                <af:commandButton text="选择" id="cb5" partialSubmit="true"
+                                                                  immediate="true" styleClass="min-btn blue-min-btn">
+                                                    <af:showPopupBehavior popupId="p1" triggerType="action"
+                                                                          align="afterStart" alignId="cb3"/>
+                                                </af:commandButton>
+                                                <af:commandButton text="清除" id="cb6" partialSubmit="true"
+                                                                  immediate="true" styleClass="min-btn blue-min-btn"
+                                                                  actionListener="#{backingBeanScope.EncyclopediasEntryEditManagedBean.attributePicker.clearCategoryActionListener}"/>
+                                            </af:group>
+                                        </f:facet>
+                                    </af:panelLabelAndMessage>
+                                </af:panelFormLayout>
+                                <af:panelFormLayout id="pfl5" labelWidth="80px">
+                                    <af:inputText value="#{bindings.Keyword1.inputValue}"
+                                                  label="#{bindings.Keyword1.hints.label}"
+                                                  required="#{bindings.Keyword1.hints.mandatory}"
+                                                  contentStyle="width:510px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  columns="#{bindings.Keyword1.hints.displayWidth}"
+                                                  maximumLength="#{bindings.Keyword1.hints.precision}"
+                                                  shortDesc="#{bindings.Keyword1.hints.tooltip}" id="it8"
+                                                  partialTriggers="cl2"
+                                                  binding="#{backingBeanScope.EncyclopediasEntryEditManagedBean.commonRenderer.keywords4BatchEditInputText}">
+                                        <af:clientListener type="keyDown" method="forbidInput"/>
+                                        <af:serverListener type="forbidInputKeyword"
+                                                           method="#{backingBeanScope.EncyclopediasEntryEditManagedBean.commonRenderer.forbidInputKeywordAction}"/>
+                                        <f:validator binding="#{bindings.Keyword1.validator}"/>
+                                    </af:inputText>
+                                    <af:panelLabelAndMessage label="" id="plam3">
+                                        <af:inputText label="Label 1" id="it31" simple="true" partialTriggers="cl2"
+                                                      contentStyle="width:240px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                      binding="#{backingBeanScope.EncyclopediasEntryEditManagedBean.commonRenderer.keywork4BatchEditInputText}"/>
+                                        <f:facet name="end">
+                                            <af:commandImageLink id="cl2" partialSubmit="true"
+                                                                 actionListener="#{backingBeanScope.EncyclopediasEntryEditManagedBean.commonRenderer.addKeyworkActionListener}"
+                                                                 icon="/resources/images/add.png"/>
+                                        </f:facet>
+                                    </af:panelLabelAndMessage>
+                                </af:panelFormLayout>
+                            </af:panelGroupLayout>
+                        </f:facet>
+                    </af:switcher>
+                </f:facet>
+                <f:facet name="start"/>
+                <f:facet name="end"/>
+                <f:facet name="top"></f:facet>
+            </af:panelStretchLayout>
+        </af:form>
+    </af:document>
+</f:view>

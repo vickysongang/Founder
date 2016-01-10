@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="resTemplateEditPageDef"
+                Package="work.resexp.inline">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator id="CmsFirstLevelExpResVOIterator" Binds="Root.ResExpAM.CmsFirstLevelExpResVO"
+              DataControl="WorkAMDataControl" RangeSize="25"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="CmsFirstLevelExpResVOIterator" id="CmsFirstLevelExpResVO">
+      <nodeDefinition DefName="com.zypg.cms.work.model.viewobject.resexp.query.CmsFirstLevelExpResVO"
+                      Name="CmsFirstLevelExpResVO0">
+        <AttrNames>
+          <Item Value="ResTypeCode"/>
+          <Item Value="ResTypeName"/>
+          <Item Value="Checked"/>
+        </AttrNames>
+        <Accessors>
+          <Item Value="CmsSecondLevelExpResVO"/>
+        </Accessors>
+      </nodeDefinition>
+      <nodeDefinition DefName="com.zypg.cms.work.model.viewobject.resexp.query.CmsSecondLevelExpResVO"
+                      Name="CmsFirstLevelExpResVO1">
+        <AttrNames>
+          <Item Value="ResId"/>
+          <Item Value="ResName"/>
+          <Item Value="Checked"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+  </bindings>
+</pageDefinition>

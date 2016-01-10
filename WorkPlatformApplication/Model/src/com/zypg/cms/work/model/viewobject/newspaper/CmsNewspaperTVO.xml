@@ -1,0 +1,1170 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="CmsNewspaperTVO"
+  Version="11.1.2.64.36"
+  BindingStyle="OracleName"
+  CustomQuery="true"
+  PageIterMode="Full"
+  UseGlueCode="false"
+  RowClass="com.zypg.cms.work.model.viewobject.newspaper.CmsNewspaperTVORowImpl"
+  ComponentClass="com.zypg.cms.work.model.viewobject.newspaper.CmsNewspaperTVOImpl">
+  <DesignTime>
+    <Attr Name="_isExpertMode" Value="true"/>
+    <Attr Name="_codeGenFlag2" Value="Access|Coll|VarAccess"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="com.zypg.cms.work.model.viewobject.newspaper.CmsNewspaperTVO_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <Variable
+    Name="bvDocId"
+    Kind="viewcriteria"
+    Type="oracle.jbo.domain.Number"/>
+  <ViewAccessor
+    Name="Lookup4NewspaperCategory"
+    ViewObjectName="com.zypg.cms.work.model.viewobject.newspaper.lov.CmsNewspaperCategoryVO"
+    RowLevelBinds="true">
+    <ViewCriteriaUsage
+      Name="findNewspaperCategoryVC"
+      FullName="com.zypg.cms.work.model.viewobject.newspaper.lov.CmsNewspaperCategoryVO.findNewspaperCategoryVC"/>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="Lookup4NewsYear"
+    ViewObjectName="com.zypg.cms.work.model.viewobject.newspaper.lov.CmsNewsYearVO">
+    <ViewCriteriaUsage
+      Name="findPeriodYearVC"
+      FullName="com.zypg.cms.work.model.viewobject.newspaper.lov.CmsNewsYearVO.findPeriodYearVC"/>
+    <ParameterMap>
+      <PIMap Variable="bvNewspaperCategoryId">
+        <TransientExpression><![CDATA[NewspaperCategoryId]]></TransientExpression>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="Lookup4SetupId"
+    ViewObjectName="com.zypg.cms.work.model.viewobject.newspaper.lov.CmsNewsNumVO">
+    <ViewCriteriaUsage
+      Name="findNewsNumVC"
+      FullName="com.zypg.cms.work.model.viewobject.newspaper.lov.CmsNewsNumVO.findNewsNumVC"/>
+    <ParameterMap>
+      <PIMap Variable="bvNewspaperCategoryId">
+        <TransientExpression><![CDATA[NewspaperCategoryId]]></TransientExpression>
+      </PIMap>
+      <PIMap Variable="bvYear">
+        <TransientExpression><![CDATA[Year]]></TransientExpression>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="Lookup4MainPage"
+    ViewObjectName="com.zypg.cms.work.model.viewobject.common.lov.CmsLookupValueVO"
+    RowLevelBinds="true">
+    <ViewCriteriaUsage
+      Name="findMainPageVC"
+      FullName="com.zypg.cms.work.model.viewobject.common.lov.CmsLookupValueVO.findMainPageVC"/>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="Lookup4TypeSet"
+    ViewObjectName="com.zypg.cms.work.model.viewobject.common.lov.CmsLookupValueVO"
+    RowLevelBinds="true">
+    <ViewCriteriaUsage
+      Name="findTypesetVC"
+      FullName="com.zypg.cms.work.model.viewobject.common.lov.CmsLookupValueVO.findTypesetVC"/>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="Lookup4ColorNum"
+    ViewObjectName="com.zypg.cms.work.model.viewobject.common.lov.CmsLookupValueVO"
+    RowLevelBinds="true">
+    <ViewCriteriaUsage
+      Name="findColorNumVC"
+      FullName="com.zypg.cms.work.model.viewobject.common.lov.CmsLookupValueVO.findColorNumVC"/>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="Lookup4AssortProd"
+    ViewObjectName="com.zypg.cms.work.model.viewobject.common.lov.CmsLookupValueVO"
+    RowLevelBinds="true">
+    <ViewCriteriaUsage
+      Name="findAssortProdVC"
+      FullName="com.zypg.cms.work.model.viewobject.common.lov.CmsLookupValueVO.findAssortProdVC"/>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="Lookup4BookSize"
+    ViewObjectName="com.zypg.cms.work.model.viewobject.common.lov.CmsLookupValueVO"
+    RowLevelBinds="true">
+    <ViewCriteriaUsage
+      Name="findBookSizeVC"
+      FullName="com.zypg.cms.work.model.viewobject.common.lov.CmsLookupValueVO.findBookSizeVC"/>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="Lookup4ProdSize"
+    ViewObjectName="com.zypg.cms.work.model.viewobject.common.lov.CmsLookupValueVO"
+    RowLevelBinds="true">
+    <ViewCriteriaUsage
+      Name="findProdSizeVC"
+      FullName="com.zypg.cms.work.model.viewobject.common.lov.CmsLookupValueVO.findProdSizeVC"/>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="Lookup4ReaderGroup"
+    ViewObjectName="com.zypg.cms.work.model.viewobject.common.lov.CmsLookupValueVO"
+    RowLevelBinds="true">
+    <ViewCriteriaUsage
+      Name="findReaderGroupVC"
+      FullName="com.zypg.cms.work.model.viewobject.common.lov.CmsLookupValueVO.findReaderGroupVC"/>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="Lookup4Lang"
+    ViewObjectName="com.zypg.cms.work.model.viewobject.common.lov.CmsLookupValueVO"
+    RowLevelBinds="true">
+    <ViewCriteriaUsage
+      Name="findLangVC"
+      FullName="com.zypg.cms.work.model.viewobject.common.lov.CmsLookupValueVO.findLangVC"/>
+  </ViewAccessor>
+  <ListBinding
+    Name="LOV_NewspaperCategoryId"
+    ListVOName="Lookup4NewspaperCategory"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="NewspaperCategoryId"/>
+    </AttrArray>
+    <AttrArray Name="DerivedAttrNames">
+      <Item Value="Issn"/>
+      <Item Value="NewspaperType"/>
+      <Item Value="Price"/>
+      <Item Value="Lang"/>
+      <Item Value="ChiefEditor"/>
+      <Item Value="ReaderGroup"/>
+      <Item Value="Cn"/>
+      <Item Value="ProdSize"/>
+      <Item Value="ProdSizeMeaning"/>
+      <Item Value="BookSize"/>
+      <Item Value="BookSizeMeaning"/>
+      <Item Value="ReaderGroup"/>
+      <Item Value="ReaderGroupMeaning"/>
+      <Item Value="Publishing"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="NewspaperCategoryId"/>
+      <Item Value="Issn"/>
+      <Item Value="NewspaperTypeMeaning"/>
+      <Item Value="Price"/>
+      <Item Value="LangMeaning"/>
+      <Item Value="ChiefEditor"/>
+      <Item Value="ReaderGroupMeaning"/>
+      <Item Value="Cn"/>
+      <Item Value="ProdSize"/>
+      <Item Value="ProdSizeMeaning"/>
+      <Item Value="BookSize"/>
+      <Item Value="BookSizeMeaning"/>
+      <Item Value="ReaderGroup"/>
+      <Item Value="ReaderGroupMeaning"/>
+      <Item Value="Publishing"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="NewspaperCategoryName"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_Year"
+    ListVOName="Lookup4NewsYear"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="Year"/>
+    </AttrArray>
+    <AttrArray Name="DerivedAttrNames">
+      <Item Value="NewspaperCategoryId"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Year"/>
+      <Item Value="NewspaperCategoryId"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="YearMeaning"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_NewsId"
+    ListVOName="Lookup4SetupId"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="NewsId"/>
+    </AttrArray>
+    <AttrArray Name="DerivedAttrNames">
+      <Item Value="PublicDate"/>
+      <Item Value="PubTime"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="SetupId"/>
+      <Item Value="PublicDate"/>
+      <Item Value="PublicDate"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="NewsNum"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_MainPage"
+    ListVOName="Lookup4MainPage"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="MainPage"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="LookupValueCode"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Meaning"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_MainTypeset"
+    ListVOName="Lookup4TypeSet"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="MainTypeset"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="LookupValueCode"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Meaning"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_ColorNum"
+    ListVOName="Lookup4ColorNum"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="ColorNum"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="LookupValueCode"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Meaning"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_CoverTypeset"
+    ListVOName="Lookup4TypeSet"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="CoverTypeset"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="LookupValueCode"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Meaning"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_AssortProd"
+    ListVOName="Lookup4AssortProd"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="AssortProd"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="LookupValueCode"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Meaning"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_BookSize"
+    ListVOName="Lookup4BookSize"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="BookSize"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="LookupValueCode"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Meaning"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_ProdSize"
+    ListVOName="Lookup4ProdSize"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="ProdSize"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="LookupValueCode"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Meaning"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_ReaderGroup"
+    ListVOName="Lookup4ReaderGroup"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="ReaderGroup"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="LookupValueCode"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Meaning"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_Lang"
+    ListVOName="Lookup4Lang"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="Lang"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="LookupValueCode"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Meaning"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <SQLQuery><![CDATA[SELECT cmsnewspaperteo.newspaper_id,
+       pc.newspaper_category_id,
+       pc.newspaper_category_name,
+       pls.newspaper_type,
+       pc.newspaper_type_meaning,
+       pls.issn,
+       pls.cn,
+       ps.YEAR,
+       cmsnewspaperteo.news_id,
+       ps.news_num,
+       pls.total,
+       ps.public_date,
+       pls.lang,
+       pc.lang_meaning,
+       pls.chief_editor,
+       cmsnewspaperteo.editor,
+       cmsnewspaperteo.format_design,
+       cmsnewspaperteo.cover_design,
+       pls.price,
+       cmsnewspaperteo.pagination,
+       cmsnewspaperteo.main_page,
+       pls.book_size,
+       pc.book_size_meaning,
+       cmsnewspaperteo.main_typeset,
+       cmsnewspaperteo.color_num,
+       cmsnewspaperteo.typeset_comp,
+       cmsnewspaperteo.cover_typeset,
+       pls.prod_size,
+       pc.prod_size_meaning,
+       cmsnewspaperteo.assort_prod,
+       pls.reader_group,
+       pc.reader_group_meaning,
+       cmsnewspaperteo.suggestion,
+       cmsnewspaperteo.keyword,
+       cmsnewspaperteo.remarks,
+       cmsnewspaperteo.doc_id,
+       cmsnewspaperteo.last_updated_by,
+       cmsnewspaperteo.last_update_date,
+       d.comp_code,
+       comp.comp_name,
+       cmsnewspaperteo.pub_time,
+       pls.publishing,
+       cmsnewspaperteo.total_num
+  FROM cms_newspaper_t          cmsnewspaperteo,
+       cms_doc_t                d,
+       cms_comp_v               comp,
+       cms_newspaper_category_v pc,
+       cms_news_setup_v         ps,
+       cms_newspaper_setup_t    pls
+ WHERE cmsnewspaperteo.newspaper_category_id = pc.newspaper_category_id(+)
+   AND cmsnewspaperteo.doc_id = d.doc_id
+   AND d.comp_code = comp.comp_code
+   AND cmsnewspaperteo.news_id = ps.setup_id(+)
+   AND cmsnewspaperteo.newspaper_category_id = pls.newspaper_category_id(+)]]></SQLQuery>
+  <EntityUsage
+    Name="CmsNewspaperTEO"
+    Entity="com.zypg.cms.work.model.entity.CmsNewspaperTEO"/>
+  <ViewAttribute
+    Name="NewspaperId"
+    PrecisionRule="true"
+    AliasName="NEWSPAPER_ID"
+    EntityAttrName="NewspaperId"
+    EntityUsage="CmsNewspaperTEO"/>
+  <ViewAttribute
+    Name="NewspaperCategoryId"
+    PrecisionRule="true"
+    AliasName="NEWSPAPER_CATEGORY_ID"
+    EntityAttrName="NewspaperCategoryId"
+    EntityUsage="CmsNewspaperTEO"
+    LOVName="LOV_NewspaperCategoryId">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.work.model.viewobject.newspaper.CmsNewspaperTVO.NewspaperCategoryId_LABEL"/>
+        <CONTROLTYPE
+          Value="default"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="NewspaperCategoryName"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="80"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="NEWSPAPER_CATEGORY_NAME"
+    Expression="NEWSPAPER_CATEGORY_NAME"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="80"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.work.model.viewobject.newspaper.CmsNewspaperTVO.NewspaperCategoryName_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="NewspaperType"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="40"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="NEWSPAPER_TYPE"
+    Expression="NEWSPAPER_TYPE"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="40"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.work.model.viewobject.newspaper.CmsNewspaperTVO.NewspaperType_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="NewspaperTypeMeaning"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="80"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="NEWSPAPER_TYPE_MEANING"
+    Expression="NEWSPAPER_TYPE_MEANING"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="80"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.work.model.viewobject.newspaper.CmsNewspaperTVO.NewspaperTypeMeaning_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Issn"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="40"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="ISSN"
+    Expression="ISSN"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="40"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.work.model.viewobject.newspaper.CmsNewspaperTVO.Issn_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Cn"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="40"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="CN"
+    Expression="CN"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="40"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.work.model.viewobject.newspaper.CmsNewspaperTVO.Cn_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Year"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="40"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="YEAR"
+    Expression="YEAR"
+    SQLType="VARCHAR"
+    LOVName="LOV_Year">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="40"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.work.model.viewobject.newspaper.CmsNewspaperTVO.Year_LABEL"/>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="NewsId"
+    PrecisionRule="true"
+    AliasName="NEWS_ID"
+    EntityAttrName="NewsId"
+    EntityUsage="CmsNewspaperTEO"
+    LOVName="LOV_NewsId">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.work.model.viewobject.newspaper.CmsNewspaperTVO.NewsId_LABEL"/>
+        <CONTROLTYPE
+          Value="default"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="NewsNum"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="oracle.jbo.domain.Number"
+    ColumnType="NUMBER"
+    AliasName="NEWS_NUM"
+    Expression="NEWS_NUM"
+    SQLType="NUMERIC">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.work.model.viewobject.newspaper.CmsNewspaperTVO.NewsNum_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Total"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="oracle.jbo.domain.Number"
+    ColumnType="NUMBER"
+    AliasName="TOTAL"
+    Expression="TOTAL"
+    SQLType="NUMERIC">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.work.model.viewobject.newspaper.CmsNewspaperTVO.Total_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PublicDate"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.sql.Timestamp"
+    ColumnType="DATE"
+    AliasName="PUBLIC_DATE"
+    Expression="PUBLIC_DATE"
+    SQLType="DATE">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.work.model.viewobject.newspaper.CmsNewspaperTVO.PublicDate_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Lang"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="40"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="LANG"
+    Expression="LANG"
+    SQLType="VARCHAR"
+    LOVName="LOV_Lang">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="40"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.work.model.viewobject.newspaper.CmsNewspaperTVO.Lang_LABEL"/>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="LangMeaning"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="80"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="LANG_MEANING"
+    Expression="LANG_MEANING"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="80"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.work.model.viewobject.newspaper.CmsNewspaperTVO.LangMeaning_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="ChiefEditor"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="80"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="CHIEF_EDITOR"
+    Expression="CHIEF_EDITOR"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="80"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.work.model.viewobject.newspaper.CmsNewspaperTVO.ChiefEditor_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Editor"
+    PrecisionRule="true"
+    AliasName="EDITOR"
+    EntityAttrName="Editor"
+    EntityUsage="CmsNewspaperTEO">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.work.model.viewobject.newspaper.CmsNewspaperTVO.Editor_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="FormatDesign"
+    PrecisionRule="true"
+    AliasName="FORMAT_DESIGN"
+    EntityAttrName="FormatDesign"
+    EntityUsage="CmsNewspaperTEO">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.work.model.viewobject.newspaper.CmsNewspaperTVO.FormatDesign_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="CoverDesign"
+    PrecisionRule="true"
+    AliasName="COVER_DESIGN"
+    EntityAttrName="CoverDesign"
+    EntityUsage="CmsNewspaperTEO">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.work.model.viewobject.newspaper.CmsNewspaperTVO.CoverDesign_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Price"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="2"
+    Scale="0"
+    Type="java.lang.Integer"
+    ColumnType="NUMBER"
+    AliasName="PRICE"
+    Expression="PRICE"
+    SQLType="INTEGER">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.work.model.viewobject.newspaper.CmsNewspaperTVO.Price_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Pagination"
+    PrecisionRule="true"
+    AliasName="PAGINATION"
+    EntityAttrName="Pagination"
+    EntityUsage="CmsNewspaperTEO">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.work.model.viewobject.newspaper.CmsNewspaperTVO.Pagination_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="MainPage"
+    PrecisionRule="true"
+    AliasName="MAIN_PAGE"
+    EntityAttrName="MainPage"
+    EntityUsage="CmsNewspaperTEO"
+    LOVName="LOV_MainPage">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.work.model.viewobject.newspaper.CmsNewspaperTVO.MainPage_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="BookSize"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="40"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="BOOK_SIZE"
+    Expression="BOOK_SIZE"
+    SQLType="VARCHAR"
+    LOVName="LOV_BookSize">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="40"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.work.model.viewobject.newspaper.CmsNewspaperTVO.BookSize_LABEL"/>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="BookSizeMeaning"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="80"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="BOOK_SIZE_MEANING"
+    Expression="BOOK_SIZE_MEANING"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="80"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.work.model.viewobject.newspaper.CmsNewspaperTVO.BookSizeMeaning_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="MainTypeset"
+    PrecisionRule="true"
+    AliasName="MAIN_TYPESET"
+    EntityAttrName="MainTypeset"
+    EntityUsage="CmsNewspaperTEO"
+    LOVName="LOV_MainTypeset">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.work.model.viewobject.newspaper.CmsNewspaperTVO.MainTypeset_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="ColorNum"
+    PrecisionRule="true"
+    AliasName="COLOR_NUM"
+    EntityAttrName="ColorNum"
+    EntityUsage="CmsNewspaperTEO"
+    LOVName="LOV_ColorNum">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.work.model.viewobject.newspaper.CmsNewspaperTVO.ColorNum_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="TypesetComp"
+    PrecisionRule="true"
+    AliasName="TYPESET_COMP"
+    EntityAttrName="TypesetComp"
+    EntityUsage="CmsNewspaperTEO">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.work.model.viewobject.newspaper.CmsNewspaperTVO.TypesetComp_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="CoverTypeset"
+    PrecisionRule="true"
+    AliasName="COVER_TYPESET"
+    EntityAttrName="CoverTypeset"
+    EntityUsage="CmsNewspaperTEO"
+    LOVName="LOV_CoverTypeset">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.work.model.viewobject.newspaper.CmsNewspaperTVO.CoverTypeset_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="ProdSize"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="40"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="PROD_SIZE"
+    Expression="PROD_SIZE"
+    SQLType="VARCHAR"
+    LOVName="LOV_ProdSize">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="40"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.work.model.viewobject.newspaper.CmsNewspaperTVO.ProdSize_LABEL"/>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="ProdSizeMeaning"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="80"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="PROD_SIZE_MEANING"
+    Expression="PROD_SIZE_MEANING"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="80"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.work.model.viewobject.newspaper.CmsNewspaperTVO.ProdSizeMeaning_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="AssortProd"
+    PrecisionRule="true"
+    AliasName="ASSORT_PROD"
+    EntityAttrName="AssortProd"
+    EntityUsage="CmsNewspaperTEO"
+    LOVName="LOV_AssortProd">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.work.model.viewobject.newspaper.CmsNewspaperTVO.AssortProd_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="ReaderGroup"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="40"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="READER_GROUP"
+    Expression="READER_GROUP"
+    SQLType="VARCHAR"
+    LOVName="LOV_ReaderGroup">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="40"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.work.model.viewobject.newspaper.CmsNewspaperTVO.ReaderGroup_LABEL"/>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="ReaderGroupMeaning"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="80"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="READER_GROUP_MEANING"
+    Expression="READER_GROUP_MEANING"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="80"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.work.model.viewobject.newspaper.CmsNewspaperTVO.ReaderGroupMeaning_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Suggestion"
+    PrecisionRule="true"
+    AliasName="SUGGESTION"
+    EntityAttrName="Suggestion"
+    EntityUsage="CmsNewspaperTEO">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.work.model.viewobject.newspaper.CmsNewspaperTVO.Suggestion_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Keyword"
+    PrecisionRule="true"
+    AliasName="KEYWORD"
+    EntityAttrName="Keyword"
+    EntityUsage="CmsNewspaperTEO">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.work.model.viewobject.newspaper.CmsNewspaperTVO.Keyword_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Remarks"
+    PrecisionRule="true"
+    AliasName="REMARKS"
+    EntityAttrName="Remarks"
+    EntityUsage="CmsNewspaperTEO">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.work.model.viewobject.newspaper.CmsNewspaperTVO.Remarks_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="DocId"
+    PrecisionRule="true"
+    AliasName="DOC_ID"
+    EntityAttrName="DocId"
+    EntityUsage="CmsNewspaperTEO"/>
+  <ViewAttribute
+    Name="LastUpdatedBy"
+    PrecisionRule="true"
+    AliasName="LAST_UPDATED_BY"
+    EntityAttrName="LastUpdatedBy"
+    EntityUsage="CmsNewspaperTEO"/>
+  <ViewAttribute
+    Name="LastUpdateDate"
+    PrecisionRule="true"
+    AliasName="LAST_UPDATE_DATE"
+    EntityAttrName="LastUpdateDate"
+    EntityUsage="CmsNewspaperTEO"/>
+  <ViewAttribute
+    Name="CompCode"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="40"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="COMP_CODE"
+    Expression="COMP_CODE"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="40"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="CompName"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="80"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="COMP_NAME"
+    Expression="COMP_NAME"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="80"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.work.model.viewobject.newspaper.CmsNewspaperTVO.CompName_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PubTime"
+    PrecisionRule="true"
+    AliasName="PUB_TIME"
+    EntityAttrName="PubTime"
+    EntityUsage="CmsNewspaperTEO">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.work.model.viewobject.newspaper.CmsNewspaperTVO.PubTime_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Publishing"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="80"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="PUBLISHING"
+    Expression="PUBLISHING"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="80"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.work.model.viewobject.newspaper.CmsNewspaperTVO.Publishing_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="TotalNum"
+    PrecisionRule="true"
+    EntityAttrName="TotalNum"
+    EntityUsage="CmsNewspaperTEO"
+    AliasName="TOTAL_NUM">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.work.model.viewobject.newspaper.CmsNewspaperTVO.TotalNum_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewCriteria
+    Name="findNewspaperByDocIdVC"
+    ViewObjectName="com.zypg.cms.work.model.viewobject.newspaper.CmsNewspaperTVO"
+    Conjunction="AND">
+    <Properties>
+      <CustomProperties>
+        <Property
+          Name="displayOperators"
+          Value="InAdvancedMode"/>
+        <Property
+          Name="autoExecute"
+          Value="false"/>
+        <Property
+          Name="allowConjunctionOverride"
+          Value="true"/>
+        <Property
+          Name="showInList"
+          Value="true"/>
+        <Property
+          Name="mode"
+          Value="Basic"/>
+      </CustomProperties>
+    </Properties>
+    <ViewCriteriaRow
+      Name="CmsNewspaperTVOCriteria_row_0"
+      UpperColumns="1">
+      <ViewCriteriaItem
+        Name="DocId"
+        ViewAttribute="DocId"
+        Operator="="
+        Conjunction="AND"
+        Value=":bvDocId"
+        GenerateIsNullClauseForBindVars="false"
+        IsBindVarValue="true"
+        Required="Optional"/>
+    </ViewCriteriaRow>
+  </ViewCriteria>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="com.zypg.cms.work.model.ModelBundle"/>
+  </ResourceBundle>
+</ViewObject>

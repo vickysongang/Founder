@@ -1,0 +1,45 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<SDM>
+   <OverallProperties
+      id="OverallProperties1"/>
+   <MethodCall
+      id="MethodCall2">
+      <property
+         name="activityId">initMoreRelatedInfo</property>
+      <property
+         name="start">true</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>initMoreRelatedInfo&lt;/b> (Default Activity)&lt;/p>&lt;p>Activity Type:  Method Call&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">136.59766</property>
+      <property
+         name="x">193.0</property>
+   </MethodCall>
+   <View
+      id="View3">
+      <property
+         name="activityId">moreRelatedInfo</property>
+      <property
+         name="page">/work/common/inline/moreRelatedInfo.jsf</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>moreRelatedInfo&lt;/b>&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">138.19531</property>
+      <property
+         name="x">497.0</property>
+   </View>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase4"
+      from="MethodCall2"
+      to="View3">
+      <property
+         name="fromOutcome">toMoreRelatedInfo</property>
+      <property
+         name="sdm:polyPoints">R50,234.0,136.24707,456.0,137.84473,L50</property>
+   </ControlFlowCase>
+</SDM>

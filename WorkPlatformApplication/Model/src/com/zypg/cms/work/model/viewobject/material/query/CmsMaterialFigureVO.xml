@@ -1,0 +1,848 @@
+<?xml version="1.0" encoding="GBK" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="CmsMaterialFigureVO"
+  Version="11.1.2.64.36"
+  OrderBy='"LAST_UPDATE_DATE" desc'
+  BindingStyle="OracleName"
+  CustomQuery="true"
+  RowClass="com.zypg.cms.work.model.viewobject.material.query.CmsMaterialFigureVORowImpl"
+  ComponentClass="com.zypg.cms.work.model.viewobject.material.query.CmsMaterialFigureVOImpl"
+  PageIterMode="Full"
+  UseGlueCode="false">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="Access|Coll|VarAccess"/>
+    <Attr Name="_isExpertMode" Value="true"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="com.zypg.cms.work.model.viewobject.material.query.CmsMaterialFigureVO_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <Variable
+    Name="bvStatus"
+    Kind="viewcriteria"
+    Type="java.lang.String"/>
+  <Variable
+    Name="bvCategoryId"
+    Kind="where"
+    Type="oracle.jbo.domain.Number"/>
+  <Variable
+    Name="bvCategoryGroupType"
+    Kind="viewcriteria"
+    Type="java.lang.String"/>
+  <Variable
+    Name="bvDeleteFlag"
+    Kind="viewcriteria"
+    Type="java.lang.String"/>
+  <Variable
+    Name="bvDocId"
+    Kind="viewcriteria"
+    Type="oracle.jbo.domain.Number"/>
+  <Variable
+    Name="bvGroupId"
+    Kind="viewcriteria"
+    Type="oracle.jbo.domain.Number"/>
+  <Variable
+    Name="bvGroupDetailFlag"
+    Kind="viewcriteria"
+    Type="java.lang.String"/>
+  <Variable
+    Name="bvSearchInput"
+    Kind="viewcriteria"
+    Type="java.lang.String"/>
+  <Variable
+    Name="bvCompCode"
+    Kind="viewcriteria"
+    Type="java.lang.String"/>
+  <SQLQuery><![CDATA[SELECT f.figure_id,
+       f.figure_name,
+       f.figure_dimension,
+       f.doc_id,
+       f.figure_author,
+       f.keyword,
+       f.last_update_date,
+       d.status,
+       d.lib_code,
+       d.comp_code,
+       dcr.category_id,
+       dcr.category_group_type,
+       nvl(d.delete_flag, 'N') delete_flag,
+       NULL checked,
+       d.thumbnail_url,
+       'N' group_flag,
+       NULL figure_count,
+       NULL group_id,
+       'N' group_detail_flag,
+       f.figure_type,
+       f.series_name,
+       f.figure_style,
+       f.figure_desc,
+       f.remarks,
+       f.figure_format,
+       f.figure_size,
+       f.figure_resolution,
+       f.cover_design,
+       f.figure_x_resolution,
+       f.figure_y_resolution,
+       f.figure_width,
+       f.figure_height,
+       f.figure_store_time,
+       f.figure_code
+  FROM cms_material_figure_t f, cms_doc_t d, cms_doc_category_rel_t dcr
+ WHERE f.doc_id = d.doc_id
+   AND d.doc_id = dcr.doc_id
+   AND f.doc_id NOT IN
+       (SELECT rt.doc_id
+          FROM cms_doc_group_rel_t rt, cms_figure_group_t g
+         WHERE rt.group_id = g.group_id
+           AND g.lib_code = 'MATERIAL_FIGURE')
+   AND (:bvCategoryId IS NULL OR
+       dcr.category_id IN
+       (SELECT c.category_id
+           FROM cms_category_t c
+          START WITH c.category_id = :bvCategoryId
+         CONNECT BY PRIOR c.category_id = c.parent_node_id
+                AND c.parent_node_type = 'CATEGORY') OR
+       dcr.category_id = :bvCategoryId)
+UNION ALL
+SELECT f.figure_id,
+       g.group_name figure_name,
+       f.figure_dimension,
+       f.doc_id,
+       f.figure_author,
+       f.keyword,
+       f.last_update_date,
+       d.status,
+       d.lib_code,
+       d.comp_code,
+       dcr.category_id,
+       dcr.category_group_type,
+       nvl(d.delete_flag, 'N') delete_flag,
+       NULL checked,
+       d.thumbnail_url,
+       'Y' group_flag,
+       (SELECT COUNT(*)
+          FROM cms_doc_group_rel_t rt
+         WHERE rt.group_id = dgr.group_id) figure_count,
+       g.group_id,
+       'N' group_detail_flag,
+       f.figure_type,
+       f.series_name,
+       f.figure_style,
+       f.figure_desc,
+       f.remarks,
+       f.figure_format,
+       f.figure_size,
+       f.figure_resolution,
+       f.cover_design,
+       f.figure_x_resolution,
+       f.figure_y_resolution,
+       f.figure_width,
+       f.figure_height,
+       f.figure_store_time,
+       f.figure_code
+  FROM cms_material_figure_t  f,
+       cms_doc_t              d,
+       cms_doc_category_rel_t dcr,
+       cms_doc_group_rel_t    dgr,
+       cms_figure_group_t     g
+ WHERE f.doc_id = d.doc_id
+   AND d.doc_id = dcr.doc_id
+   AND d.doc_id = dgr.doc_id
+   AND dgr.index_flag = 'Y'
+   AND dgr.group_id = g.group_id
+   AND g.lib_code = 'MATERIAL_FIGURE'
+   AND (:bvCategoryId IS NULL OR
+       dcr.category_id IN
+       (SELECT c.category_id
+           FROM cms_category_t c
+          START WITH c.category_id = :bvCategoryId
+         CONNECT BY PRIOR c.category_id = c.parent_node_id
+                AND c.parent_node_type = 'CATEGORY') OR
+       dcr.category_id = :bvCategoryId)
+UNION ALL
+SELECT f.figure_id,
+       f.figure_name,
+       f.figure_dimension,
+       f.doc_id,
+       f.figure_author,
+       f.keyword,
+       decode(sign(f.last_update_date - d.last_update_date),
+              -1,
+              d.last_update_date,
+              f.last_update_date) last_update_date,
+       d.status,
+       d.lib_code,
+       d.comp_code,
+       dcr.category_id,
+       dcr.category_group_type,
+       nvl(d.delete_flag, 'N') delete_flag,
+       NULL checked,
+       d.thumbnail_url,
+       'N' group_flag,
+       NULL figure_count,
+       g.group_id,
+       'Y' group_detail_flag,
+       f.figure_type,
+       f.series_name,
+       f.figure_style,
+       f.figure_desc,
+       f.remarks,
+       f.figure_format,
+       f.figure_size,
+       f.figure_resolution,
+       f.cover_design,
+       f.figure_x_resolution,
+       f.figure_y_resolution,
+       f.figure_width,
+       f.figure_height,
+       f.figure_store_time,
+       f.figure_code
+  FROM cms_material_figure_t  f,
+       cms_doc_t              d,
+       cms_doc_category_rel_t dcr,
+       cms_doc_group_rel_t    dgr,
+       cms_figure_group_t     g
+ WHERE f.doc_id = d.doc_id
+   AND d.doc_id = dcr.doc_id
+   AND d.doc_id = dgr.doc_id
+   AND dgr.group_id = g.group_id
+   AND g.lib_code = 'MATERIAL_FIGURE'
+   AND (:bvCategoryId IS NULL OR
+       dcr.category_id IN
+       (SELECT c.category_id
+           FROM cms_category_t c
+          WHERE c.attribute5 LIKE
+                '%' || (SELECT attribute5
+                          FROM cms_category_t
+                         WHERE category_id = :bvCategoryId) || '%') OR
+       dcr.category_id = :bvCategoryId)]]></SQLQuery>
+  <ViewAttribute
+    Name="FigureId"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="oracle.jbo.domain.Number"
+    ColumnType="NUMBER"
+    AliasName="FIGURE_ID"
+    Expression="FIGURE_ID"
+    SQLType="NUMERIC"/>
+  <ViewAttribute
+    Name="FigureName"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="240"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="FIGURE_NAME"
+    Expression="FIGURE_NAME"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="240"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="FigureDimension"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="20"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="FIGURE_DIMENSION"
+    Expression="FIGURE_DIMENSION"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="DocId"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="oracle.jbo.domain.Number"
+    ColumnType="NUMBER"
+    AliasName="DOC_ID"
+    Expression="DOC_ID"
+    SQLType="NUMERIC"/>
+  <ViewAttribute
+    Name="FigureAuthor"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="80"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="FIGURE_AUTHOR"
+    Expression="FIGURE_AUTHOR"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="80"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Keyword"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="1000"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="KEYWORD"
+    Expression="KEYWORD"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="1000"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="LastUpdateDate"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="oracle.jbo.domain.Date"
+    ColumnType="DATE"
+    AliasName="LAST_UPDATE_DATE"
+    Expression="LAST_UPDATE_DATE"
+    SQLType="DATE"/>
+  <ViewAttribute
+    Name="Status"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="40"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="STATUS"
+    Expression="STATUS"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="40"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="LibCode"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="40"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="LIB_CODE"
+    Expression="LIB_CODE"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="40"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="CompCode"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="40"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="COMP_CODE"
+    Expression="COMP_CODE"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="40"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="CategoryId"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="oracle.jbo.domain.Number"
+    ColumnType="NUMBER"
+    AliasName="CATEGORY_ID"
+    Expression="CATEGORY_ID"
+    SQLType="NUMERIC"/>
+  <ViewAttribute
+    Name="CategoryGroupType"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="20"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="CATEGORY_GROUP_TYPE"
+    Expression="CATEGORY_GROUP_TYPE"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="DeleteFlag"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="20"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="DELETE_FLAG"
+    Expression="DELETE_FLAG"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Checked"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.Boolean"
+    ColumnType="NUMBER"
+    AliasName="CHECKED"
+    Expression="CHECKED"
+    SQLType="BIT"/>
+  <ViewAttribute
+    Name="ThumbnailUrl"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="720"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="THUMBNAIL_URL"
+    Expression="THUMBNAIL_URL"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="720"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="GroupFlag"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="1"
+    Type="java.lang.String"
+    ColumnType="CHAR"
+    AliasName="GROUP_FLAG"
+    Expression="GROUP_FLAG"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="1"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="FigureCount"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="oracle.jbo.domain.Number"
+    ColumnType="NUMBER"
+    AliasName="FIGURE_COUNT"
+    Expression="FIGURE_COUNT"
+    SQLType="NUMERIC"/>
+  <ViewAttribute
+    Name="GroupId"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="oracle.jbo.domain.Number"
+    ColumnType="NUMBER"
+    AliasName="GROUP_ID"
+    Expression="GROUP_ID"
+    SQLType="NUMERIC"/>
+  <ViewAttribute
+    Name="GroupDetailFlag"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="1"
+    Type="java.lang.String"
+    ColumnType="CHAR"
+    AliasName="GROUP_DETAIL_FLAG"
+    Expression="GROUP_DETAIL_FLAG"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="1"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="FigureType"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="40"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="FIGURE_TYPE"
+    Expression="FIGURE_TYPE"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="40"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="SeriesName"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="240"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="SERIES_NAME"
+    Expression="SERIES_NAME"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="240"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="FigureStyle"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="40"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="FIGURE_STYLE"
+    Expression="FIGURE_STYLE"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="40"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="FigureDesc"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="4000"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="FIGURE_DESC"
+    Expression="FIGURE_DESC"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="4000"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Remarks"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="4000"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="REMARKS"
+    Expression="REMARKS"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="4000"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="FigureFormat"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="20"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="FIGURE_FORMAT"
+    Expression="FIGURE_FORMAT"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="FigureSize"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="20"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="FIGURE_SIZE"
+    Expression="FIGURE_SIZE"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="FigureResolution"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="80"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="FIGURE_RESOLUTION"
+    Expression="FIGURE_RESOLUTION"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="80"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="CoverDesign"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="80"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="COVER_DESIGN"
+    Expression="COVER_DESIGN"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="80"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="FigureXResolution"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="80"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="FIGURE_X_RESOLUTION"
+    Expression="FIGURE_X_RESOLUTION"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="80"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="FigureYResolution"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="80"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="FIGURE_Y_RESOLUTION"
+    Expression="FIGURE_Y_RESOLUTION"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="80"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="FigureWidth"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="20"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="FIGURE_WIDTH"
+    Expression="FIGURE_WIDTH"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="FigureHeight"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="20"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="FIGURE_HEIGHT"
+    Expression="FIGURE_HEIGHT"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="FigureStoreTime"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="oracle.jbo.domain.Date"
+    ColumnType="DATE"
+    AliasName="FIGURE_STORE_TIME"
+    Expression="FIGURE_STORE_TIME"
+    SQLType="DATE"/>
+  <ViewAttribute
+    Name="FigureCode"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="20"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="FIGURE_CODE"
+    Expression="FIGURE_CODE"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewCriteria
+    Name="findMaterialFigureVC"
+    ViewObjectName="com.zypg.cms.work.model.viewobject.material.query.CmsMaterialFigureVO"
+    Conjunction="AND">
+    <Properties>
+      <CustomProperties>
+        <Property
+          Name="displayOperators"
+          Value="InAdvancedMode"/>
+        <Property
+          Name="autoExecute"
+          Value="false"/>
+        <Property
+          Name="allowConjunctionOverride"
+          Value="true"/>
+        <Property
+          Name="showInList"
+          Value="true"/>
+        <Property
+          Name="mode"
+          Value="Basic"/>
+      </CustomProperties>
+    </Properties>
+    <ViewCriteriaRow
+      Name="CmsMaterialFigureVOCriteria_row_0"
+      UpperColumns="1">
+      <ViewCriteriaItem
+        Name="Status"
+        ViewAttribute="Status"
+        Operator="="
+        Conjunction="AND"
+        Value=":bvStatus"
+        UpperColumns="0"
+        IsBindVarValue="true"
+        Required="Optional"/>
+      <ViewCriteriaItem
+        Name="CompCode"
+        ViewAttribute="CompCode"
+        Operator="="
+        Conjunction="AND"
+        Value=":bvCompCode"
+        UpperColumns="0"
+        GenerateIsNullClauseForBindVars="false"
+        IsBindVarValue="true"
+        Required="Optional"/>
+      <ViewCriteriaItem
+        Name="CmsMaterialFigureVOCriteria_CmsMaterialFigureVOCriteria_row_0_CategoryGroupType"
+        ViewAttribute="CategoryGroupType"
+        Operator="="
+        Conjunction="AND"
+        Value=":bvCategoryGroupType"
+        UpperColumns="0"
+        IsBindVarValue="true"
+        Required="Optional"/>
+      <ViewCriteriaItem
+        Name="DeleteFlag"
+        ViewAttribute="DeleteFlag"
+        Operator="="
+        Conjunction="AND"
+        Value=":bvDeleteFlag"
+        UpperColumns="0"
+        IsBindVarValue="true"
+        Required="Optional"/>
+      <ViewCriteriaItem
+        Name="GroupId"
+        ViewAttribute="GroupId"
+        Operator="="
+        Conjunction="AND"
+        Value=":bvGroupId"
+        IsBindVarValue="true"
+        Required="Optional"/>
+      <ViewCriteriaItem
+        Name="GroupDetailFlag"
+        ViewAttribute="GroupDetailFlag"
+        Operator="="
+        Conjunction="AND"
+        Value=":bvGroupDetailFlag"
+        UpperColumns="0"
+        IsBindVarValue="true"
+        Required="Optional"/>
+    </ViewCriteriaRow>
+    <ViewCriteriaRow
+      Name="findMaterialFigureVC_row_1"
+      Conjunction="AND"
+      UpperColumns="1">
+      <ViewCriteriaItem
+        Name="FigureName"
+        ViewAttribute="FigureName"
+        Operator="CONTAINS"
+        Conjunction="AND"
+        Value=":bvSearchInput"
+        IsBindVarValue="true"
+        Required="Optional"/>
+      <ViewCriteriaItem
+        Name="FigureAuthor"
+        ViewAttribute="FigureAuthor"
+        Operator="CONTAINS"
+        Conjunction="OR"
+        Value=":bvSearchInput"
+        IsBindVarValue="true"
+        Required="Optional"/>
+      <ViewCriteriaItem
+        Name="Keyword"
+        ViewAttribute="Keyword"
+        Operator="CONTAINS"
+        Conjunction="OR"
+        Value=":bvSearchInput"
+        IsBindVarValue="true"
+        Required="Optional"/>
+    </ViewCriteriaRow>
+  </ViewCriteria>
+  <ViewCriteria
+    Name="findMaterialFigureByDocIdVC"
+    ViewObjectName="com.zypg.cms.work.model.viewobject.material.query.CmsMaterialFigureVO"
+    Conjunction="AND">
+    <Properties>
+      <CustomProperties>
+        <Property
+          Name="displayOperators"
+          Value="InAdvancedMode"/>
+        <Property
+          Name="autoExecute"
+          Value="false"/>
+        <Property
+          Name="allowConjunctionOverride"
+          Value="true"/>
+        <Property
+          Name="showInList"
+          Value="true"/>
+        <Property
+          Name="mode"
+          Value="Basic"/>
+      </CustomProperties>
+    </Properties>
+    <ViewCriteriaRow
+      Name="CmsMaterialFigureVOCriteria_row_0"
+      UpperColumns="1">
+      <ViewCriteriaItem
+        Name="DocId"
+        ViewAttribute="DocId"
+        Operator="="
+        Conjunction="AND"
+        Value=":bvDocId"
+        IsBindVarValue="true"
+        Required="Optional"/>
+    </ViewCriteriaRow>
+  </ViewCriteria>
+  <AttrArray Name="KeyAttributes">
+    <Item Value="FigureId"/>
+  </AttrArray>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="com.zypg.cms.work.model.ModelBundle"/>
+  </ResourceBundle>
+</ViewObject>

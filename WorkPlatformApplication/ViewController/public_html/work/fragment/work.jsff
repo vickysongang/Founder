@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core">
+    <af:panelStretchLayout id="psl1" startWidth="150px" partialTriggers="i1:cl1" bottomHeight="0px">
+        <f:facet name="bottom">
+            <af:spacer id="refreshHandler" clientComponent="true">
+                <af:serverListener type="refreshCategory"
+                                   method="#{backingBeanScope.workManagedBean.refreshCategoryServerListener}"/>
+            </af:spacer>
+        </f:facet>
+        <f:facet name="center">
+            <af:switcher id="s5" facetName="#{pageFlowScope.libFlag == 'N' ? 'NO_LIB' : 'LIB'}" defaultFacet="LIB"
+                         binding="#{backingBeanScope.workManagedBean.switcher}">
+                <f:facet name="LIB">
+                    <af:panelSplitter id="ps1" splitterPosition="160" inlineStyle="margin-top:1px;">
+                        <f:facet name="first">
+                            <af:tree value="#{bindings.CmsCategoryVO.treeModel}" var="node"
+                                     rendered="#{pageFlowScope.libCode != 'NOLIB' and pageFlowScope.libCode != 'THEME'}"
+                                     selectionListener="#{backingBeanScope.workManagedBean.categoryTreeSelectionListener}"
+                                     rowSelection="single" id="tree1" clientComponent="true"
+                                     binding="#{backingBeanScope.workManagedBean.categoryTree}"
+                                     inlineStyle="border:1px solid #BAC6CA;margin-right:1px;padding-left:10px;"
+                                     contentDelivery="immediate">
+                                <f:facet name="nodeStamp">
+                                    <af:outputText value="#{node.CategoryDisplayName}" id="ot1"/>
+                                </f:facet>
+                            </af:tree>
+                        </f:facet>
+                        <f:facet name="second">
+                            <af:region value="#{bindings.work_router_taskflow1.regionModel}" id="r1"
+                                       binding="#{backingBeanScope.workManagedBean.workRouterRegion}"/>
+                        </f:facet>
+                    </af:panelSplitter>
+                </f:facet>
+                <f:facet name="NO_LIB">
+                    <af:panelStretchLayout id="psl2">
+                        <f:facet name="center">
+                            <af:region value="#{bindings.work_router_taskflow2.regionModel}" id="r3"
+                                       binding="#{backingBeanScope.workManagedBean.workRouterRegion2}"/>
+                        </f:facet>
+                    </af:panelStretchLayout>
+                </f:facet>
+            </af:switcher>
+        </f:facet>
+        <f:facet name="start">
+            <af:panelAccordion id="pa1" styleClass="AFStretchWidth" inlineStyle="margin:1px 2px 0px 0px;">
+                <af:forEach items="#{backingBeanScope.workManagedBean.firstLevelLibList}" var="first">
+                    <af:showDetailItem text="#{first['libName']}" id="sdi1"
+                                       disclosed="#{first['libCode'] == pageFlowScope.firstLibCode}"
+                                       disclosureListener="#{backingBeanScope.workManagedBean.firstLibCodeDisclosureListener}">
+                        <f:attribute name="firstLibCode" value="#{first['libCode']}"/>
+                        <af:spacer width="10" height="10" id="s1"/>
+                        <af:iterator id="i1" value="#{first['secondLevelLib']}" var="second">
+                            <af:panelGroupLayout id="pgl1" layout="vertical" halign="center"
+                                                 styleClass="#{pageFlowScope.libCode == second['libCode'] ? 'libSelected' : 'libUnSelected' }">
+                                <af:commandLink text="#{second['libName']}" id="cl1" partialSubmit="true"
+                                                actionListener="#{backingBeanScope.workManagedBean.findCategoryActionListener}">
+                                    <f:attribute name="libCode" value="#{second['libCode']}"/>
+                                    <f:attribute name="libTypeCode" value="#{first['libCode']}"/>
+                                    <f:attribute name="libFlag" value="#{second['libFlag']}"/>
+                                </af:commandLink>
+                            </af:panelGroupLayout>
+                            <af:spacer width="10" height="10" id="s2"/>
+                        </af:iterator>
+                    </af:showDetailItem>
+                </af:forEach>
+            </af:panelAccordion>
+        </f:facet>
+        <f:facet name="end"/>
+        <f:facet name="top"/>
+    </af:panelStretchLayout>
+</ui:composition>

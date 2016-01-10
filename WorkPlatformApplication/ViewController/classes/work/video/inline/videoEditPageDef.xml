@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="videoEditPageDef"
+                Package="work.video.inline">
+    <parameters/>
+    <executables>
+        <variableIterator id="variables"/>
+        <taskFlow id="category_pick_taskflow1"
+                  taskFlowId="/WEB-INF/common/category_pick_taskflow.xml#category_pick_taskflow" activation="deferred"
+                  xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+        <iterator Binds="Root.VideoAM.CmsVideoTVO" DataControl="WorkAMDataControl" RangeSize="25"
+                  id="CmsVideoTVOIterator"/>
+        <iterator Binds="Root.VideoAM.CmsVideoEditVO" DataControl="WorkAMDataControl" RangeSize="25"
+                  id="CmsVideoEditVOIterator"/>
+        <iterator id="CmsDocCategoryRelTVOIterator" Binds="Root.VideoAM.CmsDocCategoryRelTVO"
+                  DataControl="WorkAMDataControl" RangeSize="25"/>
+        <taskFlow id="extend_attr_taskflow1" taskFlowId="/WEB-INF/common/extend_attr_taskflow.xml#extend_attr_taskflow"
+                  activation="deferred" xmlns="http://xmlns.oracle.com/adf/controller/binding">
+            <parameters>
+                <parameter id="compCode" value="#{pageFlowScope.compCode}"/>
+                <parameter id="libCode" value="#{pageFlowScope.libCode}"/>
+                <parameter id="docId" value="#{pageFlowScope.docId}"/>
+                <parameter id="operType" value="#{pageFlowScope.mode}"/>
+                <parameter id="labelWidth" value="80"/>
+            </parameters>
+        </taskFlow>
+    </executables>
+    <bindings>
+        <attributeValues IterBinding="CmsVideoTVOIterator" id="FileName">
+            <AttrNames>
+                <Item Value="FileName"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsVideoTVOIterator" id="SeriesName">
+            <AttrNames>
+                <Item Value="SeriesName"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsVideoTVOIterator" id="Isbn">
+            <AttrNames>
+                <Item Value="Isbn"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsVideoTVOIterator" id="ItemCode">
+            <AttrNames>
+                <Item Value="ItemCode"/>
+            </AttrNames>
+        </attributeValues>
+        <list IterBinding="CmsVideoTVOIterator" StaticList="false" Uses="LOV_CarrierType" id="CarrierType"
+              DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+        <list IterBinding="CmsVideoTVOIterator" StaticList="false" Uses="LOV_Lang" id="Lang" DTSupportsMRU="false"
+              SelectItemValueMode="ListObject"/>
+        <attributeValues IterBinding="CmsVideoTVOIterator" id="Editor">
+            <AttrNames>
+                <Item Value="Editor"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsVideoTVOIterator" id="TextEditor">
+            <AttrNames>
+                <Item Value="TextEditor"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsVideoTVOIterator" id="Producer">
+            <AttrNames>
+                <Item Value="Producer"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsVideoTVOIterator" id="PubTime">
+            <AttrNames>
+                <Item Value="PubTime"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsVideoTVOIterator" id="AssortBook">
+            <AttrNames>
+                <Item Value="AssortBook"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsVideoTVOIterator" id="CompCode">
+            <AttrNames>
+                <Item Value="CompCode"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsVideoTVOIterator" id="Keyword">
+            <AttrNames>
+                <Item Value="Keyword"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsVideoTVOIterator" id="ContentDesc">
+            <AttrNames>
+                <Item Value="ContentDesc"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsVideoTVOIterator" id="Remarks">
+            <AttrNames>
+                <Item Value="Remarks"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsVideoEditVOIterator" id="SeriesName1">
+            <AttrNames>
+                <Item Value="SeriesName"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsVideoEditVOIterator" id="Editor1">
+            <AttrNames>
+                <Item Value="Editor"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsVideoEditVOIterator" id="TextEditor1">
+            <AttrNames>
+                <Item Value="TextEditor"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsVideoEditVOIterator" id="PubTime1">
+            <AttrNames>
+                <Item Value="PubTime"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsVideoEditVOIterator" id="AssortBook1">
+            <AttrNames>
+                <Item Value="AssortBook"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsVideoEditVOIterator" id="Keyword1">
+            <AttrNames>
+                <Item Value="Keyword"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsVideoEditVOIterator" id="ContentDesc1">
+            <AttrNames>
+                <Item Value="ContentDesc"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsVideoEditVOIterator" id="Remarks1">
+            <AttrNames>
+                <Item Value="Remarks"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsVideoEditVOIterator" id="Producer1">
+            <AttrNames>
+                <Item Value="Producer"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsVideoEditVOIterator" id="CompCode1">
+            <AttrNames>
+                <Item Value="CompCode"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsVideoTVOIterator" id="CategoryName">
+            <AttrNames>
+                <Item Value="CategoryName"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsVideoEditVOIterator" id="CategoryId1">
+            <AttrNames>
+                <Item Value="CategoryId"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsVideoEditVOIterator" id="CategoryName1">
+            <AttrNames>
+                <Item Value="CategoryName"/>
+            </AttrNames>
+        </attributeValues>
+        <list IterBinding="CmsVideoEditVOIterator" StaticList="false" Uses="LOV_Lang" id="Lang1" DTSupportsMRU="true"
+              SelectItemValueMode="ListObject"/>
+        <list IterBinding="CmsVideoEditVOIterator" StaticList="false" Uses="LOV_CarrierType" id="CarrierType1"
+              DTSupportsMRU="true" SelectItemValueMode="ListObject"/>
+        <attributeValues IterBinding="CmsDocCategoryRelTVOIterator" id="CategoryId">
+            <AttrNames>
+                <Item Value="CategoryId"/>
+            </AttrNames>
+        </attributeValues>
+    </bindings>
+</pageDefinition>

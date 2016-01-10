@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="tempShelfMainPageDef"
+                Package="work.resexp.fragment">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator id="CmsLib4TempShelfVOIterator" Binds="Root.ResExpAM.CmsLib4TempShelfVO" DataControl="WorkAMDataControl"
+              RangeSize="25"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="CmsLib4TempShelfVOIterator" id="CmsLib4TempShelfVO">
+      <nodeDefinition DefName="com.zypg.cms.work.model.viewobject.resexp.query.CmsLib4TempShelfVO"
+                      Name="CmsLib4TempShelfVO0">
+        <AttrNames>
+          <Item Value="LibCode"/>
+          <Item Value="LibNameWithSum"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+  </bindings>
+</pageDefinition>

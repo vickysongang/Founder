@@ -1,0 +1,132 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core">
+    <af:resource type="javascript">
+      function leftDivScroll(leftDiv) {
+          var rightDiv = document.getElementById('ToScroll');
+          rightDiv.scrollTop = leftDiv.scrollTop;
+          rightDiv.scrollLeft = leftDiv.scrollLeft;
+      }
+
+      function rightDivScroll(rightDiv) {
+          var leftDiv = document.getElementById('scroll');
+          leftDiv.scrollTop = rightDiv.scrollTop;
+          leftDiv.scrollLeft = rightDiv.scrollLeft;
+      }
+    </af:resource>
+    <af:panelStretchLayout id="psl1" bottomHeight="auto" inlineStyle="margin:10px;">
+        <f:facet name="center">
+            <af:panelGroupLayout id="pgl1" layout="scroll"
+                                 binding="#{backingBeanScope.entryDupViewManagedBean.panelGroupLayout}">
+                <div id="scroll" onscroll="leftDivScroll(this)"
+                     style="overflow: auto;white-space: nowrap;width: 600px; height: 530px;">
+                    <div style="background-image:url('../../../resources/images/tab_3.gif');height:28px;vertical-align: middle;">
+                        <img src="../../../resources/images/icon_tab.gif" id="i1" alt=""
+                             style="margin-left:20px;margin-top:5px;"/>
+                         
+                        <strong>主条目信息</strong>
+                    </div>
+                    <div style="margin-top:5px;">
+                        <af:panelGroupLayout id="pgl2" layout="horizontal">
+                            <af:panelLabelAndMessage label="标题：" id="plam4">
+                                <af:outputText value="#{bindings.EntryName.inputValue}" id="ot3"
+                                               inlineStyle="font-weight:bold;"/>
+                            </af:panelLabelAndMessage>
+                            <af:spacer width="20" height="10" id="s1"/>
+                            <af:commandLink text="[删除]" id="cl1" inlineStyle="font-weight:bold;" partialSubmit="true"
+                                            rendered="#{bindings.Status.inputValue == 'PUBED_WORKS_ENTRY' or bindings.Status.inputValue == 'PUBED_ENCYCLOPEDIAS_ENTRY'}"
+                                            action="#{backingBeanScope.entryDupViewManagedBean.deleteMasterEntryAction}">
+                                <af:setPropertyListener to="#{pageFlowScope.masterDocId}" type="action" from="#{bindings.DocId.inputValue}"/>
+                            </af:commandLink>
+                        </af:panelGroupLayout>
+                    </div>
+                    <div style="margin-top:5px;">
+                        <af:panelLabelAndMessage label="来源：" id="plam5">
+                            <af:outputText value="#{bindings.Source.inputValue}" id="ot4"/>
+                        </af:panelLabelAndMessage>
+                    </div>
+                    <div style="margin-top:5px;">
+                        <af:panelLabelAndMessage label="正文：" id="plam6"></af:panelLabelAndMessage>
+                    </div>
+                    <div style="margin-top:8px;">
+                        <af:outputText value="#{bindings.EntryContent.inputValue}" id="ot6" escape="false"/>
+                    </div>
+                </div>
+                <div id="ToScroll"
+                     style="left:620px;position:absolute;top:0px;overflow: auto;white-space: nowrap;width: 600px; height: 530px;"
+                     onscroll="rightDivScroll(this)">
+                    <div style="background-image:url('../../../resources/images/tab_3.gif');height:28px;vertical-align: middle;">
+                        <img src="../../../resources/images/icon_tab.gif" id="i2" alt=""
+                             style="margin-left:20px;margin-top:5px;"/>
+                         
+                        <strong>相似条目信息</strong>
+                    </div>
+                    <div style="margin-top:5px;">
+                        <af:panelGroupLayout id="pgl3" layout="horizontal">
+                            <af:panelLabelAndMessage label="标题：" id="plam1">
+                                <af:outputText value="#{bindings.EntryName1.inputValue}" id="ot5"
+                                               inlineStyle="font-weight:bold;"/>
+                            </af:panelLabelAndMessage>
+                            <af:spacer width="20" height="10" id="s2"/>
+                            <af:commandLink text="[删除]" id="cl2" inlineStyle="font-weight:bold;" partialSubmit="true"
+                                            rendered="#{bindings.Status1.inputValue == 'PUBED_WORKS_ENTRY' or bindings.Status1.inputValue == 'PUBED_ENCYCLOPEDIAS_ENTRY'}"
+                                            action="#{backingBeanScope.entryDupViewManagedBean.deleteSlaveEntryAction}">
+                                 <af:setPropertyListener to="#{pageFlowScope.slaveDocId}" type="action" from="#{bindings.ThatDocId.inputValue}"/>
+                            </af:commandLink>
+                        </af:panelGroupLayout>
+                    </div>
+                    <div style="margin-top:5px;">
+                        <af:panelLabelAndMessage label="来源：" id="plam2">
+                            <af:outputText value="#{bindings.Source1.inputValue}" id="ot1"/>
+                        </af:panelLabelAndMessage>
+                    </div>
+                    <div style="margin-top:5px;">
+                        <af:panelLabelAndMessage label="正文：" id="plam3"></af:panelLabelAndMessage>
+                    </div>
+                    <div style="margin-top:8px;">
+                        <af:outputText value="#{bindings.EntryContent1.inputValue}" id="ot2" escape="false"/>
+                    </div>
+                </div>
+                <af:table value="#{bindings.CmsEntryDupSimilarVO.collectionModel}" var="row"
+                          styleClass="AFStretchWidth custom_table_striped" contentDelivery="immediate"
+                          rows="#{bindings.CmsEntryDupSimilarVO.rangeSize}" autoHeightRows="0"
+                          emptyText="#{bindings.CmsEntryDupSimilarVO.viewable ? '' : 'Access Denied.'}"
+                          fetchSize="#{bindings.CmsEntryDupSimilarVO.rangeSize}" rowBandingInterval="0"
+                          columnStretching="multiple" rowSelection="single" id="t1" inlineStyle="width:1230px;"
+                          selectionListener="#{backingBeanScope.entryDupViewManagedBean.onTableSelect}"
+                          binding="#{backingBeanScope.entryDupViewManagedBean.entryTable}">
+                    <af:column sortProperty="#{bindings.CmsEntryDupSimilarVO.hints.EntryName.name}" sortable="false"
+                               width="40%" headerText="#{bindings.CmsEntryDupSimilarVO.hints.EntryName.label}" id="c1">
+                        <af:outputText value="#{row.EntryName}"
+                                       shortDesc="#{bindings.CmsEntryDupSimilarVO.hints.EntryName.tooltip}" id="ot7"/>
+                    </af:column>
+                    <af:column sortProperty="#{bindings.CmsEntryDupSimilarVO.hints.Source.name}" sortable="false"
+                               width="30%" headerText="#{bindings.CmsEntryDupSimilarVO.hints.Source.label}" id="c2">
+                        <af:outputText value="#{row.Source}"
+                                       shortDesc="#{bindings.CmsEntryDupSimilarVO.hints.Source.tooltip}" id="ot8"/>
+                    </af:column>
+                    <af:column sortProperty="#{bindings.CmsEntryDupSimilarVO.hints.Rate.name}" sortable="false"
+                               width="15%" align="center" headerText="#{bindings.CmsEntryDupSimilarVO.hints.Rate.label}"
+                               id="c3">
+                        <af:outputText value="#{row.Rate}"
+                                       shortDesc="#{bindings.CmsEntryDupSimilarVO.hints.Rate.tooltip}" id="ot9">
+                            <af:convertNumber groupingUsed="false"
+                                              pattern="#{bindings.CmsEntryDupSimilarVO.hints.Rate.format}"/>
+                        </af:outputText>
+                    </af:column>
+                    <af:column sortProperty="#{bindings.CmsEntryDupSimilarVO.hints.FillTimeDisplay.name}"
+                               sortable="false" align="center" width="15%"
+                               headerText="#{bindings.CmsEntryDupSimilarVO.hints.FillTimeDisplay.label}" id="c4">
+                        <af:outputText value="#{row.FillTimeDisplay}"
+                                       shortDesc="#{bindings.CmsEntryDupSimilarVO.hints.FillTimeDisplay.tooltip}"
+                                       id="ot10"/>
+                    </af:column>
+                </af:table>
+            </af:panelGroupLayout>
+        </f:facet>
+        <f:facet name="start"/>
+        <f:facet name="end"/>
+        <f:facet name="top"/>
+        <f:facet name="bottom"></f:facet>
+    </af:panelStretchLayout>
+</ui:composition>

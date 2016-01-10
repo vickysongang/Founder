@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="themeExportLogShowPageDef"
+                Package="work.theme.inline">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="Root.ThemeAM.showExportLogVO1" DataControl="WorkAMDataControl" RangeSize="10000"
+              id="showExportLogVO1Iterator"/>
+  </executables>
+  <bindings>
+    <action IterBinding="showExportLogVO1Iterator" id="Execute"
+            InstanceName="WorkAMDataControl.Root.ThemeAM.showExportLogVO1" DataControl="WorkAMDataControl"
+            RequiresUpdateModel="true" Action="iteratorExecute"/>
+    <tree IterBinding="showExportLogVO1Iterator" id="showExportLogVO1">
+      <nodeDefinition DefName="com.zypg.cms.work.model.viewobject.theme.query.showExportLogVO" Name="showExportLogVO10">
+        <AttrNames>
+          <Item Value="DiplayName"/>
+          <Item Value="LogId"/>
+          <Item Value="LogContent"/>
+          <Item Value="BatchNumber"/>
+          <Item Value="ObjectVersionNumber"/>
+          <Item Value="CreatedBy"/>
+          <Item Value="CreationDate"/>
+          <Item Value="LastUpdatedBy"/>
+          <Item Value="LastUpdateDate"/>
+          <Item Value="Attribute1"/>
+          <Item Value="Attribute2"/>
+          <Item Value="Attribute3"/>
+          <Item Value="Attribute4"/>
+          <Item Value="Attribute5"/>
+          <Item Value="Attribute6"/>
+          <Item Value="Attribute7"/>
+          <Item Value="Attribute8"/>
+          <Item Value="Attribute9"/>
+          <Item Value="Attribute10"/>
+          <Item Value="Attribute11"/>
+          <Item Value="Attribute12"/>
+          <Item Value="Attribute13"/>
+          <Item Value="Attribute14"/>
+          <Item Value="Attribute15"/>
+          <Item Value="CreateDateDisplay"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+  </bindings>
+</pageDefinition>

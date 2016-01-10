@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewLink SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewLink
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="CmsResExpApplyVL"
+  Version="11.1.2.64.36">
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="com.zypg.cms.work.model.viewobject.resexp.viewlink.CmsResExpApplyVL_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <ViewLinkDefEnd
+    Name="CmsResExpApplyHTVO"
+    Cardinality="1"
+    Source="true"
+    Owner="com.zypg.cms.work.model.viewobject.resexp.CmsResExpApplyHTVO">
+    <DesignTime>
+      <Attr Name="_finderName" Value="CmsResExpApplyHTVO"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="com.zypg.cms.work.model.viewobject.resexp.CmsResExpApplyHTVO.ApplyId"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+  <ViewLinkDefEnd
+    Name="CmsResExpApplyLTVO"
+    Cardinality="-1"
+    Owner="com.zypg.cms.work.model.viewobject.resexp.CmsResExpApplyLTVO">
+    <DesignTime>
+      <Attr Name="_finderName" Value="CmsResExpApplyLTVO"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="com.zypg.cms.work.model.viewobject.resexp.CmsResExpApplyLTVO.HeadId"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="com.zypg.cms.work.model.ModelBundle"/>
+  </ResourceBundle>
+</ViewLink>

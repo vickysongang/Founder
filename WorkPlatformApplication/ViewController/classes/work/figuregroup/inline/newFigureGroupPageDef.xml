@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="newFigureGroupPageDef"
+                Package="work.figuregroup.inline">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="Root.FigureGroupAM.CmsFigureGroupTVO" DataControl="WorkAMDataControl" RangeSize="25"
+              id="CmsFigureGroupTVOIterator"/>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="CmsFigureGroupTVOIterator" id="GroupName">
+      <AttrNames>
+        <Item Value="GroupName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsFigureGroupTVOIterator" id="GroupDesc">
+      <AttrNames>
+        <Item Value="GroupDesc"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

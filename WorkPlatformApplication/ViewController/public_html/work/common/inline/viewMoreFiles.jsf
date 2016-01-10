@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <af:document id="d1">
+        <af:form id="f1">
+            <af:panelStretchLayout id="psl1" topHeight="auto" partialTriggers="cl1 cl2 soc1">
+                <f:facet name="bottom"/>
+                <f:facet name="center">
+                    <af:table var="row" rowBandingInterval="0" id="t1" varStatus="vs"
+                              styleClass="AFStretchWidth custom_table_striped" contentDelivery="immediate"
+                              autoHeightRows="0" inlineStyle="margin-top:2px;" emptyText=""
+                              value="#{backingBeanScope.viewMoreFilesManagedBean.tableModel.model}"
+                              binding="#{backingBeanScope.viewMoreFilesManagedBean.commonRenderer.table}"
+                              rowSelection="multiple" columnStretching="multiple" clientComponent="true">
+                        <af:column sortable="false" headerText="序号" id="c1" align="center" width="50">
+                            <af:outputText value="#{vs.index+1}" id="ot18"/>
+                        </af:column>
+                        <af:column sortable="false" headerText="文件名" id="c6" width="70%">
+                            <af:outputText value="#{row.fileName}" id="ot6"/>
+                        </af:column>
+                        <af:column sortable="false" headerText="文件类型" id="c2" width="30%" align="center">
+                            <af:outputText value="#{row.fileCategory}" id="ot1"/>
+                        </af:column>
+                    </af:table>
+                </f:facet>
+                <f:facet name="start"/>
+                <f:facet name="end"/>
+                <f:facet name="top">
+                    <af:panelStretchLayout id="psl3" inlineStyle="height:26px;background:#E7ECE5;margin-top:3px;"
+                                           topHeight="0px" bottomHeight="0px" startWidth="auto"
+                                           styleClass="AFStretchWidth" partialTriggers="cl1 cl2 soc1" endWidth="auto">
+                        <f:facet name="bottom"/>
+                        <f:facet name="center"/>
+                        <f:facet name="start">
+                            <af:panelGroupLayout id="pgl6" layout="horizontal"
+                                                 inlineStyle="padding-top:3px;padding-left:15px;">
+                                <af:outputText value="总个数:#{backingBeanScope.viewMoreFilesManagedBean.tableModel.rowCount}"
+                                               id="ot2"/>
+                                <af:spacer width="10" height="10" id="s2"/>
+                                <af:outputText value="每页[20]" id="ot3"/>
+                                <af:spacer width="10" height="10" id="s7"/>
+                                <af:outputText value="页数[" id="ot9"/>
+                                <af:outputText value="#{backingBeanScope.viewMoreFilesManagedBean.tableModel.currPageIndex}"
+                                               id="ot8" inlineStyle="color:Red;"/>
+                                <af:outputText value="/#{backingBeanScope.viewMoreFilesManagedBean.tableModel.totalPageCount}]"
+                                               id="ot4"/>
+                                <af:spacer width="10" height="10" id="s4"/>
+                                <af:commandLink text="前一页" id="cl1"
+                                                disabled="#{backingBeanScope.viewMoreFilesManagedBean.tableModel.isPrevDisabled}"
+                                                actionListener="#{backingBeanScope.viewMoreFilesManagedBean.commonRenderer.prevPage}"/>
+                                <af:spacer width="10" height="10" id="s1"/>
+                                <af:commandLink text="后一页" id="cl2"
+                                                disabled="#{backingBeanScope.viewMoreFilesManagedBean.tableModel.isNextDisabled}"
+                                                actionListener="#{backingBeanScope.viewMoreFilesManagedBean.commonRenderer.nextPage}"/>
+                                <af:spacer width="10" height="10" id="s8"/>
+                                <af:selectOneChoice valueChangeListener="#{backingBeanScope.viewMoreFilesManagedBean.commonRenderer.goPageIndex}"
+                                                    id="soc1" simple="true" autoSubmit="true"
+                                                    value="#{backingBeanScope.viewMoreFilesManagedBean.tableModel.currItem.value}">
+                                    <f:selectItems value="#{backingBeanScope.viewMoreFilesManagedBean.tableModel.pageSelectItems}"
+                                                   id="si1"/>
+                                </af:selectOneChoice>
+                            </af:panelGroupLayout>
+                        </f:facet>
+                        <f:facet name="top"/>
+                    </af:panelStretchLayout>
+                </f:facet>
+            </af:panelStretchLayout>
+        </af:form>
+    </af:document>
+</f:view>

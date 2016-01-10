@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="activityEditPageDef"
+                Package="work.activity.inline">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="Root.ActivityAM.CmsActivityTVO" DataControl="WorkAMDataControl" RangeSize="25"
+              id="CmsActivityTVOIterator"/>
+    <iterator Binds="Root.ActivityAM.CmsActivityEditVO" DataControl="WorkAMDataControl" RangeSize="25"
+              id="CmsActivityEditVOIterator"/>
+    <taskFlow id="category_pick_taskflow1"
+              taskFlowId="/WEB-INF/common/category_pick_taskflow.xml#category_pick_taskflow" activation="deferred"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+    <iterator id="CmsDocCategoryRelTVOIterator" Binds="Root.ActivityAM.CmsDocCategoryRelTVO"
+              DataControl="WorkAMDataControl" RangeSize="25"/>
+    <taskFlow id="extend_attr_taskflow1" taskFlowId="/WEB-INF/common/extend_attr_taskflow.xml#extend_attr_taskflow"
+              activation="deferred" xmlns="http://xmlns.oracle.com/adf/controller/binding">
+      <parameters>
+        <parameter id="compCode" value="#{pageFlowScope.compCode}"/>
+        <parameter id="libCode" value="#{pageFlowScope.libCode}"/>
+        <parameter id="docId" value="#{pageFlowScope.docId}"/>
+        <parameter id="operType" value="#{pageFlowScope.mode}"/>
+        <parameter id="labelWidth" value="80"/>
+      </parameters>
+    </taskFlow>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="CmsActivityTVOIterator" id="ActivityTheme">
+      <AttrNames>
+        <Item Value="ActivityTheme"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsActivityTVOIterator" id="ActivityStartTime">
+      <AttrNames>
+        <Item Value="ActivityStartTime"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsActivityTVOIterator" id="ActivityEndTime">
+      <AttrNames>
+        <Item Value="ActivityEndTime"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsActivityTVOIterator" id="ActivityLocation">
+      <AttrNames>
+        <Item Value="ActivityLocation"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsActivityTVOIterator" id="CompCode">
+      <AttrNames>
+        <Item Value="CompCode"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsActivityTVOIterator" id="ActivityDesc">
+      <AttrNames>
+        <Item Value="ActivityDesc"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsActivityTVOIterator" id="Remarks">
+      <AttrNames>
+        <Item Value="Remarks"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsActivityEditVOIterator" id="ActivityTheme1">
+      <AttrNames>
+        <Item Value="ActivityTheme"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsActivityEditVOIterator" id="ActivityStartTime1">
+      <AttrNames>
+        <Item Value="ActivityStartTime"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsActivityEditVOIterator" id="ActivityEndTime1">
+      <AttrNames>
+        <Item Value="ActivityEndTime"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsActivityEditVOIterator" id="ActivityLocation1">
+      <AttrNames>
+        <Item Value="ActivityLocation"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsActivityEditVOIterator" id="CompCode1">
+      <AttrNames>
+        <Item Value="CompCode"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsActivityEditVOIterator" id="Remarks1">
+      <AttrNames>
+        <Item Value="Remarks"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsActivityEditVOIterator" id="ActivityDesc1">
+      <AttrNames>
+        <Item Value="ActivityDesc"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsActivityTVOIterator" id="CategoryName">
+      <AttrNames>
+        <Item Value="CategoryName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsActivityEditVOIterator" id="CategoryName1">
+      <AttrNames>
+        <Item Value="CategoryName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsActivityEditVOIterator" id="CategoryId1">
+      <AttrNames>
+        <Item Value="CategoryId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsDocCategoryRelTVOIterator" id="CategoryId">
+      <AttrNames>
+        <Item Value="CategoryId"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

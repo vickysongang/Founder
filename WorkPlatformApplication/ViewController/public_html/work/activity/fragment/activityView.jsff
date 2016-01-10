@@ -1,0 +1,126 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core">
+    <af:panelStretchLayout id="psl1" inlineStyle="width:1050px;height:540px;" bottomHeight="0px">
+        <f:facet name="center">
+            <af:panelGroupLayout id="pgl1" layout="scroll" valign="top" inlineStyle="margin-top:10px;">
+                <af:panelGroupLayout id="pgl4" layout="horizontal" valign="top">
+                    <af:panelGroupLayout id="pgl3" layout="vertical" inlineStyle="width:200px;" valign="top">
+                        <af:region value="#{bindings.related_info_view_taskflow1.regionModel}" id="r1"/>
+                    </af:panelGroupLayout>
+                    <af:spacer width="5" height="10" id="s24"/>
+                    <af:panelGroupLayout id="pgl6" layout="vertical" inlineStyle="width:600px;">
+                        <af:panelGroupLayout id="pgl36" layout="vertical">
+                            <af:panelGroupLayout id="pgl37" layout="vertical"
+                                                 inlineStyle="background:#D9EDF8;height:30px;"
+                                                 styleClass="AFStretchWidth">
+                                <af:panelGroupLayout id="pgl38" layout="horizontal" inlineStyle="padding-top:8px;">
+                                    <af:spacer width="10" height="10" id="s14"/>
+                                    <af:outputText value="活动详细信息" id="ot29"
+                                                   inlineStyle="font-weight:bold;color:#024D91;"/>
+                                </af:panelGroupLayout>
+                            </af:panelGroupLayout>
+                        </af:panelGroupLayout>
+                        <af:panelFormLayout id="pfl2" maxColumns="2" rows="4" labelWidth="100" fieldWidth="200">
+                            <af:panelLabelAndMessage label="#{bindings.ActivityTheme.hints.label}" id="plam1">
+                                <af:outputText value="#{bindings.ActivityTheme.inputValue}"
+                                               shortDesc="#{bindings.ActivityTheme.hints.tooltip}" id="ot1"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.ActivityStartTime.hints.label}" id="plam2">
+                                <af:outputText value="#{bindings.ActivityStartTime.inputValue}"
+                                               shortDesc="#{bindings.ActivityStartTime.hints.tooltip}" id="ot2">
+                                    <af:convertDateTime pattern="#{bindings.ActivityStartTime.format}"/>
+                                </af:outputText>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.ActivityEndTime.hints.label}" id="plam3">
+                                <af:outputText value="#{bindings.ActivityEndTime.inputValue}"
+                                               shortDesc="#{bindings.ActivityEndTime.hints.tooltip}" id="ot3">
+                                    <af:convertDateTime pattern="#{bindings.ActivityEndTime.format}"/>
+                                </af:outputText>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.ActivityLocation.hints.label}" id="plam4">
+                                <af:outputText value="#{bindings.ActivityLocation.inputValue}"
+                                               shortDesc="#{bindings.ActivityLocation.hints.tooltip}" id="ot4"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.CompCode.hints.label}" id="plam6">
+                                <af:outputText value="#{bindings.CompCode.inputValue}"
+                                               shortDesc="#{bindings.CompCode.hints.tooltip}" id="ot6"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.ActivityStoreTime.hints.label}" id="plam7">
+                                <af:outputText value="#{bindings.ActivityStoreTime.inputValue}"
+                                               shortDesc="#{bindings.ActivityStoreTime.hints.tooltip}" id="ot7">
+                                    <af:convertDateTime pattern="#{bindings.ActivityStoreTime.format}"/>
+                                </af:outputText>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.CategoryName.hints.label}" id="plam10">
+                                <af:outputText value="#{bindings.CategoryName.inputValue}"
+                                               shortDesc="#{bindings.CategoryName.hints.tooltip}" id="ot10"/>
+                            </af:panelLabelAndMessage>
+                        </af:panelFormLayout>
+                        <af:panelFormLayout id="pfl1" labelWidth="100">
+                            <af:panelLabelAndMessage label="#{bindings.Remarks.hints.label}" id="plam9">
+                                <af:outputText value="#{bindings.Remarks.inputValue}"
+                                               shortDesc="#{bindings.Remarks.hints.tooltip}" id="ot9"/>
+                            </af:panelLabelAndMessage>
+                        </af:panelFormLayout>
+                        <af:region value="#{bindings.extend_attr_view_taskflow1.regionModel}" id="r3"/>
+                        <af:spacer width="5" height="10" id="s2"/>
+                        <af:panelGroupLayout id="pgl9" layout="vertical">
+                            <af:panelGroupLayout id="pgl10" layout="vertical"
+                                                 inlineStyle="background:#D9EDF8;height:30px;"
+                                                 styleClass="AFStretchWidth">
+                                <af:panelGroupLayout id="pgl11" layout="horizontal" inlineStyle="padding-top:8px;">
+                                    <af:spacer width="10" height="10" id="s3"/>
+                                    <af:outputText value="活动简介" id="ot27"
+                                                   inlineStyle="font-weight:bold;color:#024D91;"/>
+                                </af:panelGroupLayout>
+                            </af:panelGroupLayout>
+                            <af:outputText value="#{bindings.ActivityDesc.inputValue}"
+                                           shortDesc="#{bindings.ActivityDesc.hints.tooltip}" id="ot19"/>
+                        </af:panelGroupLayout>
+                    </af:panelGroupLayout>
+                    <af:spacer width="5" height="10" id="s1"/>
+                    <af:panelGroupLayout id="pgl65" layout="vertical"
+                                         rendered="#{bindings.CmsDocUcmRelTVO4FileList.estimatedRowCount>0}">
+                        <af:panelGroupLayout id="pgl66" layout="vertical" inlineStyle="background:#D9EDF8;height:30px;"
+                                             styleClass="AFStretchWidth">
+                            <af:panelGroupLayout id="pgl67" layout="horizontal" inlineStyle="padding-top:8px;">
+                                <af:spacer width="10" height="10" id="s25"/>
+                                <af:outputText value="文件列表" id="ot16" inlineStyle="font-weight:bold;color:#024D91;"/>
+                            </af:panelGroupLayout>
+                        </af:panelGroupLayout>
+                        <table width="100%">
+                            <af:iterator id="i10" value="#{bindings.CmsDocUcmRelTVO4FileList.collectionModel}" var="row"
+                                         rows="20">
+                                <tr>
+                                    <td width="60%">
+                                        <af:outputText value="#{row.FileName}" inlineStyle="margin-left:10px;"
+                                                       id="ot68"/>
+                                    </td>
+                                    <td align="left">
+                                        <af:outputText value="#{row.FileCategory}" inlineStyle="margin-left:10px;"
+                                                       id="ot69"/>
+                                    </td>
+                                </tr>
+                            </af:iterator>
+                        </table>
+                        <af:panelGroupLayout id="pgl68" layout="vertical" halign="right">
+                            <af:commandLink text="更多..." id="cl5" inlineStyle="margin-right:20px;width:50px;"
+                                            partialSubmit="true" action="toMore" useWindow="true" windowHeight="650"
+                                            windowWidth="1050">
+                                <af:setPropertyListener from="#{bindings.DocId.inputValue}" to="#{pageFlowScope.docId}"
+                                                        type="action"/>
+                            </af:commandLink>
+                        </af:panelGroupLayout>
+                        <af:spacer width="10" height="10" id="s27"/>
+                    </af:panelGroupLayout>
+                </af:panelGroupLayout>
+                <af:spacer width="5" height="10" id="s4"/>
+                <af:panelGroupLayout id="pgl5" layout="vertical" inlineStyle="width:200px;" valign="top">
+                    <af:region value="#{bindings.related_info_view_taskflow2.regionModel}" id="r2"/>
+                </af:panelGroupLayout>
+            </af:panelGroupLayout>
+        </f:facet>
+        <f:facet name="bottom"></f:facet>
+    </af:panelStretchLayout>
+</ui:composition>

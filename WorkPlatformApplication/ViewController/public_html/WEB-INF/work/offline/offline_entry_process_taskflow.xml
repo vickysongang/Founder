@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+    <task-flow-definition id="offline_entry_process_taskflow">
+        <default-activity>initOfflineEntryProcess</default-activity>
+        <input-parameter-definition id="__4">
+            <name>compCode</name>
+            <value>#{pageFlowScope.compCode}</value>
+            <class>java.lang.String</class>
+        </input-parameter-definition>
+        <input-parameter-definition id="__5">
+            <name>libCode</name>
+            <value>#{pageFlowScope.libCode}</value>
+            <class>java.lang.String</class>
+        </input-parameter-definition>
+        <input-parameter-definition id="__6">
+            <name>currStatusCode</name>
+            <value>#{pageFlowScope.currStatusCode}</value>
+            <class>java.lang.String</class>
+        </input-parameter-definition>
+        <managed-bean id="__3">
+            <managed-bean-name>offlineEntryProcessManagedBean</managed-bean-name>
+            <managed-bean-class>com.zypg.cms.work.view.bean.OfflineEntryProcessManagedBean</managed-bean-class>
+            <managed-bean-scope>backingBean</managed-bean-scope>
+        </managed-bean>
+        <view id="offlineEntryProcessMain">
+            <page>/work/offline/fragment/offlineEntryProcessMain.jsff</page>
+        </view>
+        <method-call id="initOfflineEntryProcess">
+            <method>#{backingBeanScope.offlineEntryProcessManagedBean.initOfflineEntryProcess}</method>
+            <outcome>
+                <fixed-outcome>toOfflineEntryProcess</fixed-outcome>
+            </outcome>
+        </method-call>
+        <task-flow-call id="new_offline_entry_process_taskflow">
+            <task-flow-reference>
+                <document>/WEB-INF/work/offline/new_offline_entry_process_taskflow.xml</document>
+                <id>new_offline_entry_process_taskflow</id>
+            </task-flow-reference>
+            <input-parameter id="__9">
+                <name>compCode</name>
+                <value>#{pageFlowScope.compCode}</value>
+            </input-parameter>
+            <run-as-dialog>
+                <display-type>
+                    <external-window/>
+                </display-type>
+            </run-as-dialog>
+        </task-flow-call>
+        <control-flow-rule id="__1">
+            <from-activity-id>initOfflineEntryProcess</from-activity-id>
+            <control-flow-case id="__2">
+                <from-outcome>toOfflineEntryProcess</from-outcome>
+                <to-activity-id>offlineEntryProcessMain</to-activity-id>
+            </control-flow-case>
+        </control-flow-rule>
+        <control-flow-rule id="__7">
+            <from-activity-id>offlineEntryProcessMain</from-activity-id>
+            <control-flow-case id="__8">
+                <from-outcome>toNewOfflineEntryProcess</from-outcome>
+                <to-activity-id>new_offline_entry_process_taskflow</to-activity-id>
+            </control-flow-case>
+        </control-flow-rule>
+        <use-page-fragments/>
+    </task-flow-definition>
+</adfc-config>

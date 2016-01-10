@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE AppModule SYSTEM "jbo_03_01.dtd">
+<!---->
+<AppModule
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="CommonAM"
+  Version="11.1.2.64.36"
+  ComponentClass="com.zypg.cms.work.model.am.CommonAMImpl"
+  ClearCacheOnRollback="true"
+  ComponentInterface="com.zypg.cms.work.model.am.common.CommonAM"
+  ClientProxyName="com.zypg.cms.work.model.am.client.CommonAMClient">
+  <DesignTime>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="com.zypg.cms.work.model.am.CommonAM_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <ViewUsage
+    Name="CmsGatherMonitorTVO"
+    ViewObjectName="com.zypg.cms.work.model.viewobject.common.CmsGatherMonitorTVO"/>
+  <ViewUsage
+    Name="CmsAttachTVO4View"
+    ViewObjectName="com.zypg.cms.work.model.viewobject.attach.CmsAttachTVO">
+    <ViewCriteriaUsage
+      Name="findAttachBySourceDocId"
+      FullName="com.zypg.cms.work.model.viewobject.attach.CmsAttachTVO.findAttachBySourceDocId"/>
+  </ViewUsage>
+  <ViewUsage
+    Name="CmsLookupValueVO"
+    ViewObjectName="com.zypg.cms.work.model.viewobject.common.lov.CmsLookupValueVO"/>
+  <ViewUsage
+    Name="CmsDocTVO4Edit"
+    ViewObjectName="com.zypg.cms.work.model.viewobject.common.CmsDocTVO"/>
+  <ViewUsage
+    Name="CmsDocUcmRelTVO4OnlineRead"
+    ViewObjectName="com.zypg.cms.work.model.viewobject.common.CmsDocUcmRelTVO">
+    <ViewCriteriaUsage
+      Name="findRel4OnlineRead"
+      FullName="com.zypg.cms.work.model.viewobject.common.CmsDocUcmRelTVO.findRel4OnlineRead"/>
+  </ViewUsage>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="com.zypg.cms.work.model.ModelBundle"/>
+  </ResourceBundle>
+  <ClientInterface>
+    <Method
+      Name="insertGatherMonitorRecord"
+      MethodName="insertGatherMonitorRecord">
+      <Return
+        Type="void"/>
+      <Parameter
+        Name="docId"
+        Type="oracle.jbo.domain.Number"/>
+      <Parameter
+        Name="fileName"
+        Type="java.lang.String"/>
+      <Parameter
+        Name="filePath"
+        Type="java.lang.String"/>
+    </Method>
+  </ClientInterface>
+</AppModule>

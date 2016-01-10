@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <af:document title="chapterSort.jsf" id="d1">
+        <f:facet name="metaContainer">
+            <af:resource type="css">
+                .panelGroupOnhover {
+                    cursor: pointer;
+                }
+
+                .panelGroupOnhover:hover {
+                    background-color: Aqua;
+                }
+            </af:resource>
+        </f:facet>
+        <af:messages id="m1"/>
+        <af:form id="f1">
+            <af:panelStretchLayout id="psl1"
+                                   inlineStyle="background:url('../resources/images/import_item_bg.gif') repeat-x;">
+                <f:facet name="bottom"/>
+                <f:facet name="center">
+                    <af:panelGroupLayout layout="scroll" halign="center" id="pgl3" inlineStyle="margin-top:20px">
+                        <af:panelGroupLayout id="pgl4" layout="horizontal"
+                                             inlineStyle="width:600px; background-color:black; " halign="center">
+                            <af:panelGroupLayout id="pgl1" layout="horizontal"
+                                                 inlineStyle="width:100px;text-align:center" halign="center">
+                                <af:outputText value="章节ID" id="ot1" inlineStyle="color:White; font-size:medium;"/>
+                            </af:panelGroupLayout>
+                            <af:panelGroupLayout id="pgl5" layout="horizontal"
+                                                 inlineStyle="width:100px;text-align:center" halign="center">
+                                <af:outputText value="章节编号" id="ot2" inlineStyle="color:White;font-size:medium;"/>
+                            </af:panelGroupLayout>
+                            <af:panelGroupLayout id="pgl6" layout="horizontal"
+                                                 inlineStyle="width:400px;text-align:center" halign="center">
+                                <af:outputText value="章节标题" id="ot3" inlineStyle="color:White; font-size:medium;"/>
+                            </af:panelGroupLayout>
+                        </af:panelGroupLayout>
+                        <af:iterator value="#{bindings.CmsChapterTVO.collectionModel}" var="row" id="i1"
+                                     binding="#{backingBeanScope.chapterSortBean.iteratorBinding}">
+                            <af:panelGroupLayout id="pgl7" layout="horizontal" styleClass="panelGroupOnhover"
+                                                 inlineStyle="width:600px;margin-top:3px;" halign="center"
+                                                 clientComponent="true" partialTriggers="::i1">
+                                <f:attribute name="rowKey" value="#{row.ChapterId}"/>
+                                <af:componentDragSource discriminant="comp"/>
+                                <af:dropTarget dropListener="#{backingBeanScope.chapterSortBean.rowDropListener}"
+                                               actions="MOVE">
+                                    <af:dataFlavor discriminant="comp" flavorClass="javax.faces.component.UIComponent"/>
+                                </af:dropTarget>
+                                <af:panelGroupLayout id="pgl8" layout="horizontal"
+                                                     inlineStyle="width:100px;text-align:center" halign="center">
+                                    <af:outputText value="#{row.ChapterId}" id="ot7" inlineStyle="font-size:small;"/>
+                                </af:panelGroupLayout>
+                                <af:panelGroupLayout id="pgl9" layout="horizontal"
+                                                     inlineStyle="width:100px;text-align:center" halign="center">
+                                    <af:outputText value="#{row.ChapterCode}" id="ot8" inlineStyle="font-size:small;"/>
+                                </af:panelGroupLayout>
+                                <af:panelGroupLayout id="pgl10" layout="horizontal"
+                                                     inlineStyle="width:400px;text-align:center" halign="center">
+                                    <af:outputText value="#{row.ChapterName}" id="ot9" inlineStyle="font-size:small;"/>
+                                </af:panelGroupLayout>
+                            </af:panelGroupLayout>
+                        </af:iterator>
+                        <af:panelGroupLayout id="pgl2" layout="horizontal" halign="center"
+                                             inlineStyle="margin-top:10px">
+                            <af:commandButton text="保存" id="cb1" styleClass="popup-btn"
+                                              actionListener="#{backingBeanScope.chapterSortBean.sortCommit}"/>
+                            <af:spacer width="5" height="10" id="s1"/>
+                            <af:commandButton text="关闭" id="cb2" styleClass="popup-btn"
+                                              actionListener="#{backingBeanScope.chapterSortBean.sortCancel}"
+                                              action="toReturn"/>
+                        </af:panelGroupLayout>
+                    </af:panelGroupLayout>
+                </f:facet>
+            </af:panelStretchLayout>
+        </af:form>
+    </af:document>
+</f:view>

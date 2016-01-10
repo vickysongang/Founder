@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <af:document title="#{pageFlowScope.type == 'CANCEL'?'撤销发布':'回退'}" id="d1">
+        <af:messages id="m1"/>
+        <af:form id="f1">
+            <af:panelStretchLayout id="psl1" bottomHeight="30px" dimensionsFrom="auto">
+                <f:facet name="bottom">
+                    <af:panelGroupLayout id="pgl3" layout="vertical" halign="center">
+                        <af:panelGroupLayout id="pgl4" halign="center" layout="horizontal">
+                            <af:commandButton text="确定" id="cb3" action="toReturn" styleClass="popup-btn"
+                                              actionListener="#{backingBeanScope.docBackManagedBean.saveActionListener}"/>
+                            <af:commandButton text="取消" id="cb4" action="toReturn" styleClass="popup-btn"
+                                              actionListener="#{backingBeanScope.docBackManagedBean.cancelActionListener}"/>
+                        </af:panelGroupLayout>
+                    </af:panelGroupLayout>
+                </f:facet>
+                <f:facet name="center">
+                    <af:switcher id="s2" facetName="#{pageFlowScope.type}">
+                        <f:facet name="ROLLBACK">
+                            <af:panelFormLayout id="pfl1" rows="1">
+                                <af:inputText styleClass="multipleRowsInputtext" label="回退原因"
+                                              contentStyle="width:540px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                              id="it2" rows="8"
+                                              binding="#{backingBeanScope.docBackManagedBean.reasonInputText}"></af:inputText>
+                            </af:panelFormLayout>
+                        </f:facet>
+                        <f:facet name="CANCEL">
+                            <af:panelGroupLayout id="pgl5" layout="vertical" halign="center">
+                                <af:panelGroupLayout id="pgl6" layout="horizontal">
+                                    <af:spacer width="10" height="100" id="s3"/>
+                                    <af:outputText value="确定撤销发布？" id="ot1"
+                                                   inlineStyle="font-weight:bold;font-size:14px;"/>
+                                </af:panelGroupLayout>
+                            </af:panelGroupLayout>
+                        </f:facet>
+                    </af:switcher>
+                </f:facet>
+            </af:panelStretchLayout>
+        </af:form>
+    </af:document>
+</f:view>

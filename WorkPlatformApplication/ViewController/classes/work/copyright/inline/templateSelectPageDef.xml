@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="templateSelectPageDef"
+                Package="work.copyright.inline">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="Root.CopyrightAM.CmsCompanyCopyrightVO4View" DataControl="WorkAMDataControl" RangeSize="25"
+              id="CmsCompanyCopyrightVO4ViewIterator"/>
+  </executables>
+  <bindings>
+    <list IterBinding="CmsCompanyCopyrightVO4ViewIterator" ListOperMode="multiSelect"
+          ListIter="CmsCompanyCopyrightVO4ViewIterator" id="CmsCompanyCopyrightVO4View"
+          SelectItemValueMode="ListObject">
+      <AttrNames>
+        <Item Value="CompanyId"/>
+      </AttrNames>
+      <ListDisplayAttrNames>
+        <Item Value="CompanyName"/>
+      </ListDisplayAttrNames>
+    </list>
+  </bindings>
+</pageDefinition>

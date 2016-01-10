@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="processLogPageDef"
+                Package="work.common.fragment">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="CmsProcessLogVO" RangeSize="25" DataControl="WorkAMDataControl" id="CmsProcessLogVOIterator"/>
+    <searchRegion Criteria="findProcessLogByDocId" Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="CmsProcessLogVOIterator" id="findProcessLogByStartPointQuery"/>
+    <iterator Binds="Root.LogAM.CmsProcessLogVO" DataControl="WorkAMDataControl" RangeSize="25"
+              id="CmsProcessLogVOIterator1"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="CmsProcessLogVOIterator1" id="CmsProcessLogVO">
+      <nodeDefinition DefName="com.zypg.cms.work.model.viewobject.log.query.CmsProcessLogVO" Name="CmsProcessLogVO0">
+        <AttrNames>
+          <Item Value="ProcessOperator"/>
+          <Item Value="Operation"/>
+          <Item Value="ProcessStartPoint"/>
+          <Item Value="ProcessEndPoint"/>
+          <Item Value="OperationTime"/>
+          <Item Value="DocId"/>
+          <Item Value="LogId"/>
+          <Item Value="ProcessOperatorName"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+  </bindings>
+</pageDefinition>

@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core">
+    <af:panelStretchLayout id="psl1" topHeight="auto" inlineStyle="margin:0px 2px 2px 2px;">
+        <f:facet name="center">
+            <af:region value="#{bindings.work_taskflow1.regionModel}" id="r1"
+                       binding="#{backingBeanScope.homeManagedBean.workRegion}"/>
+        </f:facet>
+        <f:facet name="top">
+            <af:panelStretchLayout id="psl2" inlineStyle="height:25px;background:#F3F8FC;" styleClass="AFStretchWidth"
+                                   endWidth="auto">
+                <f:facet name="bottom"/>
+                <f:facet name="center">
+                    <af:selectOneChoice value="#{bindings.CmsUserCompVO.inputValue}"
+                                        label="#{bindings.CmsUserCompVO.label}"
+                                        required="#{bindings.CmsUserCompVO.hints.mandatory}" simple="true"
+                                        contentStyle="width:148px;height:22px;line-height:22px;border-color:#ABADB3;text-align:center;font-size:12px;"
+                                        shortDesc="#{bindings.CmsUserCompVO.hints.tooltip}" id="soc1" autoSubmit="true"
+                                        valueChangeListener="#{backingBeanScope.homeManagedBean.userCompValueChangeListener}">
+                        <f:selectItems value="#{bindings.CmsUserCompVO.items}" id="si1"/>
+                    </af:selectOneChoice>
+                </f:facet>
+                <f:facet name="start"/>
+                <f:facet name="end">
+                    <af:panelGroupLayout id="pgl1" layout="horizontal"
+                                         inlineStyle="position:fixed;top:26px;right:20px;">
+                        <af:goImageLink text="" id="cl3" destination="#{pageFlowScope.pubUrl}"
+                                        inlineStyle="text-decoration:none;" visible="#{pageFlowScope.pubFlag == 'Y'}"
+                                        icon="/resources/images/goPub.gif"/>
+                        <af:goImageLink text="" id="gl1" destination="#{pageFlowScope.adminUrl}"
+                                        inlineStyle="text-decoration:none;" visible="#{pageFlowScope.adminFlag == 'Y'}"
+                                        icon="/resources/images/goAdmin.gif"/>
+                    </af:panelGroupLayout>
+                </f:facet>
+                <f:facet name="top"/>
+            </af:panelStretchLayout>
+        </f:facet>
+    </af:panelStretchLayout>
+</ui:composition>

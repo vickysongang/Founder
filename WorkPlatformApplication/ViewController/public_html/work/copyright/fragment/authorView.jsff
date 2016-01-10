@@ -1,0 +1,136 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core">
+    <af:panelStretchLayout id="psl1" inlineStyle="width:1050px;height:540px;" bottomHeight="0px">
+        <f:facet name="center">
+            <af:panelGroupLayout id="pgl1" layout="scroll" valign="top">
+                <af:panelGroupLayout id="pgl4" layout="horizontal" valign="top">
+                    <af:panelGroupLayout id="pgl3" layout="vertical" inlineStyle="width:200px;" valign="top"></af:panelGroupLayout>
+                    <af:spacer width="5" height="10" id="s24"/>
+                    <af:panelGroupLayout id="pgl6" layout="vertical" inlineStyle="width:600px;">
+                        <af:panelGroupLayout id="pgl36" layout="vertical">
+                            <af:panelGroupLayout id="pgl37" layout="vertical"
+                                                 inlineStyle="background:#D9EDF8;height:30px;"
+                                                 styleClass="AFStretchWidth">
+                                <af:panelGroupLayout id="pgl38" layout="horizontal" inlineStyle="padding-top:8px;">
+                                    <af:spacer width="10" height="10" id="s14"/>
+                                    <af:outputText value="作者版权信息" id="ot29"
+                                                   inlineStyle="font-weight:bold;color:#024D91;"/>
+                                </af:panelGroupLayout>
+                            </af:panelGroupLayout>
+                        </af:panelGroupLayout>
+                        <af:panelFormLayout id="pfl1">
+                            <af:panelLabelAndMessage label="#{bindings.BookName.hints.label}" id="plam1">
+                                <af:outputText value="#{bindings.BookName.inputValue}"
+                                               shortDesc="#{bindings.BookName.hints.tooltip}" id="ot2"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.Isbn.hints.label}" id="plam5">
+                                <af:outputText value="#{bindings.Isbn.inputValue}"
+                                               shortDesc="#{bindings.Isbn.hints.tooltip}" id="ot6"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.Author.hints.label}" id="plam8">
+                                <af:outputText value="#{bindings.Author.inputValue}"
+                                               shortDesc="#{bindings.Author.hints.tooltip}" id="ot9"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.ExclusiveCopyrightDisplay.hints.label}"
+                                                     id="plam10">
+                                <af:outputText value="#{bindings.ExclusiveCopyrightDisplay.inputValue}"
+                                               shortDesc="#{bindings.ExclusiveCopyrightDisplay.hints.tooltip}"
+                                               id="ot11"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.PublicCopyrightDisplay.hints.label}" id="plam15">
+                                <af:outputText value="#{bindings.PublicCopyrightDisplay.inputValue}"
+                                               shortDesc="#{bindings.PublicCopyrightDisplay.hints.tooltip}" id="ot16"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.CopyrightFormDisplay.hints.label}" id="plam12">
+                                <af:outputText value="#{bindings.CopyrightFormDisplay.inputValue}"
+                                               shortDesc="#{bindings.CopyrightFormDisplay.hints.tooltip}" id="ot13"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.CategoryName.hints.label}" id="plam13">
+                                <af:outputText value="#{bindings.CategoryName.inputValue}"
+                                               shortDesc="#{bindings.CategoryName.hints.tooltip}" id="ot14"/>
+                            </af:panelLabelAndMessage>
+                        </af:panelFormLayout>
+                        <af:panelGroupLayout id="pgl63" layout="vertical" halign="right" valign="bottom">
+                            <af:panelGroupLayout id="pgl64" layout="horizontal" inlineStyle="margin-right:15px;">
+                                <af:commandImageLink id="cil1" icon="/resources/images/button_viewall.jpg"
+                                                     partialSubmit="true">
+                                    <af:showPopupBehavior triggerType="action" popupId="p1"/>
+                                </af:commandImageLink>
+                            </af:panelGroupLayout>
+                        </af:panelGroupLayout>
+                    </af:panelGroupLayout>
+                    <af:spacer width="5" height="10" id="s4"/>
+                    <af:panelGroupLayout id="pgl5" layout="vertical" inlineStyle="width:200px;" valign="top">
+                        <af:panelGroupLayout id="pgl65" layout="vertical"
+                                             rendered="#{bindings.CmsAttachVOviaVL4View.estimatedRowCount>0}">
+                            <af:panelGroupLayout id="pgl66" layout="vertical"
+                                                 inlineStyle="background:#D9EDF8;height:30px;"
+                                                 styleClass="AFStretchWidth">
+                                <af:panelGroupLayout id="pgl67" layout="horizontal" inlineStyle="padding-top:8px;">
+                                    <af:spacer width="10" height="10" id="s25"/>
+                                    <af:outputText value="相关合同文件" id="ot12"
+                                                   inlineStyle="font-weight:bold;color:#024D91;"/>
+                                </af:panelGroupLayout>
+                            </af:panelGroupLayout>
+                            <af:iterator id="i10" value="#{bindings.CmsAttachVOviaVL4View.collectionModel}" var="row">
+                                <af:spacer width="10" height="5" id="s26"/>
+                                <af:commandLink text="#{row.Title}"
+                                                shortDesc="#{bindings.CmsAttachVOviaVL4View.hints.Title.tooltip}"
+                                                id="ot68">
+                                    <af:setPropertyListener from="#{row.UcmDid}" to="#{pageFlowScope.ucmDid}"
+                                                            type="action"/>
+                                    <af:fileDownloadActionListener contentType="application/vnd.ms-excel;charset=utf-8"
+                                                                   filename="#{row.Title}.#{row.Format}"
+                                                                   method="#{backingBeanScope.CopyrightAuthorViewManagedBean.downloadListener}"/>
+                                </af:commandLink>
+                            </af:iterator>
+                            <af:spacer width="10" height="10" id="s27"/>
+                        </af:panelGroupLayout>
+                    </af:panelGroupLayout>
+                </af:panelGroupLayout>
+            </af:panelGroupLayout>
+        </f:facet>
+        <f:facet name="bottom">
+            <af:popup childCreation="deferred" autoCancel="disabled" id="p1" contentDelivery="lazyUncached">
+                <af:panelWindow id="nw1" title="查看所有属性">
+                    <af:panelGroupLayout id="pgl69" layout="scroll" inlineStyle="background:#F6F6F6;line-height:20px;">
+                        <af:panelFormLayout id="pfl2" maxColumns="2" rows="4" labelWidth="100" fieldWidth="200">
+                            <af:panelLabelAndMessage label="#{bindings.BookName.hints.label}" id="plam2">
+                                <af:outputText value="#{bindings.BookName.inputValue}"
+                                               shortDesc="#{bindings.BookName.hints.tooltip}" id="ot3"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.Isbn.hints.label}" id="plam3">
+                                <af:outputText value="#{bindings.Isbn.inputValue}"
+                                               shortDesc="#{bindings.Isbn.hints.tooltip}" id="ot4"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.Author.hints.label}" id="plam4">
+                                <af:outputText value="#{bindings.Author.inputValue}"
+                                               shortDesc="#{bindings.Author.hints.tooltip}" id="ot5"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.ExclusiveCopyrightDisplay.hints.label}"
+                                                     id="plam6">
+                                <af:outputText value="#{bindings.ExclusiveCopyrightDisplay.inputValue}"
+                                               shortDesc="#{bindings.ExclusiveCopyrightDisplay.hints.tooltip}"
+                                               id="ot7"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.PublicCopyrightDisplay.hints.label}" id="plam7">
+                                <af:outputText value="#{bindings.PublicCopyrightDisplay.inputValue}"
+                                               shortDesc="#{bindings.PublicCopyrightDisplay.hints.tooltip}" id="ot8"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.CopyrightFormDisplay.hints.label}" id="plam9">
+                                <af:outputText value="#{bindings.CopyrightFormDisplay.inputValue}"
+                                               shortDesc="#{bindings.CopyrightFormDisplay.hints.tooltip}" id="ot10"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.CategoryName.hints.label}" id="plam14">
+                                <af:outputText value="#{bindings.CategoryName.inputValue}"
+                                               shortDesc="#{bindings.CategoryName.hints.tooltip}" id="ot15"/>
+                            </af:panelLabelAndMessage>
+                        </af:panelFormLayout>
+                        <af:region value="#{bindings.extend_attr_view_taskflow1.regionModel}" id="r1"/>
+                    </af:panelGroupLayout>
+                </af:panelWindow>
+            </af:popup>
+        </f:facet>
+    </af:panelStretchLayout>
+</ui:composition>

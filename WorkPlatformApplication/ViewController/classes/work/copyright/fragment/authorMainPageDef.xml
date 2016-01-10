@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="authorMainPageDef"
+                Package="work.copyright.fragment">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator id="CmsCategory4AuthorCopyrightVOIterator" Binds="Root.CopyrightAM.CmsCategory4AuthorCopyrightVO"
+              DataControl="WorkAMDataControl" RangeSize="25" Refresh="ifNeeded"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="CmsAuthorCopyrightVOIterator" id="CmsAuthorCopyrightVO">
+      <nodeDefinition DefName="com.zypg.cms.work.model.viewobject.copyright.query.CmsAuthorCopyrightVO"
+                      Name="CmsAuthorCopyrightVO0">
+        <AttrNames>
+          <Item Value="BookName"/>
+          <Item Value="Isbn"/>
+          <Item Value="CategoryName"/>
+          <Item Value="Author"/>
+          <Item Value="ExclusiveCopyrightFlag"/>
+          <Item Value="PublicCopyrightFlag"/>
+          <Item Value="CopyrightForm"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="CmsCategory4AuthorCopyrightVOIterator" id="CmsCategory4AuthorCopyrightVO">
+      <nodeDefinition DefName="com.zypg.cms.work.model.viewobject.common.query.CmsCategory4AuthorCopyrightVO"
+                      Name="CmsCategory4AuthorCopyrightVO0">
+        <AttrNames>
+          <Item Value="CategoryId"/>
+          <Item Value="CategoryDisplayName"/>
+          <Item Value="TimeRange"/>
+          <Item Value="CopyrightType"/>
+        </AttrNames>
+        <Accessors>
+          <Item Value="CompCodeCmsCategory4AuthorCopyrightVO_2"/>
+        </Accessors>
+      </nodeDefinition>
+    </tree>
+  </bindings>
+</pageDefinition>

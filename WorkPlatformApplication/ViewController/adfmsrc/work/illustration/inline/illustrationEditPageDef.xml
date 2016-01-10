@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="illustrationEditPageDef"
+                Package="work.illustration.inline">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="Root.IllustrationAM.CmsIllustrationTVO" DataControl="WorkAMDataControl" RangeSize="25"
+              id="CmsIllustrationTVOIterator"/>
+    <iterator Binds="Root.IllustrationAM.CmsIllustrationEditVO" DataControl="WorkAMDataControl" RangeSize="25"
+              id="CmsIllustrationEditVOIterator"/>
+    <iterator id="CmsDocCategoryRelTVOIterator" Binds="Root.IllustrationAM.CmsDocCategoryRelTVO"
+              DataControl="WorkAMDataControl" RangeSize="25"/>
+    <taskFlow id="category_pick_taskflow1"
+              taskFlowId="/WEB-INF/common/category_pick_taskflow.xml#category_pick_taskflow" activation="deferred"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+    <taskFlow id="extend_attr_taskflow1" taskFlowId="/WEB-INF/common/extend_attr_taskflow.xml#extend_attr_taskflow"
+              activation="deferred" xmlns="http://xmlns.oracle.com/adf/controller/binding">
+      <parameters>
+        <parameter id="compCode" value="#{pageFlowScope.compCode}"/>
+        <parameter id="libCode" value="#{pageFlowScope.libCode}"/>
+        <parameter id="docId" value="#{pageFlowScope.docId}"/>
+        <parameter id="operType" value="#{pageFlowScope.mode}"/>
+        <parameter id="labelWidth" value="80"/>
+      </parameters>
+    </taskFlow>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="CmsIllustrationTVOIterator" id="IllustrationName">
+      <AttrNames>
+        <Item Value="IllustrationName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsIllustrationTVOIterator" id="IllustrationSource">
+      <AttrNames>
+        <Item Value="IllustrationSource"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsIllustrationTVOIterator" id="IllustrationType">
+      <AttrNames>
+        <Item Value="IllustrationType"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsIllustrationTVOIterator" id="IllustrationAuthor">
+      <AttrNames>
+        <Item Value="IllustrationAuthor"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsIllustrationTVOIterator" id="MapApproveNum">
+      <AttrNames>
+        <Item Value="MapApproveNum"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsIllustrationTVOIterator" id="PageNumber">
+      <AttrNames>
+        <Item Value="PageNumber"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsIllustrationTVOIterator" id="Keyword">
+      <AttrNames>
+        <Item Value="Keyword"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsIllustrationTVOIterator" id="IllustrationDesc">
+      <AttrNames>
+        <Item Value="IllustrationDesc"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsIllustrationTVOIterator" id="Remarks">
+      <AttrNames>
+        <Item Value="Remarks"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsIllustrationEditVOIterator" id="IllustrationType1">
+      <AttrNames>
+        <Item Value="IllustrationType"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsIllustrationEditVOIterator" id="IllustrationAuthor1">
+      <AttrNames>
+        <Item Value="IllustrationAuthor"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsIllustrationEditVOIterator" id="IllustrationSource1">
+      <AttrNames>
+        <Item Value="IllustrationSource"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsIllustrationEditVOIterator" id="Keyword1">
+      <AttrNames>
+        <Item Value="Keyword"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsIllustrationEditVOIterator" id="Remarks1">
+      <AttrNames>
+        <Item Value="Remarks"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsIllustrationTVOIterator" id="CategoryName">
+      <AttrNames>
+        <Item Value="CategoryName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsIllustrationEditVOIterator" id="CategoryId1">
+      <AttrNames>
+        <Item Value="CategoryId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsIllustrationEditVOIterator" id="CategoryName1">
+      <AttrNames>
+        <Item Value="CategoryName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsDocCategoryRelTVOIterator" id="CategoryId">
+      <AttrNames>
+        <Item Value="CategoryId"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

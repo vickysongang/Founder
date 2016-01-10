@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE AppModule SYSTEM "jbo_03_01.dtd">
+<!---->
+<AppModule
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="AttachAM"
+  Version="11.1.2.64.36"
+  ComponentClass="com.zypg.cms.work.model.am.AttachAMImpl"
+  ClearCacheOnRollback="true">
+  <DesignTime>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="com.zypg.cms.work.model.am.AttachAM_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <ViewUsage
+    Name="CmsAttachTVO"
+    ViewObjectName="com.zypg.cms.work.model.viewobject.attach.CmsAttachTVO"/>
+  <ViewUsage
+    Name="CmsDocTVO"
+    ViewObjectName="com.zypg.cms.work.model.viewobject.common.CmsDocTVO"/>
+  <ViewUsage
+    Name="CmsDocCategoryRelTVO"
+    ViewObjectName="com.zypg.cms.work.model.viewobject.common.CmsDocCategoryRelTVO"/>
+  <ViewUsage
+    Name="CmsAttachVO"
+    ViewObjectName="com.zypg.cms.work.model.viewobject.attach.query.CmsAttachVO"/>
+  <ViewUsage
+    Name="CmsAttachTVO4List"
+    ViewObjectName="com.zypg.cms.work.model.viewobject.attach.CmsAttachTVO"/>
+  <ViewUsage
+    Name="CmsAttachEditTVO"
+    ViewObjectName="com.zypg.cms.work.model.viewobject.attach.CmsAttachEditTVO"/>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="com.zypg.cms.work.model.ModelBundle"/>
+  </ResourceBundle>
+</AppModule>

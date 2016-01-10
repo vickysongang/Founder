@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="themeResourcePageDef"
+                Package="work.theme.inline">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <taskFlow id="theme_resource_taskflow1"
+              taskFlowId="/WEB-INF/work/theme/theme_resource_taskflow.xml#theme_resource_taskflow" activation="deferred"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding">
+      <parameters>
+        <parameter id="nodeId" value="#{facesContext.externalContext.requestParameterMap['nodeId']}"/>
+        <parameter id="compCode" value="#{sessionScope.compCode}"/>
+        <parameter id="groupUserFlag" value="#{facesContext.externalContext.requestParameterMap['groupUserFlag']}"/>
+      </parameters>
+    </taskFlow>
+  </executables>
+  <bindings/>
+</pageDefinition>

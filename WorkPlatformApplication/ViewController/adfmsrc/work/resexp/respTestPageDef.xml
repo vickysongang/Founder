@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="respTestPageDef"
+                Package="work.resexp">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <taskFlow id="tempshelf_main_taskflow1"
+              taskFlowId="/WEB-INF/work/resexp/tempshelf_main_taskflow.xml#tempshelf_main_taskflow"
+              activation="deferred" xmlns="http://xmlns.oracle.com/adf/controller/binding">
+      <parameters>
+        <parameter id="libCode" value="BOOK"/>
+        <parameter id="compCode" value="DAXIANG"/>
+        <parameter id="currStatusCode" value="CURRENTCODE"/>
+      </parameters>
+    </taskFlow>
+  </executables>
+  <bindings/>
+</pageDefinition>

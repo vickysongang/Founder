@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewLink SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewLink
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="CmsCategory4AuthorCopyrightVL"
+  Version="11.1.2.64.36">
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="com.zypg.cms.work.model.viewobject.common.viewlink.CmsCategory4AuthorCopyrightVL_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <ViewLinkDefEnd
+    Name="CompCodeCmsCategory4AuthorCopyrightVO"
+    Cardinality="1"
+    Source="true"
+    Owner="com.zypg.cms.work.model.viewobject.common.query.CmsCategory4AuthorCopyrightVO">
+    <DesignTime>
+      <Attr Name="_finderName" Value="CompCodeCmsCategory4AuthorCopyrightVO"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="com.zypg.cms.work.model.viewobject.common.query.CmsCategory4AuthorCopyrightVO.CategoryId"/>
+      <Item Value="com.zypg.cms.work.model.viewobject.common.query.CmsCategory4AuthorCopyrightVO.CompCode"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+  <ViewLinkDefEnd
+    Name="CompCodeCmsCategory4AuthorCopyrightVO_2"
+    Cardinality="-1"
+    Owner="com.zypg.cms.work.model.viewobject.common.query.CmsCategory4AuthorCopyrightVO">
+    <DesignTime>
+      <Attr Name="_finderName" Value="CompCodeCmsCategory4AuthorCopyrightVO_2"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="com.zypg.cms.work.model.viewobject.common.query.CmsCategory4AuthorCopyrightVO.ParentNodeId"/>
+      <Item Value="com.zypg.cms.work.model.viewobject.common.query.CmsCategory4AuthorCopyrightVO.CompCode"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="com.zypg.cms.work.model.ModelBundle"/>
+  </ResourceBundle>
+</ViewLink>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="itemMainPageDef"
+                Package="work.copyright.fragment">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="Root.CopyrightAM.Cms3rdAuthorizationItemVO" DataControl="WorkAMDataControl" RangeSize="25"
+              id="Cms3rdAuthorizationItemVOIterator"/>
+    <iterator Binds="Root.CopyrightAM.CmsCategory4DetailVO" DataControl="WorkAMDataControl" RangeSize="25"
+              id="CmsCategory4DetailVOIterator"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="Cms3rdAuthorizationItemVOIterator" id="Cms3rdAuthorizationItemVO">
+      <nodeDefinition DefName="com.zypg.cms.work.model.viewobject.copyright.query.Cms3rdAuthorizationItemVO"
+                      Name="Cms3rdAuthorizationItemVO0">
+        <AttrNames>
+          <Item Value="BookName"/>
+          <Item Value="Isbn"/>
+          <Item Value="Author"/>
+          <Item Value="ItemId"/>
+          <Item Value="AuthorizedCompany"/>
+          <Item Value="OrderName"/>
+          <Item Value="AuthorizedStartTime"/>
+          <Item Value="SalesTotalCost"/>
+          <Item Value="SalesTotalNum"/>
+          <Item Value="CompanyName"/>
+          <Item Value="AuthorizedEndTime"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="CmsCategory4DetailVOIterator" id="CmsCategory4DetailVO">
+      <nodeDefinition DefName="com.zypg.cms.work.model.viewobject.common.query.CmsCategory4DetailVO"
+                      Name="CmsCategory4DetailVO0">
+        <AttrNames>
+          <Item Value="CategoryId"/>
+          <Item Value="CategoryDisplayName"/>
+          <Item Value="TimeRange"/>
+        </AttrNames>
+        <Accessors>
+          <Item Value="CategoryIdCmsCategory4DetailVO"/>
+        </Accessors>
+      </nodeDefinition>
+    </tree>
+  </bindings>
+</pageDefinition>

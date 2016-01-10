@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="CmsFirstLevelLibVO"
+  Version="11.1.2.64.36"
+  BindingStyle="OracleName"
+  CustomQuery="true"
+  PageIterMode="Full"
+  UseGlueCode="false"
+  OrderBy="seq"
+  ComponentClass="com.zypg.cms.work.model.viewobject.common.query.CmsFirstLevelLibVOImpl"
+  RowClass="com.zypg.cms.work.model.viewobject.common.query.CmsFirstLevelLibVORowImpl">
+  <DesignTime>
+    <Attr Name="_isExpertMode" Value="true"/>
+    <Attr Name="_codeGenFlag2" Value="Access|Coll|VarAccess"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="com.zypg.cms.work.model.viewobject.common.query.CmsFirstLevelLibVO_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <Variable
+    Name="bvCompCode"
+    Kind="viewcriteria"
+    Type="java.lang.String"/>
+  <Variable
+    Name="bvUserId"
+    Kind="viewcriteria"
+    Type="oracle.jbo.domain.Number"/>
+  <SQLQuery><![CDATA[SELECT DISTINCT fll.lib_code,
+                fll.lib_name,
+                fll.comp_code,
+                rur.user_id,
+                fll.seq
+  FROM cms_first_level_lib_v  fll,
+       cms_second_level_lib_v sll,
+       cms_role_user_rel_t    rur,
+       cms_role_lib_rel_t     rlr,
+       cms_role_t             r,
+       cms_comp_v             comp
+ WHERE fll.lib_code = sll.lib_type_code
+   AND fll.comp_code = sll.comp_code
+   AND fll.comp_code = r.comp_code
+   AND rlr.role_id = r.role_id
+   AND rur.role_id = r.role_id
+   AND r.comp_code = sll.comp_code
+   AND rlr.lib_code = sll.lib_code
+   AND r.enable_flag = 'Y'
+   AND r.role_type = 'WORK_PLATFORM'
+   AND r.comp_code = comp.comp_code
+   AND nvl(comp.group_flag, 'N') = 'N'
+   AND rlr.lib_type_code = sll.lib_type_code
+UNION ALL
+SELECT DISTINCT fll.lib_code,
+                fll.lib_name,
+                fll.comp_code,
+                u.user_id,
+                fll.seq
+  FROM cms_first_level_lib_v fll, cms_comp_v comp, cms_user_t u
+ WHERE fll.comp_code = comp.comp_code
+   AND fll.lib_code in ('THEME_LIB','RES_EXP_LIB')
+   AND nvl(comp.group_flag, 'N') = 'Y'
+   AND comp.comp_code = u.comp_code]]></SQLQuery>
+  <ViewAttribute
+    Name="LibCode"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="255"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="LIB_CODE"
+    Expression="LIB_CODE"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="40"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="LibName"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="20"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="LIB_NAME"
+    Expression="LIB_NAME"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="CompCode"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="40"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="COMP_CODE"
+    Expression="COMP_CODE"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="40"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="UserId"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    AliasName="USER_ID"
+    Expression="USER_ID"
+    SQLType="NUMERIC"/>
+  <ViewAttribute
+    Name="Seq"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    AliasName="SEQ"
+    Expression="SEQ"
+    SQLType="NUMERIC"/>
+  <ViewCriteria
+    Name="findFirstLevelLibVC"
+    ViewObjectName="com.zypg.cms.work.model.viewobject.common.query.CmsFirstLevelLibVO"
+    Conjunction="AND">
+    <Properties>
+      <CustomProperties>
+        <Property
+          Name="displayOperators"
+          Value="InAdvancedMode"/>
+        <Property
+          Name="autoExecute"
+          Value="false"/>
+        <Property
+          Name="allowConjunctionOverride"
+          Value="true"/>
+        <Property
+          Name="showInList"
+          Value="true"/>
+        <Property
+          Name="mode"
+          Value="Basic"/>
+      </CustomProperties>
+    </Properties>
+    <ViewCriteriaRow
+      Name="CmsFirstLevelLibVOCriteria_row_0"
+      UpperColumns="1">
+      <ViewCriteriaItem
+        Name="CmsFirstLevelLibVOCriteria_CmsFirstLevelLibVOCriteria_row_0_CompCode"
+        ViewAttribute="CompCode"
+        Operator="="
+        Conjunction="AND"
+        Value=":bvCompCode"
+        UpperColumns="0"
+        GenerateIsNullClauseForBindVars="false"
+        IsBindVarValue="true"
+        Required="Optional"/>
+      <ViewCriteriaItem
+        Name="UserId"
+        ViewAttribute="UserId"
+        Operator="="
+        Conjunction="AND"
+        Value=":bvUserId"
+        GenerateIsNullClauseForBindVars="false"
+        IsBindVarValue="true"
+        Required="Optional"/>
+    </ViewCriteriaRow>
+  </ViewCriteria>
+  <AttrArray Name="KeyAttributes">
+    <Item Value="LibCode"/>
+  </AttrArray>
+  <ViewLinkAccessor
+    Name="CmsSecondLevelLibVO"
+    ViewLink="com.zypg.cms.work.model.viewobject.common.viewlink.CmsFirstSecondLevelLibVL"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="com.zypg.cms.work.model.ModelBundle"/>
+  </ResourceBundle>
+</ViewObject>

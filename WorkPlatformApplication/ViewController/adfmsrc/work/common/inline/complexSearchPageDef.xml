@@ -1,0 +1,877 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="complexSearchPageDef"
+                Package="work.common.inline">
+    <parameters/>
+    <executables>
+        <variableIterator id="variables"/>
+        <iterator Binds="Root.BookAM.CmsBookQVO" DataControl="WorkAMDataControl" RangeSize="25"
+                  id="CmsBookQVOIterator"/>
+        <iterator Binds="Root.AudioAM.CmsAudioQVO" DataControl="WorkAMDataControl" RangeSize="25"
+                  id="CmsAudioQVOIterator"/>
+        <iterator Binds="Root.CoursewareAM.CmsCoursewareQVO" DataControl="WorkAMDataControl" RangeSize="25"
+                  id="CmsCoursewareQVOIterator"/>
+        <iterator Binds="Root.ElecProdAM.CmsElecProdQVO" DataControl="WorkAMDataControl" RangeSize="25"
+                  id="CmsElecProdQVOIterator"/>
+        <iterator Binds="Root.IllustrationAM.CmsIllustrationQVO" DataControl="WorkAMDataControl" RangeSize="25"
+                  id="CmsIllustrationQVOIterator"/>
+        <iterator Binds="Root.MaterialFigureAM.CmsMaterialFigureQVO" DataControl="WorkAMDataControl" RangeSize="25"
+                  id="CmsMaterialFigureQVOIterator"/>
+        <iterator Binds="Root.NewspaperAM.CmsNewspaperQVO" DataControl="WorkAMDataControl" RangeSize="25"
+                  id="CmsNewspaperQVOIterator"/>
+        <iterator Binds="Root.PeriodicalAM.CmsPeriodicalQVO" DataControl="WorkAMDataControl" RangeSize="25"
+                  id="CmsPeriodicalQVOIterator"/>
+        <iterator Binds="Root.PhotographyFigureAM.CmsPhotographyQVO" DataControl="WorkAMDataControl" RangeSize="25"
+                  id="CmsPhotographyQVOIterator"/>
+        <iterator Binds="Root.TeachingPlanAM.CmsTeachingPlanQVO" DataControl="WorkAMDataControl" RangeSize="25"
+                  id="CmsTeachingPlanQVOIterator"/>
+        <iterator Binds="Root.VideoAM.CmsVideoQVO" DataControl="WorkAMDataControl" RangeSize="25"
+                  id="CmsVideoQVOIterator"/>
+    </executables>
+    <bindings>
+        <attributeValues IterBinding="CmsBookQVOIterator" id="BookName">
+            <AttrNames>
+                <Item Value="BookName"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsBookQVOIterator" id="Isbn">
+            <AttrNames>
+                <Item Value="Isbn"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsBookQVOIterator" id="Series">
+            <AttrNames>
+                <Item Value="Series"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsBookQVOIterator" id="ItemCode">
+            <AttrNames>
+                <Item Value="ItemCode"/>
+            </AttrNames>
+        </attributeValues>
+        <list IterBinding="CmsBookQVOIterator" StaticList="false" Uses="LOV_Lang" id="Lang" DTSupportsMRU="false"
+              SelectItemValueMode="ListObject"/>
+        <attributeValues IterBinding="CmsBookQVOIterator" id="Editor">
+            <AttrNames>
+                <Item Value="Editor"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsBookQVOIterator" id="FormatDesign">
+            <AttrNames>
+                <Item Value="FormatDesign"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsBookQVOIterator" id="CoverDesign">
+            <AttrNames>
+                <Item Value="CoverDesign"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsBookQVOIterator" id="Author">
+            <AttrNames>
+                <Item Value="Author"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsBookQVOIterator" id="ChiefEditor">
+            <AttrNames>
+                <Item Value="ChiefEditor"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsBookQVOIterator" id="Translator">
+            <AttrNames>
+                <Item Value="Translator"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsBookQVOIterator" id="PubTime">
+            <AttrNames>
+                <Item Value="PubTime"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsBookQVOIterator" id="PublishingHouse">
+            <AttrNames>
+                <Item Value="PublishingHouse"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsBookQVOIterator" id="Impression">
+            <AttrNames>
+                <Item Value="Impression"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsBookQVOIterator" id="Edition">
+            <AttrNames>
+                <Item Value="Edition"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsBookQVOIterator" id="Pagination">
+            <AttrNames>
+                <Item Value="Pagination"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsBookQVOIterator" id="Price">
+            <AttrNames>
+                <Item Value="Price"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsBookQVOIterator" id="Keyword">
+            <AttrNames>
+                <Item Value="Keyword"/>
+            </AttrNames>
+        </attributeValues>
+        <list IterBinding="CmsBookQVOIterator" StaticList="false" Uses="LOV_ReaderGroup" id="ReaderGroup"
+              DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+        <attributeValues IterBinding="CmsBookQVOIterator" id="Suggestion">
+            <AttrNames>
+                <Item Value="Suggestion"/>
+            </AttrNames>
+        </attributeValues>
+        <list IterBinding="CmsBookQVOIterator" StaticList="false" Uses="LOV_ProdSize" id="ProdSize"
+              DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+        <list IterBinding="CmsBookQVOIterator" StaticList="false" Uses="LOV_ColorNum" id="ColorNum"
+              DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+        <list IterBinding="CmsBookQVOIterator" StaticList="false" Uses="LOV_CoverTypeset" id="CoverTypeset"
+              DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+        <list IterBinding="CmsBookQVOIterator" StaticList="false" Uses="LOV_AssortProd" id="AssortProd"
+              DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+        <attributeValues IterBinding="CmsBookQVOIterator" id="Remarks">
+            <AttrNames>
+                <Item Value="Remarks"/>
+            </AttrNames>
+        </attributeValues>
+        <list IterBinding="CmsBookQVOIterator" StaticList="false" Uses="LOV_BookSize" id="BookSize"
+              DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+        <list IterBinding="CmsBookQVOIterator" StaticList="false" Uses="LOV_MainPage" id="MainPage"
+              DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+        <list IterBinding="CmsBookQVOIterator" StaticList="false" Uses="LOV_MainTypeset" id="MainTypeset"
+              DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+        <attributeValues IterBinding="CmsBookQVOIterator" id="FormatComp">
+            <AttrNames>
+                <Item Value="FormatComp"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsAudioQVOIterator" id="FileName">
+            <AttrNames>
+                <Item Value="FileName"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsAudioQVOIterator" id="SeriesName">
+            <AttrNames>
+                <Item Value="SeriesName"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsAudioQVOIterator" id="Isbn1">
+            <AttrNames>
+                <Item Value="Isbn"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsAudioQVOIterator" id="ItemCode1">
+            <AttrNames>
+                <Item Value="ItemCode"/>
+            </AttrNames>
+        </attributeValues>
+        <list IterBinding="CmsAudioQVOIterator" StaticList="false" Uses="LOV_CarrierType" id="CarrierType"
+              DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+        <list IterBinding="CmsAudioQVOIterator" StaticList="false" Uses="LOV_Lang" id="Lang1" DTSupportsMRU="false"
+              SelectItemValueMode="ListObject"/>
+        <attributeValues IterBinding="CmsAudioQVOIterator" id="Editor1">
+            <AttrNames>
+                <Item Value="Editor"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsAudioQVOIterator" id="TextEditor">
+            <AttrNames>
+                <Item Value="TextEditor"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsAudioQVOIterator" id="RecordUser">
+            <AttrNames>
+                <Item Value="RecordUser"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsAudioQVOIterator" id="PubTime1">
+            <AttrNames>
+                <Item Value="PubTime"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsAudioQVOIterator" id="AssortBook">
+            <AttrNames>
+                <Item Value="AssortBook"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsAudioQVOIterator" id="Keyword1">
+            <AttrNames>
+                <Item Value="Keyword"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsAudioQVOIterator" id="ContentDesc">
+            <AttrNames>
+                <Item Value="ContentDesc"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsAudioQVOIterator" id="Remarks1">
+            <AttrNames>
+                <Item Value="Remarks"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsAudioQVOIterator" id="FileFormat">
+            <AttrNames>
+                <Item Value="FileFormat"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsAudioQVOIterator" id="FileSize">
+            <AttrNames>
+                <Item Value="FileSize"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsAudioQVOIterator" id="FileTime">
+            <AttrNames>
+                <Item Value="FileTime"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsAudioQVOIterator" id="FileStoreTime">
+            <AttrNames>
+                <Item Value="FileStoreTime"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsCoursewareQVOIterator" id="TeachingMaterialName">
+            <AttrNames>
+                <Item Value="TeachingMaterialName"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsCoursewareQVOIterator" id="TeachingMaterialIsbn">
+            <AttrNames>
+                <Item Value="TeachingMaterialIsbn"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsCoursewareQVOIterator" id="TeachingMaterialAuthor">
+            <AttrNames>
+                <Item Value="TeachingMaterialAuthor"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsCoursewareQVOIterator" id="TeachingMaterialEditor">
+            <AttrNames>
+                <Item Value="TeachingMaterialEditor"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsCoursewareQVOIterator" id="TeachingMaterialSeriesName">
+            <AttrNames>
+                <Item Value="TeachingMaterialSeriesName"/>
+            </AttrNames>
+        </attributeValues>
+        <list IterBinding="CmsCoursewareQVOIterator" StaticList="false" Uses="LOV_CoursewareType" id="CoursewareType"
+              DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+        <attributeValues IterBinding="CmsCoursewareQVOIterator" id="CoursewareName">
+            <AttrNames>
+                <Item Value="CoursewareName"/>
+            </AttrNames>
+        </attributeValues>
+        <list IterBinding="CmsCoursewareQVOIterator" StaticList="false" Uses="LOV_CopyrightFlag" id="CopyrightFlag"
+              DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+        <attributeValues IterBinding="CmsCoursewareQVOIterator" id="Keyword2">
+            <AttrNames>
+                <Item Value="Keyword"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsCoursewareQVOIterator" id="Remarks2">
+            <AttrNames>
+                <Item Value="Remarks"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsElecProdQVOIterator" id="ElecProdName">
+            <AttrNames>
+                <Item Value="ElecProdName"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsElecProdQVOIterator" id="Isbn2">
+            <AttrNames>
+                <Item Value="Isbn"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsElecProdQVOIterator" id="ItemCode2">
+            <AttrNames>
+                <Item Value="ItemCode"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsElecProdQVOIterator" id="AssortBook1">
+            <AttrNames>
+                <Item Value="AssortBook"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsElecProdQVOIterator" id="PublishingHouse1">
+            <AttrNames>
+                <Item Value="PublishingHouse"/>
+            </AttrNames>
+        </attributeValues>
+        <list IterBinding="CmsElecProdQVOIterator" StaticList="false" Uses="LOV_Lang" id="Lang2" DTSupportsMRU="false"
+              SelectItemValueMode="ListObject"/>
+        <list IterBinding="CmsElecProdQVOIterator" StaticList="false" Uses="LOV_CarrierType" id="CarrierType1"
+              DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+        <attributeValues IterBinding="CmsElecProdQVOIterator" id="TimeLength">
+            <AttrNames>
+                <Item Value="TimeLength"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsElecProdQVOIterator" id="Amount">
+            <AttrNames>
+                <Item Value="Amount"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsElecProdQVOIterator" id="DiskDesign">
+            <AttrNames>
+                <Item Value="DiskDesign"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsElecProdQVOIterator" id="Editor2">
+            <AttrNames>
+                <Item Value="Editor"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsElecProdQVOIterator" id="TextEditor1">
+            <AttrNames>
+                <Item Value="TextEditor"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsElecProdQVOIterator" id="Producer">
+            <AttrNames>
+                <Item Value="Producer"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsElecProdQVOIterator" id="PubTime2">
+            <AttrNames>
+                <Item Value="PubTime"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsElecProdQVOIterator" id="Keyword3">
+            <AttrNames>
+                <Item Value="Keyword"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsElecProdQVOIterator" id="ContentDesc1">
+            <AttrNames>
+                <Item Value="ContentDesc"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsElecProdQVOIterator" id="Remarks3">
+            <AttrNames>
+                <Item Value="Remarks"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsIllustrationQVOIterator" id="IllustrationName">
+            <AttrNames>
+                <Item Value="IllustrationName"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsIllustrationQVOIterator" id="IllustrationSource">
+            <AttrNames>
+                <Item Value="IllustrationSource"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsIllustrationQVOIterator" id="IllustrationAuthor">
+            <AttrNames>
+                <Item Value="IllustrationAuthor"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsIllustrationQVOIterator" id="PageNumber">
+            <AttrNames>
+                <Item Value="PageNumber"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsIllustrationQVOIterator" id="Keyword4">
+            <AttrNames>
+                <Item Value="Keyword"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsIllustrationQVOIterator" id="IllustrationDesc">
+            <AttrNames>
+                <Item Value="IllustrationDesc"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsIllustrationQVOIterator" id="Remarks4">
+            <AttrNames>
+                <Item Value="Remarks"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsIllustrationQVOIterator" id="FigureFormat">
+            <AttrNames>
+                <Item Value="FigureFormat"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsIllustrationQVOIterator" id="FigureDimension">
+            <AttrNames>
+                <Item Value="FigureDimension"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsIllustrationQVOIterator" id="FigureSize">
+            <AttrNames>
+                <Item Value="FigureSize"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsIllustrationQVOIterator" id="CoverDesign1">
+            <AttrNames>
+                <Item Value="CoverDesign"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsIllustrationQVOIterator" id="FigureResolution">
+            <AttrNames>
+                <Item Value="FigureResolution"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsIllustrationQVOIterator" id="FigureXResolution">
+            <AttrNames>
+                <Item Value="FigureXResolution"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsIllustrationQVOIterator" id="FigureYResolution">
+            <AttrNames>
+                <Item Value="FigureYResolution"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsIllustrationQVOIterator" id="FigureWidth">
+            <AttrNames>
+                <Item Value="FigureWidth"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsIllustrationQVOIterator" id="FigureHeight">
+            <AttrNames>
+                <Item Value="FigureHeight"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsIllustrationQVOIterator" id="FigureStoreTime">
+            <AttrNames>
+                <Item Value="FigureStoreTime"/>
+            </AttrNames>
+        </attributeValues>
+        <list IterBinding="CmsIllustrationQVOIterator" StaticList="false" Uses="LOV_CopyrightFlag" id="CopyrightFlag1"
+              DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+        <attributeValues IterBinding="CmsMaterialFigureQVOIterator" id="FigureName">
+            <AttrNames>
+                <Item Value="FigureName"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsMaterialFigureQVOIterator" id="SeriesName1">
+            <AttrNames>
+                <Item Value="SeriesName"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsMaterialFigureQVOIterator" id="FigureAuthor">
+            <AttrNames>
+                <Item Value="FigureAuthor"/>
+            </AttrNames>
+        </attributeValues>
+        <list IterBinding="CmsMaterialFigureQVOIterator" StaticList="false" Uses="LOV_FigureStyle" id="FigureStyle"
+              DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+        <attributeValues IterBinding="CmsMaterialFigureQVOIterator" id="Keyword5">
+            <AttrNames>
+                <Item Value="Keyword"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsMaterialFigureQVOIterator" id="FigureDesc">
+            <AttrNames>
+                <Item Value="FigureDesc"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsMaterialFigureQVOIterator" id="Remarks5">
+            <AttrNames>
+                <Item Value="Remarks"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsMaterialFigureQVOIterator" id="FigureFormat1">
+            <AttrNames>
+                <Item Value="FigureFormat"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsMaterialFigureQVOIterator" id="FigureDimension1">
+            <AttrNames>
+                <Item Value="FigureDimension"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsMaterialFigureQVOIterator" id="FigureSize1">
+            <AttrNames>
+                <Item Value="FigureSize"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsMaterialFigureQVOIterator" id="CoverDesign2">
+            <AttrNames>
+                <Item Value="CoverDesign"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsMaterialFigureQVOIterator" id="FigureResolution1">
+            <AttrNames>
+                <Item Value="FigureResolution"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsMaterialFigureQVOIterator" id="FigureXResolution1">
+            <AttrNames>
+                <Item Value="FigureXResolution"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsMaterialFigureQVOIterator" id="FigureYResolution1">
+            <AttrNames>
+                <Item Value="FigureYResolution"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsMaterialFigureQVOIterator" id="FigureWidth1">
+            <AttrNames>
+                <Item Value="FigureWidth"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsMaterialFigureQVOIterator" id="FigureHeight1">
+            <AttrNames>
+                <Item Value="FigureHeight"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsMaterialFigureQVOIterator" id="FigureStoreTime1">
+            <AttrNames>
+                <Item Value="FigureStoreTime"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsMaterialFigureQVOIterator" id="FigureCode">
+            <AttrNames>
+                <Item Value="FigureCode"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsNewspaperQVOIterator" id="Editor3">
+            <AttrNames>
+                <Item Value="Editor"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsNewspaperQVOIterator" id="FormatDesign1">
+            <AttrNames>
+                <Item Value="FormatDesign"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsNewspaperQVOIterator" id="CoverDesign3">
+            <AttrNames>
+                <Item Value="CoverDesign"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsNewspaperQVOIterator" id="PubTime3">
+            <AttrNames>
+                <Item Value="PubTime"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsNewspaperQVOIterator" id="Keyword6">
+            <AttrNames>
+                <Item Value="Keyword"/>
+            </AttrNames>
+        </attributeValues>
+        <list IterBinding="CmsNewspaperQVOIterator" StaticList="false" Uses="LOV_ProdSize" id="ProdSize1"
+              DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+        <list IterBinding="CmsNewspaperQVOIterator" StaticList="false" Uses="LOV_ColorNum" id="ColorNum1"
+              DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+        <list IterBinding="CmsNewspaperQVOIterator" StaticList="false" Uses="LOV_CoverTypeset" id="CoverTypeset1"
+              DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+        <list IterBinding="CmsNewspaperQVOIterator" StaticList="false" Uses="LOV_AssortProd" id="AssortProd1"
+              DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+        <list IterBinding="CmsNewspaperQVOIterator" StaticList="false" Uses="LOV_BookSize" id="BookSize1"
+              DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+        <list IterBinding="CmsNewspaperQVOIterator" StaticList="false" Uses="LOV_MainTypeset" id="MainTypeset1"
+              DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+        <list IterBinding="CmsNewspaperQVOIterator" StaticList="false" Uses="LOV_MainPage" id="MainPage1"
+              DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+        <attributeValues IterBinding="CmsNewspaperQVOIterator" id="Pagination1">
+            <AttrNames>
+                <Item Value="Pagination"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsNewspaperQVOIterator" id="Suggestion1">
+            <AttrNames>
+                <Item Value="Suggestion"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsNewspaperQVOIterator" id="Remarks6">
+            <AttrNames>
+                <Item Value="Remarks"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsNewspaperQVOIterator" id="TypesetComp">
+            <AttrNames>
+                <Item Value="TypesetComp"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsNewspaperQVOIterator" id="TotalNum">
+            <AttrNames>
+                <Item Value="TotalNum"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsPeriodicalQVOIterator" id="Editor4">
+            <AttrNames>
+                <Item Value="Editor"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsPeriodicalQVOIterator" id="FormatDesign2">
+            <AttrNames>
+                <Item Value="FormatDesign"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsPeriodicalQVOIterator" id="CoverDesign4">
+            <AttrNames>
+                <Item Value="CoverDesign"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsPeriodicalQVOIterator" id="PubTime4">
+            <AttrNames>
+                <Item Value="PubTime"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsPeriodicalQVOIterator" id="Keyword7">
+            <AttrNames>
+                <Item Value="Keyword"/>
+            </AttrNames>
+        </attributeValues>
+        <list IterBinding="CmsPeriodicalQVOIterator" StaticList="false" Uses="LOV_ProdSize" id="ProdSize2"
+              DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+        <list IterBinding="CmsPeriodicalQVOIterator" StaticList="false" Uses="LOV_ColorNum" id="ColorNum2"
+              DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+        <list IterBinding="CmsPeriodicalQVOIterator" StaticList="false" Uses="LOV_CoverTypeset" id="CoverTypeset2"
+              DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+        <list IterBinding="CmsPeriodicalQVOIterator" StaticList="false" Uses="LOV_AssortProd" id="AssortProd2"
+              DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+        <list IterBinding="CmsPeriodicalQVOIterator" StaticList="false" Uses="LOV_BookSize" id="BookSize2"
+              DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+        <list IterBinding="CmsPeriodicalQVOIterator" StaticList="false" Uses="LOV_MainTypeset" id="MainTypeset2"
+              DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+        <list IterBinding="CmsPeriodicalQVOIterator" StaticList="false" Uses="LOV_MainPage" id="MainPage2"
+              DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+        <attributeValues IterBinding="CmsPeriodicalQVOIterator" id="Pagination2">
+            <AttrNames>
+                <Item Value="Pagination"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsPeriodicalQVOIterator" id="Suggestion2">
+            <AttrNames>
+                <Item Value="Suggestion"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsPeriodicalQVOIterator" id="Remarks7">
+            <AttrNames>
+                <Item Value="Remarks"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsPeriodicalQVOIterator" id="TypesetComp1">
+            <AttrNames>
+                <Item Value="TypesetComp"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsPeriodicalQVOIterator" id="TotalNum1">
+            <AttrNames>
+                <Item Value="TotalNum"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsPhotographyQVOIterator" id="FigureName1">
+            <AttrNames>
+                <Item Value="FigureName"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsPhotographyQVOIterator" id="SeriesName2">
+            <AttrNames>
+                <Item Value="SeriesName"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsPhotographyQVOIterator" id="Photographer">
+            <AttrNames>
+                <Item Value="Photographer"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsPhotographyQVOIterator" id="PhotographyTime">
+            <AttrNames>
+                <Item Value="PhotographyTime"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsPhotographyQVOIterator" id="PhotographyLocation">
+            <AttrNames>
+                <Item Value="PhotographyLocation"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsPhotographyQVOIterator" id="Keyword8">
+            <AttrNames>
+                <Item Value="Keyword"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsPhotographyQVOIterator" id="FigureDesc1">
+            <AttrNames>
+                <Item Value="FigureDesc"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsPhotographyQVOIterator" id="Remarks8">
+            <AttrNames>
+                <Item Value="Remarks"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsPhotographyQVOIterator" id="FigureFormat2">
+            <AttrNames>
+                <Item Value="FigureFormat"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsPhotographyQVOIterator" id="FigureSize2">
+            <AttrNames>
+                <Item Value="FigureSize"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsPhotographyQVOIterator" id="FigureDimension2">
+            <AttrNames>
+                <Item Value="FigureDimension"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsPhotographyQVOIterator" id="FigureResolution2">
+            <AttrNames>
+                <Item Value="FigureResolution"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsPhotographyQVOIterator" id="FigureXResolution2">
+            <AttrNames>
+                <Item Value="FigureXResolution"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsPhotographyQVOIterator" id="FigureYResolution2">
+            <AttrNames>
+                <Item Value="FigureYResolution"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsPhotographyQVOIterator" id="CoverDesign5">
+            <AttrNames>
+                <Item Value="CoverDesign"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsPhotographyQVOIterator" id="FigureWidth2">
+            <AttrNames>
+                <Item Value="FigureWidth"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsPhotographyQVOIterator" id="FigureHeight2">
+            <AttrNames>
+                <Item Value="FigureHeight"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsTeachingPlanQVOIterator" id="SourceBookName">
+            <AttrNames>
+                <Item Value="SourceBookName"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsTeachingPlanQVOIterator" id="SourceBookIsbn">
+            <AttrNames>
+                <Item Value="SourceBookIsbn"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsTeachingPlanQVOIterator" id="PublishingHouse2">
+            <AttrNames>
+                <Item Value="PublishingHouse"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsTeachingPlanQVOIterator" id="Editor5">
+            <AttrNames>
+                <Item Value="Editor"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsTeachingPlanQVOIterator" id="TeachingPlanName">
+            <AttrNames>
+                <Item Value="TeachingPlanName"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsTeachingPlanQVOIterator" id="Producer1">
+            <AttrNames>
+                <Item Value="Producer"/>
+            </AttrNames>
+        </attributeValues>
+        <list IterBinding="CmsTeachingPlanQVOIterator" StaticList="false" Uses="LOV_TeachingPlanType"
+              id="TeachingPlanType" DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+        <list IterBinding="CmsTeachingPlanQVOIterator" StaticList="false" Uses="LOV_CopyrightFlag" id="CopyrightFlag2"
+              DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+        <attributeValues IterBinding="CmsTeachingPlanQVOIterator" id="Keyword9">
+            <AttrNames>
+                <Item Value="Keyword"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsTeachingPlanQVOIterator" id="Remarks9">
+            <AttrNames>
+                <Item Value="Remarks"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsTeachingPlanQVOIterator" id="TeachingPlanStoreTime">
+            <AttrNames>
+                <Item Value="TeachingPlanStoreTime"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsVideoQVOIterator" id="FileName1">
+            <AttrNames>
+                <Item Value="FileName"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsVideoQVOIterator" id="SeriesName3">
+            <AttrNames>
+                <Item Value="SeriesName"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsVideoQVOIterator" id="Isbn3">
+            <AttrNames>
+                <Item Value="Isbn"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsVideoQVOIterator" id="ItemCode3">
+            <AttrNames>
+                <Item Value="ItemCode"/>
+            </AttrNames>
+        </attributeValues>
+        <list IterBinding="CmsVideoQVOIterator" StaticList="false" Uses="LOV_CarrierType" id="CarrierType2"
+              DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+        <list IterBinding="CmsVideoQVOIterator" StaticList="false" Uses="LOV_Lang" id="Lang3" DTSupportsMRU="false"
+              SelectItemValueMode="ListObject"/>
+        <attributeValues IterBinding="CmsVideoQVOIterator" id="Editor6">
+            <AttrNames>
+                <Item Value="Editor"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsVideoQVOIterator" id="TextEditor2">
+            <AttrNames>
+                <Item Value="TextEditor"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsVideoQVOIterator" id="Producer2">
+            <AttrNames>
+                <Item Value="Producer"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsVideoQVOIterator" id="PubTime5">
+            <AttrNames>
+                <Item Value="PubTime"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsVideoQVOIterator" id="AssortBook2">
+            <AttrNames>
+                <Item Value="AssortBook"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsVideoQVOIterator" id="Keyword10">
+            <AttrNames>
+                <Item Value="Keyword"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsVideoQVOIterator" id="ContentDesc2">
+            <AttrNames>
+                <Item Value="ContentDesc"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsVideoQVOIterator" id="Remarks10">
+            <AttrNames>
+                <Item Value="Remarks"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsVideoQVOIterator" id="FileFormat1">
+            <AttrNames>
+                <Item Value="FileFormat"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsVideoQVOIterator" id="FileSize1">
+            <AttrNames>
+                <Item Value="FileSize"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsVideoQVOIterator" id="FileTime1">
+            <AttrNames>
+                <Item Value="FileTime"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsVideoQVOIterator" id="FileStoreTime1">
+            <AttrNames>
+                <Item Value="FileStoreTime"/>
+            </AttrNames>
+        </attributeValues>
+    </bindings>
+</pageDefinition>

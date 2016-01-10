@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36"
+                id="doc_back_taskflow_rollback_log_taskflow_preDocBackPageDef" Package="work.log" SkipValidation="true">
+  <parameters/>
+  <executables/>
+  <bindings>
+    <action id="preDocBack" RequiresUpdateModel="true" Action="invokeMethod" MethodName="preDocBack"
+            IsViewObjectMethod="false" DataControl="WorkAMDataControl"
+            InstanceName="data.WorkAMDataControl.dataProvider.Root.LogAM">
+      <NamedData NDName="docId" NDValue="#{pageFlowScope.docId}" NDType="oracle.jbo.domain.Number"/>
+    </action>
+  </bindings>
+</pageDefinition>

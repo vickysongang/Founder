@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+    <task-flow-definition id="copyright_company_edit_taskflow">
+        <default-activity>preEditCompany</default-activity>
+        <data-control-scope>
+            <isolated/>
+        </data-control-scope>
+        <input-parameter-definition id="__6">
+            <name>mode</name>
+            <value>#{pageFlowScope.mode}</value>
+            <class>java.lang.String</class>
+        </input-parameter-definition>
+        <input-parameter-definition id="__7">
+            <name>companyId</name>
+            <value>#{pageFlowScope.companyId}</value>
+            <class>oracle.jbo.domain.Number</class>
+        </input-parameter-definition>
+        <input-parameter-definition id="__8">
+            <name>compCode</name>
+            <value>#{pageFlowScope.compCode}</value>
+            <class>java.lang.String</class>
+        </input-parameter-definition>
+        <return-value-definition id="__12">
+            <name>comfirmFlag</name>
+            <value>#{pageFlowScope.comfirmFlag}</value>
+            <class>java.lang.String</class>
+        </return-value-definition>
+        <managed-bean id="__1">
+            <managed-bean-name>copyrightCompanyEditManagedBean</managed-bean-name>
+            <managed-bean-class>com.zypg.cms.work.view.bean.CopyrightCompanyEditManagedBean</managed-bean-class>
+            <managed-bean-scope>backingBean</managed-bean-scope>
+        </managed-bean>
+        <method-call id="preEditCompany">
+            <method>#{backingBeanScope.copyrightCompanyEditManagedBean.preEditCompany}</method>
+            <outcome>
+                <fixed-outcome>toEdit</fixed-outcome>
+            </outcome>
+        </method-call>
+        <view id="companyEdit">
+            <page>/work/copyright/inline/companyEdit.jsf</page>
+        </view>
+        <task-flow-return id="taskFlowReturn">
+            <outcome>
+                <name>taskFlowReturn</name>
+            </outcome>
+        </task-flow-return>
+        <control-flow-rule id="__2">
+            <from-activity-id>preEditCompany</from-activity-id>
+            <control-flow-case id="__3">
+                <from-outcome>toEdit</from-outcome>
+                <to-activity-id>companyEdit</to-activity-id>
+            </control-flow-case>
+        </control-flow-rule>
+        <control-flow-rule id="__4">
+            <from-activity-id>companyEdit</from-activity-id>
+            <control-flow-case id="__5">
+                <from-outcome>toReturn</from-outcome>
+                <to-activity-id>taskFlowReturn</to-activity-id>
+            </control-flow-case>
+        </control-flow-rule>
+    </task-flow-definition>
+</adfc-config>

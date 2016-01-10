@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="themeExportPageDef"
+                Package="work.theme.inline">
+    <parameters/>
+    <executables>
+        <variableIterator id="variables"/>
+        <taskFlow id="theme_export_taskflow1"
+                  taskFlowId="/WEB-INF/work/theme/theme_export_taskflow.xml#theme_export_taskflow" activation="deferred"
+                  xmlns="http://xmlns.oracle.com/adf/controller/binding">
+            <parameters>
+                <parameter id="docIds" value="#{facesContext.externalContext.requestParameterMap['docIds']}"/>
+                <parameter id="compCode" value="#{facesContext.externalContext.requestParameterMap['compCode']}"/>
+            </parameters>
+        </taskFlow>
+    </executables>
+    <bindings/>
+</pageDefinition>

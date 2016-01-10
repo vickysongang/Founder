@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="theme_resource_home_taskflow">
+    <default-activity>themeResourceHome</default-activity>
+    <input-parameter-definition id="__2">
+      <name>compCode</name>
+      <value>#{pageFlowScope.compCode}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__3">
+      <name>nodeId</name>
+      <value>#{pageFlowScope.nodeId}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__4">
+      <name>goPage</name>
+      <value>#{pageFlowScope.goPage}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__5">
+      <name>groupUserFlag</name>
+      <value>#{pageFlowScope.groupUserFlag}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <managed-bean id="__1">
+      <managed-bean-name>themeResourceHomeManagedBean</managed-bean-name>
+      <managed-bean-class>com.zypg.cms.work.view.bean.ThemeResourceHomeManagedBean</managed-bean-class>
+      <managed-bean-scope>backingBean</managed-bean-scope>
+    </managed-bean>
+    <view id="themeResourceHome">
+      <page>/work/theme/fragment/themeResourceHome.jsff</page>
+    </view>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

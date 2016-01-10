@@ -1,0 +1,302 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<BC4JConfig version="11.1" xmlns="http://xmlns.oracle.com/bc4j/configuration">
+   <AppModuleConfigBag ApplicationName="com.zypg.cms.work.model.am.RelationAM">
+      <AppModuleConfig name="RelationAMLocal" jbo.project="com.zypg.cms.work.model.Model" ApplicationName="com.zypg.cms.work.model.am.RelationAM" DeployPlatform="LOCAL" java.naming.factory.initial="oracle.jbo.common.JboInitialContextFactory">
+         <Database jbo.TypeMapEntries="OracleApps" jbo.locking.mode="optimistic"/>
+         <Security AppModuleJndiName="com.zypg.cms.work.model.am.RelationAM"/>
+         <Custom JDBCDataSource="jdbc/CMSDS"/>
+      </AppModuleConfig>
+      <AppModuleConfig name="RelationAMShared" jbo.project="com.zypg.cms.work.model.Model" ApplicationName="com.zypg.cms.work.model.am.RelationAM" DeployPlatform="LOCAL" java.naming.factory.initial="oracle.jbo.common.JboInitialContextFactory">
+         <AM-Pooling jbo.ampool.isuseexclusive="false" jbo.ampool.maxpoolsize="1"/>
+         <Database jbo.TypeMapEntries="OracleApps" jbo.locking.mode="optimistic"/>
+         <Security AppModuleJndiName="com.zypg.cms.work.model.am.RelationAM"/>
+         <Custom JDBCDataSource="jdbc/CMSDS"/>
+      </AppModuleConfig>
+   </AppModuleConfigBag>
+   <AppModuleConfigBag ApplicationName="com.zypg.cms.work.model.am.DocBookAM">
+      <AppModuleConfig name="DocBookAMLocal" jbo.project="com.zypg.cms.work.model.Model" ApplicationName="com.zypg.cms.work.model.am.DocBookAM" DeployPlatform="LOCAL" java.naming.factory.initial="oracle.jbo.common.JboInitialContextFactory">
+         <Database jbo.TypeMapEntries="OracleApps" jbo.locking.mode="optimistic"/>
+         <Security AppModuleJndiName="com.zypg.cms.work.model.am.DocBookAM"/>
+         <Custom JDBCDataSource="jdbc/CMSDS"/>
+      </AppModuleConfig>
+      <AppModuleConfig name="DocBookAMShared" jbo.project="com.zypg.cms.work.model.Model" ApplicationName="com.zypg.cms.work.model.am.DocBookAM" DeployPlatform="LOCAL" java.naming.factory.initial="oracle.jbo.common.JboInitialContextFactory">
+         <AM-Pooling jbo.ampool.isuseexclusive="false" jbo.ampool.maxpoolsize="1"/>
+         <Database jbo.TypeMapEntries="OracleApps" jbo.locking.mode="optimistic"/>
+         <Security AppModuleJndiName="com.zypg.cms.work.model.am.DocBookAM"/>
+         <Custom JDBCDataSource="jdbc/CMSDS"/>
+      </AppModuleConfig>
+   </AppModuleConfigBag>
+   <AppModuleConfigBag ApplicationName="com.zypg.cms.work.model.am.BookAM">
+      <AppModuleConfig name="BookAMLocal" jbo.project="com.zypg.cms.work.model.Model" ApplicationName="com.zypg.cms.work.model.am.BookAM" DeployPlatform="LOCAL" java.naming.factory.initial="oracle.jbo.common.JboInitialContextFactory">
+         <Database jbo.TypeMapEntries="OracleApps" jbo.locking.mode="optimistic"/>
+         <Security AppModuleJndiName="com.zypg.cms.work.model.am.BookAM"/>
+         <Custom JDBCDataSource="jdbc/CMSDS"/>
+      </AppModuleConfig>
+      <AppModuleConfig name="BookAMShared" jbo.project="com.zypg.cms.work.model.Model" ApplicationName="com.zypg.cms.work.model.am.BookAM" DeployPlatform="LOCAL" java.naming.factory.initial="oracle.jbo.common.JboInitialContextFactory">
+         <AM-Pooling jbo.ampool.isuseexclusive="false" jbo.ampool.maxpoolsize="1"/>
+         <Database jbo.TypeMapEntries="OracleApps" jbo.locking.mode="optimistic"/>
+         <Security AppModuleJndiName="com.zypg.cms.work.model.am.BookAM"/>
+         <Custom JDBCDataSource="jdbc/CMSDS"/>
+      </AppModuleConfig>
+   </AppModuleConfigBag>
+   <AppModuleConfigBag ApplicationName="com.zypg.cms.work.model.am.ResExpAM">
+      <AppModuleConfig name="ResExpAMLocal" jbo.project="com.zypg.cms.work.model.Model" ApplicationName="com.zypg.cms.work.model.am.ResExpAM" DeployPlatform="LOCAL" java.naming.factory.initial="oracle.jbo.common.JboInitialContextFactory">
+         <Database jbo.TypeMapEntries="OracleApps" jbo.locking.mode="optimistic"/>
+         <Security AppModuleJndiName="com.zypg.cms.work.model.am.ResExpAM"/>
+         <Custom JDBCDataSource="jdbc/CMSDS"/>
+      </AppModuleConfig>
+      <AppModuleConfig name="ResExpAMShared" jbo.project="com.zypg.cms.work.model.Model" ApplicationName="com.zypg.cms.work.model.am.ResExpAM" DeployPlatform="LOCAL" java.naming.factory.initial="oracle.jbo.common.JboInitialContextFactory">
+         <AM-Pooling jbo.ampool.isuseexclusive="false" jbo.ampool.maxpoolsize="1"/>
+         <Database jbo.TypeMapEntries="OracleApps" jbo.locking.mode="optimistic"/>
+         <Security AppModuleJndiName="com.zypg.cms.work.model.am.ResExpAM"/>
+         <Custom JDBCDataSource="jdbc/CMSDS"/>
+      </AppModuleConfig>
+   </AppModuleConfigBag>
+   <AppModuleConfigBag ApplicationName="com.zypg.cms.work.model.am.PhotographyFigureAM">
+      <AppModuleConfig name="PhotographyFigureAMLocal" jbo.project="com.zypg.cms.work.model.Model" ApplicationName="com.zypg.cms.work.model.am.PhotographyFigureAM" DeployPlatform="LOCAL" java.naming.factory.initial="oracle.jbo.common.JboInitialContextFactory">
+         <Database jbo.TypeMapEntries="OracleApps" jbo.locking.mode="optimistic"/>
+         <Security AppModuleJndiName="com.zypg.cms.work.model.am.PhotographyFigureAM"/>
+         <Custom JDBCDataSource="jdbc/CMSDS"/>
+      </AppModuleConfig>
+      <AppModuleConfig name="PhotographyFigureAMShared" jbo.project="com.zypg.cms.work.model.Model" ApplicationName="com.zypg.cms.work.model.am.PhotographyFigureAM" DeployPlatform="LOCAL" java.naming.factory.initial="oracle.jbo.common.JboInitialContextFactory">
+         <AM-Pooling jbo.ampool.isuseexclusive="false" jbo.ampool.maxpoolsize="1"/>
+         <Database jbo.TypeMapEntries="OracleApps" jbo.locking.mode="optimistic"/>
+         <Security AppModuleJndiName="com.zypg.cms.work.model.am.PhotographyFigureAM"/>
+         <Custom JDBCDataSource="jdbc/CMSDS"/>
+      </AppModuleConfig>
+   </AppModuleConfigBag>
+   <AppModuleConfigBag ApplicationName="com.zypg.cms.work.model.am.IllustrationAM">
+      <AppModuleConfig name="IllustrationAMLocal" jbo.project="com.zypg.cms.work.model.Model" ApplicationName="com.zypg.cms.work.model.am.IllustrationAM" DeployPlatform="LOCAL" java.naming.factory.initial="oracle.jbo.common.JboInitialContextFactory">
+         <Database jbo.TypeMapEntries="OracleApps" jbo.locking.mode="optimistic"/>
+         <Security AppModuleJndiName="com.zypg.cms.work.model.am.IllustrationAM"/>
+         <Custom JDBCDataSource="jdbc/CMSDS"/>
+      </AppModuleConfig>
+      <AppModuleConfig name="IllustrationAMShared" jbo.project="com.zypg.cms.work.model.Model" ApplicationName="com.zypg.cms.work.model.am.IllustrationAM" DeployPlatform="LOCAL" java.naming.factory.initial="oracle.jbo.common.JboInitialContextFactory">
+         <AM-Pooling jbo.ampool.isuseexclusive="false" jbo.ampool.maxpoolsize="1"/>
+         <Database jbo.TypeMapEntries="OracleApps" jbo.locking.mode="optimistic"/>
+         <Security AppModuleJndiName="com.zypg.cms.work.model.am.IllustrationAM"/>
+         <Custom JDBCDataSource="jdbc/CMSDS"/>
+      </AppModuleConfig>
+   </AppModuleConfigBag>
+   <AppModuleConfigBag ApplicationName="com.zypg.cms.work.model.am.NewspaperAM">
+      <AppModuleConfig name="NewspaperAMLocal" jbo.project="com.zypg.cms.work.model.Model" ApplicationName="com.zypg.cms.work.model.am.NewspaperAM" DeployPlatform="LOCAL" java.naming.factory.initial="oracle.jbo.common.JboInitialContextFactory">
+         <Database jbo.TypeMapEntries="OracleApps" jbo.locking.mode="optimistic"/>
+         <Security AppModuleJndiName="com.zypg.cms.work.model.am.NewspaperAM"/>
+         <Custom JDBCDataSource="jdbc/CMSDS"/>
+      </AppModuleConfig>
+      <AppModuleConfig name="NewspaperAMShared" jbo.project="com.zypg.cms.work.model.Model" ApplicationName="com.zypg.cms.work.model.am.NewspaperAM" DeployPlatform="LOCAL" java.naming.factory.initial="oracle.jbo.common.JboInitialContextFactory">
+         <AM-Pooling jbo.ampool.isuseexclusive="false" jbo.ampool.maxpoolsize="1"/>
+         <Database jbo.TypeMapEntries="OracleApps" jbo.locking.mode="optimistic"/>
+         <Security AppModuleJndiName="com.zypg.cms.work.model.am.NewspaperAM"/>
+         <Custom JDBCDataSource="jdbc/CMSDS"/>
+      </AppModuleConfig>
+   </AppModuleConfigBag>
+   <AppModuleConfigBag ApplicationName="com.zypg.cms.work.model.am.VideoAM">
+      <AppModuleConfig name="VideoAMLocal" jbo.project="com.zypg.cms.work.model.Model" ApplicationName="com.zypg.cms.work.model.am.VideoAM" DeployPlatform="LOCAL" java.naming.factory.initial="oracle.jbo.common.JboInitialContextFactory">
+         <Database jbo.TypeMapEntries="OracleApps" jbo.locking.mode="optimistic"/>
+         <Security AppModuleJndiName="com.zypg.cms.work.model.am.VideoAM"/>
+         <Custom JDBCDataSource="jdbc/CMSDS"/>
+      </AppModuleConfig>
+      <AppModuleConfig name="VideoAMShared" jbo.project="com.zypg.cms.work.model.Model" ApplicationName="com.zypg.cms.work.model.am.VideoAM" DeployPlatform="LOCAL" java.naming.factory.initial="oracle.jbo.common.JboInitialContextFactory">
+         <AM-Pooling jbo.ampool.isuseexclusive="false" jbo.ampool.maxpoolsize="1"/>
+         <Database jbo.TypeMapEntries="OracleApps" jbo.locking.mode="optimistic"/>
+         <Security AppModuleJndiName="com.zypg.cms.work.model.am.VideoAM"/>
+         <Custom JDBCDataSource="jdbc/CMSDS"/>
+      </AppModuleConfig>
+   </AppModuleConfigBag>
+   <AppModuleConfigBag ApplicationName="com.zypg.cms.work.model.am.AudioAM">
+      <AppModuleConfig name="AudioAMLocal" jbo.project="com.zypg.cms.work.model.Model" ApplicationName="com.zypg.cms.work.model.am.AudioAM" DeployPlatform="LOCAL" java.naming.factory.initial="oracle.jbo.common.JboInitialContextFactory">
+         <Database jbo.TypeMapEntries="OracleApps" jbo.locking.mode="optimistic"/>
+         <Security AppModuleJndiName="com.zypg.cms.work.model.am.AudioAM"/>
+         <Custom JDBCDataSource="jdbc/CMSDS"/>
+      </AppModuleConfig>
+      <AppModuleConfig name="AudioAMShared" jbo.project="com.zypg.cms.work.model.Model" ApplicationName="com.zypg.cms.work.model.am.AudioAM" DeployPlatform="LOCAL" java.naming.factory.initial="oracle.jbo.common.JboInitialContextFactory">
+         <AM-Pooling jbo.ampool.isuseexclusive="false" jbo.ampool.maxpoolsize="1"/>
+         <Database jbo.TypeMapEntries="OracleApps" jbo.locking.mode="optimistic"/>
+         <Security AppModuleJndiName="com.zypg.cms.work.model.am.AudioAM"/>
+         <Custom JDBCDataSource="jdbc/CMSDS"/>
+      </AppModuleConfig>
+   </AppModuleConfigBag>
+   <AppModuleConfigBag ApplicationName="com.zypg.cms.work.model.am.ActivityAM">
+      <AppModuleConfig DeployPlatform="LOCAL" jbo.project="com.zypg.cms.work.model.Model" name="ActivityAMLocal" ApplicationName="com.zypg.cms.work.model.am.ActivityAM">
+         <Database jbo.TypeMapEntries="OracleApps" jbo.locking.mode="optimistic"/>
+         <Security AppModuleJndiName="com.zypg.cms.work.model.am.ActivityAM"/>
+         <Custom JDBCDataSource="jdbc/CMSDS"/>
+      </AppModuleConfig>
+      <AppModuleConfig DeployPlatform="LOCAL" jbo.project="com.zypg.cms.work.model.Model" name="ActivityAMShared" ApplicationName="com.zypg.cms.work.model.am.ActivityAM">
+         <AM-Pooling jbo.ampool.dynamicjdbccredentials="false" jbo.ampool.isuseexclusive="false" jbo.ampool.maxpoolsize="1" jbo.ampool.resetnontransactionalstate="false"/>
+         <Database jbo.TypeMapEntries="OracleApps" jbo.locking.mode="optimistic"/>
+         <Security AppModuleJndiName="com.zypg.cms.work.model.am.ActivityAM"/>
+         <Custom JDBCDataSource="jdbc/CMSDS"/>
+      </AppModuleConfig>
+   </AppModuleConfigBag>
+   <AppModuleConfigBag ApplicationName="com.zypg.cms.work.model.am.TeachingPlanAM">
+      <AppModuleConfig name="TeachingPlanAMLocal" jbo.project="com.zypg.cms.work.model.Model" ApplicationName="com.zypg.cms.work.model.am.TeachingPlanAM" DeployPlatform="LOCAL" java.naming.factory.initial="oracle.jbo.common.JboInitialContextFactory">
+         <Database jbo.TypeMapEntries="OracleApps" jbo.locking.mode="optimistic"/>
+         <Security AppModuleJndiName="com.zypg.cms.work.model.am.TeachingPlanAM"/>
+         <Custom JDBCDataSource="jdbc/CMSDS"/>
+      </AppModuleConfig>
+      <AppModuleConfig name="TeachingPlanAMShared" jbo.project="com.zypg.cms.work.model.Model" ApplicationName="com.zypg.cms.work.model.am.TeachingPlanAM" DeployPlatform="LOCAL" java.naming.factory.initial="oracle.jbo.common.JboInitialContextFactory">
+         <AM-Pooling jbo.ampool.isuseexclusive="false" jbo.ampool.maxpoolsize="1"/>
+         <Database jbo.TypeMapEntries="OracleApps" jbo.locking.mode="optimistic"/>
+         <Security AppModuleJndiName="com.zypg.cms.work.model.am.TeachingPlanAM"/>
+         <Custom JDBCDataSource="jdbc/CMSDS"/>
+      </AppModuleConfig>
+   </AppModuleConfigBag>
+   <AppModuleConfigBag ApplicationName="com.zypg.cms.work.model.am.CoursewareAM">
+      <AppModuleConfig name="CoursewareAMLocal" jbo.project="com.zypg.cms.work.model.Model" ApplicationName="com.zypg.cms.work.model.am.CoursewareAM" DeployPlatform="LOCAL" java.naming.factory.initial="oracle.jbo.common.JboInitialContextFactory">
+         <Database jbo.TypeMapEntries="OracleApps" jbo.locking.mode="optimistic"/>
+         <Security AppModuleJndiName="com.zypg.cms.work.model.am.CoursewareAM"/>
+         <Custom JDBCDataSource="jdbc/CMSDS"/>
+      </AppModuleConfig>
+      <AppModuleConfig name="CoursewareAMShared" jbo.project="com.zypg.cms.work.model.Model" ApplicationName="com.zypg.cms.work.model.am.CoursewareAM" DeployPlatform="LOCAL" java.naming.factory.initial="oracle.jbo.common.JboInitialContextFactory">
+         <AM-Pooling jbo.ampool.isuseexclusive="false" jbo.ampool.maxpoolsize="1"/>
+         <Database jbo.TypeMapEntries="OracleApps" jbo.locking.mode="optimistic"/>
+         <Security AppModuleJndiName="com.zypg.cms.work.model.am.CoursewareAM"/>
+         <Custom JDBCDataSource="jdbc/CMSDS"/>
+      </AppModuleConfig>
+   </AppModuleConfigBag>
+   <AppModuleConfigBag ApplicationName="com.zypg.cms.work.model.am.MaterialFigureAM">
+      <AppModuleConfig name="MaterialFigureAMLocal" jbo.project="com.zypg.cms.work.model.Model" ApplicationName="com.zypg.cms.work.model.am.MaterialFigureAM" DeployPlatform="LOCAL" java.naming.factory.initial="oracle.jbo.common.JboInitialContextFactory">
+         <Database jbo.TypeMapEntries="OracleApps" jbo.locking.mode="optimistic"/>
+         <Security AppModuleJndiName="com.zypg.cms.work.model.am.MaterialFigureAM"/>
+         <Custom JDBCDataSource="jdbc/CMSDS"/>
+      </AppModuleConfig>
+      <AppModuleConfig name="MaterialFigureAMShared" jbo.project="com.zypg.cms.work.model.Model" ApplicationName="com.zypg.cms.work.model.am.MaterialFigureAM" DeployPlatform="LOCAL" java.naming.factory.initial="oracle.jbo.common.JboInitialContextFactory">
+         <AM-Pooling jbo.ampool.isuseexclusive="false" jbo.ampool.maxpoolsize="1"/>
+         <Database jbo.TypeMapEntries="OracleApps" jbo.locking.mode="optimistic"/>
+         <Security AppModuleJndiName="com.zypg.cms.work.model.am.MaterialFigureAM"/>
+         <Custom JDBCDataSource="jdbc/CMSDS"/>
+      </AppModuleConfig>
+   </AppModuleConfigBag>
+   <AppModuleConfigBag ApplicationName="com.zypg.cms.work.model.am.AttachAM">
+      <AppModuleConfig name="AttachAMLocal" jbo.project="com.zypg.cms.work.model.Model" ApplicationName="com.zypg.cms.work.model.am.AttachAM" DeployPlatform="LOCAL" java.naming.factory.initial="oracle.jbo.common.JboInitialContextFactory">
+         <Database jbo.TypeMapEntries="OracleApps" jbo.locking.mode="optimistic"/>
+         <Security AppModuleJndiName="com.zypg.cms.work.model.am.AttachAM"/>
+         <Custom JDBCDataSource="jdbc/CMSDS"/>
+      </AppModuleConfig>
+      <AppModuleConfig name="AttachAMShared" jbo.project="com.zypg.cms.work.model.Model" ApplicationName="com.zypg.cms.work.model.am.AttachAM" DeployPlatform="LOCAL" java.naming.factory.initial="oracle.jbo.common.JboInitialContextFactory">
+         <AM-Pooling jbo.ampool.isuseexclusive="false" jbo.ampool.maxpoolsize="1"/>
+         <Database jbo.TypeMapEntries="OracleApps" jbo.locking.mode="optimistic"/>
+         <Security AppModuleJndiName="com.zypg.cms.work.model.am.AttachAM"/>
+         <Custom JDBCDataSource="jdbc/CMSDS"/>
+      </AppModuleConfig>
+   </AppModuleConfigBag>
+   <AppModuleConfigBag ApplicationName="com.zypg.cms.work.model.am.ElecProdAM">
+      <AppModuleConfig name="ElecProdAMLocal" jbo.project="com.zypg.cms.work.model.Model" ApplicationName="com.zypg.cms.work.model.am.ElecProdAM" DeployPlatform="LOCAL" java.naming.factory.initial="oracle.jbo.common.JboInitialContextFactory">
+         <Database jbo.TypeMapEntries="OracleApps" jbo.locking.mode="optimistic"/>
+         <Security AppModuleJndiName="com.zypg.cms.work.model.am.ElecProdAM"/>
+         <Custom JDBCDataSource="jdbc/CMSDS"/>
+      </AppModuleConfig>
+      <AppModuleConfig name="ElecProdAMShared" jbo.project="com.zypg.cms.work.model.Model" ApplicationName="com.zypg.cms.work.model.am.ElecProdAM" DeployPlatform="LOCAL" java.naming.factory.initial="oracle.jbo.common.JboInitialContextFactory">
+         <AM-Pooling jbo.ampool.isuseexclusive="false" jbo.ampool.maxpoolsize="1"/>
+         <Database jbo.TypeMapEntries="OracleApps" jbo.locking.mode="optimistic"/>
+         <Security AppModuleJndiName="com.zypg.cms.work.model.am.ElecProdAM"/>
+         <Custom JDBCDataSource="jdbc/CMSDS"/>
+      </AppModuleConfig>
+   </AppModuleConfigBag>
+   <AppModuleConfigBag ApplicationName="com.zypg.cms.work.model.am.CopyrightAM">
+      <AppModuleConfig name="CopyrightAMLocal" jbo.project="com.zypg.cms.work.model.Model" ApplicationName="com.zypg.cms.work.model.am.CopyrightAM" DeployPlatform="LOCAL" java.naming.factory.initial="oracle.jbo.common.JboInitialContextFactory">
+         <Database jbo.TypeMapEntries="OracleApps" jbo.locking.mode="optimistic"/>
+         <Security AppModuleJndiName="com.zypg.cms.work.model.am.CopyrightAM"/>
+         <Custom JDBCDataSource="jdbc/CMSDS"/>
+      </AppModuleConfig>
+      <AppModuleConfig name="CopyrightAMShared" jbo.project="com.zypg.cms.work.model.Model" ApplicationName="com.zypg.cms.work.model.am.CopyrightAM" DeployPlatform="LOCAL" java.naming.factory.initial="oracle.jbo.common.JboInitialContextFactory">
+         <AM-Pooling jbo.ampool.isuseexclusive="false" jbo.ampool.maxpoolsize="1"/>
+         <Database jbo.TypeMapEntries="OracleApps" jbo.locking.mode="optimistic"/>
+         <Security AppModuleJndiName="com.zypg.cms.work.model.am.CopyrightAM"/>
+         <Custom JDBCDataSource="jdbc/CMSDS"/>
+      </AppModuleConfig>
+   </AppModuleConfigBag>
+   <AppModuleConfigBag ApplicationName="com.zypg.cms.work.model.am.CommonAM">
+      <AppModuleConfig name="CommonAMLocal" jbo.project="com.zypg.cms.work.model.Model" ApplicationName="com.zypg.cms.work.model.am.CommonAM" DeployPlatform="LOCAL" java.naming.factory.initial="oracle.jbo.common.JboInitialContextFactory">
+         <Database jbo.TypeMapEntries="OracleApps" jbo.locking.mode="optimistic"/>
+         <Security AppModuleJndiName="com.zypg.cms.work.model.am.CommonAM"/>
+         <Custom JDBCDataSource="jdbc/CMSDS"/>
+      </AppModuleConfig>
+      <AppModuleConfig name="CommonAMShared" jbo.project="com.zypg.cms.work.model.Model" ApplicationName="com.zypg.cms.work.model.am.CommonAM" DeployPlatform="LOCAL" java.naming.factory.initial="oracle.jbo.common.JboInitialContextFactory">
+         <AM-Pooling jbo.ampool.isuseexclusive="false" jbo.ampool.maxpoolsize="1"/>
+         <Database jbo.TypeMapEntries="OracleApps" jbo.locking.mode="optimistic"/>
+         <Security AppModuleJndiName="com.zypg.cms.work.model.am.CommonAM"/>
+         <Custom JDBCDataSource="jdbc/CMSDS"/>
+      </AppModuleConfig>
+   </AppModuleConfigBag>
+   <AppModuleConfigBag ApplicationName="com.zypg.cms.work.model.am.PeriodicalAM">
+      <AppModuleConfig name="PeriodicalAMLocal" jbo.project="com.zypg.cms.work.model.Model" ApplicationName="com.zypg.cms.work.model.am.PeriodicalAM" DeployPlatform="LOCAL" java.naming.factory.initial="oracle.jbo.common.JboInitialContextFactory">
+         <Database jbo.TypeMapEntries="OracleApps" jbo.locking.mode="optimistic"/>
+         <Security AppModuleJndiName="com.zypg.cms.work.model.am.PeriodicalAM"/>
+         <Custom JDBCDataSource="jdbc/CMSDS"/>
+      </AppModuleConfig>
+      <AppModuleConfig name="PeriodicalAMShared" jbo.project="com.zypg.cms.work.model.Model" ApplicationName="com.zypg.cms.work.model.am.PeriodicalAM" DeployPlatform="LOCAL" java.naming.factory.initial="oracle.jbo.common.JboInitialContextFactory">
+         <AM-Pooling jbo.ampool.isuseexclusive="false" jbo.ampool.maxpoolsize="1"/>
+         <Database jbo.TypeMapEntries="OracleApps" jbo.locking.mode="optimistic"/>
+         <Security AppModuleJndiName="com.zypg.cms.work.model.am.PeriodicalAM"/>
+         <Custom JDBCDataSource="jdbc/CMSDS"/>
+      </AppModuleConfig>
+   </AppModuleConfigBag>
+   <AppModuleConfigBag ApplicationName="com.zypg.cms.work.model.am.LogAM">
+      <AppModuleConfig name="LogAMLocal" jbo.project="com.zypg.cms.work.model.Model" ApplicationName="com.zypg.cms.work.model.am.LogAM" DeployPlatform="LOCAL">
+         <Database jbo.TypeMapEntries="OracleApps"/>
+         <Security AppModuleJndiName="com.zypg.cms.work.model.am.LogAM"/>
+         <Custom JDBCDataSource="java:comp/env/jdbc/ZYPG_CMSDEVDS"/>
+      </AppModuleConfig>
+      <AppModuleConfig name="LogAMShared" jbo.project="com.zypg.cms.work.model.Model" ApplicationName="com.zypg.cms.work.model.am.LogAM" DeployPlatform="LOCAL">
+         <AM-Pooling jbo.ampool.maxpoolsize="1" jbo.ampool.isuseexclusive="false"/>
+         <Database jbo.TypeMapEntries="OracleApps"/>
+         <Security AppModuleJndiName="com.zypg.cms.work.model.am.LogAM"/>
+         <Custom JDBCDataSource="java:comp/env/jdbc/ZYPG_CMSDEVDS"/>
+      </AppModuleConfig>
+   </AppModuleConfigBag>
+   <AppModuleConfigBag ApplicationName="com.zypg.cms.work.model.am.EntryAM">
+      <AppModuleConfig name="EntryAMLocal" jbo.project="com.zypg.cms.work.model.Model" ApplicationName="com.zypg.cms.work.model.am.EntryAM" DeployPlatform="LOCAL">
+         <Database jbo.TypeMapEntries="OracleApps"/>
+         <Security AppModuleJndiName="com.zypg.cms.work.model.am.EntryAM"/>
+         <Custom JDBCDataSource="java:comp/env/jdbc/ZYPG_CMSDEVDS"/>
+      </AppModuleConfig>
+      <AppModuleConfig name="EntryAMShared" jbo.project="com.zypg.cms.work.model.Model" ApplicationName="com.zypg.cms.work.model.am.EntryAM" DeployPlatform="LOCAL">
+         <AM-Pooling jbo.ampool.maxpoolsize="1" jbo.ampool.isuseexclusive="false"/>
+         <Database jbo.TypeMapEntries="OracleApps"/>
+         <Security AppModuleJndiName="com.zypg.cms.work.model.am.EntryAM"/>
+         <Custom JDBCDataSource="java:comp/env/jdbc/ZYPG_CMSDEVDS"/>
+      </AppModuleConfig>
+   </AppModuleConfigBag>
+   <AppModuleConfigBag ApplicationName="com.zypg.cms.work.model.am.OfflineAM">
+      <AppModuleConfig name="OfflineAMLocal" jbo.project="com.zypg.cms.work.model.Model" ApplicationName="com.zypg.cms.work.model.am.OfflineAM" DeployPlatform="LOCAL">
+         <Database jbo.TypeMapEntries="OracleApps"/>
+         <Security AppModuleJndiName="com.zypg.cms.work.model.am.OfflineAM"/>
+         <Custom JDBCDataSource="java:comp/env/jdbc/ZYPG_CMSDEVDS"/>
+      </AppModuleConfig>
+      <AppModuleConfig name="OfflineAMShared" jbo.project="com.zypg.cms.work.model.Model" ApplicationName="com.zypg.cms.work.model.am.OfflineAM" DeployPlatform="LOCAL">
+         <AM-Pooling jbo.ampool.maxpoolsize="1" jbo.ampool.isuseexclusive="false"/>
+         <Database jbo.TypeMapEntries="OracleApps"/>
+         <Security AppModuleJndiName="com.zypg.cms.work.model.am.OfflineAM"/>
+         <Custom JDBCDataSource="java:comp/env/jdbc/ZYPG_CMSDEVDS"/>
+      </AppModuleConfig>
+   </AppModuleConfigBag>
+   <AppModuleConfigBag ApplicationName="com.zypg.cms.work.model.am.ThemeAM">
+      <AppModuleConfig DeployPlatform="LOCAL" jbo.project="com.zypg.cms.work.model.Model" name="ThemeAMLocal" ApplicationName="com.zypg.cms.work.model.am.ThemeAM">
+         <Database jbo.TypeMapEntries="OracleApps" jbo.locking.mode="optimistic"/>
+         <Security AppModuleJndiName="com.zypg.cms.work.model.am.ThemeAM"/>
+         <Custom JDBCDataSource="jdbc/CMSDS"/>
+      </AppModuleConfig>
+      <AppModuleConfig DeployPlatform="LOCAL" jbo.project="com.zypg.cms.work.model.Model" name="ThemeAMShared" ApplicationName="com.zypg.cms.work.model.am.ThemeAM">
+         <AM-Pooling jbo.ampool.dynamicjdbccredentials="false" jbo.ampool.isuseexclusive="false" jbo.ampool.maxpoolsize="1" jbo.ampool.resetnontransactionalstate="false"/>
+         <Database jbo.TypeMapEntries="OracleApps" jbo.locking.mode="optimistic"/>
+         <Security AppModuleJndiName="com.zypg.cms.work.model.am.ThemeAM"/>
+         <Custom JDBCDataSource="jdbc/CMSDS"/>
+      </AppModuleConfig>
+   </AppModuleConfigBag>
+   <AppModuleConfigBag ApplicationName="com.zypg.cms.work.model.am.ExtendAttrAM">
+      <AppModuleConfig name="ExtendAttrAMLocal" jbo.project="com.zypg.cms.work.model.Model" ApplicationName="com.zypg.cms.work.model.am.ExtendAttrAM" DeployPlatform="LOCAL">
+         <Database jbo.TypeMapEntries="OracleApps"/>
+         <Security AppModuleJndiName="com.zypg.cms.work.model.am.ExtendAttrAM"/>
+         <Custom JDBCDataSource="java:comp/env/jdbc/ZYPG_CMSDEVDS"/>
+      </AppModuleConfig>
+      <AppModuleConfig name="ExtendAttrAMShared" jbo.project="com.zypg.cms.work.model.Model" ApplicationName="com.zypg.cms.work.model.am.ExtendAttrAM" DeployPlatform="LOCAL">
+         <AM-Pooling jbo.ampool.maxpoolsize="1" jbo.ampool.isuseexclusive="false"/>
+         <Database jbo.TypeMapEntries="OracleApps"/>
+         <Security AppModuleJndiName="com.zypg.cms.work.model.am.ExtendAttrAM"/>
+         <Custom JDBCDataSource="java:comp/env/jdbc/ZYPG_CMSDEVDS"/>
+      </AppModuleConfig>
+   </AppModuleConfigBag>
+</BC4JConfig>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="orderViewPageDef"
+                Package="work.copyright.fragment">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="Root.CopyrightAM.Cms3rdAuthorizationOrderVO4View" DataControl="WorkAMDataControl" RangeSize="25"
+              id="Cms3rdAuthorizationOrderVO4ViewIterator"/>
+    <iterator Binds="Root.CopyrightAM.CmsAttachVO4View" DataControl="WorkAMDataControl" RangeSize="25"
+              id="CmsAttachVO4ViewIterator"/>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="Cms3rdAuthorizationOrderVO4ViewIterator" id="OrderName">
+      <AttrNames>
+        <Item Value="OrderName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="Cms3rdAuthorizationOrderVO4ViewIterator" id="AuthorizedCompanyName">
+      <AttrNames>
+        <Item Value="AuthorizedCompanyName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="Cms3rdAuthorizationOrderVO4ViewIterator" id="AuthorizedTypeDisplay">
+      <AttrNames>
+        <Item Value="AuthorizedTypeDisplay"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="Cms3rdAuthorizationOrderVO4ViewIterator" id="AuthorizedArea">
+      <AttrNames>
+        <Item Value="AuthorizedArea"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="Cms3rdAuthorizationOrderVO4ViewIterator" id="AuthorizedLang">
+      <AttrNames>
+        <Item Value="AuthorizedLang"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="Cms3rdAuthorizationOrderVO4ViewIterator" StaticList="false" Uses="LOV_AuthorizedFileType"
+          id="AuthorizedFileType" DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <list IterBinding="Cms3rdAuthorizationOrderVO4ViewIterator" StaticList="false"
+          Uses="LOV_IncludePublicCopyrightFlag1" id="IncludePublicCopyrightFlag" DTSupportsMRU="false"
+          SelectItemValueMode="ListObject"/>
+    <attributeValues IterBinding="Cms3rdAuthorizationOrderVO4ViewIterator" id="AuthorizedStartTime">
+      <AttrNames>
+        <Item Value="AuthorizedStartTime"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="Cms3rdAuthorizationOrderVO4ViewIterator" StaticList="false" Uses="LOV_AuthorizedValidPeriod"
+          id="AuthorizedValidPeriod" DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <tree IterBinding="CmsAttachVO4ViewIterator" id="CmsAttachVO4View">
+      <nodeDefinition DefName="com.zypg.cms.work.model.viewobject.attach.query.CmsAttachVO" Name="CmsAttachVO4View0">
+        <AttrNames>
+          <Item Value="Title"/>
+          <Item Value="Format"/>
+          <Item Value="UcmDid"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+  </bindings>
+</pageDefinition>

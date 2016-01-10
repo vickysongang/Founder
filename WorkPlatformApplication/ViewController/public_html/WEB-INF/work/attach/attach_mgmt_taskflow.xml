@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="attach_mgmt_taskflow">
+    <default-activity>preMgmtAttach</default-activity>
+    <input-parameter-definition id="__1">
+      <name>libCode</name>
+      <value>#{pageFlowScope.libCode}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__2">
+      <name>docId</name>
+      <value>#{pageFlowScope.docId}</value>
+      <class>oracle.jbo.domain.Number</class>
+    </input-parameter-definition>
+    <managed-bean id="__3">
+      <managed-bean-name>attachMainManagedBean</managed-bean-name>
+      <managed-bean-class>com.zypg.cms.work.view.bean.AttachMainManagedBean</managed-bean-class>
+      <managed-bean-scope>pageFlow</managed-bean-scope>
+    </managed-bean>
+    <view id="attachMgmt">
+      <page>/work/attach/inline/attachMgmt.jsf</page>
+    </view>
+    <task-flow-return id="taskFlowReturn">
+      <outcome>
+        <name>taskFlowReturn</name>
+      </outcome>
+    </task-flow-return>
+    <method-call id="preMgmtAttach">
+      <method>#{pageFlowScope.attachMainManagedBean.preMgmtAttach}</method>
+      <outcome>
+        <fixed-outcome>toMgmt</fixed-outcome>
+      </outcome>
+    </method-call>
+    <control-flow-rule id="__4">
+      <from-activity-id>attachMgmt</from-activity-id>
+      <control-flow-case id="__5">
+        <from-outcome>toReturn</from-outcome>
+        <to-activity-id>taskFlowReturn</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__6">
+      <from-activity-id>preMgmtAttach</from-activity-id>
+      <control-flow-case id="__7">
+        <from-outcome>toMgmt</from-outcome>
+        <to-activity-id>attachMgmt</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+  </task-flow-definition>
+</adfc-config>

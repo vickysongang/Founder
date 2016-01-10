@@ -1,0 +1,318 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core">
+    <af:panelStretchLayout id="psl1" inlineStyle="border:1px solid #BAC6CA;background:#F3F8FC;" topHeight="auto">
+        <f:facet name="top">
+            <af:panelStretchLayout id="psl4" inlineStyle="height:66px;" startWidth="auto" endWidth="auto"
+                                   styleClass="AFStretchWidth" bottomHeight="auto">
+                <f:facet name="start">
+                    <af:panelGroupLayout id="pgl1" partialTriggers="soc1 soc2 t1:sbc1 t1:sbc2 t1 cb11 cil8 d5 d1 it1"
+                                         layout="horizontal" inlineStyle="margin:5px 5px 5px 15px;;padding-left:20px;"
+                                         binding="#{backingBeanScope.audioMainManagedBean.buttonPanelGroupLayout}">
+                        <af:commandImageLink text="新建" id="cb1" partialSubmit="true" action="toEdit" useWindow="true"
+                                             windowHeight="560" windowWidth="650" styleClass="imagelink_length_2"
+                                             returnListener="#{backingBeanScope.audioMainManagedBean.commonRenderer.createOrEditReturnListener}"
+                                             visible="#{backingBeanScope.audioMainManagedBean.commonRenderer.createEnable}"
+                                             icon="/resources/images/new.gif" iconPosition="leading">
+                            <af:setPropertyListener from="CREATE" to="#{pageFlowScope.mode}" type="action"/>
+                            <af:setPropertyListener from="N" to="#{pageFlowScope.batchFlag}" type="action"/>
+                        </af:commandImageLink>
+                        <af:commandImageLink text="批量采集" id="cil11" icon="/resources/images/file_manager.gif"
+                                             styleClass="imagelink_length_4"
+                                             visible="#{backingBeanScope.audioMainManagedBean.commonRenderer.batchFgmtEnable}"
+                                             actionListener="#{backingBeanScope.audioMainManagedBean.commonRenderer.batchFileManageActionListener}"></af:commandImageLink>
+                        <af:commandImageLink text="批量同步" id="cil12" icon="/resources/images/file_manager.gif"
+                                             styleClass="imagelink_length_4"
+                                             visible="#{backingBeanScope.audioMainManagedBean.commonRenderer.batchSyncEnable}"
+                                             actionListener="#{backingBeanScope.audioMainManagedBean.commonRenderer.batchSyncActionListener}"></af:commandImageLink>
+                        <af:commandImageLink text="同步" id="cil3" icon="/resources/images/file_manager.gif"
+                                             styleClass="imagelink_length_2"
+                                             visible="#{backingBeanScope.audioMainManagedBean.commonRenderer.syncEnable and backingBeanScope.audioMainManagedBean.commonRenderer.currSelectedListSize >= 1}"
+                                             actionListener="#{backingBeanScope.audioMainManagedBean.commonRenderer.syncToUCMActionListener}">
+                            <f:attribute name="operation" value="同步"/>
+                        </af:commandImageLink>
+                        <af:commandImageLink text="标引" id="cil1" icon="/resources/images/edit.gif" windowHeight="560"
+                                             windowWidth="650" partialSubmit="true" action="toEdit" useWindow="true"
+                                             styleClass="imagelink_length_2"
+                                             returnListener="#{backingBeanScope.audioMainManagedBean.commonRenderer.createOrEditReturnListener}"
+                                             visible="#{backingBeanScope.audioMainManagedBean.commonRenderer.indexEnable  and backingBeanScope.audioMainManagedBean.commonRenderer.currSelectedListSize == 1}"
+                                             actionListener="#{backingBeanScope.audioMainManagedBean.commonRenderer.docIdSetActionListener}">
+                            <af:setPropertyListener from="EDIT" to="#{pageFlowScope.mode}" type="action"/>
+                            <af:setPropertyListener from="N" to="#{pageFlowScope.batchFlag}" type="action"/>
+                        </af:commandImageLink>
+                        <af:commandImageLink text="批量标引" id="cil6" icon="/resources/images/batch_edit.gif"
+                                             styleClass="imagelink_length_4" windowHeight="460" windowWidth="650"
+                                             partialSubmit="true" action="toEdit" useWindow="true"
+                                             returnListener="#{backingBeanScope.audioMainManagedBean.commonRenderer.createOrEditReturnListener}"
+                                             actionListener="#{backingBeanScope.audioMainManagedBean.commonRenderer.docIdBatchSetActionListener}"
+                                             visible="#{backingBeanScope.audioMainManagedBean.commonRenderer.batchIndexEnable and backingBeanScope.audioMainManagedBean.commonRenderer.currSelectedListSize > 1}">
+                            <af:setPropertyListener from="EDIT" to="#{pageFlowScope.mode}" type="action"/>
+                            <af:setPropertyListener from="Y" to="#{pageFlowScope.batchFlag}" type="action"/>
+                        </af:commandImageLink>
+                        <af:commandImageLink text="上传台本" id="cil7" icon="/resources/images/upload_word.gif"
+                                             styleClass="imagelink_length_4" windowHeight="100" windowWidth="500"
+                                             partialSubmit="true" action="toScript" useWindow="true"
+                                             visible="#{backingBeanScope.audioMainManagedBean.commonRenderer.scriptEnable  and backingBeanScope.audioMainManagedBean.commonRenderer.currSelectedListSize == 1}"
+                                             actionListener="#{backingBeanScope.audioMainManagedBean.commonRenderer.docIdSetActionListener}">
+                            <af:setPropertyListener from="EDIT" to="#{pageFlowScope.mode}" type="action"/>
+                            <af:setPropertyListener from="N" to="#{pageFlowScope.batchFlag}" type="action"/>
+                        </af:commandImageLink>
+                        <af:commandImageLink text="提交" id="cb3" icon="/resources/images/submit.gif"
+                                             styleClass="imagelink_length_2"
+                                             visible="#{backingBeanScope.audioMainManagedBean.commonRenderer.submitEnable and backingBeanScope.audioMainManagedBean.commonRenderer.currSelectedListSize >= 1}"
+                                             actionListener="#{backingBeanScope.audioMainManagedBean.commonRenderer.updateDocStatusActionListener}">
+                            <f:attribute name="operation" value="提交"/>
+                        </af:commandImageLink>
+                        <af:commandImageLink text="设置关联" id="cil16" icon="/resources/images/relation.gif"
+                                             styleClass="imagelink_length_4" windowHeight="600" windowWidth="850"
+                                             partialSubmit="true" useWindow="true" action="toRelationSet"
+                                             actionListener="#{backingBeanScope.audioMainManagedBean.commonRenderer.docIdSetActionListener}"
+                                             visible="#{backingBeanScope.audioMainManagedBean.commonRenderer.relationEnable and backingBeanScope.audioMainManagedBean.commonRenderer.currSelectedListSize == 1}"/>
+                        <af:commandImageLink text="审核" id="cb4" icon="/resources/images/review.gif" windowHeight="560"
+                                             windowWidth="650" partialSubmit="true" action="toEdit" useWindow="true"
+                                             styleClass="imagelink_length_2"
+                                             returnListener="#{backingBeanScope.audioMainManagedBean.commonRenderer.createOrEditReturnListener}"
+                                             visible="#{backingBeanScope.audioMainManagedBean.commonRenderer.approveEnable  and backingBeanScope.audioMainManagedBean.commonRenderer.currSelectedListSize == 1}"
+                                             actionListener="#{backingBeanScope.audioMainManagedBean.commonRenderer.docIdSetActionListener}">
+                            <af:setPropertyListener from="APPROVE" to="#{pageFlowScope.mode}" type="action"/>
+                            <af:setPropertyListener from="N" to="#{pageFlowScope.batchFlag}" type="action"/>
+                        </af:commandImageLink>
+                        <af:commandImageLink text="发布" id="cb5" icon="/resources/images/pub.gif"
+                                             styleClass="imagelink_length_2"
+                                             visible="#{backingBeanScope.audioMainManagedBean.commonRenderer.pubEnable and backingBeanScope.audioMainManagedBean.commonRenderer.currSelectedListSize >= 1}"
+                                             actionListener="#{backingBeanScope.audioMainManagedBean.commonRenderer.updateDocStatusActionListener}">
+                            <f:attribute name="operation" value="提交"/>
+                        </af:commandImageLink>
+                        <af:commandImageLink text="附件管理" id="cil2" icon="/resources/images/edit.gif" windowHeight="560"
+                                             windowWidth="650" partialSubmit="true" action="toAttach" useWindow="true"
+                                             styleClass="imagelink_length_4"
+                                             visible="#{backingBeanScope.audioMainManagedBean.commonRenderer.attachmentMgmtEnable  and backingBeanScope.audioMainManagedBean.commonRenderer.currSelectedListSize == 1}"
+                                             actionListener="#{backingBeanScope.audioMainManagedBean.commonRenderer.docIdSetActionListener}"/>
+                        <af:commandImageLink text="删除" id="cb6" icon="/resources/images/delete.gif"
+                                             styleClass="imagelink_length_2" partialSubmit="true"
+                                             visible="#{backingBeanScope.audioMainManagedBean.commonRenderer.deleteEnable and backingBeanScope.audioMainManagedBean.commonRenderer.currSelectedListSize >= 1}">
+                            <af:showPopupBehavior popupId="p3" triggerType="action"/>
+                        </af:commandImageLink>
+                        <af:commandImageLink text="还原" id="cb7" icon="/resources/images/recycle.gif"
+                                             styleClass="imagelink_length_2"
+                                             visible="#{backingBeanScope.audioMainManagedBean.commonRenderer.recoverEnable and backingBeanScope.audioMainManagedBean.commonRenderer.currSelectedListSize >= 1}"
+                                             actionListener="#{backingBeanScope.audioMainManagedBean.commonRenderer.recoverDocActionListener}"/>
+                        <af:commandImageLink text="回退" id="cb11" icon="/resources/images/recycle.gif"
+                                             styleClass="imagelink_length_2" partialSubmit="true"
+                                             visible="#{backingBeanScope.audioMainManagedBean.commonRenderer.backEnable and backingBeanScope.audioMainManagedBean.commonRenderer.currSelectedListSize >= 1}"
+                                             actionListener="#{backingBeanScope.audioMainManagedBean.commonRenderer.docIdBatchSetActionListener}"
+                                             action="toRollback" useWindow="true" windowHeight="200" windowWidth="620"
+                                             returnListener="#{backingBeanScope.audioMainManagedBean.commonRenderer.rollbackReturnListener}">
+                            <af:setPropertyListener to="#{pageFlowScope.type}" type="action" from="ROLLBACK"/>
+                        </af:commandImageLink>
+                        <af:commandImageLink text="彻底删除" id="cil10" icon="/resources/images/delete_final.gif"
+                                             styleClass="imagelink_length_4" partialSubmit="true"
+                                             visible="#{backingBeanScope.audioMainManagedBean.commonRenderer.destroyEnable and backingBeanScope.audioMainManagedBean.commonRenderer.currSelectedListSize >= 1}">
+                            <af:showPopupBehavior popupId="p1" triggerType="action"/>
+                        </af:commandImageLink>
+                        <af:commandImageLink text="撤销发布" id="cil8" icon="/resources/images/uppub.gif"
+                                             styleClass="imagelink_length_4" partialSubmit="true"
+                                             visible="#{backingBeanScope.audioMainManagedBean.commonRenderer.undoPubEnable and backingBeanScope.audioMainManagedBean.commonRenderer.currSelectedListSize >= 1}"
+                                             actionListener="#{backingBeanScope.audioMainManagedBean.commonRenderer.docIdBatchSetActionListener}"
+                                             action="toRollback" useWindow="true" windowHeight="130" windowWidth="250"
+                                             returnListener="#{backingBeanScope.audioMainManagedBean.commonRenderer.rollbackReturnListener}">
+                            <af:setPropertyListener to="#{pageFlowScope.type}" type="action" from="CANCEL"/>
+                        </af:commandImageLink>
+                        <af:commandImageLink text="操作日志" id="cil4" icon="/resources/images/log.gif"
+                                             styleClass="imagelink_length_4"
+                                             visible="#{backingBeanScope.audioMainManagedBean.commonRenderer.currSelectedListSize == 1 and pageFlowScope.deleteFlag == 'N'}"
+                                             action="toProcessLog"
+                                             actionListener="#{backingBeanScope.audioMainManagedBean.commonRenderer.docIdSetActionListener}"
+                                             useWindow="true" partialSubmit="true" windowHeight="400"
+                                             windowWidth="600"/>
+                        <af:commandImageLink text="回退记录" id="cil5" icon="/resources/images/catlog_view.gif"
+                                             styleClass="imagelink_length_4" partialSubmit="true"
+                                             visible="#{backingBeanScope.audioMainManagedBean.commonRenderer.currSelectedListSize == 1 and pageFlowScope.deleteFlag == 'N'}"
+                                             actionListener="#{backingBeanScope.audioMainManagedBean.commonRenderer.docIdSetActionListener}"
+                                             action="toRollbackLog" useWindow="true" windowHeight="400"
+                                             windowWidth="600"/>
+                        <af:commandImageLink text="添加到暂存架" id="cil19" icon="/resources/images/catlog_view.gif"
+                                             styleClass="imagelink_length_6" partialSubmit="true"
+                                             visible="#{backingBeanScope.audioMainManagedBean.commonRenderer.addToTempShelfEnable and backingBeanScope.audioMainManagedBean.commonRenderer.currSelectedListSize >= 1}"
+                                             actionListener="#{backingBeanScope.audioMainManagedBean.commonRenderer.addToTempShelf}"/>
+                        <af:commandImageLink text="查看批量同步日志" id="cil13" icon="/resources/images/catlog_view.gif"
+                                             styleClass="imagelink_length_6" useWindow="true" partialSubmit="true"
+                                             windowHeight="400" windowWidth="1200"
+                                             visible="#{backingBeanScope.audioMainManagedBean.commonRenderer.batchSyncLogEnable and pageFlowScope.deleteFlag == 'N'}"
+                                             action="toBatchSyncLog"/>
+                        <af:popup childCreation="deferred" autoCancel="disabled" id="p3"
+                                  binding="#{backingBeanScope.audioMainManagedBean.commonRenderer.deletePopup}">
+                            <af:dialog id="d5" title="提示"
+                                       dialogListener="#{backingBeanScope.audioMainManagedBean.commonRenderer.deleteDocDialogActionListener}">
+                                <af:outputText value="你确定要删除吗?" id="ot12"/>
+                            </af:dialog>
+                        </af:popup>
+                        <af:popup childCreation="deferred" autoCancel="disabled" id="p1"
+                                  binding="#{backingBeanScope.audioMainManagedBean.commonRenderer.destoryPopup}">
+                            <af:dialog id="d1" title="提示"
+                                       dialogListener="#{backingBeanScope.audioMainManagedBean.commonRenderer.destroyDocActionListener}">
+                                <af:outputText value="你确定要彻底删除吗?" id="ot14"/>
+                            </af:dialog>
+                        </af:popup>
+                    </af:panelGroupLayout>
+                </f:facet>
+                <f:facet name="end">
+                    <af:panelGroupLayout layout="horizontal" id="pgl9" inlineStyle="margin-top:10px;margin-right:15px;">
+                        <af:inputText label="searchInput" id="it1" simple="true"
+                                      shortDesc="输入关键字,可以对以下内容[文件名称，文件格式，关键词]进行快速检索"
+                                      contentStyle="width:150px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                      binding="#{backingBeanScope.audioMainManagedBean.commonRenderer.searchInput}">
+                            <af:clientListener type="keyPress" method="queryWhenPressEnter"/>
+                            <af:serverListener type="queryWhenPressAction"
+                                               method="#{backingBeanScope.audioMainManagedBean.commonRenderer.queryWhenPressEnterListener}"/>
+                        </af:inputText>
+                        <af:commandImageLink text="" id="cil9" icon="/resources/images/search.gif"
+                                             inlineStyle="margin-left:2px;"
+                                             actionListener="#{backingBeanScope.audioMainManagedBean.commonRenderer.searchActionListenser}"/>
+                        <af:commandImageLink text="" id="cil25" icon="/resources/images/icon_hzddsh.gif"
+                                             partialSubmit="true" inlineStyle="margin-left:5px;"
+                                             action="toComplexSearch" useWindow="true" windowHeight="500"
+                                             windowWidth="650" shortDesc="高级搜索"
+                                             returnListener="#{backingBeanScope.audioMainManagedBean.complexRearchReturnListener}"/>
+                    </af:panelGroupLayout>
+                </f:facet>
+                <f:facet name="bottom">
+                    <af:panelStretchLayout id="psl3" inlineStyle="height:26px;background:#E7ECE5;margin-top:3px;"
+                                           topHeight="0px" bottomHeight="0px" startWidth="auto"
+                                           styleClass="AFStretchWidth"
+                                           partialTriggers="cl1 cl2 soc1 soc2 cb1 it1 d5 d1 cil8 cb11 cil25" endWidth="auto">
+                        <f:facet name="bottom"/>
+                        <f:facet name="center"/>
+                        <f:facet name="start">
+                            <af:panelGroupLayout id="pgl6" layout="horizontal"
+                                                 inlineStyle="padding-top:3px;padding-left:15px;">
+                                <af:outputText value="总个数:#{backingBeanScope.audioMainManagedBean.tableModel.rowCount}"
+                                               id="ot2"/>
+                                <af:spacer width="10" height="10" id="s2"/>
+                                <af:outputText value="每页[20]" id="ot3"/>
+                                <af:spacer width="10" height="10" id="s7"/>
+                                <af:outputText value="页数[" id="ot9"/>
+                                <af:outputText value="#{backingBeanScope.audioMainManagedBean.tableModel.currPageIndex}"
+                                               id="ot5" inlineStyle="color:Red;"/>
+                                <af:outputText value="/#{backingBeanScope.audioMainManagedBean.tableModel.totalPageCount}]"
+                                               id="ot4"/>
+                                <af:spacer width="10" height="10" id="s4"/>
+                                <af:commandLink text="前一页" id="cl1"
+                                                disabled="#{backingBeanScope.audioMainManagedBean.tableModel.isPrevDisabled}"
+                                                actionListener="#{backingBeanScope.audioMainManagedBean.commonRenderer.prevPage}"/>
+                                <af:spacer width="10" height="10" id="s1"/>
+                                <af:commandLink text="后一页" id="cl2"
+                                                disabled="#{backingBeanScope.audioMainManagedBean.tableModel.isNextDisabled}"
+                                                actionListener="#{backingBeanScope.audioMainManagedBean.commonRenderer.nextPage}"/>
+                                <af:spacer width="10" height="10" id="s3"/>
+                                <af:selectOneChoice valueChangeListener="#{backingBeanScope.audioMainManagedBean.commonRenderer.goPageIndex}"
+                                                    id="soc1" simple="true" autoSubmit="true" shortDesc=" "
+                                                    value="#{backingBeanScope.audioMainManagedBean.tableModel.currItem.value}">
+                                    <f:selectItems value="#{backingBeanScope.audioMainManagedBean.tableModel.pageSelectItems}"
+                                                   id="si1"/>
+                                </af:selectOneChoice>
+                                <af:spacer width="10" height="10" id="s5"/>
+                                <af:commandImageLink id="cl3" icon="/resources/images/shuaxin.gif" shortDesc="刷新"
+                                                     actionListener="#{backingBeanScope.audioMainManagedBean.refreshActionListener}"/>
+                            </af:panelGroupLayout>
+                        </f:facet>
+                        <f:facet name="end">
+                            <af:panelGroupLayout layout="horizontal" id="pgl7"
+                                                 inlineStyle="margin-right:40px;padding-top:3px;">
+                                <af:forEach items="#{backingBeanScope.audioMainManagedBean.commonRenderer.statusMapList}"
+                                            var="status">
+                                    <af:panelGroupLayout layout="horizontal" id="pgl13"
+                                                         styleClass="#{pageFlowScope.currStatusCode == status['statusCode'] ? 'statusSelected' : 'none'}">
+                                        <af:commandLink text="#{status['displayName']}" id="cl5"
+                                                        visible="#{pageFlowScope.deleteFlag != 'Y'}"
+                                                        actionListener="#{backingBeanScope.audioMainManagedBean.commonRenderer.switchStatusActionListener}">
+                                            <f:attribute name="statusCode" value="#{status['statusCode']}"/>
+                                            <af:setPropertyListener to="#{pageFlowScope.currStatusCode}" type="action"
+                                                                    from="#{status['statusCode']}"/>
+                                        </af:commandLink>
+                                    </af:panelGroupLayout>
+                                    <af:spacer width="5" height="10" id="s11"/>
+                                </af:forEach>
+                                <af:selectOneChoice value="#{pageFlowScope.currStatusCode}" autoSubmit="true" id="soc2"
+                                                    shortDesc=" " visible="#{pageFlowScope.deleteFlag != 'Y'}"
+                                                    rendered="false"
+                                                    valueChangeListener="#{backingBeanScope.audioMainManagedBean.commonRenderer.statusValueChangeListener}">
+                                    <f:selectItems value="#{backingBeanScope.audioMainManagedBean.commonRenderer.statusList}"
+                                                   id="si2"/>
+                                </af:selectOneChoice>
+                            </af:panelGroupLayout>
+                        </f:facet>
+                    </af:panelStretchLayout>
+                </f:facet>
+            </af:panelStretchLayout>
+        </f:facet>
+        <f:facet name="bottom"></f:facet>
+        <f:facet name="center">
+            <af:panelStretchLayout id="psl2" topHeight="auto" dimensionsFrom="children"
+                                   partialTriggers="cb1 cil1 cil6 cb4 cb11 cil8 d5 d1 it1 t1:sbc1 soc1 soc2">
+                <f:facet name="center">
+                    <af:table var="row" rowBandingInterval="0" id="t1" varStatus="vs"
+                              styleClass="AFStretchWidth custom_table_striped" contentDelivery="immediate"
+                              value="#{backingBeanScope.audioMainManagedBean.tableModel.model}" autoHeightRows="0"
+                              inlineStyle="margin-top:2px;" columnStretching="multiple" emptyText=""
+                              sortListener="#{backingBeanScope.audioMainManagedBean.commonRenderer.tableSortListener}"
+                              binding="#{backingBeanScope.audioMainManagedBean.commonRenderer.table}"
+                              rowSelection="multiple">
+                        <af:column width="25" align="center" id="c19" frozen="true">
+                            <f:facet name="header">
+                                <af:selectBooleanCheckbox label="Label 1" simple="true" id="sbc1" autoSubmit="true"
+                                                          binding="#{backingBeanScope.audioMainManagedBean.commonRenderer.selectAllCheckBox}"
+                                                          partialTriggers="::soc2">
+                                    <af:clientListener type="valueChange" method="clickSelectAllCheckBox"/>
+                                    <af:serverListener type="SelectAllCheckBoxClickEvent"
+                                                       method="#{backingBeanScope.audioMainManagedBean.commonRenderer.selectAllAction}"/>
+                                </af:selectBooleanCheckbox>
+                            </f:facet>
+                            <af:selectBooleanCheckbox id="sbc2" value="#{row.checked}" label="#{row.checked}"
+                                                      autoSubmit="true" simple="false">
+                                <af:clientListener type="valueChange" method="clickSelectOneCheckBox"/>
+                                <af:serverListener type="SelectCheckBoxClickEvent"
+                                                   method="#{backingBeanScope.audioMainManagedBean.commonRenderer.selectOneAction}"/>
+                                <af:clientAttribute name="docId" value="#{row.docId}"/>
+                            </af:selectBooleanCheckbox>
+                        </af:column>
+                        <af:column sortable="false" headerText="序号" id="c1" align="center" width="50">
+                            <af:outputText value="#{vs.index+1}" id="ot18"/>
+                        </af:column>
+                        <af:column sortable="true" sortProperty="fileName" headerText="文件名称" id="c4" width="35%">
+                            <af:outputText value="#{row.fileName}" id="ot1"/>
+                        </af:column>
+                        <af:column sortable="true" sortProperty="fileFormat" headerText="文件格式" id="c6" width="15%"
+                                   align="center">
+                            <af:outputText value="#{row.fileFormat}" id="ot6"/>
+                        </af:column>
+                        <af:column sortable="true" sortProperty="fileSize" headerText="文件大小" id="c2" width="15%"
+                                   align="center">
+                            <af:outputText value="#{row.fileSize}" id="ot19"/>
+                        </af:column>
+                        <af:column sortable="true" sortProperty="fileTime" headerText="文件时长" id="c3" width="15%"
+                                   align="center">
+                            <af:outputText value="#{row.fileTime}" id="ot20"/>
+                        </af:column>
+                        <af:column sortable="true" sortProperty="fileStoreTime" headerText="入库时间" id="c5" width="20%"
+                                   align="center">
+                            <af:outputText value="#{row.fileStoreTime}" id="ot22"/>
+                        </af:column>
+                        <!--<af:clientListener type="click" method="tableDblSelect"/>-->
+                        <!--<af:serverListener type="TableSelectionAction"
+                                           method="#{backingBeanScope.audioMainManagedBean.commonRenderer.tableSelectAction}"/>-->
+                        <!--<af:serverListener type="TableDblSelectAction"
+                                           method="#{backingBeanScope.audioMainManagedBean.commonRenderer.tableDblSelectAction}"/>-->
+                        <af:clientListener type="dblClick" method="tableDblClick"/>
+                         
+                        <af:serverListener type="TableDblClickEvent"
+                                           method="#{backingBeanScope.audioMainManagedBean.tableDblClick}"/>
+                    </af:table>
+                </f:facet>
+                <f:facet name="top"/>
+            </af:panelStretchLayout>
+        </f:facet>
+        <f:facet name="start"/>
+        <f:facet name="end"/>
+    </af:panelStretchLayout>
+</ui:composition>

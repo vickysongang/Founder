@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <af:document id="d1" title="#{pageFlowScope.mode == 'CREATE' ? '新建主题': pageFlowScope.mode == 'EDIT' ? '修改主题':'审核'}">
+        <f:facet name="metaContainer">
+            <af:resource type="javascript" source="/resources/js/jquery_min.js"/>
+            <af:resource type="javascript" source="/resources/js/work_platform.js"/>
+        </f:facet>
+        <af:form id="f1">
+            <af:panelStretchLayout id="psl1_123123" bottomHeight="30px">
+                <f:facet name="bottom">
+                    <af:panelGroupLayout id="pgl1" layout="vertical" halign="center">
+                        <af:panelGroupLayout id="pgl3" layout="horizontal">
+                            <af:commandButton text="保存" id="cb1" partialSubmit="true"
+                                              action="#{backingBeanScope.themeEditManagedBean.saveAction}"
+                                              styleClass="popup-btn">
+                                <af:setPropertyListener to="#{pageFlowScope.comfirmFlag}" type="action" from="Y"/>
+                            </af:commandButton>
+                            <af:commandButton text="Return" id="returnBtn" partialSubmit="true" action="toReturn"
+                                              styleClass="popup-btn" visible="false"></af:commandButton>
+                            <af:spacer width="10" height="10" id="s1"/>
+                            <af:commandButton text="取消" id="cb2" action="toReturn" immediate="true"
+                                              styleClass="popup-btn"
+                                              actionListener="#{backingBeanScope.themeEditManagedBean.cancelActionListener}">
+                                <af:setPropertyListener to="#{pageFlowScope.comfirmFlag}" type="action" from="N"/>
+                            </af:commandButton>
+                        </af:panelGroupLayout>
+                    </af:panelGroupLayout>
+                </f:facet>
+                <f:facet name="center">
+                    <af:panelGroupLayout layout="scroll" id="pgl4">
+                        <af:panelFormLayout id="pfl1" maxColumns="2" rows="1" labelWidth="80px">
+                            <af:inputText value="#{bindings.ThemeName.inputValue}"
+                                          label="#{bindings.ThemeName.hints.label}" showRequired="true"
+                                          required="#{bindings.ThemeName.hints.mandatory}"
+                                          columns="#{bindings.ThemeName.hints.displayWidth}"
+                                          contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                          maximumLength="#{bindings.ThemeName.hints.precision}"
+                                          shortDesc="#{bindings.ThemeName.hints.tooltip}" id="it1"
+                                          binding="#{backingBeanScope.themeEditManagedBean.themeNameInputText}">
+                                <f:validator binding="#{bindings.ThemeName.validator}"/>
+                            </af:inputText>
+                            <af:panelLabelAndMessage label="#{bindings.UserDisplayName.hints.label}" id="plam1">
+                                <af:outputText value="#{bindings.UserDisplayName.inputValue}"
+                                               shortDesc="#{bindings.UserDisplayName.hints.tooltip}" id="ot1"/>
+                            </af:panelLabelAndMessage>
+                            <!--<af:inputText value="#{bindings.CreatedBy.inputValue}"
+                                          label="#{bindings.CreatedBy.hints.label}"
+                                          required="#{bindings.CreatedBy.hints.mandatory}"
+                                          columns="#{bindings.CreatedBy.hints.displayWidth}"
+                                          contentStyle="width:207px;height:22px;line-height:22px;border-color:#ABADB3;font-size:12px;"
+                                          maximumLength="#{bindings.CreatedBy.hints.precision}"
+                                          shortDesc="#{bindings.CreatedBy.hints.tooltip}" id="it3">
+                                <f:validator binding="#{bindings.CreatedBy.validator}"/>
+                                <af:convertNumber groupingUsed="false" pattern="#{bindings.CreatedBy.format}"/>
+                            </af:inputText>-->
+                        </af:panelFormLayout>
+                        <af:panelFormLayout id="pfl2" maxColumns="1" rows="2" labelWidth="80px">
+                            <af:inputText value="#{bindings.ThemeDesc.inputValue}"
+                                          label="#{bindings.ThemeDesc.hints.label}"
+                                          required="#{bindings.ThemeDesc.hints.mandatory}"
+                                          contentStyle="width:510px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                          styleClass="multipleRowsInputtext"
+                                          columns="#{bindings.ThemeDesc.hints.displayWidth}"
+                                          maximumLength="#{bindings.ThemeDesc.hints.precision}"
+                                          shortDesc="#{bindings.ThemeDesc.hints.tooltip}" id="it4" rows="10">
+                                <f:validator binding="#{bindings.ThemeDesc.validator}"/>
+                            </af:inputText>
+                        </af:panelFormLayout>
+                        <af:region value="#{bindings.extend_attr_taskflow1.regionModel}" id="r1"/>
+                    </af:panelGroupLayout>
+                </f:facet>
+            </af:panelStretchLayout>
+        </af:form>
+    </af:document>
+</f:view>

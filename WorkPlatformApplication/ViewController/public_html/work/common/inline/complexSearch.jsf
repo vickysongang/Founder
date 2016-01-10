@@ -1,0 +1,1731 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <af:document title="高级搜索" id="d1">
+        <af:messages id="m1"/>
+        <af:form id="f1">
+            <af:panelStretchLayout id="psl1" bottomHeight="30px" styleClass="AFStretchWidth">
+                <f:facet name="bottom">
+                    <af:panelGroupLayout id="pgl1" layout="vertical" halign="center">
+                        <af:panelGroupLayout id="pgl3" layout="horizontal">
+                            <af:commandButton text="查询" id="cb1" partialSubmit="true"
+                                              action="#{backingBeanScope.complexSearchManagedBean.searchAction}"
+                                              styleClass="popup-btn">
+                                <af:setPropertyListener to="#{pageFlowScope.comfirmFlag}" type="action" from="Y"/>
+                            </af:commandButton>
+                            <af:spacer width="10" height="10" id="s1"/>
+                            <af:commandButton text="取消" id="cb2" action="toReturn" immediate="true"
+                                              styleClass="popup-btn"
+                                              actionListener="#{backingBeanScope.complexSearchManagedBean.cancelActionListener}">
+                                <af:setPropertyListener to="#{pageFlowScope.comfirmFlag}" type="action" from="N"/>
+                            </af:commandButton>
+                        </af:panelGroupLayout>
+                    </af:panelGroupLayout>
+                </f:facet>
+                <f:facet name="center">
+                    <af:panelGroupLayout id="pgl2" layout="vertical" halign="center">
+                        <af:switcher id="s2" facetName="#{pageFlowScope.libCode}" defaultFacet="BOOK">
+                            <f:facet name="BOOK">
+                                <af:panelFormLayout id="pfl1" maxColumns="2" rows="15">
+                                    <af:inputText value="#{bindings.BookName.inputValue}"
+                                                  label="#{bindings.BookName.hints.label}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  required="#{bindings.BookName.hints.mandatory}"
+                                                  columns="#{bindings.BookName.hints.displayWidth}"
+                                                  maximumLength="#{bindings.BookName.hints.precision}"
+                                                  shortDesc="#{bindings.BookName.hints.tooltip}" id="it1">
+                                        <f:validator binding="#{bindings.BookName.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.Isbn.inputValue}"
+                                                  label="#{bindings.Isbn.hints.label}"
+                                                  required="#{bindings.Isbn.hints.mandatory}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  columns="#{bindings.Isbn.hints.displayWidth}"
+                                                  maximumLength="#{bindings.Isbn.hints.precision}"
+                                                  shortDesc="#{bindings.Isbn.hints.tooltip}" id="it2">
+                                        <f:validator binding="#{bindings.Isbn.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.Series.inputValue}"
+                                                  label="#{bindings.Series.hints.label}"
+                                                  required="#{bindings.Series.hints.mandatory}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  columns="#{bindings.Series.hints.displayWidth}"
+                                                  maximumLength="#{bindings.Series.hints.precision}"
+                                                  shortDesc="#{bindings.Series.hints.tooltip}" id="it3">
+                                        <f:validator binding="#{bindings.Series.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.ItemCode.inputValue}"
+                                                  label="#{bindings.ItemCode.hints.label}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  required="#{bindings.ItemCode.hints.mandatory}"
+                                                  columns="#{bindings.ItemCode.hints.displayWidth}"
+                                                  maximumLength="#{bindings.ItemCode.hints.precision}"
+                                                  shortDesc="#{bindings.ItemCode.hints.tooltip}" id="it4">
+                                        <f:validator binding="#{bindings.ItemCode.validator}"/>
+                                    </af:inputText>
+                                    <af:selectOneChoice value="#{bindings.Lang.inputValue}"
+                                                        label="#{bindings.Lang.label}"
+                                                        required="#{bindings.Lang.hints.mandatory}"
+                                                        contentStyle="width:207px;height:22px;line-height:22px;border-color:#ABADB3;font-size:12px;"
+                                                        shortDesc="#{bindings.Lang.hints.tooltip}" id="soc1">
+                                        <f:selectItems value="#{bindings.Lang.items}" id="si1"/>
+                                    </af:selectOneChoice>
+                                    <af:inputText value="#{bindings.Editor.inputValue}"
+                                                  label="#{bindings.Editor.hints.label}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  required="#{bindings.Editor.hints.mandatory}"
+                                                  columns="#{bindings.Editor.hints.displayWidth}"
+                                                  maximumLength="#{bindings.Editor.hints.precision}"
+                                                  shortDesc="#{bindings.Editor.hints.tooltip}" id="it5">
+                                        <f:validator binding="#{bindings.Editor.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.FormatDesign.inputValue}"
+                                                  label="#{bindings.FormatDesign.hints.label}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  required="#{bindings.FormatDesign.hints.mandatory}"
+                                                  columns="#{bindings.FormatDesign.hints.displayWidth}"
+                                                  maximumLength="#{bindings.FormatDesign.hints.precision}"
+                                                  shortDesc="#{bindings.FormatDesign.hints.tooltip}" id="it6">
+                                        <f:validator binding="#{bindings.FormatDesign.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.CoverDesign.inputValue}"
+                                                  label="#{bindings.CoverDesign.hints.label}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  required="#{bindings.CoverDesign.hints.mandatory}"
+                                                  columns="#{bindings.CoverDesign.hints.displayWidth}"
+                                                  maximumLength="#{bindings.CoverDesign.hints.precision}"
+                                                  shortDesc="#{bindings.CoverDesign.hints.tooltip}" id="it7">
+                                        <f:validator binding="#{bindings.CoverDesign.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.Author.inputValue}"
+                                                  label="#{bindings.Author.hints.label}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  required="#{bindings.Author.hints.mandatory}"
+                                                  columns="#{bindings.Author.hints.displayWidth}"
+                                                  maximumLength="#{bindings.Author.hints.precision}"
+                                                  shortDesc="#{bindings.Author.hints.tooltip}" id="it8">
+                                        <f:validator binding="#{bindings.Author.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.ChiefEditor.inputValue}"
+                                                  label="#{bindings.ChiefEditor.hints.label}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  required="#{bindings.ChiefEditor.hints.mandatory}"
+                                                  columns="#{bindings.ChiefEditor.hints.displayWidth}"
+                                                  maximumLength="#{bindings.ChiefEditor.hints.precision}"
+                                                  shortDesc="#{bindings.ChiefEditor.hints.tooltip}" id="it9">
+                                        <f:validator binding="#{bindings.ChiefEditor.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.Translator.inputValue}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  label="#{bindings.Translator.hints.label}"
+                                                  required="#{bindings.Translator.hints.mandatory}"
+                                                  columns="#{bindings.Translator.hints.displayWidth}"
+                                                  maximumLength="#{bindings.Translator.hints.precision}"
+                                                  shortDesc="#{bindings.Translator.hints.tooltip}" id="it10">
+                                        <f:validator binding="#{bindings.Translator.validator}"/>
+                                    </af:inputText>
+                                    <af:inputDate value="#{bindings.PubTime.inputValue}"
+                                                  label="#{bindings.PubTime.hints.label}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  required="#{bindings.PubTime.hints.mandatory}"
+                                                  columns="#{bindings.PubTime.hints.displayWidth}"
+                                                  shortDesc="#{bindings.PubTime.hints.tooltip}" id="id1">
+                                        <f:validator binding="#{bindings.PubTime.validator}"/>
+                                        <af:convertDateTime pattern="#{bindings.PubTime.format}"/>
+                                    </af:inputDate>
+                                    <af:inputText value="#{bindings.PublishingHouse.inputValue}"
+                                                  label="#{bindings.PublishingHouse.hints.label}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  required="#{bindings.PublishingHouse.hints.mandatory}"
+                                                  columns="#{bindings.PublishingHouse.hints.displayWidth}"
+                                                  maximumLength="#{bindings.PublishingHouse.hints.precision}"
+                                                  shortDesc="#{bindings.PublishingHouse.hints.tooltip}" id="it11">
+                                        <f:validator binding="#{bindings.PublishingHouse.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.Impression.inputValue}"
+                                                  label="#{bindings.Impression.hints.label}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  required="#{bindings.Impression.hints.mandatory}"
+                                                  columns="#{bindings.Impression.hints.displayWidth}"
+                                                  maximumLength="#{bindings.Impression.hints.precision}"
+                                                  shortDesc="#{bindings.Impression.hints.tooltip}" id="it12">
+                                        <f:validator binding="#{bindings.Impression.validator}"/>
+                                        <af:convertNumber groupingUsed="false" pattern="#{bindings.Impression.format}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.Edition.inputValue}"
+                                                  label="#{bindings.Edition.hints.label}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  required="#{bindings.Edition.hints.mandatory}"
+                                                  columns="#{bindings.Edition.hints.displayWidth}"
+                                                  maximumLength="#{bindings.Edition.hints.precision}"
+                                                  shortDesc="#{bindings.Edition.hints.tooltip}" id="it13">
+                                        <f:validator binding="#{bindings.Edition.validator}"/>
+                                        <af:convertNumber groupingUsed="false" pattern="#{bindings.Edition.format}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.Pagination.inputValue}"
+                                                  label="#{bindings.Pagination.hints.label}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  required="#{bindings.Pagination.hints.mandatory}"
+                                                  columns="#{bindings.Pagination.hints.displayWidth}"
+                                                  maximumLength="#{bindings.Pagination.hints.precision}"
+                                                  shortDesc="#{bindings.Pagination.hints.tooltip}" id="it14">
+                                        <f:validator binding="#{bindings.Pagination.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.Price.inputValue}"
+                                                  label="#{bindings.Price.hints.label}"
+                                                  required="#{bindings.Price.hints.mandatory}"
+                                                  columns="#{bindings.Price.hints.displayWidth}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  maximumLength="#{bindings.Price.hints.precision}"
+                                                  shortDesc="#{bindings.Price.hints.tooltip}" id="it15">
+                                        <f:validator binding="#{bindings.Price.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.Keyword.inputValue}"
+                                                  label="#{bindings.Keyword.hints.label}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  required="#{bindings.Keyword.hints.mandatory}"
+                                                  columns="#{bindings.Keyword.hints.displayWidth}"
+                                                  maximumLength="#{bindings.Keyword.hints.precision}"
+                                                  shortDesc="#{bindings.Keyword.hints.tooltip}" id="it16">
+                                        <f:validator binding="#{bindings.Keyword.validator}"/>
+                                    </af:inputText>
+                                    <af:selectOneChoice value="#{bindings.ReaderGroup.inputValue}"
+                                                        label="#{bindings.ReaderGroup.label}"
+                                                        contentStyle="width:207px;height:22px;line-height:22px;border-color:#ABADB3;font-size:12px;"
+                                                        required="#{bindings.ReaderGroup.hints.mandatory}"
+                                                        shortDesc="#{bindings.ReaderGroup.hints.tooltip}" id="soc2">
+                                        <f:selectItems value="#{bindings.ReaderGroup.items}" id="si2"/>
+                                    </af:selectOneChoice>
+                                    <af:inputText value="#{bindings.Suggestion.inputValue}"
+                                                  label="#{bindings.Suggestion.hints.label}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  required="#{bindings.Suggestion.hints.mandatory}"
+                                                  columns="#{bindings.Suggestion.hints.displayWidth}"
+                                                  maximumLength="#{bindings.Suggestion.hints.precision}"
+                                                  shortDesc="#{bindings.Suggestion.hints.tooltip}" id="it17">
+                                        <f:validator binding="#{bindings.Suggestion.validator}"/>
+                                    </af:inputText>
+                                    <af:selectOneChoice value="#{bindings.ProdSize.inputValue}"
+                                                        label="#{bindings.ProdSize.label}"
+                                                        contentStyle="width:207px;height:22px;line-height:22px;border-color:#ABADB3;font-size:12px;"
+                                                        required="#{bindings.ProdSize.hints.mandatory}"
+                                                        shortDesc="#{bindings.ProdSize.hints.tooltip}" id="soc3">
+                                        <f:selectItems value="#{bindings.ProdSize.items}" id="si3"/>
+                                    </af:selectOneChoice>
+                                    <af:selectOneChoice value="#{bindings.ColorNum.inputValue}"
+                                                        label="#{bindings.ColorNum.label}"
+                                                        contentStyle="width:207px;height:22px;line-height:22px;border-color:#ABADB3;font-size:12px;"
+                                                        required="#{bindings.ColorNum.hints.mandatory}"
+                                                        shortDesc="#{bindings.ColorNum.hints.tooltip}" id="soc4">
+                                        <f:selectItems value="#{bindings.ColorNum.items}" id="si4"/>
+                                    </af:selectOneChoice>
+                                    <af:selectOneChoice value="#{bindings.CoverTypeset.inputValue}"
+                                                        label="#{bindings.CoverTypeset.label}"
+                                                        contentStyle="width:207px;height:22px;line-height:22px;border-color:#ABADB3;font-size:12px;"
+                                                        required="#{bindings.CoverTypeset.hints.mandatory}"
+                                                        shortDesc="#{bindings.CoverTypeset.hints.tooltip}" id="soc5">
+                                        <f:selectItems value="#{bindings.CoverTypeset.items}" id="si5"/>
+                                    </af:selectOneChoice>
+                                    <af:selectOneChoice value="#{bindings.AssortProd.inputValue}"
+                                                        label="#{bindings.AssortProd.label}"
+                                                        contentStyle="width:207px;height:22px;line-height:22px;border-color:#ABADB3;font-size:12px;"
+                                                        required="#{bindings.AssortProd.hints.mandatory}"
+                                                        shortDesc="#{bindings.AssortProd.hints.tooltip}" id="soc6">
+                                        <f:selectItems value="#{bindings.AssortProd.items}" id="si6"/>
+                                    </af:selectOneChoice>
+                                    <af:inputText value="#{bindings.Remarks.inputValue}"
+                                                  label="#{bindings.Remarks.hints.label}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  required="#{bindings.Remarks.hints.mandatory}"
+                                                  columns="#{bindings.Remarks.hints.displayWidth}"
+                                                  maximumLength="#{bindings.Remarks.hints.precision}"
+                                                  shortDesc="#{bindings.Remarks.hints.tooltip}" id="it18">
+                                        <f:validator binding="#{bindings.Remarks.validator}"/>
+                                    </af:inputText>
+                                    <af:selectOneChoice value="#{bindings.BookSize.inputValue}"
+                                                        label="#{bindings.BookSize.label}"
+                                                        contentStyle="width:207px;height:22px;line-height:22px;border-color:#ABADB3;font-size:12px;"
+                                                        required="#{bindings.BookSize.hints.mandatory}"
+                                                        shortDesc="#{bindings.BookSize.hints.tooltip}" id="soc7">
+                                        <f:selectItems value="#{bindings.BookSize.items}" id="si7"/>
+                                    </af:selectOneChoice>
+                                    <af:selectOneChoice value="#{bindings.MainPage.inputValue}"
+                                                        label="#{bindings.MainPage.label}"
+                                                        contentStyle="width:207px;height:22px;line-height:22px;border-color:#ABADB3;font-size:12px;"
+                                                        required="#{bindings.MainPage.hints.mandatory}"
+                                                        shortDesc="#{bindings.MainPage.hints.tooltip}" id="soc8">
+                                        <f:selectItems value="#{bindings.MainPage.items}" id="si8"/>
+                                    </af:selectOneChoice>
+                                    <af:selectOneChoice value="#{bindings.MainTypeset.inputValue}"
+                                                        label="#{bindings.MainTypeset.label}"
+                                                        contentStyle="width:207px;height:22px;line-height:22px;border-color:#ABADB3;font-size:12px;"
+                                                        required="#{bindings.MainTypeset.hints.mandatory}"
+                                                        shortDesc="#{bindings.MainTypeset.hints.tooltip}" id="soc9">
+                                        <f:selectItems value="#{bindings.MainTypeset.items}" id="si9"/>
+                                    </af:selectOneChoice>
+                                    <af:inputText value="#{bindings.FormatComp.inputValue}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  label="#{bindings.FormatComp.hints.label}"
+                                                  required="#{bindings.FormatComp.hints.mandatory}"
+                                                  columns="#{bindings.FormatComp.hints.displayWidth}"
+                                                  maximumLength="#{bindings.FormatComp.hints.precision}"
+                                                  shortDesc="#{bindings.FormatComp.hints.tooltip}" id="it19">
+                                        <f:validator binding="#{bindings.FormatComp.validator}"/>
+                                    </af:inputText>
+                                </af:panelFormLayout>
+                            </f:facet>
+                            <f:facet name="AUDIO">
+                                <af:panelFormLayout id="pfl2" maxColumns="2" rows="9">
+                                    <af:inputText value="#{bindings.FileName.inputValue}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  label="#{bindings.FileName.hints.label}"
+                                                  required="#{bindings.FileName.hints.mandatory}"
+                                                  columns="#{bindings.FileName.hints.displayWidth}"
+                                                  maximumLength="#{bindings.FileName.hints.precision}"
+                                                  shortDesc="#{bindings.FileName.hints.tooltip}" id="it20">
+                                        <f:validator binding="#{bindings.FileName.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.SeriesName.inputValue}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  label="#{bindings.SeriesName.hints.label}"
+                                                  required="#{bindings.SeriesName.hints.mandatory}"
+                                                  columns="#{bindings.SeriesName.hints.displayWidth}"
+                                                  maximumLength="#{bindings.SeriesName.hints.precision}"
+                                                  shortDesc="#{bindings.SeriesName.hints.tooltip}" id="it21">
+                                        <f:validator binding="#{bindings.SeriesName.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.Isbn1.inputValue}"
+                                                  label="#{bindings.Isbn1.hints.label}"
+                                                  required="#{bindings.Isbn1.hints.mandatory}"
+                                                  columns="#{bindings.Isbn1.hints.displayWidth}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  maximumLength="#{bindings.Isbn1.hints.precision}"
+                                                  shortDesc="#{bindings.Isbn1.hints.tooltip}" id="it22">
+                                        <f:validator binding="#{bindings.Isbn1.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.ItemCode1.inputValue}"
+                                                  label="#{bindings.ItemCode1.hints.label}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  required="#{bindings.ItemCode1.hints.mandatory}"
+                                                  columns="#{bindings.ItemCode1.hints.displayWidth}"
+                                                  maximumLength="#{bindings.ItemCode1.hints.precision}"
+                                                  shortDesc="#{bindings.ItemCode1.hints.tooltip}" id="it23">
+                                        <f:validator binding="#{bindings.ItemCode1.validator}"/>
+                                    </af:inputText>
+                                    <af:selectOneChoice value="#{bindings.CarrierType.inputValue}"
+                                                        contentStyle="width:207px;height:22px;line-height:22px;border-color:#ABADB3;font-size:12px;"
+                                                        label="#{bindings.CarrierType.label}"
+                                                        required="#{bindings.CarrierType.hints.mandatory}"
+                                                        shortDesc="#{bindings.CarrierType.hints.tooltip}" id="soc10">
+                                        <f:selectItems value="#{bindings.CarrierType.items}" id="si10"/>
+                                    </af:selectOneChoice>
+                                    <af:selectOneChoice value="#{bindings.Lang1.inputValue}"
+                                                        label="#{bindings.Lang1.label}"
+                                                        contentStyle="width:207px;height:22px;line-height:22px;border-color:#ABADB3;font-size:12px;"
+                                                        required="#{bindings.Lang1.hints.mandatory}"
+                                                        shortDesc="#{bindings.Lang1.hints.tooltip}" id="soc11">
+                                        <f:selectItems value="#{bindings.Lang1.items}" id="si11"/>
+                                    </af:selectOneChoice>
+                                    <af:inputText value="#{bindings.Editor1.inputValue}"
+                                                  label="#{bindings.Editor1.hints.label}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  required="#{bindings.Editor1.hints.mandatory}"
+                                                  columns="#{bindings.Editor1.hints.displayWidth}"
+                                                  maximumLength="#{bindings.Editor1.hints.precision}"
+                                                  shortDesc="#{bindings.Editor1.hints.tooltip}" id="it24">
+                                        <f:validator binding="#{bindings.Editor1.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.TextEditor.inputValue}"
+                                                  label="#{bindings.TextEditor.hints.label}"
+                                                  required="#{bindings.TextEditor.hints.mandatory}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  columns="#{bindings.TextEditor.hints.displayWidth}"
+                                                  maximumLength="#{bindings.TextEditor.hints.precision}"
+                                                  shortDesc="#{bindings.TextEditor.hints.tooltip}" id="it25">
+                                        <f:validator binding="#{bindings.TextEditor.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.RecordUser.inputValue}"
+                                                  label="#{bindings.RecordUser.hints.label}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  required="#{bindings.RecordUser.hints.mandatory}"
+                                                  columns="#{bindings.RecordUser.hints.displayWidth}"
+                                                  maximumLength="#{bindings.RecordUser.hints.precision}"
+                                                  shortDesc="#{bindings.RecordUser.hints.tooltip}" id="it26">
+                                        <f:validator binding="#{bindings.RecordUser.validator}"/>
+                                    </af:inputText>
+                                    <af:inputDate value="#{bindings.PubTime1.inputValue}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  label="#{bindings.PubTime1.hints.label}"
+                                                  required="#{bindings.PubTime1.hints.mandatory}"
+                                                  columns="#{bindings.PubTime1.hints.displayWidth}"
+                                                  shortDesc="#{bindings.PubTime1.hints.tooltip}" id="id2">
+                                        <f:validator binding="#{bindings.PubTime1.validator}"/>
+                                        <af:convertDateTime pattern="#{bindings.PubTime1.format}"/>
+                                    </af:inputDate>
+                                    <af:inputText value="#{bindings.AssortBook.inputValue}"
+                                                  label="#{bindings.AssortBook.hints.label}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  required="#{bindings.AssortBook.hints.mandatory}"
+                                                  columns="#{bindings.AssortBook.hints.displayWidth}"
+                                                  maximumLength="#{bindings.AssortBook.hints.precision}"
+                                                  shortDesc="#{bindings.AssortBook.hints.tooltip}" id="it27">
+                                        <f:validator binding="#{bindings.AssortBook.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.Keyword1.inputValue}"
+                                                  label="#{bindings.Keyword1.hints.label}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  required="#{bindings.Keyword1.hints.mandatory}"
+                                                  columns="#{bindings.Keyword1.hints.displayWidth}"
+                                                  maximumLength="#{bindings.Keyword1.hints.precision}"
+                                                  shortDesc="#{bindings.Keyword1.hints.tooltip}" id="it28">
+                                        <f:validator binding="#{bindings.Keyword1.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.ContentDesc.inputValue}"
+                                                  label="#{bindings.ContentDesc.hints.label}"
+                                                  required="#{bindings.ContentDesc.hints.mandatory}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  columns="#{bindings.ContentDesc.hints.displayWidth}"
+                                                  maximumLength="#{bindings.ContentDesc.hints.precision}"
+                                                  shortDesc="#{bindings.ContentDesc.hints.tooltip}" id="it29">
+                                        <f:validator binding="#{bindings.ContentDesc.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.Remarks1.inputValue}"
+                                                  label="#{bindings.Remarks1.hints.label}"
+                                                  required="#{bindings.Remarks1.hints.mandatory}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  columns="#{bindings.Remarks1.hints.displayWidth}"
+                                                  maximumLength="#{bindings.Remarks1.hints.precision}"
+                                                  shortDesc="#{bindings.Remarks1.hints.tooltip}" id="it30">
+                                        <f:validator binding="#{bindings.Remarks1.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.FileFormat.inputValue}"
+                                                  label="#{bindings.FileFormat.hints.label}"
+                                                  required="#{bindings.FileFormat.hints.mandatory}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  columns="#{bindings.FileFormat.hints.displayWidth}"
+                                                  maximumLength="#{bindings.FileFormat.hints.precision}"
+                                                  shortDesc="#{bindings.FileFormat.hints.tooltip}" id="it31">
+                                        <f:validator binding="#{bindings.FileFormat.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.FileSize.inputValue}"
+                                                  label="#{bindings.FileSize.hints.label}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  required="#{bindings.FileSize.hints.mandatory}"
+                                                  columns="#{bindings.FileSize.hints.displayWidth}"
+                                                  maximumLength="#{bindings.FileSize.hints.precision}"
+                                                  shortDesc="#{bindings.FileSize.hints.tooltip}" id="it32">
+                                        <f:validator binding="#{bindings.FileSize.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.FileTime.inputValue}"
+                                                  label="#{bindings.FileTime.hints.label}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  required="#{bindings.FileTime.hints.mandatory}"
+                                                  columns="#{bindings.FileTime.hints.displayWidth}"
+                                                  maximumLength="#{bindings.FileTime.hints.precision}"
+                                                  shortDesc="#{bindings.FileTime.hints.tooltip}" id="it33">
+                                        <f:validator binding="#{bindings.FileTime.validator}"/>
+                                    </af:inputText>
+                                    <af:inputDate value="#{bindings.FileStoreTime.inputValue}"
+                                                  label="#{bindings.FileStoreTime.hints.label}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  required="#{bindings.FileStoreTime.hints.mandatory}"
+                                                  columns="#{bindings.FileStoreTime.hints.displayWidth}"
+                                                  shortDesc="#{bindings.FileStoreTime.hints.tooltip}" id="id3">
+                                        <f:validator binding="#{bindings.FileStoreTime.validator}"/>
+                                        <af:convertDateTime pattern="#{bindings.FileStoreTime.format}"/>
+                                    </af:inputDate>
+                                </af:panelFormLayout>
+                            </f:facet>
+                            <f:facet name="COURSEWARE">
+                                <af:panelFormLayout id="pfl3" maxColumns="2" rows="5">
+                                    <af:inputText value="#{bindings.TeachingMaterialName.inputValue}"
+                                                  label="#{bindings.TeachingMaterialName.hints.label}"
+                                                  required="#{bindings.TeachingMaterialName.hints.mandatory}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  columns="#{bindings.TeachingMaterialName.hints.displayWidth}"
+                                                  maximumLength="#{bindings.TeachingMaterialName.hints.precision}"
+                                                  shortDesc="#{bindings.TeachingMaterialName.hints.tooltip}" id="it34">
+                                        <f:validator binding="#{bindings.TeachingMaterialName.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.TeachingMaterialIsbn.inputValue}"
+                                                  label="#{bindings.TeachingMaterialIsbn.hints.label}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  required="#{bindings.TeachingMaterialIsbn.hints.mandatory}"
+                                                  columns="#{bindings.TeachingMaterialIsbn.hints.displayWidth}"
+                                                  maximumLength="#{bindings.TeachingMaterialIsbn.hints.precision}"
+                                                  shortDesc="#{bindings.TeachingMaterialIsbn.hints.tooltip}" id="it35">
+                                        <f:validator binding="#{bindings.TeachingMaterialIsbn.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.TeachingMaterialAuthor.inputValue}"
+                                                  label="#{bindings.TeachingMaterialAuthor.hints.label}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  required="#{bindings.TeachingMaterialAuthor.hints.mandatory}"
+                                                  columns="#{bindings.TeachingMaterialAuthor.hints.displayWidth}"
+                                                  maximumLength="#{bindings.TeachingMaterialAuthor.hints.precision}"
+                                                  shortDesc="#{bindings.TeachingMaterialAuthor.hints.tooltip}"
+                                                  id="it36">
+                                        <f:validator binding="#{bindings.TeachingMaterialAuthor.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.TeachingMaterialEditor.inputValue}"
+                                                  label="#{bindings.TeachingMaterialEditor.hints.label}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  required="#{bindings.TeachingMaterialEditor.hints.mandatory}"
+                                                  columns="#{bindings.TeachingMaterialEditor.hints.displayWidth}"
+                                                  maximumLength="#{bindings.TeachingMaterialEditor.hints.precision}"
+                                                  shortDesc="#{bindings.TeachingMaterialEditor.hints.tooltip}"
+                                                  id="it37">
+                                        <f:validator binding="#{bindings.TeachingMaterialEditor.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.TeachingMaterialSeriesName.inputValue}"
+                                                  label="#{bindings.TeachingMaterialSeriesName.hints.label}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  required="#{bindings.TeachingMaterialSeriesName.hints.mandatory}"
+                                                  columns="#{bindings.TeachingMaterialSeriesName.hints.displayWidth}"
+                                                  maximumLength="#{bindings.TeachingMaterialSeriesName.hints.precision}"
+                                                  shortDesc="#{bindings.TeachingMaterialSeriesName.hints.tooltip}"
+                                                  id="it38">
+                                        <f:validator binding="#{bindings.TeachingMaterialSeriesName.validator}"/>
+                                    </af:inputText>
+                                    <af:selectOneChoice value="#{bindings.CoursewareType.inputValue}"
+                                                        label="#{bindings.CoursewareType.label}"
+                                                        contentStyle="width:207px;height:22px;line-height:22px;border-color:#ABADB3;font-size:12px;"
+                                                        required="#{bindings.CoursewareType.hints.mandatory}"
+                                                        shortDesc="#{bindings.CoursewareType.hints.tooltip}" id="soc12">
+                                        <f:selectItems value="#{bindings.CoursewareType.items}" id="si12"/>
+                                    </af:selectOneChoice>
+                                    <af:inputText value="#{bindings.CoursewareName.inputValue}"
+                                                  label="#{bindings.CoursewareName.hints.label}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  required="#{bindings.CoursewareName.hints.mandatory}"
+                                                  columns="#{bindings.CoursewareName.hints.displayWidth}"
+                                                  maximumLength="#{bindings.CoursewareName.hints.precision}"
+                                                  shortDesc="#{bindings.CoursewareName.hints.tooltip}" id="it39">
+                                        <f:validator binding="#{bindings.CoursewareName.validator}"/>
+                                    </af:inputText>
+                                    <af:selectOneChoice value="#{bindings.CopyrightFlag.inputValue}"
+                                                        label="#{bindings.CopyrightFlag.label}"
+                                                        contentStyle="width:207px;height:22px;line-height:22px;border-color:#ABADB3;font-size:12px;"
+                                                        required="#{bindings.CopyrightFlag.hints.mandatory}"
+                                                        shortDesc="#{bindings.CopyrightFlag.hints.tooltip}" id="soc13">
+                                        <f:selectItems value="#{bindings.CopyrightFlag.items}" id="si13"/>
+                                    </af:selectOneChoice>
+                                    <af:inputText value="#{bindings.Keyword2.inputValue}"
+                                                  label="#{bindings.Keyword2.hints.label}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  required="#{bindings.Keyword2.hints.mandatory}"
+                                                  columns="#{bindings.Keyword2.hints.displayWidth}"
+                                                  maximumLength="#{bindings.Keyword2.hints.precision}"
+                                                  shortDesc="#{bindings.Keyword2.hints.tooltip}" id="it40">
+                                        <f:validator binding="#{bindings.Keyword2.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.Remarks2.inputValue}"
+                                                  label="#{bindings.Remarks2.hints.label}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  required="#{bindings.Remarks2.hints.mandatory}"
+                                                  columns="#{bindings.Remarks2.hints.displayWidth}"
+                                                  maximumLength="#{bindings.Remarks2.hints.precision}"
+                                                  shortDesc="#{bindings.Remarks2.hints.tooltip}" id="it41">
+                                        <f:validator binding="#{bindings.Remarks2.validator}"/>
+                                    </af:inputText>
+                                </af:panelFormLayout>
+                            </f:facet>
+                            <f:facet name="ELEC_PROD">
+                                <af:panelFormLayout id="pfl4" maxColumns="2" rows="9">
+                                    <af:inputText value="#{bindings.ElecProdName.inputValue}"
+                                                  label="#{bindings.ElecProdName.hints.label}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  required="#{bindings.ElecProdName.hints.mandatory}"
+                                                  columns="#{bindings.ElecProdName.hints.displayWidth}"
+                                                  maximumLength="#{bindings.ElecProdName.hints.precision}"
+                                                  shortDesc="#{bindings.ElecProdName.hints.tooltip}" id="it42">
+                                        <f:validator binding="#{bindings.ElecProdName.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.Isbn2.inputValue}"
+                                                  label="#{bindings.Isbn2.hints.label}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  required="#{bindings.Isbn2.hints.mandatory}"
+                                                  columns="#{bindings.Isbn2.hints.displayWidth}"
+                                                  maximumLength="#{bindings.Isbn2.hints.precision}"
+                                                  shortDesc="#{bindings.Isbn2.hints.tooltip}" id="it43">
+                                        <f:validator binding="#{bindings.Isbn2.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.ItemCode2.inputValue}"
+                                                  label="#{bindings.ItemCode2.hints.label}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  required="#{bindings.ItemCode2.hints.mandatory}"
+                                                  columns="#{bindings.ItemCode2.hints.displayWidth}"
+                                                  maximumLength="#{bindings.ItemCode2.hints.precision}"
+                                                  shortDesc="#{bindings.ItemCode2.hints.tooltip}" id="it44">
+                                        <f:validator binding="#{bindings.ItemCode2.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.AssortBook1.inputValue}"
+                                                  label="#{bindings.AssortBook1.hints.label}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  required="#{bindings.AssortBook1.hints.mandatory}"
+                                                  columns="#{bindings.AssortBook1.hints.displayWidth}"
+                                                  maximumLength="#{bindings.AssortBook1.hints.precision}"
+                                                  shortDesc="#{bindings.AssortBook1.hints.tooltip}" id="it45">
+                                        <f:validator binding="#{bindings.AssortBook1.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.PublishingHouse1.inputValue}"
+                                                  label="#{bindings.PublishingHouse1.hints.label}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  required="#{bindings.PublishingHouse1.hints.mandatory}"
+                                                  columns="#{bindings.PublishingHouse1.hints.displayWidth}"
+                                                  maximumLength="#{bindings.PublishingHouse1.hints.precision}"
+                                                  shortDesc="#{bindings.PublishingHouse1.hints.tooltip}" id="it46">
+                                        <f:validator binding="#{bindings.PublishingHouse1.validator}"/>
+                                    </af:inputText>
+                                    <af:selectOneChoice value="#{bindings.Lang2.inputValue}"
+                                                        label="#{bindings.Lang2.label}"
+                                                        contentStyle="width:207px;height:22px;line-height:22px;border-color:#ABADB3;font-size:12px;"
+                                                        required="#{bindings.Lang2.hints.mandatory}"
+                                                        shortDesc="#{bindings.Lang2.hints.tooltip}" id="soc14">
+                                        <f:selectItems value="#{bindings.Lang2.items}" id="si14"/>
+                                    </af:selectOneChoice>
+                                    <af:selectOneChoice value="#{bindings.CarrierType1.inputValue}"
+                                                        label="#{bindings.CarrierType1.label}"
+                                                        contentStyle="width:207px;height:22px;line-height:22px;border-color:#ABADB3;font-size:12px;"
+                                                        required="#{bindings.CarrierType1.hints.mandatory}"
+                                                        shortDesc="#{bindings.CarrierType1.hints.tooltip}" id="soc15">
+                                        <f:selectItems value="#{bindings.CarrierType1.items}" id="si15"/>
+                                    </af:selectOneChoice>
+                                    <af:inputText value="#{bindings.TimeLength.inputValue}"
+                                                  label="#{bindings.TimeLength.hints.label}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  required="#{bindings.TimeLength.hints.mandatory}"
+                                                  columns="#{bindings.TimeLength.hints.displayWidth}"
+                                                  maximumLength="#{bindings.TimeLength.hints.precision}"
+                                                  shortDesc="#{bindings.TimeLength.hints.tooltip}" id="it47">
+                                        <f:validator binding="#{bindings.TimeLength.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.Amount.inputValue}"
+                                                  label="#{bindings.Amount.hints.label}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  required="#{bindings.Amount.hints.mandatory}"
+                                                  columns="#{bindings.Amount.hints.displayWidth}"
+                                                  maximumLength="#{bindings.Amount.hints.precision}"
+                                                  shortDesc="#{bindings.Amount.hints.tooltip}" id="it48">
+                                        <f:validator binding="#{bindings.Amount.validator}"/>
+                                        <af:convertNumber groupingUsed="false" pattern="#{bindings.Amount.format}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.DiskDesign.inputValue}"
+                                                  label="#{bindings.DiskDesign.hints.label}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  required="#{bindings.DiskDesign.hints.mandatory}"
+                                                  columns="#{bindings.DiskDesign.hints.displayWidth}"
+                                                  maximumLength="#{bindings.DiskDesign.hints.precision}"
+                                                  shortDesc="#{bindings.DiskDesign.hints.tooltip}" id="it49">
+                                        <f:validator binding="#{bindings.DiskDesign.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.Editor2.inputValue}"
+                                                  label="#{bindings.Editor2.hints.label}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  required="#{bindings.Editor2.hints.mandatory}"
+                                                  columns="#{bindings.Editor2.hints.displayWidth}"
+                                                  maximumLength="#{bindings.Editor2.hints.precision}"
+                                                  shortDesc="#{bindings.Editor2.hints.tooltip}" id="it50">
+                                        <f:validator binding="#{bindings.Editor2.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.TextEditor1.inputValue}"
+                                                  label="#{bindings.TextEditor1.hints.label}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  required="#{bindings.TextEditor1.hints.mandatory}"
+                                                  columns="#{bindings.TextEditor1.hints.displayWidth}"
+                                                  maximumLength="#{bindings.TextEditor1.hints.precision}"
+                                                  shortDesc="#{bindings.TextEditor1.hints.tooltip}" id="it51">
+                                        <f:validator binding="#{bindings.TextEditor1.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.Producer.inputValue}"
+                                                  label="#{bindings.Producer.hints.label}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  required="#{bindings.Producer.hints.mandatory}"
+                                                  columns="#{bindings.Producer.hints.displayWidth}"
+                                                  maximumLength="#{bindings.Producer.hints.precision}"
+                                                  shortDesc="#{bindings.Producer.hints.tooltip}" id="it52">
+                                        <f:validator binding="#{bindings.Producer.validator}"/>
+                                    </af:inputText>
+                                    <af:inputDate value="#{bindings.PubTime2.inputValue}"
+                                                  label="#{bindings.PubTime2.hints.label}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  required="#{bindings.PubTime2.hints.mandatory}"
+                                                  columns="#{bindings.PubTime2.hints.displayWidth}"
+                                                  shortDesc="#{bindings.PubTime2.hints.tooltip}" id="id4">
+                                        <f:validator binding="#{bindings.PubTime2.validator}"/>
+                                        <af:convertDateTime pattern="#{bindings.PubTime2.format}"/>
+                                    </af:inputDate>
+                                    <af:inputText value="#{bindings.Keyword3.inputValue}"
+                                                  label="#{bindings.Keyword3.hints.label}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  required="#{bindings.Keyword3.hints.mandatory}"
+                                                  columns="#{bindings.Keyword3.hints.displayWidth}"
+                                                  maximumLength="#{bindings.Keyword3.hints.precision}"
+                                                  shortDesc="#{bindings.Keyword3.hints.tooltip}" id="it53">
+                                        <f:validator binding="#{bindings.Keyword3.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.ContentDesc1.inputValue}"
+                                                  label="#{bindings.ContentDesc1.hints.label}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  required="#{bindings.ContentDesc1.hints.mandatory}"
+                                                  columns="#{bindings.ContentDesc1.hints.displayWidth}"
+                                                  maximumLength="#{bindings.ContentDesc1.hints.precision}"
+                                                  shortDesc="#{bindings.ContentDesc1.hints.tooltip}" id="it54">
+                                        <f:validator binding="#{bindings.ContentDesc1.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.Remarks3.inputValue}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  label="#{bindings.Remarks3.hints.label}"
+                                                  required="#{bindings.Remarks3.hints.mandatory}"
+                                                  columns="#{bindings.Remarks3.hints.displayWidth}"
+                                                  maximumLength="#{bindings.Remarks3.hints.precision}"
+                                                  shortDesc="#{bindings.Remarks3.hints.tooltip}" id="it55">
+                                        <f:validator binding="#{bindings.Remarks3.validator}"/>
+                                    </af:inputText>
+                                </af:panelFormLayout>
+                            </f:facet>
+                            <f:facet name="ILLUSTRATION">
+                                <af:panelFormLayout id="pfl5" maxColumns="2" rows="9">
+                                    <af:inputText value="#{bindings.IllustrationName.inputValue}"
+                                                  label="#{bindings.IllustrationName.hints.label}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  required="#{bindings.IllustrationName.hints.mandatory}"
+                                                  columns="#{bindings.IllustrationName.hints.displayWidth}"
+                                                  maximumLength="#{bindings.IllustrationName.hints.precision}"
+                                                  shortDesc="#{bindings.IllustrationName.hints.tooltip}" id="it56">
+                                        <f:validator binding="#{bindings.IllustrationName.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.IllustrationSource.inputValue}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  label="#{bindings.IllustrationSource.hints.label}"
+                                                  required="#{bindings.IllustrationSource.hints.mandatory}"
+                                                  columns="#{bindings.IllustrationSource.hints.displayWidth}"
+                                                  maximumLength="#{bindings.IllustrationSource.hints.precision}"
+                                                  shortDesc="#{bindings.IllustrationSource.hints.tooltip}" id="it57">
+                                        <f:validator binding="#{bindings.IllustrationSource.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.IllustrationAuthor.inputValue}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  label="#{bindings.IllustrationAuthor.hints.label}"
+                                                  required="#{bindings.IllustrationAuthor.hints.mandatory}"
+                                                  columns="#{bindings.IllustrationAuthor.hints.displayWidth}"
+                                                  maximumLength="#{bindings.IllustrationAuthor.hints.precision}"
+                                                  shortDesc="#{bindings.IllustrationAuthor.hints.tooltip}" id="it58">
+                                        <f:validator binding="#{bindings.IllustrationAuthor.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.PageNumber.inputValue}"
+                                                  label="#{bindings.PageNumber.hints.label}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  required="#{bindings.PageNumber.hints.mandatory}"
+                                                  columns="#{bindings.PageNumber.hints.displayWidth}"
+                                                  maximumLength="#{bindings.PageNumber.hints.precision}"
+                                                  shortDesc="#{bindings.PageNumber.hints.tooltip}" id="it59">
+                                        <f:validator binding="#{bindings.PageNumber.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.Keyword4.inputValue}"
+                                                  label="#{bindings.Keyword4.hints.label}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  required="#{bindings.Keyword4.hints.mandatory}"
+                                                  columns="#{bindings.Keyword4.hints.displayWidth}"
+                                                  maximumLength="#{bindings.Keyword4.hints.precision}"
+                                                  shortDesc="#{bindings.Keyword4.hints.tooltip}" id="it60">
+                                        <f:validator binding="#{bindings.Keyword4.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.IllustrationDesc.inputValue}"
+                                                  label="#{bindings.IllustrationDesc.hints.label}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  required="#{bindings.IllustrationDesc.hints.mandatory}"
+                                                  columns="#{bindings.IllustrationDesc.hints.displayWidth}"
+                                                  maximumLength="#{bindings.IllustrationDesc.hints.precision}"
+                                                  shortDesc="#{bindings.IllustrationDesc.hints.tooltip}" id="it61">
+                                        <f:validator binding="#{bindings.IllustrationDesc.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.Remarks4.inputValue}"
+                                                  label="#{bindings.Remarks4.hints.label}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  required="#{bindings.Remarks4.hints.mandatory}"
+                                                  columns="#{bindings.Remarks4.hints.displayWidth}"
+                                                  maximumLength="#{bindings.Remarks4.hints.precision}"
+                                                  shortDesc="#{bindings.Remarks4.hints.tooltip}" id="it62">
+                                        <f:validator binding="#{bindings.Remarks4.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.FigureFormat.inputValue}"
+                                                  label="#{bindings.FigureFormat.hints.label}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  required="#{bindings.FigureFormat.hints.mandatory}"
+                                                  columns="#{bindings.FigureFormat.hints.displayWidth}"
+                                                  maximumLength="#{bindings.FigureFormat.hints.precision}"
+                                                  shortDesc="#{bindings.FigureFormat.hints.tooltip}" id="it63">
+                                        <f:validator binding="#{bindings.FigureFormat.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.FigureDimension.inputValue}"
+                                                  label="#{bindings.FigureDimension.hints.label}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  required="#{bindings.FigureDimension.hints.mandatory}"
+                                                  columns="#{bindings.FigureDimension.hints.displayWidth}"
+                                                  maximumLength="#{bindings.FigureDimension.hints.precision}"
+                                                  shortDesc="#{bindings.FigureDimension.hints.tooltip}" id="it64">
+                                        <f:validator binding="#{bindings.FigureDimension.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.FigureSize.inputValue}"
+                                                  label="#{bindings.FigureSize.hints.label}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  required="#{bindings.FigureSize.hints.mandatory}"
+                                                  columns="#{bindings.FigureSize.hints.displayWidth}"
+                                                  maximumLength="#{bindings.FigureSize.hints.precision}"
+                                                  shortDesc="#{bindings.FigureSize.hints.tooltip}" id="it65">
+                                        <f:validator binding="#{bindings.FigureSize.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.CoverDesign1.inputValue}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  label="#{bindings.CoverDesign1.hints.label}"
+                                                  required="#{bindings.CoverDesign1.hints.mandatory}"
+                                                  columns="#{bindings.CoverDesign1.hints.displayWidth}"
+                                                  maximumLength="#{bindings.CoverDesign1.hints.precision}"
+                                                  shortDesc="#{bindings.CoverDesign1.hints.tooltip}" id="it66">
+                                        <f:validator binding="#{bindings.CoverDesign1.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.FigureResolution.inputValue}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  label="#{bindings.FigureResolution.hints.label}"
+                                                  required="#{bindings.FigureResolution.hints.mandatory}"
+                                                  columns="#{bindings.FigureResolution.hints.displayWidth}"
+                                                  maximumLength="#{bindings.FigureResolution.hints.precision}"
+                                                  shortDesc="#{bindings.FigureResolution.hints.tooltip}" id="it67">
+                                        <f:validator binding="#{bindings.FigureResolution.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.FigureXResolution.inputValue}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  label="#{bindings.FigureXResolution.hints.label}"
+                                                  required="#{bindings.FigureXResolution.hints.mandatory}"
+                                                  columns="#{bindings.FigureXResolution.hints.displayWidth}"
+                                                  maximumLength="#{bindings.FigureXResolution.hints.precision}"
+                                                  shortDesc="#{bindings.FigureXResolution.hints.tooltip}" id="it68">
+                                        <f:validator binding="#{bindings.FigureXResolution.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.FigureYResolution.inputValue}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  label="#{bindings.FigureYResolution.hints.label}"
+                                                  required="#{bindings.FigureYResolution.hints.mandatory}"
+                                                  columns="#{bindings.FigureYResolution.hints.displayWidth}"
+                                                  maximumLength="#{bindings.FigureYResolution.hints.precision}"
+                                                  shortDesc="#{bindings.FigureYResolution.hints.tooltip}" id="it69">
+                                        <f:validator binding="#{bindings.FigureYResolution.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.FigureWidth.inputValue}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  label="#{bindings.FigureWidth.hints.label}"
+                                                  required="#{bindings.FigureWidth.hints.mandatory}"
+                                                  columns="#{bindings.FigureWidth.hints.displayWidth}"
+                                                  maximumLength="#{bindings.FigureWidth.hints.precision}"
+                                                  shortDesc="#{bindings.FigureWidth.hints.tooltip}" id="it70">
+                                        <f:validator binding="#{bindings.FigureWidth.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.FigureHeight.inputValue}"
+                                                  label="#{bindings.FigureHeight.hints.label}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  required="#{bindings.FigureHeight.hints.mandatory}"
+                                                  columns="#{bindings.FigureHeight.hints.displayWidth}"
+                                                  maximumLength="#{bindings.FigureHeight.hints.precision}"
+                                                  shortDesc="#{bindings.FigureHeight.hints.tooltip}" id="it71">
+                                        <f:validator binding="#{bindings.FigureHeight.validator}"/>
+                                    </af:inputText>
+                                    <af:inputDate value="#{bindings.FigureStoreTime.inputValue}"
+                                                  label="#{bindings.FigureStoreTime.hints.label}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  required="#{bindings.FigureStoreTime.hints.mandatory}"
+                                                  columns="#{bindings.FigureStoreTime.hints.displayWidth}"
+                                                  shortDesc="#{bindings.FigureStoreTime.hints.tooltip}" id="id5">
+                                        <f:validator binding="#{bindings.FigureStoreTime.validator}"/>
+                                        <af:convertDateTime pattern="#{bindings.FigureStoreTime.format}"/>
+                                    </af:inputDate>
+                                    <af:selectOneChoice value="#{bindings.CopyrightFlag1.inputValue}"
+                                                        label="#{bindings.CopyrightFlag1.label}"
+                                                        contentStyle="width:207px;height:22px;line-height:22px;border-color:#ABADB3;font-size:12px;"
+                                                        required="#{bindings.CopyrightFlag1.hints.mandatory}"
+                                                        shortDesc="#{bindings.CopyrightFlag1.hints.tooltip}" id="soc16">
+                                        <f:selectItems value="#{bindings.CopyrightFlag1.items}" id="si16"/>
+                                    </af:selectOneChoice>
+                                </af:panelFormLayout>
+                            </f:facet>
+                            <f:facet name="MATERIAL_FIGURE">
+                                <af:panelFormLayout id="pfl6" maxColumns="2" rows="9">
+                                    <af:inputText value="#{bindings.FigureName.inputValue}"
+                                                  label="#{bindings.FigureName.hints.label}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  required="#{bindings.FigureName.hints.mandatory}"
+                                                  columns="#{bindings.FigureName.hints.displayWidth}"
+                                                  maximumLength="#{bindings.FigureName.hints.precision}"
+                                                  shortDesc="#{bindings.FigureName.hints.tooltip}" id="it72">
+                                        <f:validator binding="#{bindings.FigureName.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.SeriesName1.inputValue}"
+                                                  label="#{bindings.SeriesName1.hints.label}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  required="#{bindings.SeriesName1.hints.mandatory}"
+                                                  columns="#{bindings.SeriesName1.hints.displayWidth}"
+                                                  maximumLength="#{bindings.SeriesName1.hints.precision}"
+                                                  shortDesc="#{bindings.SeriesName1.hints.tooltip}" id="it73">
+                                        <f:validator binding="#{bindings.SeriesName1.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.FigureAuthor.inputValue}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  label="#{bindings.FigureAuthor.hints.label}"
+                                                  required="#{bindings.FigureAuthor.hints.mandatory}"
+                                                  columns="#{bindings.FigureAuthor.hints.displayWidth}"
+                                                  maximumLength="#{bindings.FigureAuthor.hints.precision}"
+                                                  shortDesc="#{bindings.FigureAuthor.hints.tooltip}" id="it74">
+                                        <f:validator binding="#{bindings.FigureAuthor.validator}"/>
+                                    </af:inputText>
+                                    <af:selectOneChoice value="#{bindings.FigureStyle.inputValue}"
+                                                        label="#{bindings.FigureStyle.label}"
+                                                        contentStyle="width:207px;height:22px;line-height:22px;border-color:#ABADB3;font-size:12px;"
+                                                        required="#{bindings.FigureStyle.hints.mandatory}"
+                                                        shortDesc="#{bindings.FigureStyle.hints.tooltip}" id="soc17">
+                                        <f:selectItems value="#{bindings.FigureStyle.items}" id="si17"/>
+                                    </af:selectOneChoice>
+                                    <af:inputText value="#{bindings.Keyword5.inputValue}"
+                                                  label="#{bindings.Keyword5.hints.label}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  required="#{bindings.Keyword5.hints.mandatory}"
+                                                  columns="#{bindings.Keyword5.hints.displayWidth}"
+                                                  maximumLength="#{bindings.Keyword5.hints.precision}"
+                                                  shortDesc="#{bindings.Keyword5.hints.tooltip}" id="it75">
+                                        <f:validator binding="#{bindings.Keyword5.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.FigureDesc.inputValue}"
+                                                  label="#{bindings.FigureDesc.hints.label}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  required="#{bindings.FigureDesc.hints.mandatory}"
+                                                  columns="#{bindings.FigureDesc.hints.displayWidth}"
+                                                  maximumLength="#{bindings.FigureDesc.hints.precision}"
+                                                  shortDesc="#{bindings.FigureDesc.hints.tooltip}" id="it76">
+                                        <f:validator binding="#{bindings.FigureDesc.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.Remarks5.inputValue}"
+                                                  label="#{bindings.Remarks5.hints.label}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  required="#{bindings.Remarks5.hints.mandatory}"
+                                                  columns="#{bindings.Remarks5.hints.displayWidth}"
+                                                  maximumLength="#{bindings.Remarks5.hints.precision}"
+                                                  shortDesc="#{bindings.Remarks5.hints.tooltip}" id="it77">
+                                        <f:validator binding="#{bindings.Remarks5.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.FigureFormat1.inputValue}"
+                                                  label="#{bindings.FigureFormat1.hints.label}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  required="#{bindings.FigureFormat1.hints.mandatory}"
+                                                  columns="#{bindings.FigureFormat1.hints.displayWidth}"
+                                                  maximumLength="#{bindings.FigureFormat1.hints.precision}"
+                                                  shortDesc="#{bindings.FigureFormat1.hints.tooltip}" id="it78">
+                                        <f:validator binding="#{bindings.FigureFormat1.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.FigureDimension1.inputValue}"
+                                                  label="#{bindings.FigureDimension1.hints.label}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  required="#{bindings.FigureDimension1.hints.mandatory}"
+                                                  columns="#{bindings.FigureDimension1.hints.displayWidth}"
+                                                  maximumLength="#{bindings.FigureDimension1.hints.precision}"
+                                                  shortDesc="#{bindings.FigureDimension1.hints.tooltip}" id="it79">
+                                        <f:validator binding="#{bindings.FigureDimension1.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.FigureSize1.inputValue}"
+                                                  label="#{bindings.FigureSize1.hints.label}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  required="#{bindings.FigureSize1.hints.mandatory}"
+                                                  columns="#{bindings.FigureSize1.hints.displayWidth}"
+                                                  maximumLength="#{bindings.FigureSize1.hints.precision}"
+                                                  shortDesc="#{bindings.FigureSize1.hints.tooltip}" id="it80">
+                                        <f:validator binding="#{bindings.FigureSize1.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.CoverDesign2.inputValue}"
+                                                  label="#{bindings.CoverDesign2.hints.label}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  required="#{bindings.CoverDesign2.hints.mandatory}"
+                                                  columns="#{bindings.CoverDesign2.hints.displayWidth}"
+                                                  maximumLength="#{bindings.CoverDesign2.hints.precision}"
+                                                  shortDesc="#{bindings.CoverDesign2.hints.tooltip}" id="it81">
+                                        <f:validator binding="#{bindings.CoverDesign2.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.FigureResolution1.inputValue}"
+                                                  label="#{bindings.FigureResolution1.hints.label}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  required="#{bindings.FigureResolution1.hints.mandatory}"
+                                                  columns="#{bindings.FigureResolution1.hints.displayWidth}"
+                                                  maximumLength="#{bindings.FigureResolution1.hints.precision}"
+                                                  shortDesc="#{bindings.FigureResolution1.hints.tooltip}" id="it82">
+                                        <f:validator binding="#{bindings.FigureResolution1.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.FigureXResolution1.inputValue}"
+                                                  label="#{bindings.FigureXResolution1.hints.label}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  required="#{bindings.FigureXResolution1.hints.mandatory}"
+                                                  columns="#{bindings.FigureXResolution1.hints.displayWidth}"
+                                                  maximumLength="#{bindings.FigureXResolution1.hints.precision}"
+                                                  shortDesc="#{bindings.FigureXResolution1.hints.tooltip}" id="it83">
+                                        <f:validator binding="#{bindings.FigureXResolution1.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.FigureYResolution1.inputValue}"
+                                                  label="#{bindings.FigureYResolution1.hints.label}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  required="#{bindings.FigureYResolution1.hints.mandatory}"
+                                                  columns="#{bindings.FigureYResolution1.hints.displayWidth}"
+                                                  maximumLength="#{bindings.FigureYResolution1.hints.precision}"
+                                                  shortDesc="#{bindings.FigureYResolution1.hints.tooltip}" id="it84">
+                                        <f:validator binding="#{bindings.FigureYResolution1.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.FigureWidth1.inputValue}"
+                                                  label="#{bindings.FigureWidth1.hints.label}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  required="#{bindings.FigureWidth1.hints.mandatory}"
+                                                  columns="#{bindings.FigureWidth1.hints.displayWidth}"
+                                                  maximumLength="#{bindings.FigureWidth1.hints.precision}"
+                                                  shortDesc="#{bindings.FigureWidth1.hints.tooltip}" id="it85">
+                                        <f:validator binding="#{bindings.FigureWidth1.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.FigureHeight1.inputValue}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  label="#{bindings.FigureHeight1.hints.label}"
+                                                  required="#{bindings.FigureHeight1.hints.mandatory}"
+                                                  columns="#{bindings.FigureHeight1.hints.displayWidth}"
+                                                  maximumLength="#{bindings.FigureHeight1.hints.precision}"
+                                                  shortDesc="#{bindings.FigureHeight1.hints.tooltip}" id="it86">
+                                        <f:validator binding="#{bindings.FigureHeight1.validator}"/>
+                                    </af:inputText>
+                                    <af:inputDate value="#{bindings.FigureStoreTime1.inputValue}"
+                                                  label="#{bindings.FigureStoreTime1.hints.label}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  required="#{bindings.FigureStoreTime1.hints.mandatory}"
+                                                  columns="#{bindings.FigureStoreTime1.hints.displayWidth}"
+                                                  shortDesc="#{bindings.FigureStoreTime1.hints.tooltip}" id="id6">
+                                        <f:validator binding="#{bindings.FigureStoreTime1.validator}"/>
+                                        <af:convertDateTime pattern="#{bindings.FigureStoreTime1.format}"/>
+                                    </af:inputDate>
+                                    <af:inputText value="#{bindings.FigureCode.inputValue}"
+                                                  label="#{bindings.FigureCode.hints.label}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  required="#{bindings.FigureCode.hints.mandatory}"
+                                                  columns="#{bindings.FigureCode.hints.displayWidth}"
+                                                  maximumLength="#{bindings.FigureCode.hints.precision}"
+                                                  shortDesc="#{bindings.FigureCode.hints.tooltip}" id="it87">
+                                        <f:validator binding="#{bindings.FigureCode.validator}"/>
+                                    </af:inputText>
+                                </af:panelFormLayout>
+                            </f:facet>
+                            <f:facet name="NEWSPAPER">
+                                <af:panelFormLayout id="pfl7" maxColumns="2" rows="9">
+                                    <af:inputText value="#{bindings.Editor3.inputValue}"
+                                                  label="#{bindings.Editor3.hints.label}"
+                                                  required="#{bindings.Editor3.hints.mandatory}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  columns="#{bindings.Editor3.hints.displayWidth}"
+                                                  maximumLength="#{bindings.Editor3.hints.precision}"
+                                                  shortDesc="#{bindings.Editor3.hints.tooltip}" id="it88">
+                                        <f:validator binding="#{bindings.Editor3.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.FormatDesign1.inputValue}"
+                                                  label="#{bindings.FormatDesign1.hints.label}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  required="#{bindings.FormatDesign1.hints.mandatory}"
+                                                  columns="#{bindings.FormatDesign1.hints.displayWidth}"
+                                                  maximumLength="#{bindings.FormatDesign1.hints.precision}"
+                                                  shortDesc="#{bindings.FormatDesign1.hints.tooltip}" id="it89">
+                                        <f:validator binding="#{bindings.FormatDesign1.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.CoverDesign3.inputValue}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  label="#{bindings.CoverDesign3.hints.label}"
+                                                  required="#{bindings.CoverDesign3.hints.mandatory}"
+                                                  columns="#{bindings.CoverDesign3.hints.displayWidth}"
+                                                  maximumLength="#{bindings.CoverDesign3.hints.precision}"
+                                                  shortDesc="#{bindings.CoverDesign3.hints.tooltip}" id="it90">
+                                        <f:validator binding="#{bindings.CoverDesign3.validator}"/>
+                                    </af:inputText>
+                                    <af:inputDate value="#{bindings.PubTime3.inputValue}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  label="#{bindings.PubTime3.hints.label}"
+                                                  required="#{bindings.PubTime3.hints.mandatory}"
+                                                  columns="#{bindings.PubTime3.hints.displayWidth}"
+                                                  shortDesc="#{bindings.PubTime3.hints.tooltip}" id="id7">
+                                        <f:validator binding="#{bindings.PubTime3.validator}"/>
+                                        <af:convertDateTime pattern="#{bindings.PubTime3.format}"/>
+                                    </af:inputDate>
+                                    <af:inputText value="#{bindings.Keyword6.inputValue}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  label="#{bindings.Keyword6.hints.label}"
+                                                  required="#{bindings.Keyword6.hints.mandatory}"
+                                                  columns="#{bindings.Keyword6.hints.displayWidth}"
+                                                  maximumLength="#{bindings.Keyword6.hints.precision}"
+                                                  shortDesc="#{bindings.Keyword6.hints.tooltip}" id="it91">
+                                        <f:validator binding="#{bindings.Keyword6.validator}"/>
+                                    </af:inputText>
+                                    <af:selectOneChoice value="#{bindings.ProdSize1.inputValue}"
+                                                        label="#{bindings.ProdSize1.label}"
+                                                        contentStyle="width:207px;height:22px;line-height:22px;border-color:#ABADB3;font-size:12px;"
+                                                        required="#{bindings.ProdSize1.hints.mandatory}"
+                                                        shortDesc="#{bindings.ProdSize1.hints.tooltip}" id="soc18">
+                                        <f:selectItems value="#{bindings.ProdSize1.items}" id="si18"/>
+                                    </af:selectOneChoice>
+                                    <af:selectOneChoice value="#{bindings.ColorNum1.inputValue}"
+                                                        label="#{bindings.ColorNum1.label}"
+                                                        contentStyle="width:207px;height:22px;line-height:22px;border-color:#ABADB3;font-size:12px;"
+                                                        required="#{bindings.ColorNum1.hints.mandatory}"
+                                                        shortDesc="#{bindings.ColorNum1.hints.tooltip}" id="soc19">
+                                        <f:selectItems value="#{bindings.ColorNum1.items}" id="si19"/>
+                                    </af:selectOneChoice>
+                                    <af:selectOneChoice value="#{bindings.CoverTypeset1.inputValue}"
+                                                        label="#{bindings.CoverTypeset1.label}"
+                                                        contentStyle="width:207px;height:22px;line-height:22px;border-color:#ABADB3;font-size:12px;"
+                                                        required="#{bindings.CoverTypeset1.hints.mandatory}"
+                                                        shortDesc="#{bindings.CoverTypeset1.hints.tooltip}" id="soc20">
+                                        <f:selectItems value="#{bindings.CoverTypeset1.items}" id="si20"/>
+                                    </af:selectOneChoice>
+                                    <af:selectOneChoice value="#{bindings.AssortProd1.inputValue}"
+                                                        label="#{bindings.AssortProd1.label}"
+                                                        contentStyle="width:207px;height:22px;line-height:22px;border-color:#ABADB3;font-size:12px;"
+                                                        required="#{bindings.AssortProd1.hints.mandatory}"
+                                                        shortDesc="#{bindings.AssortProd1.hints.tooltip}" id="soc21">
+                                        <f:selectItems value="#{bindings.AssortProd1.items}" id="si21"/>
+                                    </af:selectOneChoice>
+                                    <af:selectOneChoice value="#{bindings.BookSize1.inputValue}"
+                                                        label="#{bindings.BookSize1.label}"
+                                                        contentStyle="width:207px;height:22px;line-height:22px;border-color:#ABADB3;font-size:12px;"
+                                                        required="#{bindings.BookSize1.hints.mandatory}"
+                                                        shortDesc="#{bindings.BookSize1.hints.tooltip}" id="soc22">
+                                        <f:selectItems value="#{bindings.BookSize1.items}" id="si22"/>
+                                    </af:selectOneChoice>
+                                    <af:selectOneChoice value="#{bindings.MainTypeset1.inputValue}"
+                                                        label="#{bindings.MainTypeset1.label}"
+                                                        contentStyle="width:207px;height:22px;line-height:22px;border-color:#ABADB3;font-size:12px;"
+                                                        required="#{bindings.MainTypeset1.hints.mandatory}"
+                                                        shortDesc="#{bindings.MainTypeset1.hints.tooltip}" id="soc23">
+                                        <f:selectItems value="#{bindings.MainTypeset1.items}" id="si23"/>
+                                    </af:selectOneChoice>
+                                    <af:selectOneChoice value="#{bindings.MainPage1.inputValue}"
+                                                        label="#{bindings.MainPage1.label}"
+                                                        contentStyle="width:207px;height:22px;line-height:22px;border-color:#ABADB3;font-size:12px;"
+                                                        required="#{bindings.MainPage1.hints.mandatory}"
+                                                        shortDesc="#{bindings.MainPage1.hints.tooltip}" id="soc24">
+                                        <f:selectItems value="#{bindings.MainPage1.items}" id="si24"/>
+                                    </af:selectOneChoice>
+                                    <af:inputText value="#{bindings.Pagination1.inputValue}"
+                                                  label="#{bindings.Pagination1.hints.label}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  required="#{bindings.Pagination1.hints.mandatory}"
+                                                  columns="#{bindings.Pagination1.hints.displayWidth}"
+                                                  maximumLength="#{bindings.Pagination1.hints.precision}"
+                                                  shortDesc="#{bindings.Pagination1.hints.tooltip}" id="it92">
+                                        <f:validator binding="#{bindings.Pagination1.validator}"/>
+                                        <af:convertNumber groupingUsed="false"
+                                                          pattern="#{bindings.Pagination1.format}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.Suggestion1.inputValue}"
+                                                  label="#{bindings.Suggestion1.hints.label}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  required="#{bindings.Suggestion1.hints.mandatory}"
+                                                  columns="#{bindings.Suggestion1.hints.displayWidth}"
+                                                  maximumLength="#{bindings.Suggestion1.hints.precision}"
+                                                  shortDesc="#{bindings.Suggestion1.hints.tooltip}" id="it93">
+                                        <f:validator binding="#{bindings.Suggestion1.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.Remarks6.inputValue}"
+                                                  label="#{bindings.Remarks6.hints.label}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  required="#{bindings.Remarks6.hints.mandatory}"
+                                                  columns="#{bindings.Remarks6.hints.displayWidth}"
+                                                  maximumLength="#{bindings.Remarks6.hints.precision}"
+                                                  shortDesc="#{bindings.Remarks6.hints.tooltip}" id="it94">
+                                        <f:validator binding="#{bindings.Remarks6.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.TypesetComp.inputValue}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  label="#{bindings.TypesetComp.hints.label}"
+                                                  required="#{bindings.TypesetComp.hints.mandatory}"
+                                                  columns="#{bindings.TypesetComp.hints.displayWidth}"
+                                                  maximumLength="#{bindings.TypesetComp.hints.precision}"
+                                                  shortDesc="#{bindings.TypesetComp.hints.tooltip}" id="it95">
+                                        <f:validator binding="#{bindings.TypesetComp.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.TotalNum.inputValue}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  label="#{bindings.TotalNum.hints.label}"
+                                                  required="#{bindings.TotalNum.hints.mandatory}"
+                                                  columns="#{bindings.TotalNum.hints.displayWidth}"
+                                                  maximumLength="#{bindings.TotalNum.hints.precision}"
+                                                  shortDesc="#{bindings.TotalNum.hints.tooltip}" id="it96">
+                                        <f:validator binding="#{bindings.TotalNum.validator}"/>
+                                        <af:convertNumber groupingUsed="false" pattern="#{bindings.TotalNum.format}"/>
+                                    </af:inputText>
+                                </af:panelFormLayout>
+                            </f:facet>
+                            <f:facet name="PERIODICAL">
+                                <af:panelFormLayout id="pfl8" maxColumns="2" rows="9">
+                                    <af:inputText value="#{bindings.Editor4.inputValue}"
+                                                  label="#{bindings.Editor4.hints.label}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  required="#{bindings.Editor4.hints.mandatory}"
+                                                  columns="#{bindings.Editor4.hints.displayWidth}"
+                                                  maximumLength="#{bindings.Editor4.hints.precision}"
+                                                  shortDesc="#{bindings.Editor4.hints.tooltip}" id="it97">
+                                        <f:validator binding="#{bindings.Editor4.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.FormatDesign2.inputValue}"
+                                                  label="#{bindings.FormatDesign2.hints.label}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  required="#{bindings.FormatDesign2.hints.mandatory}"
+                                                  columns="#{bindings.FormatDesign2.hints.displayWidth}"
+                                                  maximumLength="#{bindings.FormatDesign2.hints.precision}"
+                                                  shortDesc="#{bindings.FormatDesign2.hints.tooltip}" id="it98">
+                                        <f:validator binding="#{bindings.FormatDesign2.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.CoverDesign4.inputValue}"
+                                                  label="#{bindings.CoverDesign4.hints.label}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  required="#{bindings.CoverDesign4.hints.mandatory}"
+                                                  columns="#{bindings.CoverDesign4.hints.displayWidth}"
+                                                  maximumLength="#{bindings.CoverDesign4.hints.precision}"
+                                                  shortDesc="#{bindings.CoverDesign4.hints.tooltip}" id="it99">
+                                        <f:validator binding="#{bindings.CoverDesign4.validator}"/>
+                                    </af:inputText>
+                                    <af:inputDate value="#{bindings.PubTime4.inputValue}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  label="#{bindings.PubTime4.hints.label}"
+                                                  required="#{bindings.PubTime4.hints.mandatory}"
+                                                  columns="#{bindings.PubTime4.hints.displayWidth}"
+                                                  shortDesc="#{bindings.PubTime4.hints.tooltip}" id="id8">
+                                        <f:validator binding="#{bindings.PubTime4.validator}"/>
+                                        <af:convertDateTime pattern="#{bindings.PubTime4.format}"/>
+                                    </af:inputDate>
+                                    <af:inputText value="#{bindings.Keyword7.inputValue}"
+                                                  label="#{bindings.Keyword7.hints.label}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  required="#{bindings.Keyword7.hints.mandatory}"
+                                                  columns="#{bindings.Keyword7.hints.displayWidth}"
+                                                  maximumLength="#{bindings.Keyword7.hints.precision}"
+                                                  shortDesc="#{bindings.Keyword7.hints.tooltip}" id="it100">
+                                        <f:validator binding="#{bindings.Keyword7.validator}"/>
+                                    </af:inputText>
+                                    <af:selectOneChoice value="#{bindings.ProdSize2.inputValue}"
+                                                        label="#{bindings.ProdSize2.label}"
+                                                        contentStyle="width:207px;height:22px;line-height:22px;border-color:#ABADB3;font-size:12px;"
+                                                        required="#{bindings.ProdSize2.hints.mandatory}"
+                                                        shortDesc="#{bindings.ProdSize2.hints.tooltip}" id="soc25">
+                                        <f:selectItems value="#{bindings.ProdSize2.items}" id="si25"/>
+                                    </af:selectOneChoice>
+                                    <af:selectOneChoice value="#{bindings.ColorNum2.inputValue}"
+                                                        label="#{bindings.ColorNum2.label}"
+                                                        contentStyle="width:207px;height:22px;line-height:22px;border-color:#ABADB3;font-size:12px;"
+                                                        required="#{bindings.ColorNum2.hints.mandatory}"
+                                                        shortDesc="#{bindings.ColorNum2.hints.tooltip}" id="soc26">
+                                        <f:selectItems value="#{bindings.ColorNum2.items}" id="si26"/>
+                                    </af:selectOneChoice>
+                                    <af:selectOneChoice value="#{bindings.CoverTypeset2.inputValue}"
+                                                        label="#{bindings.CoverTypeset2.label}"
+                                                        contentStyle="width:207px;height:22px;line-height:22px;border-color:#ABADB3;font-size:12px;"
+                                                        required="#{bindings.CoverTypeset2.hints.mandatory}"
+                                                        shortDesc="#{bindings.CoverTypeset2.hints.tooltip}" id="soc27">
+                                        <f:selectItems value="#{bindings.CoverTypeset2.items}" id="si27"/>
+                                    </af:selectOneChoice>
+                                    <af:selectOneChoice value="#{bindings.AssortProd2.inputValue}"
+                                                        label="#{bindings.AssortProd2.label}"
+                                                        contentStyle="width:207px;height:22px;line-height:22px;border-color:#ABADB3;font-size:12px;"
+                                                        required="#{bindings.AssortProd2.hints.mandatory}"
+                                                        shortDesc="#{bindings.AssortProd2.hints.tooltip}" id="soc28">
+                                        <f:selectItems value="#{bindings.AssortProd2.items}" id="si28"/>
+                                    </af:selectOneChoice>
+                                    <af:selectOneChoice value="#{bindings.BookSize2.inputValue}"
+                                                        label="#{bindings.BookSize2.label}"
+                                                        contentStyle="width:207px;height:22px;line-height:22px;border-color:#ABADB3;font-size:12px;"
+                                                        required="#{bindings.BookSize2.hints.mandatory}"
+                                                        shortDesc="#{bindings.BookSize2.hints.tooltip}" id="soc29">
+                                        <f:selectItems value="#{bindings.BookSize2.items}" id="si29"/>
+                                    </af:selectOneChoice>
+                                    <af:selectOneChoice value="#{bindings.MainTypeset2.inputValue}"
+                                                        label="#{bindings.MainTypeset2.label}"
+                                                        contentStyle="width:207px;height:22px;line-height:22px;border-color:#ABADB3;font-size:12px;"
+                                                        required="#{bindings.MainTypeset2.hints.mandatory}"
+                                                        shortDesc="#{bindings.MainTypeset2.hints.tooltip}" id="soc30">
+                                        <f:selectItems value="#{bindings.MainTypeset2.items}" id="si30"/>
+                                    </af:selectOneChoice>
+                                    <af:selectOneChoice value="#{bindings.MainPage2.inputValue}"
+                                                        label="#{bindings.MainPage2.label}"
+                                                        contentStyle="width:207px;height:22px;line-height:22px;border-color:#ABADB3;font-size:12px;"
+                                                        required="#{bindings.MainPage2.hints.mandatory}"
+                                                        shortDesc="#{bindings.MainPage2.hints.tooltip}" id="soc31">
+                                        <f:selectItems value="#{bindings.MainPage2.items}" id="si31"/>
+                                    </af:selectOneChoice>
+                                    <af:inputText value="#{bindings.Pagination2.inputValue}"
+                                                  label="#{bindings.Pagination2.hints.label}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  required="#{bindings.Pagination2.hints.mandatory}"
+                                                  columns="#{bindings.Pagination2.hints.displayWidth}"
+                                                  maximumLength="#{bindings.Pagination2.hints.precision}"
+                                                  shortDesc="#{bindings.Pagination2.hints.tooltip}" id="it101">
+                                        <f:validator binding="#{bindings.Pagination2.validator}"/>
+                                        <af:convertNumber groupingUsed="false"
+                                                          pattern="#{bindings.Pagination2.format}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.Suggestion2.inputValue}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  label="#{bindings.Suggestion2.hints.label}"
+                                                  required="#{bindings.Suggestion2.hints.mandatory}"
+                                                  columns="#{bindings.Suggestion2.hints.displayWidth}"
+                                                  maximumLength="#{bindings.Suggestion2.hints.precision}"
+                                                  shortDesc="#{bindings.Suggestion2.hints.tooltip}" id="it102">
+                                        <f:validator binding="#{bindings.Suggestion2.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.Remarks7.inputValue}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  label="#{bindings.Remarks7.hints.label}"
+                                                  required="#{bindings.Remarks7.hints.mandatory}"
+                                                  columns="#{bindings.Remarks7.hints.displayWidth}"
+                                                  maximumLength="#{bindings.Remarks7.hints.precision}"
+                                                  shortDesc="#{bindings.Remarks7.hints.tooltip}" id="it103">
+                                        <f:validator binding="#{bindings.Remarks7.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.TypesetComp1.inputValue}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  label="#{bindings.TypesetComp1.hints.label}"
+                                                  required="#{bindings.TypesetComp1.hints.mandatory}"
+                                                  columns="#{bindings.TypesetComp1.hints.displayWidth}"
+                                                  maximumLength="#{bindings.TypesetComp1.hints.precision}"
+                                                  shortDesc="#{bindings.TypesetComp1.hints.tooltip}" id="it104">
+                                        <f:validator binding="#{bindings.TypesetComp1.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.TotalNum1.inputValue}"
+                                                  label="#{bindings.TotalNum1.hints.label}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  required="#{bindings.TotalNum1.hints.mandatory}"
+                                                  columns="#{bindings.TotalNum1.hints.displayWidth}"
+                                                  maximumLength="#{bindings.TotalNum1.hints.precision}"
+                                                  shortDesc="#{bindings.TotalNum1.hints.tooltip}" id="it105">
+                                        <f:validator binding="#{bindings.TotalNum1.validator}"/>
+                                        <af:convertNumber groupingUsed="false" pattern="#{bindings.TotalNum1.format}"/>
+                                    </af:inputText>
+                                </af:panelFormLayout>
+                            </f:facet>
+                            <f:facet name="PHOTOGRAPHY_FIGURE">
+                                <af:panelFormLayout id="pfl9" maxColumns="2" rows="9">
+                                    <af:inputText value="#{bindings.FigureName1.inputValue}"
+                                                  label="#{bindings.FigureName1.hints.label}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  required="#{bindings.FigureName1.hints.mandatory}"
+                                                  columns="#{bindings.FigureName1.hints.displayWidth}"
+                                                  maximumLength="#{bindings.FigureName1.hints.precision}"
+                                                  shortDesc="#{bindings.FigureName1.hints.tooltip}" id="it106">
+                                        <f:validator binding="#{bindings.FigureName1.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.SeriesName2.inputValue}"
+                                                  label="#{bindings.SeriesName2.hints.label}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  required="#{bindings.SeriesName2.hints.mandatory}"
+                                                  columns="#{bindings.SeriesName2.hints.displayWidth}"
+                                                  maximumLength="#{bindings.SeriesName2.hints.precision}"
+                                                  shortDesc="#{bindings.SeriesName2.hints.tooltip}" id="it107">
+                                        <f:validator binding="#{bindings.SeriesName2.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.Photographer.inputValue}"
+                                                  label="#{bindings.Photographer.hints.label}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  required="#{bindings.Photographer.hints.mandatory}"
+                                                  columns="#{bindings.Photographer.hints.displayWidth}"
+                                                  maximumLength="#{bindings.Photographer.hints.precision}"
+                                                  shortDesc="#{bindings.Photographer.hints.tooltip}" id="it108">
+                                        <f:validator binding="#{bindings.Photographer.validator}"/>
+                                    </af:inputText>
+                                    <af:inputDate value="#{bindings.PhotographyTime.inputValue}"
+                                                  label="#{bindings.PhotographyTime.hints.label}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  required="#{bindings.PhotographyTime.hints.mandatory}"
+                                                  columns="#{bindings.PhotographyTime.hints.displayWidth}"
+                                                  shortDesc="#{bindings.PhotographyTime.hints.tooltip}" id="id9">
+                                        <f:validator binding="#{bindings.PhotographyTime.validator}"/>
+                                        <af:convertDateTime pattern="#{bindings.PhotographyTime.format}"/>
+                                    </af:inputDate>
+                                    <af:inputText value="#{bindings.PhotographyLocation.inputValue}"
+                                                  label="#{bindings.PhotographyLocation.hints.label}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  required="#{bindings.PhotographyLocation.hints.mandatory}"
+                                                  columns="#{bindings.PhotographyLocation.hints.displayWidth}"
+                                                  maximumLength="#{bindings.PhotographyLocation.hints.precision}"
+                                                  shortDesc="#{bindings.PhotographyLocation.hints.tooltip}" id="it109">
+                                        <f:validator binding="#{bindings.PhotographyLocation.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.Keyword8.inputValue}"
+                                                  label="#{bindings.Keyword8.hints.label}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  required="#{bindings.Keyword8.hints.mandatory}"
+                                                  columns="#{bindings.Keyword8.hints.displayWidth}"
+                                                  maximumLength="#{bindings.Keyword8.hints.precision}"
+                                                  shortDesc="#{bindings.Keyword8.hints.tooltip}" id="it110">
+                                        <f:validator binding="#{bindings.Keyword8.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.FigureDesc1.inputValue}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  label="#{bindings.FigureDesc1.hints.label}"
+                                                  required="#{bindings.FigureDesc1.hints.mandatory}"
+                                                  columns="#{bindings.FigureDesc1.hints.displayWidth}"
+                                                  maximumLength="#{bindings.FigureDesc1.hints.precision}"
+                                                  shortDesc="#{bindings.FigureDesc1.hints.tooltip}" id="it111">
+                                        <f:validator binding="#{bindings.FigureDesc1.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.Remarks8.inputValue}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  label="#{bindings.Remarks8.hints.label}"
+                                                  required="#{bindings.Remarks8.hints.mandatory}"
+                                                  columns="#{bindings.Remarks8.hints.displayWidth}"
+                                                  maximumLength="#{bindings.Remarks8.hints.precision}"
+                                                  shortDesc="#{bindings.Remarks8.hints.tooltip}" id="it112">
+                                        <f:validator binding="#{bindings.Remarks8.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.FigureFormat2.inputValue}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  label="#{bindings.FigureFormat2.hints.label}"
+                                                  required="#{bindings.FigureFormat2.hints.mandatory}"
+                                                  columns="#{bindings.FigureFormat2.hints.displayWidth}"
+                                                  maximumLength="#{bindings.FigureFormat2.hints.precision}"
+                                                  shortDesc="#{bindings.FigureFormat2.hints.tooltip}" id="it113">
+                                        <f:validator binding="#{bindings.FigureFormat2.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.FigureSize2.inputValue}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  label="#{bindings.FigureSize2.hints.label}"
+                                                  required="#{bindings.FigureSize2.hints.mandatory}"
+                                                  columns="#{bindings.FigureSize2.hints.displayWidth}"
+                                                  maximumLength="#{bindings.FigureSize2.hints.precision}"
+                                                  shortDesc="#{bindings.FigureSize2.hints.tooltip}" id="it114">
+                                        <f:validator binding="#{bindings.FigureSize2.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.FigureDimension2.inputValue}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  label="#{bindings.FigureDimension2.hints.label}"
+                                                  required="#{bindings.FigureDimension2.hints.mandatory}"
+                                                  columns="#{bindings.FigureDimension2.hints.displayWidth}"
+                                                  maximumLength="#{bindings.FigureDimension2.hints.precision}"
+                                                  shortDesc="#{bindings.FigureDimension2.hints.tooltip}" id="it115">
+                                        <f:validator binding="#{bindings.FigureDimension2.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.FigureResolution2.inputValue}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  label="#{bindings.FigureResolution2.hints.label}"
+                                                  required="#{bindings.FigureResolution2.hints.mandatory}"
+                                                  columns="#{bindings.FigureResolution2.hints.displayWidth}"
+                                                  maximumLength="#{bindings.FigureResolution2.hints.precision}"
+                                                  shortDesc="#{bindings.FigureResolution2.hints.tooltip}" id="it116">
+                                        <f:validator binding="#{bindings.FigureResolution2.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.FigureXResolution2.inputValue}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  label="#{bindings.FigureXResolution2.hints.label}"
+                                                  required="#{bindings.FigureXResolution2.hints.mandatory}"
+                                                  columns="#{bindings.FigureXResolution2.hints.displayWidth}"
+                                                  maximumLength="#{bindings.FigureXResolution2.hints.precision}"
+                                                  shortDesc="#{bindings.FigureXResolution2.hints.tooltip}" id="it117">
+                                        <f:validator binding="#{bindings.FigureXResolution2.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.FigureYResolution2.inputValue}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  label="#{bindings.FigureYResolution2.hints.label}"
+                                                  required="#{bindings.FigureYResolution2.hints.mandatory}"
+                                                  columns="#{bindings.FigureYResolution2.hints.displayWidth}"
+                                                  maximumLength="#{bindings.FigureYResolution2.hints.precision}"
+                                                  shortDesc="#{bindings.FigureYResolution2.hints.tooltip}" id="it118">
+                                        <f:validator binding="#{bindings.FigureYResolution2.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.CoverDesign5.inputValue}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  label="#{bindings.CoverDesign5.hints.label}"
+                                                  required="#{bindings.CoverDesign5.hints.mandatory}"
+                                                  columns="#{bindings.CoverDesign5.hints.displayWidth}"
+                                                  maximumLength="#{bindings.CoverDesign5.hints.precision}"
+                                                  shortDesc="#{bindings.CoverDesign5.hints.tooltip}" id="it119">
+                                        <f:validator binding="#{bindings.CoverDesign5.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.FigureWidth2.inputValue}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  label="#{bindings.FigureWidth2.hints.label}"
+                                                  required="#{bindings.FigureWidth2.hints.mandatory}"
+                                                  columns="#{bindings.FigureWidth2.hints.displayWidth}"
+                                                  maximumLength="#{bindings.FigureWidth2.hints.precision}"
+                                                  shortDesc="#{bindings.FigureWidth2.hints.tooltip}" id="it120">
+                                        <f:validator binding="#{bindings.FigureWidth2.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.FigureHeight2.inputValue}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  label="#{bindings.FigureHeight2.hints.label}"
+                                                  required="#{bindings.FigureHeight2.hints.mandatory}"
+                                                  columns="#{bindings.FigureHeight2.hints.displayWidth}"
+                                                  maximumLength="#{bindings.FigureHeight2.hints.precision}"
+                                                  shortDesc="#{bindings.FigureHeight2.hints.tooltip}" id="it121">
+                                        <f:validator binding="#{bindings.FigureHeight2.validator}"/>
+                                    </af:inputText>
+                                </af:panelFormLayout>
+                            </f:facet>
+                            <f:facet name="TEACHING_PLAN">
+                                <af:panelFormLayout id="pfl10" maxColumns="2" rows="6">
+                                    <af:inputText value="#{bindings.SourceBookName.inputValue}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  label="#{bindings.SourceBookName.hints.label}"
+                                                  required="#{bindings.SourceBookName.hints.mandatory}"
+                                                  columns="#{bindings.SourceBookName.hints.displayWidth}"
+                                                  maximumLength="#{bindings.SourceBookName.hints.precision}"
+                                                  shortDesc="#{bindings.SourceBookName.hints.tooltip}" id="it122">
+                                        <f:validator binding="#{bindings.SourceBookName.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.SourceBookIsbn.inputValue}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  label="#{bindings.SourceBookIsbn.hints.label}"
+                                                  required="#{bindings.SourceBookIsbn.hints.mandatory}"
+                                                  columns="#{bindings.SourceBookIsbn.hints.displayWidth}"
+                                                  maximumLength="#{bindings.SourceBookIsbn.hints.precision}"
+                                                  shortDesc="#{bindings.SourceBookIsbn.hints.tooltip}" id="it123">
+                                        <f:validator binding="#{bindings.SourceBookIsbn.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.PublishingHouse2.inputValue}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  label="#{bindings.PublishingHouse2.hints.label}"
+                                                  required="#{bindings.PublishingHouse2.hints.mandatory}"
+                                                  columns="#{bindings.PublishingHouse2.hints.displayWidth}"
+                                                  maximumLength="#{bindings.PublishingHouse2.hints.precision}"
+                                                  shortDesc="#{bindings.PublishingHouse2.hints.tooltip}" id="it124">
+                                        <f:validator binding="#{bindings.PublishingHouse2.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.Editor5.inputValue}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  label="#{bindings.Editor5.hints.label}"
+                                                  required="#{bindings.Editor5.hints.mandatory}"
+                                                  columns="#{bindings.Editor5.hints.displayWidth}"
+                                                  maximumLength="#{bindings.Editor5.hints.precision}"
+                                                  shortDesc="#{bindings.Editor5.hints.tooltip}" id="it125">
+                                        <f:validator binding="#{bindings.Editor5.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.TeachingPlanName.inputValue}"
+                                                  label="#{bindings.TeachingPlanName.hints.label}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  required="#{bindings.TeachingPlanName.hints.mandatory}"
+                                                  columns="#{bindings.TeachingPlanName.hints.displayWidth}"
+                                                  maximumLength="#{bindings.TeachingPlanName.hints.precision}"
+                                                  shortDesc="#{bindings.TeachingPlanName.hints.tooltip}" id="it126">
+                                        <f:validator binding="#{bindings.TeachingPlanName.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.Producer1.inputValue}"
+                                                  label="#{bindings.Producer1.hints.label}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  required="#{bindings.Producer1.hints.mandatory}"
+                                                  columns="#{bindings.Producer1.hints.displayWidth}"
+                                                  maximumLength="#{bindings.Producer1.hints.precision}"
+                                                  shortDesc="#{bindings.Producer1.hints.tooltip}" id="it127">
+                                        <f:validator binding="#{bindings.Producer1.validator}"/>
+                                    </af:inputText>
+                                    <af:selectOneChoice value="#{bindings.TeachingPlanType.inputValue}"
+                                                        label="#{bindings.TeachingPlanType.label}"
+                                                        contentStyle="width:207px;height:22px;line-height:22px;border-color:#ABADB3;font-size:12px;"
+                                                        required="#{bindings.TeachingPlanType.hints.mandatory}"
+                                                        shortDesc="#{bindings.TeachingPlanType.hints.tooltip}"
+                                                        id="soc32">
+                                        <f:selectItems value="#{bindings.TeachingPlanType.items}" id="si32"/>
+                                    </af:selectOneChoice>
+                                    <af:selectOneChoice value="#{bindings.CopyrightFlag2.inputValue}"
+                                                        label="#{bindings.CopyrightFlag2.label}"
+                                                        contentStyle="width:207px;height:22px;line-height:22px;border-color:#ABADB3;font-size:12px;"
+                                                        required="#{bindings.CopyrightFlag2.hints.mandatory}"
+                                                        shortDesc="#{bindings.CopyrightFlag2.hints.tooltip}" id="soc33">
+                                        <f:selectItems value="#{bindings.CopyrightFlag2.items}" id="si33"/>
+                                    </af:selectOneChoice>
+                                    <af:inputText value="#{bindings.Keyword9.inputValue}"
+                                                  label="#{bindings.Keyword9.hints.label}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  required="#{bindings.Keyword9.hints.mandatory}"
+                                                  columns="#{bindings.Keyword9.hints.displayWidth}"
+                                                  maximumLength="#{bindings.Keyword9.hints.precision}"
+                                                  shortDesc="#{bindings.Keyword9.hints.tooltip}" id="it128">
+                                        <f:validator binding="#{bindings.Keyword9.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.Remarks9.inputValue}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  label="#{bindings.Remarks9.hints.label}"
+                                                  required="#{bindings.Remarks9.hints.mandatory}"
+                                                  columns="#{bindings.Remarks9.hints.displayWidth}"
+                                                  maximumLength="#{bindings.Remarks9.hints.precision}"
+                                                  shortDesc="#{bindings.Remarks9.hints.tooltip}" id="it129">
+                                        <f:validator binding="#{bindings.Remarks9.validator}"/>
+                                    </af:inputText>
+                                    <af:inputDate value="#{bindings.TeachingPlanStoreTime.inputValue}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  label="#{bindings.TeachingPlanStoreTime.hints.label}"
+                                                  required="#{bindings.TeachingPlanStoreTime.hints.mandatory}"
+                                                  columns="#{bindings.TeachingPlanStoreTime.hints.displayWidth}"
+                                                  shortDesc="#{bindings.TeachingPlanStoreTime.hints.tooltip}" id="id10">
+                                        <f:validator binding="#{bindings.TeachingPlanStoreTime.validator}"/>
+                                        <af:convertDateTime pattern="#{bindings.TeachingPlanStoreTime.format}"/>
+                                    </af:inputDate>
+                                </af:panelFormLayout>
+                            </f:facet>
+                            <f:facet name="VIDEO">
+                                <af:panelFormLayout id="pfl11" maxColumns="2" rows="9">
+                                    <af:inputText value="#{bindings.FileName1.inputValue}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  label="#{bindings.FileName1.hints.label}"
+                                                  required="#{bindings.FileName1.hints.mandatory}"
+                                                  columns="#{bindings.FileName1.hints.displayWidth}"
+                                                  maximumLength="#{bindings.FileName1.hints.precision}"
+                                                  shortDesc="#{bindings.FileName1.hints.tooltip}" id="it130">
+                                        <f:validator binding="#{bindings.FileName1.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.SeriesName3.inputValue}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  label="#{bindings.SeriesName3.hints.label}"
+                                                  required="#{bindings.SeriesName3.hints.mandatory}"
+                                                  columns="#{bindings.SeriesName3.hints.displayWidth}"
+                                                  maximumLength="#{bindings.SeriesName3.hints.precision}"
+                                                  shortDesc="#{bindings.SeriesName3.hints.tooltip}" id="it131">
+                                        <f:validator binding="#{bindings.SeriesName3.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.Isbn3.inputValue}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  label="#{bindings.Isbn3.hints.label}"
+                                                  required="#{bindings.Isbn3.hints.mandatory}"
+                                                  columns="#{bindings.Isbn3.hints.displayWidth}"
+                                                  maximumLength="#{bindings.Isbn3.hints.precision}"
+                                                  shortDesc="#{bindings.Isbn3.hints.tooltip}" id="it132">
+                                        <f:validator binding="#{bindings.Isbn3.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.ItemCode3.inputValue}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  label="#{bindings.ItemCode3.hints.label}"
+                                                  required="#{bindings.ItemCode3.hints.mandatory}"
+                                                  columns="#{bindings.ItemCode3.hints.displayWidth}"
+                                                  maximumLength="#{bindings.ItemCode3.hints.precision}"
+                                                  shortDesc="#{bindings.ItemCode3.hints.tooltip}" id="it133">
+                                        <f:validator binding="#{bindings.ItemCode3.validator}"/>
+                                    </af:inputText>
+                                    <af:selectOneChoice value="#{bindings.CarrierType2.inputValue}"
+                                                        label="#{bindings.CarrierType2.label}"
+                                                        contentStyle="width:207px;height:22px;line-height:22px;border-color:#ABADB3;font-size:12px;"
+                                                        required="#{bindings.CarrierType2.hints.mandatory}"
+                                                        shortDesc="#{bindings.CarrierType2.hints.tooltip}" id="soc34">
+                                        <f:selectItems value="#{bindings.CarrierType2.items}" id="si34"/>
+                                    </af:selectOneChoice>
+                                    <af:selectOneChoice value="#{bindings.Lang3.inputValue}"
+                                                        label="#{bindings.Lang3.label}"
+                                                        contentStyle="width:207px;height:22px;line-height:22px;border-color:#ABADB3;font-size:12px;"
+                                                        required="#{bindings.Lang3.hints.mandatory}"
+                                                        shortDesc="#{bindings.Lang3.hints.tooltip}" id="soc35">
+                                        <f:selectItems value="#{bindings.Lang3.items}" id="si35"/>
+                                    </af:selectOneChoice>
+                                    <af:inputText value="#{bindings.Editor6.inputValue}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  label="#{bindings.Editor6.hints.label}"
+                                                  required="#{bindings.Editor6.hints.mandatory}"
+                                                  columns="#{bindings.Editor6.hints.displayWidth}"
+                                                  maximumLength="#{bindings.Editor6.hints.precision}"
+                                                  shortDesc="#{bindings.Editor6.hints.tooltip}" id="it134">
+                                        <f:validator binding="#{bindings.Editor6.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.TextEditor2.inputValue}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  label="#{bindings.TextEditor2.hints.label}"
+                                                  required="#{bindings.TextEditor2.hints.mandatory}"
+                                                  columns="#{bindings.TextEditor2.hints.displayWidth}"
+                                                  maximumLength="#{bindings.TextEditor2.hints.precision}"
+                                                  shortDesc="#{bindings.TextEditor2.hints.tooltip}" id="it135">
+                                        <f:validator binding="#{bindings.TextEditor2.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.Producer2.inputValue}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  label="#{bindings.Producer2.hints.label}"
+                                                  required="#{bindings.Producer2.hints.mandatory}"
+                                                  columns="#{bindings.Producer2.hints.displayWidth}"
+                                                  maximumLength="#{bindings.Producer2.hints.precision}"
+                                                  shortDesc="#{bindings.Producer2.hints.tooltip}" id="it136">
+                                        <f:validator binding="#{bindings.Producer2.validator}"/>
+                                    </af:inputText>
+                                    <af:inputDate value="#{bindings.PubTime5.inputValue}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  label="#{bindings.PubTime5.hints.label}"
+                                                  required="#{bindings.PubTime5.hints.mandatory}"
+                                                  columns="#{bindings.PubTime5.hints.displayWidth}"
+                                                  shortDesc="#{bindings.PubTime5.hints.tooltip}" id="id11">
+                                        <f:validator binding="#{bindings.PubTime5.validator}"/>
+                                        <af:convertDateTime pattern="#{bindings.PubTime5.format}"/>
+                                    </af:inputDate>
+                                    <af:inputText value="#{bindings.AssortBook2.inputValue}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  label="#{bindings.AssortBook2.hints.label}"
+                                                  required="#{bindings.AssortBook2.hints.mandatory}"
+                                                  columns="#{bindings.AssortBook2.hints.displayWidth}"
+                                                  maximumLength="#{bindings.AssortBook2.hints.precision}"
+                                                  shortDesc="#{bindings.AssortBook2.hints.tooltip}" id="it137">
+                                        <f:validator binding="#{bindings.AssortBook2.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.Keyword10.inputValue}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  label="#{bindings.Keyword10.hints.label}"
+                                                  required="#{bindings.Keyword10.hints.mandatory}"
+                                                  columns="#{bindings.Keyword10.hints.displayWidth}"
+                                                  maximumLength="#{bindings.Keyword10.hints.precision}"
+                                                  shortDesc="#{bindings.Keyword10.hints.tooltip}" id="it138">
+                                        <f:validator binding="#{bindings.Keyword10.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.ContentDesc2.inputValue}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  label="#{bindings.ContentDesc2.hints.label}"
+                                                  required="#{bindings.ContentDesc2.hints.mandatory}"
+                                                  columns="#{bindings.ContentDesc2.hints.displayWidth}"
+                                                  maximumLength="#{bindings.ContentDesc2.hints.precision}"
+                                                  shortDesc="#{bindings.ContentDesc2.hints.tooltip}" id="it139">
+                                        <f:validator binding="#{bindings.ContentDesc2.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.Remarks10.inputValue}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  label="#{bindings.Remarks10.hints.label}"
+                                                  required="#{bindings.Remarks10.hints.mandatory}"
+                                                  columns="#{bindings.Remarks10.hints.displayWidth}"
+                                                  maximumLength="#{bindings.Remarks10.hints.precision}"
+                                                  shortDesc="#{bindings.Remarks10.hints.tooltip}" id="it140">
+                                        <f:validator binding="#{bindings.Remarks10.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.FileFormat1.inputValue}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  label="#{bindings.FileFormat1.hints.label}"
+                                                  required="#{bindings.FileFormat1.hints.mandatory}"
+                                                  columns="#{bindings.FileFormat1.hints.displayWidth}"
+                                                  maximumLength="#{bindings.FileFormat1.hints.precision}"
+                                                  shortDesc="#{bindings.FileFormat1.hints.tooltip}" id="it141">
+                                        <f:validator binding="#{bindings.FileFormat1.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.FileSize1.inputValue}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  label="#{bindings.FileSize1.hints.label}"
+                                                  required="#{bindings.FileSize1.hints.mandatory}"
+                                                  columns="#{bindings.FileSize1.hints.displayWidth}"
+                                                  maximumLength="#{bindings.FileSize1.hints.precision}"
+                                                  shortDesc="#{bindings.FileSize1.hints.tooltip}" id="it142">
+                                        <f:validator binding="#{bindings.FileSize1.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.FileTime1.inputValue}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  label="#{bindings.FileTime1.hints.label}"
+                                                  required="#{bindings.FileTime1.hints.mandatory}"
+                                                  columns="#{bindings.FileTime1.hints.displayWidth}"
+                                                  maximumLength="#{bindings.FileTime1.hints.precision}"
+                                                  shortDesc="#{bindings.FileTime1.hints.tooltip}" id="it143">
+                                        <f:validator binding="#{bindings.FileTime1.validator}"/>
+                                    </af:inputText>
+                                    <af:inputDate value="#{bindings.FileStoreTime1.inputValue}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  label="#{bindings.FileStoreTime1.hints.label}"
+                                                  required="#{bindings.FileStoreTime1.hints.mandatory}"
+                                                  columns="#{bindings.FileStoreTime1.hints.displayWidth}"
+                                                  shortDesc="#{bindings.FileStoreTime1.hints.tooltip}" id="id12">
+                                        <f:validator binding="#{bindings.FileStoreTime1.validator}"/>
+                                        <af:convertDateTime pattern="#{bindings.FileStoreTime1.format}"/>
+                                    </af:inputDate>
+                                </af:panelFormLayout>
+                            </f:facet>
+                        </af:switcher>
+                    </af:panelGroupLayout>
+                </f:facet>
+            </af:panelStretchLayout>
+        </af:form>
+    </af:document>
+</f:view>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36"
+                id="activity_edit_taskflow_activity_edittaskflow_preEidtActivityPageDef" Package="work.activity"
+                SkipValidation="true">
+  <parameters/>
+  <executables/>
+  <bindings>
+    <action id="preEidtActivity" RequiresUpdateModel="true" Action="invokeMethod" MethodName="preEidtActivity"
+            IsViewObjectMethod="false" DataControl="WorkAMDataControl"
+            InstanceName="data.WorkAMDataControl.dataProvider.Root.ActivityAM"
+            ReturnName="data.WorkAMDataControl.methodResults.preEidtActivity_WorkAMDataControl_dataProvider_Root_ActivityAM_preEidtActivity_result">
+      <NamedData NDName="mode" NDValue="#{pageFlowScope.mode}" NDType="java.lang.String"/>
+      <NamedData NDName="activityId" NDValue="#{pageFlowScope.activityId}" NDType="oracle.jbo.domain.Number"/>
+    </action>
+  </bindings>
+</pageDefinition>

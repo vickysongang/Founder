@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="copyrightOrderViewPageDef"
+                Package="work.copyright.inline">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <taskFlow id="copyright_order_view_taskflow1"
+              taskFlowId="/WEB-INF/work/copyright/copyright_order_view_taskflow.xml#copyright_order_view_taskflow"
+              activation="deferred" xmlns="http://xmlns.oracle.com/adf/controller/binding">
+      <parameters>
+        <parameter id="docId"
+                   value="#{pageFlowScope.docId == null ? facesContext.externalContext.requestParameterMap['docId'] : pageFlowScope.docId}"/>
+      </parameters>
+    </taskFlow>
+  </executables>
+  <bindings/>
+</pageDefinition>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE AppModule SYSTEM "jbo_03_01.dtd">
+<!---->
+<AppModule
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="LogAM"
+  Version="11.1.2.64.36"
+  ComponentClass="com.zypg.cms.work.model.am.LogAMImpl"
+  ClearCacheOnRollback="true"
+  ComponentInterface="com.zypg.cms.work.model.am.common.LogAM"
+  ClientProxyName="com.zypg.cms.work.model.am.client.LogAMClient">
+  <DesignTime>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="com.zypg.cms.work.model.am.LogAM_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <ViewUsage
+    Name="CmsProcessLogVO"
+    ViewObjectName="com.zypg.cms.work.model.viewobject.log.query.CmsProcessLogVO">
+    <ViewCriteriaUsage
+      Name="findProcessLogByDocId"
+      FullName="com.zypg.cms.work.model.viewobject.log.query.CmsProcessLogVO.findProcessLogByDocId"/>
+  </ViewUsage>
+  <ViewUsage
+    Name="CmsRollbackLogVO"
+    ViewObjectName="com.zypg.cms.work.model.viewobject.log.query.CmsRollbackLogVO">
+    <ViewCriteriaUsage
+      Name="findRollbakLogByDocId"
+      FullName="com.zypg.cms.work.model.viewobject.log.query.CmsRollbackLogVO.findRollbakLogByDocId"/>
+  </ViewUsage>
+  <ViewUsage
+    Name="CmsProcessLogTVO"
+    ViewObjectName="com.zypg.cms.work.model.viewobject.log.CmsProcessLogTVO"/>
+  <ViewUsage
+    Name="CmsRollbackLogTVO"
+    ViewObjectName="com.zypg.cms.work.model.viewobject.log.CmsRollbackLogTVO"/>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="com.zypg.cms.work.model.ModelBundle"/>
+  </ResourceBundle>
+  <ClientInterface>
+    <Method
+      Name="preRollbackLog"
+      MethodName="preRollbackLog">
+      <Return
+        Type="void"/>
+      <Parameter
+        Name="docId"
+        Type="oracle.jbo.domain.Number"/>
+    </Method>
+  </ClientInterface>
+</AppModule>

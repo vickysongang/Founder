@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="book_import_taskflow">
+    <default-activity>itemImport</default-activity>
+    <data-control-scope>
+      <isolated/>
+    </data-control-scope>
+    <input-parameter-definition id="__4">
+      <name>currentPublisherName</name>
+      <value>#{pageFlowScope.currentPublisherName}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__5">
+      <name>currentPublisherCode</name>
+      <value>#{pageFlowScope.currentPublisherCode}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__6">
+      <name>currentCategoryId</name>
+      <value>#{pageFlowScope.currentCategoryId}</value>
+      <class>oracle.jbo.domain.Number</class>
+    </input-parameter-definition>
+    <return-value-definition id="__9">
+      <name>importFlag</name>
+      <value>#{pageFlowScope.importFlag}</value>
+      <class>java.lang.String</class>
+    </return-value-definition>
+    <return-value-definition id="__10">
+      <name>tip</name>
+      <value>#{pageFlowScope.tip}</value>
+      <class>java.lang.String</class>
+    </return-value-definition>
+    <managed-bean id="__1">
+      <managed-bean-name>bookItemImportBean</managed-bean-name>
+      <managed-bean-class>com.zypg.cms.work.view.bean.BookItemImportBean</managed-bean-class>
+      <managed-bean-scope>backingBean</managed-bean-scope>
+    </managed-bean>
+    <managed-bean id="__7">
+      <managed-bean-name>copyrightAuthorImportManagedBean</managed-bean-name>
+      <managed-bean-class>com.zypg.cms.work.view.bean.CopyrightAuthorImportManagedBean</managed-bean-class>
+      <managed-bean-scope>backingBean</managed-bean-scope>
+    </managed-bean>
+    <managed-bean id="__8">
+      <managed-bean-name>copyrightItemImportManagedBean</managed-bean-name>
+      <managed-bean-class>com.zypg.cms.work.view.bean.CopyrightItemImportManagedBean</managed-bean-class>
+      <managed-bean-scope>backingBean</managed-bean-scope>
+    </managed-bean>
+    <view id="itemImport">
+      <page>/work/book/inline/itemImport.jsf</page>
+    </view>
+    <task-flow-return id="taskFlowReturn1">
+      <outcome>
+        <name>taskFlowReturn1</name>
+      </outcome>
+    </task-flow-return>
+    <control-flow-rule id="__2">
+      <from-activity-id>itemImport</from-activity-id>
+      <control-flow-case id="__3">
+        <from-outcome>toReturn</from-outcome>
+        <to-activity-id>taskFlowReturn1</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+  </task-flow-definition>
+</adfc-config>

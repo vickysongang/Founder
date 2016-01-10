@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="attachMgmtPageDef"
+                Package="work.attach.inline">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator id="CmsAttachTVO4ViewIterator" Binds="Root.CommonAM.CmsAttachTVO4View" DataControl="WorkAMDataControl"
+              RangeSize="25"/>
+    <iterator Binds="Root.AttachAM.CmsAttachEditTVO" DataControl="WorkAMDataControl" RangeSize="25"
+              id="CmsAttachEditTVOIterator"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="CmsAttachTVO4ViewIterator" id="CmsAttachTVO4View">
+      <nodeDefinition DefName="com.zypg.cms.work.model.viewobject.attach.CmsAttachTVO" Name="CmsAttachTVO4View0">
+        <AttrNames>
+          <Item Value="AttachId"/>
+          <Item Value="AttachType"/>
+          <Item Value="AttachTypeMeaning"/>
+          <Item Value="Attribute1"/>
+          <Item Value="Attribute10"/>
+          <Item Value="Attribute11"/>
+          <Item Value="Attribute12"/>
+          <Item Value="Attribute13"/>
+          <Item Value="Attribute14"/>
+          <Item Value="Attribute15"/>
+          <Item Value="Attribute2"/>
+          <Item Value="Attribute3"/>
+          <Item Value="Attribute4"/>
+          <Item Value="Attribute5"/>
+          <Item Value="Attribute6"/>
+          <Item Value="Attribute7"/>
+          <Item Value="Attribute8"/>
+          <Item Value="Attribute9"/>
+          <Item Value="CreatedBy"/>
+          <Item Value="CreationDate"/>
+          <Item Value="DocId"/>
+          <Item Value="FileSize"/>
+          <Item Value="Format"/>
+          <Item Value="LastUpdateDate"/>
+          <Item Value="LastUpdatedBy"/>
+          <Item Value="libCode"/>
+          <Item Value="ObjectVersionNumber"/>
+          <Item Value="Path"/>
+          <Item Value="Remarks"/>
+          <Item Value="SourceId"/>
+          <Item Value="Title"/>
+          <Item Value="UcmDid"/>
+          <Item Value="UcmDocname"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="CmsAttachEditTVOIterator" id="Title">
+      <AttrNames>
+        <Item Value="Title"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsAttachEditTVOIterator" id="Remarks">
+      <AttrNames>
+        <Item Value="Remarks"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="CmsAttachEditTVOIterator" StaticList="false" Uses="LOV_AttachType" id="AttachType"
+          DTSupportsMRU="true" SelectItemValueMode="ListObject"/>
+  </bindings>
+</pageDefinition>

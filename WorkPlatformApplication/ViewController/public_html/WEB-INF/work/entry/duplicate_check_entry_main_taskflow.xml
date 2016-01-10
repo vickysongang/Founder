@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="duplicate_check_entry_main_taskflow">
+    <default-activity>initEntryDup</default-activity>
+    <input-parameter-definition id="__6">
+      <name>compCode</name>
+      <value>#{pageFlowScope.compCode}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <managed-bean id="__5">
+      <managed-bean-name>entryDupManagedBean</managed-bean-name>
+      <managed-bean-class>com.zypg.cms.work.view.bean.EntryDupManagedBean</managed-bean-class>
+      <managed-bean-scope>backingBean</managed-bean-scope>
+    </managed-bean>
+    <method-call id="initEntryDup">
+      <method>#{backingBeanScope.entryDupManagedBean.initEntryDup}</method>
+      <outcome>
+        <fixed-outcome>toEntryDup</fixed-outcome>
+      </outcome>
+    </method-call>
+    <view id="entryDup">
+      <page>/work/entry/fragment/entryDup.jsff</page>
+    </view>
+    <control-flow-rule id="__3">
+      <from-activity-id>initEntryDup</from-activity-id>
+      <control-flow-case id="__4">
+        <from-outcome>toEntryDup</from-outcome>
+        <to-activity-id>entryDup</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

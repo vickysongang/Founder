@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <af:document title="chapterView.jsf" id="d1">
+        <af:messages id="m1"/>
+        <f:facet name="metaContainer">
+            <af:resource type="css">
+                .title {
+                    font-size: 20px;
+                    font-weight: bold;
+                }
+
+                .sect1 {
+                    margin-left: 20px;
+                }
+
+                .sect1 .title {
+                    font-weight: bold;
+                    font-size: 15px;
+                }
+
+                .xo5 {
+                    background: url('../resources/images/import_item_bg.gif')repeat-x;
+                }
+
+                .xo7 {
+                    background-color: #2a78a8;
+                }
+            </af:resource>
+        </f:facet>
+        <af:form id="f1">
+            <af:panelSplitter id="ps1" orientation="horizontal" splitterPosition="270" styleClass="chapter">
+                <f:facet name="first">
+                    <af:panelGroupLayout id="pgl1" layout="vertical"
+                                         inlineStyle="background:url('../resources/images/chapter_left_bg.png') repeat; ">
+                        <af:panelGroupLayout id="pgl3" layout="horizontal" inlineStyle="margin:12px 0px 0px 10px">
+                            <af:image source="/resources/images/chapter_category.png"
+                                      inlineStyle="width:15px;height:15px" id="i1"/>
+                            <af:outputText value="#{pageFlowScope.bookName}" id="ot2" inlineStyle="margin-left:5px"/>
+                        </af:panelGroupLayout>
+                        <af:panelGroupLayout id="pgl4" layout="scroll" inlineStyle="margin:1px 0px 0px 10px">
+                            <af:iterator value="#{bindings.CmsChapterVO.collectionModel}" var="row" id="i5">
+                                <af:panelGroupLayout id="pgl5" layout="horizontal" inlineStyle="margin-top:5px">
+                                    <af:image source="/resources/images/chapter_file.png"
+                                              inlineStyle="width:15px;height:15px;margin:0px 0px 0px 10px" id="i2"/>
+                                    <af:commandLink text="#{row.ChapterName}" id="cl1"
+                                                    inlineStyle="margin-left:5px;margin-top:5px;"
+                                                    actionListener="#{backingBeanScope.chapterViewBean.chapterSelectActionListener}"
+                                                    partialSubmit="true">
+                                        <f:attribute name="content" value="#{row.Content}"/>
+                                    </af:commandLink>
+                                </af:panelGroupLayout>
+                            </af:iterator>
+                        </af:panelGroupLayout>
+                    </af:panelGroupLayout>
+                </f:facet>
+                <f:facet name="second">
+                    <af:panelGroupLayout id="pgl2" layout="scroll"
+                                         inlineStyle="background:url('../resources/images/import_item_bg.gif') repeat-x;"
+                                         partialTriggers="i5:cl1">
+                        <af:outputText value="#{pageFlowScope.chapterContent}" id="ot1" escape="false"/>
+                    </af:panelGroupLayout>
+                </f:facet>
+            </af:panelSplitter>
+        </af:form>
+    </af:document>
+</f:view>

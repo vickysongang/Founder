@@ -1,0 +1,47 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<SDM>
+   <OverallProperties
+      id="OverallProperties1"/>
+   <MethodCall
+      id="MethodCall3">
+      <property
+         name="activityId">initDocBookMain</property>
+      <property
+         name="start">true</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>initDocBookMain&lt;/b> (Default Activity)&lt;/p>&lt;p>Activity Type:  Method Call&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">209.24707</property>
+      <property
+         name="x">182.0</property>
+   </MethodCall>
+   <View
+      id="View5">
+      <property
+         name="activityId">docBookMain</property>
+      <property
+         name="page">/work/docbook/fragment/docBookMain.jsff</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>docBookMain&lt;/b>&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">89.69531</property>
+      <property
+         name="pageFragment">true</property>
+      <property
+         name="x">371.3545</property>
+   </View>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase6"
+      from="MethodCall3"
+      to="View5">
+      <property
+         name="fromOutcome">toMain</property>
+      <property
+         name="sdm:polyPoints">R50,223.0,208.89648,331.3545,89.69531,L50</property>
+   </ControlFlowCase>
+</SDM>

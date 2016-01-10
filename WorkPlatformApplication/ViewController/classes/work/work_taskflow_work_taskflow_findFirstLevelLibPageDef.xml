@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36"
+                id="work_taskflow_work_taskflow_findFirstLevelLibPageDef" Package="work" SkipValidation="true">
+  <parameters/>
+  <executables/>
+  <bindings>
+    <methodAction id="findFirstLevelLib" RequiresUpdateModel="true" Action="invokeMethod" MethodName="findFirstLevelLib"
+                  IsViewObjectMethod="false" DataControl="WorkAMDataControl"
+                  InstanceName="data.WorkAMDataControl.dataProvider"
+                  ReturnName="data.WorkAMDataControl.methodResults.findFirstLevelLib_WorkAMDataControl_dataProvider_findFirstLevelLib_result">
+      <NamedData NDName="compCode" NDValue="#{pageFlowScope.compCode}" NDType="java.lang.String"/>
+    </methodAction>
+  </bindings>
+</pageDefinition>

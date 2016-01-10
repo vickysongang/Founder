@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="homePageDef"
+                Package="work.fragment">
+    <parameters/>
+    <executables>
+        <variableIterator id="variables"/>
+        <taskFlow id="work_taskflow1" taskFlowId="/WEB-INF/work/work_taskflow.xml#work_taskflow" activation="deferred"
+                  xmlns="http://xmlns.oracle.com/adf/controller/binding" Refresh="ifNeeded">
+            <parameters>
+                <parameter id="compCode" value="#{pageFlowScope.compCode}"/>
+                <parameter id="currTime" value="#{requestScope.commonManagedBean.currTime}"/>
+                <parameter id="groupUserFlag" value="#{pageFlowScope.groupUserFlag}"/>
+            </parameters>
+        </taskFlow>
+        <iterator Binds="CmsUserCompVO" RangeSize="25" DataControl="WorkAMDataControl" id="CmsUserCompVOIterator"/>
+    </executables>
+    <bindings>
+        <list IterBinding="CmsUserCompVOIterator" ListOperMode="navigation" ListIter="CmsUserCompVOIterator"
+              id="CmsUserCompVO" DTSupportsMRU="true" SelectItemValueMode="ListObject">
+            <AttrNames>
+                <Item Value="CompName"/>
+            </AttrNames>
+        </list>
+        <methodAction id="findCompByName" InstanceName="data.WorkAMDataControl.dataProvider"
+                      DataControl="WorkAMDataControl" RequiresUpdateModel="true" Action="invokeMethod"
+                      MethodName="findCompByName" IsViewObjectMethod="false"
+                      ReturnName="data.WorkAMDataControl.methodResults.findCompByName_WorkAMDataControl_dataProvider_findCompByName_result">
+            <NamedData NDName="compName" NDValue="#{pageFlowScope.compName}" NDType="java.lang.String"/>
+        </methodAction>
+    </bindings>
+</pageDefinition>

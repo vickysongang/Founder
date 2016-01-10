@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="coursewareViewPageDef"
+                Package="work.courseware.fragment">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <taskFlow id="related_info_view_taskflow1"
+              taskFlowId="/WEB-INF/common/related_info_view_taskflow.xml#related_info_view_taskflow"
+              activation="deferred" xmlns="http://xmlns.oracle.com/adf/controller/binding">
+      <parameters>
+        <parameter id="docId" value="#{pageFlowScope.docId}"/>
+        <parameter id="position" value="LEFT"/>
+        <parameter id="displayWidth" value="200"/>
+      </parameters>
+    </taskFlow>
+    <taskFlow id="related_info_view_taskflow2"
+              taskFlowId="/WEB-INF/common/related_info_view_taskflow.xml#related_info_view_taskflow"
+              activation="deferred" xmlns="http://xmlns.oracle.com/adf/controller/binding">
+      <parameters>
+        <parameter id="docId" value="#{pageFlowScope.docId}"/>
+        <parameter id="position" value="RIGHT"/>
+        <parameter id="displayWidth" value="200"/>
+      </parameters>
+    </taskFlow>
+    <iterator Binds="Root.CoursewareAM.CmsCoursewareTVO4View" DataControl="WorkAMDataControl" RangeSize="25"
+              id="CmsCoursewareTVO4ViewIterator"/>
+    <iterator Binds="Root.CoursewareAM.CmsDocUcmRelTVO4FileList" DataControl="WorkAMDataControl" RangeSize="10"
+              id="CmsDocUcmRelTVO4FileListIterator"/>
+    <taskFlow id="extend_attr_view_taskflow1"
+              taskFlowId="/WEB-INF/common/extend_attr_view_taskflow.xml#extend_attr_view_taskflow" activation="deferred"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding">
+      <parameters>
+        <parameter id="docId" value="#{pageFlowScope.docId}"/>
+      </parameters>
+    </taskFlow>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="CmsCoursewareTVO4ViewIterator" id="TeachingMaterialName">
+      <AttrNames>
+        <Item Value="TeachingMaterialName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsCoursewareTVO4ViewIterator" id="TeachingMaterialIsbn">
+      <AttrNames>
+        <Item Value="TeachingMaterialIsbn"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsCoursewareTVO4ViewIterator" id="TeachingMaterialAuthor">
+      <AttrNames>
+        <Item Value="TeachingMaterialAuthor"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsCoursewareTVO4ViewIterator" id="TeachingMaterialEditor">
+      <AttrNames>
+        <Item Value="TeachingMaterialEditor"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsCoursewareTVO4ViewIterator" id="TeachingMaterialSeriesName">
+      <AttrNames>
+        <Item Value="TeachingMaterialSeriesName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsCoursewareTVO4ViewIterator" id="TeachingMaterialType">
+      <AttrNames>
+        <Item Value="TeachingMaterialType"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsCoursewareTVO4ViewIterator" id="CompCode">
+      <AttrNames>
+        <Item Value="CompCode"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="CmsCoursewareTVO4ViewIterator" StaticList="false" Uses="LOV_CoursewareType" id="CoursewareType"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <attributeValues IterBinding="CmsCoursewareTVO4ViewIterator" id="CoursewareName">
+      <AttrNames>
+        <Item Value="CoursewareName"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="CmsCoursewareTVO4ViewIterator" StaticList="false" Uses="LOV_CopyrightFlag" id="CopyrightFlag"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <attributeValues IterBinding="CmsCoursewareTVO4ViewIterator" id="Keyword">
+      <AttrNames>
+        <Item Value="Keyword"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsCoursewareTVO4ViewIterator" id="Remarks">
+      <AttrNames>
+        <Item Value="Remarks"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsCoursewareTVO4ViewIterator" id="UploadTime">
+      <AttrNames>
+        <Item Value="UploadTime"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="CmsDocUcmRelTVO4FileListIterator" id="CmsDocUcmRelTVO4FileList">
+      <nodeDefinition DefName="com.zypg.cms.work.model.viewobject.common.CmsDocUcmRelTVO"
+                      Name="CmsDocUcmRelTVO4FileList0">
+        <AttrNames>
+          <Item Value="FileName"/>
+          <Item Value="FileCategory"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="CmsCoursewareTVO4ViewIterator" id="DocId">
+      <AttrNames>
+        <Item Value="DocId"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

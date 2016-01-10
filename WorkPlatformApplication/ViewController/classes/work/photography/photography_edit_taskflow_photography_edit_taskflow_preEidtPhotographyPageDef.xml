@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36"
+                id="photography_edit_taskflow_photography_edit_taskflow_preEidtPhotographyPageDef"
+                Package="work.photography" SkipValidation="true">
+  <parameters/>
+  <executables/>
+  <bindings>
+    <action id="preEidtPhotography" RequiresUpdateModel="true" Action="invokeMethod" MethodName="preEidtPhotography"
+            IsViewObjectMethod="false" DataControl="WorkAMDataControl"
+            InstanceName="data.WorkAMDataControl.dataProvider.Root.PhotographyFigureAM">
+      <NamedData NDName="mode" NDValue="#{pageFlowScope.mode}" NDType="java.lang.String"/>
+      <NamedData NDName="figureId" NDValue="#{pageFlowScope.figureId}" NDType="oracle.jbo.domain.Number"/>
+    </action>
+  </bindings>
+</pageDefinition>

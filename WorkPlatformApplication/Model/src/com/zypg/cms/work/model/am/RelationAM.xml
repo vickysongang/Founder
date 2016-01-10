@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE AppModule SYSTEM "jbo_03_01.dtd">
+<!---->
+<AppModule
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="RelationAM"
+  Version="11.1.2.64.36"
+  ComponentClass="com.zypg.cms.work.model.am.RelationAMImpl"
+  ClearCacheOnRollback="true">
+  <DesignTime>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="com.zypg.cms.work.model.am.RelationAM_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <ViewUsage
+    Name="CmsDocRelVO"
+    ViewObjectName="com.zypg.cms.work.model.viewobject.relation.query.CmsDocRelVO"/>
+  <ViewUsage
+    Name="CmsDocRelTVO"
+    ViewObjectName="com.zypg.cms.work.model.viewobject.relation.CmsDocRelTVO"/>
+  <ViewUsage
+    Name="CmsDoc4RelationQueryVO"
+    ViewObjectName="com.zypg.cms.work.model.viewobject.relation.query.CmsDoc4RelationQueryVO"/>
+  <ViewUsage
+    Name="CmsLibRetrivalVO"
+    ViewObjectName="com.zypg.cms.work.model.viewobject.relation.query.CmsLibRetrivalVO"/>
+  <ViewUsage
+    Name="CmsDocRetrivalVO"
+    ViewObjectName="com.zypg.cms.work.model.viewobject.relation.query.CmsDocRetrivalVO">
+    <ViewCriteriaUsage
+      Name="findDocVC"
+      FullName="com.zypg.cms.work.model.viewobject.relation.query.CmsDocRetrivalVO.findDocVC"/>
+  </ViewUsage>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="com.zypg.cms.work.model.ModelBundle"/>
+  </ResourceBundle>
+</AppModule>

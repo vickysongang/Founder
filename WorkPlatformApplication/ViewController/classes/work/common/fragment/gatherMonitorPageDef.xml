@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="gatherMonitorPageDef"
+                Package="work.common.fragment">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="CmsGatherMonitorHVO" RangeSize="25" DataControl="WorkAMDataControl"
+              id="CmsGatherMonitorHVOIterator"/>
+    <iterator Binds="CmsGatherMonitorLVO" RangeSize="25" DataControl="WorkAMDataControl"
+              id="CmsGatherMonitorLVOIterator"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="CmsGatherMonitorHVOIterator" id="CmsGatherMonitorHVO">
+      <nodeDefinition DefName="com.zypg.cms.work.model.viewobject.common.query.CmsGatherMonitorHVO"
+                      Name="CmsGatherMonitorHVO0">
+        <AttrNames>
+          <Item Value="ResName"/>
+          <Item Value="DocId"/>
+          <Item Value="ResDisplayName"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="CmsGatherMonitorLVOIterator" id="CmsGatherMonitorLVO">
+      <nodeDefinition DefName="com.zypg.cms.work.model.viewobject.common.query.CmsGatherMonitorLVO"
+                      Name="CmsGatherMonitorLVO0">
+        <AttrNames>
+          <Item Value="MonitorId"/>
+          <Item Value="DocId"/>
+          <Item Value="FileName"/>
+          <Item Value="FilePath"/>
+          <Item Value="Result"/>
+          <Item Value="ThumbnailResult"/>
+          <Item Value="Remarks"/>
+          <Item Value="CreationDate"/>
+          <Item Value="Operation"/>
+          <Item Value="ResultDisplay"/>
+          <Item Value="ThumbnailResultDisplay"/>
+          <Item Value="BatchNum"/>
+          <Item Value="CreationDateDisplay"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+  </bindings>
+</pageDefinition>

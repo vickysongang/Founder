@@ -1,0 +1,494 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <af:document title="#{pageFlowScope.mode == 'CREATE'?'新建作者版权': pageFlowScope.mode == 'EDIT' ? '修改作者版权':'审核'}"
+                 id="d1">
+        <af:messages id="m1"/>
+        <f:facet name="metaContainer">
+            <af:resource type="javascript" source="/resources/js/jquery_min.js"/>
+            <af:resource type="javascript" source="/resources/js/work_platform.js"/>
+        </f:facet>
+        <af:form id="f1">
+            <af:panelStretchLayout id="psl1" bottomHeight="30px">
+                <f:facet name="bottom">
+                    <af:panelGroupLayout id="pgl1" layout="vertical" halign="center">
+                        <af:panelGroupLayout id="pgl3" layout="horizontal">
+                            <af:commandButton text="保存" id="cb1" styleClass="popup-btn" partialSubmit="true"
+                                              action="#{backingBeanScope.copyrightAuthorEditManagedBean.saveAction}">
+                                <af:setPropertyListener to="#{pageFlowScope.comfirmFlag}" type="action" from="Y"/>
+                            </af:commandButton>
+                            <af:commandButton text="Return" id="returnBtn" partialSubmit="true" action="toReturn"
+                                              styleClass="popup-btn" visible="false"></af:commandButton>
+                            <af:commandButton text="取消" id="cb2" styleClass="popup-btn" immediate="true"
+                                              partialSubmit="true"
+                                              actionListener="#{backingBeanScope.copyrightAuthorEditManagedBean.cancelActionListener}"
+                                              action="toReturn">
+                                <af:setPropertyListener to="#{pageFlowScope.comfirmFlag}" type="action" from="N"/>
+                            </af:commandButton>
+                        </af:panelGroupLayout>
+                        <af:popup childCreation="deferred" autoCancel="disabled" id="p1" contentDelivery="lazyUncached">
+                            <af:dialog id="d2" contentWidth="100" contentHeight="100" title="选择分类"
+                                       dialogListener="#{backingBeanScope.copyrightAuthorEditManagedBean.attributePicker.categoryDialogListener}">
+                                <f:facet name="buttonBar"/>
+                                <af:region value="#{bindings.category_pick_taskflow1.regionModel}" id="r1"/>
+                            </af:dialog>
+                        </af:popup>
+                        <af:spacer id="categoryHandler" clientComponent="true">
+                            <af:serverListener type="passCategory"
+                                               method="#{backingBeanScope.copyrightAuthorEditManagedBean.attributePicker.passCategoryServerListener}"/>
+                        </af:spacer>
+                    </af:panelGroupLayout>
+                </f:facet>
+                <f:facet name="center">
+                    <af:panelGroupLayout id="pgl2" layout="scroll">
+                        <af:panelFormLayout id="pfl2" labelWidth="56px" rendered="#{pageFlowScope.mode == 'CREATE'}">
+                            <af:selectBooleanCheckbox id="sbc1" text="在图书库创建图书" autoSubmit="true"
+                                                      valueChangeListener="#{backingBeanScope.copyrightAuthorEditManagedBean.isToCreateBookValueChangeListener}"></af:selectBooleanCheckbox>
+                        </af:panelFormLayout>
+                        <af:panelFormLayout id="pfl8" maxColumns="2" rows="10" labelWidth="100" partialTriggers="sbc1">
+                            <af:inputListOfValues id="bookNameId" popupTitle="选择图书"
+                                                  value="#{bindings.BookName.inputValue}" showRequired="true"
+                                                  label="#{bindings.BookName.hints.label}" editMode="select"
+                                                  rendered="#{!pageFlowScope.toCreateBookFlag}"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  model="#{bindings.BookName.listOfValuesModel}"
+                                                  columns="#{bindings.BookName.hints.displayWidth}"
+                                                  shortDesc="#{bindings.BookName.hints.tooltip}"
+                                                  binding="#{backingBeanScope.copyrightAuthorEditManagedBean.bookNameInputListOfValues}">
+                                <f:validator binding="#{bindings.BookName.validator}"/>
+                            </af:inputListOfValues>
+                            <af:inputText value="#{bindings.BookName1.inputValue}"
+                                          label="#{bindings.BookName1.hints.label}" showRequired="true"
+                                          contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                          columns="#{bindings.BookName1.hints.displayWidth}"
+                                          rendered="#{pageFlowScope.toCreateBookFlag}"
+                                          maximumLength="#{bindings.BookName1.hints.precision}"
+                                          shortDesc="#{bindings.BookName1.hints.tooltip}" id="it1"
+                                          binding="#{backingBeanScope.copyrightAuthorEditManagedBean.bookNameInputText}">
+                                <f:validator binding="#{bindings.BookName1.validator}"/>
+                            </af:inputText>
+                            <af:inputText value="#{bindings.Isbn.inputValue}" label="#{bindings.Isbn.hints.label}"
+                                          showRequired="true" columns="#{bindings.Isbn.hints.displayWidth}"
+                                          contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                          maximumLength="#{bindings.Isbn.hints.precision}"
+                                          shortDesc="#{bindings.Isbn.hints.tooltip}" id="it12"
+                                          binding="#{backingBeanScope.copyrightAuthorEditManagedBean.isbnInputText}">
+                                <f:validator binding="#{bindings.Isbn.validator}"/>
+                            </af:inputText>
+                            <af:inputText value="#{bindings.Author.inputValue}" label="#{bindings.Author.hints.label}"
+                                          showRequired="true"
+                                          contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                          columns="#{bindings.Author.hints.displayWidth}"
+                                          maximumLength="#{bindings.Author.hints.precision}"
+                                          shortDesc="#{bindings.Author.hints.tooltip}" id="it19"
+                                          binding="#{backingBeanScope.copyrightAuthorEditManagedBean.authorInputText}">
+                                <f:validator binding="#{bindings.Author.validator}"/>
+                            </af:inputText>
+                            <af:inputText value="#{bindings.Edition.inputValue}" label="#{bindings.Edition.hints.label}"
+                                          showRequired="true" columns="#{bindings.Edition.hints.displayWidth}"
+                                          contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                          maximumLength="#{bindings.Edition.hints.precision}"
+                                          shortDesc="#{bindings.Edition.hints.tooltip}" id="it11"
+                                          binding="#{backingBeanScope.copyrightAuthorEditManagedBean.editionInputText}">
+                                <f:validator binding="#{bindings.Edition.validator}"/>
+                                <af:convertNumber groupingUsed="false" pattern="#{bindings.Edition.format}"/>
+                            </af:inputText>
+                            <af:inputText value="#{bindings.PublishingHouse.inputValue}"
+                                          label="#{bindings.PublishingHouse.hints.label}" showRequired="true"
+                                          contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                          columns="#{bindings.PublishingHouse.hints.displayWidth}"
+                                          maximumLength="#{bindings.PublishingHouse.hints.precision}"
+                                          shortDesc="#{bindings.PublishingHouse.hints.tooltip}" id="it2"
+                                          binding="#{backingBeanScope.copyrightAuthorEditManagedBean.publishingHouseInputText}">
+                                <f:validator binding="#{bindings.PublishingHouse.validator}"/>
+                            </af:inputText>
+                            <af:selectManyCheckbox value="#{pageFlowScope.area}" label="授权地区" id="smc3"
+                                                   layout="horizontal" autoSubmit="true" showRequired="true"
+                                                   binding="#{backingBeanScope.copyrightAuthorEditManagedBean.areaSelectManyCheckBox}">
+                                <f:selectItems value="#{bindings.Lookup4Area.items}" id="si6"/>
+                            </af:selectManyCheckbox>
+                            <af:inputText value="#{bindings.Price.inputValue}" label="#{bindings.Price.hints.label}"
+                                          showRequired="true" columns="#{bindings.Price.hints.displayWidth}"
+                                          contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                          maximumLength="#{bindings.Price.hints.precision}"
+                                          shortDesc="#{bindings.Price.hints.tooltip}" id="it10"
+                                          binding="#{backingBeanScope.copyrightAuthorEditManagedBean.priceInputText}">
+                                <f:validator binding="#{bindings.Price.validator}"/>
+                                <af:convertNumber groupingUsed="false" pattern="#{bindings.Price.format}"/>
+                            </af:inputText>
+                            <af:inputText value="#{bindings.CopyrightAgent.inputValue}"
+                                          label="#{bindings.CopyrightAgent.hints.label}"
+                                          labelStyle="white-space:nowrap;"
+                                          contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                          columns="#{bindings.CopyrightAgent.hints.displayWidth}"
+                                          maximumLength="#{bindings.CopyrightAgent.hints.precision}"
+                                          shortDesc="#{bindings.CopyrightAgent.hints.tooltip}" id="it3">
+                                <f:validator binding="#{bindings.CopyrightAgent.validator}"/>
+                            </af:inputText>
+                            <af:selectOneChoice value="#{bindings.CopyrightForm.inputValue}"
+                                                label="#{bindings.CopyrightForm.label}"
+                                                contentStyle="width:207px;height:22px;line-height:22px;border-color:#ABADB3;font-size:12px;"
+                                                shortDesc="#{bindings.CopyrightForm.hints.tooltip}" id="soc8"
+                                                showRequired="true">
+                                <f:selectItems value="#{bindings.CopyrightForm.items}" id="si8"/>
+                            </af:selectOneChoice>
+                            <af:inputText value="#{bindings.CopyrightOwner.inputValue}"
+                                          label="#{bindings.CopyrightOwner.hints.label}"
+                                          columns="#{bindings.CopyrightOwner.hints.displayWidth}"
+                                          contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                          maximumLength="#{bindings.CopyrightOwner.hints.precision}"
+                                          shortDesc="#{bindings.CopyrightOwner.hints.tooltip}" id="it5">
+                                <f:validator binding="#{bindings.CopyrightOwner.validator}"/>
+                            </af:inputText>
+                            <af:inputText value="#{bindings.CopyrightRegistrationNumber.inputValue}"
+                                          labelStyle="white-space:nowrap;"
+                                          label="#{bindings.CopyrightRegistrationNumber.hints.label}"
+                                          contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                          columns="#{bindings.CopyrightRegistrationNumber.hints.displayWidth}"
+                                          maximumLength="#{bindings.CopyrightRegistrationNumber.hints.precision}"
+                                          shortDesc="#{bindings.CopyrightRegistrationNumber.hints.tooltip}" id="it6"
+                                          showRequired="true"
+                                          binding="#{backingBeanScope.copyrightAuthorEditManagedBean.copyrightRegistrationNumberInputText}">
+                                <f:validator binding="#{bindings.CopyrightRegistrationNumber.validator}"/>
+                            </af:inputText>
+                            <af:inputText value="#{bindings.DigitalRoyalty.inputValue}"
+                                          label="#{bindings.DigitalRoyalty.hints.label}"
+                                          required="#{bindings.DigitalRoyalty.hints.mandatory}"
+                                          columns="#{bindings.DigitalRoyalty.hints.displayWidth}"
+                                          contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                          maximumLength="#{bindings.DigitalRoyalty.hints.precision}"
+                                          shortDesc="#{bindings.DigitalRoyalty.hints.tooltip}" id="it7">
+                                <f:validator binding="#{bindings.DigitalRoyalty.validator}"/>
+                            </af:inputText>
+                            <af:inputText value="#{bindings.OverseasRoyalty.inputValue}"
+                                          label="#{bindings.OverseasRoyalty.hints.label}"
+                                          required="#{bindings.OverseasRoyalty.hints.mandatory}"
+                                          columns="#{bindings.OverseasRoyalty.hints.displayWidth}"
+                                          contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                          maximumLength="#{bindings.OverseasRoyalty.hints.precision}"
+                                          shortDesc="#{bindings.OverseasRoyalty.hints.tooltip}" id="it14">
+                                <f:validator binding="#{bindings.OverseasRoyalty.validator}"/>
+                            </af:inputText>
+                            <af:inputDate value="#{bindings.PubTime.inputValue}" label="#{bindings.PubTime.hints.label}"
+                                          showRequired="true" columns="#{bindings.PubTime.hints.displayWidth}"
+                                          contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                          shortDesc="#{bindings.PubTime.hints.tooltip}" id="id11"
+                                          binding="#{backingBeanScope.copyrightAuthorEditManagedBean.pubTimeInputText}">
+                                <f:validator binding="#{bindings.PubTime.validator}"/>
+                                <af:convertDateTime pattern="#{bindings.PubTime.format}"/>
+                            </af:inputDate>
+                            <af:inputText value="#{bindings.Impression.inputValue}"
+                                          label="#{bindings.Impression.hints.label}" showRequired="true"
+                                          columns="#{bindings.Impression.hints.displayWidth}"
+                                          maximumLength="#{bindings.Impression.hints.precision}"
+                                          contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                          shortDesc="#{bindings.Impression.hints.tooltip}" id="it17"
+                                          binding="#{backingBeanScope.copyrightAuthorEditManagedBean.impressionInputText}">
+                                <f:validator binding="#{bindings.Impression.validator}"/>
+                                <af:convertNumber groupingUsed="false" pattern="#{bindings.Impression.format}"/>
+                            </af:inputText>
+                            <af:panelLabelAndMessage label="#{bindings.CategoryName.hints.label}" id="plam3">
+                                <af:inputText value="#{bindings.CategoryName.inputValue}"
+                                              label="#{bindings.CategoryName.hints.label}" required="true"
+                                              contentStyle="width:95px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                              columns="#{bindings.CategoryName.hints.displayWidth}"
+                                              maximumLength="#{bindings.CategoryName.hints.precision}"
+                                              shortDesc="#{bindings.CategoryName.hints.tooltip}" id="it18" simple="true"
+                                              disabled="true" partialTriggers="d2">
+                                    <f:validator binding="#{bindings.CategoryName.validator}"/>
+                                </af:inputText>
+                                <f:facet name="end">
+                                    <af:group id="g1">
+                                        <af:commandButton text="选择" id="cb3" partialSubmit="true" immediate="true"
+                                                          styleClass="min-btn blue-min-btn">
+                                            <af:showPopupBehavior popupId="p1" triggerType="action" align="afterStart"
+                                                                  alignId="cb3"/>
+                                        </af:commandButton>
+                                        <af:commandButton text="清除" id="cb4" partialSubmit="true" immediate="true"
+                                                          styleClass="min-btn blue-min-btn"
+                                                          actionListener="#{backingBeanScope.copyrightAuthorEditManagedBean.attributePicker.clearCategoryActionListener}"/>
+                                    </af:group>
+                                </f:facet>
+                            </af:panelLabelAndMessage>
+                            <af:selectOneChoice value="#{bindings.Attribute1.inputValue}" showRequired="true"
+                                                label="#{bindings.Attribute1.label}" labelStyle="white-space:nowrap;"
+                                                contentStyle="width:207px;height:22px;line-height:22px;border-color:#ABADB3;font-size:12px;"
+                                                required="#{bindings.Attribute1.hints.mandatory}"
+                                                shortDesc="#{bindings.Attribute1.hints.tooltip}" id="soc7">
+                                <f:selectItems value="#{bindings.Attribute1.items}" id="si13"/>
+                            </af:selectOneChoice>
+                            <af:selectOneChoice value="#{bindings.Attribute2.inputValue}" showRequired="true"
+                                                label="#{bindings.Attribute2.label}" labelStyle="white-space:nowrap;"
+                                                contentStyle="width:207px;height:22px;line-height:22px;border-color:#ABADB3;font-size:12px;"
+                                                required="#{bindings.Attribute2.hints.mandatory}"
+                                                shortDesc="#{bindings.Attribute2.hints.tooltip}" id="soc12">
+                                <f:selectItems value="#{bindings.Attribute2.items}" id="si14"/>
+                            </af:selectOneChoice>
+                            <af:selectManyCheckbox value="#{pageFlowScope.lang}" label="授权语种" id="smc1"
+                                                   layout="horizontal" showRequired="true"
+                                                   binding="#{backingBeanScope.copyrightAuthorEditManagedBean.langSelectManyCheckBox}">
+                                <f:selectItems value="#{bindings.Lookup4Lang.items}" id="si7"/>
+                            </af:selectManyCheckbox>
+                            <af:inputText value="#{bindings.EBookMinPrice.inputValue}" labelStyle="white-space:nowrap;"
+                                          label="#{bindings.EBookMinPrice.hints.label}"
+                                          contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                          columns="#{bindings.EBookMinPrice.hints.displayWidth}"
+                                          maximumLength="#{bindings.EBookMinPrice.hints.precision}"
+                                          shortDesc="#{bindings.EBookMinPrice.hints.tooltip}" id="it8"
+                                          showRequired="true"
+                                          binding="#{backingBeanScope.copyrightAuthorEditManagedBean.ebookMinPriceInputText}">
+                                <f:validator binding="#{bindings.EBookMinPrice.validator}"/>
+                                <af:convertNumber groupingUsed="false" pattern="#{bindings.EBookMinPrice.format}"/>
+                            </af:inputText>
+                            <af:inputText value="#{bindings.EBookPrice.inputValue}"
+                                          label="#{bindings.EBookPrice.hints.label}"
+                                          columns="#{bindings.EBookPrice.hints.displayWidth}"
+                                          contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                          maximumLength="#{bindings.EBookPrice.hints.precision}"
+                                          shortDesc="#{bindings.EBookPrice.hints.tooltip}" id="it9" showRequired="true"
+                                          binding="#{backingBeanScope.copyrightAuthorEditManagedBean.ebookPriceInputText}">
+                                <f:validator binding="#{bindings.EBookPrice.validator}"/>
+                                <af:convertNumber groupingUsed="false" pattern="#{bindings.EBookPrice.format}"/>
+                            </af:inputText>
+                            <af:selectOneChoice value="#{bindings.ExclusiveCopyrightFlag.inputValue}"
+                                                label="#{bindings.ExclusiveCopyrightFlag.label}"
+                                                contentStyle="width:207px;height:22px;line-height:22px;border-color:#ABADB3;font-size:12px;"
+                                                shortDesc="#{bindings.ExclusiveCopyrightFlag.hints.tooltip}" id="soc2"
+                                                showRequired="true">
+                                <f:selectItems value="#{bindings.ExclusiveCopyrightFlag.items}" id="si2"/>
+                            </af:selectOneChoice>
+                            <af:selectOneChoice value="#{bindings.PartProbationFlag.inputValue}"
+                                                label="#{bindings.PartProbationFlag.label}"
+                                                contentStyle="width:207px;height:22px;line-height:22px;border-color:#ABADB3;font-size:12px;"
+                                                shortDesc="#{bindings.PartProbationFlag.hints.tooltip}" id="soc10"
+                                                showRequired="true">
+                                <f:selectItems value="#{bindings.PartProbationFlag.items}" id="si10"/>
+                            </af:selectOneChoice>
+                            <af:selectOneChoice value="#{bindings.OverseasCopyrightFlag.inputValue}"
+                                                label="#{bindings.OverseasCopyrightFlag.label}"
+                                                contentStyle="width:207px;height:22px;line-height:22px;border-color:#ABADB3;font-size:12px;"
+                                                required="#{bindings.OverseasCopyrightFlag.hints.mandatory}"
+                                                showRequired="true"
+                                                shortDesc="#{bindings.OverseasCopyrightFlag.hints.tooltip}" id="soc6">
+                                <f:selectItems value="#{bindings.OverseasCopyrightFlag.items}" id="si12"/>
+                            </af:selectOneChoice>
+                            <af:selectOneChoice value="#{bindings.PublicCopyrightFlag.inputValue}"
+                                                label="#{bindings.PublicCopyrightFlag.label}"
+                                                contentStyle="width:207px;height:22px;line-height:22px;border-color:#ABADB3;font-size:12px;"
+                                                shortDesc="#{bindings.PublicCopyrightFlag.hints.tooltip}" id="soc11"
+                                                showRequired="true">
+                                <f:selectItems value="#{bindings.PublicCopyrightFlag.items}" id="si11"/>
+                            </af:selectOneChoice>
+                            <!--<af:inputText value="#{bindings.CompCode.inputValue}"
+                                          label="#{bindings.CompCode.hints.label}" showRequired="true"
+                                          contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                          columns="#{bindings.CompCode.hints.displayWidth}"
+                                          maximumLength="#{bindings.CompCode.hints.precision}"
+                                          shortDesc="#{bindings.CompCode.hints.tooltip}" id="it15">
+                                <f:validator binding="#{bindings.CompCode.validator}"/>
+                            </af:inputText>-->
+                        </af:panelFormLayout>
+                        <af:panelFormLayout id="pfl1" maxColumns="3" rows="1" labelWidth="100">
+                            <af:selectOneChoice value="#{bindings.NetworkCopyrightFlag.inputValue}"
+                                                label="#{bindings.NetworkCopyrightFlag.label}" autoSubmit="true"
+                                                contentStyle="width:100px;height:22px;line-height:22px;border-color:#ABADB3;font-size:12px;"
+                                                shortDesc="#{bindings.NetworkCopyrightFlag.hints.tooltip}" id="soc1"
+                                                showRequired="true"
+                                                valueChangeListener="#{backingBeanScope.copyrightAuthorEditManagedBean.networkCopyrightFlagValueChangeListener}">
+                                <f:selectItems value="#{bindings.NetworkCopyrightFlag.items}" id="si1"/>
+                            </af:selectOneChoice>
+                            <af:inputDate value="#{bindings.NetworkStartTime.inputValue}"
+                                          label="#{bindings.NetworkStartTime.hints.label}" showRequired="true"
+                                          required="#{bindings.NetworkStartTime.hints.mandatory}"
+                                          visible="#{bindings.NetworkCopyrightFlag.inputValue == 'YOU'}"
+                                          partialTriggers="soc1"
+                                          contentStyle="width:100px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                          columns="#{bindings.NetworkStartTime.hints.displayWidth}"
+                                          shortDesc="#{bindings.NetworkStartTime.hints.tooltip}" id="id8"
+                                          binding="#{backingBeanScope.copyrightAuthorEditManagedBean.networkStartTimeInputDate}">
+                                <f:validator binding="#{bindings.NetworkStartTime.validator}"/>
+                                <af:convertDateTime pattern="#{bindings.NetworkStartTime.format}"/>
+                            </af:inputDate>
+                            <af:inputDate value="#{bindings.NetworkEndTime.inputValue}"
+                                          label="#{bindings.NetworkEndTime.hints.label}" showRequired="true"
+                                          required="#{bindings.NetworkEndTime.hints.mandatory}"
+                                          visible="#{bindings.NetworkCopyrightFlag.inputValue == 'YOU'}"
+                                          partialTriggers="soc1"
+                                          contentStyle="width:100px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                          columns="#{bindings.NetworkEndTime.hints.displayWidth}"
+                                          shortDesc="#{bindings.NetworkEndTime.hints.tooltip}" id="id7"
+                                          binding="#{backingBeanScope.copyrightAuthorEditManagedBean.networkEndTimeInputDate}">
+                                <f:validator binding="#{bindings.NetworkEndTime.validator}"/>
+                                <af:convertDateTime pattern="#{bindings.NetworkEndTime.format}"/>
+                            </af:inputDate>
+                        </af:panelFormLayout>
+                        <af:panelFormLayout id="pfl3" maxColumns="3" rows="1" labelWidth="100">
+                            <af:selectOneChoice value="#{bindings.PaperMediumCopyrightFlag.inputValue}"
+                                                autoSubmit="true" label="#{bindings.PaperMediumCopyrightFlag.label}"
+                                                required="true"
+                                                valueChangeListener="#{backingBeanScope.copyrightAuthorEditManagedBean.paperMediumCopyrightFlagValueChangeListener}"
+                                                contentStyle="width:100px;height:22px;line-height:22px;border-color:#ABADB3;font-size:12px;"
+                                                shortDesc="#{bindings.PaperMediumCopyrightFlag.hints.tooltip}" id="soc9"
+                                                showRequired="true">
+                                <f:selectItems value="#{bindings.PaperMediumCopyrightFlag.items}" id="si9"/>
+                            </af:selectOneChoice>
+                            <af:inputDate value="#{bindings.PaperMediumStartTime.inputValue}"
+                                          label="#{bindings.PaperMediumStartTime.hints.label}" showRequired="true"
+                                          visible="#{bindings.PaperMediumCopyrightFlag.inputValue == 'YOU'}"
+                                          partialTriggers="soc9"
+                                          contentStyle="width:100px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                          required="#{bindings.PaperMediumStartTime.hints.mandatory}"
+                                          columns="#{bindings.PaperMediumStartTime.hints.displayWidth}"
+                                          shortDesc="#{bindings.PaperMediumStartTime.hints.tooltip}" id="id10"
+                                          binding="#{backingBeanScope.copyrightAuthorEditManagedBean.paperMediumStartTimeInputDate}">
+                                <f:validator binding="#{bindings.PaperMediumStartTime.validator}"/>
+                                <af:convertDateTime pattern="#{bindings.PaperMediumStartTime.format}"/>
+                            </af:inputDate>
+                            <af:inputDate value="#{bindings.PaperMediumEndTime.inputValue}"
+                                          label="#{bindings.PaperMediumEndTime.hints.label}"
+                                          required="#{bindings.PaperMediumEndTime.hints.mandatory}"
+                                          columns="#{bindings.PaperMediumEndTime.hints.displayWidth}"
+                                          showRequired="true"
+                                          visible="#{bindings.PaperMediumCopyrightFlag.inputValue == 'YOU'}"
+                                          partialTriggers="soc9"
+                                          contentStyle="width:100px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                          shortDesc="#{bindings.PaperMediumEndTime.hints.tooltip}" id="id9"
+                                          binding="#{backingBeanScope.copyrightAuthorEditManagedBean.paperMediumEndTimeInputDate}">
+                                <f:validator binding="#{bindings.PaperMediumEndTime.validator}"/>
+                                <af:convertDateTime pattern="#{bindings.PaperMediumEndTime.format}"/>
+                            </af:inputDate>
+                        </af:panelFormLayout>
+                        <af:panelFormLayout id="pfl4" maxColumns="3" rows="1" labelWidth="100">
+                            <af:selectOneChoice value="#{bindings.ElectronicCopyrightFlag.inputValue}" autoSubmit="true"
+                                                label="#{bindings.ElectronicCopyrightFlag.label}"
+                                                valueChangeListener="#{backingBeanScope.copyrightAuthorEditManagedBean.electronicCopyrightFlagValueChangeListener}"
+                                                contentStyle="width:100px;height:22px;line-height:22px;border-color:#ABADB3;font-size:12px;"
+                                                shortDesc="#{bindings.ElectronicCopyrightFlag.hints.tooltip}" id="soc3"
+                                                showRequired="true">
+                                <f:selectItems value="#{bindings.ElectronicCopyrightFlag.items}" id="si3"/>
+                            </af:selectOneChoice>
+                            <af:inputDate value="#{bindings.ElectronicStartTime.inputValue}" showRequired="true"
+                                          contentStyle="width:100px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                          label="#{bindings.ElectronicStartTime.hints.label}"
+                                          visible="#{bindings.ElectronicCopyrightFlag.inputValue == 'YOU'}"
+                                          partialTriggers="soc3"
+                                          required="#{bindings.ElectronicStartTime.hints.mandatory}"
+                                          columns="#{bindings.ElectronicStartTime.hints.displayWidth}"
+                                          shortDesc="#{bindings.ElectronicStartTime.hints.tooltip}" id="id6"
+                                          binding="#{backingBeanScope.copyrightAuthorEditManagedBean.electronicStartTimeInputDate}">
+                                <f:validator binding="#{bindings.ElectronicStartTime.validator}"/>
+                                <af:convertDateTime pattern="#{bindings.ElectronicStartTime.format}"/>
+                            </af:inputDate>
+                            <af:inputDate value="#{bindings.ElectronicEndTime.inputValue}" showRequired="true"
+                                          label="#{bindings.ElectronicEndTime.hints.label}"
+                                          required="#{bindings.ElectronicEndTime.hints.mandatory}"
+                                          visible="#{bindings.ElectronicCopyrightFlag.inputValue == 'YOU'}"
+                                          partialTriggers="soc3"
+                                          contentStyle="width:100px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                          columns="#{bindings.ElectronicEndTime.hints.displayWidth}"
+                                          shortDesc="#{bindings.ElectronicEndTime.hints.tooltip}" id="id5"
+                                          binding="#{backingBeanScope.copyrightAuthorEditManagedBean.electronicEndTimeInputDate}">
+                                <f:validator binding="#{bindings.ElectronicEndTime.validator}"/>
+                                <af:convertDateTime pattern="#{bindings.ElectronicEndTime.format}"/>
+                            </af:inputDate>
+                        </af:panelFormLayout>
+                        <af:panelFormLayout id="pfl5" maxColumns="3" rows="1" labelWidth="100">
+                            <af:selectOneChoice value="#{bindings.BroadcastCopyrightFlag.inputValue}" autoSubmit="true"
+                                                label="#{bindings.BroadcastCopyrightFlag.label}"
+                                                valueChangeListener="#{backingBeanScope.copyrightAuthorEditManagedBean.broadcastCopyrightFlagValueChangeListener}"
+                                                contentStyle="width:100px;height:22px;line-height:22px;border-color:#ABADB3;font-size:12px;"
+                                                shortDesc="#{bindings.BroadcastCopyrightFlag.hints.tooltip}" id="soc4"
+                                                showRequired="true">
+                                <f:selectItems value="#{bindings.BroadcastCopyrightFlag.items}" id="si4"/>
+                            </af:selectOneChoice>
+                            <af:inputDate value="#{bindings.BroadcastStartTime.inputValue}" showRequired="true"
+                                          label="#{bindings.BroadcastStartTime.hints.label}"
+                                          required="#{bindings.BroadcastStartTime.hints.mandatory}"
+                                          visible="#{bindings.BroadcastCopyrightFlag.inputValue == 'YOU'}"
+                                          partialTriggers="soc4"
+                                          columns="#{bindings.BroadcastStartTime.hints.displayWidth}"
+                                          contentStyle="width:100px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                          shortDesc="#{bindings.BroadcastStartTime.hints.tooltip}" id="id4"
+                                          binding="#{backingBeanScope.copyrightAuthorEditManagedBean.broadcastStartTimeInputDate}">
+                                <f:validator binding="#{bindings.BroadcastStartTime.validator}"/>
+                                <af:convertDateTime pattern="#{bindings.BroadcastStartTime.format}"/>
+                            </af:inputDate>
+                            <af:inputDate value="#{bindings.BroadcastEndTime.inputValue}"
+                                          label="#{bindings.BroadcastEndTime.hints.label}" showRequired="true"
+                                          required="#{bindings.BroadcastEndTime.hints.mandatory}"
+                                          columns="#{bindings.BroadcastEndTime.hints.displayWidth}"
+                                          visible="#{bindings.BroadcastCopyrightFlag.inputValue == 'YOU'}"
+                                          partialTriggers="soc4"
+                                          contentStyle="width:100px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                          shortDesc="#{bindings.BroadcastEndTime.hints.tooltip}" id="id3"
+                                          binding="#{backingBeanScope.copyrightAuthorEditManagedBean.broadcastEndTimeInputDate}">
+                                <f:validator binding="#{bindings.BroadcastEndTime.validator}"/>
+                                <af:convertDateTime pattern="#{bindings.BroadcastEndTime.format}"/>
+                            </af:inputDate>
+                        </af:panelFormLayout>
+                        <af:panelFormLayout id="pfl6" maxColumns="3" rows="1" labelWidth="100">
+                            <af:selectOneChoice value="#{bindings.AudioVideoCopyrightFlag.inputValue}" autoSubmit="true"
+                                                label="#{bindings.AudioVideoCopyrightFlag.label}"
+                                                valueChangeListener="#{backingBeanScope.copyrightAuthorEditManagedBean.audioVideoCopyrightFlagValueChangeListener}"
+                                                contentStyle="width:100px;height:22px;line-height:22px;border-color:#ABADB3;font-size:12px;"
+                                                required="true"
+                                                shortDesc="#{bindings.AudioVideoCopyrightFlag.hints.tooltip}" id="soc5"
+                                                showRequired="true">
+                                <f:selectItems value="#{bindings.AudioVideoCopyrightFlag.items}" id="si5"/>
+                            </af:selectOneChoice>
+                            <af:inputDate value="#{bindings.AudioVideoStartTime.inputValue}" showRequired="true"
+                                          label="#{bindings.AudioVideoStartTime.hints.label}"
+                                          required="#{bindings.AudioVideoStartTime.hints.mandatory}"
+                                          columns="#{bindings.AudioVideoStartTime.hints.displayWidth}"
+                                          visible="#{bindings.AudioVideoCopyrightFlag.inputValue == 'YOU'}"
+                                          partialTriggers="soc5"
+                                          contentStyle="width:100px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                          shortDesc="#{bindings.AudioVideoStartTime.hints.tooltip}" id="id2"
+                                          binding="#{backingBeanScope.copyrightAuthorEditManagedBean.audioVideoStartTimeInputDate}">
+                                <f:validator binding="#{bindings.AudioVideoStartTime.validator}"/>
+                                <af:convertDateTime pattern="#{bindings.AudioVideoStartTime.format}"/>
+                            </af:inputDate>
+                            <af:inputDate value="#{bindings.AudioVideoEndTime.inputValue}" showRequired="true"
+                                          label="#{bindings.AudioVideoEndTime.hints.label}"
+                                          required="#{bindings.AudioVideoEndTime.hints.mandatory}"
+                                          visible="#{bindings.AudioVideoCopyrightFlag.inputValue == 'YOU'}"
+                                          partialTriggers="soc5"
+                                          columns="#{bindings.AudioVideoEndTime.hints.displayWidth}"
+                                          contentStyle="width:100px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                          shortDesc="#{bindings.AudioVideoEndTime.hints.tooltip}" id="id1"
+                                          binding="#{backingBeanScope.copyrightAuthorEditManagedBean.audioVideoEndTimeInputDate}">
+                                <f:validator binding="#{bindings.AudioVideoEndTime.validator}"/>
+                                <af:convertDateTime pattern="#{bindings.AudioVideoEndTime.format}"/>
+                            </af:inputDate>
+                        </af:panelFormLayout>
+                        <af:panelFormLayout id="pfl7" labelWidth="100">
+                            <af:inputText value="#{bindings.Remarks.inputValue}" label="#{bindings.Remarks.hints.label}"
+                                          required="#{bindings.Remarks.hints.mandatory}"
+                                          columns="#{bindings.Remarks.hints.displayWidth}"
+                                          contentStyle="width:540px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                          maximumLength="#{bindings.Remarks.hints.precision}"
+                                          shortDesc="#{bindings.Remarks.hints.tooltip}" id="it16"
+                                          styleClass="multipleRowsInputtext" rows="3">
+                                <f:validator binding="#{bindings.Remarks.validator}"/>
+                            </af:inputText>
+                            <af:inputText value="#{bindings.CopyrightCip.inputValue}"
+                                          label="#{bindings.CopyrightCip.hints.label}"
+                                          required="#{bindings.CopyrightCip.hints.mandatory}"
+                                          columns="#{bindings.CopyrightCip.hints.displayWidth}"
+                                          maximumLength="#{bindings.CopyrightCip.hints.precision}"
+                                          styleClass="multipleRowsInputtext" rows="3"
+                                          contentStyle="width:540px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                          shortDesc="#{bindings.CopyrightCip.hints.tooltip}" id="it4">
+                                <f:validator binding="#{bindings.CopyrightCip.validator}"/>
+                            </af:inputText>
+                        </af:panelFormLayout>
+                        <af:region value="#{bindings.extend_attr_taskflow1.regionModel}" id="r2"/>
+                    </af:panelGroupLayout>
+                </f:facet>
+                <f:facet name="start"/>
+                <f:facet name="end"/>
+                <f:facet name="top"/>
+            </af:panelStretchLayout>
+        </af:form>
+    </af:document>
+</f:view>

@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="bookViewPageDef"
+                Package="work.book.fragment">
+    <parameters/>
+    <executables>
+        <variableIterator id="variables"/>
+        <iterator Binds="Root.BookAM.CmsDocTVO4View" DataControl="WorkAMDataControl" RangeSize="25"
+                  id="CmsDocTVO4ViewIterator"/>
+        <iterator Binds="Root.BookAM.CmsBookTVO4View" DataControl="WorkAMDataControl" RangeSize="25"
+                  id="CmsBookTVO4ViewIterator"/>
+        <iterator Binds="Root.BookAM.CmsJbInfoTVO4View" DataControl="WorkAMDataControl" RangeSize="25"
+                  id="CmsJbInfoTVO4ViewIterator"/>
+        <iterator Binds="Root.BookAM.CmsXcInfoTVO4BookReview" DataControl="WorkAMDataControl" RangeSize="25"
+                  id="CmsXcInfoTVO4BookReviewIterator"/>
+        <iterator Binds="Root.BookAM.CmsXcInfoTVO4BookNews" DataControl="WorkAMDataControl" RangeSize="25"
+                  id="CmsXcInfoTVO4BookNewsIterator"/>
+        <iterator Binds="Root.BookAM.CmsXcInfoTVO4EditorChoice" DataControl="WorkAMDataControl" RangeSize="25"
+                  id="CmsXcInfoTVO4EditorChoiceIterator"/>
+        <iterator Binds="Root.BookAM.CmsXcInfoTVO4MediaEvaluation" DataControl="WorkAMDataControl" RangeSize="25"
+                  id="CmsXcInfoTVO4MediaEvaluationIterator"/>
+        <iterator Binds="Root.BookAM.CmsXcInfoTVO4ExpertEvaluation" DataControl="WorkAMDataControl" RangeSize="25"
+                  id="CmsXcInfoTVO4ExpertEvaluationIterator"/>
+        <iterator Binds="Root.BookAM.CmsXcInfoTVO4AdLanguage" DataControl="WorkAMDataControl" RangeSize="25"
+                  id="CmsXcInfoTVO4AdLanguageIterator"/>
+        <iterator Binds="Root.BookAM.CmsXcInfoTVO4Awards" DataControl="WorkAMDataControl" RangeSize="25"
+                  id="CmsXcInfoTVO4AwardsIterator"/>
+        <iterator Binds="Root.BookAM.CmsXcInfoTVO4PublicityPage" DataControl="WorkAMDataControl" RangeSize="25"
+                  id="CmsXcInfoTVO4PublicityPageIterator"/>
+        <iterator Binds="Root.BookAM.CmsXcInfoTVO4RelatedNews" DataControl="WorkAMDataControl" RangeSize="25"
+                  id="CmsXcInfoTVO4RelatedNewsIterator"/>
+        <taskFlow id="related_info_view_taskflow1"
+                  taskFlowId="/WEB-INF/common/related_info_view_taskflow.xml#related_info_view_taskflow"
+                  activation="deferred" xmlns="http://xmlns.oracle.com/adf/controller/binding">
+            <parameters>
+                <parameter id="docId" value="#{pageFlowScope.docId}"/>
+                <parameter id="position" value="RIGHT"/>
+                <parameter id="displayWidth" value="200"/>
+            </parameters>
+        </taskFlow>
+        <taskFlow id="related_info_view_taskflow2"
+                  taskFlowId="/WEB-INF/common/related_info_view_taskflow.xml#related_info_view_taskflow"
+                  activation="deferred" xmlns="http://xmlns.oracle.com/adf/controller/binding">
+            <parameters>
+                <parameter id="docId" value="#{pageFlowScope.docId}"/>
+                <parameter id="position" value="LEFT"/>
+                <parameter id="displayWidth" value="200"/>
+            </parameters>
+        </taskFlow>
+        <iterator Binds="Root.BookAM.CmsDocUcmRelTVO4FileList" DataControl="WorkAMDataControl" RangeSize="10"
+                  id="CmsDocUcmRelTVO4FileListIterator"/>
+        <taskFlow id="extend_attr_view_taskflow1"
+                  taskFlowId="/WEB-INF/common/extend_attr_view_taskflow.xml#extend_attr_view_taskflow"
+                  activation="deferred" xmlns="http://xmlns.oracle.com/adf/controller/binding">
+            <parameters>
+                <parameter id="docId" value="#{pageFlowScope.docId}"/>
+            </parameters>
+        </taskFlow>
+    </executables>
+    <bindings>
+        <attributeValues IterBinding="CmsDocTVO4ViewIterator" id="ThumbnailUrl">
+            <AttrNames>
+                <Item Value="ThumbnailUrl"/>
+            </AttrNames>
+        </attributeValues>
+        <list IterBinding="CmsBookTVO4ViewIterator" StaticList="false" Uses="LOV_AssortProd" id="AssortProd"
+              DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+        <attributeValues IterBinding="CmsBookTVO4ViewIterator" id="Author">
+            <AttrNames>
+                <Item Value="Author"/>
+            </AttrNames>
+        </attributeValues>
+        <list IterBinding="CmsBookTVO4ViewIterator" StaticList="false" Uses="LOV_BookSize" id="BookSize"
+              DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+        <attributeValues IterBinding="CmsBookTVO4ViewIterator" id="ChiefEditor">
+            <AttrNames>
+                <Item Value="ChiefEditor"/>
+            </AttrNames>
+        </attributeValues>
+        <list IterBinding="CmsBookTVO4ViewIterator" StaticList="false" Uses="LOV_ColorNum" id="ColorNum"
+              DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+        <attributeValues IterBinding="CmsBookTVO4ViewIterator" id="CoverDesign">
+            <AttrNames>
+                <Item Value="CoverDesign"/>
+            </AttrNames>
+        </attributeValues>
+        <list IterBinding="CmsBookTVO4ViewIterator" StaticList="false" Uses="LOV_CoverTypeset" id="CoverTypeset"
+              DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+        <attributeValues IterBinding="CmsBookTVO4ViewIterator" id="Edition">
+            <AttrNames>
+                <Item Value="Edition"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsBookTVO4ViewIterator" id="Editor">
+            <AttrNames>
+                <Item Value="Editor"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsBookTVO4ViewIterator" id="FormatComp">
+            <AttrNames>
+                <Item Value="FormatComp"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsBookTVO4ViewIterator" id="FormatDesign">
+            <AttrNames>
+                <Item Value="FormatDesign"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsBookTVO4ViewIterator" id="Impression">
+            <AttrNames>
+                <Item Value="Impression"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsBookTVO4ViewIterator" id="Isbn">
+            <AttrNames>
+                <Item Value="Isbn"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsBookTVO4ViewIterator" id="ItemCode">
+            <AttrNames>
+                <Item Value="ItemCode"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsBookTVO4ViewIterator" id="Keyword">
+            <AttrNames>
+                <Item Value="Keyword"/>
+            </AttrNames>
+        </attributeValues>
+        <list IterBinding="CmsBookTVO4ViewIterator" StaticList="false" Uses="LOV_Lang" id="Lang" DTSupportsMRU="false"
+              SelectItemValueMode="ListObject"/>
+        <list IterBinding="CmsBookTVO4ViewIterator" StaticList="false" Uses="LOV_MainPage" id="MainPage"
+              DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+        <list IterBinding="CmsBookTVO4ViewIterator" StaticList="false" Uses="LOV_MainTypeset" id="MainTypeset"
+              DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+        <attributeValues IterBinding="CmsBookTVO4ViewIterator" id="Pagination">
+            <AttrNames>
+                <Item Value="Pagination"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsBookTVO4ViewIterator" id="Price">
+            <AttrNames>
+                <Item Value="Price"/>
+            </AttrNames>
+        </attributeValues>
+        <list IterBinding="CmsBookTVO4ViewIterator" StaticList="false" Uses="LOV_ProdSize" id="ProdSize"
+              DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+        <attributeValues IterBinding="CmsBookTVO4ViewIterator" id="PubTime">
+            <AttrNames>
+                <Item Value="PubTime"/>
+            </AttrNames>
+        </attributeValues>
+        <list IterBinding="CmsBookTVO4ViewIterator" StaticList="false" Uses="LOV_ReaderGroup" id="ReaderGroup"
+              DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+        <attributeValues IterBinding="CmsBookTVO4ViewIterator" id="Remarks">
+            <AttrNames>
+                <Item Value="Remarks"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsBookTVO4ViewIterator" id="Series">
+            <AttrNames>
+                <Item Value="Series"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsBookTVO4ViewIterator" id="Suggestion">
+            <AttrNames>
+                <Item Value="Suggestion"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsBookTVO4ViewIterator" id="Translator">
+            <AttrNames>
+                <Item Value="Translator"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsBookTVO4ViewIterator" id="BookName">
+            <AttrNames>
+                <Item Value="BookName"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsBookTVO4ViewIterator" id="CategoryName">
+            <AttrNames>
+                <Item Value="CategoryName"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsBookTVO4ViewIterator" id="PublishingHouse">
+            <AttrNames>
+                <Item Value="PublishingHouse"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsJbInfoTVO4ViewIterator" id="BriefIntroduction">
+            <AttrNames>
+                <Item Value="BriefIntroduction"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsJbInfoTVO4ViewIterator" id="Catalog">
+            <AttrNames>
+                <Item Value="Catalog"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsJbInfoTVO4ViewIterator" id="Foreword">
+            <AttrNames>
+                <Item Value="Foreword"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsJbInfoTVO4ViewIterator" id="Postscript">
+            <AttrNames>
+                <Item Value="Postscript"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsJbInfoTVO4ViewIterator" id="Highlights">
+            <AttrNames>
+                <Item Value="Highlights"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsJbInfoTVO4ViewIterator" id="Preface">
+            <AttrNames>
+                <Item Value="Preface"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsJbInfoTVO4ViewIterator" id="Glossary">
+            <AttrNames>
+                <Item Value="Glossary"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsJbInfoTVO4ViewIterator" id="References1">
+            <AttrNames>
+                <Item Value="References1"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsJbInfoTVO4ViewIterator" id="AuthorIntroduction">
+            <AttrNames>
+                <Item Value="AuthorIntroduction"/>
+            </AttrNames>
+        </attributeValues>
+        <tree IterBinding="CmsXcInfoTVO4BookReviewIterator" id="CmsXcInfoTVO4BookReview">
+            <nodeDefinition DefName="com.zypg.cms.work.model.viewobject.book.CmsXcInfoTVO"
+                            Name="CmsXcInfoTVO4BookReview0">
+                <AttrNames>
+                    <Item Value="Content"/>
+                </AttrNames>
+            </nodeDefinition>
+        </tree>
+        <tree IterBinding="CmsXcInfoTVO4BookNewsIterator" id="CmsXcInfoTVO4BookNews">
+            <nodeDefinition DefName="com.zypg.cms.work.model.viewobject.book.CmsXcInfoTVO"
+                            Name="CmsXcInfoTVO4BookNews0">
+                <AttrNames>
+                    <Item Value="Content"/>
+                </AttrNames>
+            </nodeDefinition>
+        </tree>
+        <tree IterBinding="CmsXcInfoTVO4EditorChoiceIterator" id="CmsXcInfoTVO4EditorChoice">
+            <nodeDefinition DefName="com.zypg.cms.work.model.viewobject.book.CmsXcInfoTVO"
+                            Name="CmsXcInfoTVO4EditorChoice0">
+                <AttrNames>
+                    <Item Value="Content"/>
+                </AttrNames>
+            </nodeDefinition>
+        </tree>
+        <tree IterBinding="CmsXcInfoTVO4MediaEvaluationIterator" id="CmsXcInfoTVO4MediaEvaluation">
+            <nodeDefinition DefName="com.zypg.cms.work.model.viewobject.book.CmsXcInfoTVO"
+                            Name="CmsXcInfoTVO4MediaEvaluation0">
+                <AttrNames>
+                    <Item Value="Content"/>
+                </AttrNames>
+            </nodeDefinition>
+        </tree>
+        <tree IterBinding="CmsXcInfoTVO4ExpertEvaluationIterator" id="CmsXcInfoTVO4ExpertEvaluation">
+            <nodeDefinition DefName="com.zypg.cms.work.model.viewobject.book.CmsXcInfoTVO"
+                            Name="CmsXcInfoTVO4ExpertEvaluation0">
+                <AttrNames>
+                    <Item Value="Content"/>
+                </AttrNames>
+            </nodeDefinition>
+        </tree>
+        <tree IterBinding="CmsXcInfoTVO4AdLanguageIterator" id="CmsXcInfoTVO4AdLanguage">
+            <nodeDefinition DefName="com.zypg.cms.work.model.viewobject.book.CmsXcInfoTVO"
+                            Name="CmsXcInfoTVO4AdLanguage0">
+                <AttrNames>
+                    <Item Value="Content"/>
+                </AttrNames>
+            </nodeDefinition>
+        </tree>
+        <tree IterBinding="CmsXcInfoTVO4AwardsIterator" id="CmsXcInfoTVO4Awards">
+            <nodeDefinition DefName="com.zypg.cms.work.model.viewobject.book.CmsXcInfoTVO" Name="CmsXcInfoTVO4Awards0">
+                <AttrNames>
+                    <Item Value="Content"/>
+                </AttrNames>
+            </nodeDefinition>
+        </tree>
+        <tree IterBinding="CmsXcInfoTVO4PublicityPageIterator" id="CmsXcInfoTVO4PublicityPage">
+            <nodeDefinition DefName="com.zypg.cms.work.model.viewobject.book.CmsXcInfoTVO"
+                            Name="CmsXcInfoTVO4PublicityPage0">
+                <AttrNames>
+                    <Item Value="Content"/>
+                </AttrNames>
+            </nodeDefinition>
+        </tree>
+        <tree IterBinding="CmsXcInfoTVO4RelatedNewsIterator" id="CmsXcInfoTVO4RelatedNews">
+            <nodeDefinition DefName="com.zypg.cms.work.model.viewobject.book.CmsXcInfoTVO"
+                            Name="CmsXcInfoTVO4RelatedNews0">
+                <AttrNames>
+                    <Item Value="Content"/>
+                </AttrNames>
+            </nodeDefinition>
+        </tree>
+        <tree IterBinding="CmsDocUcmRelTVO4FileListIterator" id="CmsDocUcmRelTVO4FileList">
+            <nodeDefinition DefName="com.zypg.cms.work.model.viewobject.common.CmsDocUcmRelTVO"
+                            Name="CmsDocUcmRelTVO4FileList0">
+                <AttrNames>
+                    <Item Value="FileName"/>
+                    <Item Value="FileCategory"/>
+                </AttrNames>
+            </nodeDefinition>
+        </tree>
+        <attributeValues IterBinding="CmsBookTVO4ViewIterator" id="DocId">
+            <AttrNames>
+                <Item Value="DocId"/>
+            </AttrNames>
+        </attributeValues>
+    </bindings>
+</pageDefinition>

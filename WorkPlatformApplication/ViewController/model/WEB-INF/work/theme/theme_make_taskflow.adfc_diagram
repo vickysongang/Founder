@@ -1,0 +1,70 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<SDM>
+   <OverallProperties
+      id="OverallProperties1"/>
+   <MethodCall
+      id="MethodCall3">
+      <property
+         name="activityId">initThemeMaker</property>
+      <property
+         name="start">true</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>initThemeMaker&lt;/b> (Default Activity)&lt;/p>&lt;p>Activity Type:  Method Call&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">143.68945</property>
+      <property
+         name="x">136.0</property>
+   </MethodCall>
+   <View
+      id="View8">
+      <property
+         name="activityId">themeMaker</property>
+      <property
+         name="page">/work/theme/inline/themeMaker.jsf</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>themeMaker&lt;/b>&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">146.29297</property>
+      <property
+         name="x">329.42578</property>
+   </View>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase9"
+      from="MethodCall3"
+      to="View8">
+      <property
+         name="fromOutcome">toThemeMaker</property>
+      <property
+         name="sdm:polyPoints">R50,177.0,143.68945,288.42578,145.94238,L50</property>
+   </ControlFlowCase>
+   <TaskFlowReturn
+      id="TaskFlowReturn10">
+      <property
+         name="activityId">taskFlowReturn1</property>
+      <property
+         name="finish">true</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>taskFlowReturn1&lt;/b>&lt;/p>&lt;p>Activity Type:  Task Flow Return&lt;/p>&lt;p>Outcome:  taskFlowReturn1&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">162.94824</property>
+      <property
+         name="x">541.0</property>
+   </TaskFlowReturn>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase11"
+      from="View8"
+      to="TaskFlowReturn10">
+      <property
+         name="fromOutcome">toReturn</property>
+      <property
+         name="sdm:polyPoints">R50,370.42578,145.94238,500.0,162.59766,L50</property>
+   </ControlFlowCase>
+</SDM>

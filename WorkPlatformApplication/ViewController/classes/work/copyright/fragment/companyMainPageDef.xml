@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="companyMainPageDef"
+                Package="work.copyright.fragment">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="Root.CopyrightAM.CmsCompanyCopyrightVO4View" DataControl="WorkAMDataControl" RangeSize="25"
+              id="CmsCompanyCopyrightVO4ViewIterator"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="CmsCompanyCopyrightVO4ViewIterator" id="CmsCompanyCopyrightVO4View">
+      <nodeDefinition DefName="com.zypg.cms.work.model.viewobject.copyright.query.CmsCompanyCopyrightVO"
+                      Name="CmsCompanyCopyrightVO4View0">
+        <AttrNames>
+          <Item Value="CompanyName"/>
+          <Item Value="CompanyAddr"/>
+          <Item Value="CompanyContact"/>
+          <Item Value="CompanyPhone"/>
+          <Item Value="Remarks"/>
+          <Item Value="CompanyId"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+  </bindings>
+</pageDefinition>

@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <af:document id="d1">
+        <af:messages id="m1"/>
+        <f:facet name="metaContainer">
+            <af:resource type="javascript" source="/resources/js/work_platform.js"/>
+        </f:facet>
+        <af:form id="f1">
+            <af:panelStretchLayout id="psl1"
+                                   inlineStyle="background:url('../resources/images/import_item_bg.gif') repeat-x">
+                <f:facet name="bottom"/>
+                <f:facet name="center">
+                    <af:panelGroupLayout id="pgl3" layout="scroll" halign="center">
+                        <af:selectManyCheckbox value="#{bindings.CmsCompanyCopyrightVO4View.inputValue}"
+                                               autoSubmit="true" label="单位名称" id="smc2"
+                                               valueChangeListener="#{backingBeanScope.copyrightItemTemplateManagedBean.selectValueChangeListener}"
+                                               showRequired="true" required="true">
+                            <f:selectItems value="#{bindings.CmsCompanyCopyrightVO4View.items}" id="si2"/>
+                        </af:selectManyCheckbox>
+                        <af:commandButton text="下载" id="cb2" styleClass="min-btn blue-min-btn">
+                            <af:fileDownloadActionListener contentType="application/vnd.ms-excel;charset=utf-8"
+                                                           filename="授权明细费用批量导入模板.xls"
+                                                           method="#{backingBeanScope.copyrightItemTemplateManagedBean.itemTempleteDownloadListener}"/>
+                        </af:commandButton>
+                        <af:outputText value="提示：1. 下载Excel文件格式:Excel97-2003" id="ot2"/>
+                    </af:panelGroupLayout>
+                </f:facet>
+                <f:facet name="start"/>
+                <f:facet name="end"/>
+                <f:facet name="top">
+                    <af:panelGroupLayout id="pgl1" layout="vertical" halign="center"
+                                         inlineStyle="background: url('../resources/images/import_item_top_bg.gif') repeat-x; height: 40px;"
+                                         styleClass="AFStretchWidth">
+                        <af:spacer width="15" height="3" id="s1"/>
+                        <af:panelGroupLayout id="pgl2" layout="horizontal" halign="center">
+                            <af:image source="/resources/images/write_item_icon.png" id="i1"/>
+                            <af:spacer width="15" height="10" id="s4"/>
+                            <af:outputText value="费用批量导入模板" id="ot1"
+                                           inlineStyle="font-size:20px; font-weight:900;color:white;"/>
+                        </af:panelGroupLayout>
+                    </af:panelGroupLayout>
+                </f:facet>
+            </af:panelStretchLayout>
+        </af:form>
+    </af:document>
+</f:view>

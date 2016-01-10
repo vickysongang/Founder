@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="authorViewPageDef"
+                Package="work.copyright.fragment">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="Root.CopyrightAM.CmsAuthorCopyrightVO4View" DataControl="WorkAMDataControl" RangeSize="25"
+              id="CmsAuthorCopyrightVO4ViewIterator"/>
+    <iterator Binds="Root.CopyrightAM.CmsAttachVOviaVL4View" DataControl="WorkAMDataControl" RangeSize="25"
+              id="CmsAttachVOviaVL4ViewIterator"/>
+    <iterator Binds="Root.CopyrightAM.CmsAuthorCopyrightVO" DataControl="WorkAMDataControl" RangeSize="25"
+              id="CmsAuthorCopyrightVOIterator"/>
+    <taskFlow id="extend_attr_view_taskflow1"
+              taskFlowId="/WEB-INF/common/extend_attr_view_taskflow.xml#extend_attr_view_taskflow" activation="deferred"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding">
+      <parameters>
+        <parameter id="docId" value="#{pageFlowScope.docId}"/>
+      </parameters>
+    </taskFlow>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="CmsAuthorCopyrightVO4ViewIterator" id="BookName">
+      <AttrNames>
+        <Item Value="BookName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsAuthorCopyrightVO4ViewIterator" id="Isbn">
+      <AttrNames>
+        <Item Value="Isbn"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsAuthorCopyrightVO4ViewIterator" id="Author">
+      <AttrNames>
+        <Item Value="Author"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsAuthorCopyrightVO4ViewIterator" id="ExclusiveCopyrightFlag">
+      <AttrNames>
+        <Item Value="ExclusiveCopyrightFlag"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsAuthorCopyrightVO4ViewIterator" id="PublicCopyrightFlag">
+      <AttrNames>
+        <Item Value="PublicCopyrightFlag"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsAuthorCopyrightVO4ViewIterator" id="CopyrightFormDisplay">
+      <AttrNames>
+        <Item Value="CopyrightFormDisplay"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsAuthorCopyrightVO4ViewIterator" id="CategoryName">
+      <AttrNames>
+        <Item Value="CategoryName"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="CmsAttachVOviaVL4ViewIterator" id="CmsAttachVOviaVL4View">
+      <nodeDefinition DefName="com.zypg.cms.work.model.viewobject.attach.query.CmsAttachVO"
+                      Name="CmsAttachVOviaVL4View0">
+        <AttrNames>
+          <Item Value="DocId"/>
+          <Item Value="SourceId"/>
+          <Item Value="Path"/>
+          <Item Value="Title"/>
+          <Item Value="AttachType"/>
+          <Item Value="Remarks"/>
+          <Item Value="Format"/>
+          <Item Value="FileSize"/>
+          <Item Value="UcmDid"/>
+          <Item Value="UcmDocname"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="CmsAuthorCopyrightVOIterator" id="ExclusiveCopyrightDisplay">
+      <AttrNames>
+        <Item Value="ExclusiveCopyrightDisplay"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsAuthorCopyrightVOIterator" id="PublicCopyrightDisplay">
+      <AttrNames>
+        <Item Value="PublicCopyrightDisplay"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

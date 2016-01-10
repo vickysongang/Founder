@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <af:document id="d1" title="操作日志">
+        <af:form id="f1">
+            <af:table value="#{bindings.CmsProcessLogVO.collectionModel}" var="row"
+                      rows="#{bindings.CmsProcessLogVO.rangeSize}" styleClass="AFStretchWidth custom_table_striped"
+                      columnStretching="multiple"
+                      emptyText="#{bindings.CmsProcessLogVO.viewable ? '' : 'Access Denied.'}"
+                      fetchSize="#{bindings.CmsProcessLogVO.rangeSize}" rowBandingInterval="0"
+                      contentDelivery="immediate"
+                      selectedRowKeys="#{bindings.CmsProcessLogVO.collectionModel.selectedRow}"
+                      selectionListener="#{bindings.CmsProcessLogVO.collectionModel.makeCurrent}" rowSelection="single"
+                      id="t1">
+                <af:column sortProperty="#{bindings.CmsProcessLogVO.hints.ProcessOperatorName.name}" sortable="false"
+                           align="center" width="20%"
+                           headerText="#{bindings.CmsProcessLogVO.hints.ProcessOperatorName.label}" id="c1">
+                    <af:outputText value="#{row.ProcessOperatorName}"
+                                   shortDesc="#{bindings.CmsProcessLogVO.hints.ProcessOperatorName.tooltip}" id="ot1"/>
+                </af:column>
+                <af:column sortProperty="#{bindings.CmsProcessLogVO.hints.Operation.name}" sortable="false"
+                           align="center" width="20%" headerText="#{bindings.CmsProcessLogVO.hints.Operation.label}"
+                           id="c2">
+                    <af:outputText value="#{row.Operation}"
+                                   shortDesc="#{bindings.CmsProcessLogVO.hints.Operation.tooltip}" id="ot2"/>
+                </af:column>
+                <af:column sortProperty="#{bindings.CmsProcessLogVO.hints.ProcessStartPoint.name}" sortable="false"
+                           align="center" width="20%"
+                           headerText="#{bindings.CmsProcessLogVO.hints.ProcessStartPoint.label}" id="c3">
+                    <af:outputText value="#{row.ProcessStartPoint}"
+                                   shortDesc="#{bindings.CmsProcessLogVO.hints.ProcessStartPoint.tooltip}" id="ot3"/>
+                </af:column>
+                <af:column sortProperty="#{bindings.CmsProcessLogVO.hints.ProcessEndPoint.name}" sortable="false"
+                           align="center" width="20%"
+                           headerText="#{bindings.CmsProcessLogVO.hints.ProcessEndPoint.label}" id="c4">
+                    <af:outputText value="#{row.ProcessEndPoint}"
+                                   shortDesc="#{bindings.CmsProcessLogVO.hints.ProcessEndPoint.tooltip}" id="ot4"/>
+                </af:column>
+                <af:column sortProperty="#{bindings.CmsProcessLogVO.hints.OperationTime.name}" sortable="false"
+                           align="center" width="20%" headerText="#{bindings.CmsProcessLogVO.hints.OperationTime.label}"
+                           id="c5">
+                    <af:outputText value="#{row.OperationTime}"
+                                   shortDesc="#{bindings.CmsProcessLogVO.hints.OperationTime.tooltip}" id="ot5">
+                        <af:convertDateTime pattern="#{bindings.CmsProcessLogVO.hints.OperationTime.format}"/>
+                    </af:outputText>
+                </af:column>
+            </af:table>
+        </af:form>
+    </af:document>
+</f:view>

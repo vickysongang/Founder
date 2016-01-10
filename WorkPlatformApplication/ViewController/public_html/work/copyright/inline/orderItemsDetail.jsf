@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <af:document title="订单明细浏览" id="d1">
+        <af:messages id="m1"/>
+        <af:form id="f1">
+            <af:panelStretchLayout id="psl1" topHeight="auto">
+                <f:facet name="top">
+                    <af:panelGroupLayout id="pgl1" layout="vertical" partialTriggers="cl1 cl2">
+                        <af:panelGroupLayout id="pgl7" layout="vertical" halign="center"
+                                             inlineStyle="background: url('./resources/images/import_item_top_bg.gif') repeat-x;height: 40px;"
+                                             styleClass="AFStretchWidth">
+                            <af:panelGroupLayout id="pgl2" layout="horizontal" halign="center">
+                                <af:image source="/resources/images/pic-2.gif" id="i1"/>
+                                <af:spacer width="15" height="10" id="s9"/>
+                                <af:outputText value="明细列表" id="ot19"
+                                               inlineStyle="font-size:16px; font-weight:bold;color:white;"/>
+                            </af:panelGroupLayout>
+                        </af:panelGroupLayout>
+                        <af:panelStretchLayout id="psl3" inlineStyle="height:26px;background:#E7ECE5;margin-top:3px;"
+                                               topHeight="0px" bottomHeight="0px" startWidth="auto"
+                                               styleClass="AFStretchWidth" endWidth="auto">
+                            <f:facet name="bottom"/>
+                            <f:facet name="center"></f:facet>
+                            <f:facet name="start">
+                                <af:panelGroupLayout id="pgl6" layout="horizontal"
+                                                     inlineStyle="padding-top:3px;padding-left:15px;">
+                                    <af:outputText value="总个数:#{backingBeanScope.copyrightOrderItemsManagedBean.tableModel.rowCount}"
+                                                   id="ot2"/>
+                                    <af:spacer width="10" height="10" id="s2"/>
+                                    <af:outputText value="每页[#{backingBeanScope.copyrightOrderItemsManagedBean.pageCount}]"
+                                                   id="ot3"/>
+                                    <af:spacer width="10" height="10" id="s7"/>
+                                    <af:outputText value="页数[" id="ot9"/>
+                                    <af:outputText value="#{backingBeanScope.copyrightOrderItemsManagedBean.tableModel.currPageIndex}"
+                                                   id="ot8" inlineStyle="color:Red;"/>
+                                    <af:outputText value="/#{backingBeanScope.copyrightOrderItemsManagedBean.tableModel.totalPageCount}]"
+                                                   id="ot4"/>
+                                    <af:spacer width="10" height="10" id="s4"/>
+                                    <af:commandLink text="前一页" id="cl1" partialSubmit="true"
+                                                    disabled="#{backingBeanScope.copyrightOrderItemsManagedBean.tableModel.isPrevDisabled}"
+                                                    actionListener="#{backingBeanScope.copyrightOrderItemsManagedBean.commonRenderer.prevPage}"/>
+                                    <af:spacer width="10" height="10" id="s1"/>
+                                    <af:commandLink text="后一页" id="cl2" partialSubmit="true"
+                                                    disabled="#{backingBeanScope.copyrightOrderItemsManagedBean.tableModel.isNextDisabled}"
+                                                    actionListener="#{backingBeanScope.copyrightOrderItemsManagedBean.commonRenderer.nextPage}"/>
+                                    <af:spacer width="10" height="10" id="s8"/>
+                                    <af:selectOneChoice valueChangeListener="#{backingBeanScope.copyrightOrderItemsManagedBean.commonRenderer.goPageIndex}"
+                                                        id="soc1" simple="true" autoSubmit="true"
+                                                        value="#{backingBeanScope.copyrightOrderItemsManagedBean.tableModel.currItem.value}">
+                                        <f:selectItems value="#{backingBeanScope.copyrightOrderItemsManagedBean.tableModel.pageSelectItems}"
+                                                       id="si1"/>
+                                    </af:selectOneChoice>
+                                </af:panelGroupLayout>
+                            </f:facet>
+                            <f:facet name="end"></f:facet>
+                            <f:facet name="top"/>
+                        </af:panelStretchLayout>
+                        <af:table var="row" rowBandingInterval="0" id="t1" varStatus="vs"
+                                  styleClass="AFStretchWidth custom_table_striped" contentDelivery="immediate"
+                                  autoHeightRows="0" inlineStyle="margin-top:2px;" emptyText=""
+                                  value="#{backingBeanScope.copyrightOrderItemsManagedBean.tableModel.model}"
+                                  sortListener="#{backingBeanScope.copyrightOrderItemsManagedBean.commonRenderer.tableSortListener}"
+                                  rowSelection="multiple" columnStretching="multiple">
+                            <af:column sortable="false" headerText="序号" id="c1" align="center" width="50">
+                                <af:outputText value="#{vs.index+1}" id="ot18"/>
+                            </af:column>
+                            <af:column sortable="false" headerText="图书名称" id="c2" align="center" width="20%">
+                                <af:outputText value="#{row.bookName}" id="ot5"/>
+                            </af:column>
+                            <af:column sortable="false" headerText="ISBN" id="c3" align="center" width="20%">
+                                <af:outputText value="#{row.isbn}" id="ot6"/>
+                            </af:column>
+                            <af:column sortable="false" headerText="作者" id="c4" align="center" width="20%">
+                                <af:outputText value="#{row.author}" id="ot7"/>
+                            </af:column>
+                            <af:column sortable="false" headerText="授权开始时间" id="c14" align="center" width="20%">
+                                <af:outputText value="#{row.authorizedStartTime}" id="ot22"/>
+                            </af:column>
+                            <af:column sortable="false" headerText="是否独家" id="c5" align="center" width="15%">
+                                <af:outputText value="#{row.exclusiveCopyrightDisplay}" id="ot10"/>
+                            </af:column>
+                        </af:table>
+                        <af:spacer width="10" height="10" id="s3"/>
+                    </af:panelGroupLayout>
+                </f:facet>
+                <f:facet name="center"/>
+            </af:panelStretchLayout>
+        </af:form>
+    </af:document>
+</f:view>

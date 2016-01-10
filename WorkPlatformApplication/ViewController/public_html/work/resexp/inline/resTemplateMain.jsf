@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <af:document id="d1" title="新建模版">
+        <af:messages id="m1"/>
+        <af:form id="f1">
+            <af:panelStretchLayout id="psl1" bottomHeight="30px" topHeight="30px">
+                <f:facet name="top"></f:facet>
+                <f:facet name="center">
+                    <af:panelFormLayout id="pfl1" labelWidth="150">
+                        <af:inputText value="#{pageFlowScope.applyName}" label="标题" autoSubmit="true" required="true"
+                                      contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                      id="it3"/>
+                        <af:commandButton text="新建模板" id="cb3" immediate="true"
+                                          actionListener="#{backingBeanScope.resTemplateManagedBean.editActionListener}"
+                                          action="toEdit" styleClass="min-btn blue-min-btn">
+                            <f:attribute name="mode" value="CREATE"/>
+                        </af:commandButton>
+                        <af:panelLabelAndMessage label="模板" id="plam1" showRequired="true">
+                            <table width="100%">
+                                <af:iterator id="i1" value="#{bindings.CmsResTemplateVO.collectionModel}"
+                                             var="template">
+                                    <tr>
+                                        <td width="40%" align="left">
+                                            <af:selectBooleanRadio label="Label 1" group="radioGroup" simple="true"
+                                                                   id="sbr1" autoSubmit="true"
+                                                                   value="#{template.Checked}"/>
+                                             
+                                            <af:outputText value="#{template.TemplateName}" id="ot1"/>
+                                        </td>
+                                        <td width="50" align="left">
+                                            <af:commandLink text="编辑" id="cb1" action="toEdit" immediate="true"
+                                                            styleClass="min-btn blue-min-btn"
+                                                            actionListener="#{backingBeanScope.resTemplateManagedBean.editActionListener}">
+                                                <f:attribute name="templateId" value="#{template.TemplateId}"/>
+                                                <f:attribute name="mode" value="EDIT"/>
+                                            </af:commandLink>
+                                        </td>
+                                        <td>
+                                            <af:commandLink text="删除" id="cb2" immediate="true"
+                                                            styleClass="min-btn blue-min-btn"
+                                                            actionListener="#{backingBeanScope.resTemplateManagedBean.deleteActionListener}">
+                                                <f:attribute name="templateId" value="#{template.TemplateId}"/>
+                                            </af:commandLink>
+                                        </td>
+                                    </tr>
+                                </af:iterator>
+                            </table>
+                        </af:panelLabelAndMessage>
+                        <af:selectOneChoice value="#{pageFlowScope.exportReason}" autoSubmit="true" id="soc2"
+                                            label="导出原因"
+                                            contentStyle="width:150px;height:22px;line-height:22px;border-color:#ABADB3;font-size:12px;"
+                                            valueChangeListener="#{backingBeanScope.resTemplateManagedBean.exportReasonValueChangeListener}">
+                            <f:selectItems value="#{backingBeanScope.resTemplateManagedBean.exportReasonList}"
+                                           id="si2"/>
+                        </af:selectOneChoice>
+                        <af:inputText value="#{pageFlowScope.remarks}" label="备注" rows="10" id="it1"
+                                      styleClass="multipleRowsInputtext"
+                                      contentStyle="width:510px;line-height:18px;background-image:none;border-color:#ABADB3;"/>
+                        <af:outputText value="注：你没有选择任何申请，提交时会将所有申请都提交！" id="ot2"
+                                       inlineStyle="font-size:14px;font-weight:bold;color:red;"
+                                       rendered="#{pageFlowScope.shelfDocIdListSize == '0'}"/>
+                    </af:panelFormLayout>
+                </f:facet>
+                <f:facet name="bottom">
+                    <af:panelGroupLayout id="pgl2" layout="vertical" halign="center">
+                        <af:panelGroupLayout id="pgl3" layout="horizontal">
+                            <af:commandButton text="提交" id="cb4"
+                                              action="#{backingBeanScope.resTemplateManagedBean.submitActionListener}"
+                                              styleClass="popup-btn"/>
+                            <af:commandButton text="取消" id="cb5" immediate="true"
+                                              action="#{backingBeanScope.resTemplateManagedBean.cancelActionListener}"
+                                              styleClass="popup-btn"/>
+                        </af:panelGroupLayout>
+                    </af:panelGroupLayout>
+                </f:facet>
+            </af:panelStretchLayout>
+        </af:form>
+    </af:document>
+</f:view>

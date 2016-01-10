@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="CmsDoc4RelationQueryVO"
+  Version="11.1.2.64.36"
+  BindingStyle="OracleName"
+  CustomQuery="true"
+  RowClass="com.zypg.cms.work.model.viewobject.relation.query.CmsDoc4RelationQueryVORowImpl"
+  ComponentClass="com.zypg.cms.work.model.viewobject.relation.query.CmsDoc4RelationQueryVOImpl"
+  PageIterMode="Full"
+  UseGlueCode="false">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="Access|Coll|VarAccess"/>
+    <Attr Name="_isExpertMode" Value="true"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="com.zypg.cms.work.model.viewobject.relation.query.CmsDoc4RelationQueryVO_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <SQLQuery><![CDATA[SELECT NULL title,
+       NULL start_time,
+       NULL end_time,
+       NULL keyword,
+       NULL author,
+       NULL isbn
+  FROM dual]]></SQLQuery>
+  <ViewAttribute
+    Name="Title"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="255"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="TITLE"
+    Expression="TITLE"
+    SQLType="VARCHAR">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.work.model.viewobject.relation.query.CmsDoc4RelationQueryVO.Title_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="StartTime"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="oracle.jbo.domain.Date"
+    ColumnType="DATE"
+    AliasName="START_TIME"
+    Expression="START_TIME"
+    SQLType="DATE">
+    <Properties>
+      <SchemaBasedProperties>
+        <FMT_FORMATTER
+          ResId="com.zypg.cms.work.model.viewobject.relation.query.CmsDoc4RelationQueryVO.StartTime_FMT_FORMATTER"/>
+        <FMT_FORMAT
+          ResId="com.zypg.cms.work.model.viewobject.relation.query.CmsDoc4RelationQueryVO.StartTime_FMT_FORMAT"/>
+        <CONTROLTYPE
+          Value="date"/>
+        <TOOLTIP
+          ResId="com.zypg.cms.work.model.viewobject.relation.query.CmsDoc4RelationQueryVO.StartTime_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="EndTime"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="oracle.jbo.domain.Date"
+    ColumnType="DATE"
+    AliasName="END_TIME"
+    Expression="END_TIME"
+    SQLType="DATE">
+    <Properties>
+      <SchemaBasedProperties>
+        <FMT_FORMATTER
+          ResId="com.zypg.cms.work.model.viewobject.relation.query.CmsDoc4RelationQueryVO.EndTime_FMT_FORMATTER"/>
+        <FMT_FORMAT
+          ResId="com.zypg.cms.work.model.viewobject.relation.query.CmsDoc4RelationQueryVO.EndTime_FMT_FORMAT"/>
+        <CONTROLTYPE
+          Value="date"/>
+        <TOOLTIP
+          ResId="com.zypg.cms.work.model.viewobject.relation.query.CmsDoc4RelationQueryVO.EndTime_TOOLTIP"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Keyword"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="KEYWORD"
+    Expression="KEYWORD"
+    SQLType="VARCHAR">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.work.model.viewobject.relation.query.CmsDoc4RelationQueryVO.Keyword_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Author"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="AUTHOR"
+    Expression="AUTHOR"
+    SQLType="VARCHAR">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.work.model.viewobject.relation.query.CmsDoc4RelationQueryVO.Author_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Isbn"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="ISBN"
+    Expression="ISBN"
+    SQLType="VARCHAR">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.work.model.viewobject.relation.query.CmsDoc4RelationQueryVO.Isbn_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="com.zypg.cms.work.model.ModelBundle"/>
+  </ResourceBundle>
+</ViewObject>

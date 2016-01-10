@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE AppModule SYSTEM "jbo_03_01.dtd">
+<!---->
+<AppModule
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="ActivityAM"
+  Version="11.1.2.64.36"
+  ComponentClass="com.zypg.cms.work.model.am.ActivityAMImpl"
+  ClearCacheOnRollback="true"
+  ComponentInterface="com.zypg.cms.work.model.am.common.ActivityAM"
+  ClientProxyName="com.zypg.cms.work.model.am.client.ActivityAMClient">
+  <DesignTime>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="com.zypg.cms.work.model.am.ActivityAM_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <ViewUsage
+    Name="CmsActivityVO"
+    ViewObjectName="com.zypg.cms.work.model.viewobject.activity.query.CmsActivityVO">
+    <ViewCriteriaUsage
+      Name="findActivityByDocIdVC"
+      FullName="com.zypg.cms.work.model.viewobject.activity.query.CmsActivityVO.findActivityByDocIdVC"/>
+  </ViewUsage>
+  <ViewUsage
+    Name="CmsActivityTVO"
+    ViewObjectName="com.zypg.cms.work.model.viewobject.activity.CmsActivityTVO">
+    <ViewCriteriaUsage
+      Name="findActivityByDocId"
+      FullName="com.zypg.cms.work.model.viewobject.activity.CmsActivityTVO.findActivityByDocId"/>
+  </ViewUsage>
+  <ViewUsage
+    Name="CmsDocTVO"
+    ViewObjectName="com.zypg.cms.work.model.viewobject.common.CmsDocTVO"/>
+  <ViewUsage
+    Name="CmsDocCategoryRelTVO"
+    ViewObjectName="com.zypg.cms.work.model.viewobject.common.CmsDocCategoryRelTVO">
+    <ViewCriteriaUsage
+      Name="findByDocIdVC"
+      FullName="com.zypg.cms.work.model.viewobject.common.CmsDocCategoryRelTVO.findByDocIdVC"/>
+  </ViewUsage>
+  <ViewUsage
+    Name="CmsActivityEditVO"
+    ViewObjectName="com.zypg.cms.work.model.viewobject.activity.CmsActivityEditVO"/>
+  <ViewUsage
+    Name="CmsActivityTVO4View"
+    ViewObjectName="com.zypg.cms.work.model.viewobject.activity.CmsActivityTVO">
+    <ViewCriteriaUsage
+      Name="findActivityByDocId"
+      FullName="com.zypg.cms.work.model.viewobject.activity.CmsActivityTVO.findActivityByDocId"/>
+  </ViewUsage>
+  <ViewUsage
+    Name="CmsDocUcmRelTVO4FileList"
+    ViewObjectName="com.zypg.cms.work.model.viewobject.common.CmsDocUcmRelTVO">
+    <ViewCriteriaUsage
+      Name="findByDocId"
+      FullName="com.zypg.cms.work.model.viewobject.common.CmsDocUcmRelTVO.findByDocId"/>
+  </ViewUsage>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="com.zypg.cms.work.model.ModelBundle"/>
+  </ResourceBundle>
+  <ClientInterface>
+    <Method
+      Name="initActivityEditVO"
+      MethodName="initActivityEditVO">
+      <Return
+        Type="void"/>
+    </Method>
+  </ClientInterface>
+</AppModule>

@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="newspaperViewPageDef"
+                Package="work.newspaper.fragment">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <taskFlow id="related_info_view_taskflow1"
+              taskFlowId="/WEB-INF/common/related_info_view_taskflow.xml#related_info_view_taskflow"
+              activation="deferred" xmlns="http://xmlns.oracle.com/adf/controller/binding">
+      <parameters>
+        <parameter id="docId" value="#{pageFlowScope.docId}"/>
+        <parameter id="position" value="RIGHT"/>
+        <parameter id="displayWidth" value="200"/>
+      </parameters>
+    </taskFlow>
+    <taskFlow id="related_info_view_taskflow2"
+              taskFlowId="/WEB-INF/common/related_info_view_taskflow.xml#related_info_view_taskflow"
+              activation="deferred" xmlns="http://xmlns.oracle.com/adf/controller/binding">
+      <parameters>
+        <parameter id="docId" value="#{pageFlowScope.docId}"/>
+        <parameter id="position" value="LEFT"/>
+        <parameter id="displayWidth" value="200"/>
+      </parameters>
+    </taskFlow>
+    <iterator Binds="Root.NewspaperAM.CmsDocTVO4View" DataControl="WorkAMDataControl" RangeSize="25"
+              id="CmsDocTVO4ViewIterator"/>
+    <iterator Binds="Root.NewspaperAM.CmsNewspaperTVO4View" DataControl="WorkAMDataControl" RangeSize="25"
+              id="CmsNewspaperTVO4ViewIterator"/>
+    <iterator Binds="Root.NewspaperAM.CmsDocUcmRelTVO4FileList" DataControl="WorkAMDataControl" RangeSize="10"
+              id="CmsDocUcmRelTVO4FileListIterator"/>
+    <taskFlow id="extend_attr_view_taskflow1"
+              taskFlowId="/WEB-INF/common/extend_attr_view_taskflow.xml#extend_attr_view_taskflow" activation="deferred"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding">
+      <parameters>
+        <parameter id="docId" value="#{pageFlowScope.docId}"/>
+      </parameters>
+    </taskFlow>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="CmsDocTVO4ViewIterator" id="ThumbnailUrl">
+      <AttrNames>
+        <Item Value="ThumbnailUrl"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsNewspaperTVO4ViewIterator" id="NewspaperCategoryName">
+      <AttrNames>
+        <Item Value="NewspaperCategoryName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsNewspaperTVO4ViewIterator" id="NewspaperTypeMeaning">
+      <AttrNames>
+        <Item Value="NewspaperTypeMeaning"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsNewspaperTVO4ViewIterator" id="Issn">
+      <AttrNames>
+        <Item Value="Issn"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsNewspaperTVO4ViewIterator" id="Cn">
+      <AttrNames>
+        <Item Value="Cn"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="CmsNewspaperTVO4ViewIterator" StaticList="false" Uses="LOV_Year" id="Year"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <attributeValues IterBinding="CmsNewspaperTVO4ViewIterator" id="NewsId">
+      <AttrNames>
+        <Item Value="NewsId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsNewspaperTVO4ViewIterator" id="NewsNum">
+      <AttrNames>
+        <Item Value="NewsNum"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsNewspaperTVO4ViewIterator" id="Total">
+      <AttrNames>
+        <Item Value="Total"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsNewspaperTVO4ViewIterator" id="PubTime">
+      <AttrNames>
+        <Item Value="PubTime"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsNewspaperTVO4ViewIterator" id="CompCode">
+      <AttrNames>
+        <Item Value="CompCode"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsNewspaperTVO4ViewIterator" id="ChiefEditor">
+      <AttrNames>
+        <Item Value="ChiefEditor"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsNewspaperTVO4ViewIterator" id="Editor">
+      <AttrNames>
+        <Item Value="Editor"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsNewspaperTVO4ViewIterator" id="Price">
+      <AttrNames>
+        <Item Value="Price"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsNewspaperTVO4ViewIterator" id="BookSizeMeaning">
+      <AttrNames>
+        <Item Value="BookSizeMeaning"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsNewspaperTVO4ViewIterator" id="Remarks">
+      <AttrNames>
+        <Item Value="Remarks"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsNewspaperTVO4ViewIterator" id="Pagination">
+      <AttrNames>
+        <Item Value="Pagination"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsNewspaperTVO4ViewIterator" id="MainPage">
+      <AttrNames>
+        <Item Value="MainPage"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsNewspaperTVO4ViewIterator" id="MainTypeset">
+      <AttrNames>
+        <Item Value="MainTypeset"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsNewspaperTVO4ViewIterator" id="ColorNum">
+      <AttrNames>
+        <Item Value="ColorNum"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsNewspaperTVO4ViewIterator" id="TypesetComp">
+      <AttrNames>
+        <Item Value="TypesetComp"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsNewspaperTVO4ViewIterator" id="CoverTypeset">
+      <AttrNames>
+        <Item Value="CoverTypeset"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsNewspaperTVO4ViewIterator" id="ProdSizeMeaning">
+      <AttrNames>
+        <Item Value="ProdSizeMeaning"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsNewspaperTVO4ViewIterator" id="AssortProd">
+      <AttrNames>
+        <Item Value="AssortProd"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsNewspaperTVO4ViewIterator" id="ReaderGroupMeaning">
+      <AttrNames>
+        <Item Value="ReaderGroupMeaning"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsNewspaperTVO4ViewIterator" id="Suggestion">
+      <AttrNames>
+        <Item Value="Suggestion"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsNewspaperTVO4ViewIterator" id="FormatDesign">
+      <AttrNames>
+        <Item Value="FormatDesign"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsNewspaperTVO4ViewIterator" id="CoverDesign">
+      <AttrNames>
+        <Item Value="CoverDesign"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsNewspaperTVO4ViewIterator" id="Keyword">
+      <AttrNames>
+        <Item Value="Keyword"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsNewspaperTVO4ViewIterator" id="CompName">
+      <AttrNames>
+        <Item Value="CompName"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="CmsNewspaperTVO4ViewIterator" StaticList="false" Uses="LOV_Lang" id="Lang" DTSupportsMRU="true"
+          SelectItemValueMode="ListObject"/>
+    <tree IterBinding="CmsDocUcmRelTVO4FileListIterator" id="CmsDocUcmRelTVO4FileList">
+      <nodeDefinition DefName="com.zypg.cms.work.model.viewobject.common.CmsDocUcmRelTVO"
+                      Name="CmsDocUcmRelTVO4FileList0">
+        <AttrNames>
+          <Item Value="FileName"/>
+          <Item Value="FileCategory"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="CmsDocTVO4ViewIterator" id="DocId">
+      <AttrNames>
+        <Item Value="DocId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsNewspaperTVO4ViewIterator" id="Publishing">
+      <AttrNames>
+        <Item Value="Publishing"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsNewspaperTVO4ViewIterator" id="PublicDate">
+      <AttrNames>
+        <Item Value="PublicDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsNewspaperTVO4ViewIterator" id="LangMeaning">
+      <AttrNames>
+        <Item Value="LangMeaning"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

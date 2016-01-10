@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="book_chapter_view_taskflow">
+    <default-activity>prepareChapterData</default-activity>
+    <input-parameter-definition id="__4">
+      <name>pDocId</name>
+      <value>#{pageFlowScope.pDocId}</value>
+      <class>oracle.jbo.domain.Number</class>
+      <required/>
+    </input-parameter-definition>
+    <managed-bean id="__3">
+      <managed-bean-name>chapterViewBean</managed-bean-name>
+      <managed-bean-class>com.zypg.cms.work.view.bean.ChapterViewBean</managed-bean-class>
+      <managed-bean-scope>backingBean</managed-bean-scope>
+    </managed-bean>
+    <view id="chapterView">
+      <page>/work/book/inline/chapterView.jsf</page>
+    </view>
+    <method-call id="prepareChapterData">
+      <method>#{backingBeanScope.chapterViewBean.init}</method>
+      <outcome>
+        <fixed-outcome>init</fixed-outcome>
+      </outcome>
+    </method-call>
+    <control-flow-rule id="__1">
+      <from-activity-id>prepareChapterData</from-activity-id>
+      <control-flow-case id="__2">
+        <from-outcome>init</from-outcome>
+        <to-activity-id>chapterView</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <visibility>
+      <url-invoke-allowed/>
+    </visibility>
+  </task-flow-definition>
+</adfc-config>

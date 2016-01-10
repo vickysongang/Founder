@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="themeResourceHomePageDef"
+                Package="work.theme.fragment">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <taskFlow id="theme_resource_origin_taskflow1"
+              taskFlowId="/WEB-INF/work/theme/theme_resource_origin_taskflow.xml#theme_resource_origin_taskflow"
+              activation="deferred" xmlns="http://xmlns.oracle.com/adf/controller/binding" Refresh="ifNeeded">
+      <parameters>
+        <parameter id="libCode" value="#{pageFlowScope.libCode==null ? 'BOOK' : pageFlowScope.libCode}"/>
+        <parameter id="compCode" value="#{pageFlowScope.compCode}"/>
+        <parameter id="nodeId" value="#{pageFlowScope.nodeId}"/>
+        <parameter id="goPage" value="#{pageFlowScope.goPage}"/>
+        <parameter id="displayModel" value="#{pageFlowScope.displayModel}"/>
+        <parameter id="groupUserFlag" value="#{pageFlowScope.groupUserFlag}"/>
+      </parameters>
+    </taskFlow>
+  </executables>
+  <bindings/>
+</pageDefinition>

@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="videoViewPageDef"
+                Package="work.video.fragment">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="Root.BookAM.CmsBookVO" DataControl="WorkAMDataControl" RangeSize="25" id="CmsBookVOIterator"/>
+    <taskFlow id="related_info_view_taskflow1"
+              taskFlowId="/WEB-INF/common/related_info_view_taskflow.xml#related_info_view_taskflow"
+              activation="deferred" xmlns="http://xmlns.oracle.com/adf/controller/binding">
+      <parameters>
+        <parameter id="docId" value="#{pageFlowScope.docId}"/>
+        <parameter id="position" value="LEFT"/>
+        <parameter id="displayWidth" value="200"/>
+      </parameters>
+    </taskFlow>
+    <taskFlow id="related_info_view_taskflow2"
+              taskFlowId="/WEB-INF/common/related_info_view_taskflow.xml#related_info_view_taskflow"
+              activation="deferred" xmlns="http://xmlns.oracle.com/adf/controller/binding">
+      <parameters>
+        <parameter id="docId" value="#{pageFlowScope.docId}"/>
+        <parameter id="position" value="RIGHT"/>
+        <parameter id="displayWidth" value="200"/>
+      </parameters>
+    </taskFlow>
+    <iterator Binds="Root.VideoAM.CmsVideoTVO4View" DataControl="WorkAMDataControl" RangeSize="25"
+              id="CmsVideoTVO4ViewIterator"/>
+    <iterator Binds="Root.VideoAM.CmsDocUcmRelTVO4FileList" DataControl="WorkAMDataControl" RangeSize="10"
+              id="CmsDocUcmRelTVO4FileListIterator"/>
+    <iterator Binds="Root.CommonAM.CmsAttachTVO4View" DataControl="WorkAMDataControl" RangeSize="25"
+              id="CmsAttachTVO4ViewIterator"/>
+    <taskFlow id="extend_attr_view_taskflow1"
+              taskFlowId="/WEB-INF/common/extend_attr_view_taskflow.xml#extend_attr_view_taskflow" activation="deferred"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding">
+      <parameters>
+        <parameter id="docId" value="#{pageFlowScope.docId}"/>
+      </parameters>
+    </taskFlow>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="CmsBookVOIterator" id="BookName">
+      <AttrNames>
+        <Item Value="BookName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsBookVOIterator" id="ThumbnailUrl">
+      <AttrNames>
+        <Item Value="ThumbnailUrl"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsVideoTVO4ViewIterator" id="FileName">
+      <AttrNames>
+        <Item Value="FileName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsVideoTVO4ViewIterator" id="SeriesName">
+      <AttrNames>
+        <Item Value="SeriesName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsVideoTVO4ViewIterator" id="Isbn">
+      <AttrNames>
+        <Item Value="Isbn"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsVideoTVO4ViewIterator" id="ItemCode">
+      <AttrNames>
+        <Item Value="ItemCode"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="CmsVideoTVO4ViewIterator" StaticList="false" Uses="LOV_CarrierType" id="CarrierType"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <list IterBinding="CmsVideoTVO4ViewIterator" StaticList="false" Uses="LOV_Lang" id="Lang" DTSupportsMRU="false"
+          SelectItemValueMode="ListObject"/>
+    <attributeValues IterBinding="CmsVideoTVO4ViewIterator" id="Editor">
+      <AttrNames>
+        <Item Value="Editor"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsVideoTVO4ViewIterator" id="TextEditor">
+      <AttrNames>
+        <Item Value="TextEditor"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsVideoTVO4ViewIterator" id="Producer">
+      <AttrNames>
+        <Item Value="Producer"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsVideoTVO4ViewIterator" id="PubTime">
+      <AttrNames>
+        <Item Value="PubTime"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsVideoTVO4ViewIterator" id="AssortBook">
+      <AttrNames>
+        <Item Value="AssortBook"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsVideoTVO4ViewIterator" id="CompCode">
+      <AttrNames>
+        <Item Value="CompCode"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsVideoTVO4ViewIterator" id="Keyword">
+      <AttrNames>
+        <Item Value="Keyword"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsVideoTVO4ViewIterator" id="ContentDesc">
+      <AttrNames>
+        <Item Value="ContentDesc"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsVideoTVO4ViewIterator" id="Remarks">
+      <AttrNames>
+        <Item Value="Remarks"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsVideoTVO4ViewIterator" id="FileFormat">
+      <AttrNames>
+        <Item Value="FileFormat"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsVideoTVO4ViewIterator" id="FileSize">
+      <AttrNames>
+        <Item Value="FileSize"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsVideoTVO4ViewIterator" id="FileTime">
+      <AttrNames>
+        <Item Value="FileTime"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsVideoTVO4ViewIterator" id="FileStoreTime">
+      <AttrNames>
+        <Item Value="FileStoreTime"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsVideoTVO4ViewIterator" id="Script">
+      <AttrNames>
+        <Item Value="Script"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsVideoTVO4ViewIterator" id="CategoryName">
+      <AttrNames>
+        <Item Value="CategoryName"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="CmsDocUcmRelTVO4FileListIterator" id="CmsDocUcmRelTVO4FileList">
+      <nodeDefinition DefName="com.zypg.cms.work.model.viewobject.common.CmsDocUcmRelTVO"
+                      Name="CmsDocUcmRelTVO4FileList0">
+        <AttrNames>
+          <Item Value="FileName"/>
+          <Item Value="FileCategory"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="CmsAttachTVO4ViewIterator" id="CmsAttachTVO4View">
+      <nodeDefinition DefName="com.zypg.cms.work.model.viewobject.attach.CmsAttachTVO" Name="CmsAttachTVO4View0">
+        <AttrNames>
+          <Item Value="AttachId"/>
+          <Item Value="AttachType"/>
+          <Item Value="Attribute1"/>
+          <Item Value="Attribute10"/>
+          <Item Value="Attribute11"/>
+          <Item Value="Attribute12"/>
+          <Item Value="Attribute13"/>
+          <Item Value="Attribute14"/>
+          <Item Value="Attribute15"/>
+          <Item Value="Attribute2"/>
+          <Item Value="Attribute3"/>
+          <Item Value="Attribute4"/>
+          <Item Value="Attribute5"/>
+          <Item Value="Attribute6"/>
+          <Item Value="Attribute7"/>
+          <Item Value="Attribute8"/>
+          <Item Value="Attribute9"/>
+          <Item Value="CreatedBy"/>
+          <Item Value="CreationDate"/>
+          <Item Value="DocId"/>
+          <Item Value="LastUpdateDate"/>
+          <Item Value="LastUpdatedBy"/>
+          <Item Value="ObjectVersionNumber"/>
+          <Item Value="Path"/>
+          <Item Value="Remarks"/>
+          <Item Value="SourceId"/>
+          <Item Value="Title"/>
+          <Item Value="AttachTypeMeaning"/>
+          <Item Value="libCode"/>
+          <Item Value="Format"/>
+          <Item Value="FileSize"/>
+          <Item Value="UcmDid"/>
+          <Item Value="UcmDocname"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="CmsVideoTVO4ViewIterator" id="DocId">
+      <AttrNames>
+        <Item Value="DocId"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

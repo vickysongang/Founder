@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36"
+                id="material_edit_taskflow_material_edit_taskflow_preEidtMaterialPageDef" Package="work.material"
+                SkipValidation="true">
+  <parameters/>
+  <executables/>
+  <bindings>
+    <action id="preEidtMaterial" RequiresUpdateModel="true" Action="invokeMethod" MethodName="preEidtMaterial"
+            IsViewObjectMethod="false" DataControl="WorkAMDataControl"
+            InstanceName="data.WorkAMDataControl.dataProvider.Root.MaterialFigureAM">
+      <NamedData NDName="mode" NDValue="#{pageFlowScope.mode}" NDType="java.lang.String"/>
+      <NamedData NDName="figureId" NDValue="#{pageFlowScope.figureId}" NDType="oracle.jbo.domain.Number"/>
+    </action>
+  </bindings>
+</pageDefinition>

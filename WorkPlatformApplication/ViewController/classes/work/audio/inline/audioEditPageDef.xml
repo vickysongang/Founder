@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="audioEditPageDef"
+                Package="work.audio.inline">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="Root.AudioAM.CmsAudioTVO" DataControl="WorkAMDataControl" RangeSize="25" id="CmsAudioTVOIterator"/>
+       <taskFlow id="category_pick_taskflow1"
+              taskFlowId="/WEB-INF/common/category_pick_taskflow.xml#category_pick_taskflow" activation="deferred"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+    <iterator Binds="Root.AudioAM.CmsDocCategoryRelTVO" DataControl="WorkAMDataControl" RangeSize="25"
+              id="CmsDocCategoryRelTVO1Iterator"/>
+    <iterator Binds="Root.AudioAM.CmsAudioEditVO" DataControl="WorkAMDataControl" RangeSize="25"
+              id="CmsAudioEditVOIterator"/>
+    <taskFlow id="extend_attr_taskflow1" taskFlowId="/WEB-INF/common/extend_attr_taskflow.xml#extend_attr_taskflow"
+              activation="deferred" xmlns="http://xmlns.oracle.com/adf/controller/binding">
+      <parameters>
+        <parameter id="compCode" value="#{pageFlowScope.compCode}"/>
+        <parameter id="libCode" value="#{pageFlowScope.libCode}"/>
+        <parameter id="docId" value="#{pageFlowScope.docId}"/>
+        <parameter id="operType" value="#{pageFlowScope.mode}"/>
+        <parameter id="labelWidth" value="80"/>
+      </parameters>
+    </taskFlow>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="CmsAudioTVOIterator" id="FileName">
+      <AttrNames>
+        <Item Value="FileName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsAudioTVOIterator" id="Isbn">
+      <AttrNames>
+        <Item Value="Isbn"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsAudioTVOIterator" id="AudioType">
+      <AttrNames>
+        <Item Value="AudioType"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="CmsAudioTVOIterator" StaticList="false" Uses="LOV_Lang" id="Lang" DTSupportsMRU="false"
+          SelectItemValueMode="ListObject"/>
+    <attributeValues IterBinding="CmsAudioTVOIterator" id="TextEditor">
+      <AttrNames>
+        <Item Value="TextEditor"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsAudioTVOIterator" id="PubTime">
+      <AttrNames>
+        <Item Value="PubTime"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsAudioTVOIterator" id="SeriesName">
+      <AttrNames>
+        <Item Value="SeriesName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsAudioTVOIterator" id="ItemCode">
+      <AttrNames>
+        <Item Value="ItemCode"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="CmsAudioTVOIterator" StaticList="false" Uses="LOV_CarrierType" id="CarrierType"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <attributeValues IterBinding="CmsAudioTVOIterator" id="Editor">
+      <AttrNames>
+        <Item Value="Editor"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsAudioTVOIterator" id="RecordUser">
+      <AttrNames>
+        <Item Value="RecordUser"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsAudioTVOIterator" id="AssortBook">
+      <AttrNames>
+        <Item Value="AssortBook"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsAudioTVOIterator" id="ContentDesc">
+      <AttrNames>
+        <Item Value="ContentDesc"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsAudioTVOIterator" id="Remarks">
+      <AttrNames>
+        <Item Value="Remarks"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsAudioTVOIterator" id="AudioId">
+      <AttrNames>
+        <Item Value="AudioId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsDocCategoryRelTVO1Iterator" id="CategoryId">
+      <AttrNames>
+        <Item Value="CategoryId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsDocCategoryRelTVO1Iterator" id="RelId">
+      <AttrNames>
+        <Item Value="RelId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsAudioTVOIterator" id="Keyword">
+      <AttrNames>
+        <Item Value="Keyword"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsAudioEditVOIterator" id="SeriesName1">
+      <AttrNames>
+        <Item Value="SeriesName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsAudioEditVOIterator" id="Editor1">
+      <AttrNames>
+        <Item Value="Editor"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsAudioEditVOIterator" id="TextEditor1">
+      <AttrNames>
+        <Item Value="TextEditor"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsAudioEditVOIterator" id="RecordUser1">
+      <AttrNames>
+        <Item Value="RecordUser"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsAudioEditVOIterator" id="PubTime1">
+      <AttrNames>
+        <Item Value="PubTime"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsAudioEditVOIterator" id="AssortBook1">
+      <AttrNames>
+        <Item Value="AssortBook"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsAudioEditVOIterator" id="DeptCode">
+      <AttrNames>
+        <Item Value="DeptCode"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsAudioEditVOIterator" id="Keyword1">
+      <AttrNames>
+        <Item Value="Keyword"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsAudioEditVOIterator" id="ContentDesc1">
+      <AttrNames>
+        <Item Value="ContentDesc"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsAudioEditVOIterator" id="Remarks1">
+      <AttrNames>
+        <Item Value="Remarks"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsAudioTVOIterator" id="CategoryName">
+      <AttrNames>
+        <Item Value="CategoryName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsAudioEditVOIterator" id="CategoryId1">
+      <AttrNames>
+        <Item Value="CategoryId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsAudioEditVOIterator" id="CategoryName1">
+      <AttrNames>
+        <Item Value="CategoryName"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="CmsAudioEditVOIterator" StaticList="false" Uses="LOV_CarrierType" id="CarrierType1"
+          DTSupportsMRU="true" SelectItemValueMode="ListObject"/>
+    <list IterBinding="CmsAudioEditVOIterator" StaticList="false" Uses="LOV_Lang" id="Lang1" DTSupportsMRU="true"
+          SelectItemValueMode="ListObject"/>
+  </bindings>
+</pageDefinition>

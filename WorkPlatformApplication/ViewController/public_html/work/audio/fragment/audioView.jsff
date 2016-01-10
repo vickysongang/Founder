@@ -1,0 +1,290 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core">
+    <af:panelStretchLayout id="psl1" inlineStyle="width:1050px;height:540px;" bottomHeight="0px">
+        <f:facet name="center">
+            <af:panelGroupLayout id="pgl1" layout="scroll" valign="top" inlineStyle="margin-top:10px;">
+                <af:panelGroupLayout id="pgl4" layout="horizontal" valign="top">
+                    <af:panelGroupLayout id="pgl3" layout="vertical" inlineStyle="width:200px;" valign="top">
+                        <af:region value="#{bindings.related_info_view_taskflow1.regionModel}" id="r1"/>
+                    </af:panelGroupLayout>
+                    <af:spacer width="5" height="10" id="s24"/>
+                    <af:panelGroupLayout id="pgl6" layout="vertical" inlineStyle="width:600px;">
+                        <af:panelGroupLayout id="pgl7" layout="vertical" inlineStyle="background:#D9EDF8;height:30px;"
+                                             styleClass="AFStretchWidth">
+                            <af:panelGroupLayout id="pgl2" layout="horizontal" inlineStyle="padding-top:8px;">
+                                <af:spacer width="10" height="10" id="s1"/>
+                                <af:outputText value="在线播放" id="ot1" inlineStyle="font-weight:bold;color:#024D91;"/>
+                            </af:panelGroupLayout>
+                        </af:panelGroupLayout>
+                        <af:panelGroupLayout id="pgl8" layout="vertical" halign="center">
+                            <af:inlineFrame id="if1" source="/work/common/jsp/mediaPreview.jsp" clientComponent="true"
+                                            inlineStyle="width:480px;height:320px;"/>
+                        </af:panelGroupLayout>
+                        <af:panelGroupLayout id="pgl36" layout="vertical">
+                            <af:panelGroupLayout id="pgl37" layout="vertical"
+                                                 inlineStyle="background:#D9EDF8;height:30px;"
+                                                 styleClass="AFStretchWidth">
+                                <af:panelGroupLayout id="pgl38" layout="horizontal" inlineStyle="padding-top:8px;">
+                                    <af:spacer width="10" height="10" id="s14"/>
+                                    <af:outputText value="基本信息" id="ot29"
+                                                   inlineStyle="font-weight:bold;color:#024D91;"/>
+                                </af:panelGroupLayout>
+                            </af:panelGroupLayout>
+                        </af:panelGroupLayout>
+                        <af:panelFormLayout id="pfl1" labelWidth="100">
+                            <af:panelLabelAndMessage label="#{bindings.FileName.hints.label}" id="plam1">
+                                <af:outputText value="#{bindings.FileName.inputValue}"
+                                               shortDesc="#{bindings.FileName.hints.tooltip}" id="ot2"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.FileFormat.hints.label}" id="plam14">
+                                <af:outputText value="#{bindings.FileFormat.inputValue}"
+                                               shortDesc="#{bindings.FileFormat.hints.tooltip}" id="ot15"/>
+                            </af:panelLabelAndMessage>
+                            <af:selectOneChoice value="#{bindings.CarrierType.inputValue}"
+                                                label="#{bindings.CarrierType.label}"
+                                                required="#{bindings.CarrierType.hints.mandatory}"
+                                                shortDesc="#{bindings.CarrierType.hints.tooltip}" readOnly="true"
+                                                id="soc1">
+                                <f:selectItems value="#{bindings.CarrierType.items}" id="si1"/>
+                            </af:selectOneChoice>
+                            <af:panelLabelAndMessage label="#{bindings.PubTime.hints.label}" id="plam8">
+                                <af:outputText value="#{bindings.PubTime.inputValue}"
+                                               shortDesc="#{bindings.PubTime.hints.tooltip}" id="ot9">
+                                    <af:convertDateTime pattern="#{bindings.PubTime.format}"/>
+                                </af:outputText>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.Editor.hints.label}" id="plam5">
+                                <af:outputText value="#{bindings.Editor.inputValue}"
+                                               shortDesc="#{bindings.Editor.hints.tooltip}" id="ot6"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.FileTime.hints.label}" id="plam16">
+                                <af:outputText value="#{bindings.FileTime.inputValue}"
+                                               shortDesc="#{bindings.FileTime.hints.tooltip}" id="ot17"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.ContentDesc.hints.label}" id="plam12"
+                                                     inlineStyle="vertical-align:top;">
+                                <af:outputText value="#{bindings.ContentDesc.inputValue}"
+                                               shortDesc="#{bindings.ContentDesc.hints.tooltip}" id="ot13"/>
+                            </af:panelLabelAndMessage>
+                        </af:panelFormLayout>
+                        <af:panelGroupLayout id="pgl63" layout="vertical" halign="right" valign="bottom">
+                            <af:panelGroupLayout id="pgl64" layout="horizontal" inlineStyle="margin-right:15px;">
+                                <af:commandImageLink id="cil1" icon="/resources/images/button_viewall.jpg"
+                                                     partialSubmit="true">
+                                    <af:showPopupBehavior triggerType="action" popupId="p1"/>
+                                </af:commandImageLink>
+                            </af:panelGroupLayout>
+                        </af:panelGroupLayout>
+                        <af:spacer width="5" height="10" id="s2"/>
+                        <af:panelGroupLayout id="pgl9" layout="vertical">
+                            <af:panelGroupLayout id="pgl10" layout="vertical"
+                                                 inlineStyle="background:#D9EDF8;height:30px;"
+                                                 styleClass="AFStretchWidth">
+                                <af:panelGroupLayout id="pgl11" layout="horizontal" inlineStyle="padding-top:8px;">
+                                    <af:spacer width="10" height="10" id="s3"/>
+                                    <af:outputText value="台本信息" id="ot27"
+                                                   inlineStyle="font-weight:bold;color:#024D91;"/>
+                                </af:panelGroupLayout>
+                            </af:panelGroupLayout>
+                            <af:outputText value="#{bindings.Script.inputValue}"
+                                           shortDesc="#{bindings.Script.hints.tooltip}" id="ot19"/>
+                        </af:panelGroupLayout>
+                        <af:spacer width="5" height="10" id="s5"/>
+                        <af:panelGroupLayout id="pgl12" layout="vertical"
+                                             rendered="#{bindings.CmsAttachTVO4View.estimatedRowCount > 0}">
+                            <af:panelGroupLayout id="pgl13" layout="vertical"
+                                                 inlineStyle="background:#D9EDF8;height:30px;"
+                                                 styleClass="AFStretchWidth">
+                                <af:panelGroupLayout id="pgl14" layout="horizontal" inlineStyle="padding-top:8px;">
+                                    <af:spacer width="10" height="10" id="s6"/>
+                                    <af:outputText value="附件列表" id="ot30"
+                                                   inlineStyle="font-weight:bold;color:#024D91;"/>
+                                </af:panelGroupLayout>
+                            </af:panelGroupLayout>
+                            <af:spacer width="10" height="2" id="s7"/>
+                            <af:table value="#{bindings.CmsAttachTVO4View.collectionModel}" var="row"
+                                      rows="#{bindings.CmsAttachTVO4View.rangeSize}" autoHeightRows="0"
+                                      contentDelivery="immediate" styleClass="AFStretchWidth custom_table_striped"
+                                      columnStretching="multiple"
+                                      emptyText="#{bindings.CmsAttachTVO4View.viewable ? '' : 'Access Denied.'}"
+                                      fetchSize="#{bindings.CmsAttachTVO4View.rangeSize}" rowBandingInterval="0"
+                                      selectedRowKeys="#{bindings.CmsAttachTVO4View.collectionModel.selectedRow}"
+                                      selectionListener="#{bindings.CmsAttachTVO4View.collectionModel.makeCurrent}"
+                                      rowSelection="single" id="t1">
+                                <af:column sortProperty="#{bindings.CmsAttachTVO4View.hints.Title.name}"
+                                           sortable="false" width="16%"
+                                           headerText="#{bindings.CmsAttachTVO4View.hints.Title.label}" id="c1">
+                                    <af:outputText value="#{row.Title}"
+                                                   shortDesc="#{bindings.CmsAttachTVO4View.hints.Title.tooltip}"
+                                                   id="ot31"/>
+                                </af:column>
+                                <af:column sortProperty="#{bindings.CmsAttachTVO4View.hints.Format.name}"
+                                           sortable="false" width="16%"
+                                           headerText="#{bindings.CmsAttachTVO4View.hints.Format.label}" id="c3">
+                                    <af:outputText value="#{row.Format}"
+                                                   shortDesc="#{bindings.CmsAttachTVO4View.hints.Format.tooltip}"
+                                                   id="ot3"/>
+                                </af:column>
+                                <af:column sortProperty="#{bindings.CmsAttachTVO4View.hints.AttachId.name}"
+                                           sortable="false" width="16%"
+                                           headerText="#{bindings.CmsAttachTVO4View.hints.AttachId.label}" id="c4">
+                                    <af:outputText value="#{row.AttachId}"
+                                                   shortDesc="#{bindings.CmsAttachTVO4View.hints.AttachId.tooltip}"
+                                                   id="ot4">
+                                        <af:convertNumber groupingUsed="false"
+                                                          pattern="#{bindings.CmsAttachTVO4View.hints.AttachId.format}"/>
+                                    </af:outputText>
+                                </af:column>
+                                <af:column headerText="#{bindings.CmsAttachTVO4View.hints.UcmDocname.label}" id="c5"
+                                           width="16%">
+                                    <af:outputText value="#{row.UcmDocname}"
+                                                   shortDesc="#{bindings.CmsAttachTVO4View.hints.UcmDocname.tooltip}"
+                                                   id="ot5"/>
+                                </af:column>
+                            </af:table>
+                            <af:spacer width="10" height="10" id="s8"/>
+                        </af:panelGroupLayout>
+                        <af:panelGroupLayout id="pgl65" layout="vertical"
+                                             rendered="#{bindings.CmsDocUcmRelTVO4FileList.estimatedRowCount>0}">
+                            <af:panelGroupLayout id="pgl66" layout="vertical"
+                                                 inlineStyle="background:#D9EDF8;height:30px;"
+                                                 styleClass="AFStretchWidth">
+                                <af:panelGroupLayout id="pgl67" layout="horizontal" inlineStyle="padding-top:8px;">
+                                    <af:spacer width="10" height="10" id="s25"/>
+                                    <af:outputText value="文件列表" id="ot16"
+                                                   inlineStyle="font-weight:bold;color:#024D91;"/>
+                                </af:panelGroupLayout>
+                            </af:panelGroupLayout>
+                            <table width="100%">
+                                <af:iterator id="i10" value="#{bindings.CmsDocUcmRelTVO4FileList.collectionModel}"
+                                             var="row" rows="20">
+                                    <tr>
+                                        <td width="60%">
+                                            <af:outputText value="#{row.FileName}" inlineStyle="margin-left:10px;"
+                                                           id="ot68"/>
+                                        </td>
+                                        <td align="left">
+                                            <af:outputText value="#{row.FileCategory}" inlineStyle="margin-left:10px;"
+                                                           id="ot69"/>
+                                        </td>
+                                    </tr>
+                                </af:iterator>
+                            </table>
+                            <af:panelGroupLayout id="pgl68" layout="vertical" halign="right">
+                                <af:commandLink text="更多..." id="cl5" inlineStyle="margin-right:20px;width:50px;"
+                                                partialSubmit="true" action="toMore" useWindow="true" windowHeight="650"
+                                                windowWidth="1050">
+                                    <af:setPropertyListener from="#{bindings.DocId.inputValue}"
+                                                            to="#{pageFlowScope.docId}" type="action"/>
+                                </af:commandLink>
+                            </af:panelGroupLayout>
+                            <af:spacer width="10" height="10" id="s27"/>
+                        </af:panelGroupLayout>
+                    </af:panelGroupLayout>
+                    <af:spacer width="5" height="10" id="s4"/>
+                    <af:panelGroupLayout id="pgl5" layout="vertical" inlineStyle="width:200px;" valign="top">
+                        <af:region value="#{bindings.related_info_view_taskflow2.regionModel}" id="r2"/>
+                    </af:panelGroupLayout>
+                </af:panelGroupLayout>
+            </af:panelGroupLayout>
+        </f:facet>
+        <f:facet name="bottom">
+            <af:popup childCreation="deferred" autoCancel="disabled" id="p1" contentDelivery="lazyUncached">
+                <af:panelWindow id="nw1" title="查看所有属性">
+                    <af:panelGroupLayout id="pgl69" layout="scroll" inlineStyle="background:#F6F6F6;line-height:20px;">
+                        <af:panelFormLayout id="pfl2" maxColumns="2" rows="8" labelWidth="100" fieldWidth="200">
+                            <af:panelLabelAndMessage label="#{bindings.FileName.hints.label}" id="plam20">
+                                <af:outputText value="#{bindings.FileName.inputValue}"
+                                               shortDesc="#{bindings.FileName.hints.tooltip}" id="ot21"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.Isbn.hints.label}" id="plam3">
+                                <af:outputText value="#{bindings.Isbn.inputValue}"
+                                               shortDesc="#{bindings.Isbn.hints.tooltip}" id="ot33"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.ItemCode.hints.label}" id="plam4">
+                                <af:outputText value="#{bindings.ItemCode.inputValue}"
+                                               shortDesc="#{bindings.ItemCode.hints.tooltip}" id="ot34"/>
+                            </af:panelLabelAndMessage>
+                            <af:selectOneChoice value="#{bindings.Lang.inputValue}" label="#{bindings.Lang.label}"
+                                                required="#{bindings.Lang.hints.mandatory}"
+                                                shortDesc="#{bindings.Lang.hints.tooltip}" readOnly="true" id="soc2">
+                                <f:selectItems value="#{bindings.Lang.items}" id="si2"/>
+                            </af:selectOneChoice>
+                            <af:panelLabelAndMessage label="#{bindings.TextEditor.hints.label}" id="plam6">
+                                <af:outputText value="#{bindings.TextEditor.inputValue}"
+                                               shortDesc="#{bindings.TextEditor.hints.tooltip}" id="ot7"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.PubTime.hints.label}" id="plam22">
+                                <af:outputText value="#{bindings.PubTime.inputValue}"
+                                               shortDesc="#{bindings.PubTime.hints.tooltip}" id="ot23">
+                                    <af:convertDateTime pattern="#{bindings.PubTime.format}"/>
+                                </af:outputText>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.CategoryName.hints.label}" id="plam19">
+                                <af:outputText value="#{bindings.CategoryName.inputValue}"
+                                               shortDesc="#{bindings.CategoryName.hints.tooltip}" id="ot20"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.SeriesName.hints.label}" id="plam2">
+                                <af:outputText value="#{bindings.SeriesName.inputValue}"
+                                               shortDesc="#{bindings.SeriesName.hints.tooltip}" id="ot32"/>
+                            </af:panelLabelAndMessage>
+                            <af:selectOneChoice value="#{bindings.CarrierType.inputValue}"
+                                                label="#{bindings.CarrierType.label}"
+                                                required="#{bindings.CarrierType.hints.mandatory}"
+                                                shortDesc="#{bindings.CarrierType.hints.tooltip}" readOnly="true"
+                                                id="soc3">
+                                <f:selectItems value="#{bindings.CarrierType.items}" id="si3"/>
+                            </af:selectOneChoice>
+                            <af:panelLabelAndMessage label="#{bindings.Editor.hints.label}" id="plam23">
+                                <af:outputText value="#{bindings.Editor.inputValue}"
+                                               shortDesc="#{bindings.Editor.hints.tooltip}" id="ot24"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.RecordUser.hints.label}" id="plam7">
+                                <af:outputText value="#{bindings.RecordUser.inputValue}"
+                                               shortDesc="#{bindings.RecordUser.hints.tooltip}" id="ot8"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.AssortBook.hints.label}" id="plam9">
+                                <af:outputText value="#{bindings.AssortBook.inputValue}"
+                                               shortDesc="#{bindings.AssortBook.hints.tooltip}" id="ot10"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.FileFormat.hints.label}" id="plam21">
+                                <af:outputText value="#{bindings.FileFormat.inputValue}"
+                                               shortDesc="#{bindings.FileFormat.hints.tooltip}" id="ot22"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.FileTime.hints.label}" id="plam24">
+                                <af:outputText value="#{bindings.FileTime.inputValue}"
+                                               shortDesc="#{bindings.FileTime.hints.tooltip}" id="ot25"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.FileSize.hints.label}" id="plam15">
+                                <af:outputText value="#{bindings.FileSize.inputValue}"
+                                               shortDesc="#{bindings.FileSize.hints.tooltip}" id="ot28"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.FileStoreTime.hints.label}" id="plam17">
+                                <af:outputText value="#{bindings.FileStoreTime.inputValue}"
+                                               shortDesc="#{bindings.FileStoreTime.hints.tooltip}" id="ot18">
+                                    <af:convertDateTime pattern="#{bindings.FileStoreTime.format}"/>
+                                </af:outputText>
+                            </af:panelLabelAndMessage>
+                        </af:panelFormLayout>
+                        <af:panelFormLayout id="pfl3" labelWidth="100">
+                            <af:panelLabelAndMessage label="#{bindings.Keyword.hints.label}" id="plam11">
+                                <af:outputText value="#{bindings.Keyword.inputValue}"
+                                               shortDesc="#{bindings.Keyword.hints.tooltip}" id="ot35"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.ContentDesc.hints.label}" id="plam25">
+                                <af:outputText value="#{bindings.ContentDesc.inputValue}"
+                                               shortDesc="#{bindings.ContentDesc.hints.tooltip}" id="ot26"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.Remarks.hints.label}" id="plam13">
+                                <af:outputText value="#{bindings.Remarks.inputValue}"
+                                               shortDesc="#{bindings.Remarks.hints.tooltip}" id="ot14"/>
+                            </af:panelLabelAndMessage>
+                        </af:panelFormLayout>
+                        <af:region value="#{bindings.extend_attr_view_taskflow1.regionModel}" id="r3"/>
+                    </af:panelGroupLayout>
+                </af:panelWindow>
+            </af:popup>
+        </f:facet>
+    </af:panelStretchLayout>
+</ui:composition>

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="worksEntryEditPageDef"
+                Package="work.entry.inline">
+  <parameters/>
+  <executables>
+    <iterator Binds="Root.EntryAM.CmsWorksEntryTVO" DataControl="WorkAMDataControl" RangeSize="25"
+              id="CmsWorksEntryTVOIterator"/>
+    <iterator Binds="Root.EntryAM.CmsWorksEntryEditVO" DataControl="WorkAMDataControl" RangeSize="25"
+              id="CmsWorksEntryEditVOIterator"/>
+    <taskFlow id="category_pick_taskflow1"
+              taskFlowId="/WEB-INF/common/category_pick_taskflow.xml#category_pick_taskflow" activation="deferred"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+    <iterator id="CmsDocCategoryRelTVOIterator" Binds="Root.EntryAM.CmsDocCategoryRelTVO"
+              DataControl="WorkAMDataControl" RangeSize="25"/>
+    <taskFlow id="extend_attr_taskflow1" taskFlowId="/WEB-INF/common/extend_attr_taskflow.xml#extend_attr_taskflow"
+              activation="deferred" xmlns="http://xmlns.oracle.com/adf/controller/binding">
+      <parameters>
+        <parameter id="compCode" value="#{pageFlowScope.compCode}"/>
+        <parameter id="libCode" value="#{pageFlowScope.libCode}"/>
+        <parameter id="docId" value="#{pageFlowScope.docId}"/>
+        <parameter id="operType" value="#{pageFlowScope.mode}"/>
+        <parameter id="labelWidth" value="80"/>
+      </parameters>
+    </taskFlow>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="CmsWorksEntryTVOIterator" id="Title">
+      <AttrNames>
+        <Item Value="Title"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsWorksEntryTVOIterator" id="EnglishTitle">
+      <AttrNames>
+        <Item Value="EnglishTitle"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsWorksEntryTVOIterator" id="CreatedBy">
+      <AttrNames>
+        <Item Value="CreatedBy"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsWorksEntryTVOIterator" id="Author">
+      <AttrNames>
+        <Item Value="Author"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="CmsWorksEntryTVOIterator" StaticList="false" Uses="LOV_Lang" id="Lang" DTSupportsMRU="true"
+          SelectItemValueMode="ListObject"/>
+    <attributeValues IterBinding="CmsWorksEntryTVOIterator" id="WritingTime">
+      <AttrNames>
+        <Item Value="WritingTime"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsWorksEntryTVOIterator" id="Subtitle">
+      <AttrNames>
+        <Item Value="Subtitle"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsWorksEntryTVOIterator" id="EnglishSubtitle">
+      <AttrNames>
+        <Item Value="EnglishSubtitle"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsWorksEntryTVOIterator" id="Source">
+      <AttrNames>
+        <Item Value="Source"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsWorksEntryTVOIterator" id="Translator">
+      <AttrNames>
+        <Item Value="Translator"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsWorksEntryTVOIterator" id="WordCount">
+      <AttrNames>
+        <Item Value="WordCount"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsWorksEntryTVOIterator" id="StoreTime">
+      <AttrNames>
+        <Item Value="StoreTime"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsWorksEntryTVOIterator" id="Keyword">
+      <AttrNames>
+        <Item Value="Keyword"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsWorksEntryTVOIterator" id="AbstarctDesc">
+      <AttrNames>
+        <Item Value="AbstarctDesc"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsWorksEntryEditVOIterator" id="CategoryName1">
+      <AttrNames>
+        <Item Value="CategoryName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsWorksEntryEditVOIterator" id="Author1">
+      <AttrNames>
+        <Item Value="Author"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="CmsWorksEntryEditVOIterator" StaticList="false" Uses="LOV_Lang" id="Lang1" DTSupportsMRU="true"
+          SelectItemValueMode="ListObject"/>
+    <attributeValues IterBinding="CmsWorksEntryEditVOIterator" id="Source1">
+      <AttrNames>
+        <Item Value="Source"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsWorksEntryEditVOIterator" id="Translator1">
+      <AttrNames>
+        <Item Value="Translator"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsWorksEntryEditVOIterator" id="Keyword1">
+      <AttrNames>
+        <Item Value="Keyword"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsWorksEntryEditVOIterator" id="AbstarctDesc1">
+      <AttrNames>
+        <Item Value="AbstarctDesc"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsWorksEntryTVOIterator" id="CategoryName">
+      <AttrNames>
+        <Item Value="CategoryName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsDocCategoryRelTVOIterator" id="CategoryId">
+      <AttrNames>
+        <Item Value="CategoryId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsWorksEntryEditVOIterator" id="CategoryId1">
+      <AttrNames>
+        <Item Value="CategoryId"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

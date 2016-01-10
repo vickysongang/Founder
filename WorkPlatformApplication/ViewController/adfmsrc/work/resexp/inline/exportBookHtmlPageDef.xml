@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="exportBookHtmlPageDef"
+                Package="work.resexp.inline">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="CmsBookExportHtmlTVO1" RangeSize="25" DataControl="ResExpAMDataControl"
+              id="CmsBookExportHtmlTVO1Iterator"/>
+    <iterator Binds="CmsAllExportFieldVO1" RangeSize="25" DataControl="ResExpAMDataControl"
+              id="CmsAllExportFieldVO1Iterator"/>
+    <iterator Binds="CmsSelectedExportFieldTVO1" RangeSize="25" DataControl="ResExpAMDataControl"
+              id="CmsSelectedExportFieldTVO1Iterator"/>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="CmsBookExportHtmlTVO1Iterator" id="ExportTheme">
+      <AttrNames>
+        <Item Value="ExportTheme"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="CmsBookExportHtmlTVO1Iterator" StaticList="false" Uses="LOV_CategoryLevel" id="CategoryLevel"
+          DTSupportsMRU="true" SelectItemValueMode="ListObject"/>
+    <list IterBinding="CmsBookExportHtmlTVO1Iterator" StaticList="false" Uses="LOV_ExportReason" id="ExportReason"
+          DTSupportsMRU="true" SelectItemValueMode="ListObject"/>
+    <tree IterBinding="CmsAllExportFieldVO1Iterator" id="CmsAllExportFieldVO1">
+      <nodeDefinition DefName="com.zypg.cms.work.model.viewobject.resexp.query.CmsAllExportFieldVO"
+                      Name="CmsAllExportFieldVO10">
+        <AttrNames>
+          <Item Value="FieldCode"/>
+          <Item Value="FieldName"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="CmsSelectedExportFieldTVO1Iterator" id="CmsSelectedExportFieldTVO1">
+      <nodeDefinition DefName="com.zypg.cms.work.model.viewobject.resexp.CmsSelectedExportFieldTVO"
+                      Name="CmsSelectedExportFieldTVO10">
+        <AttrNames>
+          <Item Value="FieldName"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action IterBinding="CmsSelectedExportFieldTVO1Iterator" id="Delete" RequiresUpdateModel="false"
+            Action="removeCurrentRow"/>
+    <action id="Commit" RequiresUpdateModel="true" Action="commitTransaction" DataControl="ResExpAMDataControl"/>
+    <action id="Rollback" RequiresUpdateModel="false" Action="rollbackTransaction" DataControl="ResExpAMDataControl"/>
+    <attributeValues IterBinding="CmsBookExportHtmlTVO1Iterator" id="Remarks">
+      <AttrNames>
+        <Item Value="Remarks"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsBookExportHtmlTVO1Iterator" id="CategoryLevel1">
+      <AttrNames>
+        <Item Value="CategoryLevel"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsBookExportHtmlTVO1Iterator" id="ExportReason1">
+      <AttrNames>
+        <Item Value="ExportReason"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsBookExportHtmlTVO1Iterator" id="ExportId">
+      <AttrNames>
+        <Item Value="ExportId"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="resTemplateMainPageDef"
+                Package="work.resexp.inline">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator id="CmsResTemplateVOIterator" Binds="Root.ResExpAM.CmsResTemplateVO" DataControl="WorkAMDataControl"
+              RangeSize="25"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="CmsResTemplateVOIterator" id="CmsResTemplateVO">
+      <nodeDefinition DefName="com.zypg.cms.work.model.viewobject.resexp.query.CmsResTemplateVO"
+                      Name="CmsResTemplateVO0">
+        <AttrNames>
+          <Item Value="TemplateId"/>
+          <Item Value="TemplateName"/>
+          <Item Value="Checked"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+  </bindings>
+</pageDefinition>

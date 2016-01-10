@@ -1,0 +1,301 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <af:document id="d1" title="查看同步日志">
+        <af:messages id="m1"/>
+        <af:form id="f1">
+            <af:panelSplitter id="ps1" splitterPosition="180" disabled="true" styleClass="AFStrectchWidth"
+                              inlineStyle="margin:5px;">
+                <f:facet name="first">
+                    <af:panelGroupLayout layout="scroll" id="pgl1" inlineStyle="background:#F3F8FC;"
+                                         partialTriggers="i1:cl1">
+                        <af:spacer width="10" height="10" id="s1"/>
+                        <af:iterator id="i1" value="#{bindings.CmsGatherMonitorHVO.collectionModel}" var="row">
+                            <af:panelGroupLayout id="pgl2" layout="vertical" halign="center"
+                                                 styleClass="#{pageFlowScope.docId == row.DocId ? 'libSelected' : 'libUnSelected' }">
+                                <af:commandLink text="#{row.ResDisplayName}" shortDesc="#{row.ResName}" id="cl1"
+                                                actionListener="#{backingBeanScope.gatherMonitorManagedBean.switchResActionListener}">
+                                    <f:attribute name="docId" value="#{row.DocId}"/>
+                                </af:commandLink>
+                            </af:panelGroupLayout>
+                        </af:iterator>
+                    </af:panelGroupLayout>
+                </f:facet>
+                <f:facet name="second">
+                    <af:panelStretchLayout id="psl1" topHeight="30px" bottomHeight="0px">
+                        <f:facet name="center">
+                            <af:panelTabbed id="pt1" dimensionsFrom="disclosedChild"
+                                            styleClass="AFStretchWidth platform_panelTabbed"
+                                            binding="#{backingBeanScope.gatherMonitorManagedBean.panelTabbed}">
+                                <af:showDetailItem text="成功[#{pageFlowScope.successCount}]" id="sdi1"
+                                                   disclosed="#{pageFlowScope.tabCode == 'SUCCESS'}"
+                                                   disclosureListener="#{backingBeanScope.gatherMonitorManagedBean.tabDisclousureListener}">
+                                    <f:attribute name="tabCode" value="SUCCESS"/>
+                                    <af:panelGroupLayout layout="horizontal" id="pgl3"
+                                                         inlineStyle="position:absolute; right: 15px; top:10px;">
+                                        <af:commandImageLink id="cil3" icon="/resources/images/shuaxin.gif"
+                                                             shortDesc="刷新"
+                                                             actionListener="#{backingBeanScope.gatherMonitorManagedBean.refreshActionListener}">
+                                            <f:attribute name="tabCode" value="SUCCESS"/>
+                                        </af:commandImageLink>
+                                    </af:panelGroupLayout>
+                                    <af:table value="#{bindings.CmsGatherMonitorLVO.collectionModel}" var="row"
+                                              rows="#{bindings.CmsGatherMonitorLVO.rangeSize}" varStatus="vs"
+                                              styleClass="AFStretchWidth custom_table_striped"
+                                              contentDelivery="immediate"
+                                              emptyText="#{bindings.CmsGatherMonitorLVO.viewable ? '' : 'Access Denied.'}"
+                                              fetchSize="#{bindings.CmsGatherMonitorLVO.rangeSize}"
+                                              rowBandingInterval="0" id="t2" columnStretching="last">
+                                        <af:column sortable="false" headerText="序号" id="c1" align="center" width="30">
+                                            <af:outputText value="#{vs.index+1}" id="ot18"/>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.CmsGatherMonitorLVO.hints.FileName.name}"
+                                                   sortable="false" width="200"
+                                                   headerText="#{bindings.CmsGatherMonitorLVO.hints.FileName.label}"
+                                                   id="c2">
+                                            <af:outputText value="#{row.FileName}"
+                                                           shortDesc="#{bindings.CmsGatherMonitorLVO.hints.FileName.tooltip}"
+                                                           id="ot2"/>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.CmsGatherMonitorLVO.hints.FilePath.name}"
+                                                   sortable="false"
+                                                   headerText="#{bindings.CmsGatherMonitorLVO.hints.FilePath.label}"
+                                                   id="c3">
+                                            <af:outputText value="#{row.FilePath}"
+                                                           shortDesc="#{bindings.CmsGatherMonitorLVO.hints.FilePath.tooltip}"
+                                                           id="ot3"/>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.CmsGatherMonitorLVO.hints.Operation.name}"
+                                                   sortable="false" width="50" align="center"
+                                                   headerText="#{bindings.CmsGatherMonitorLVO.hints.Operation.label}"
+                                                   id="c7">
+                                            <af:outputText value="#{row.Operation}"
+                                                           shortDesc="#{bindings.CmsGatherMonitorLVO.hints.Operation.tooltip}"
+                                                           id="ot7"/>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.CmsGatherMonitorLVO.hints.Result.name}"
+                                                   sortable="false" align="center" width="60"
+                                                   headerText="#{bindings.CmsGatherMonitorLVO.hints.Result.label}"
+                                                   id="c4">
+                                            <af:outputText value="#{row.ResultDisplay}"
+                                                           shortDesc="#{bindings.CmsGatherMonitorLVO.hints.ResultDisplay.tooltip}"
+                                                           id="ot4"/>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.CmsGatherMonitorLVO.hints.ThumbnailResult.name}"
+                                                   sortable="false" align="center" width="90"
+                                                   headerText="#{bindings.CmsGatherMonitorLVO.hints.ThumbnailResult.label}"
+                                                   id="c5">
+                                            <af:outputText value="#{row.ThumbnailResultDisplay}"
+                                                           shortDesc="#{bindings.CmsGatherMonitorLVO.hints.ThumbnailResultDisplay.tooltip}"
+                                                           id="ot5"/>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.CmsGatherMonitorLVO.hints.CreationDateDisplay.name}"
+                                                   sortable="false" align="center" width="120"
+                                                   headerText="#{bindings.CmsGatherMonitorLVO.hints.CreationDateDisplay.label}"
+                                                   id="c22">
+                                            <af:outputText value="#{row.CreationDateDisplay}"
+                                                           shortDesc="#{bindings.CmsGatherMonitorLVO.hints.CreationDateDisplay.tooltip}"
+                                                           id="ot22"/>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.CmsGatherMonitorLVO.hints.BatchNum.name}"
+                                                   sortable="false" align="center" width="60"
+                                                   headerText="#{bindings.CmsGatherMonitorLVO.hints.BatchNum.label}"
+                                                   id="c23">
+                                            <af:outputText value="#{row.BatchNum}"
+                                                           shortDesc="#{bindings.CmsGatherMonitorLVO.hints.BatchNum.tooltip}"
+                                                           id="ot23"/>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.CmsGatherMonitorLVO.hints.Remarks.name}"
+                                                   sortable="false"
+                                                   headerText="#{bindings.CmsGatherMonitorLVO.hints.Remarks.label}"
+                                                   id="c6">
+                                            <af:outputText value="#{row.Remarks}"
+                                                           shortDesc="#{bindings.CmsGatherMonitorLVO.hints.Remarks.tooltip}"
+                                                           id="ot6"/>
+                                        </af:column>
+                                    </af:table>
+                                </af:showDetailItem>
+                                <af:showDetailItem text="失败[#{pageFlowScope.failCount}]" id="sdi2"
+                                                   disclosed="#{pageFlowScope.tabCode == 'FAIL'}"
+                                                   disclosureListener="#{backingBeanScope.gatherMonitorManagedBean.tabDisclousureListener}">
+                                    <f:attribute name="tabCode" value="FAIL"/>
+                                    <af:panelGroupLayout layout="horizontal" id="pgl4"
+                                                         inlineStyle="position:absolute; right: 15px; top:10px;">
+                                        <af:commandImageLink id="cil1" icon="/resources/images/shuaxin.gif"
+                                                             shortDesc="刷新"
+                                                             actionListener="#{backingBeanScope.gatherMonitorManagedBean.refreshActionListener}">
+                                            <f:attribute name="tabCode" value="FAIL"/>
+                                        </af:commandImageLink>
+                                    </af:panelGroupLayout>
+                                    <af:table value="#{bindings.CmsGatherMonitorLVO.collectionModel}" var="row"
+                                              rows="#{bindings.CmsGatherMonitorLVO.rangeSize}"
+                                              styleClass="AFStretchWidth custom_table_striped" varStatus="vs"
+                                              contentDelivery="immediate"
+                                              emptyText="#{bindings.CmsGatherMonitorLVO.viewable ? '' : 'Access Denied.'}"
+                                              fetchSize="#{bindings.CmsGatherMonitorLVO.rangeSize}"
+                                              rowBandingInterval="0" id="t3" columnStretching="last">
+                                        <af:column sortable="false" headerText="序号" id="c20" align="center" width="30">
+                                            <af:outputText value="#{vs.index+1}" id="ot20"/>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.CmsGatherMonitorLVO.hints.FileName.name}"
+                                                   sortable="false" width="200"
+                                                   headerText="#{bindings.CmsGatherMonitorLVO.hints.FileName.label}"
+                                                   id="c8">
+                                            <af:outputText value="#{row.FileName}"
+                                                           shortDesc="#{bindings.CmsGatherMonitorLVO.hints.FileName.tooltip}"
+                                                           id="ot8"/>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.CmsGatherMonitorLVO.hints.FilePath.name}"
+                                                   sortable="false" noWrap="false"
+                                                   headerText="#{bindings.CmsGatherMonitorLVO.hints.FilePath.label}"
+                                                   id="c9">
+                                            <af:outputText value="#{row.FilePath}"
+                                                           shortDesc="#{bindings.CmsGatherMonitorLVO.hints.FilePath.tooltip}"
+                                                           id="ot9"/>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.CmsGatherMonitorLVO.hints.Operation.name}"
+                                                   sortable="false" width="50" align="center"
+                                                   headerText="#{bindings.CmsGatherMonitorLVO.hints.Operation.label}"
+                                                   id="c10">
+                                            <af:outputText value="#{row.Operation}"
+                                                           shortDesc="#{bindings.CmsGatherMonitorLVO.hints.Operation.tooltip}"
+                                                           id="ot10"/>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.CmsGatherMonitorLVO.hints.Result.name}"
+                                                   sortable="false" align="center" width="60"
+                                                   headerText="#{bindings.CmsGatherMonitorLVO.hints.Result.label}"
+                                                   id="c11">
+                                            <af:outputText value="#{row.ResultDisplay}"
+                                                           shortDesc="#{bindings.CmsGatherMonitorLVO.hints.ResultDisplay.tooltip}"
+                                                           id="ot11"/>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.CmsGatherMonitorLVO.hints.ThumbnailResult.name}"
+                                                   sortable="false" align="center" width="90"
+                                                   headerText="#{bindings.CmsGatherMonitorLVO.hints.ThumbnailResult.label}"
+                                                   id="c12">
+                                            <af:outputText value="#{row.ThumbnailResultDisplay}"
+                                                           shortDesc="#{bindings.CmsGatherMonitorLVO.hints.ThumbnailResultDisplay.tooltip}"
+                                                           id="ot12"/>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.CmsGatherMonitorLVO.hints.CreationDateDisplay.name}"
+                                                   sortable="false" align="center" width="120"
+                                                   headerText="#{bindings.CmsGatherMonitorLVO.hints.CreationDateDisplay.label}"
+                                                   id="c24">
+                                            <af:outputText value="#{row.CreationDateDisplay}"
+                                                           shortDesc="#{bindings.CmsGatherMonitorLVO.hints.CreationDateDisplay.tooltip}"
+                                                           id="ot24"/>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.CmsGatherMonitorLVO.hints.BatchNum.name}"
+                                                   sortable="false" align="center" width="60"
+                                                   headerText="#{bindings.CmsGatherMonitorLVO.hints.BatchNum.label}"
+                                                   id="c25">
+                                            <af:outputText value="#{row.BatchNum}"
+                                                           shortDesc="#{bindings.CmsGatherMonitorLVO.hints.BatchNum.tooltip}"
+                                                           id="ot25"/>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.CmsGatherMonitorLVO.hints.Remarks.name}"
+                                                   sortable="false" noWrap="false"
+                                                   headerText="#{bindings.CmsGatherMonitorLVO.hints.Remarks.label}"
+                                                   id="c13">
+                                            <af:outputText value="#{row.Remarks}"
+                                                           shortDesc="#{bindings.CmsGatherMonitorLVO.hints.Remarks.tooltip}"
+                                                           id="ot13"/>
+                                        </af:column>
+                                    </af:table>
+                                </af:showDetailItem>
+                                <af:showDetailItem text="进行中[#{pageFlowScope.processingCount}]" id="sdi3"
+                                                   disclosed="#{pageFlowScope.tabCode == 'PROCESSING'}"
+                                                   disclosureListener="#{backingBeanScope.gatherMonitorManagedBean.tabDisclousureListener}">
+                                    <f:attribute name="tabCode" value="PROCESSING"/>
+                                    <af:panelGroupLayout layout="horizontal" id="pgl5"
+                                                         inlineStyle="position:absolute; right: 15px; top:10px;">
+                                        <af:commandImageLink id="cil2" icon="/resources/images/shuaxin.gif"
+                                                             shortDesc="刷新"
+                                                             actionListener="#{backingBeanScope.gatherMonitorManagedBean.refreshActionListener}">
+                                            <f:attribute name="tabCode" value="PROCESSING"/>
+                                        </af:commandImageLink>
+                                    </af:panelGroupLayout>
+                                    <af:table value="#{bindings.CmsGatherMonitorLVO.collectionModel}" var="row"
+                                              rows="#{bindings.CmsGatherMonitorLVO.rangeSize}" varStatus="vs"
+                                              styleClass="AFStretchWidth custom_table_striped"
+                                              contentDelivery="immediate"
+                                              emptyText="#{bindings.CmsGatherMonitorLVO.viewable ? '' : 'Access Denied.'}"
+                                              fetchSize="#{bindings.CmsGatherMonitorLVO.rangeSize}"
+                                              rowBandingInterval="0" id="t4" columnStretching="last">
+                                        <af:column sortable="false" headerText="序号" id="c21" align="center" width="30">
+                                            <af:outputText value="#{vs.index+1}" id="ot21"/>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.CmsGatherMonitorLVO.hints.FileName.name}"
+                                                   sortable="false" width="200"
+                                                   headerText="#{bindings.CmsGatherMonitorLVO.hints.FileName.label}"
+                                                   id="c14">
+                                            <af:outputText value="#{row.FileName}"
+                                                           shortDesc="#{bindings.CmsGatherMonitorLVO.hints.FileName.tooltip}"
+                                                           id="ot14"/>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.CmsGatherMonitorLVO.hints.FilePath.name}"
+                                                   sortable="false"
+                                                   headerText="#{bindings.CmsGatherMonitorLVO.hints.FilePath.label}"
+                                                   id="c15">
+                                            <af:outputText value="#{row.FilePath}"
+                                                           shortDesc="#{bindings.CmsGatherMonitorLVO.hints.FilePath.tooltip}"
+                                                           id="ot15"/>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.CmsGatherMonitorLVO.hints.Operation.name}"
+                                                   sortable="false" width="50" align="center"
+                                                   headerText="#{bindings.CmsGatherMonitorLVO.hints.Operation.label}"
+                                                   id="c16">
+                                            <af:outputText value="#{row.Operation}"
+                                                           shortDesc="#{bindings.CmsGatherMonitorLVO.hints.Operation.tooltip}"
+                                                           id="ot16"/>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.CmsGatherMonitorLVO.hints.Result.name}"
+                                                   sortable="false" align="center" width="60"
+                                                   headerText="#{bindings.CmsGatherMonitorLVO.hints.Result.label}"
+                                                   id="c17">
+                                            <af:outputText value="#{row.ResultDisplay}"
+                                                           shortDesc="#{bindings.CmsGatherMonitorLVO.hints.ResultDisplay.tooltip}"
+                                                           id="ot17"/>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.CmsGatherMonitorLVO.hints.ThumbnailResult.name}"
+                                                   sortable="false" align="center" width="90"
+                                                   headerText="#{bindings.CmsGatherMonitorLVO.hints.ThumbnailResult.label}"
+                                                   id="c18">
+                                            <af:outputText value="#{row.ThumbnailResultDisplay}"
+                                                           shortDesc="#{bindings.CmsGatherMonitorLVO.hints.ThumbnailResultDisplay.tooltip}"
+                                                           id="ot1"/>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.CmsGatherMonitorLVO.hints.CreationDateDisplay.name}"
+                                                   sortable="false" align="center" width="120"
+                                                   headerText="#{bindings.CmsGatherMonitorLVO.hints.CreationDateDisplay.label}"
+                                                   id="c26">
+                                            <af:outputText value="#{row.CreationDateDisplay}"
+                                                           shortDesc="#{bindings.CmsGatherMonitorLVO.hints.CreationDateDisplay.tooltip}"
+                                                           id="ot26"/>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.CmsGatherMonitorLVO.hints.BatchNum.name}"
+                                                   sortable="false" align="center" width="60"
+                                                   headerText="#{bindings.CmsGatherMonitorLVO.hints.BatchNum.label}"
+                                                   id="c27">
+                                            <af:outputText value="#{row.BatchNum}"
+                                                           shortDesc="#{bindings.CmsGatherMonitorLVO.hints.BatchNum.tooltip}"
+                                                           id="ot27"/>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.CmsGatherMonitorLVO.hints.Remarks.name}"
+                                                   sortable="false"
+                                                   headerText="#{bindings.CmsGatherMonitorLVO.hints.Remarks.label}"
+                                                   id="c19">
+                                            <af:outputText value="#{row.Remarks}"
+                                                           shortDesc="#{bindings.CmsGatherMonitorLVO.hints.Remarks.tooltip}"
+                                                           id="ot19"/>
+                                        </af:column>
+                                    </af:table>
+                                </af:showDetailItem>
+                            </af:panelTabbed>
+                        </f:facet>
+                        <f:facet name="top"></f:facet>
+                    </af:panelStretchLayout>
+                </f:facet>
+            </af:panelSplitter>
+        </af:form>
+    </af:document>
+</f:view>

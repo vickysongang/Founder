@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="theme_export_log_show_task-flow">
+    <default-activity>initExportLog</default-activity>
+    <input-parameter-definition id="__3">
+      <name>currTime</name>
+      <value>#{pageFlowScope.currTime}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__4">
+      <name>exportType</name>
+      <value>#{pageFlowScope.exportType}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <managed-bean id="__5">
+      <managed-bean-name>themeExportLogManagedBean</managed-bean-name>
+      <managed-bean-class>com.zypg.cms.work.view.bean.ThemeExportLogManagedBean</managed-bean-class>
+      <managed-bean-scope>backingBean</managed-bean-scope>
+    </managed-bean>
+    <view id="themeExportLogShow">
+      <page>/work/theme/fragment/themeExportLogShow.jsff</page>
+    </view>
+    <method-call id="initExportLog">
+      <method>#{backingBeanScope.themeExportLogManagedBean.initExportLog}</method>
+      <outcome>
+        <fixed-outcome>toShow</fixed-outcome>
+      </outcome>
+    </method-call>
+    <task-flow-return id="taskFlowReturn1">
+      <outcome>
+        <name>taskFlowReturn1</name>
+      </outcome>
+    </task-flow-return>
+    <method-call id="Execute">
+      <method>#{bindings.Execute.execute}</method>
+      <outcome>
+        <fixed-outcome>Execute</fixed-outcome>
+      </outcome>
+    </method-call>
+    <control-flow-rule id="__6">
+      <from-activity-id>initExportLog</from-activity-id>
+      <control-flow-case id="__7">
+        <from-outcome>toShow</from-outcome>
+        <to-activity-id>Execute</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__8">
+      <from-activity-id>themeExportLogShow</from-activity-id>
+      <control-flow-case id="__9">
+        <from-outcome>toReturn</from-outcome>
+        <to-activity-id>taskFlowReturn1</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__1">
+      <from-activity-id>Execute</from-activity-id>
+      <control-flow-case id="__2">
+        <from-outcome>Execute</from-outcome>
+        <to-activity-id>themeExportLogShow</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

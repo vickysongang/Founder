@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="theme_resource_origin_taskflow">
+    <default-activity>initThemeResourceOrigin</default-activity>
+    <input-parameter-definition id="__4">
+      <name>libCode</name>
+      <value>#{pageFlowScope.libCode}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__5">
+      <name>compCode</name>
+      <value>#{pageFlowScope.compCode}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__6">
+      <name>nodeId</name>
+      <value>#{pageFlowScope.nodeId}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__7">
+      <name>goPage</name>
+      <value>#{pageFlowScope.goPage}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__8">
+      <name>displayModel</name>
+      <value>#{pageFlowScope.displayModel}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__9">
+      <name>groupUserFlag</name>
+      <value>#{pageFlowScope.groupUserFlag}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <managed-bean id="__3">
+      <managed-bean-name>themeResourceOriginManagedBean</managed-bean-name>
+      <managed-bean-class>com.zypg.cms.work.view.bean.ThemeResourceOriginManagedBean</managed-bean-class>
+      <managed-bean-scope>backingBean</managed-bean-scope>
+    </managed-bean>
+    <view id="themeResourceOrigin">
+      <page>/work/theme/fragment/themeResourceOrigin.jsff</page>
+    </view>
+    <method-call id="initThemeResourceOrigin">
+      <method>#{backingBeanScope.themeResourceOriginManagedBean.initThemeResourceOrigin}</method>
+      <outcome>
+        <fixed-outcome>toThemeResourceOrigin</fixed-outcome>
+      </outcome>
+    </method-call>
+    <control-flow-rule id="__1">
+      <from-activity-id>initThemeResourceOrigin</from-activity-id>
+      <control-flow-case id="__2">
+        <from-outcome>toThemeResourceOrigin</from-outcome>
+        <to-activity-id>themeResourceOrigin</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

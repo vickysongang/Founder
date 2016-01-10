@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="workPageDef"
+                Package="work.fragment">
+    <parameters/>
+    <executables>
+        <variableIterator id="variables"/>
+        <iterator Binds="CmsFirstLevelLibVO" RangeSize="10" DataControl="WorkAMDataControl"
+                  id="CmsFirstLevelLibVOIterator"/>
+        <iterator Binds="CmsCategoryVO" RangeSize="1000" DataControl="WorkAMDataControl" id="CmsCategoryVOIterator"
+                  Refresh="always"/>
+        <taskFlow id="work_router_taskflow1" taskFlowId="/WEB-INF/work/work_router_taskflow.xml#work_router_taskflow"
+                  activation="deferred" xmlns="http://xmlns.oracle.com/adf/controller/binding" Refresh="ifNeeded">
+            <parameters>
+                <parameter id="libCode" value="#{pageFlowScope.libCode}"/>
+                <parameter id="categoryId" value="#{pageFlowScope.categoryId}"/>
+                <parameter id="categoryGroupType" value="BY_CATEGORY"/>
+                <parameter id="deleteFlag"
+                           value="#{pageFlowScope.deleteFlag == null ? 'N' : pageFlowScope.deleteFlag}"/>
+                <parameter id="compCode" value="#{pageFlowScope.compCode}"/>
+                <parameter id="libTypeCode" value="#{pageFlowScope.libTypeCode}"/>
+                <parameter id="currTime" value="#{sessionScope.currTime}"/>
+                <parameter id="groupUserFlag" value="#{pageFlowScope.groupUserFlag}"/>
+            </parameters>
+        </taskFlow>
+        <taskFlow id="work_router_taskflow2" taskFlowId="/WEB-INF/work/work_router_taskflow.xml#work_router_taskflow"
+                  activation="deferred" xmlns="http://xmlns.oracle.com/adf/controller/binding" Refresh="ifNeeded">
+            <parameters>
+                <parameter id="libCode" value="#{pageFlowScope.libCode}"/>
+                <parameter id="categoryId" value="#{pageFlowScope.categoryId}"/>
+                <parameter id="categoryGroupType" value="BY_CATEGORY"/>
+                <parameter id="deleteFlag"
+                           value="#{pageFlowScope.deleteFlag == null ? 'N' : pageFlowScope.deleteFlag}"/>
+                <parameter id="compCode" value="#{pageFlowScope.compCode}"/>
+                <parameter id="libTypeCode" value="#{pageFlowScope.libTypeCode}"/>
+                <parameter id="currTime" value="#{sessionScope.currTime}"/>
+                <parameter id="groupUserFlag" value="#{pageFlowScope.groupUserFlag}"/>
+            </parameters>
+        </taskFlow>
+    </executables>
+    <bindings>
+        <tree IterBinding="CmsFirstLevelLibVOIterator" id="CmsFirstLevelLibVO">
+            <nodeDefinition DefName="com.zypg.cms.work.model.viewobject.common.query.CmsFirstLevelLibVO"
+                            Name="CmsFirstLevelLibVO0">
+                <AttrNames>
+                    <Item Value="LibCode"/>
+                    <Item Value="LibName"/>
+                </AttrNames>
+                <Accessors>
+                    <Item Value="CmsSecondLevelLibVO"/>
+                </Accessors>
+            </nodeDefinition>
+            <nodeDefinition DefName="com.zypg.cms.work.model.viewobject.common.query.CmsSecondLevelLibVO"
+                            Name="CmsFirstLevelLibVO1">
+                <AttrNames>
+                    <Item Value="LibCode"/>
+                    <Item Value="LibName"/>
+                </AttrNames>
+            </nodeDefinition>
+        </tree>
+        <tree IterBinding="CmsCategoryVOIterator" id="CmsCategoryVO">
+            <nodeDefinition DefName="com.zypg.cms.work.model.viewobject.common.query.CmsCategoryVO"
+                            Name="CmsCategoryVO0">
+                <AttrNames>
+                    <Item Value="CategoryId"/>
+                    <Item Value="CategoryDisplayName"/>
+                </AttrNames>
+                <Accessors>
+                    <Item Value="CategoryIdCmsCategoryVO"/>
+                </Accessors>
+            </nodeDefinition>
+        </tree>
+    </bindings>
+</pageDefinition>

@@ -1,0 +1,161 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core">
+    <af:panelStretchLayout id="psl1" inlineStyle="width:1050px;height:540px;" bottomHeight="0px">
+        <f:facet name="center">
+            <af:panelGroupLayout id="pgl1" layout="scroll" valign="top">
+                <af:panelGroupLayout id="pgl4" layout="horizontal" valign="top">
+                    <af:panelGroupLayout id="pgl3" layout="vertical" inlineStyle="width:200px;" valign="top"></af:panelGroupLayout>
+                    <af:spacer width="5" height="10" id="s24"/>
+                    <af:panelGroupLayout id="pgl6" layout="vertical" inlineStyle="width:800px;">
+                        <af:panelGroupLayout id="pgl36" layout="vertical">
+                            <af:panelGroupLayout id="pgl37" layout="vertical"
+                                                 inlineStyle="background:#D9EDF8;height:30px;"
+                                                 styleClass="AFStretchWidth">
+                                <af:panelGroupLayout id="pgl38" layout="horizontal" inlineStyle="padding-top:8px;">
+                                    <af:spacer width="10" height="10" id="s14"/>
+                                    <af:outputText value="授权单信息" id="ot29"
+                                                   inlineStyle="font-weight:bold;color:#024D91;"/>
+                                </af:panelGroupLayout>
+                            </af:panelGroupLayout>
+                        </af:panelGroupLayout>
+                        <af:panelFormLayout id="pfl1">
+                            <af:panelLabelAndMessage label="#{bindings.OrderName.hints.label}" id="plam1">
+                                <af:outputText value="#{bindings.OrderName.inputValue}"
+                                               shortDesc="#{bindings.OrderName.hints.tooltip}" id="ot2"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.AuthorizedCompanyName.hints.label}" id="plam5">
+                                <af:outputText value="#{bindings.AuthorizedCompanyName.inputValue}"
+                                               shortDesc="#{bindings.AuthorizedCompanyName.hints.tooltip}" id="ot6"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.AuthorizedTypeDisplay.hints.label}" id="plam8">
+                                <af:outputText value="#{bindings.AuthorizedTypeDisplay.inputValue}"
+                                               shortDesc="#{bindings.AuthorizedTypeDisplay.hints.tooltip}" id="ot9"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.AuthorizedArea.hints.label}" id="plam12">
+                                <af:outputText value="#{bindings.AuthorizedArea.inputValue}"
+                                               shortDesc="#{bindings.AuthorizedArea.hints.tooltip}" id="ot13"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.AuthorizedLang.hints.label}" id="plam14">
+                                <af:outputText value="#{bindings.AuthorizedLang.inputValue}"
+                                               shortDesc="#{bindings.AuthorizedLang.hints.tooltip}" id="ot15"/>
+                            </af:panelLabelAndMessage>
+                            <af:selectOneChoice value="#{bindings.AuthorizedFileType.inputValue}"
+                                                label="#{bindings.AuthorizedFileType.label}"
+                                                required="#{bindings.AuthorizedFileType.hints.mandatory}"
+                                                shortDesc="#{bindings.AuthorizedFileType.hints.tooltip}" readOnly="true"
+                                                id="soc1">
+                                <f:selectItems value="#{bindings.AuthorizedFileType.items}" id="si1"/>
+                            </af:selectOneChoice>
+                            <af:selectOneChoice value="#{bindings.IncludePublicCopyrightFlag.inputValue}"
+                                                label="#{bindings.IncludePublicCopyrightFlag.label}"
+                                                required="#{bindings.IncludePublicCopyrightFlag.hints.mandatory}"
+                                                shortDesc="#{bindings.IncludePublicCopyrightFlag.hints.tooltip}"
+                                                readOnly="true" id="soc2">
+                                <f:selectItems value="#{bindings.IncludePublicCopyrightFlag.items}" id="si2"/>
+                            </af:selectOneChoice>
+                            <af:panelLabelAndMessage label="#{bindings.AuthorizedStartTime.hints.label}" id="plam15">
+                                <af:outputText value="#{bindings.AuthorizedStartTime.inputValue}"
+                                               shortDesc="#{bindings.AuthorizedStartTime.hints.tooltip}" id="ot16">
+                                    <af:convertDateTime pattern="#{bindings.AuthorizedStartTime.format}"/>
+                                </af:outputText>
+                            </af:panelLabelAndMessage>
+                            <af:selectOneChoice value="#{bindings.AuthorizedValidPeriod.inputValue}"
+                                                label="#{bindings.AuthorizedValidPeriod.label}"
+                                                required="#{bindings.AuthorizedValidPeriod.hints.mandatory}"
+                                                shortDesc="#{bindings.AuthorizedValidPeriod.hints.tooltip}"
+                                                readOnly="true" id="soc3">
+                                <f:selectItems value="#{bindings.AuthorizedValidPeriod.items}" id="si3"/>
+                            </af:selectOneChoice>
+                        </af:panelFormLayout>
+                        <af:commandImageLink id="cil1" icon="/resources/images/button_viewall.jpg" partialSubmit="true">
+                            <af:showPopupBehavior triggerType="action" popupId="p1"/>
+                        </af:commandImageLink>
+                    </af:panelGroupLayout>
+                    <af:spacer width="5" height="10" id="s4"/>
+                    <af:panelGroupLayout id="pgl5" layout="vertical" inlineStyle="width:200px;" valign="top">
+                        <af:table value="#{bindings.CmsAttachVO4View.collectionModel}" var="row"
+                                  rows="#{bindings.CmsAttachVO4View.rangeSize}"
+                                  styleClass="AFStretchWidth custom_table_striped" contentDelivery="immediate"
+                                  columnStretching="multiple"
+                                  emptyText="#{bindings.CmsAttachVO4View.viewable ? '' : 'Access Denied.'}"
+                                  fetchSize="#{bindings.CmsAttachVO4View.rangeSize}" rowBandingInterval="0"
+                                  selectedRowKeys="#{bindings.CmsAttachVO4View.collectionModel.selectedRow}"
+                                  selectionListener="#{bindings.CmsAttachVO4View.collectionModel.makeCurrent}"
+                                  rowSelection="single" id="t1">
+                            <af:column sortProperty="#{bindings.CmsAttachVO4View.hints.Title.name}" sortable="false"
+                                       width="50%" headerText="相关合同文件" id="c1">
+                                <af:outputText value="#{row.Title}"
+                                               shortDesc="#{bindings.CmsAttachVO4View.hints.Title.tooltip}" id="ot1"/>
+                            </af:column>
+                            <af:column headerText="操作" id="c19" width="50%">
+                                <af:commandImageLink id="cil2" icon="/resources/images/download.jpg" immediate="true">
+                                    <af:setPropertyListener from="#{row.UcmDid}" to="#{pageFlowScope.ucmDid}" 
+                                                            type="action"/>
+                                    <af:fileDownloadActionListener contentType="application/vnd.ms-excel;charset=utf-8"
+                                                                   filename="#{row.Title}.#{row.Format}"
+                                                                   method="#{backingBeanScope.copyrightOrderViewManagedBean.downloadListener}"/>
+                                </af:commandImageLink>
+                            </af:column>
+                        </af:table>
+                    </af:panelGroupLayout>
+                </af:panelGroupLayout>
+            </af:panelGroupLayout>
+        </f:facet>
+        <f:facet name="bottom">
+            <af:popup childCreation="deferred" autoCancel="disabled" id="p1" contentDelivery="lazyUncached">
+                <af:panelWindow id="nw1" title="查看所有属性">
+                    <af:panelFormLayout id="pfl2" maxColumns="2" rows="5" labelWidth="100" fieldWidth="200">
+                            <af:panelLabelAndMessage label="#{bindings.OrderName.hints.label}" id="plam2">
+                                <af:outputText value="#{bindings.OrderName.inputValue}"
+                                               shortDesc="#{bindings.OrderName.hints.tooltip}" id="ot3"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.AuthorizedCompanyName.hints.label}" id="plam3">
+                                <af:outputText value="#{bindings.AuthorizedCompanyName.inputValue}"
+                                               shortDesc="#{bindings.AuthorizedCompanyName.hints.tooltip}" id="ot4"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.AuthorizedTypeDisplay.hints.label}" id="plam4">
+                                <af:outputText value="#{bindings.AuthorizedTypeDisplay.inputValue}"
+                                               shortDesc="#{bindings.AuthorizedTypeDisplay.hints.tooltip}" id="ot5"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.AuthorizedArea.hints.label}" id="plam6">
+                                <af:outputText value="#{bindings.AuthorizedArea.inputValue}"
+                                               shortDesc="#{bindings.AuthorizedArea.hints.tooltip}" id="ot7"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.AuthorizedLang.hints.label}" id="plam7">
+                                <af:outputText value="#{bindings.AuthorizedLang.inputValue}"
+                                               shortDesc="#{bindings.AuthorizedLang.hints.tooltip}" id="ot8"/>
+                            </af:panelLabelAndMessage>
+                            <af:selectOneChoice value="#{bindings.AuthorizedFileType.inputValue}"
+                                                label="#{bindings.AuthorizedFileType.label}"
+                                                required="#{bindings.AuthorizedFileType.hints.mandatory}"
+                                                shortDesc="#{bindings.AuthorizedFileType.hints.tooltip}" readOnly="true"
+                                                id="soc7">
+                                <f:selectItems value="#{bindings.AuthorizedFileType.items}" id="si7"/>
+                            </af:selectOneChoice>
+                            <af:selectOneChoice value="#{bindings.IncludePublicCopyrightFlag.inputValue}"
+                                                label="#{bindings.IncludePublicCopyrightFlag.label}"
+                                                required="#{bindings.IncludePublicCopyrightFlag.hints.mandatory}"
+                                                shortDesc="#{bindings.IncludePublicCopyrightFlag.hints.tooltip}"
+                                                readOnly="true" id="soc8">
+                                <f:selectItems value="#{bindings.IncludePublicCopyrightFlag.items}" id="si8"/>
+                            </af:selectOneChoice>
+                            <af:panelLabelAndMessage label="#{bindings.AuthorizedStartTime.hints.label}" id="plam9">
+                                <af:outputText value="#{bindings.AuthorizedStartTime.inputValue}"
+                                               shortDesc="#{bindings.AuthorizedStartTime.hints.tooltip}" id="ot10">
+                                    <af:convertDateTime pattern="#{bindings.AuthorizedStartTime.format}"/>
+                                </af:outputText>
+                            </af:panelLabelAndMessage>
+                            <af:selectOneChoice value="#{bindings.AuthorizedValidPeriod.inputValue}"
+                                                label="#{bindings.AuthorizedValidPeriod.label}"
+                                                required="#{bindings.AuthorizedValidPeriod.hints.mandatory}"
+                                                shortDesc="#{bindings.AuthorizedValidPeriod.hints.tooltip}"
+                                                readOnly="true" id="soc9">
+                                <f:selectItems value="#{bindings.AuthorizedValidPeriod.items}" id="si9"/>
+                            </af:selectOneChoice>
+                    </af:panelFormLayout>
+                </af:panelWindow>
+            </af:popup>
+        </f:facet>
+    </af:panelStretchLayout>
+</ui:composition>

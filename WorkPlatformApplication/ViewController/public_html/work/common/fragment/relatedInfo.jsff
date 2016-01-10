@@ -1,0 +1,411 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core">
+    <af:panelStretchLayout id="psl1"
+                           inlineStyle="width:#{pageFlowScope.displayWidth == null ? 200 : pageFlowScope.displayWidth}px;"
+                           dimensionsFrom="auto">
+        <f:facet name="bottom"/>
+        <f:facet name="center">
+            <af:switcher id="s1" facetName="#{pageFlowScope.position}">
+                <f:facet name="LEFT">
+                    <af:panelGroupLayout id="pgl1" layout="vertical">
+                        <af:panelGroupLayout id="pgl15" layout="vertical"
+                                             visible="#{backingBeanScope.relatedInfoViewManagedBean.illustrationListSize > 0}">
+                            <af:panelGroupLayout id="pgl16" layout="vertical"
+                                                 inlineStyle="background:#D9EDF8;height:30px;"
+                                                 styleClass="AFStretchWidth">
+                                <af:panelGroupLayout id="pgl17" layout="horizontal" inlineStyle="padding-top:8px;">
+                                    <af:spacer width="10" height="10" id="s4"/>
+                                    <af:outputText value="相关插图" id="ot4" inlineStyle="font-weight:bold;color:#024D91;"/>
+                                </af:panelGroupLayout>
+                            </af:panelGroupLayout>
+                            <af:iterator id="i3" value="#{backingBeanScope.relatedInfoViewManagedBean.illustrationList}"
+                                         var="illustration" varStatus="vs">
+                                <af:panelGroupLayout id="pgl18" layout="vertical" halign="center">
+                                    <af:spacer width="2" height="5" id="s24"/>
+                                    <af:commandImageLink id="cil1" partialSubmit="true"
+                                                         styleClass="#{illustration['thumbnailUrl']== null ? 'noCoverImage' : 'coverImage'}"
+                                                         icon="#{illustration['thumbnailUrl'] == null ? '/resources/images/lack_image.gif' : illustration['thumbnailUrl']}"
+                                                         actionListener="#{backingBeanScope.relatedInfoViewManagedBean.viewRelatedIllustrationActionListener}">
+                                        <f:attribute name="relatedDocId" value="#{illustration['docId']}"/>
+                                    </af:commandImageLink>
+                                    <af:outputText value="#{illustration['illustrationName']}" id="ot2"/>
+                                </af:panelGroupLayout>
+                            </af:iterator>
+                            <af:spacer width="10" height="10" id="s12"/>
+                            <af:panelGroupLayout id="pgl44" layout="vertical" halign="right">
+                                <af:commandLink text="更多..." id="cl5" inlineStyle="margin-right:20px;width:50px;"
+                                                partialSubmit="true" action="toMore"
+                                                rendered="#{backingBeanScope.relatedInfoViewManagedBean.illustrationListSize > 2}"
+                                                useWindow="true" windowHeight="650" windowWidth="1050">
+                                    <af:setPropertyListener from="#{pageFlowScope.illustrationList}"
+                                                            to="#{pageFlowScope.docIdList}" type="action"/>
+                                </af:commandLink>
+                            </af:panelGroupLayout>
+                            <af:spacer width="10" height="10" id="s9"/>
+                        </af:panelGroupLayout>
+                        <af:panelGroupLayout id="pgl31" layout="vertical"
+                                             visible="#{backingBeanScope.relatedInfoViewManagedBean.materialListSize > 0}">
+                            <af:panelGroupLayout id="pgl32" layout="vertical"
+                                                 inlineStyle="background:#D9EDF8;height:30px;"
+                                                 styleClass="AFStretchWidth">
+                                <af:panelGroupLayout id="pgl33" layout="horizontal" inlineStyle="padding-top:8px;">
+                                    <af:spacer width="10" height="10" id="s15"/>
+                                    <af:outputText value="相关素材图" id="ot10"
+                                                   inlineStyle="font-weight:bold;color:#024D91;"/>
+                                </af:panelGroupLayout>
+                            </af:panelGroupLayout>
+                            <af:iterator id="i7" value="#{backingBeanScope.relatedInfoViewManagedBean.materialList}"
+                                         var="material">
+                                <af:panelGroupLayout id="pgl37" layout="vertical" halign="center">
+                                    <af:spacer width="2" height="5" id="s26"/>
+                                    <af:commandImageLink id="cil4" partialSubmit="true"
+                                                         styleClass="#{material['thumbnailUrl']== null ? 'noCoverImage' : 'coverImage'}"
+                                                         icon="#{material['thumbnailUrl'] == null ? '/resources/images/lack_image.gif' : material['thumbnailUrl']}"
+                                                         actionListener="#{backingBeanScope.relatedInfoViewManagedBean.viewRelatedMaterialActionListener}">
+                                        <f:attribute name="relatedDocId" value="#{material['docId']}"/>
+                                    </af:commandImageLink>
+                                    <af:outputText value="#{material['figureName']}" id="ot13"/>
+                                </af:panelGroupLayout>
+                            </af:iterator>
+                            <af:spacer width="10" height="10" id="s35"/>
+                            <af:panelGroupLayout id="pgl45" layout="vertical" halign="right">
+                                <af:commandLink text="更多..." id="cl6" inlineStyle="margin-right:20px;width:50px;"
+                                                partialSubmit="true" action="toMore"
+                                                rendered="#{backingBeanScope.relatedInfoViewManagedBean.materialListSize > 2}"
+                                                useWindow="true" windowHeight="650" windowWidth="1050">
+                                    <af:setPropertyListener from="#{pageFlowScope.materialList}"
+                                                            to="#{pageFlowScope.docIdList}" type="action"/>
+                                </af:commandLink>
+                            </af:panelGroupLayout>
+                            <af:spacer width="10" height="10" id="s30"/>
+                        </af:panelGroupLayout>
+                        <af:panelGroupLayout id="pgl34" layout="vertical"
+                                             visible="#{backingBeanScope.relatedInfoViewManagedBean.photographyListSize > 0}">
+                            <af:spacer width="10" height="10" id="s17"/>
+                            <af:panelGroupLayout id="pgl35" layout="vertical"
+                                                 inlineStyle="background:#D9EDF8;height:30px;"
+                                                 styleClass="AFStretchWidth">
+                                <af:panelGroupLayout id="pgl36" layout="horizontal" inlineStyle="padding-top:8px;">
+                                    <af:spacer width="10" height="5" id="s18"/>
+                                    <af:outputText value="相关摄影图" id="ot11"
+                                                   inlineStyle="font-weight:bold;color:#024D91;"/>
+                                </af:panelGroupLayout>
+                            </af:panelGroupLayout>
+                            <af:iterator id="i8" value="#{backingBeanScope.relatedInfoViewManagedBean.photographyList}"
+                                         var="photography">
+                                <af:panelGroupLayout id="pgl38" layout="vertical" halign="center">
+                                    <af:spacer width="2" height="5" id="s27"/>
+                                    <af:commandImageLink id="cil5" partialSubmit="true"
+                                                         styleClass="#{photography['thumbnailUrl']== null ? 'noCoverImage' : 'coverImage'}"
+                                                         icon="#{photography['thumbnailUrl'] == null ? '/resources/images/lack_image.gif' : photography['thumbnailUrl']}"
+                                                         actionListener="#{backingBeanScope.relatedInfoViewManagedBean.viewRelatedPhotographyActionListener}">
+                                        <f:attribute name="relatedDocId" value="#{photography['docId']}"/>
+                                    </af:commandImageLink>
+                                    <af:outputText value="#{photography['figureName']}" id="ot14"/>
+                                </af:panelGroupLayout>
+                            </af:iterator>
+                            <af:spacer width="10" height="10" id="s36"/>
+                            <af:panelGroupLayout id="pgl46" layout="vertical" halign="right">
+                                <af:commandLink text="更多..." id="cl7" inlineStyle="margin-right:20px;width:50px;"
+                                                partialSubmit="true" action="toMore"
+                                                rendered="#{backingBeanScope.relatedInfoViewManagedBean.photographyListSize > 2}"
+                                                useWindow="true" windowHeight="650" windowWidth="1050">
+                                    <af:setPropertyListener from="#{pageFlowScope.photographyList}"
+                                                            to="#{pageFlowScope.docIdList}" type="action"/>
+                                </af:commandLink>
+                            </af:panelGroupLayout>
+                            <af:spacer width="10" height="10" id="s31"/>
+                        </af:panelGroupLayout>
+                        <af:panelGroupLayout id="pgl13" layout="vertical"
+                                             visible="#{backingBeanScope.relatedInfoViewManagedBean.elecProdListSize > 0}">
+                            <af:panelGroupLayout id="pgl14" layout="vertical"
+                                                 inlineStyle="background:#D9EDF8;height:30px;"
+                                                 styleClass="AFStretchWidth">
+                                <af:panelGroupLayout id="pgl39" layout="horizontal" inlineStyle="padding-top:8px;">
+                                    <af:spacer width="10" height="5" id="s11"/>
+                                    <af:outputText value="相关电子音像产品" id="ot7"
+                                                   inlineStyle="font-weight:bold;color:#024D91;"/>
+                                </af:panelGroupLayout>
+                            </af:panelGroupLayout>
+                            <af:iterator id="i10" value="#{backingBeanScope.relatedInfoViewManagedBean.elecProdList}"
+                                         var="elecProd">
+                                <af:panelGroupLayout id="pgl25" layout="vertical" halign="center">
+                                    <af:spacer width="2" height="5" id="s28"/>
+                                    <af:commandImageLink id="cil6" partialSubmit="true"
+                                                         styleClass="#{elecProd['thumbnailUrl']== null ? 'noCoverImage' : 'coverImage'}"
+                                                         icon="#{elecProd['thumbnailUrl']== null ? '/resources/images/cover.jpg' : elecProd['thumbnailUrl']}"
+                                                         actionListener="#{backingBeanScope.relatedInfoViewManagedBean.viewRelatedElecProdActionListener}">
+                                        <f:attribute name="relatedDocId" value="#{elecProd['docId']}"/>
+                                    </af:commandImageLink>
+                                    <af:outputText value="#{elecProd['elecProdName']}" id="ot15"/>
+                                </af:panelGroupLayout>
+                            </af:iterator>
+                            <af:spacer width="10" height="10" id="s37"/>
+                            <af:panelGroupLayout id="pgl47" layout="vertical" halign="right">
+                                <af:commandLink text="更多..." id="cl8" inlineStyle="margin-right:20px;width:50px;"
+                                                partialSubmit="true" action="toMore"
+                                                rendered="#{backingBeanScope.relatedInfoViewManagedBean.elecProdListSize > 2}"
+                                                useWindow="true" windowHeight="650" windowWidth="1050">
+                                    <af:setPropertyListener from="#{pageFlowScope.elecProdList}"
+                                                            to="#{pageFlowScope.docIdList}" type="action"/>
+                                </af:commandLink>
+                            </af:panelGroupLayout>
+                            <af:spacer width="10" height="10" id="s16"/>
+                        </af:panelGroupLayout>
+                        <af:panelGroupLayout id="pgl2" layout="vertical"
+                                             visible="#{backingBeanScope.relatedInfoViewManagedBean.audioListSize > 0}">
+                            <af:panelGroupLayout id="pgl8" layout="vertical"
+                                                 inlineStyle="background:#D9EDF8;height:30px;"
+                                                 styleClass="AFStretchWidth">
+                                <af:panelGroupLayout id="pgl9" layout="horizontal" inlineStyle="padding-top:8px;">
+                                    <af:spacer width="10" height="10" id="s8"/>
+                                    <af:outputText value="相关音频" id="ot6" inlineStyle="font-weight:bold;color:#024D91;"/>
+                                </af:panelGroupLayout>
+                            </af:panelGroupLayout>
+                            <af:iterator id="i2" value="#{backingBeanScope.relatedInfoViewManagedBean.audioList}"
+                                         var="audio">
+                                <af:panelGroupLayout id="pgl26" layout="vertical" inlineStyle="padding-left:5px;">
+                                    <af:spacer width="1" height="5" id="s20"/>
+                                    <af:commandLink text="#{audio['fileName']}" id="cl1" partialSubmit="true"
+                                                    actionListener="#{backingBeanScope.relatedInfoViewManagedBean.viewRelatedAudioActionListener}">
+                                        <f:attribute name="relatedDocId" value="#{audio['docId']}"/>
+                                    </af:commandLink>
+                                </af:panelGroupLayout>
+                            </af:iterator>
+                            <af:spacer width="10" height="10" id="s32"/>
+                        </af:panelGroupLayout>
+                        <af:panelGroupLayout id="pgl20" layout="vertical"
+                                             visible="#{backingBeanScope.relatedInfoViewManagedBean.videoListSize > 0}">
+                            <af:panelGroupLayout id="pgl21" layout="vertical"
+                                                 inlineStyle="background:#D9EDF8;height:30px;"
+                                                 styleClass="AFStretchWidth">
+                                <af:panelGroupLayout id="pgl22" layout="horizontal" inlineStyle="padding-top:8px;">
+                                    <af:spacer width="10" height="10" id="s5"/>
+                                    <af:outputText value="相关视频" id="ot5" inlineStyle="font-weight:bold;color:#024D91;"/>
+                                </af:panelGroupLayout>
+                            </af:panelGroupLayout>
+                            <af:iterator id="i4" value="#{backingBeanScope.relatedInfoViewManagedBean.videoList}"
+                                         var="video">
+                                <af:panelGroupLayout id="pgl23" layout="vertical" inlineStyle="padding-left:5px;">
+                                    <af:spacer width="1" height="5" id="s21"/>
+                                    <af:commandLink text="#{video['fileName']}" id="cl2" partialSubmit="true"
+                                                    actionListener="#{backingBeanScope.relatedInfoViewManagedBean.viewRelatedVideoActionListener}">
+                                        <f:attribute name="relatedDocId" value="#{video['docId']}"/>
+                                    </af:commandLink>
+                                </af:panelGroupLayout>
+                            </af:iterator>
+                            <af:spacer width="10" height="10" id="s45"/>
+                        </af:panelGroupLayout>
+                        <af:panelGroupLayout id="pgl51" layout="vertical"
+                                             visible="#{backingBeanScope.relatedInfoViewManagedBean.worksEntryListSize > 0}">
+                            <af:panelGroupLayout id="pgl52" layout="vertical"
+                                                 inlineStyle="background:#D9EDF8;height:30px;"
+                                                 styleClass="AFStretchWidth">
+                                <af:panelGroupLayout id="pgl53" layout="horizontal" inlineStyle="padding-top:8px;">
+                                    <af:spacer width="10" height="10" id="s41"/>
+                                    <af:outputText value="相关论著条目" id="ot18"
+                                                   inlineStyle="font-weight:bold;color:#024D91;"/>
+                                </af:panelGroupLayout>
+                            </af:panelGroupLayout>
+                            <af:iterator id="i12" value="#{backingBeanScope.relatedInfoViewManagedBean.worksEntryList}"
+                                         var="worksEntry">
+                                <af:panelGroupLayout id="pgl54" layout="vertical" inlineStyle="padding-left:5px;">
+                                    <af:spacer width="1" height="5" id="s42"/>
+                                    <af:commandLink text="#{worksEntry['title']}" id="cl12" partialSubmit="true"
+                                                    actionListener="#{backingBeanScope.relatedInfoViewManagedBean.viewRelatedWorksEntryActionListener}">
+                                        <f:attribute name="relatedDocId" value="#{worksEntry['docId']}"/>
+                                    </af:commandLink>
+                                </af:panelGroupLayout>
+                            </af:iterator>
+                            <af:spacer width="10" height="10" id="s46"/>
+                        </af:panelGroupLayout>
+                        <af:panelGroupLayout id="pgl55" layout="vertical"
+                                             visible="#{backingBeanScope.relatedInfoViewManagedBean.encyclopediasEntryListSize > 0}">
+                            <af:panelGroupLayout id="pgl56" layout="vertical"
+                                                 inlineStyle="background:#D9EDF8;height:30px;"
+                                                 styleClass="AFStretchWidth">
+                                <af:panelGroupLayout id="pgl57" layout="horizontal" inlineStyle="padding-top:8px;">
+                                    <af:spacer width="10" height="10" id="s43"/>
+                                    <af:outputText value="相关百科条目" id="ot19"
+                                                   inlineStyle="font-weight:bold;color:#024D91;"/>
+                                </af:panelGroupLayout>
+                            </af:panelGroupLayout>
+                            <af:iterator id="i13"
+                                         value="#{backingBeanScope.relatedInfoViewManagedBean.encyclopediasEntryList}"
+                                         var="encyclopediasEntry">
+                                <af:panelGroupLayout id="pgl58" layout="vertical" inlineStyle="padding-left:5px;">
+                                    <af:spacer width="1" height="5" id="s44"/>
+                                    <af:commandLink text="#{encyclopediasEntry['entryHeader']}" id="cl13"
+                                                    partialSubmit="true"
+                                                    actionListener="#{backingBeanScope.relatedInfoViewManagedBean.viewRelatedEncyclopediasEntryActionListener}">
+                                        <f:attribute name="relatedDocId" value="#{encyclopediasEntry['docId']}"/>
+                                    </af:commandLink>
+                                </af:panelGroupLayout>
+                            </af:iterator>
+                            <af:spacer width="10" height="10" id="s47"/>
+                        </af:panelGroupLayout>
+                    </af:panelGroupLayout>
+                </f:facet>
+                <f:facet name="RIGHT">
+                    <af:panelGroupLayout id="pgl7" layout="vertical">
+                        <af:panelGroupLayout id="pgl3" layout="vertical"
+                                             visible="#{backingBeanScope.relatedInfoViewManagedBean.bookListSize > 0}">
+                            <af:panelGroupLayout id="pgl4" layout="vertical"
+                                                 inlineStyle="background:#D9EDF8;height:30px;"
+                                                 styleClass="AFStretchWidth">
+                                <af:panelGroupLayout id="pgl5" layout="horizontal" inlineStyle="padding-top:8px;">
+                                    <af:spacer width="10" height="10" id="s2"/>
+                                    <af:outputText value="相关图书" id="ot1" inlineStyle="font-weight:bold;color:#024D91;"/>
+                                </af:panelGroupLayout>
+                            </af:panelGroupLayout>
+                            <af:iterator id="i1" value="#{backingBeanScope.relatedInfoViewManagedBean.bookList}"
+                                         var="book">
+                                <af:panelGroupLayout id="pgl6" layout="vertical" halign="center">
+                                    <af:spacer width="2" height="5" id="s29"/>
+                                    <af:commandImageLink id="cil2" partialSubmit="true"
+                                                         styleClass="#{book['thumbnailUrl']== null ? 'noCoverImage' : 'bookCoverImage'}"
+                                                         icon="#{book['thumbnailUrl'] == null ? '/resources/images/cover.jpg' : book['thumbnailUrl'] }"
+                                                         actionListener="#{backingBeanScope.relatedInfoViewManagedBean.viewRelatedBookActionListener}">
+                                        <f:attribute name="relatedDocId" value="#{book['docId']}"/>
+                                    </af:commandImageLink>
+                                    <af:outputText value="#{book['bookName']}" id="ot9"/>
+                                </af:panelGroupLayout>
+                            </af:iterator>
+                            <af:spacer width="10" height="10" id="s38"/>
+                            <af:panelGroupLayout id="pgl48" layout="vertical" halign="right">
+                                <af:commandLink text="更多..." id="cl9" inlineStyle="margin-right:20px;width:50px;"
+                                                partialSubmit="true" action="toMore"
+                                                rendered="#{backingBeanScope.relatedInfoViewManagedBean.bookListSize > 2}"
+                                                useWindow="true" windowHeight="650" windowWidth="1050">
+                                    <af:setPropertyListener from="#{pageFlowScope.bookList}"
+                                                            to="#{pageFlowScope.docIdList}" type="action"/>
+                                </af:commandLink>
+                            </af:panelGroupLayout>
+                            <af:spacer width="10" height="10" id="s10"/>
+                        </af:panelGroupLayout>
+                        <af:panelGroupLayout id="pgl60" layout="vertical"
+                                             visible="#{backingBeanScope.relatedInfoViewManagedBean.periodicalListSize > 0}">
+                            <af:panelGroupLayout id="pgl61" layout="vertical"
+                                                 inlineStyle="background:#D9EDF8;height:30px;"
+                                                 styleClass="AFStretchWidth">
+                                <af:panelGroupLayout id="pgl62" layout="horizontal" inlineStyle="padding-top:8px;">
+                                    <af:spacer width="10" height="10" id="s22"/>
+                                    <af:outputText value="相关期刊" id="ot44"
+                                                   inlineStyle="font-weight:bold;color:#024D91;"/>
+                                </af:panelGroupLayout>
+                            </af:panelGroupLayout>
+                            <af:iterator id="i9" value="#{backingBeanScope.relatedInfoViewManagedBean.periodicalList}"
+                                         var="periodical">
+                                <af:panelGroupLayout id="pgl28" layout="vertical" halign="center">
+                                    <af:spacer width="2" height="5" id="s25"/>
+                                    <af:commandImageLink id="cil3" partialSubmit="true"
+                                                         styleClass="#{periodical['thumbnailUrl']== null ? 'noCoverImage' : 'bookCoverImage'}"
+                                                         icon="#{periodical['thumbnailUrl'] == null ? '/resources/images/cover.jpg' : periodical['thumbnailUrl']}"
+                                                         actionListener="#{backingBeanScope.relatedInfoViewManagedBean.viewRelatedPriodicalActionListener}">
+                                        <f:attribute name="relatedDocId" value="#{periodical['docId']}"/>
+                                    </af:commandImageLink>
+                                    <af:outputText value="#{periodical['periodicalCategoryName']}" id="ot12"/>
+                                </af:panelGroupLayout>
+                            </af:iterator>
+                            <af:spacer width="10" height="10" id="s39"/>
+                            <af:panelGroupLayout id="pgl49" layout="vertical" halign="right">
+                                <af:commandLink text="更多..." id="cl10" inlineStyle="margin-right:20px;width:50px;"
+                                                partialSubmit="true" action="toMore"
+                                                rendered="#{backingBeanScope.relatedInfoViewManagedBean.periodicalListSize > 2}"
+                                                useWindow="true" windowHeight="650" windowWidth="1050">
+                                    <af:setPropertyListener from="#{pageFlowScope.periodicalList}"
+                                                            to="#{pageFlowScope.docIdList}" type="action"/>
+                                </af:commandLink>
+                            </af:panelGroupLayout>
+                            <af:spacer width="10" height="10" id="s6"/>
+                        </af:panelGroupLayout>
+                        <af:panelGroupLayout id="pgl40" layout="vertical"
+                                             visible="#{backingBeanScope.relatedInfoViewManagedBean.newspaperListSize > 0}">
+                            <af:panelGroupLayout id="pgl41" layout="vertical"
+                                                 inlineStyle="background:#D9EDF8;height:30px;"
+                                                 styleClass="AFStretchWidth">
+                                <af:panelGroupLayout id="pgl42" layout="horizontal" inlineStyle="padding-top:8px;">
+                                    <af:spacer width="10" height="10" id="s7"/>
+                                    <af:outputText value="相关报纸" id="ot16"
+                                                   inlineStyle="font-weight:bold;color:#024D91;"/>
+                                </af:panelGroupLayout>
+                            </af:panelGroupLayout>
+                            <af:iterator id="i11" value="#{backingBeanScope.relatedInfoViewManagedBean.newspaperList}"
+                                         var="newspaper">
+                                <af:panelGroupLayout id="pgl43" layout="vertical" halign="center">
+                                    <af:spacer width="2" height="5" id="s33"/>
+                                    <af:commandImageLink id="cil7" partialSubmit="true"
+                                                         styleClass="#{newspaper['thumbnailUrl']== null ? 'noCoverImage' : 'bookCoverImage'}"
+                                                         icon="#{newspaper['thumbnailUrl'] == null ? '/resources/images/cover.jpg' : newspaper['thumbnailUrl']}"
+                                                         actionListener="#{backingBeanScope.relatedInfoViewManagedBean.viewRelatedNewspaperActionListener}">
+                                        <f:attribute name="relatedDocId" value="#{newspaper['docId']}"/>
+                                    </af:commandImageLink>
+                                    <af:outputText value="#{newspaper['newspaperCategoryName']}" id="ot17"/>
+                                </af:panelGroupLayout>
+                            </af:iterator>
+                            <af:spacer width="10" height="10" id="s40"/>
+                            <af:panelGroupLayout id="pgl50" layout="vertical" halign="right">
+                                <af:commandLink text="更多..." id="cl11" inlineStyle="margin-right:20px;width:50px;"
+                                                partialSubmit="true" action="toMore"
+                                                rendered="#{backingBeanScope.relatedInfoViewManagedBean.newspaperListSize > 2}"
+                                                useWindow="true" windowHeight="650" windowWidth="1050">
+                                    <af:setPropertyListener from="#{pageFlowScope.newspaperList}"
+                                                            to="#{pageFlowScope.docIdList}" type="action"/>
+                                </af:commandLink>
+                            </af:panelGroupLayout>
+                            <af:spacer width="10" height="10" id="s34"/>
+                        </af:panelGroupLayout>
+                        <af:panelGroupLayout id="pgl19" layout="vertical"
+                                             visible="#{backingBeanScope.relatedInfoViewManagedBean.teachingPlanListSize > 0}">
+                            <af:panelGroupLayout id="pgl27" layout="vertical"
+                                                 inlineStyle="background:#D9EDF8;height:30px;"
+                                                 styleClass="AFStretchWidth">
+                                <af:panelGroupLayout id="pgl24" layout="horizontal" inlineStyle="padding-top:8px;">
+                                    <af:spacer width="10" height="10" id="s14"/>
+                                    <af:outputText value="相关教案" id="ot8" inlineStyle="font-weight:bold;color:#024D91;"/>
+                                </af:panelGroupLayout>
+                            </af:panelGroupLayout>
+                            <af:iterator id="i5" value="#{backingBeanScope.relatedInfoViewManagedBean.teachingPlanList}"
+                                         var="teachingPlan">
+                                <af:panelGroupLayout id="pgl29" layout="vertical" inlineStyle="padding-left:5px;">
+                                    <af:spacer width="1" height="5" id="s23"/>
+                                    <af:commandLink text="#{teachingPlan['teachingPlanName']}" id="cl3"
+                                                    partialSubmit="true"
+                                                    actionListener="#{backingBeanScope.relatedInfoViewManagedBean.viewRelatedTeachingplanActionListener}">
+                                        <f:attribute name="relatedDocId" value="#{teachingPlan['docId']}"/>
+                                    </af:commandLink>
+                                </af:panelGroupLayout>
+                            </af:iterator>
+                            <af:spacer width="10" height="10" id="s13"/>
+                        </af:panelGroupLayout>
+                        <af:panelGroupLayout id="pgl10" layout="vertical"
+                                             visible="#{backingBeanScope.relatedInfoViewManagedBean.coursewareListSize > 0}">
+                            <af:panelGroupLayout id="pgl11" layout="vertical"
+                                                 inlineStyle="background:#D9EDF8;height:30px;"
+                                                 styleClass="AFStretchWidth">
+                                <af:panelGroupLayout id="pgl12" layout="horizontal" inlineStyle="padding-top:8px;">
+                                    <af:spacer width="10" height="5" id="s3"/>
+                                    <af:outputText value="相关课件" id="ot3" inlineStyle="font-weight:bold;color:#024D91;"/>
+                                </af:panelGroupLayout>
+                            </af:panelGroupLayout>
+                            <af:iterator id="i6" value="#{backingBeanScope.relatedInfoViewManagedBean.coursewareList}"
+                                         var="courseware">
+                                <af:panelGroupLayout id="pgl30" layout="vertical" inlineStyle="padding-left:5px;">
+                                    <af:spacer width="1" height="10" id="s19"/>
+                                    <af:commandLink text="#{courseware['coursewareName']}" id="cl4" partialSubmit="true"
+                                                    actionListener="#{backingBeanScope.relatedInfoViewManagedBean.viewRelatedCoursewareActionListener}">
+                                        <f:attribute name="relatedDocId" value="#{courseware['docId']}"/>
+                                    </af:commandLink>
+                                </af:panelGroupLayout>
+                            </af:iterator>
+                        </af:panelGroupLayout>
+                    </af:panelGroupLayout>
+                </f:facet>
+            </af:switcher>
+        </f:facet>
+        <f:facet name="start"/>
+        <f:facet name="end"/>
+        <f:facet name="top"/>
+    </af:panelStretchLayout>
+</ui:composition>

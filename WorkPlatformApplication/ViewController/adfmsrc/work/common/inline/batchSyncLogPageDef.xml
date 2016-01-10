@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="batchSyncLogPageDef"
+                Package="work.common.inline">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="CmsBatchSyncLogMonitorVO" RangeSize="25" DataControl="WorkAMDataControl"
+              id="CmsBatchSyncLogMonitorVOIterator"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="CmsBatchSyncLogMonitorVOIterator" id="CmsBatchSyncLogMonitorVO">
+      <nodeDefinition DefName="com.zypg.cms.work.model.viewobject.common.query.CmsBatchSyncLogMonitorVO"
+                      Name="CmsBatchSyncLogMonitorVO0">
+        <AttrNames>
+          <Item Value="FileName"/>
+          <Item Value="FilePath"/>
+          <Item Value="Result"/>
+          <Item Value="ThumbnailResult"/>
+          <Item Value="Remarks"/>
+          <Item Value="Operation"/>
+          <Item Value="ResultDisplay"/>
+          <Item Value="ThumbnailResultDisplay"/>
+          <Item Value="Attribute1"/>
+          <Item Value="Attribute2"/>
+          <Item Value="Attribute3"/>
+          <Item Value="BatchNum"/>
+          <Item Value="CreationDate"/>
+          <Item Value="CreationDateDisplay"/>
+          <Item Value="DocId"/>
+          <Item Value="MonitorId"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+  </bindings>
+</pageDefinition>

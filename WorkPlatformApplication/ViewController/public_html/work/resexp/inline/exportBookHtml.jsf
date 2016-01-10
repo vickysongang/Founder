@@ -1,0 +1,179 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+        xmlns:trh="http://myfaces.apache.org/trinidad/html">
+    <af:document id="d1" title="导出图书HTML">
+        <af:resource type="javascript" source="/resources/js/work_platform.js"/>
+        <af:messages id="m1"/>
+        <af:form id="f1">
+            <af:panelStretchLayout id="psl1" bottomHeight="30px">
+                <f:facet name="bottom">
+                    <af:panelGroupLayout id="pgl1" layout="vertical" halign="center">
+                        <af:panelGroupLayout id="pgl4" layout="horizontal">
+                            <af:commandButton text="导出" id="cb1" styleClass="popup-btn"
+                                              action="#{backingBeanScope.exportBootHtmlManageBean.exportBookSave}"/>
+                            <af:commandButton text="返回" id="cb5" actionListener="#{bindings.Rollback.execute}"
+                                              styleClass="popup-btn" action="end" immediate="true">
+                                <af:resetActionListener/>
+                            </af:commandButton>
+                        </af:panelGroupLayout>
+                    </af:panelGroupLayout>
+                </f:facet>
+                <f:facet name="center">
+                    <af:panelGroupLayout layout="scroll" id="pgl2">
+                        <af:spacer width="10" height="10" id="s4"/>
+                        <trh:tableLayout id="tl1">
+                            <trh:rowLayout id="rl1" inlineStyle="padding-top:5px">
+                                <trh:cellFormat id="cf1" header="true" width="100px" halign="end">
+                                    <!--<af:outputText value="主题：" id="ot1"/>-->
+                                    <af:outputLabel value="主题：" showRequired="true" id="ol1"/>
+                                </trh:cellFormat>
+                                <trh:cellFormat id="cf2" width="250px">
+                                    <af:inputText value="#{bindings.ExportTheme.inputValue}" simple="true"
+                                                  required="true"
+                                                  contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  columns="#{bindings.ExportTheme.hints.displayWidth}"
+                                                  maximumLength="#{bindings.ExportTheme.hints.precision}"
+                                                  shortDesc="#{bindings.ExportTheme.hints.tooltip}" id="it1"
+                                                  binding="#{backingBeanScope.exportBootHtmlManageBean.exportThemeUI}">
+                                        <f:validator binding="#{bindings.ExportTheme.validator}"/>
+                                    </af:inputText>
+                                    <af:outputText value="#{bindings.ExportId.inputValue}" visible="false"
+                                                   shortDesc="#{bindings.ExportId.hints.tooltip}" id="ot10">
+                                        <af:convertNumber groupingUsed="false" pattern="#{bindings.ExportId.format}"/>
+                                    </af:outputText>
+                                </trh:cellFormat>
+                            </trh:rowLayout>
+                            <trh:rowLayout id="rl2" inlineStyle="margin-top:5px">
+                                <trh:cellFormat id="cf4" header="true" width="100px" halign="end">
+                                    <af:outputLabel value="分类层级：" id="ot2"/>
+                                </trh:cellFormat>
+                                <trh:cellFormat id="cf5" width="250px">
+                                    <af:selectOneChoice value="#{bindings.CategoryLevel.inputValue}" autoSubmit="true"
+                                                        label="#{bindings.CategoryLevel.label}" simple="true"
+                                                        required="#{bindings.CategoryLevel.hints.mandatory}"
+                                                        contentStyle="width:207px;height:22px;line-height:22px;border-color:#ABADB3;font-size:12px;"
+                                                        shortDesc="#{bindings.CategoryLevel.hints.tooltip}" id="soc1">
+                                        <f:selectItems value="#{bindings.CategoryLevel.items}" id="si1"/>
+                                    </af:selectOneChoice>
+                                    <af:outputText value="#{bindings.CategoryLevel1.inputValue}" visible="false"
+                                                   partialTriggers="soc1"
+                                                   shortDesc="#{bindings.CategoryLevel1.hints.tooltip}" id="ot4"/>
+                                </trh:cellFormat>
+                            </trh:rowLayout>
+                        </trh:tableLayout>
+                        <trh:tableLayout id="tl2">
+                            <trh:rowLayout id="rl3" inlineStyle="margin-top:5px">
+                                <trh:cellFormat id="cf7" header="true" width="100px" halign="end" valign="top">
+                                    <af:outputLabel value="标引属性：" id="ot3"/>
+                                </trh:cellFormat>
+                                <trh:cellFormat id="cf3">
+                                    <trh:tableLayout id="tl4">
+                                        <trh:rowLayout id="rl4">
+                                            <trh:cellFormat id="cf8" halign="center" height="250px" width="250px">
+                                                <af:table value="#{bindings.CmsSelectedExportFieldTVO1.collectionModel}"
+                                                          var="row" 
+                                                          rows="#{bindings.CmsSelectedExportFieldTVO1.rangeSize}"
+                                                          emptyText="#{bindings.CmsSelectedExportFieldTVO1.viewable ? '' : 'Access Denied.'}"
+                                                          fetchSize="#{bindings.CmsSelectedExportFieldTVO1.rangeSize}"
+                                                          rowBandingInterval="0" width="100%"
+                                                          columnStretching="column:c3"
+                                                          selectedRowKeys="#{bindings.CmsSelectedExportFieldTVO1.collectionModel.selectedRow}"
+                                                          selectionListener="#{bindings.CmsSelectedExportFieldTVO1.collectionModel.makeCurrent}"
+                                                          rowSelection="single" id="t2" partialTriggers="cb3"
+                                                          binding="#{backingBeanScope.exportBootHtmlManageBean.selectTable}">
+                                                    <af:column sortProperty="#{bindings.CmsSelectedExportFieldTVO1.hints.FieldName.name}"
+                                                               sortable="false" align="center" headerText="已选字段"
+                                                               id="c3">
+                                                        <af:outputText value="#{row.FieldName}"
+                                                                       shortDesc="#{bindings.CmsSelectedExportFieldTVO1.hints.FieldName.tooltip}"
+                                                                       id="ot7"/>
+                                                        <af:commandButton actionListener="#{bindings.Delete.execute}"
+                                                                          text="Delete" visible="false" id="cb3"
+                                                                          binding="#{backingBeanScope.exportBootHtmlManageBean.deleteRow}"/>
+                                                    </af:column>
+                                                    <af:clientListener type="dblClick" method="tableDblClick"/>
+                                                     
+                                                    <af:serverListener type="TableDblClickEvent"
+                                                                       method="#{backingBeanScope.exportBootHtmlManageBean.exportDeleteFieldTableDblClickEvent}"/>
+                                                </af:table>
+                                            </trh:cellFormat>
+                                            <trh:cellFormat id="cf6">
+                                                <af:spacer width="10" height="10" id="s1"/>
+                                            </trh:cellFormat>
+                                            <trh:cellFormat id="cf9" halign="center" height="250px" width="250px">
+                                                <af:table value="#{bindings.CmsAllExportFieldVO1.collectionModel}"
+                                                          var="row" rows="#{bindings.CmsAllExportFieldVO1.rangeSize}"
+                                                          emptyText="#{bindings.CmsAllExportFieldVO1.viewable ? '' : 'Access Denied.'}"
+                                                          fetchSize="#{bindings.CmsAllExportFieldVO1.rangeSize}"
+                                                          rowBandingInterval="0" width="100%"
+                                                          columnStretching="column:c2"
+                                                          selectedRowKeys="#{bindings.CmsAllExportFieldVO1.collectionModel.selectedRow}"
+                                                          selectionListener="#{bindings.CmsAllExportFieldVO1.collectionModel.makeCurrent}"
+                                                          rowSelection="single" id="t1">
+                                                    <af:column sortProperty="#{bindings.CmsAllExportFieldVO1.hints.FieldName.name}"
+                                                               sortable="false" align="center" headerText="全部字段"
+                                                               id="c2">
+                                                        <af:outputText value="#{row.FieldName}"
+                                                                       shortDesc="#{bindings.CmsAllExportFieldVO1.hints.FieldName.tooltip}"
+                                                                       id="ot6"/>
+                                                    </af:column>
+                                                    <af:clientListener type="dblClick" method="tableDblClick"/>
+                                                     
+                                                    <af:serverListener type="TableDblClickEvent"
+                                                                       method="#{backingBeanScope.exportBootHtmlManageBean.exportSelectFieldTableDblClickEvent}"/>
+                                                </af:table>
+                                            </trh:cellFormat>
+                                        </trh:rowLayout>
+                                    </trh:tableLayout>
+                                </trh:cellFormat>
+                            </trh:rowLayout>
+                        </trh:tableLayout>
+                        <trh:tableLayout id="tl3">
+                            <trh:rowLayout id="rl7" inlineStyle="margin-top:5px">
+                                <trh:cellFormat id="cf10" halign="end"></trh:cellFormat>
+                                <trh:cellFormat id="cf11" width="250px">
+                                    <af:selectBooleanCheckbox text="是否存储当前选择字段为你的默认设置" label="Label 1" simple="true"
+                                                              id="sbc1"
+                                                              binding="#{backingBeanScope.exportBootHtmlManageBean.isSetDefault}"/>
+                                </trh:cellFormat>
+                            </trh:rowLayout>
+                            <trh:rowLayout id="rl5" inlineStyle="margin-top:5px">
+                                <trh:cellFormat id="cf13" header="true" width="100px" halign="end">
+                                    <af:outputLabel value="导出原因：" id="ot5"/>
+                                </trh:cellFormat>
+                                <trh:cellFormat id="cf14" width="250px">
+                                    <af:selectOneChoice value="#{bindings.ExportReason.inputValue}"
+                                                        label="#{bindings.ExportReason.label}" simple="true"
+                                                        required="#{bindings.ExportReason.hints.mandatory}"
+                                                        contentStyle="width:207px;height:22px;line-height:22px;border-color:#ABADB3;font-size:12px;"
+                                                        shortDesc="#{bindings.ExportReason.hints.tooltip}" id="soc2">
+                                        <f:selectItems value="#{bindings.ExportReason.items}" id="si2"/>
+                                    </af:selectOneChoice>
+                                    <af:outputText value="#{bindings.ExportReason1.inputValue}" visible="false"
+                                                   partialTriggers="soc2"
+                                                   shortDesc="#{bindings.ExportReason1.hints.tooltip}" id="ot9"/>
+                                </trh:cellFormat>
+                            </trh:rowLayout>
+                            <trh:rowLayout id="rl6" inlineStyle="margin-top:5px">
+                                <trh:cellFormat id="cf16" header="true" width="100px" halign="end" valign="top">
+                                    <af:outputLabel value="备注： " id="ot8"/>
+                                </trh:cellFormat>
+                                <trh:cellFormat id="cf17" width="250px">
+                                    <af:inputText value="#{bindings.Remarks.inputValue}" simple="true"
+                                                  required="#{bindings.Remarks.hints.mandatory}" rows="5"
+                                                  maximumLength="#{bindings.Remarks.hints.precision}"
+                                                  styleClass="multipleRowsInputtext"
+                                                  contentStyle="width:510px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  shortDesc="#{bindings.Remarks.hints.tooltip}" id="it3">
+                                        <f:validator binding="#{bindings.Remarks.validator}"/>
+                                    </af:inputText>
+                                </trh:cellFormat>
+                            </trh:rowLayout>
+                        </trh:tableLayout>
+                    </af:panelGroupLayout>
+                </f:facet>
+            </af:panelStretchLayout>
+        </af:form>
+    </af:document>
+</f:view>

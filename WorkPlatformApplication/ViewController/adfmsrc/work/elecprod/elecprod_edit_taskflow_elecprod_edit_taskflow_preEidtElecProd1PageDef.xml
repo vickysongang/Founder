@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36"
+                id="elecprod_edit_taskflow_elecprod_edit_taskflow_preEidtElecProd1PageDef" Package="work.elecprod"
+                SkipValidation="true">
+  <parameters/>
+  <executables/>
+  <bindings>
+    <methodAction id="preEidtElecProd" RequiresUpdateModel="true" Action="invokeMethod" MethodName="preEidtElecProd"
+                  IsViewObjectMethod="false" DataControl="WorkAMDataControl"
+                  InstanceName="data.WorkAMDataControl.dataProvider">
+      <NamedData NDName="mode" NDValue="#{pageFlowScope.mode}" NDType="java.lang.String"/>
+      <NamedData NDName="elecProdId" NDValue="#{pageFlowScope.elecProdId}" NDType="oracle.jbo.domain.Number"/>
+    </methodAction>
+  </bindings>
+</pageDefinition>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="apply_download_taskflow">
+    <default-activity>init4ApplyDownload</default-activity>
+    <input-parameter-definition id="__4">
+      <name>applyId</name>
+      <value>#{pageFlowScope.applyId}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__5">
+      <name>currTime</name>
+      <value>#{pageFlowScope.currTime}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__6">
+      <name>downloadType</name>
+      <value>#{pageFlowScope.downloadType}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__7">
+      <name>compCode</name>
+      <value>#{pageFlowScope.compCode}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <managed-bean id="__3">
+      <managed-bean-name>applyDownloadManagedBean</managed-bean-name>
+      <managed-bean-class>com.zypg.cms.work.view.bean.ApplyDownloadManagedBean</managed-bean-class>
+      <managed-bean-scope>backingBean</managed-bean-scope>
+    </managed-bean>
+    <method-call id="init4ApplyDownload">
+      <method>#{backingBeanScope.applyDownloadManagedBean.init4ApplyDownload}</method>
+      <outcome>
+        <fixed-outcome>toDownload</fixed-outcome>
+      </outcome>
+    </method-call>
+    <view id="applyDownload">
+      <page>/work/resexp/fragment/applyDownload.jsff</page>
+    </view>
+    <control-flow-rule id="__1">
+      <from-activity-id>init4ApplyDownload</from-activity-id>
+      <control-flow-case id="__2">
+        <from-outcome>toDownload</from-outcome>
+        <to-activity-id>applyDownload</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

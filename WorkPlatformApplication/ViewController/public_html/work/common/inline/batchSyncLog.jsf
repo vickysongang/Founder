@@ -1,0 +1,282 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <af:document title="查看批量同步日志" id="d1">
+        <af:messages id="m1"/>
+        <af:form id="f1">
+            <af:panelStretchLayout id="psl1" topHeight="30px">
+                <f:facet name="bottom"/>
+                <f:facet name="center">
+                    <af:panelTabbed id="pt1" dimensionsFrom="disclosedChild"
+                                    styleClass="AFStretchWidth platform_panelTabbed"
+                                    binding="#{backingBeanScope.batchSyncLogManagedBean.panelTabbed}">
+                        <af:showDetailItem text="成功[#{pageFlowScope.successCount}]" id="sdi1"
+                                           disclosed="#{pageFlowScope.tabCode == 'SUCCESS'}"
+                                           disclosureListener="#{backingBeanScope.batchSyncLogManagedBean.tabDisclousureListener}">
+                            <f:attribute name="tabCode" value="SUCCESS"/>
+                            <af:panelGroupLayout layout="horizontal" id="pgl3"
+                                                 inlineStyle="position:absolute; right: 15px; top:10px;bottom:2px;">
+                                <af:commandImageLink id="cil3" icon="/resources/images/shuaxin.gif" shortDesc="刷新"
+                                                     actionListener="#{backingBeanScope.batchSyncLogManagedBean.refreshActionListener}">
+                                    <f:attribute name="tabCode" value="SUCCESS"/>
+                                </af:commandImageLink>
+                            </af:panelGroupLayout>
+                            <af:table value="#{bindings.CmsBatchSyncLogMonitorVO.collectionModel}" var="row"
+                                      rows="#{bindings.CmsBatchSyncLogMonitorVO.rangeSize}" contentDelivery="immediate"
+                                      styleClass="AFStretchWidth custom_table_striped" columnStretching="last"
+                                      varStatus="vs"
+                                      emptyText="#{bindings.CmsBatchSyncLogMonitorVO.viewable ? '' : 'Access Denied.'}"
+                                      fetchSize="#{bindings.CmsBatchSyncLogMonitorVO.rangeSize}" rowBandingInterval="0"
+                                      id="t1">
+                                <af:column sortable="false" headerText="序号" id="c1" align="center" width="30">
+                                    <af:outputText value="#{vs.index+1}" id="ot18"/>
+                                </af:column>
+                                <af:column sortProperty="#{bindings.CmsBatchSyncLogMonitorVO.hints.FileName.name}"
+                                           sortable="false" width="200"
+                                           headerText="#{bindings.CmsBatchSyncLogMonitorVO.hints.FileName.label}"
+                                           id="c7">
+                                    <af:outputText value="#{row.FileName}"
+                                                   shortDesc="#{bindings.CmsBatchSyncLogMonitorVO.hints.FileName.tooltip}"
+                                                   id="ot1"/>
+                                </af:column>
+                                <af:column sortProperty="#{bindings.CmsBatchSyncLogMonitorVO.hints.FilePath.name}"
+                                           sortable="false" width="200"
+                                           headerText="#{bindings.CmsBatchSyncLogMonitorVO.hints.FilePath.label}"
+                                           id="c2">
+                                    <af:outputText value="#{row.FilePath}"
+                                                   shortDesc="#{bindings.CmsBatchSyncLogMonitorVO.hints.FilePath.tooltip}"
+                                                   id="ot2"/>
+                                </af:column>
+                                <af:column sortProperty="#{bindings.CmsBatchSyncLogMonitorVO.hints.Operation.name}"
+                                           sortable="false" width="50" align="center"
+                                           headerText="#{bindings.CmsBatchSyncLogMonitorVO.hints.Operation.label}"
+                                           id="c6">
+                                    <af:outputText value="#{row.Operation}"
+                                                   shortDesc="#{bindings.CmsBatchSyncLogMonitorVO.hints.Operation.tooltip}"
+                                                   id="ot6"/>
+                                </af:column>
+                                <af:column sortProperty="#{bindings.CmsBatchSyncLogMonitorVO.hints.ResultDisplay.name}"
+                                           align="center" width="60" sortable="false"
+                                           headerText="#{bindings.CmsBatchSyncLogMonitorVO.hints.ResultDisplay.label}"
+                                           id="c3">
+                                    <af:outputText value="#{row.ResultDisplay}"
+                                                   shortDesc="#{bindings.CmsBatchSyncLogMonitorVO.hints.ResultDisplay.tooltip}"
+                                                   id="ot3"/>
+                                </af:column>
+                                <af:column sortProperty="#{bindings.CmsBatchSyncLogMonitorVO.hints.ThumbnailResultDisplay.name}"
+                                           sortable="false" align="center" width="90"
+                                           headerText="#{bindings.CmsBatchSyncLogMonitorVO.hints.ThumbnailResultDisplay.label}"
+                                           id="c4">
+                                    <af:outputText value="#{row.ThumbnailResultDisplay}"
+                                                   shortDesc="#{bindings.CmsBatchSyncLogMonitorVO.hints.ThumbnailResultDisplay.tooltip}"
+                                                   id="ot4"/>
+                                </af:column>
+                                <af:column sortProperty="#{bindings.CmsBatchSyncLogMonitorVO.hints.CreationDateDisplay.name}"
+                                           sortable="false" align="center" width="120"
+                                           headerText="#{bindings.CmsBatchSyncLogMonitorVO.hints.CreationDateDisplay.label}"
+                                           id="c22">
+                                    <af:outputText value="#{row.CreationDateDisplay}"
+                                                   shortDesc="#{bindings.CmsBatchSyncLogMonitorVO.hints.CreationDateDisplay.tooltip}"
+                                                   id="ot22"/>
+                                </af:column>
+                                <af:column sortProperty="#{bindings.CmsBatchSyncLogMonitorVO.hints.BatchNum.name}"
+                                           sortable="false" align="center" width="60"
+                                           headerText="#{bindings.CmsBatchSyncLogMonitorVO.hints.BatchNum.label}"
+                                           id="c23">
+                                    <af:outputText value="#{row.BatchNum}"
+                                                   shortDesc="#{bindings.CmsBatchSyncLogMonitorVO.hints.BatchNum.tooltip}"
+                                                   id="ot23"/>
+                                </af:column>
+                                <af:column sortProperty="#{bindings.CmsBatchSyncLogMonitorVO.hints.Remarks.name}"
+                                           sortable="false"
+                                           headerText="#{bindings.CmsBatchSyncLogMonitorVO.hints.Remarks.label}"
+                                           id="c5">
+                                    <af:outputText value="#{row.Remarks}"
+                                                   shortDesc="#{bindings.CmsBatchSyncLogMonitorVO.hints.Remarks.tooltip}"
+                                                   id="ot5"/>
+                                </af:column>
+                            </af:table>
+                        </af:showDetailItem>
+                        <af:showDetailItem text="失败[#{pageFlowScope.failCount}]" id="sdi2"
+                                           disclosed="#{pageFlowScope.tabCode == 'FAIL'}"
+                                           disclosureListener="#{backingBeanScope.batchSyncLogManagedBean.tabDisclousureListener}">
+                            <f:attribute name="tabCode" value="FAIL"/>
+                            <af:panelGroupLayout layout="horizontal" id="pgl1"
+                                                 inlineStyle="position:absolute; right: 15px; top:10px;bottom:2px;">
+                                <af:commandImageLink id="cil1" icon="/resources/images/shuaxin.gif" shortDesc="刷新"
+                                                     actionListener="#{backingBeanScope.batchSyncLogManagedBean.refreshActionListener}">
+                                    <f:attribute name="tabCode" value="FAIL"/>
+                                </af:commandImageLink>
+                            </af:panelGroupLayout>
+                            <af:table value="#{bindings.CmsBatchSyncLogMonitorVO.collectionModel}" var="row"
+                                      rows="#{bindings.CmsBatchSyncLogMonitorVO.rangeSize}" contentDelivery="immediate"
+                                      styleClass="AFStretchWidth custom_table_striped" columnStretching="last"
+                                      varStatus="vs"
+                                      emptyText="#{bindings.CmsBatchSyncLogMonitorVO.viewable ? '' : 'Access Denied.'}"
+                                      fetchSize="#{bindings.CmsBatchSyncLogMonitorVO.rangeSize}" rowBandingInterval="0"
+                                      id="t2">
+                                <af:column sortable="false" headerText="序号" id="c8" align="center" width="30">
+                                    <af:outputText value="#{vs.index+1}" id="ot7"/>
+                                </af:column>
+                                <af:column sortProperty="#{bindings.CmsBatchSyncLogMonitorVO.hints.FileName.name}"
+                                           sortable="false" width="200"
+                                           headerText="#{bindings.CmsBatchSyncLogMonitorVO.hints.FileName.label}"
+                                           id="c9">
+                                    <af:outputText value="#{row.FileName}"
+                                                   shortDesc="#{bindings.CmsBatchSyncLogMonitorVO.hints.FileName.tooltip}"
+                                                   id="ot8"/>
+                                </af:column>
+                                <af:column sortProperty="#{bindings.CmsBatchSyncLogMonitorVO.hints.FilePath.name}"
+                                           sortable="false" width="200" noWrap="false"
+                                           headerText="#{bindings.CmsBatchSyncLogMonitorVO.hints.FilePath.label}"
+                                           id="c10">
+                                    <af:outputText value="#{row.FilePath}"
+                                                   shortDesc="#{bindings.CmsBatchSyncLogMonitorVO.hints.FilePath.tooltip}"
+                                                   id="ot9"/>
+                                </af:column>
+                                <af:column sortProperty="#{bindings.CmsBatchSyncLogMonitorVO.hints.Operation.name}"
+                                           sortable="false" width="50" align="center"
+                                           headerText="#{bindings.CmsBatchSyncLogMonitorVO.hints.Operation.label}"
+                                           id="c12">
+                                    <af:outputText value="#{row.Operation}"
+                                                   shortDesc="#{bindings.CmsBatchSyncLogMonitorVO.hints.Operation.tooltip}"
+                                                   id="ot10"/>
+                                </af:column>
+                                <af:column sortProperty="#{bindings.CmsBatchSyncLogMonitorVO.hints.ResultDisplay.name}"
+                                           align="center" width="60" sortable="false"
+                                           headerText="#{bindings.CmsBatchSyncLogMonitorVO.hints.ResultDisplay.label}"
+                                           id="c11">
+                                    <af:outputText value="#{row.ResultDisplay}"
+                                                   shortDesc="#{bindings.CmsBatchSyncLogMonitorVO.hints.ResultDisplay.tooltip}"
+                                                   id="ot11"/>
+                                </af:column>
+                                <af:column sortProperty="#{bindings.CmsBatchSyncLogMonitorVO.hints.ThumbnailResultDisplay.name}"
+                                           sortable="false" align="center" width="90"
+                                           headerText="#{bindings.CmsBatchSyncLogMonitorVO.hints.ThumbnailResultDisplay.label}"
+                                           id="c13">
+                                    <af:outputText value="#{row.ThumbnailResultDisplay}"
+                                                   shortDesc="#{bindings.CmsBatchSyncLogMonitorVO.hints.ThumbnailResultDisplay.tooltip}"
+                                                   id="ot12"/>
+                                </af:column>
+                                <af:column sortProperty="#{bindings.CmsBatchSyncLogMonitorVO.hints.CreationDateDisplay.name}"
+                                           sortable="false" align="center" width="120"
+                                           headerText="#{bindings.CmsBatchSyncLogMonitorVO.hints.CreationDateDisplay.label}"
+                                           id="c24">
+                                    <af:outputText value="#{row.CreationDateDisplay}"
+                                                   shortDesc="#{bindings.CmsBatchSyncLogMonitorVO.hints.CreationDateDisplay.tooltip}"
+                                                   id="ot24"/>
+                                </af:column>
+                                <af:column sortProperty="#{bindings.CmsBatchSyncLogMonitorVO.hints.BatchNum.name}"
+                                           sortable="false" align="center" width="60"
+                                           headerText="#{bindings.CmsBatchSyncLogMonitorVO.hints.BatchNum.label}"
+                                           id="c25">
+                                    <af:outputText value="#{row.BatchNum}"
+                                                   shortDesc="#{bindings.CmsBatchSyncLogMonitorVO.hints.BatchNum.tooltip}"
+                                                   id="ot25"/>
+                                </af:column>
+                                <af:column sortProperty="#{bindings.CmsBatchSyncLogMonitorVO.hints.Remarks.name}"
+                                           sortable="false" noWrap="false"
+                                           headerText="#{bindings.CmsBatchSyncLogMonitorVO.hints.Remarks.label}"
+                                           id="c14">
+                                    <af:outputText value="#{row.Remarks}"
+                                                   shortDesc="#{bindings.CmsBatchSyncLogMonitorVO.hints.Remarks.tooltip}"
+                                                   id="ot13"/>
+                                </af:column>
+                            </af:table>
+                        </af:showDetailItem>
+                        <af:showDetailItem text="进行中[#{pageFlowScope.processingCount}]" id="sdi3"
+                                           disclosed="#{pageFlowScope.tabCode == 'PROCESSING'}"
+                                           disclosureListener="#{backingBeanScope.batchSyncLogManagedBean.tabDisclousureListener}">
+                            <f:attribute name="tabCode" value="PROCESSING"/>
+                            <af:panelGroupLayout layout="horizontal" id="pgl2"
+                                                 inlineStyle="position:absolute; right: 15px; top:10px;bottom:2px;">
+                                <af:commandImageLink id="cil2" icon="/resources/images/shuaxin.gif" shortDesc="刷新"
+                                                     actionListener="#{backingBeanScope.batchSyncLogManagedBean.refreshActionListener}">
+                                    <f:attribute name="tabCode" value="PROCESSING"/>
+                                </af:commandImageLink>
+                            </af:panelGroupLayout>
+                            <af:table value="#{bindings.CmsBatchSyncLogMonitorVO.collectionModel}" var="row"
+                                      rows="#{bindings.CmsBatchSyncLogMonitorVO.rangeSize}" contentDelivery="immediate"
+                                      styleClass="AFStretchWidth custom_table_striped" columnStretching="last"
+                                      varStatus="vs"
+                                      emptyText="#{bindings.CmsBatchSyncLogMonitorVO.viewable ? '' : 'Access Denied.'}"
+                                      fetchSize="#{bindings.CmsBatchSyncLogMonitorVO.rangeSize}" rowBandingInterval="0"
+                                      id="t3">
+                                <af:column sortable="false" headerText="序号" id="c15" align="center" width="30">
+                                    <af:outputText value="#{vs.index+1}" id="ot14"/>
+                                </af:column>
+                                <af:column sortProperty="#{bindings.CmsBatchSyncLogMonitorVO.hints.FileName.name}"
+                                           sortable="false" width="200"
+                                           headerText="#{bindings.CmsBatchSyncLogMonitorVO.hints.FileName.label}"
+                                           id="c16">
+                                    <af:outputText value="#{row.FileName}"
+                                                   shortDesc="#{bindings.CmsBatchSyncLogMonitorVO.hints.FileName.tooltip}"
+                                                   id="ot15"/>
+                                </af:column>
+                                <af:column sortProperty="#{bindings.CmsBatchSyncLogMonitorVO.hints.FilePath.name}"
+                                           sortable="false" width="200"
+                                           headerText="#{bindings.CmsBatchSyncLogMonitorVO.hints.FilePath.label}"
+                                           id="c17">
+                                    <af:outputText value="#{row.FilePath}"
+                                                   shortDesc="#{bindings.CmsBatchSyncLogMonitorVO.hints.FilePath.tooltip}"
+                                                   id="ot16"/>
+                                </af:column>
+                                <af:column sortProperty="#{bindings.CmsBatchSyncLogMonitorVO.hints.Operation.name}"
+                                           sortable="false" width="50" align="center"
+                                           headerText="#{bindings.CmsBatchSyncLogMonitorVO.hints.Operation.label}"
+                                           id="c18">
+                                    <af:outputText value="#{row.Operation}"
+                                                   shortDesc="#{bindings.CmsBatchSyncLogMonitorVO.hints.Operation.tooltip}"
+                                                   id="ot17"/>
+                                </af:column>
+                                <af:column sortProperty="#{bindings.CmsBatchSyncLogMonitorVO.hints.ResultDisplay.name}"
+                                           align="center" width="60" sortable="false"
+                                           headerText="#{bindings.CmsBatchSyncLogMonitorVO.hints.ResultDisplay.label}"
+                                           id="c19">
+                                    <af:outputText value="#{row.ResultDisplay}"
+                                                   shortDesc="#{bindings.CmsBatchSyncLogMonitorVO.hints.ResultDisplay.tooltip}"
+                                                   id="ot19"/>
+                                </af:column>
+                                <af:column sortProperty="#{bindings.CmsBatchSyncLogMonitorVO.hints.ThumbnailResultDisplay.name}"
+                                           sortable="false" align="center" width="90"
+                                           headerText="#{bindings.CmsBatchSyncLogMonitorVO.hints.ThumbnailResultDisplay.label}"
+                                           id="c20">
+                                    <af:outputText value="#{row.ThumbnailResultDisplay}"
+                                                   shortDesc="#{bindings.CmsBatchSyncLogMonitorVO.hints.ThumbnailResultDisplay.tooltip}"
+                                                   id="ot20"/>
+                                </af:column>
+                                <af:column sortProperty="#{bindings.CmsBatchSyncLogMonitorVO.hints.CreationDateDisplay.name}"
+                                           sortable="false" align="center" width="120"
+                                           headerText="#{bindings.CmsBatchSyncLogMonitorVO.hints.CreationDateDisplay.label}"
+                                           id="c26">
+                                    <af:outputText value="#{row.CreationDateDisplay}"
+                                                   shortDesc="#{bindings.CmsBatchSyncLogMonitorVO.hints.CreationDateDisplay.tooltip}"
+                                                   id="ot26"/>
+                                </af:column>
+                                <af:column sortProperty="#{bindings.CmsBatchSyncLogMonitorVO.hints.BatchNum.name}"
+                                           sortable="false" align="center" width="60"
+                                           headerText="#{bindings.CmsBatchSyncLogMonitorVO.hints.BatchNum.label}"
+                                           id="c27">
+                                    <af:outputText value="#{row.BatchNum}"
+                                                   shortDesc="#{bindings.CmsBatchSyncLogMonitorVO.hints.BatchNum.tooltip}"
+                                                   id="ot27"/>
+                                </af:column>
+                                <af:column sortProperty="#{bindings.CmsBatchSyncLogMonitorVO.hints.Remarks.name}"
+                                           sortable="false"
+                                           headerText="#{bindings.CmsBatchSyncLogMonitorVO.hints.Remarks.label}"
+                                           id="c21">
+                                    <af:outputText value="#{row.Remarks}"
+                                                   shortDesc="#{bindings.CmsBatchSyncLogMonitorVO.hints.Remarks.tooltip}"
+                                                   id="ot21"/>
+                                </af:column>
+                            </af:table>
+                        </af:showDetailItem>
+                    </af:panelTabbed>
+                </f:facet>
+                <f:facet name="start"/>
+                <f:facet name="end"/>
+                <f:facet name="top"></f:facet>
+            </af:panelStretchLayout>
+        </af:form>
+    </af:document>
+</f:view>

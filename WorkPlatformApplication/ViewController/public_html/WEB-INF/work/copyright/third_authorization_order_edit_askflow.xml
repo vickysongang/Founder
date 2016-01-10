@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="third_authorization_order_edit_askflow">
+    <default-activity>preEditOrder</default-activity>
+    <input-parameter-definition id="__6">
+      <name>mode</name>
+      <value>#{pageFlowScope.mode}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__7">
+      <name>docId</name>
+      <value>#{pageFlowScope.docId}</value>
+      <class>oracle.jbo.domain.Number</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__8">
+      <name>compCode</name>
+      <value>#{pageFlowScope.compCode}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <managed-bean id="__1">
+      <managed-bean-name>copyrightOrderEditManagedBean</managed-bean-name>
+      <managed-bean-class>com.zypg.cms.work.view.bean.CopyrightOrderEditManagedBean</managed-bean-class>
+      <managed-bean-scope>backingBean</managed-bean-scope>
+    </managed-bean>
+    <method-call id="preEditOrder">
+      <method>#{backingBeanScope.copyrightOrderEditManagedBean.preEditOrder}</method>
+      <outcome>
+        <fixed-outcome>toEdit</fixed-outcome>
+      </outcome>
+    </method-call>
+    <view id="orderEdit">
+      <page>/work/copyright/inline/orderEdit.jsf</page>
+    </view>
+    <task-flow-return id="taskFlowReturn">
+      <outcome>
+        <name>taskFlowReturn</name>
+      </outcome>
+    </task-flow-return>
+    <control-flow-rule id="__2">
+      <from-activity-id>preEditOrder</from-activity-id>
+      <control-flow-case id="__3">
+        <from-outcome>toEdit</from-outcome>
+        <to-activity-id>orderEdit</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__4">
+      <from-activity-id>orderEdit</from-activity-id>
+      <control-flow-case id="__5">
+        <from-outcome>toReturn</from-outcome>
+        <to-activity-id>taskFlowReturn</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+  </task-flow-definition>
+</adfc-config>

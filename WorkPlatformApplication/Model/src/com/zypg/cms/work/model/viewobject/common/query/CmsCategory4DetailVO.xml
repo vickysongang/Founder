@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="CmsCategory4DetailVO"
+  Version="11.1.2.64.36"
+  BindingStyle="OracleName"
+  CustomQuery="true"
+  RowClass="com.zypg.cms.work.model.viewobject.common.query.CmsCategory4DetailVORowImpl"
+  ComponentClass="com.zypg.cms.work.model.viewobject.common.query.CmsCategory4DetailVOImpl"
+  PageIterMode="Full"
+  UseGlueCode="false">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="Access|Coll|VarAccess"/>
+    <Attr Name="_isExpertMode" Value="true"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="com.zypg.cms.work.model.viewobject.common.query.CmsCategory4DetailVO_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <Variable
+    Name="bvLibCode"
+    Kind="viewcriteria"
+    Type="java.lang.String"/>
+  <Variable
+    Name="bvLibTypeCode"
+    Kind="viewcriteria"
+    Type="java.lang.String"/>
+  <Variable
+    Name="bvCompCode"
+    Kind="where"
+    Type="java.lang.String"/>
+  <SQLQuery><![CDATA[SELECT -2 category_id,
+       '全部' category_name,
+       '全部(' || (SELECT COUNT(1)
+                   FROM cms_3rd_authorization_item_t t,
+                        cms_author_copyright_t       author,
+                        cms_book_t                   book
+                  WHERE t.comp_code = :bvCompCode
+                    AND t.author_doc_id = author.doc_id
+                    AND author.book_doc_id = book.doc_id) || ')' category_display_name,
+       'CATEGORY_GROUP' parent_node_type,
+       NULL parent_node_id,
+       '-99' comp_code,
+       -1 seq,
+       '-99' lib_code,
+       '-99' lib_type_code,
+       'Y' primary_flag,
+       NULL category_group_code,
+       NULL copyright_type,
+       NULL time_range
+  FROM dual
+UNION ALL
+SELECT c.category_id,
+       c.category_name,
+       c.category_name || '(' ||
+       cms_work_platform_pkg.get_detail_category_count(c.category_id,
+                                                       :bvCompCode) || ')' category_display_name,
+       c.parent_node_type,
+       c.parent_node_id,
+       lcgr.comp_code,
+       c.seq,
+       lcgr.lib_code,
+       lcgr.lib_type_code,
+       lcgr.primary_flag,
+       lcgr.category_group_code,
+       c.attribute1 copyright_type,
+       c.attribute2 time_range
+  FROM cms_category_t c, cms_lib_category_g_rel_t lcgr
+ WHERE cms_common_pkg.get_category_top_node_id(c.category_id) = lcgr.rel_id]]></SQLQuery>
+  <ViewAttribute
+    Name="CategoryId"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="oracle.jbo.domain.Number"
+    ColumnType="NUMBER"
+    AliasName="CATEGORY_ID"
+    Expression="CATEGORY_ID"
+    SQLType="NUMERIC"/>
+  <ViewAttribute
+    Name="CategoryName"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="80"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="CATEGORY_NAME"
+    Expression="CATEGORY_NAME"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="80"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="CategoryDisplayName"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="122"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="CATEGORY_DISPLAY_NAME"
+    Expression="CATEGORY_DISPLAY_NAME"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="122"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="ParentNodeType"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="20"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="PARENT_NODE_TYPE"
+    Expression="PARENT_NODE_TYPE"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="ParentNodeId"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="oracle.jbo.domain.Number"
+    ColumnType="NUMBER"
+    AliasName="PARENT_NODE_ID"
+    Expression="PARENT_NODE_ID"
+    SQLType="NUMERIC"/>
+  <ViewAttribute
+    Name="CompCode"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="20"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="COMP_CODE"
+    Expression="COMP_CODE"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Seq"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="oracle.jbo.domain.Number"
+    ColumnType="NUMBER"
+    AliasName="SEQ"
+    Expression="SEQ"
+    SQLType="NUMERIC"/>
+  <ViewAttribute
+    Name="LibCode"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="40"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="LIB_CODE"
+    Expression="LIB_CODE"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="40"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="LibTypeCode"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="20"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="LIB_TYPE_CODE"
+    Expression="LIB_TYPE_CODE"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PrimaryFlag"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="10"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="PRIMARY_FLAG"
+    Expression="PRIMARY_FLAG"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="10"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="CategoryGroupCode"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="20"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="CATEGORY_GROUP_CODE"
+    Expression="CATEGORY_GROUP_CODE"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="CopyrightType"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="240"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="COPYRIGHT_TYPE"
+    Expression="COPYRIGHT_TYPE"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="240"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="TimeRange"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="240"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="TIME_RANGE"
+    Expression="TIME_RANGE"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="240"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewCriteria
+    Name="findCategoryByLibVC"
+    ViewObjectName="com.zypg.cms.work.model.viewobject.common.query.CmsCategory4DetailVO"
+    Conjunction="AND">
+    <Properties>
+      <CustomProperties>
+        <Property
+          Name="displayOperators"
+          Value="InAdvancedMode"/>
+        <Property
+          Name="autoExecute"
+          Value="false"/>
+        <Property
+          Name="allowConjunctionOverride"
+          Value="true"/>
+        <Property
+          Name="showInList"
+          Value="true"/>
+        <Property
+          Name="mode"
+          Value="Basic"/>
+      </CustomProperties>
+    </Properties>
+    <ViewCriteriaRow
+      Name="CmsCategory4DetailVOCriteria_row_0"
+      UpperColumns="1">
+      <ViewCriteriaItem
+        Name="ParentNodeType"
+        ViewAttribute="ParentNodeType"
+        Operator="="
+        Conjunction="AND"
+        Value="CATEGORY_GROUP"
+        Required="Optional"
+        UpperColumns="0"/>
+      <ViewCriteriaItem
+        Name="PrimaryFlag"
+        ViewAttribute="PrimaryFlag"
+        Operator="="
+        Conjunction="AND"
+        Value="Y"
+        UpperColumns="0"
+        Required="Optional"/>
+    </ViewCriteriaRow>
+    <ViewCriteriaRow
+      Name="findCategoryByLibVC_row_1"
+      Conjunction="AND"
+      UpperColumns="1">
+      <ViewCriteriaItemCompound
+        ViewAttribute="CompCode">
+        <ViewCriteria
+          Name="findCategoryByLibVC_findCategoryByLibVC_row_1_CompCode_itemHolder"
+          ViewObjectName="com.zypg.cms.work.model.viewobject.common.query.CmsCategory4DetailVO"
+          Conjunction="OR">
+          <ViewCriteriaRow
+            Name="findCategoryByLibVC_findCategoryByLibVC_row_1_CompCode_itemHolder_row_0"
+            Conjunction="AND">
+            <ViewCriteriaItem
+              Name="CompCode"
+              ViewAttribute="CompCode"
+              Operator="="
+              Conjunction="AND"
+              Value="-99"
+              UpperColumns="0"
+              Required="Optional"/>
+          </ViewCriteriaRow>
+          <ViewCriteriaRow
+            Name="findCategoryByLibVC_findCategoryByLibVC_row_1_CompCode_itemHolder_row_1"
+            Conjunction="OR">
+            <ViewCriteriaItem
+              Name="findCategoryByLibVC_findCategoryByLibVC_row_1_CompCode_findCategoryByLibVC_findCategoryByLibVC_row_1_CompCode_itemHolder_findCategoryByLibVC_findCategoryByLibVC_row_1_CompCode_itemHolder_row_1_CompCode"
+              ViewAttribute="CompCode"
+              Operator="="
+              Conjunction="OR"
+              Value=":bvCompCode"
+              UpperColumns="0"
+              IsBindVarValue="true"
+              Required="Optional"/>
+          </ViewCriteriaRow>
+        </ViewCriteria>
+      </ViewCriteriaItemCompound>
+    </ViewCriteriaRow>
+    <ViewCriteriaRow
+      Name="findCategoryByLibVC_row_2"
+      Conjunction="AND"
+      UpperColumns="1">
+      <ViewCriteriaItemCompound
+        ViewAttribute="LibCode">
+        <ViewCriteria
+          Name="findCategoryByLibVC_findCategoryByLibVC_row_2_LibCode_itemHolder"
+          ViewObjectName="com.zypg.cms.work.model.viewobject.common.query.CmsCategory4DetailVO"
+          Conjunction="OR">
+          <ViewCriteriaRow
+            Name="findCategoryByLibVC_findCategoryByLibVC_row_2_LibCode_itemHolder_row_0"
+            Conjunction="AND">
+            <ViewCriteriaItem
+              Name="LibCode"
+              ViewAttribute="LibCode"
+              Operator="="
+              Conjunction="AND"
+              Value="-99"
+              UpperColumns="0"
+              Required="Optional"/>
+          </ViewCriteriaRow>
+          <ViewCriteriaRow
+            Name="findCategoryByLibVC_findCategoryByLibVC_row_2_LibCode_itemHolder_row_1"
+            Conjunction="OR">
+            <ViewCriteriaItem
+              Name="findCategoryByLibVC_findCategoryByLibVC_row_2_LibCode_findCategoryByLibVC_findCategoryByLibVC_row_2_LibCode_itemHolder_findCategoryByLibVC_findCategoryByLibVC_row_2_LibCode_itemHolder_row_1_LibCode"
+              ViewAttribute="LibCode"
+              Operator="="
+              Conjunction="OR"
+              Value=":bvLibCode"
+              UpperColumns="0"
+              IsBindVarValue="true"
+              Required="Optional"/>
+          </ViewCriteriaRow>
+        </ViewCriteria>
+      </ViewCriteriaItemCompound>
+    </ViewCriteriaRow>
+    <ViewCriteriaRow
+      Name="findCategoryByLibVC_row_3"
+      Conjunction="AND"
+      UpperColumns="1">
+      <ViewCriteriaItemCompound
+        ViewAttribute="LibTypeCode">
+        <ViewCriteria
+          Name="findCategoryByLibVC_findCategoryByLibVC_row_3_LibTypeCode_itemHolder"
+          ViewObjectName="com.zypg.cms.work.model.viewobject.common.query.CmsCategory4DetailVO"
+          Conjunction="OR">
+          <ViewCriteriaRow
+            Name="findCategoryByLibVC_findCategoryByLibVC_row_3_LibTypeCode_itemHolder_row_0"
+            Conjunction="AND">
+            <ViewCriteriaItem
+              Name="LibTypeCode"
+              ViewAttribute="LibTypeCode"
+              Operator="="
+              Conjunction="AND"
+              Value="-99"
+              UpperColumns="0"
+              Required="Optional"/>
+          </ViewCriteriaRow>
+          <ViewCriteriaRow
+            Name="findCategoryByLibVC_findCategoryByLibVC_row_3_LibTypeCode_itemHolder_row_1"
+            Conjunction="OR">
+            <ViewCriteriaItem
+              Name="findCategoryByLibVC_findCategoryByLibVC_row_3_LibTypeCode_findCategoryByLibVC_findCategoryByLibVC_row_3_LibTypeCode_itemHolder_findCategoryByLibVC_findCategoryByLibVC_row_3_LibTypeCode_itemHolder_row_1_LibTypeCode"
+              ViewAttribute="LibTypeCode"
+              Operator="="
+              Conjunction="OR"
+              Value=":bvLibTypeCode"
+              UpperColumns="0"
+              IsBindVarValue="true"
+              Required="Optional"/>
+          </ViewCriteriaRow>
+        </ViewCriteria>
+      </ViewCriteriaItemCompound>
+    </ViewCriteriaRow>
+  </ViewCriteria>
+  <AttrArray Name="KeyAttributes">
+    <Item Value="CategoryId"/>
+  </AttrArray>
+  <ViewLinkAccessor
+    Name="CategoryIdCmsCategory4DetailVO"
+    ViewLink="com.zypg.cms.work.model.viewobject.common.viewlink.CmsCategory4DetailVL"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="com.zypg.cms.work.model.ModelBundle"/>
+  </ResourceBundle>
+</ViewObject>

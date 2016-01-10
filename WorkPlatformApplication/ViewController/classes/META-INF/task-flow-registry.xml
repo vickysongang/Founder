@@ -1,0 +1,579 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<task-flow-registry xmlns="http://xmlns.oracle.com/adf/controller/rc">
+   <task-flow-descriptor path="WEB-INF/work/entry/duplicate_check_entry_main_taskflow.xml" id="duplicate_check_entry_main_taskflow" type="task-flow-definition" uses-page-fragments="true" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="compCode"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/common/complex_search_taskflow.xml" id="complex_search_taskflow" type="task-flow-definition" uses-page-fragments="false" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="libCode"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/entry/works_entry_edit_taskflow.xml" id="works_entry_edit_taskflow" type="task-flow-definition" uses-page-fragments="false" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="libTypeCode"/>
+      <input-parameter name="batchFlag"/>
+      <input-parameter name="libCode"/>
+      <input-parameter name="docId"/>
+      <input-parameter name="compCode"/>
+      <input-parameter name="mode"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/copyright/third_authorization_item_template_taskflow.xml" id="third_authorization_item_template_taskflow" type="task-flow-definition" uses-page-fragments="false" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="compCode"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/resexp/search_export_main_taskflow.xml" id="search_export_main_taskflow" type="task-flow-definition" uses-page-fragments="true" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="libCode"/>
+      <input-parameter name="groupUserFlag"/>
+      <input-parameter name="compCode"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/common/jb_info_taskflow.xml" id="jb_info_taskflow" type="task-flow-definition" uses-page-fragments="false" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="libCode"/>
+      <input-parameter name="docId"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/book/book_chapter_sort_taskflow.xml" id="book_chapter_sort_taskflow" type="task-flow-definition" uses-page-fragments="false" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="pDocId"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/copyright/copyright_item_view_taskflow.xml" id="copyright_item_view_taskflow" type="task-flow-definition" uses-page-fragments="true" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="itemId"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/audio/audio_main_taskflow.xml" id="audio_main_taskflow" type="task-flow-definition" uses-page-fragments="true" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="libTypeCode"/>
+      <input-parameter name="defaultDisplayWay"/>
+      <input-parameter name="libCode"/>
+      <input-parameter name="categoryId"/>
+      <input-parameter name="deleteFlag"/>
+      <input-parameter name="compCode"/>
+      <input-parameter name="currStatusCode"/>
+      <input-parameter name="categoryGroupType"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/common/gather_monitor_taskflow.xml" id="gather_monitor_taskflow" type="task-flow-definition" uses-page-fragments="false" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="docIds"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/teachingplan/teachingplan_edit_taskflow.xml" id="teachingplan_edit_taskflow" type="task-flow-definition" uses-page-fragments="false" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="libTypeCode"/>
+      <input-parameter name="libCode"/>
+      <input-parameter name="docId"/>
+      <input-parameter name="compCode"/>
+      <input-parameter name="teachingPlanId"/>
+      <input-parameter name="mode"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/entry/encyclopedias_entry_main_taskflow.xml" id="encyclopedias_entry_main_taskflow" type="task-flow-definition" uses-page-fragments="true" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="libTypeCode"/>
+      <input-parameter name="libCode"/>
+      <input-parameter name="categoryId"/>
+      <input-parameter name="deleteFlag"/>
+      <input-parameter name="currStatusCode"/>
+      <input-parameter name="compCode"/>
+      <input-parameter name="categoryGroupType"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/copyright/third_authorization_order_edit_askflow.xml" id="third_authorization_order_edit_askflow" type="task-flow-definition" uses-page-fragments="false" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="docId"/>
+      <input-parameter name="compCode"/>
+      <input-parameter name="mode"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/common/view_more_files_taskflow.xml" id="view_more_files_taskflow" type="task-flow-definition" uses-page-fragments="false" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="docId"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/theme/theme_export_taskflow.xml" id="theme_export_taskflow" type="task-flow-definition" uses-page-fragments="true" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="compCode"/>
+      <input-parameter name="docIds"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/book/book_main_taskflow.xml" id="book_main_taskflow" type="task-flow-definition" uses-page-fragments="true" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="libTypeCode"/>
+      <input-parameter name="defaultDisplayWay"/>
+      <input-parameter name="libCode"/>
+      <input-parameter name="categoryId"/>
+      <input-parameter name="deleteFlag"/>
+      <input-parameter name="compCode"/>
+      <input-parameter name="currStatusCode"/>
+      <input-parameter name="categoryGroupType"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/courseware/courseware_view_taskflow.xml" id="courseware_view_taskflow" type="task-flow-definition" uses-page-fragments="true" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="docId"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/resexp/apply_download_taskflow.xml" id="apply_download_taskflow" type="task-flow-definition" uses-page-fragments="true" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="applyId"/>
+      <input-parameter name="downloadType"/>
+      <input-parameter name="currTime"/>
+      <input-parameter name="compCode"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/periodical/periodical_edit_taskflow.xml" id="periodical_edit_taskflow" type="task-flow-definition" uses-page-fragments="false" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="libTypeCode"/>
+      <input-parameter name="batchFlag"/>
+      <input-parameter name="libCode"/>
+      <input-parameter name="docId"/>
+      <input-parameter name="compCode"/>
+      <input-parameter name="mode"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/copyright/copyright_order_view_taskflow.xml" id="copyright_order_view_taskflow" type="task-flow-definition" uses-page-fragments="true" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="docId"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/work_router_taskflow.xml" id="work_router_taskflow" type="task-flow-definition" uses-page-fragments="true" library-internal="false" train="false" page-type="jsp">
+      <input-parameter name="libTypeCode"/>
+      <input-parameter name="libCode"/>
+      <input-parameter name="groupUserFlag"/>
+      <input-parameter name="categoryId"/>
+      <input-parameter name="currTime"/>
+      <input-parameter name="deleteFlag"/>
+      <input-parameter name="compCode"/>
+      <input-parameter name="categoryGroupType"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/relation/relation_set_taskflow.xml" id="relation_set_taskflow" type="task-flow-definition" uses-page-fragments="false" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="libCode"/>
+      <input-parameter name="docId"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/elecprod/elecprod_edit_taskflow.xml" id="elecprod_edit_taskflow" type="task-flow-definition" uses-page-fragments="false" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="libTypeCode"/>
+      <input-parameter name="batchFlag"/>
+      <input-parameter name="libCode"/>
+      <input-parameter name="docId"/>
+      <input-parameter name="compCode"/>
+      <input-parameter name="mode"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/copyright/copyright_company_main_taskflow.xml" id="copyright_company_main_taskflow" type="task-flow-definition" uses-page-fragments="true" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="libCode"/>
+      <input-parameter name="compCode"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/resexp/tempshelf_main_taskflow.xml" id="tempshelf_main_taskflow" type="task-flow-definition" uses-page-fragments="true" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="libCode"/>
+      <input-parameter name="groupUserFlag"/>
+      <input-parameter name="currStatusCode"/>
+      <input-parameter name="compCode"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/resexp/restemplate_main_taskflow.xml" id="restemplate_main_taskflow" type="task-flow-definition" uses-page-fragments="false" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="categoryCode"/>
+      <input-parameter name="deleteFlag"/>
+      <input-parameter name="compCode"/>
+      <input-parameter name="shelfDocIdList"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/offline/task_view_taskflow.xml" id="task_view_taskflow" type="task-flow-definition" uses-page-fragments="true" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="docId"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/audio/audio_view_taskflow.xml" id="audio_view_taskflow" type="task-flow-definition" uses-page-fragments="true" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="docId"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/copyright/third_authorization_order_main_taskflow.xml" id="third_authorization_order_main_taskflow" type="task-flow-definition" uses-page-fragments="true" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="defaultDisplayWay"/>
+      <input-parameter name="libCode"/>
+      <input-parameter name="categoryId"/>
+      <input-parameter name="deleteFlag"/>
+      <input-parameter name="compCode"/>
+      <input-parameter name="currStatusCode"/>
+      <input-parameter name="categoryGroupType"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/illustration/illustration_view_taskflow.xml" id="illustration_view_taskflow" type="task-flow-definition" uses-page-fragments="true" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="docId"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/material/material_edit_taskflow.xml" id="material_edit_taskflow" type="task-flow-definition" uses-page-fragments="false" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="libTypeCode"/>
+      <input-parameter name="batchFlag"/>
+      <input-parameter name="libCode"/>
+      <input-parameter name="docId"/>
+      <input-parameter name="compCode"/>
+      <input-parameter name="mode"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/newspaper/newspaper_edit_taskflow.xml" id="newspaper_edit_taskflow" type="task-flow-definition" uses-page-fragments="false" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="libTypeCode"/>
+      <input-parameter name="batchFlag"/>
+      <input-parameter name="libCode"/>
+      <input-parameter name="docId"/>
+      <input-parameter name="compCode"/>
+      <input-parameter name="mode"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/audio/audio_edit_taskflow.xml" id="audio_edit_taskflow" type="task-flow-definition" uses-page-fragments="false" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="libTypeCode"/>
+      <input-parameter name="batchFlag"/>
+      <input-parameter name="libCode"/>
+      <input-parameter name="docId"/>
+      <input-parameter name="compCode"/>
+      <input-parameter name="mode"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/common/download_progress_taskflow.xml" id="download_progress_taskflow" type="task-flow-definition" uses-page-fragments="false" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="docIdList"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/copyright/copyright_author_view_taskflow.xml" id="copyright_author_view_taskflow" type="task-flow-definition" uses-page-fragments="true" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="docId"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/entry/works_entry_main_taskflow.xml" id="works_entry_main_taskflow" type="task-flow-definition" uses-page-fragments="true" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="libTypeCode"/>
+      <input-parameter name="libCode"/>
+      <input-parameter name="categoryId"/>
+      <input-parameter name="deleteFlag"/>
+      <input-parameter name="currStatusCode"/>
+      <input-parameter name="compCode"/>
+      <input-parameter name="categoryGroupType"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/offline/new_offline_entry_process_taskflow.xml" id="new_offline_entry_process_taskflow" type="task-flow-definition" uses-page-fragments="false" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="compCode"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/activity/activity_edit_taskflow.xml" id="activity_edit_taskflow" type="task-flow-definition" uses-page-fragments="false" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="libTypeCode"/>
+      <input-parameter name="batchFlag"/>
+      <input-parameter name="libCode"/>
+      <input-parameter name="docId"/>
+      <input-parameter name="compCode"/>
+      <input-parameter name="mode"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/copyright/order_items_taskflow.xml" id="order_items_taskflow" type="task-flow-definition" uses-page-fragments="false" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="docId"/>
+      <input-parameter name="compCode"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/video/video_main_taskflow.xml" id="video_main_taskflow" type="task-flow-definition" uses-page-fragments="true" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="libTypeCode"/>
+      <input-parameter name="defaultDisplayWay"/>
+      <input-parameter name="libCode"/>
+      <input-parameter name="categoryId"/>
+      <input-parameter name="deleteFlag"/>
+      <input-parameter name="compCode"/>
+      <input-parameter name="currStatusCode"/>
+      <input-parameter name="categoryGroupType"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/periodical/periodical_view_taskflow.xml" id="periodical_view_taskflow" type="task-flow-definition" uses-page-fragments="true" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="docId"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/video/video_edit_taskflow.xml" id="video_edit_taskflow" type="task-flow-definition" uses-page-fragments="false" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="libTypeCode"/>
+      <input-parameter name="batchFlag"/>
+      <input-parameter name="libCode"/>
+      <input-parameter name="docId"/>
+      <input-parameter name="compCode"/>
+      <input-parameter name="mode"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/periodical/periodical_main_taskflow.xml" id="periodical_main_taskflow" type="task-flow-definition" uses-page-fragments="true" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="libTypeCode"/>
+      <input-parameter name="defaultDisplayWay"/>
+      <input-parameter name="libCode"/>
+      <input-parameter name="categoryId"/>
+      <input-parameter name="deleteFlag"/>
+      <input-parameter name="compCode"/>
+      <input-parameter name="currStatusCode"/>
+      <input-parameter name="categoryGroupType"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/copyright/copyright_author_import_taskflow.xml" id="copyright_author_import_taskflow" type="task-flow-definition" uses-page-fragments="false" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="currentCategoryId"/>
+      <input-parameter name="compCode"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/log/rollback_taskflow.xml" id="rollback_taskflow" type="task-flow-definition" uses-page-fragments="false" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="docId"/>
+      <input-parameter name="type"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/common/extend_attr_taskflow.xml" id="extend_attr_taskflow" type="task-flow-definition" uses-page-fragments="true" library-internal="false" train="false" page-type="jsp">
+      <input-parameter name="labelWidth"/>
+      <input-parameter name="libCode"/>
+      <input-parameter name="docId"/>
+      <input-parameter name="compCode"/>
+      <input-parameter name="operType"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/book/book_import_taskflow.xml" id="book_import_taskflow" type="task-flow-definition" uses-page-fragments="false" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="currentPublisherCode"/>
+      <input-parameter name="currentPublisherName"/>
+      <input-parameter name="currentCategoryId"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/common/batch_sync_log_taskflow.xml" id="batch_sync_log_taskflow" type="task-flow-definition" uses-page-fragments="false" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="libCode"/>
+      <input-parameter name="compCode"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/theme/theme_resource_taskflow.xml" id="theme_resource_taskflow" type="task-flow-definition" uses-page-fragments="true" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="nodeId"/>
+      <input-parameter name="groupUserFlag"/>
+      <input-parameter name="compCode"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/work_taskflow.xml" id="work_taskflow" type="task-flow-definition" uses-page-fragments="true" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="groupUserFlag"/>
+      <input-parameter name="currTime"/>
+      <input-parameter name="compCode"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/figuregroup/edit_figure_group_taskflow.xml" id="edit_figure_group_taskflow" type="task-flow-definition" uses-page-fragments="false" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="docId"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/common/extend_attr_view_taskflow.xml" id="extend_attr_view_taskflow" type="task-flow-definition" uses-page-fragments="true" library-internal="false" train="false" page-type="jsp">
+      <input-parameter name="docId"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="META-INF/adfc-config.xml" id="" type="" uses-page-fragments="false" library-internal="false" train="false" page-type="unspecified"/>
+   <task-flow-descriptor path="WEB-INF/work/illustration/illustration_edit_taskflow.xml" id="illustration_edit_taskflow" type="task-flow-definition" uses-page-fragments="false" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="libTypeCode"/>
+      <input-parameter name="batchFlag"/>
+      <input-parameter name="libCode"/>
+      <input-parameter name="docId"/>
+      <input-parameter name="compCode"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/book/book_chapter_view_taskflow.xml" id="book_chapter_view_taskflow" type="task-flow-definition" uses-page-fragments="false" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="pDocId"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/theme/theme_edit_taskflow.xml" id="theme_edit_taskflow" type="task-flow-definition" uses-page-fragments="false" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="libTypeCode"/>
+      <input-parameter name="batchFlag"/>
+      <input-parameter name="libCode"/>
+      <input-parameter name="docId"/>
+      <input-parameter name="compCode"/>
+      <input-parameter name="mode"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/theme/theme_make_taskflow.xml" id="theme_make_taskflow" type="task-flow-definition" uses-page-fragments="false" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="groupUserFlag"/>
+      <input-parameter name="docId"/>
+      <input-parameter name="compCode"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/audio/audio_scipt_taskflow.xml" id="audio_scipt_taskflow" type="task-flow-definition" uses-page-fragments="false" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="docId"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/activity/activity_view_taskflow.xml" id="activity_view_taskflow" type="task-flow-definition" uses-page-fragments="true" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="docId"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/photography/photography_view_taskflow.xml" id="photography_view_taskflow" type="task-flow-definition" uses-page-fragments="true" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="docId"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/entry/duplicate_check_entry_view_taskflow.xml" id="duplicate_check_entry_view_taskflow" type="task-flow-definition" uses-page-fragments="true" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="docId"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/theme/theme_export_log_show_task-flow.xml" id="theme_export_log_show_task-flow" type="task-flow-definition" uses-page-fragments="true" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="exportType"/>
+      <input-parameter name="currTime"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/video/video_script_taskflow.xml" id="video_script_taskflow" type="task-flow-definition" uses-page-fragments="false" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="docId"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/newspaper/newspaper_main_taskflow.xml" id="newspaper_main_taskflow" type="task-flow-definition" uses-page-fragments="true" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="libTypeCode"/>
+      <input-parameter name="defaultDisplayWay"/>
+      <input-parameter name="libCode"/>
+      <input-parameter name="categoryId"/>
+      <input-parameter name="deleteFlag"/>
+      <input-parameter name="compCode"/>
+      <input-parameter name="currStatusCode"/>
+      <input-parameter name="categoryGroupType"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/theme/theme_resource_origin_taskflow.xml" id="theme_resource_origin_taskflow" type="task-flow-definition" uses-page-fragments="true" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="nodeId"/>
+      <input-parameter name="libCode"/>
+      <input-parameter name="groupUserFlag"/>
+      <input-parameter name="displayModel"/>
+      <input-parameter name="goPage"/>
+      <input-parameter name="compCode"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/docbook/docbook_main_taskflow.xml" id="docbook_main_taskflow" type="task-flow-definition" uses-page-fragments="true" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="libCode"/>
+      <input-parameter name="compCode"/>
+      <input-parameter name="currStatusCode"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/courseware/courseware_main_taskflow.xml" id="courseware_main_taskflow" type="task-flow-definition" uses-page-fragments="true" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="libTypeCode"/>
+      <input-parameter name="defaultDisplayWay"/>
+      <input-parameter name="libCode"/>
+      <input-parameter name="categoryId"/>
+      <input-parameter name="deleteFlag"/>
+      <input-parameter name="compCode"/>
+      <input-parameter name="currStatusCode"/>
+      <input-parameter name="categoryGroupType"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/offline/offline_entry_process_taskflow.xml" id="offline_entry_process_taskflow" type="task-flow-definition" uses-page-fragments="true" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="libCode"/>
+      <input-parameter name="currStatusCode"/>
+      <input-parameter name="compCode"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/copyright/copyright_company_edit_taskflow.xml" id="copyright_company_edit_taskflow" type="task-flow-definition" uses-page-fragments="false" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="companyId"/>
+      <input-parameter name="compCode"/>
+      <input-parameter name="mode"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/entry/encyclopedias_entry_view_taskflow.xml" id="encyclopedias_entry_view_taskflow" type="task-flow-definition" uses-page-fragments="true" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="docId"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/book/book_view_taskflow.xml" id="book_view_taskflow" type="task-flow-definition" uses-page-fragments="true" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="docId"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/theme/theme_resource_home_taskflow.xml" id="theme_resource_home_taskflow" type="task-flow-definition" uses-page-fragments="true" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="nodeId"/>
+      <input-parameter name="groupUserFlag"/>
+      <input-parameter name="goPage"/>
+      <input-parameter name="compCode"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/log/process_log_taskflow.xml" id="process_log_taskflow" type="task-flow-definition" uses-page-fragments="false" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="docId"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/attach/attach_mgmt_taskflow.xml" id="attach_mgmt_taskflow" type="task-flow-definition" uses-page-fragments="false" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="libCode"/>
+      <input-parameter name="docId"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/common/category_pick_taskflow.xml" id="category_pick_taskflow" type="task-flow-definition" uses-page-fragments="true" library-internal="false" train="false" page-type="facelets"/>
+   <task-flow-descriptor path="WEB-INF/work/video/video_view_taskflow.xml" id="video_view_taskflow" type="task-flow-definition" uses-page-fragments="true" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="docId"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/book/book_edit_taskflow.xml" id="book_edit_taskflow" type="task-flow-definition" uses-page-fragments="false" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="libTypeCode"/>
+      <input-parameter name="batchFlag"/>
+      <input-parameter name="libCode"/>
+      <input-parameter name="docId"/>
+      <input-parameter name="compCode"/>
+      <input-parameter name="mode"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/common/view_more_related_info_taskflow.xml" id="view_more_related_info_taskflow" type="task-flow-definition" uses-page-fragments="false" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="docIdList"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/common/related_info_view_taskflow.xml" id="related_info_view_taskflow" type="task-flow-definition" uses-page-fragments="true" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="position"/>
+      <input-parameter name="docId"/>
+      <input-parameter name="displayWidth"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/figuregroup/new_figure_group_taskflow.xml" id="new_figure_group_taskflow" type="task-flow-definition" uses-page-fragments="false" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="libCode"/>
+      <input-parameter name="docId"/>
+      <input-parameter name="compCode"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/resexp/apply_main_taskflow.xml" id="apply_main_taskflow" type="task-flow-definition" uses-page-fragments="true" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="libCode"/>
+      <input-parameter name="currStatusCode"/>
+      <input-parameter name="compCode"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/entry/works_entry_view_taskflow.xml" id="works_entry_view_taskflow" type="task-flow-definition" uses-page-fragments="true" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="docId"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/elecprod/elecprod_script_taskflow.xml" id="elecprod_script_taskflow" type="task-flow-definition" uses-page-fragments="false" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="docId"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/illustration/illustration_main_taskflow.xml" id="illustration_main_taskflow" type="task-flow-definition" uses-page-fragments="true" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="libTypeCode"/>
+      <input-parameter name="defaultDisplayWay"/>
+      <input-parameter name="libCode"/>
+      <input-parameter name="categoryId"/>
+      <input-parameter name="deleteFlag"/>
+      <input-parameter name="compCode"/>
+      <input-parameter name="currStatusCode"/>
+      <input-parameter name="categoryGroupType"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/copyright/copyright_author_main_taskflow.xml" id="copyright_author_main_taskflow" type="task-flow-definition" uses-page-fragments="true" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="libTypeCode"/>
+      <input-parameter name="defaultDisplayWay"/>
+      <input-parameter name="libCode"/>
+      <input-parameter name="categoryId"/>
+      <input-parameter name="deleteFlag"/>
+      <input-parameter name="compCode"/>
+      <input-parameter name="currStatusCode"/>
+      <input-parameter name="categoryGroupType"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/figuregroup/join_figure_group_taskflow.xml" id="join_figure_group_taskflow" type="task-flow-definition" uses-page-fragments="false" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="libCode"/>
+      <input-parameter name="docId"/>
+      <input-parameter name="compCode"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/teachingplan/teachingplan_view_taskflow.xml" id="teachingplan_view_taskflow" type="task-flow-definition" uses-page-fragments="true" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="docId"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/newspaper/newspaper_view_taskflow.xml" id="newspaper_view_taskflow" type="task-flow-definition" uses-page-fragments="true" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="docId"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/log/rollback_log_taskflow.xml" id="rollback_log_taskflow" type="task-flow-definition" uses-page-fragments="false" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="docId"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/common/online_read_taskflow.xml" id="online_read_taskflow" type="task-flow-definition" uses-page-fragments="true" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="docId"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/copyright/order_items_detail_taskflow.xml" id="order_items_detail_taskflow" type="task-flow-definition" uses-page-fragments="false" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="docId"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/resexp/export_book_html_taskflow.xml" id="export_book_html_taskflow" type="task-flow-definition" uses-page-fragments="false" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="compCode"/>
+      <input-parameter name="docIds"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/copyright/copyright_author_edit_taskflow.xml" id="copyright_author_edit_taskflow" type="task-flow-definition" uses-page-fragments="false" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="libCode"/>
+      <input-parameter name="docId"/>
+      <input-parameter name="compCode"/>
+      <input-parameter name="mode"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/elecprod/elecprod_main_taskflow.xml" id="elecprod_main_taskflow" type="task-flow-definition" uses-page-fragments="true" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="libTypeCode"/>
+      <input-parameter name="defaultDisplayWay"/>
+      <input-parameter name="libCode"/>
+      <input-parameter name="categoryId"/>
+      <input-parameter name="deleteFlag"/>
+      <input-parameter name="compCode"/>
+      <input-parameter name="currStatusCode"/>
+      <input-parameter name="categoryGroupType"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/material/material_main_taskflow.xml" id="material_main_taskflow" type="task-flow-definition" uses-page-fragments="true" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="libTypeCode"/>
+      <input-parameter name="defaultDisplayWay"/>
+      <input-parameter name="libCode"/>
+      <input-parameter name="categoryId"/>
+      <input-parameter name="deleteFlag"/>
+      <input-parameter name="compCode"/>
+      <input-parameter name="currStatusCode"/>
+      <input-parameter name="categoryGroupType"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/theme/theme_main_taskflow.xml" id="theme_main_taskflow" type="task-flow-definition" uses-page-fragments="true" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="libTypeCode"/>
+      <input-parameter name="libCode"/>
+      <input-parameter name="groupUserFlag"/>
+      <input-parameter name="currStatusCode"/>
+      <input-parameter name="compCode"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/home-taskflow.xml" id="home-taskflow" type="task-flow-definition" uses-page-fragments="true" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="pubFlag"/>
+      <input-parameter name="adminFlag"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/entry/encyclopedias_entry_edit_taskflow.xml" id="encyclopedias_entry_edit_taskflow" type="task-flow-definition" uses-page-fragments="false" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="libTypeCode"/>
+      <input-parameter name="batchFlag"/>
+      <input-parameter name="libCode"/>
+      <input-parameter name="docId"/>
+      <input-parameter name="compCode"/>
+      <input-parameter name="mode"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/photography/photography_edit_taskflow.xml" id="photography_edit_taskflow" type="task-flow-definition" uses-page-fragments="false" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="libTypeCode"/>
+      <input-parameter name="batchFlag"/>
+      <input-parameter name="libCode"/>
+      <input-parameter name="docId"/>
+      <input-parameter name="compCode"/>
+      <input-parameter name="mode"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/activity/activity_main_taskflow.xml" id="activity_main_taskflow" type="task-flow-definition" uses-page-fragments="true" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="libTypeCode"/>
+      <input-parameter name="defaultDisplayWay"/>
+      <input-parameter name="libCode"/>
+      <input-parameter name="categoryId"/>
+      <input-parameter name="deleteFlag"/>
+      <input-parameter name="compCode"/>
+      <input-parameter name="currStatusCode"/>
+      <input-parameter name="categoryGroupType"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/copyright/third_authorization_item_main_taskflow.xml" id="third_authorization_item_main_taskflow" type="task-flow-definition" uses-page-fragments="true" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="libCode"/>
+      <input-parameter name="compCode"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/elecprod/elecprod_view_taskflow.xml" id="elecprod_view_taskflow" type="task-flow-definition" uses-page-fragments="true" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="docId"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/material/material_view_taskflow.xml" id="material_view_taskflow" type="task-flow-definition" uses-page-fragments="true" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="docId"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/teachingplan/teachingplan_main_taskflow.xml" id="teachingplan_main_taskflow" type="task-flow-definition" uses-page-fragments="true" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="libTypeCode"/>
+      <input-parameter name="defaultDisplayWay"/>
+      <input-parameter name="libCode"/>
+      <input-parameter name="categoryId"/>
+      <input-parameter name="deleteFlag"/>
+      <input-parameter name="compCode"/>
+      <input-parameter name="currStatusCode"/>
+      <input-parameter name="categoryGroupType"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/photography/photography_main_taskflow.xml" id="photography_main_taskflow" type="task-flow-definition" uses-page-fragments="true" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="libTypeCode"/>
+      <input-parameter name="defaultDisplayWay"/>
+      <input-parameter name="libCode"/>
+      <input-parameter name="categoryId"/>
+      <input-parameter name="deleteFlag"/>
+      <input-parameter name="compCode"/>
+      <input-parameter name="currStatusCode"/>
+      <input-parameter name="categoryGroupType"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/copyright/third_authorization_item_import_taskflow.xml" id="third_authorization_item_import_taskflow" type="task-flow-definition" uses-page-fragments="false" library-internal="false" train="false" page-type="facelets"/>
+   <task-flow-descriptor path="WEB-INF/common/xc_info_taskflow.xml" id="xc_info_taskflow" type="task-flow-definition" uses-page-fragments="false" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="libCode"/>
+      <input-parameter name="docId"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/work/courseware/courseware_edit_taskflow.xml" id="courseware_edit_taskflow" type="task-flow-definition" uses-page-fragments="false" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="coursewareId"/>
+      <input-parameter name="libTypeCode"/>
+      <input-parameter name="libCode"/>
+      <input-parameter name="docId"/>
+      <input-parameter name="compCode"/>
+      <input-parameter name="mode"/>
+   </task-flow-descriptor>
+</task-flow-registry>

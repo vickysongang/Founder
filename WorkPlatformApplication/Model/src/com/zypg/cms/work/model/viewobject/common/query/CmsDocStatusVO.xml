@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="CmsDocStatusVO"
+  Version="11.1.2.64.36"
+  BindingStyle="OracleName"
+  CustomQuery="true"
+  PageIterMode="Full"
+  UseGlueCode="false"
+  ComponentClass="com.zypg.cms.work.model.viewobject.common.query.CmsDocStatusVOImpl"
+  RowClass="com.zypg.cms.work.model.viewobject.common.query.CmsDocStatusVORowImpl">
+  <DesignTime>
+    <Attr Name="_isExpertMode" Value="true"/>
+    <Attr Name="_codeGenFlag2" Value="Access|Coll|VarAccess"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="com.zypg.cms.work.model.viewobject.common.query.CmsDocStatusVO_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <Variable
+    Name="bvLibCode"
+    Kind="viewcriteria"
+    Type="java.lang.String"/>
+  <Variable
+    Name="bvCategoryId"
+    Kind="where"
+    Type="oracle.jbo.domain.Number"/>
+  <Variable
+    Name="bvCategoryGroupType"
+    Kind="where"
+    Type="java.lang.String"/>
+  <Variable
+    Name="bvDeleteFlag"
+    Kind="where"
+    Type="java.lang.String"/>
+  <Variable
+    Name="bvSearchValue"
+    Kind="where"
+    Type="java.lang.String"/>
+  <Variable
+    Name="bvCompCode"
+    Kind="where"
+    Type="java.lang.String"/>
+  <Variable
+    Name="bvUserId"
+    Kind="where"
+    Type="oracle.jbo.domain.Number"/>
+  <SQLQuery><![CDATA[SELECT status_code,
+       status_name,
+       status_name || '(' ||
+       cms_work_platform_pkg.get_status_doc_count(:bvCategoryId,
+                                                  :bvDeleteFlag,
+                                                  :bvCategoryGroupType,
+                                                  :bvCompCode,
+                                                  status_code,
+                                                  :bvSearchValue) || ')' status_display_name,
+       lib_code,
+       seq
+  FROM cms_doc_status_v ds
+ WHERE ds.lib_code NOT IN
+       ('DOCBOOK', 'APPLY', 'OFFLINE_ENTRY_PROCESS', 'THEME')
+UNION ALL
+SELECT status_code,
+       status_name,
+       status_name || '(' ||
+       (SELECT COUNT(1)
+          FROM cms_docbook_job_t dj
+         WHERE dj.status = ds.status_code
+           AND dj.comp_code = :bvCompCode) || ')' status_display_name,
+       lib_code,
+       seq
+  FROM cms_doc_status_v ds
+ WHERE ds.lib_code = 'DOCBOOK'
+UNION ALL
+SELECT status_code,
+       status_name,
+       status_name || '(' ||
+       (SELECT COUNT(1)
+          FROM cms_res_exp_apply_h_t reah
+         WHERE decode(reah.status,
+                      'APPROVED_APPLY',
+                      'APPROVED_APPLY',
+                      'REJECTED_APPLY',
+                      'APPROVED_APPLY',
+                      'TO_APPROVE_APPLY') = ds.status_code
+           AND reah.comp_code = :bvCompCode
+           AND reah.user_id = :bvUserId) || ')' status_display_name,
+       lib_code,
+       seq
+  FROM cms_doc_status_v ds
+ WHERE ds.lib_code = 'APPLY'
+UNION ALL
+SELECT status_code,
+       status_name,
+       status_name || '(' ||
+       (SELECT COUNT(1)
+          FROM cms_doc_t dt
+         WHERE dt.status = ds.status_code
+           AND dt.lib_code = ds.lib_code
+           AND dt.comp_code = :bvCompCode) || ')' status_display_name,
+       lib_code,
+       seq
+  FROM cms_doc_status_v ds
+ WHERE ds.lib_code IN ('OFFLINE_ENTRY_PROCESS', 'THEME')]]></SQLQuery>
+  <ViewAttribute
+    Name="StatusCode"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="255"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="STATUS_CODE"
+    Expression="STATUS_CODE"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="StatusName"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="9"
+    Type="java.lang.String"
+    ColumnType="CHAR"
+    AliasName="STATUS_NAME"
+    Expression="STATUS_NAME"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="9"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="StatusDisplayName"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="51"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="STATUS_DISPLAY_NAME"
+    Expression="STATUS_DISPLAY_NAME"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="51"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="LibCode"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="9"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="LIB_CODE"
+    Expression="LIB_CODE"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="9"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Seq"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="oracle.jbo.domain.Number"
+    ColumnType="NUMBER"
+    AliasName="SEQ"
+    Expression="SEQ"
+    SQLType="NUMERIC"/>
+  <ViewCriteria
+    Name="findDocStatusVC"
+    ViewObjectName="com.zypg.cms.work.model.viewobject.common.query.CmsDocStatusVO"
+    Conjunction="AND">
+    <Properties>
+      <CustomProperties>
+        <Property
+          Name="displayOperators"
+          Value="InAdvancedMode"/>
+        <Property
+          Name="autoExecute"
+          Value="false"/>
+        <Property
+          Name="allowConjunctionOverride"
+          Value="true"/>
+        <Property
+          Name="showInList"
+          Value="true"/>
+        <Property
+          Name="mode"
+          Value="Basic"/>
+      </CustomProperties>
+    </Properties>
+    <ViewCriteriaRow
+      Name="CmsDocStatusVOCriteria_row_0"
+      UpperColumns="1">
+      <ViewCriteriaItem
+        Name="LibCode"
+        ViewAttribute="LibCode"
+        Operator="="
+        Conjunction="AND"
+        Value=":bvLibCode"
+        IsBindVarValue="true"
+        Required="Optional"
+        UpperColumns="0"
+        GenerateIsNullClauseForBindVars="false"/>
+    </ViewCriteriaRow>
+  </ViewCriteria>
+  <ViewCriteria
+    Name="findDocStatusByCodeVC"
+    ViewObjectName="com.zypg.cms.work.model.viewobject.common.query.CmsDocStatusVO"
+    Conjunction="AND">
+    <Properties>
+      <CustomProperties>
+        <Property
+          Name="displayOperators"
+          Value="InAdvancedMode"/>
+        <Property
+          Name="autoExecute"
+          Value="false"/>
+        <Property
+          Name="allowConjunctionOverride"
+          Value="true"/>
+        <Property
+          Name="showInList"
+          Value="true"/>
+        <Property
+          Name="mode"
+          Value="Basic"/>
+      </CustomProperties>
+    </Properties>
+    <ViewCriteriaRow
+      Name="CmsDocStatusVOCriteria_row_0"
+      UpperColumns="1">
+      <ViewCriteriaItem
+        Name="StatusCode"
+        ViewAttribute="StatusCode"
+        Operator="STARTSWITH"
+        Conjunction="AND"
+        Value="TO_SYNC"
+        UpperColumns="0"
+        Required="Optional"/>
+      <ViewCriteriaItem
+        Name="findDocStatusByCodeVC_CmsDocStatusVOCriteria_row_0_LibCode"
+        ViewAttribute="LibCode"
+        Operator="="
+        Conjunction="AND"
+        Value=":bvLibCode"
+        UpperColumns="0"
+        GenerateIsNullClauseForBindVars="false"
+        IsBindVarValue="true"
+        Required="Optional"/>
+    </ViewCriteriaRow>
+  </ViewCriteria>
+  <AttrArray Name="KeyAttributes">
+    <Item Value="StatusCode"/>
+  </AttrArray>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="com.zypg.cms.work.model.ModelBundle"/>
+  </ResourceBundle>
+</ViewObject>

@@ -1,0 +1,257 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core">
+    <af:resource type="javascript" source="/resources/js/work_platform.js"/>
+    <af:panelStretchLayout id="psl1" bottomHeight="0" topHeight="auto" inlineStyle="margin:2px 2px 2px 2px;"
+                           styleClass="AFStretchWidth">
+        <f:facet name="top">
+            <af:panelBox text="筛选条件" id="pb1" styleClass="collapse_panelBox"
+                         inlineStyle="border: 1px solid #E4E8E8;margin-bottom: 8px;">
+                <f:facet name="toolbar"/>
+                <af:subform id="s1" defaultCommand="cb5">
+                    <af:panelGroupLayout id="pgl3" layout="vertical" halign="center">
+                        <af:panelFormLayout id="pfl1" maxColumns="4" rows="3">
+                            <af:inputText value="#{bindings.BookName.inputValue}"
+                                          label="#{bindings.BookName.hints.label}"
+                                          required="#{bindings.BookName.hints.mandatory}"
+                                          contentStyle="width:190px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                          columns="#{bindings.BookName.hints.displayWidth}"
+                                          maximumLength="#{bindings.BookName.hints.precision}"
+                                          shortDesc="#{bindings.BookName.hints.tooltip}" id="it1">
+                                <f:validator binding="#{bindings.BookName.validator}"/>
+                            </af:inputText>
+                            <af:inputDate value="#{bindings.PublishDateFrom.inputValue}"
+                                          label="#{bindings.PublishDateFrom.hints.label}"
+                                          contentStyle="width:190px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                          required="#{bindings.PublishDateFrom.hints.mandatory}"
+                                          columns="#{bindings.PublishDateFrom.hints.displayWidth}"
+                                          shortDesc="#{bindings.PublishDateFrom.hints.label}" id="id2">
+                                <f:validator binding="#{bindings.PublishDateFrom.validator}"/>
+                                <af:convertDateTime pattern="#{bindings.PublishDateFrom.format}"/>
+                            </af:inputDate>
+                            <af:inputDate value="#{bindings.PublishDateTo.inputValue}"
+                                          label="#{bindings.PublishDateTo.hints.label}"
+                                          contentStyle="width:190px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                          required="#{bindings.PublishDateTo.hints.mandatory}"
+                                          columns="#{bindings.PublishDateTo.hints.displayWidth}"
+                                          shortDesc="#{bindings.PublishDateTo.hints.label}" id="id1">
+                                <f:validator binding="#{bindings.PublishDateTo.validator}"/>
+                                <af:convertDateTime pattern="#{bindings.PublishDateTo.format}"/>
+                            </af:inputDate>
+                            <af:selectOneChoice value="#{bindings.PaperMediumCopyrightFlag.inputValue}"
+                                                label="#{bindings.PaperMediumCopyrightFlag.label}"
+                                                labelStyle="white-space:nowrap;"
+                                                contentStyle="width:207px;height:22px;line-height:22px;border-color:#ABADB3;font-size:12px;"
+                                                required="#{bindings.PaperMediumCopyrightFlag.hints.mandatory}"
+                                                shortDesc="#{bindings.PaperMediumCopyrightFlag.hints.tooltip}"
+                                                id="soc1">
+                                <f:selectItems value="#{bindings.PaperMediumCopyrightFlag.items}" id="si1"/>
+                            </af:selectOneChoice>
+                            <af:selectOneChoice value="#{bindings.NetworkCopyrightFlag.inputValue}"
+                                                label="#{bindings.NetworkCopyrightFlag.label}"
+                                                labelStyle="white-space:nowrap;"
+                                                contentStyle="width:207px;height:22px;line-height:22px;border-color:#ABADB3;font-size:12px;"
+                                                required="#{bindings.NetworkCopyrightFlag.hints.mandatory}"
+                                                shortDesc="#{bindings.NetworkCopyrightFlag.hints.tooltip}" id="soc2">
+                                <f:selectItems value="#{bindings.NetworkCopyrightFlag.items}" id="si2"/>
+                            </af:selectOneChoice>
+                            <af:inputText value="#{bindings.Editor.inputValue}" label="#{bindings.Editor.hints.label}"
+                                          required="#{bindings.Editor.hints.mandatory}"
+                                          contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                          columns="#{bindings.Editor.hints.displayWidth}"
+                                          maximumLength="#{bindings.Editor.hints.precision}"
+                                          shortDesc="#{bindings.Editor.hints.tooltip}" id="it2">
+                                <f:validator binding="#{bindings.Editor.validator}"/>
+                            </af:inputText>
+                            <af:inputText value="#{bindings.Author.inputValue}" label="#{bindings.Author.hints.label}"
+                                          required="#{bindings.Author.hints.mandatory}"
+                                          columns="#{bindings.Author.hints.displayWidth}"
+                                          contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                          maximumLength="#{bindings.Author.hints.precision}"
+                                          shortDesc="#{bindings.Author.hints.tooltip}" id="it3">
+                                <f:validator binding="#{bindings.Author.validator}"/>
+                            </af:inputText>
+                            <af:inputText value="#{bindings.Series.inputValue}" label="#{bindings.Series.hints.label}"
+                                          required="#{bindings.Series.hints.mandatory}"
+                                          columns="#{bindings.Series.hints.displayWidth}"
+                                          contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                          maximumLength="#{bindings.Series.hints.precision}"
+                                          shortDesc="#{bindings.Series.hints.tooltip}" id="it4">
+                                <f:validator binding="#{bindings.Series.validator}"/>
+                            </af:inputText>
+                            <af:inputText value="#{bindings.CategoryName.inputValue}" label="图书分类"
+                                          required="#{bindings.CategoryName.hints.mandatory}"
+                                          columns="#{bindings.CategoryName.hints.displayWidth}"
+                                          maximumLength="#{bindings.CategoryName.hints.precision}"
+                                          shortDesc="#{bindings.CategoryName.hints.tooltip}" id="it6"
+                                          contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;">
+                                <f:validator binding="#{bindings.CategoryName.validator}"/>
+                            </af:inputText>
+                            <af:selectOneChoice value="#{bindings.Status.inputValue}" label="#{bindings.Status.label}"
+                                                required="#{bindings.Status.hints.mandatory}"
+                                                contentStyle="width:207px;height:22px;line-height:22px;border-color:#ABADB3;font-size:12px;"
+                                                shortDesc="#{bindings.Status.hints.tooltip}" id="soc3">
+                                <f:selectItems value="#{bindings.Status.items}" id="si3"/>
+                            </af:selectOneChoice>
+                            <af:selectOneChoice value="#{bindings.CompCode.inputValue}"
+                                                label="#{bindings.CompCode.label}"
+                                                rendered="#{pageFlowScope.groupUserFlag == 'Y'}"
+                                                contentStyle="width:207px;height:22px;line-height:22px;border-color:#ABADB3;font-size:12px;"
+                                                required="#{bindings.CompCode.hints.mandatory}"
+                                                shortDesc="#{bindings.CompCode.hints.tooltip}" id="soc4">
+                                <f:selectItems value="#{bindings.CompCode.items}" id="si4"/>
+                            </af:selectOneChoice>
+                        </af:panelFormLayout>
+                        <af:panelGroupLayout id="pgl13" halign="center" layout="horizontal" inlineStyle="width:104px;">
+                            <af:commandButton text="查询" styleClass="btn btn-search" id="cb5" partialSubmit="true"
+                                              actionListener="#{backingBeanScope.searchExportManagedBean.searchActionListener}"/>
+                            <af:commandButton text="重置" styleClass="btn btn-reset" id="cb2" partialSubmit="true"
+                                              actionListener="#{backingBeanScope.searchExportManagedBean.resetActionListener}">
+                                <af:resetActionListener/>
+                            </af:commandButton>
+                        </af:panelGroupLayout>
+                    </af:panelGroupLayout>
+                </af:subform>
+            </af:panelBox>
+        </f:facet>
+        <f:facet name="bottom"/>
+        <f:facet name="center">
+            <af:panelStretchLayout id="psl2" styleClass="AFStretchWidth" topHeight="auto">
+                <f:facet name="top">
+                    <af:panelStretchLayout id="psl3" endWidth="auto" startWidth="auto" inlineStyle="height:25px;"
+                                           styleClass="AFStretchWidth">
+                        <f:facet name="start">
+                            <af:panelGroupLayout id="pgl2" layout="horizontal">
+                                <af:selectBooleanCheckbox text="封面高精度JPG" label="选择类型导出：" id="sbc2" selected="true"
+                                                          binding="#{backingBeanScope.searchExportManagedBean.coverCheckbox}"/>
+                                <af:selectBooleanCheckbox text="正文低精度PDF" label="Label 2" id="sbc3" simple="true"
+                                                          selected="true"
+                                                          binding="#{backingBeanScope.searchExportManagedBean.lowpdfCheckbox}"/>
+                                <af:selectBooleanCheckbox text="正文附件[epub]" label="Label 2" id="sbc4" simple="true"
+                                                          selected="true"
+                                                          binding="#{backingBeanScope.searchExportManagedBean.epubCheckbox}"/>
+                                <af:selectBooleanCheckbox text="正文附件[mobi]" label="Label 2" id="sbc5" simple="true"
+                                                          selected="true"
+                                                          binding="#{backingBeanScope.searchExportManagedBean.mobiCheckbox}"/>
+                                <af:spacer width="10" height="10" id="s2"/>
+                                <af:commandButton text="导出附件" id="cb1" partialSubmit="true"
+                                                  styleClass="min-btn blue-min-btn"
+                                                  actionListener="#{backingBeanScope.searchExportManagedBean.exportAttacthActionListener}"></af:commandButton>
+                                <af:commandButton text="导出附件" id="cb3" partialSubmit="true"
+                                                  styleClass="min-btn blue-min-btn" visible="false"
+                                                  binding="#{backingBeanScope.searchExportManagedBean.exportButton}">
+                                    <af:fileDownloadActionListener contentType="application/octet-stream"
+                                                                   filename="图书附件.zip"
+                                                                   method="#{backingBeanScope.searchExportManagedBean.exportAttachListener}"/>
+                                </af:commandButton>
+                            </af:panelGroupLayout>
+                        </f:facet>
+                        <f:facet name="end">
+                            <af:panelGroupLayout id="pgl1" layout="horizontal">
+                                <af:outputText value="共#{bindings.CmsSearchExportVO.estimatedRowCount}条记录" id="ot9"
+                                               inlineStyle="font-weight:bold;" partialTriggers="s1:cb5 s1:cb2"/>
+                            </af:panelGroupLayout>
+                        </f:facet>
+                    </af:panelStretchLayout>
+                </f:facet>
+                <f:facet name="center">
+                    <af:table value="#{bindings.CmsSearchExportVO.collectionModel}" var="row"
+                              rows="#{bindings.CmsSearchExportVO.rangeSize}"
+                              styleClass="AFStretchWidth custom_table_striped" contentDelivery="immediate"
+                              columnStretching="multiple"
+                              emptyText="#{bindings.CmsSearchExportVO.viewable ? '' : 'Access Denied.'}"
+                              fetchSize="#{bindings.CmsSearchExportVO.rangeSize}" rowBandingInterval="0"
+                              selectedRowKeys="#{bindings.CmsSearchExportVO.collectionModel.selectedRow}"
+                              selectionListener="#{bindings.CmsSearchExportVO.collectionModel.makeCurrent}"
+                              rowSelection="single" id="t1" partialTriggers="::s1:cb5 ::s1:cb2">
+                        <af:column id="c9" width="25" align="center" sortable="false">
+                            <f:facet name="header">
+                                <af:selectBooleanCheckbox label="Label 1" simple="true" id="sbc1"
+                                                          valueChangeListener="#{backingBeanScope.searchExportManagedBean.selectAllAction}"
+                                                          autoSubmit="true"/>
+                            </f:facet>
+                            <af:selectBooleanCheckbox value="#{row.bindings.Checked.inputValue}"
+                                                      required="#{bindings.CmsSearchExportVO.hints.Checked.mandatory}"
+                                                      shortDesc="#{bindings.CmsSearchExportVO.hints.Checked.tooltip}"
+                                                      id="it5">
+                                <f:validator binding="#{row.bindings.Checked.validator}"/>
+                            </af:selectBooleanCheckbox>
+                        </af:column>
+                        <af:column sortProperty="#{bindings.CmsSearchExportVO.hints.BookName.name}" sortable="true"
+                                   width="40%" headerText="#{bindings.CmsSearchExportVO.hints.BookName.label}" id="c1">
+                            <af:outputText value="#{row.BookName}"
+                                           shortDesc="#{bindings.CmsSearchExportVO.hints.BookName.tooltip}" id="ot1"/>
+                        </af:column>
+                        <af:column sortProperty="#{bindings.CmsSearchExportVO.hints.Isbn.name}" sortable="true"
+                                   align="center" width="150"
+                                   headerText="#{bindings.CmsSearchExportVO.hints.Isbn.label}" id="c2">
+                            <af:outputText value="#{row.Isbn}"
+                                           shortDesc="#{bindings.CmsSearchExportVO.hints.Isbn.tooltip}" id="ot2"/>
+                        </af:column>
+                        <af:column sortProperty="#{bindings.CmsSearchExportVO.hints.Edition.name}" sortable="true"
+                                   width="50" align="center"
+                                   headerText="#{bindings.CmsSearchExportVO.hints.Edition.label}" id="c3">
+                            <af:outputText value="#{row.Edition}"
+                                           shortDesc="#{bindings.CmsSearchExportVO.hints.Edition.tooltip}" id="ot3">
+                                <af:convertNumber groupingUsed="false"
+                                                  pattern="#{bindings.CmsSearchExportVO.hints.Edition.format}"/>
+                            </af:outputText>
+                        </af:column>
+                        <af:column sortProperty="#{bindings.CmsSearchExportVO.hints.Impression.name}" sortable="true"
+                                   width="50" align="center"
+                                   headerText="#{bindings.CmsSearchExportVO.hints.Impression.label}" id="c4">
+                            <af:outputText value="#{row.Impression}"
+                                           shortDesc="#{bindings.CmsSearchExportVO.hints.Impression.tooltip}" id="ot4">
+                                <af:convertNumber groupingUsed="false"
+                                                  pattern="#{bindings.CmsSearchExportVO.hints.Impression.format}"/>
+                            </af:outputText>
+                        </af:column>
+                        <af:column sortProperty="#{bindings.CmsSearchExportVO.hints.Editor.name}" sortable="true"
+                                   width="150" headerText="#{bindings.CmsSearchExportVO.hints.Editor.label}" id="c5">
+                            <af:outputText value="#{row.Editor}"
+                                           shortDesc="#{bindings.CmsSearchExportVO.hints.Editor.tooltip}" id="ot5"/>
+                        </af:column>
+                        <af:column sortProperty="#{bindings.CmsSearchExportVO.hints.Author.name}" sortable="true"
+                                   width="30%" headerText="#{bindings.CmsSearchExportVO.hints.Author.label}" id="c6">
+                            <af:outputText value="#{row.Author}"
+                                           shortDesc="#{bindings.CmsSearchExportVO.hints.Author.tooltip}" id="ot6"/>
+                        </af:column>
+                        <af:column sortProperty="#{bindings.CmsSearchExportVO.hints.PubTime.name}" sortable="true"
+                                   width="80" align="center"
+                                   headerText="#{bindings.CmsSearchExportVO.hints.PubTime.label}" id="c7">
+                            <af:outputText value="#{row.PubTime}"
+                                           shortDesc="#{bindings.CmsSearchExportVO.hints.PubTime.tooltip}" id="ot7">
+                                <af:convertDateTime pattern="#{bindings.CmsSearchExportVO.hints.PubTime.format}"/>
+                            </af:outputText>
+                        </af:column>
+                        <af:column sortProperty="#{bindings.CmsSearchExportVO.hints.Series.name}" sortable="true"
+                                   width="30%" headerText="#{bindings.CmsSearchExportVO.hints.Series.label}" id="c8">
+                            <af:outputText value="#{row.Series}"
+                                           shortDesc="#{bindings.CmsSearchExportVO.hints.Series.tooltip}" id="ot8"/>
+                        </af:column>
+                        <af:column sortProperty="#{bindings.CmsSearchExportVO.hints.CompName.name}" sortable="true"
+                                   width="100" headerText="#{bindings.CmsSearchExportVO.hints.CompName.label}" id="c11">
+                            <af:outputText value="#{row.CompName}"
+                                           shortDesc="#{bindings.CmsSearchExportVO.hints.CompName.tooltip}" id="ot10"/>
+                        </af:column>
+                        <af:column headerText="#{bindings.CmsSearchExportVO.hints.CategoryName.label}" id="c10">
+                            <af:inputText value="#{row.bindings.CategoryName.inputValue}"
+                                          label="#{bindings.CmsSearchExportVO.hints.CategoryName.label}"
+                                          required="#{bindings.CmsSearchExportVO.hints.CategoryName.mandatory}"
+                                          columns="#{bindings.CmsSearchExportVO.hints.CategoryName.displayWidth}"
+                                          maximumLength="#{bindings.CmsSearchExportVO.hints.CategoryName.precision}"
+                                          shortDesc="#{bindings.CmsSearchExportVO.hints.CategoryName.tooltip}" id="it7"
+                                          readOnly="true">
+                                <f:validator binding="#{row.bindings.CategoryName.validator}"/>
+                            </af:inputText>
+                        </af:column>
+                    </af:table>
+                </f:facet>
+                <f:facet name="start"/>
+                <f:facet name="end"/>
+            </af:panelStretchLayout>
+        </f:facet>
+        <f:facet name="start"/>
+        <f:facet name="end"/>
+    </af:panelStretchLayout>
+</ui:composition>

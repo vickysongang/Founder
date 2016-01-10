@@ -1,0 +1,130 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <af:document id="d1" title="加入组">
+        <af:messages id="m1"/>
+        <af:form id="f1">
+            <af:panelStretchLayout id="psl1" inlineStyle="background:#DEF1FD;" bottomHeight="35px">
+                <f:facet name="bottom">
+                    <af:panelGroupLayout id="pgl1" layout="vertical" halign="center" inlineStyle="margin-top:5px;">
+                        <af:panelGroupLayout id="pgl3" layout="horizontal">
+                            <af:commandButton text="确定" id="cb1" styleClass="popup-btn"
+                                              actionListener="#{backingBeanScope.joinFigureGroupManagedBean.saveActionListener}"/>
+                            <af:spacer width="10" height="10" id="s2"/>
+                            <af:commandButton text="取消" id="cb2" action="toReturn" styleClass="popup-btn"
+                                              immediate="true"
+                                              actionListener="#{backingBeanScope.joinFigureGroupManagedBean.cancelActionListener}"/>
+                        </af:panelGroupLayout>
+                    </af:panelGroupLayout>
+                </f:facet>
+                <f:facet name="center">
+                    <af:panelStretchLayout id="psl2" startWidth="350px">
+                        <f:facet name="bottom"/>
+                        <f:facet name="center">
+                            <af:panelFormLayout id="pfl2"
+                                                inlineStyle="border:1px solid #808080;margin:5px 5px 0px 5px;background:white;padding:10px;"
+                                                partialTriggers="t1 cb3" labelWidth="60px">
+                                <af:inputText value="#{bindings.GroupName.inputValue}"
+                                              label="#{bindings.GroupName.hints.label}"
+                                              visible="#{pageFlowScope.groupId != null}"
+                                              contentStyle="width:220px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                              required="#{bindings.GroupName.hints.mandatory}"
+                                              columns="#{bindings.GroupName.hints.displayWidth}"
+                                              maximumLength="#{bindings.GroupName.hints.precision}"
+                                              shortDesc="#{bindings.GroupName.hints.tooltip}" id="it3">
+                                    <f:validator binding="#{bindings.GroupName.validator}"/>
+                                </af:inputText>
+                                <af:spacer width="10" height="10" id="s3"/>
+                                <af:inputText value="#{bindings.GroupDesc.inputValue}"
+                                              label="#{bindings.GroupDesc.hints.label}"
+                                              required="#{bindings.GroupDesc.hints.mandatory}"
+                                              visible="#{pageFlowScope.groupId != null}"
+                                              styleClass="multipleRowsInputtext" rows="10" disabled="true"
+                                              contentStyle="width:220px;line-height:18px;background-image:none;border-color:#ABADB3;background:white;"
+                                              columns="#{bindings.GroupDesc.hints.displayWidth}"
+                                              maximumLength="#{bindings.GroupDesc.hints.precision}"
+                                              shortDesc="#{bindings.GroupDesc.hints.tooltip}" id="it4">
+                                    <f:validator binding="#{bindings.GroupDesc.validator}"/>
+                                </af:inputText>
+                            </af:panelFormLayout>
+                        </f:facet>
+                        <f:facet name="start">
+                            <af:panelStretchLayout id="psl3" topHeight="auto">
+                                <f:facet name="bottom"/>
+                                <f:facet name="center">
+                                    <af:table value="#{bindings.CmsFigureGroupVO.collectionModel}" var="row"
+                                              styleClass="AFStretchWidth" rows="#{bindings.CmsFigureGroupVO.rangeSize}"
+                                              inlineStyle="margin-top:5px;border:1px solid #808080;"
+                                              contentDelivery="immediate" 
+                                              emptyText="#{bindings.CmsFigureGroupVO.viewable ? '' : 'Access Denied.'}"
+                                              fetchSize="#{bindings.CmsFigureGroupVO.rangeSize}" rowBandingInterval="0"
+                                              columnStretching="multiple"
+                                              selectedRowKeys="#{bindings.CmsFigureGroupVO.collectionModel.selectedRow}"
+                                              selectionListener="#{backingBeanScope.joinFigureGroupManagedBean.tableSelectionListener}"
+                                              rowSelection="single" id="t1" partialTriggers="::cb3">
+                                        <af:column sortProperty="#{bindings.CmsFigureGroupVO.hints.GroupId.name}"
+                                                   sortable="false" width="30%"
+                                                   headerText="#{bindings.CmsFigureGroupVO.hints.GroupId.label}"
+                                                   id="c1">
+                                            <af:outputText value="#{row.GroupId}"
+                                                           shortDesc="#{bindings.CmsFigureGroupVO.hints.GroupId.tooltip}"
+                                                           id="ot2"/>
+                                        </af:column>
+                                        <af:column sortProperty="#{bindings.CmsFigureGroupVO.hints.GroupName.name}"
+                                                   sortable="false" width="70%"
+                                                   headerText="#{bindings.CmsFigureGroupVO.hints.GroupName.label}"
+                                                   id="c2">
+                                            <af:outputText value="#{row.GroupName}"
+                                                           shortDesc="#{bindings.CmsFigureGroupVO.hints.GroupName.tooltip}"
+                                                           id="ot3"/>
+                                        </af:column>
+                                    </af:table>
+                                </f:facet>
+                                <f:facet name="start"/>
+                                <f:facet name="end"/>
+                                <f:facet name="top">
+                                    <af:panelGroupLayout id="pgl2" layout="vertical" inlineStyle="margin:5px;">
+                                        <af:outputText value="检索要加入的组(同一库下)" id="ot1" inlineStyle="font-weight:bold;"/>
+                                        <af:panelFormLayout id="pfl1">
+                                            <f:facet name="footer">
+                                                <af:panelGroupLayout id="pgl5" layout="vertical" halign="center">
+                                                    <af:panelGroupLayout id="pgl4">
+                                                        <af:commandButton text="检索" id="cb3" partialSubmit="true"
+                                                                          styleClass="min-btn blue-min-btn"
+                                                                          actionListener="#{backingBeanScope.joinFigureGroupManagedBean.searchActionListener}"/>
+                                                    </af:panelGroupLayout>
+                                                </af:panelGroupLayout>
+                                            </f:facet>
+                                            <af:spacer width="10" height="10" id="s1"/>
+                                            <af:inputText label="组ID" id="it1"
+                                                          contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                          binding="#{backingBeanScope.joinFigureGroupManagedBean.groupIdInputText}">
+                                                <af:convertNumber groupingUsed="false" type="number"/>
+                                            </af:inputText>
+                                            <af:inputText label="组标题/组说明" id="it2"
+                                                          contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                          binding="#{backingBeanScope.joinFigureGroupManagedBean.groupNameOrDescInputText}"/>
+                                            <af:panelLabelAndMessage label="组图创建时间" id="plam1">
+                                                <af:inputDate label="Label 1" id="id1" simple="true"
+                                                              contentStyle="width:80px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                              binding="#{backingBeanScope.joinFigureGroupManagedBean.startTimeInputDate}"/>
+                                                <af:outputText value="-" id="ot4"/>
+                                                <af:inputDate label="Label 1" id="id2" simple="true"
+                                                              contentStyle="width:80px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                              binding="#{backingBeanScope.joinFigureGroupManagedBean.endTimeInputDate}"/>
+                                            </af:panelLabelAndMessage>
+                                        </af:panelFormLayout>
+                                    </af:panelGroupLayout>
+                                </f:facet>
+                            </af:panelStretchLayout>
+                        </f:facet>
+                        <f:facet name="end"/>
+                        <f:facet name="top"/>
+                    </af:panelStretchLayout>
+                </f:facet>
+                <f:facet name="start"/>
+                <f:facet name="end"/>
+                <f:facet name="top"/>
+            </af:panelStretchLayout>
+        </af:form>
+    </af:document>
+</f:view>

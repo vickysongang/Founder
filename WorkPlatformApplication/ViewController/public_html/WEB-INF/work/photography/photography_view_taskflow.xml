@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="GBK" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+    <task-flow-definition id="photography_view_taskflow">
+        <default-activity>initInfo4View</default-activity>
+        <input-parameter-definition id="__1">
+            <name>docId</name>
+            <value>#{pageFlowScope.docId}</value>
+            <class>java.lang.String</class>
+        </input-parameter-definition>
+        <managed-bean id="__2">
+            <managed-bean-name>photographyViewManagedBean</managed-bean-name>
+            <managed-bean-class>com.zypg.cms.work.view.bean.PhotographyViewManagedBean</managed-bean-class>
+            <managed-bean-scope>backingBean</managed-bean-scope>
+        </managed-bean>
+        <view id="photographyView">
+            <page>/work/photography/fragment/photographyView.jsff</page>
+        </view>
+        <method-call id="initInfo4View">
+            <method>#{backingBeanScope.photographyViewManagedBean.initInfo4View}</method>
+            <outcome>
+                <fixed-outcome>toView</fixed-outcome>
+            </outcome>
+        </method-call>
+        <control-flow-rule id="__3">
+            <from-activity-id>initInfo4View</from-activity-id>
+            <control-flow-case id="__4">
+                <from-outcome>toView</from-outcome>
+                <to-activity-id>photographyView</to-activity-id>
+            </control-flow-case>
+        </control-flow-rule>
+        <use-page-fragments/>
+    </task-flow-definition>
+</adfc-config>

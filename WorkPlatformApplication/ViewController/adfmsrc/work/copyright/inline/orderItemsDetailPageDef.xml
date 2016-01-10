@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="orderItemsDetailPageDef"
+                Package="work.copyright.inline">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="Root.CopyrightAM.Cms3rdAuthorizationItemVO" DataControl="WorkAMDataControl" RangeSize="25"
+              id="Cms3rdAuthorizationItemVOIterator"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="Cms3rdAuthorizationItemVOIterator" id="Cms3rdAuthorizationItemVO">
+      <nodeDefinition DefName="com.zypg.cms.work.model.viewobject.copyright.query.Cms3rdAuthorizationItemVO"
+                      Name="Cms3rdAuthorizationItemVO0">
+        <AttrNames>
+          <Item Value="ItemId"/>
+          <Item Value="BookName"/>
+          <Item Value="Isbn"/>
+          <Item Value="Author"/>
+          <Item Value="AuthorizedCompany"/>
+          <Item Value="OrderName"/>
+          <Item Value="OrderId"/>
+          <Item Value="OrderDocId"/>
+          <Item Value="AuthorDocId"/>
+          <Item Value="AuthorizedStartTime"/>
+          <Item Value="ExclusiveCopyrightFlag"/>
+          <Item Value="SalesTotalCost"/>
+          <Item Value="SalesTotalNum"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+  </bindings>
+</pageDefinition>

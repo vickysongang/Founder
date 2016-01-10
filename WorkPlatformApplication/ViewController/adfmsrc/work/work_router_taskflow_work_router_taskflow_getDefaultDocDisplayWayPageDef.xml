@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36"
+                id="work_router_taskflow_work_router_taskflow_getDefaultDocDisplayWayPageDef" Package="work"
+                SkipValidation="true">
+  <parameters/>
+  <executables/>
+  <bindings>
+    <methodAction id="getDefaultDocDisplayWay" RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="getDefaultDocDisplayWay" IsViewObjectMethod="false" DataControl="WorkAMDataControl"
+                  InstanceName="data.WorkAMDataControl.dataProvider"
+                  ReturnName="data.WorkAMDataControl.methodResults.getDefaultDocDisplayWay_WorkAMDataControl_dataProvider_getDefaultDocDisplayWay_result">
+      <NamedData NDName="libCode" NDValue="#{pageFlowScope.libCode}" NDType="java.lang.String"/>
+    </methodAction>
+  </bindings>
+</pageDefinition>

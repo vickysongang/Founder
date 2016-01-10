@@ -1,0 +1,310 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core">
+    <af:panelStretchLayout id="psl1" inlineStyle="width:1050px;height:540px;" bottomHeight="0px">
+        <f:facet name="center">
+            <af:panelGroupLayout id="pgl1" layout="scroll" valign="top" inlineStyle="margin-top:10px;">
+                <af:panelGroupLayout id="pgl4" layout="horizontal" valign="top">
+                    <af:panelGroupLayout id="pgl3" layout="vertical" inlineStyle="width:200px;" valign="top">
+                        <af:region value="#{bindings.related_info_view_taskflow2.regionModel}" id="r2"/>
+                    </af:panelGroupLayout>
+                    <af:spacer width="5" height="10" id="s24"/>
+                    <af:panelGroupLayout id="pgl6" layout="vertical" inlineStyle="width:600px;">
+                        <af:panelGroupLayout id="pgl7" layout="vertical" inlineStyle="background:#D9EDF8;height:30px;"
+                                             styleClass="AFStretchWidth">
+                            <af:panelGroupLayout id="pgl2" layout="horizontal" inlineStyle="padding-top:8px;">
+                                <af:spacer width="10" height="10" id="s1"/>
+                                <af:outputText value="报纸信息" id="ot1" inlineStyle="font-weight:bold;color:#024D91;"/>
+                            </af:panelGroupLayout>
+                        </af:panelGroupLayout>
+                        <af:panelGroupLayout id="pgl8" layout="horizontal">
+                            <af:activeImage source="/resources/images/cover.jpg" id="ai1"
+                                            inlineStyle="margin-left:20px;"
+                                            rendered="#{bindings.ThumbnailUrl.inputValue== null}"/>
+                            <af:commandImageLink id="cil2" partialSubmit="true" inlineStyle="margin-left:20px;"
+                                                 rendered="#{bindings.ThumbnailUrl.inputValue!= null}"
+                                                 styleClass="#{bindings.ThumbnailUrl.inputValue == null ? 'noCoverImage' : 'bookCoverImage'}"
+                                                 actionListener="#{backingBeanScope.newspaperViewManagedBean.viewOriginalFigureActionListener}"
+                                                 icon="#{bindings.ThumbnailUrl.inputValue}">
+                                <f:attribute name="docId" value="#{bindings.DocId.inputValue}"/>
+                            </af:commandImageLink>
+                            <af:spacer width="40" height="10" id="s2"/>
+                            <af:panelFormLayout id="pfl1">
+                                <af:panelLabelAndMessage label="#{bindings.NewspaperCategoryName.hints.label}"
+                                                         id="plam1">
+                                    <af:outputText value="#{bindings.NewspaperCategoryName.inputValue}"
+                                                   shortDesc="#{bindings.NewspaperCategoryName.hints.tooltip}"
+                                                   id="ot2"/>
+                                </af:panelLabelAndMessage>
+                                <af:panelLabelAndMessage label="#{bindings.NewspaperTypeMeaning.hints.label}"
+                                                         id="plam4">
+                                    <af:outputText value="#{bindings.NewspaperTypeMeaning.inputValue}"
+                                                   shortDesc="#{bindings.NewspaperTypeMeaning.hints.tooltip}" id="ot3"/>
+                                </af:panelLabelAndMessage>
+                                <af:panelLabelAndMessage label="#{bindings.Issn.hints.label}" id="plam5">
+                                    <af:outputText value="#{bindings.Issn.inputValue}"
+                                                   shortDesc="#{bindings.Issn.hints.tooltip}" id="ot4"/>
+                                </af:panelLabelAndMessage>
+                                <af:panelLabelAndMessage label="#{bindings.Cn.hints.label}" id="plam9">
+                                    <af:outputText value="#{bindings.Cn.inputValue}"
+                                                   shortDesc="#{bindings.Cn.hints.tooltip}" id="ot5"/>
+                                </af:panelLabelAndMessage>
+                                <af:selectOneChoice value="#{bindings.Year.inputValue}" label="#{bindings.Year.label}"
+                                                    required="#{bindings.Year.hints.mandatory}"
+                                                    shortDesc="#{bindings.Year.hints.tooltip}" readOnly="true"
+                                                    id="soc2">
+                                    <f:selectItems value="#{bindings.Year.items}" id="si2"/>
+                                </af:selectOneChoice>
+                                <af:panelLabelAndMessage label="#{bindings.NewsNum.hints.label}" id="plam13">
+                                    <af:outputText value="#{bindings.NewsNum.inputValue}"
+                                                   shortDesc="#{bindings.NewsNum.hints.tooltip}" id="ot9">
+                                        <af:convertNumber groupingUsed="false" pattern="#{bindings.NewsNum.format}"/>
+                                    </af:outputText>
+                                </af:panelLabelAndMessage>
+                                <af:panelLabelAndMessage label="#{bindings.ChiefEditor.hints.label}" id="plam19">
+                                    <af:outputText value="#{bindings.ChiefEditor.inputValue}"
+                                                   shortDesc="#{bindings.ChiefEditor.hints.tooltip}" id="ot13"/>
+                                </af:panelLabelAndMessage>
+                                <af:panelLabelAndMessage label="#{bindings.Editor.hints.label}" id="plam21">
+                                    <af:outputText value="#{bindings.Editor.inputValue}"
+                                                   shortDesc="#{bindings.Editor.hints.tooltip}" id="ot19"/>
+                                </af:panelLabelAndMessage>
+                                <af:panelLabelAndMessage label="#{bindings.Price.hints.label}" id="plam28">
+                                    <af:outputText value="#{bindings.Price.inputValue}"
+                                                   shortDesc="#{bindings.Price.hints.tooltip}" id="ot21">
+                                        <af:convertNumber groupingUsed="false" pattern="#{bindings.Price.format}"/>
+                                    </af:outputText>
+                                </af:panelLabelAndMessage>
+                                <af:panelLabelAndMessage label="#{bindings.BookSizeMeaning.hints.label}" id="plam29">
+                                    <af:outputText value="#{bindings.BookSizeMeaning.inputValue}"
+                                                   shortDesc="#{bindings.BookSizeMeaning.hints.tooltip}" id="ot67"/>
+                                </af:panelLabelAndMessage>
+                            </af:panelFormLayout>
+                        </af:panelGroupLayout>
+                        <af:panelGroupLayout id="pgl63" layout="vertical" halign="right" valign="bottom">
+                            <af:panelGroupLayout id="pgl64" layout="horizontal" inlineStyle="margin-right:15px;">
+                                <af:commandImageLink id="cil1" icon="/resources/images/button_viewall.jpg"
+                                                     partialSubmit="true">
+                                    <af:showPopupBehavior triggerType="action" popupId="p1"/>
+                                </af:commandImageLink>
+                                <af:commandImageLink id="cil3" icon="/resources/images/button_view.jpg"
+                                                     partialSubmit="true" action="toOnlineRead"
+                                                     rendered="#{pageFlowScope.onlineReadButtonRendered}"
+                                                     actionListener="#{backingBeanScope.newspaperViewManagedBean.onlineReadActionListener}"></af:commandImageLink>
+                            </af:panelGroupLayout>
+                        </af:panelGroupLayout>
+                        <af:spacer width="10" height="10" id="s12"/>
+                        <!--以下是刊物描述 -->
+                        <af:panelGroupLayout id="pgl9" layout="vertical"
+                                             visible="#{bindings.Remarks.inputValue != null}">
+                            <af:panelGroupLayout id="pgl27" layout="vertical"
+                                                 inlineStyle="background:#D9EDF8;height:30px;"
+                                                 styleClass="AFStretchWidth">
+                                <af:panelGroupLayout id="pgl10" layout="horizontal" inlineStyle="padding-top:8px;">
+                                    <af:spacer width="10" height="10" id="s3"/>
+                                    <af:outputText value="#{bindings.Remarks.hints.label}" id="ot48"
+                                                   inlineStyle="font-weight:bold;color:#024D91;"/>
+                                </af:panelGroupLayout>
+                            </af:panelGroupLayout>
+                            <af:outputText value="#{bindings.Remarks.inputValue}" escape="false"
+                                           shortDesc="#{bindings.Remarks.hints.tooltip}" id="ot49"/>
+                            <af:spacer width="10" height="10" id="s13"/>
+                        </af:panelGroupLayout>
+                        <af:panelGroupLayout id="pgl65" layout="vertical"
+                                             rendered="#{bindings.CmsDocUcmRelTVO4FileList.estimatedRowCount>0}">
+                            <af:panelGroupLayout id="pgl66" layout="vertical"
+                                                 inlineStyle="background:#D9EDF8;height:30px;"
+                                                 styleClass="AFStretchWidth">
+                                <af:panelGroupLayout id="pgl67" layout="horizontal" inlineStyle="padding-top:8px;">
+                                    <af:spacer width="10" height="10" id="s25"/>
+                                    <af:outputText value="文件列表" id="ot16"
+                                                   inlineStyle="font-weight:bold;color:#024D91;"/>
+                                </af:panelGroupLayout>
+                            </af:panelGroupLayout>
+                            <table width="100%">
+                                <af:iterator id="i10" value="#{bindings.CmsDocUcmRelTVO4FileList.collectionModel}"
+                                             var="row" rows="20">
+                                    <tr>
+                                        <td width="60%">
+                                            <af:outputText value="#{row.FileName}" inlineStyle="margin-left:10px;"
+                                                           id="ot68"/>
+                                        </td>
+                                        <td align="left">
+                                            <af:outputText value="#{row.FileCategory}" inlineStyle="margin-left:10px;"
+                                                           id="ot69"/>
+                                        </td>
+                                    </tr>
+                                </af:iterator>
+                            </table>
+                            <af:panelGroupLayout id="pgl68" layout="vertical" halign="right">
+                                <af:commandLink text="更多..." id="cl5" inlineStyle="margin-right:20px;width:50px;"
+                                                partialSubmit="true" action="toMore" useWindow="true" windowHeight="650"
+                                                windowWidth="1050">
+                                    <af:setPropertyListener from="#{bindings.DocId.inputValue}"
+                                                            to="#{pageFlowScope.docId}" type="action"/>
+                                </af:commandLink>
+                            </af:panelGroupLayout>
+                            <af:spacer width="10" height="10" id="s27"/>
+                        </af:panelGroupLayout>
+                    </af:panelGroupLayout>
+                    <af:spacer width="5" height="10" id="s23"/>
+                    <af:panelGroupLayout id="pgl5" layout="scroll" inlineStyle="width:200px;" valign="top">
+                        <af:region value="#{bindings.related_info_view_taskflow1.regionModel}" id="r1"/>
+                    </af:panelGroupLayout>
+                </af:panelGroupLayout>
+            </af:panelGroupLayout>
+        </f:facet>
+        <f:facet name="bottom">
+            <af:popup childCreation="deferred" autoCancel="disabled" id="p1" contentDelivery="lazyUncached">
+                <af:panelWindow id="nw1" title="查看所有属性">
+                    <af:panelGroupLayout id="pgl69" layout="scroll" inlineStyle="background:#F6F6F6;line-height:20px;">
+                        <af:panelFormLayout id="pfl2" maxColumns="2" rows="13" labelWidth="100" fieldWidth="200">
+                            <af:panelLabelAndMessage label="#{bindings.NewspaperCategoryName.hints.label}" id="plam2">
+                                <af:outputText value="#{bindings.NewspaperCategoryName.inputValue}"
+                                               shortDesc="#{bindings.NewspaperCategoryName.hints.tooltip}" id="ot6"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.NewspaperTypeMeaning.hints.label}" id="plam3">
+                                <af:outputText value="#{bindings.NewspaperTypeMeaning.inputValue}"
+                                               shortDesc="#{bindings.NewspaperTypeMeaning.hints.tooltip}" id="ot7"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.Issn.hints.label}" id="plam6">
+                                <af:outputText value="#{bindings.Issn.inputValue}"
+                                               shortDesc="#{bindings.Issn.hints.tooltip}" id="ot8"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.Cn.hints.label}" id="plam7">
+                                <af:outputText value="#{bindings.Cn.inputValue}"
+                                               shortDesc="#{bindings.Cn.hints.tooltip}" id="ot10"/>
+                            </af:panelLabelAndMessage>
+                            <af:selectOneChoice value="#{bindings.Year.inputValue}" label="#{bindings.Year.label}"
+                                                required="#{bindings.Year.hints.mandatory}"
+                                                shortDesc="#{bindings.Year.hints.tooltip}" readOnly="true" id="soc1">
+                                <f:selectItems value="#{bindings.Year.items}" id="si1"/>
+                            </af:selectOneChoice>
+                            <af:panelLabelAndMessage label="#{bindings.NewsNum.hints.label}" id="plam8">
+                                <af:outputText value="#{bindings.NewsNum.inputValue}"
+                                               shortDesc="#{bindings.NewsNum.hints.tooltip}" id="ot11">
+                                    <af:convertNumber groupingUsed="false" pattern="#{bindings.NewsNum.format}"/>
+                                </af:outputText>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.Total.hints.label}" id="plam10">
+                                <af:outputText value="#{bindings.Total.inputValue}"
+                                               shortDesc="#{bindings.Total.hints.tooltip}" id="ot12">
+                                    <af:convertNumber groupingUsed="false" pattern="#{bindings.Total.format}"/>
+                                </af:outputText>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.PublicDate.hints.label}" id="plam11">
+                                <af:outputText value="#{bindings.PublicDate.inputValue}"
+                                               shortDesc="#{bindings.PublicDate.hints.tooltip}" id="ot14">
+                                    <af:convertDateTime pattern="#{bindings.PublicDate.format}"/>
+                                </af:outputText>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.Publishing.hints.label}" id="plam12">
+                                <af:outputText value="#{bindings.Publishing.inputValue}"
+                                               shortDesc="#{bindings.Publishing.hints.tooltip}" id="ot15"/>
+                            </af:panelLabelAndMessage>
+                            <af:selectOneChoice value="#{bindings.Lang.inputValue}" label="#{bindings.Lang.label}"
+                                                required="#{bindings.Lang.hints.mandatory}" readOnly="true"
+                                                shortDesc="#{bindings.Lang.hints.tooltip}" id="soc4">
+                                <f:selectItems value="#{bindings.LangMeaning.items}" id="si4"/>
+                            </af:selectOneChoice>
+                            <af:panelLabelAndMessage label="#{bindings.ChiefEditor.hints.label}" id="plam16">
+                                <af:outputText value="#{bindings.ChiefEditor.inputValue}"
+                                               shortDesc="#{bindings.ChiefEditor.hints.tooltip}" id="ot17"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.Editor.hints.label}" id="plam17">
+                                <af:outputText value="#{bindings.Editor.inputValue}"
+                                               shortDesc="#{bindings.Editor.hints.tooltip}" id="ot18"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.FormatDesign.hints.label}" id="plam18">
+                                <af:outputText value="#{bindings.FormatDesign.inputValue}"
+                                               shortDesc="#{bindings.FormatDesign.hints.tooltip}" id="ot20"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.CoverDesign.hints.label}" id="plam20">
+                                <af:outputText value="#{bindings.CoverDesign.inputValue}"
+                                               shortDesc="#{bindings.CoverDesign.hints.tooltip}" id="ot22"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.Price.hints.label}" id="plam22">
+                                <af:outputText value="#{bindings.Price.inputValue}"
+                                               shortDesc="#{bindings.Price.hints.tooltip}" id="ot23">
+                                    <af:convertNumber groupingUsed="false" pattern="#{bindings.Price.format}"/>
+                                </af:outputText>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.Pagination.hints.label}" id="plam23">
+                                <af:outputText value="#{bindings.Pagination.inputValue}"
+                                               shortDesc="#{bindings.Pagination.hints.tooltip}" id="ot24">
+                                    <af:convertNumber groupingUsed="false" pattern="#{bindings.Pagination.format}"/>
+                                </af:outputText>
+                            </af:panelLabelAndMessage>
+                            <af:selectOneChoice value="#{bindings.MainPage.inputValue}"
+                                                label="#{bindings.MainPage.label}"
+                                                required="#{bindings.MainPage.hints.mandatory}"
+                                                shortDesc="#{bindings.MainPage.hints.tooltip}" readOnly="true"
+                                                id="soc5">
+                                <f:selectItems value="#{bindings.MainPage.items}" id="si5"/>
+                            </af:selectOneChoice>
+                            <af:panelLabelAndMessage label="#{bindings.BookSizeMeaning.hints.label}" id="plam24">
+                                <af:outputText value="#{bindings.BookSizeMeaning.inputValue}"
+                                               shortDesc="#{bindings.BookSizeMeaning.hints.tooltip}" id="ot25"/>
+                            </af:panelLabelAndMessage>
+                            <af:selectOneChoice value="#{bindings.MainTypeset.inputValue}"
+                                                label="#{bindings.MainTypeset.label}"
+                                                required="#{bindings.MainTypeset.hints.mandatory}"
+                                                shortDesc="#{bindings.MainTypeset.hints.tooltip}" readOnly="true"
+                                                id="soc6">
+                                <f:selectItems value="#{bindings.MainTypeset.items}" id="si6"/>
+                            </af:selectOneChoice>
+                            <af:selectOneChoice value="#{bindings.ColorNum.inputValue}"
+                                                label="#{bindings.ColorNum.label}"
+                                                required="#{bindings.ColorNum.hints.mandatory}"
+                                                shortDesc="#{bindings.ColorNum.hints.tooltip}" readOnly="true"
+                                                id="soc7">
+                                <f:selectItems value="#{bindings.ColorNum.items}" id="si7"/>
+                            </af:selectOneChoice>
+                            <af:panelLabelAndMessage label="#{bindings.TypesetComp.hints.label}" id="plam25">
+                                <af:outputText value="#{bindings.TypesetComp.inputValue}"
+                                               shortDesc="#{bindings.TypesetComp.hints.tooltip}" id="ot26"/>
+                            </af:panelLabelAndMessage>
+                            <af:selectOneChoice value="#{bindings.CoverTypeset.inputValue}"
+                                                label="#{bindings.CoverTypeset.label}"
+                                                required="#{bindings.CoverTypeset.hints.mandatory}"
+                                                shortDesc="#{bindings.CoverTypeset.hints.tooltip}" readOnly="true"
+                                                id="soc8">
+                                <f:selectItems value="#{bindings.CoverTypeset.items}" id="si8"/>
+                            </af:selectOneChoice>
+                            <af:panelLabelAndMessage label="#{bindings.ProdSizeMeaning.hints.label}" id="plam26">
+                                <af:outputText value="#{bindings.ProdSizeMeaning.inputValue}"
+                                               shortDesc="#{bindings.ProdSizeMeaning.hints.tooltip}" id="ot27"/>
+                            </af:panelLabelAndMessage>
+                            <af:selectOneChoice value="#{bindings.AssortProd.inputValue}"
+                                                label="#{bindings.AssortProd.label}"
+                                                required="#{bindings.AssortProd.hints.mandatory}"
+                                                shortDesc="#{bindings.AssortProd.hints.tooltip}" readOnly="true"
+                                                id="soc9">
+                                <f:selectItems value="#{bindings.AssortProd.items}" id="si9"/>
+                            </af:selectOneChoice>
+                            <af:panelLabelAndMessage label="#{bindings.ReaderGroupMeaning.hints.label}" id="plam30">
+                                <af:outputText value="#{bindings.ReaderGroupMeaning.inputValue}"
+                                               shortDesc="#{bindings.ReaderGroupMeaning.hints.tooltip}" id="ot28"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.Suggestion.hints.label}" id="plam31">
+                                <af:outputText value="#{bindings.Suggestion.inputValue}"
+                                               shortDesc="#{bindings.Suggestion.hints.tooltip}" id="ot29"/>
+                            </af:panelLabelAndMessage>
+                        </af:panelFormLayout>
+                        <af:panelFormLayout id="pfl3" labelWidth="100">
+                            <af:panelLabelAndMessage label="#{bindings.Keyword.hints.label}" id="plam32">
+                                <af:outputText value="#{bindings.Keyword.inputValue}"
+                                               shortDesc="#{bindings.Keyword.hints.tooltip}" id="ot30"/>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="#{bindings.Remarks.hints.label}" id="plam33">
+                                <af:outputText value="#{bindings.Remarks.inputValue}"
+                                               shortDesc="#{bindings.Remarks.hints.tooltip}" id="ot31"/>
+                            </af:panelLabelAndMessage>
+                        </af:panelFormLayout>
+                        <af:region value="#{bindings.extend_attr_view_taskflow1.regionModel}" id="r3"/>
+                    </af:panelGroupLayout>
+                </af:panelWindow>
+            </af:popup>
+        </f:facet>
+    </af:panelStretchLayout>
+</ui:composition>

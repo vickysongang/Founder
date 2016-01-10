@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36"
+                id="teachingplan_edit_taskflow_teachingplan_edit_taskflow_preEidtTeachingPlanPageDef"
+                Package="work.teachingplan" SkipValidation="true">
+  <parameters/>
+  <executables/>
+  <bindings>
+    <action id="preEidtTeachingPlan" RequiresUpdateModel="true" Action="invokeMethod" MethodName="preEidtTeachingPlan"
+            IsViewObjectMethod="false" DataControl="WorkAMDataControl"
+            InstanceName="data.WorkAMDataControl.dataProvider.Root.TeachingPlanAM">
+      <NamedData NDName="mode" NDValue="#{pageFlowScope.mode}" NDType="java.lang.String"/>
+      <NamedData NDName="teachingPlanId" NDValue="#{pageFlowScope.teachingPlanId}" NDType="oracle.jbo.domain.Number"/>
+      <NamedData NDName="docId" NDValue="#{pageFlowScope.docId}" NDType="oracle.jbo.domain.Number"/>
+    </action>
+  </bindings>
+</pageDefinition>

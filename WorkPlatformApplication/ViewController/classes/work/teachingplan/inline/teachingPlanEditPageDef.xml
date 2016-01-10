@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="teachingPlanEditPageDef"
+                Package="work.teachingplan.inline">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="Root.TeachingPlanAM.CmsTeachingPlanTVO" DataControl="WorkAMDataControl" RangeSize="25"
+              id="CmsTeachingPlanTVOIterator"/>
+    <taskFlow id="extend_attr_taskflow1" taskFlowId="/WEB-INF/common/extend_attr_taskflow.xml#extend_attr_taskflow"
+              activation="deferred" xmlns="http://xmlns.oracle.com/adf/controller/binding">
+      <parameters>
+        <parameter id="compCode" value="#{pageFlowScope.compCode}"/>
+        <parameter id="libCode" value="#{pageFlowScope.libCode}"/>
+        <parameter id="docId" value="#{pageFlowScope.docId}"/>
+        <parameter id="operType" value="#{pageFlowScope.mode}"/>
+        <parameter id="labelWidth" value="100"/>
+      </parameters>
+    </taskFlow>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="CmsTeachingPlanTVOIterator" id="PublishingHouse">
+      <AttrNames>
+        <Item Value="PublishingHouse"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsTeachingPlanTVOIterator" id="SourceBookType">
+      <AttrNames>
+        <Item Value="SourceBookType"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsTeachingPlanTVOIterator" id="CompCode">
+      <AttrNames>
+        <Item Value="CompCode"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsTeachingPlanTVOIterator" id="Editor">
+      <AttrNames>
+        <Item Value="Editor"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsTeachingPlanTVOIterator" id="TeachingPlanName">
+      <AttrNames>
+        <Item Value="TeachingPlanName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsTeachingPlanTVOIterator" id="Producer">
+      <AttrNames>
+        <Item Value="Producer"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsTeachingPlanTVOIterator" id="Keyword">
+      <AttrNames>
+        <Item Value="Keyword"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsTeachingPlanTVOIterator" id="Remarks">
+      <AttrNames>
+        <Item Value="Remarks"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="CmsTeachingPlanTVOIterator" StaticList="false" Uses="LOV_YESORNO" id="CopyrightFlag"
+          DTSupportsMRU="true" SelectItemValueMode="ListObject"/>
+    <list IterBinding="CmsTeachingPlanTVOIterator" StaticList="false" Uses="LOV_TeachingPlanType"
+          id="TeachingPlanType" DTSupportsMRU="true" SelectItemValueMode="ListObject"/>
+    <listOfValues StaticList="false" IterBinding="CmsTeachingPlanTVOIterator" Uses="LOV_SourceBookName"
+                  id="SourceBookName"/>
+    <attributeValues IterBinding="CmsTeachingPlanTVOIterator" id="SourceBookIsbn">
+      <AttrNames>
+        <Item Value="SourceBookIsbn"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

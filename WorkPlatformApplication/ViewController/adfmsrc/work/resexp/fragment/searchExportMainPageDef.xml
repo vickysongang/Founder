@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="searchExportMainPageDef"
+                Package="work.resexp.fragment">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="Root.ResExpAM.CmsSearchExportQueryVO" DataControl="WorkAMDataControl" RangeSize="25"
+              id="CmsSearchExportQueryVOIterator"/>
+    <iterator Binds="Root.ResExpAM.CmsSearchExportVO" DataControl="WorkAMDataControl" RangeSize="25"
+              id="CmsSearchExportVOIterator"/>
+    <iterator Binds="CmsSearchExportQueryVO" RangeSize="25" DataControl="ResExpAMDataControl"
+              id="CmsSearchExportQueryVOIterator1"/>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="CmsSearchExportQueryVOIterator" id="BookName">
+      <AttrNames>
+        <Item Value="BookName"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="CmsSearchExportQueryVOIterator" StaticList="false" Uses="LOV_PaperMediumCopyrightFlag"
+          id="PaperMediumCopyrightFlag" DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <list IterBinding="CmsSearchExportQueryVOIterator" StaticList="false" Uses="LOV_NetworkCopyrightFlag"
+          id="NetworkCopyrightFlag" DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <attributeValues IterBinding="CmsSearchExportQueryVOIterator" id="Editor">
+      <AttrNames>
+        <Item Value="Editor"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsSearchExportQueryVOIterator" id="Author">
+      <AttrNames>
+        <Item Value="Author"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsSearchExportQueryVOIterator" id="Series">
+      <AttrNames>
+        <Item Value="Series"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="CmsSearchExportVOIterator" id="CmsSearchExportVO">
+      <nodeDefinition DefName="com.zypg.cms.work.model.viewobject.resexp.query.CmsSearchExportVO"
+                      Name="CmsSearchExportVO0">
+        <AttrNames>
+          <Item Value="BookName"/>
+          <Item Value="Isbn"/>
+          <Item Value="Edition"/>
+          <Item Value="Impression"/>
+          <Item Value="Editor"/>
+          <Item Value="Author"/>
+          <Item Value="PubTime"/>
+          <Item Value="Series"/>
+          <Item Value="CompCode"/>
+          <Item Value="DocId"/>
+          <Item Value="NetworkCopyrightFlag"/>
+          <Item Value="PaperMediumCopyrightFlag"/>
+          <Item Value="Checked"/>
+          <Item Value="CategoryName"/>
+          <Item Value="CompName"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="CmsSearchExportQueryVOIterator" id="CategoryName">
+      <AttrNames>
+        <Item Value="CategoryName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsSearchExportQueryVOIterator" id="PublishDateFrom">
+      <AttrNames>
+        <Item Value="PublishDateFrom"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsSearchExportQueryVOIterator" id="PublishDateTo">
+      <AttrNames>
+        <Item Value="PublishDateTo"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="CmsSearchExportQueryVOIterator" StaticList="false" Uses="LOV_Status" id="Status"
+          DTSupportsMRU="true" SelectItemValueMode="ListObject"/>
+    <list IterBinding="CmsSearchExportQueryVOIterator" StaticList="false" Uses="LOV_CompCode" id="CompCode"
+          DTSupportsMRU="true" SelectItemValueMode="ListObject"/>
+  </bindings>
+</pageDefinition>

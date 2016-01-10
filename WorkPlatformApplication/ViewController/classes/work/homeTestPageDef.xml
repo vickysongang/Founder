@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="homeTestPageDef" Package="work">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <taskFlow id="hometaskflow1" taskFlowId="/WEB-INF/work/home-taskflow.xml#home-taskflow" activation="deferred"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding">
+    </taskFlow>
+  </executables>
+  <bindings/>
+</pageDefinition>

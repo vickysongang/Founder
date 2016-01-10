@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:facelets="http://xmlns.oracle.com/jdev/webapp/facelets"
+                xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <af:panelStretchLayout id="psl1">
+        <f:facet name="bottom"/>
+        <f:facet name="center">
+            <af:panelGroupLayout id="pgl1" layout="vertical">
+                <af:panelGroupLayout id="pgl3" layout="vertical" halign="center" inlineStyle="background: #79B9E9;"
+                                     styleClass="AFStretchWidth">
+                    <af:panelGroupLayout id="pgl2" layout="horizontal" halign="center">
+                        <af:image source="/resources/images/pic-10.gif" id="i2"/>
+                        <af:spacer width="15" height="10" id="s4"/>
+                        <af:outputText value="浏览任务" id="ot7"
+                                       inlineStyle="font-size:20px; font-weight:900;color:white;"/>
+                    </af:panelGroupLayout>
+                </af:panelGroupLayout>
+                <af:panelGroupLayout id="pgl4" layout="vertical"
+                                     inlineStyle="height:40px;background:#FFFCEB;border:1px solid #EED97C;">
+                    <af:spacer width="10" height="13" id="s1"/>
+                    <af:outputText value="任务名称：#{bindings.TaskName.inputValue}(#{bindings.StatusName.inputValue})"
+                                   id="ot8" inlineStyle="font-size:14px;font-weight:bold;margin-left:20px;"/>
+                </af:panelGroupLayout>
+                <af:spacer width="10" height="20" id="s2"/>
+                <table width="100%">
+                    <tr>
+                        <td width="50"></td>
+                        <td width="30%">
+                            <af:outputText value="处理时间" id="ot1"/>
+                        </td>
+                        <td width="50%">
+                            <af:outputText value="处理信息" id="ot2"/>
+                        </td>
+                        <td width="20%">
+                            <af:outputText value="操作者" id="ot3"/>
+                        </td>
+                    </tr>
+                     
+                    <af:iterator id="i1" var="row" value="#{bindings.CmsTaskMonitorLogVO.collectionModel}">
+                        <tr>
+                            <td width="50"></td>
+                            <td>
+                                <af:outputText value="#{row.LastUpdateDate}" id="ot4"/>
+                            </td>
+                            <td>
+                                <af:outputText value="#{row.ProcessInfo}" id="ot5"/>
+                            </td>
+                            <td>
+                                <af:outputText value="#{row.TaskOperator}" id="ot6"/>
+                            </td>
+                        </tr>
+                    </af:iterator>
+                </table>
+            </af:panelGroupLayout>
+        </f:facet>
+        <f:facet name="start"/>
+        <f:facet name="end"/>
+        <f:facet name="top"></f:facet>
+    </af:panelStretchLayout>
+</ui:composition>

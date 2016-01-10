@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="onlineReadPageDef"
+                Package="work.common.fragment">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="Root.CommonAM.CmsDocUcmRelTVO4OnlineRead" DataControl="WorkAMDataControl" RangeSize="25"
+              id="CmsDocUcmRelTVO4OnlineReadIterator"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="CmsDocUcmRelTVO4OnlineReadIterator" id="CmsDocUcmRelTVO4OnlineRead">
+      <nodeDefinition DefName="com.zypg.cms.work.model.viewobject.common.CmsDocUcmRelTVO"
+                      Name="CmsDocUcmRelTVO4OnlineRead0">
+        <AttrNames>
+          <Item Value="Attribute1"/>
+          <Item Value="Attribute10"/>
+          <Item Value="Attribute11"/>
+          <Item Value="Attribute12"/>
+          <Item Value="Attribute13"/>
+          <Item Value="Attribute14"/>
+          <Item Value="Attribute15"/>
+          <Item Value="Attribute2"/>
+          <Item Value="Attribute3"/>
+          <Item Value="Attribute4"/>
+          <Item Value="Attribute5"/>
+          <Item Value="Attribute6"/>
+          <Item Value="Attribute7"/>
+          <Item Value="Attribute8"/>
+          <Item Value="Attribute9"/>
+          <Item Value="CreatedBy"/>
+          <Item Value="CreationDate"/>
+          <Item Value="DocId"/>
+          <Item Value="FileName"/>
+          <Item Value="FtpPath"/>
+          <Item Value="FtpUploadDate"/>
+          <Item Value="LastUpdateDate"/>
+          <Item Value="LastUpdatedBy"/>
+          <Item Value="ObjectVersionNumber"/>
+          <Item Value="RelId"/>
+          <Item Value="UcmDid"/>
+          <Item Value="UcmDocname"/>
+          <Item Value="DocType"/>
+          <Item Value="RefDocId"/>
+          <Item Value="FileCategory"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+  </bindings>
+</pageDefinition>

@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <af:tree value="#{bindings.CmsCategoryVO4Pick.treeModel}" var="node" inlineStyle="width:250px;height:200px;"
+             selectionListener="#{backingBeanScope.categoryPickManagedBean.categoryTreeSelectionListener}"
+             rowSelection="single" id="t1" binding="#{backingBeanScope.categoryPickManagedBean.categoryTree}">
+        <f:facet name="nodeStamp">
+            <af:outputText value="#{node.CategoryName}" id="ot1"/>
+        </f:facet>
+    </af:tree>
+</ui:composition>

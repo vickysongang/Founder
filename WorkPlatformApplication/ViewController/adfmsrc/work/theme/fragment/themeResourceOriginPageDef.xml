@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="themeResourceOriginPageDef"
+                Package="work.theme.fragment">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="Root.ThemeAM.CmsBookOriginVO" DataControl="WorkAMDataControl" RangeSize="25"
+              id="CmsBookOriginVOIterator"/>
+    <searchRegion Criteria="findBookOriginVC" Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="CmsBookOriginVOIterator" id="findBookOriginVCQuery"/>
+    <iterator Binds="Root.ThemeAM.CmsAudioOriginVO" DataControl="WorkAMDataControl" RangeSize="25"
+              id="CmsAudioOriginVOIterator"/>
+    <searchRegion Criteria="findAudioOriginVC" Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="CmsAudioOriginVOIterator" id="findAudioOriginVCQuery"/>
+    <iterator Binds="Root.ThemeAM.CmsWorksEntryOriginVO" DataControl="WorkAMDataControl" RangeSize="25"
+              id="CmsWorksEntryOriginVOIterator"/>
+    <searchRegion Criteria="findWorksEntryOriginVC" Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="CmsWorksEntryOriginVOIterator" id="findWorksEntryOriginVCQuery"/>
+    <iterator Binds="Root.ThemeAM.CmsEncyclopediasEntryOriginVO" DataControl="WorkAMDataControl" RangeSize="25"
+              id="CmsEncyclopediasEntryOriginVOIterator"/>
+    <searchRegion Criteria="findEncyclopediasEntryOriginVC"
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="CmsEncyclopediasEntryOriginVOIterator" id="findEncyclopediasEntryOriginVCQuery"/>
+    <iterator Binds="Root.ThemeAM.CmsVideoOriginVO" DataControl="WorkAMDataControl" RangeSize="25"
+              id="CmsVideoOriginVOIterator"/>
+    <iterator Binds="Root.ThemeAM.CmsIllustrationOriginVO" DataControl="WorkAMDataControl" RangeSize="25"
+              id="CmsIllustrationOriginVOIterator"/>
+    <searchRegion Criteria="findVideoOriginVC" Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="CmsVideoOriginVOIterator" id="findVideoOriginVCQuery"/>
+    <searchRegion Criteria="findIllustrationOriginVC" Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="CmsIllustrationOriginVOIterator" id="findIllustrationOriginVCQuery"/>
+    <iterator Binds="Root.ThemeAM.CmsMaterialFigureOriginVO" DataControl="WorkAMDataControl" RangeSize="25"
+              id="CmsMaterialFigureOriginVOIterator"/>
+    <searchRegion Criteria="findMaterialFigureOriginVC" Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="CmsMaterialFigureOriginVOIterator" id="findMaterialFigureOriginVCQuery"/>
+    <iterator Binds="Root.ThemeAM.CmsPhotographyFigureOriginVO" DataControl="WorkAMDataControl" RangeSize="25"
+              id="CmsPhotographyFigureOriginVOIterator"/>
+    <searchRegion Criteria="findPhotographyFigureVC" Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="CmsPhotographyFigureOriginVOIterator" id="findPhotographyFigureVCQuery"/>
+    <iterator Binds="Root.ThemeAM.CmsTeachingPlanOriginVO" DataControl="WorkAMDataControl" RangeSize="25"
+              id="CmsTeachingPlanOriginVOIterator"/>
+    <searchRegion Criteria="findOriginTeachingPlanVC" Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="CmsTeachingPlanOriginVOIterator" id="findOriginTeachingPlanVCQuery"/>
+    <iterator Binds="Root.ThemeAM.CmsCoursewareOriginVO" DataControl="WorkAMDataControl" RangeSize="25"
+              id="CmsCoursewareOriginVOIterator"/>
+    <searchRegion Criteria="findOriginCoursewareVC" Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="CmsCoursewareOriginVOIterator" id="findOriginCoursewareVCQuery"/>
+    <iterator Binds="Root.ThemeAM.CmsPeriodicalOriginVO" DataControl="WorkAMDataControl" RangeSize="25"
+              id="CmsPeriodicalOriginVOIterator"/>
+    <searchRegion Criteria="findOriginPeriodicalVC" Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="CmsPeriodicalOriginVOIterator" id="findOriginPeriodicalVCQuery"/>
+    <iterator Binds="Root.ThemeAM.CmsNewspaperOriginVO" DataControl="WorkAMDataControl" RangeSize="25"
+              id="CmsNewspaperOriginVOIterator"/>
+    <searchRegion Criteria="findOriginNewspaperVC" Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="CmsNewspaperOriginVOIterator" id="findOriginNewspaperVCQuery"/>
+    <iterator Binds="Root.ThemeAM.CmsElecProdOriginVO" DataControl="WorkAMDataControl" RangeSize="25"
+              id="CmsElecProdOriginVOIterator"/>
+    <searchRegion Criteria="findOriginElecProdVC" Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="CmsElecProdOriginVOIterator" id="findOriginElecProdVCQuery"/>
+  </executables>
+  <bindings/>
+</pageDefinition>

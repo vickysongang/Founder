@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="materialViewPageDef"
+                Package="work.material.fragment">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <taskFlow id="related_info_view_taskflow1"
+              taskFlowId="/WEB-INF/common/related_info_view_taskflow.xml#related_info_view_taskflow"
+              activation="deferred" xmlns="http://xmlns.oracle.com/adf/controller/binding">
+      <parameters>
+        <parameter id="docId" value="#{pageFlowScope.docId}"/>
+        <parameter id="position" value="RIGHT"/>
+        <parameter id="displayWidth" value="200"/>
+      </parameters>
+    </taskFlow>
+    <taskFlow id="related_info_view_taskflow2"
+              taskFlowId="/WEB-INF/common/related_info_view_taskflow.xml#related_info_view_taskflow"
+              activation="deferred" xmlns="http://xmlns.oracle.com/adf/controller/binding">
+      <parameters>
+        <parameter id="docId" value="#{pageFlowScope.docId}"/>
+        <parameter id="position" value="LEFT"/>
+        <parameter id="displayWidth" value="200"/>
+      </parameters>
+    </taskFlow>
+    <iterator Binds="Root.MaterialFigureAM.CmsDocTVO4View" DataControl="WorkAMDataControl" RangeSize="25"
+              id="CmsDocTVO4ViewIterator"/>
+    <iterator Binds="Root.MaterialFigureAM.CmsMaterialFigureTVO4View" DataControl="WorkAMDataControl" RangeSize="25"
+              id="CmsMaterialFigureTVO4ViewIterator"/>
+    <iterator Binds="Root.MaterialFigureAM.CmsFigureExifInfoTVO4View" DataControl="WorkAMDataControl" RangeSize="25"
+              id="CmsFigureExifInfoTVO4ViewIterator"/>
+    <iterator Binds="Root.MaterialFigureAM.CmsDocUcmRelTVO4FileList" DataControl="WorkAMDataControl" RangeSize="10"
+              id="CmsDocUcmRelTVO4FileListIterator"/>
+    <iterator Binds="Root.CommonAM.CmsAttachTVO4View" DataControl="WorkAMDataControl" RangeSize="25"
+              id="CmsAttachTVO4ViewIterator"/>
+    <taskFlow id="extend_attr_view_taskflow1"
+              taskFlowId="/WEB-INF/common/extend_attr_view_taskflow.xml#extend_attr_view_taskflow" activation="deferred"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding">
+      <parameters>
+        <parameter id="docId" value="#{pageFlowScope.docId}"/>
+      </parameters>
+    </taskFlow>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="CmsDocTVO4ViewIterator" id="ThumbnailUrl">
+      <AttrNames>
+        <Item Value="ThumbnailUrl"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsMaterialFigureTVO4ViewIterator" id="FigureName">
+      <AttrNames>
+        <Item Value="FigureName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsMaterialFigureTVO4ViewIterator" id="Keyword">
+      <AttrNames>
+        <Item Value="Keyword"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsMaterialFigureTVO4ViewIterator" id="Remarks">
+      <AttrNames>
+        <Item Value="Remarks"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsMaterialFigureTVO4ViewIterator" id="FigureFormat">
+      <AttrNames>
+        <Item Value="FigureFormat"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsMaterialFigureTVO4ViewIterator" id="FigureDimension">
+      <AttrNames>
+        <Item Value="FigureDimension"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsMaterialFigureTVO4ViewIterator" id="FigureSize">
+      <AttrNames>
+        <Item Value="FigureSize"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsMaterialFigureTVO4ViewIterator" id="CoverDesign">
+      <AttrNames>
+        <Item Value="CoverDesign"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsMaterialFigureTVO4ViewIterator" id="FigureResolution">
+      <AttrNames>
+        <Item Value="FigureResolution"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsMaterialFigureTVO4ViewIterator" id="SeriesName">
+      <AttrNames>
+        <Item Value="SeriesName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsMaterialFigureTVO4ViewIterator" id="FigureAuthor">
+      <AttrNames>
+        <Item Value="FigureAuthor"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsMaterialFigureTVO4ViewIterator" id="FigureType">
+      <AttrNames>
+        <Item Value="FigureType"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="CmsMaterialFigureTVO4ViewIterator" StaticList="false" Uses="LOV_FigureStyle" id="FigureStyle"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <attributeValues IterBinding="CmsMaterialFigureTVO4ViewIterator" id="CompCode">
+      <AttrNames>
+        <Item Value="CompCode"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsMaterialFigureTVO4ViewIterator" id="FigureDesc">
+      <AttrNames>
+        <Item Value="FigureDesc"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsMaterialFigureTVO4ViewIterator" id="FigureXResolution">
+      <AttrNames>
+        <Item Value="FigureXResolution"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsMaterialFigureTVO4ViewIterator" id="FigureYResolution">
+      <AttrNames>
+        <Item Value="FigureYResolution"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsMaterialFigureTVO4ViewIterator" id="FigureWidth">
+      <AttrNames>
+        <Item Value="FigureWidth"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsMaterialFigureTVO4ViewIterator" id="FigureHeight">
+      <AttrNames>
+        <Item Value="FigureHeight"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsMaterialFigureTVO4ViewIterator" id="FigureStoreTime">
+      <AttrNames>
+        <Item Value="FigureStoreTime"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsMaterialFigureTVO4ViewIterator" id="FigureCode">
+      <AttrNames>
+        <Item Value="FigureCode"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsMaterialFigureTVO4ViewIterator" id="CategoryName">
+      <AttrNames>
+        <Item Value="CategoryName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsFigureExifInfoTVO4ViewIterator" id="ImageDescription">
+      <AttrNames>
+        <Item Value="ImageDescription"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsFigureExifInfoTVO4ViewIterator" id="Make">
+      <AttrNames>
+        <Item Value="Make"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsFigureExifInfoTVO4ViewIterator" id="Model">
+      <AttrNames>
+        <Item Value="Model"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsFigureExifInfoTVO4ViewIterator" id="Orientation">
+      <AttrNames>
+        <Item Value="Orientation"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsFigureExifInfoTVO4ViewIterator" id="XResolution">
+      <AttrNames>
+        <Item Value="XResolution"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsFigureExifInfoTVO4ViewIterator" id="YResolution">
+      <AttrNames>
+        <Item Value="YResolution"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsFigureExifInfoTVO4ViewIterator" id="ResolutionUnit">
+      <AttrNames>
+        <Item Value="ResolutionUnit"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsFigureExifInfoTVO4ViewIterator" id="DateTime">
+      <AttrNames>
+        <Item Value="DateTime"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsFigureExifInfoTVO4ViewIterator" id="YcbcrPositioning">
+      <AttrNames>
+        <Item Value="YcbcrPositioning"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsFigureExifInfoTVO4ViewIterator" id="ExposureTime">
+      <AttrNames>
+        <Item Value="ExposureTime"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsFigureExifInfoTVO4ViewIterator" id="FNumber">
+      <AttrNames>
+        <Item Value="FNumber"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsFigureExifInfoTVO4ViewIterator" id="IsoSpeedRatings">
+      <AttrNames>
+        <Item Value="IsoSpeedRatings"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsFigureExifInfoTVO4ViewIterator" id="ExifVersion">
+      <AttrNames>
+        <Item Value="ExifVersion"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsFigureExifInfoTVO4ViewIterator" id="DateTimeOriginal">
+      <AttrNames>
+        <Item Value="DateTimeOriginal"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsFigureExifInfoTVO4ViewIterator" id="DateTimeDigitized">
+      <AttrNames>
+        <Item Value="DateTimeDigitized"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsFigureExifInfoTVO4ViewIterator" id="ComponentsConfiguration">
+      <AttrNames>
+        <Item Value="ComponentsConfiguration"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsFigureExifInfoTVO4ViewIterator" id="CompressedBitsPerPixel">
+      <AttrNames>
+        <Item Value="CompressedBitsPerPixel"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsFigureExifInfoTVO4ViewIterator" id="ShutterSpeedValue">
+      <AttrNames>
+        <Item Value="ShutterSpeedValue"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsFigureExifInfoTVO4ViewIterator" id="ApertureValue">
+      <AttrNames>
+        <Item Value="ApertureValue"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsFigureExifInfoTVO4ViewIterator" id="ExposureBiasValue">
+      <AttrNames>
+        <Item Value="ExposureBiasValue"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsFigureExifInfoTVO4ViewIterator" id="MaxApertureValue">
+      <AttrNames>
+        <Item Value="MaxApertureValue"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsFigureExifInfoTVO4ViewIterator" id="MeteringMode">
+      <AttrNames>
+        <Item Value="MeteringMode"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsFigureExifInfoTVO4ViewIterator" id="Flash">
+      <AttrNames>
+        <Item Value="Flash"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsFigureExifInfoTVO4ViewIterator" id="FocalLength">
+      <AttrNames>
+        <Item Value="FocalLength"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsFigureExifInfoTVO4ViewIterator" id="UserComment">
+      <AttrNames>
+        <Item Value="UserComment"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsFigureExifInfoTVO4ViewIterator" id="FlashpixVersion">
+      <AttrNames>
+        <Item Value="FlashpixVersion"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsFigureExifInfoTVO4ViewIterator" id="ColorSpace">
+      <AttrNames>
+        <Item Value="ColorSpace"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsFigureExifInfoTVO4ViewIterator" id="ExifImageWidth">
+      <AttrNames>
+        <Item Value="ExifImageWidth"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsFigureExifInfoTVO4ViewIterator" id="ExifImageHeight">
+      <AttrNames>
+        <Item Value="ExifImageHeight"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsFigureExifInfoTVO4ViewIterator" id="FocalPlaneXResolution">
+      <AttrNames>
+        <Item Value="FocalPlaneXResolution"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsFigureExifInfoTVO4ViewIterator" id="FocalPlaneYResolution">
+      <AttrNames>
+        <Item Value="FocalPlaneYResolution"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsFigureExifInfoTVO4ViewIterator" id="FocalPlaneResolutionUnit">
+      <AttrNames>
+        <Item Value="FocalPlaneResolutionUnit"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsFigureExifInfoTVO4ViewIterator" id="SensingMethod">
+      <AttrNames>
+        <Item Value="SensingMethod"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsFigureExifInfoTVO4ViewIterator" id="FileSource">
+      <AttrNames>
+        <Item Value="FileSource"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsFigureExifInfoTVO4ViewIterator" id="CustomRendered">
+      <AttrNames>
+        <Item Value="CustomRendered"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsFigureExifInfoTVO4ViewIterator" id="ExposureMode">
+      <AttrNames>
+        <Item Value="ExposureMode"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsFigureExifInfoTVO4ViewIterator" id="WhiteBalance">
+      <AttrNames>
+        <Item Value="WhiteBalance"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsFigureExifInfoTVO4ViewIterator" id="DigitalZoomRatio">
+      <AttrNames>
+        <Item Value="DigitalZoomRatio"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsFigureExifInfoTVO4ViewIterator" id="SceneCaptureType">
+      <AttrNames>
+        <Item Value="SceneCaptureType"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsFigureExifInfoTVO4ViewIterator" id="Compression">
+      <AttrNames>
+        <Item Value="Compression"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsFigureExifInfoTVO4ViewIterator" id="ThumbnailOffset">
+      <AttrNames>
+        <Item Value="ThumbnailOffset"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsFigureExifInfoTVO4ViewIterator" id="ThumbnailLength">
+      <AttrNames>
+        <Item Value="ThumbnailLength"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsFigureExifInfoTVO4ViewIterator" id="ThumbnailData">
+      <AttrNames>
+        <Item Value="ThumbnailData"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="CmsDocUcmRelTVO4FileListIterator" id="CmsDocUcmRelTVO4FileList">
+      <nodeDefinition DefName="com.zypg.cms.work.model.viewobject.common.CmsDocUcmRelTVO"
+                      Name="CmsDocUcmRelTVO4FileList0">
+        <AttrNames>
+          <Item Value="FileName"/>
+          <Item Value="FileCategory"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="CmsAttachTVO4ViewIterator" id="CmsAttachTVO4View">
+      <nodeDefinition DefName="com.zypg.cms.work.model.viewobject.attach.CmsAttachTVO" Name="CmsAttachTVO4View0">
+        <AttrNames>
+          <Item Value="AttachId"/>
+          <Item Value="AttachType"/>
+          <Item Value="Attribute1"/>
+          <Item Value="Attribute10"/>
+          <Item Value="Attribute11"/>
+          <Item Value="Attribute12"/>
+          <Item Value="Attribute13"/>
+          <Item Value="Attribute14"/>
+          <Item Value="Attribute15"/>
+          <Item Value="Attribute2"/>
+          <Item Value="Attribute3"/>
+          <Item Value="Attribute4"/>
+          <Item Value="Attribute5"/>
+          <Item Value="Attribute6"/>
+          <Item Value="Attribute7"/>
+          <Item Value="Attribute8"/>
+          <Item Value="Attribute9"/>
+          <Item Value="CreatedBy"/>
+          <Item Value="CreationDate"/>
+          <Item Value="DocId"/>
+          <Item Value="LastUpdateDate"/>
+          <Item Value="LastUpdatedBy"/>
+          <Item Value="ObjectVersionNumber"/>
+          <Item Value="Path"/>
+          <Item Value="Remarks"/>
+          <Item Value="SourceId"/>
+          <Item Value="Title"/>
+          <Item Value="AttachTypeMeaning"/>
+          <Item Value="libCode"/>
+          <Item Value="Format"/>
+          <Item Value="FileSize"/>
+          <Item Value="UcmDid"/>
+          <Item Value="UcmDocname"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="CmsDocTVO4ViewIterator" id="DocId">
+      <AttrNames>
+        <Item Value="DocId"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

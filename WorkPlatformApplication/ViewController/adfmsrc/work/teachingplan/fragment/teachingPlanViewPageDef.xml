@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="teachingPlanViewPageDef"
+                Package="work.teachingplan.fragment">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <taskFlow id="related_info_view_taskflow1"
+              taskFlowId="/WEB-INF/common/related_info_view_taskflow.xml#related_info_view_taskflow"
+              activation="deferred" xmlns="http://xmlns.oracle.com/adf/controller/binding">
+      <parameters>
+        <parameter id="docId" value="#{pageFlowScope.docId}"/>
+        <parameter id="position" value="LEFT"/>
+        <parameter id="displayWidth" value="200"/>
+      </parameters>
+    </taskFlow>
+    <taskFlow id="related_info_view_taskflow2"
+              taskFlowId="/WEB-INF/common/related_info_view_taskflow.xml#related_info_view_taskflow"
+              activation="deferred" xmlns="http://xmlns.oracle.com/adf/controller/binding">
+      <parameters>
+        <parameter id="docId" value="#{pageFlowScope.docId}"/>
+        <parameter id="position" value="RIGHT"/>
+        <parameter id="displayWidth" value="200"/>
+      </parameters>
+    </taskFlow>
+    <iterator Binds="Root.TeachingPlanAM.CmsTeachingPlanTVO4View" DataControl="WorkAMDataControl" RangeSize="25"
+              id="CmsTeachingPlanTVO4ViewIterator"/>
+    <iterator Binds="Root.TeachingPlanAM.CmsDocUcmRelTVO4FileList" DataControl="WorkAMDataControl" RangeSize="10"
+              id="CmsDocUcmRelTVO4FileListIterator"/>
+    <taskFlow id="extend_attr_view_taskflow1"
+              taskFlowId="/WEB-INF/common/extend_attr_view_taskflow.xml#extend_attr_view_taskflow" activation="deferred"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding">
+      <parameters>
+        <parameter id="docId" value="#{pageFlowScope.docId}"/>
+      </parameters>
+    </taskFlow>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="CmsTeachingPlanTVO4ViewIterator" id="SourceBookName">
+      <AttrNames>
+        <Item Value="SourceBookName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsTeachingPlanTVO4ViewIterator" id="SourceBookIsbn">
+      <AttrNames>
+        <Item Value="SourceBookIsbn"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsTeachingPlanTVO4ViewIterator" id="PublishingHouse">
+      <AttrNames>
+        <Item Value="PublishingHouse"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsTeachingPlanTVO4ViewIterator" id="SourceBookType">
+      <AttrNames>
+        <Item Value="SourceBookType"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsTeachingPlanTVO4ViewIterator" id="CompCode">
+      <AttrNames>
+        <Item Value="CompCode"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsTeachingPlanTVO4ViewIterator" id="Editor">
+      <AttrNames>
+        <Item Value="Editor"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsTeachingPlanTVO4ViewIterator" id="TeachingPlanName">
+      <AttrNames>
+        <Item Value="TeachingPlanName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsTeachingPlanTVO4ViewIterator" id="Producer">
+      <AttrNames>
+        <Item Value="Producer"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="CmsTeachingPlanTVO4ViewIterator" StaticList="false" Uses="LOV_TeachingPlanType"
+          id="TeachingPlanType" DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <list IterBinding="CmsTeachingPlanTVO4ViewIterator" StaticList="false" Uses="LOV_YESORNO" id="CopyrightFlag"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <attributeValues IterBinding="CmsTeachingPlanTVO4ViewIterator" id="Keyword">
+      <AttrNames>
+        <Item Value="Keyword"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsTeachingPlanTVO4ViewIterator" id="Remarks">
+      <AttrNames>
+        <Item Value="Remarks"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsTeachingPlanTVO4ViewIterator" id="TeachingPlanStoreTime">
+      <AttrNames>
+        <Item Value="TeachingPlanStoreTime"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="CmsDocUcmRelTVO4FileListIterator" id="CmsDocUcmRelTVO4FileList">
+      <nodeDefinition DefName="com.zypg.cms.work.model.viewobject.common.CmsDocUcmRelTVO"
+                      Name="CmsDocUcmRelTVO4FileList0">
+        <AttrNames>
+          <Item Value="FileName"/>
+          <Item Value="FileCategory"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="CmsTeachingPlanTVO4ViewIterator" id="DocId">
+      <AttrNames>
+        <Item Value="DocId"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

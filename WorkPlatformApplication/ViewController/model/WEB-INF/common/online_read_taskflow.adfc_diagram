@@ -1,0 +1,47 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<SDM>
+   <OverallProperties
+      id="OverallProperties1"/>
+   <MethodCall
+      id="MethodCall2">
+      <property
+         name="activityId">initData4OnlineRead</property>
+      <property
+         name="start">true</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>initData4OnlineRead&lt;/b> (Default Activity)&lt;/p>&lt;p>Activity Type:  Method Call&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">133.59766</property>
+      <property
+         name="x">182.0</property>
+   </MethodCall>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase4"
+      from="MethodCall2"
+      to="View5">
+      <property
+         name="fromOutcome">toOnlineRead</property>
+      <property
+         name="sdm:polyPoints">R50,223.0,133.24707,443.0,121.5459,L50</property>
+   </ControlFlowCase>
+   <View
+      id="View5">
+      <property
+         name="activityId">onlineRead</property>
+      <property
+         name="page">/work/common/fragment/onlineRead.jsff</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>onlineRead&lt;/b>&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">121.896484</property>
+      <property
+         name="x">484.0</property>
+      <property
+         name="pageFragment">true</property>
+   </View>
+</SDM>

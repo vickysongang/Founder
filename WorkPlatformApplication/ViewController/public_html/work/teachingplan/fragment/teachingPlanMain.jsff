@@ -1,0 +1,328 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core">
+    <af:panelStretchLayout id="psl1" topHeight="40px" inlineStyle="border:1px solid #BAC6CA;background:#F3F8FC;">
+        <f:facet name="top">
+            <af:panelStretchLayout id="psl4" styleClass="AFStretchWidth" inlineStyle="height:40px;" startWidth="auto"
+                                   endWidth="auto">
+                <f:facet name="start">
+                    <af:panelGroupLayout id="pgl1" layout="horizontal"
+                                         partialTriggers="soc1 soc2 t1:sbc1 t1:sbc2 t1 cb11 cb5 cil8 d5 d1 d6 it1"
+                                         inlineStyle="margin:5px 5px 5px 15px;padding-left:20px;"
+                                         binding="#{backingBeanScope.teachingPlanMainManagedBean.buttonPanelGroupLayout}">
+                        <af:commandImageLink text="新建" id="cb1" partialSubmit="true" action="toEdit" useWindow="true"
+                                             windowHeight="550" windowWidth="650" styleClass="imagelink_length_2"
+                                             visible="#{backingBeanScope.teachingPlanMainManagedBean.commonRenderer.createEnable}"
+                                             returnListener="#{backingBeanScope.teachingPlanMainManagedBean.commonRenderer.createOrEditReturnListener}"
+                                             icon="/resources/images/new.gif" iconPosition="leading">
+                            <af:setPropertyListener from="CREATE" to="#{pageFlowScope.mode}" type="action"/>
+                            <af:setPropertyListener from="N" to="#{pageFlowScope.batchFlag}" type="action"/>
+                        </af:commandImageLink>
+                        <af:commandImageLink text="文件管理" id="cb2" icon="/resources/images/file_manager.gif"
+                                             styleClass="imagelink_length_4"
+                                             visible="#{backingBeanScope.teachingPlanMainManagedBean.commonRenderer.fileMgmtEnable and pageFlowScope.currStatusCode == 'TO_GATHER_TEACHING_PLAN' and backingBeanScope.teachingPlanMainManagedBean.commonRenderer.currSelectedListSize >= 1}"
+                                             actionListener="#{backingBeanScope.teachingPlanMainManagedBean.commonRenderer.fileManageActionListener}">
+                            <f:attribute name="operation" value="文件管理"/>
+                        </af:commandImageLink>
+                        <af:commandImageLink text="文件管理" id="cil23" icon="/resources/images/file_manager.gif"
+                                             styleClass="imagelink_length_4" partialSubmit="true"
+                                             visible="#{backingBeanScope.teachingPlanMainManagedBean.commonRenderer.fileMgmtEnable and pageFlowScope.currStatusCode != 'TO_GATHER_TEACHING_PLAN' and backingBeanScope.teachingPlanMainManagedBean.commonRenderer.currSelectedListSize >= 1}">
+                            <af:showPopupBehavior popupId="p4" triggerType="action"/>
+                        </af:commandImageLink>
+                        <af:commandImageLink text="同步" id="cil3" icon="/resources/images/file_manager.gif"
+                                             styleClass="imagelink_length_2"
+                                             action="#{backingBeanScope.teachingPlanMainManagedBean.refreshWhenSycnAction}"
+                                             visible="#{backingBeanScope.teachingPlanMainManagedBean.commonRenderer.syncEnable and backingBeanScope.teachingPlanMainManagedBean.commonRenderer.currSelectedListSize >= 1}"
+                                             actionListener="#{backingBeanScope.teachingPlanMainManagedBean.commonRenderer.syncToUCMActionListener}">
+                            <f:attribute name="operation" value="同步"/>
+                        </af:commandImageLink>
+                        <af:commandImageLink text="标引" id="cil1" icon="/resources/images/edit.gif" windowHeight="500"
+                                             styleClass="imagelink_length_2" windowWidth="650" partialSubmit="true"
+                                             action="toEdit" useWindow="true"
+                                             returnListener="#{backingBeanScope.teachingPlanMainManagedBean.commonRenderer.createOrEditReturnListener}"
+                                             visible="#{backingBeanScope.teachingPlanMainManagedBean.commonRenderer.indexEnable  and backingBeanScope.teachingPlanMainManagedBean.commonRenderer.currSelectedListSize == 1}"
+                                             actionListener="#{backingBeanScope.teachingPlanMainManagedBean.commonRenderer.docIdSetActionListener}">
+                            <af:setPropertyListener from="EDIT" to="#{pageFlowScope.mode}" type="action"/>
+                            <af:setPropertyListener from="N" to="#{pageFlowScope.batchFlag}" type="action"/>
+                        </af:commandImageLink>
+                        <af:commandImageLink text="批量标引" id="cil6" icon="/resources/images/batch_edit.gif"
+                                             windowHeight="500" windowWidth="650" partialSubmit="true" action="toEdit"
+                                             useWindow="true" styleClass="imagelink_length_4"
+                                             returnListener="#{backingBeanScope.teachingPlanMainManagedBean.commonRenderer.createOrEditReturnListener}"
+                                             actionListener="#{backingBeanScope.teachingPlanMainManagedBean.commonRenderer.docIdBatchSetActionListener}"
+                                             visible="#{backingBeanScope.teachingPlanMainManagedBean.commonRenderer.batchIndexEnable  and backingBeanScope.teachingPlanMainManagedBean.commonRenderer.currSelectedListSize > 1}">
+                            <af:setPropertyListener from="EDIT" to="#{pageFlowScope.mode}" type="action"/>
+                            <af:setPropertyListener from="Y" to="#{pageFlowScope.batchFlag}" type="action"/>
+                        </af:commandImageLink>
+                        <af:commandImageLink text="提交" id="cb3" icon="/resources/images/submit.gif"
+                                             styleClass="imagelink_length_2"
+                                             visible="#{backingBeanScope.teachingPlanMainManagedBean.commonRenderer.submitEnable and backingBeanScope.teachingPlanMainManagedBean.commonRenderer.currSelectedListSize >= 1}"
+                                             actionListener="#{backingBeanScope.teachingPlanMainManagedBean.commonRenderer.updateDocStatusActionListener}">
+                            <f:attribute name="operation" value="提交"/>
+                        </af:commandImageLink>
+                        <af:commandImageLink text="设置关联" id="cil16" icon="/resources/images/relation.gif"
+                                             styleClass="imagelink_length_4" windowHeight="600" windowWidth="850"
+                                             partialSubmit="true" useWindow="true" action="toRelationSet"
+                                             actionListener="#{backingBeanScope.teachingPlanMainManagedBean.commonRenderer.docIdSetActionListener}"
+                                             visible="#{backingBeanScope.teachingPlanMainManagedBean.commonRenderer.relationEnable and backingBeanScope.teachingPlanMainManagedBean.commonRenderer.currSelectedListSize == 1}"/>
+                        <af:commandImageLink text="审核" id="cb4" icon="/resources/images/review.gif" windowHeight="560"
+                                             windowWidth="650" partialSubmit="true" action="toEdit" useWindow="true"
+                                             styleClass="imagelink_length_2"
+                                             returnListener="#{backingBeanScope.teachingPlanMainManagedBean.commonRenderer.createOrEditReturnListener}"
+                                             visible="#{backingBeanScope.teachingPlanMainManagedBean.commonRenderer.approveEnable  and backingBeanScope.teachingPlanMainManagedBean.commonRenderer.currSelectedListSize == 1}"
+                                             actionListener="#{backingBeanScope.teachingPlanMainManagedBean.commonRenderer.docIdSetActionListener}">
+                            <af:setPropertyListener from="APPROVE" to="#{pageFlowScope.mode}" type="action"/>
+                            <af:setPropertyListener from="N" to="#{pageFlowScope.batchFlag}" type="action"/>
+                        </af:commandImageLink>
+                        <af:commandImageLink text="发布" id="cb5" icon="/resources/images/pub.gif"
+                                             styleClass="imagelink_length_2"
+                                             visible="#{backingBeanScope.teachingPlanMainManagedBean.commonRenderer.pubEnable and backingBeanScope.teachingPlanMainManagedBean.commonRenderer.currSelectedListSize >= 1}"
+                                             actionListener="#{backingBeanScope.teachingPlanMainManagedBean.commonRenderer.updateDocStatusActionListener}">
+                            <f:attribute name="operation" value="提交"/>
+                        </af:commandImageLink>
+                        <af:commandImageLink text="删除" id="cb6" icon="/resources/images/delete.gif"
+                                             styleClass="imagelink_length_2" partialSubmit="true"
+                                             visible="#{backingBeanScope.teachingPlanMainManagedBean.commonRenderer.deleteEnable and backingBeanScope.teachingPlanMainManagedBean.commonRenderer.currSelectedListSize >= 1}">
+                            <af:showPopupBehavior popupId="p3" triggerType="action"/>
+                        </af:commandImageLink>
+                        <af:commandImageLink text="还原" id="cb7" icon="/resources/images/recycle.gif"
+                                             styleClass="imagelink_length_2"
+                                             visible="#{backingBeanScope.teachingPlanMainManagedBean.commonRenderer.recoverEnable and backingBeanScope.teachingPlanMainManagedBean.commonRenderer.currSelectedListSize >= 1}"
+                                             actionListener="#{backingBeanScope.teachingPlanMainManagedBean.commonRenderer.recoverDocActionListener}"/>
+                        <af:commandImageLink text="回退" id="cb11" icon="/resources/images/recycle.gif"
+                                             styleClass="imagelink_length_2" partialSubmit="true"
+                                             visible="#{backingBeanScope.teachingPlanMainManagedBean.commonRenderer.backEnable and backingBeanScope.teachingPlanMainManagedBean.commonRenderer.currSelectedListSize >= 1}"
+                                             action="#{backingBeanScope.teachingPlanMainManagedBean.commonRenderer.syncEnableDocRollbackAction}"
+                                             useWindow="true" windowHeight="200" windowWidth="620"
+                                             returnListener="#{backingBeanScope.teachingPlanMainManagedBean.commonRenderer.rollbackReturnListener}">
+                            <af:setPropertyListener to="#{pageFlowScope.type}" type="action" from="ROLLBACK"/>
+                        </af:commandImageLink>
+                        <af:commandImageLink text="彻底删除" id="cil10" icon="/resources/images/delete_final.gif"
+                                             styleClass="imagelink_length_4" partialSubmit="true"
+                                             visible="#{backingBeanScope.teachingPlanMainManagedBean.commonRenderer.destroyEnable and backingBeanScope.teachingPlanMainManagedBean.commonRenderer.currSelectedListSize >= 1}">
+                            <af:showPopupBehavior popupId="p1" triggerType="action"/>
+                        </af:commandImageLink>
+                        <af:commandImageLink text="撤销发布" id="cil8" icon="/resources/images/uppub.gif"
+                                             styleClass="imagelink_length_4" partialSubmit="true"
+                                             visible="#{backingBeanScope.teachingPlanMainManagedBean.commonRenderer.undoPubEnable and backingBeanScope.teachingPlanMainManagedBean.commonRenderer.currSelectedListSize >= 1}"
+                                             actionListener="#{backingBeanScope.teachingPlanMainManagedBean.commonRenderer.docIdBatchSetActionListener}"
+                                             action="toRollback" useWindow="true" windowHeight="130" windowWidth="250"
+                                             returnListener="#{backingBeanScope.teachingPlanMainManagedBean.commonRenderer.rollbackReturnListener}">
+                            <af:setPropertyListener to="#{pageFlowScope.type}" type="action" from="CANCEL"/>
+                        </af:commandImageLink>
+                        <af:commandImageLink text="操作日志" id="cil4" icon="/resources/images/log.gif"
+                                             styleClass="imagelink_length_4"
+                                             visible="#{backingBeanScope.teachingPlanMainManagedBean.commonRenderer.currSelectedListSize == 1 and pageFlowScope.deleteFlag == 'N'}"
+                                             action="toProcessLog"
+                                             actionListener="#{backingBeanScope.teachingPlanMainManagedBean.commonRenderer.docIdSetActionListener}"
+                                             useWindow="true" partialSubmit="true" windowHeight="400"
+                                             windowWidth="600"/>
+                        <af:commandImageLink text="回退记录" id="cil5" icon="/resources/images/catlog_view.gif"
+                                             styleClass="imagelink_length_4" partialSubmit="true"
+                                             visible="#{backingBeanScope.teachingPlanMainManagedBean.commonRenderer.currSelectedListSize == 1 and pageFlowScope.deleteFlag == 'N'}"
+                                             actionListener="#{backingBeanScope.teachingPlanMainManagedBean.commonRenderer.docIdSetActionListener}"
+                                             action="toRollbackLog" useWindow="true" windowHeight="400"
+                                             windowWidth="600"/>
+                        <af:commandImageLink text="添加到暂存架" id="cil19" icon="/resources/images/catlog_view.gif"
+                                             styleClass="imagelink_length_6" partialSubmit="true"
+                                             visible="#{backingBeanScope.teachingPlanMainManagedBean.commonRenderer.addToTempShelfEnable and backingBeanScope.teachingPlanMainManagedBean.commonRenderer.currSelectedListSize >= 1}"
+                                             actionListener="#{backingBeanScope.teachingPlanMainManagedBean.commonRenderer.addToTempShelf}"/>
+                        <af:commandImageLink text="同步日志" id="cil20" icon="/resources/images/catlog_view.gif"
+                                             styleClass="imagelink_length_4" partialSubmit="true" action="toSyncLog"
+                                             useWindow="true" windowHeight="410" windowWidth="1200"
+                                             visible="#{backingBeanScope.teachingPlanMainManagedBean.commonRenderer.currSelectedListSize >= 1 and pageFlowScope.deleteFlag == 'N'}"
+                                             actionListener="#{backingBeanScope.teachingPlanMainManagedBean.commonRenderer.viewSyncLogActionListener}"/>
+                        <af:popup childCreation="deferred" autoCancel="disabled" id="p3"
+                                  binding="#{backingBeanScope.teachingPlanMainManagedBean.commonRenderer.deletePopup}">
+                            <af:dialog id="d5" title="提示"
+                                       dialogListener="#{backingBeanScope.teachingPlanMainManagedBean.commonRenderer.deleteDocDialogActionListener}">
+                                <af:outputText value="你确定要删除吗?" id="ot12"/>
+                            </af:dialog>
+                        </af:popup>
+                        <af:popup childCreation="deferred" autoCancel="disabled" id="p1"
+                                  binding="#{backingBeanScope.teachingPlanMainManagedBean.commonRenderer.destoryPopup}">
+                            <af:dialog id="d1" title="提示"
+                                       dialogListener="#{backingBeanScope.teachingPlanMainManagedBean.commonRenderer.destroyDocActionListener}">
+                                <af:outputText value="你确定要彻底删除吗?" id="ot14"/>
+                            </af:dialog>
+                        </af:popup>
+                        <af:popup childCreation="deferred" autoCancel="disabled" id="p4"
+                                  binding="#{backingBeanScope.teachingPlanMainManagedBean.commonRenderer.fileManagePopup}">
+                            <af:dialog id="d6" title="提示"
+                                       dialogListener="#{backingBeanScope.teachingPlanMainManagedBean.reFileManageDialogListener}">
+                                <af:outputText value="确定要重新采集资源?" id="ot16"/>
+                            </af:dialog>
+                        </af:popup>
+                    </af:panelGroupLayout>
+                </f:facet>
+                <f:facet name="end">
+                    <af:panelGroupLayout layout="horizontal" id="pgl9" inlineStyle="margin-top:10px;margin-right:15px;">
+                        <af:inputText label="searchInput" id="it1" simple="true"
+                                      shortDesc="输入关键字,可以对以下内容[教案名称,配套书名,配套书ISBN，关键字，教案类型]进行快速检索"
+                                      contentStyle="width:150px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                      binding="#{backingBeanScope.teachingPlanMainManagedBean.commonRenderer.searchInput}">
+                            <af:clientListener type="keyPress" method="queryWhenPressEnter"/>
+                            <af:serverListener type="queryWhenPressAction"
+                                               method="#{backingBeanScope.teachingPlanMainManagedBean.commonRenderer.queryWhenPressEnterListener}"/>
+                        </af:inputText>
+                        <af:commandImageLink text="" id="cil9" icon="/resources/images/search.gif"
+                                             inlineStyle="margin-left:2px;"
+                                             actionListener="#{backingBeanScope.teachingPlanMainManagedBean.commonRenderer.searchActionListenser}"/>
+                        <af:commandImageLink text="" id="cil25" icon="/resources/images/icon_hzddsh.gif"
+                                             partialSubmit="true" inlineStyle="margin-left:5px;"
+                                             action="toComplexSearch" useWindow="true" windowHeight="500"
+                                             windowWidth="650" shortDesc="高级搜索"
+                                             returnListener="#{backingBeanScope.teachingPlanMainManagedBean.complexRearchReturnListener}"/>
+                    </af:panelGroupLayout>
+                </f:facet>
+            </af:panelStretchLayout>
+        </f:facet>
+        <f:facet name="bottom"></f:facet>
+        <f:facet name="center">
+            <af:panelStretchLayout id="psl2" topHeight="auto" dimensionsFrom="children"
+                                   partialTriggers="cb1 soc1 soc2 cil1 cb11 cb5 cil8 d5 d1 d6 it1">
+                <f:facet name="center">
+                    <af:table var="row" rowBandingInterval="0" id="t1" varStatus="vs"
+                              styleClass="AFStretchWidth custom_table_striped" contentDelivery="immediate"
+                              columnStretching="multiple" autoHeightRows="0" inlineStyle="margin-top:2px;"
+                              value="#{backingBeanScope.teachingPlanMainManagedBean.tableModel.model}" emptyText=""
+                              sortListener="#{backingBeanScope.teachingPlanMainManagedBean.commonRenderer.tableSortListener}"
+                              binding="#{backingBeanScope.teachingPlanMainManagedBean.commonRenderer.table}"
+                              partialTriggers="sbc1" rowSelection="multiple">
+                        <af:column width="25" align="center" id="c19" frozen="true">
+                            <f:facet name="header">
+                                <af:selectBooleanCheckbox label="Label 1" simple="true" id="sbc1" autoSubmit="true"
+                                                          binding="#{backingBeanScope.teachingPlanMainManagedBean.commonRenderer.selectAllCheckBox}"
+                                                          partialTriggers="::soc2">
+                                    <af:clientListener type="valueChange" method="clickSelectAllCheckBox"/>
+                                    <af:serverListener type="SelectAllCheckBoxClickEvent"
+                                                       method="#{backingBeanScope.teachingPlanMainManagedBean.commonRenderer.selectAllAction}"/>
+                                </af:selectBooleanCheckbox>
+                            </f:facet>
+                            <af:selectBooleanCheckbox id="sbc2" value="#{row.checked}" label="#{row.checked}"
+                                                      autoSubmit="true" simple="false">
+                                <af:clientListener type="valueChange" method="clickSelectOneCheckBox"/>
+                                <af:serverListener type="SelectCheckBoxClickEvent"
+                                                   method="#{backingBeanScope.teachingPlanMainManagedBean.commonRenderer.selectOneAction}"/>
+                                <af:clientAttribute name="docId" value="#{row.docId}"/>
+                            </af:selectBooleanCheckbox>
+                        </af:column>
+                        <af:column sortable="false" headerText="序号" id="c1" width="50">
+                            <af:outputText value="#{vs.index+1}" id="ot18"/>
+                        </af:column>
+                        <af:column sortable="true" sortProperty="teachingPlanName" headerText="教案名称" id="c6"
+                                   width="30%">
+                            <af:panelGroupLayout id="pgl12" layout="horizontal">
+                                <af:activeOutputText value="同步中" id="ot6" styleClass="table-tb-newV"
+                                                     visible="#{row.syncFlag == 'SYNCING'}"/>
+                                <af:commandLink text="下载中" id="cl4" styleClass="table-tb-link"
+                                                visible="#{row.syncFlag == 'FILE_MANAGING'}"
+                                                actionListener="#{backingBeanScope.teachingPlanMainManagedBean.commonRenderer.viewDownloadProgressActionListener}">
+                                    <f:attribute name="docId" value="#{row.docId}"/>
+                                </af:commandLink>
+                                <af:activeOutputText value="同步失败" id="aot2" styleClass="table-tb-fail"
+                                                     visible="#{row.syncFlag == 'FAIL'}"/>
+                                <af:outputText value="#{row.teachingPlanName}" id="ot13"/>
+                            </af:panelGroupLayout>
+                        </af:column>
+                        <af:column sortable="true" sortProperty="sourceBookName" headerText="配套书名" id="c2" width="30%">
+                            <af:outputText value="#{row.sourceBookName}" id="ot19"/>
+                        </af:column>
+                        <af:column sortable="true" sortProperty="producer" headerText="制作者" id="c3" width="10%"
+                                   align="center">
+                            <af:outputText value="#{row.producer}" id="ot20"/>
+                        </af:column>
+                        <af:column sortable="true" sortProperty="publishingHouse" headerText="出版社" id="c4" width="15%"
+                                   align="center">
+                            <af:outputText value="#{row.publishingHouse}" id="ot21"/>
+                        </af:column>
+                        <af:column sortable="true" sortProperty="teachingPlanStoreTime" headerText="入库时间" id="c5"
+                                   width="15%" align="center">
+                            <af:outputText value="#{row.teachingPlanStoreTime}" id="ot22"/>
+                        </af:column>
+                        <!--<af:clientListener type="click" method="tableDblSelect"/>-->
+                        <!--<af:serverListener type="TableSelectionAction"
+                                           method="#{backingBeanScope.teachingPlanMainManagedBean.commonRenderer.tableSelectAction}"/>-->
+                        <!--<af:serverListener type="TableDblSelectAction"
+                                           method="#{backingBeanScope.teachingPlanMainManagedBean.commonRenderer.tableDblSelectAction}"/>-->
+                        <af:clientListener type="dblClick" method="tableDblClick"/>
+                         
+                        <af:serverListener type="TableDblClickEvent"
+                                           method="#{backingBeanScope.teachingPlanMainManagedBean.teachingPlanTableDblClick}"/>
+                    </af:table>
+                </f:facet>
+                <f:facet name="top">
+                    <af:panelStretchLayout id="psl3" inlineStyle="height:26px;background:#E7ECE5;margin-top:3px;"
+                                           topHeight="0px" bottomHeight="0px" startWidth="auto"
+                                           styleClass="AFStretchWidth"
+                                           partialTriggers="cl1 cl2 soc1 soc2 cb1 it1 d5 d1 d6 cil8 cb11 cil25"
+                                           endWidth="auto">
+                        <f:facet name="bottom"/>
+                        <f:facet name="center"></f:facet>
+                        <f:facet name="start">
+                            <af:panelGroupLayout id="pgl6" layout="horizontal"
+                                                 inlineStyle="padding-top:3px;padding-left:15px;">
+                                <af:outputText value="总个数:#{backingBeanScope.teachingPlanMainManagedBean.tableModel.rowCount}"
+                                               id="ot2"/>
+                                <af:spacer width="10" height="10" id="s2"/>
+                                <af:outputText value="每页[20]" id="ot3"/>
+                                <af:spacer width="10" height="10" id="s7"/>
+                                <af:outputText value="页数[" id="ot9"/>
+                                <af:outputText value="#{backingBeanScope.teachingPlanMainManagedBean.tableModel.currPageIndex}"
+                                               id="ot1" inlineStyle="color:Red;"/>
+                                <af:outputText value="/#{backingBeanScope.teachingPlanMainManagedBean.tableModel.totalPageCount}]"
+                                               id="ot4"/>
+                                <af:spacer width="10" height="10" id="s4"/>
+                                <af:commandLink text="前一页" id="cl1"
+                                                disabled="#{backingBeanScope.teachingPlanMainManagedBean.tableModel.isPrevDisabled}"
+                                                actionListener="#{backingBeanScope.teachingPlanMainManagedBean.commonRenderer.prevPage}"/>
+                                <af:spacer width="10" height="10" id="s1"/>
+                                <af:commandLink text="后一页" id="cl2"
+                                                disabled="#{backingBeanScope.teachingPlanMainManagedBean.tableModel.isNextDisabled}"
+                                                actionListener="#{backingBeanScope.teachingPlanMainManagedBean.commonRenderer.nextPage}"/>
+                                <af:spacer width="10" height="10" id="s3"/>
+                                <af:selectOneChoice valueChangeListener="#{backingBeanScope.teachingPlanMainManagedBean.commonRenderer.goPageIndex}"
+                                                    id="soc1" simple="true" autoSubmit="true" shortDesc=" "
+                                                    value="#{backingBeanScope.teachingPlanMainManagedBean.tableModel.currItem.value}">
+                                    <f:selectItems value="#{backingBeanScope.teachingPlanMainManagedBean.tableModel.pageSelectItems}"
+                                                   id="si1"/>
+                                </af:selectOneChoice>
+                                <af:spacer width="10" height="10" id="s8"/>
+                                <af:commandImageLink id="cl3" icon="/resources/images/shuaxin.gif" shortDesc="刷新"
+                                                     actionListener="#{backingBeanScope.teachingPlanMainManagedBean.refreshActionListener}"/>
+                            </af:panelGroupLayout>
+                        </f:facet>
+                        <f:facet name="end">
+                            <af:panelGroupLayout layout="horizontal" id="pgl7"
+                                                 inlineStyle="margin-right:40px;padding-top:3px;">
+                                <af:forEach items="#{backingBeanScope.teachingPlanMainManagedBean.commonRenderer.statusMapList}"
+                                            var="status">
+                                    <af:panelGroupLayout layout="horizontal" id="pgl13"
+                                                         styleClass="#{pageFlowScope.currStatusCode == status['statusCode'] ? 'statusSelected' : 'none'}">
+                                        <af:commandLink text="#{status['displayName']}" id="cl5"
+                                                        visible="#{pageFlowScope.deleteFlag != 'Y'}"
+                                                        actionListener="#{backingBeanScope.teachingPlanMainManagedBean.commonRenderer.switchStatusActionListener}">
+                                            <f:attribute name="statusCode" value="#{status['statusCode']}"/>
+                                            <af:setPropertyListener to="#{pageFlowScope.currStatusCode}" type="action"
+                                                                    from="#{status['statusCode']}"/>
+                                        </af:commandLink>
+                                    </af:panelGroupLayout>
+                                    <af:spacer width="5" height="10" id="s11"/>
+                                </af:forEach>
+                                <af:selectOneChoice value="#{pageFlowScope.currStatusCode}" autoSubmit="true" id="soc2"
+                                                    shortDesc=" " visible="#{pageFlowScope.deleteFlag != 'Y'}"
+                                                    rendered="false"
+                                                    valueChangeListener="#{backingBeanScope.teachingPlanMainManagedBean.commonRenderer.statusValueChangeListener}">
+                                    <f:selectItems value="#{backingBeanScope.teachingPlanMainManagedBean.commonRenderer.statusList}"
+                                                   id="si2"/>
+                                </af:selectOneChoice>
+                            </af:panelGroupLayout>
+                        </f:facet>
+                    </af:panelStretchLayout>
+                </f:facet>
+            </af:panelStretchLayout>
+        </f:facet>
+        <f:facet name="start"/>
+        <f:facet name="end"/>
+    </af:panelStretchLayout>
+</ui:composition>

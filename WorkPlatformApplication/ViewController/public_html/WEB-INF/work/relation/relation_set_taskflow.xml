@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="relation_set_taskflow">
+    <default-activity>init4RelationSet</default-activity>
+    <data-control-scope>
+      <isolated/>
+    </data-control-scope>
+    <input-parameter-definition id="__1">
+      <name>docId</name>
+      <value>#{pageFlowScope.docId}</value>
+      <class>oracle.jbo.domain.Number</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__7">
+      <name>libCode</name>
+      <value>#{pageFlowScope.libCode}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <managed-bean id="__6">
+      <managed-bean-name>relationSetManagedBean</managed-bean-name>
+      <managed-bean-class>com.zypg.cms.work.view.bean.RelationSetManagedBean</managed-bean-class>
+      <managed-bean-scope>backingBean</managed-bean-scope>
+    </managed-bean>
+    <view id="relationSet">
+      <page>/work/relation/inline/relationSet.jsf</page>
+    </view>
+    <method-call id="init4RelationSet">
+      <method>#{backingBeanScope.relationSetManagedBean.init4RelationSet}</method>
+      <outcome>
+        <fixed-outcome>toRelationSet</fixed-outcome>
+      </outcome>
+    </method-call>
+    <task-flow-return id="taskFlowReturn1">
+      <outcome>
+        <name>taskFlowReturn1</name>
+      </outcome>
+    </task-flow-return>
+    <control-flow-rule id="__2">
+      <from-activity-id>init4RelationSet</from-activity-id>
+      <control-flow-case id="__3">
+        <from-outcome>toRelationSet</from-outcome>
+        <to-activity-id>relationSet</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__4">
+      <from-activity-id>relationSet</from-activity-id>
+      <control-flow-case id="__5">
+        <from-outcome>toReturn</from-outcome>
+        <to-activity-id>taskFlowReturn1</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+  </task-flow-definition>
+</adfc-config>

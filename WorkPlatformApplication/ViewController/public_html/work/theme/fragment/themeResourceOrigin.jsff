@@ -1,0 +1,276 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core">
+    <af:panelStretchLayout id="psl1" styleClass="AFStretchWidth" topHeight="auto">
+        <f:facet name="top">
+            <af:switcher id="s9" facetName="#{pageFlowScope.libCode}">
+                <f:facet name="BOOK">
+                    <af:query id="qryId1" headerText="" disclosed="true" modeChangeVisible="false"
+                              inlineStyle="border:1px solid #e7e7e7;margin:2px;"
+                              value="#{bindings.findBookOriginVCQuery.queryDescriptor}"
+                              model="#{bindings.findBookOriginVCQuery.queryModel}"
+                              queryListener="#{bindings.findBookOriginVCQuery.processQuery}"
+                              queryOperationListener="#{bindings.findBookOriginVCQuery.processQueryOperation}"
+                              resultComponentId="::t1" maxColumns="3" rows="3" saveQueryMode="hidden"/>
+                </f:facet>
+                <f:facet name="ILLUSTRATION">
+                    <af:query id="q5" headerText="" disclosed="true" modeChangeVisible="false"
+                              inlineStyle="border:1px solid #e7e7e7;margin:2px;"
+                              value="#{bindings.findIllustrationOriginVCQuery.queryDescriptor}"
+                              model="#{bindings.findIllustrationOriginVCQuery.queryModel}"
+                              queryListener="#{bindings.findIllustrationOriginVCQuery.processQuery}"
+                              queryOperationListener="#{bindings.findIllustrationOriginVCQuery.processQueryOperation}"
+                              resultComponentId="::t2" maxColumns="3" rows="3" saveQueryMode="hidden"/>
+                </f:facet>
+                <f:facet name="MATERIAL_FIGURE">
+                    <af:query id="q6" headerText="" disclosed="true" modeChangeVisible="false"
+                              inlineStyle="border:1px solid #e7e7e7;margin:2px;"
+                              value="#{bindings.findMaterialFigureOriginVCQuery.queryDescriptor}"
+                              model="#{bindings.findMaterialFigureOriginVCQuery.queryModel}"
+                              queryListener="#{bindings.findMaterialFigureOriginVCQuery.processQuery}"
+                              queryOperationListener="#{bindings.findMaterialFigureOriginVCQuery.processQueryOperation}"
+                              resultComponentId="::t2" maxColumns="3" rows="2" saveQueryMode="hidden"/>
+                </f:facet>
+                <f:facet name="PHOTOGRAPHY_FIGURE">
+                    <af:query id="q7" headerText="" disclosed="true" modeChangeVisible="false"
+                              inlineStyle="border:1px solid #e7e7e7;margin:2px;"
+                              value="#{bindings.findPhotographyFigureVCQuery.queryDescriptor}"
+                              model="#{bindings.findPhotographyFigureVCQuery.queryModel}"
+                              queryListener="#{bindings.findPhotographyFigureVCQuery.processQuery}"
+                              queryOperationListener="#{bindings.findPhotographyFigureVCQuery.processQueryOperation}"
+                              resultComponentId="::t2" maxColumns="3" rows="2" saveQueryMode="hidden"/>
+                </f:facet>
+                <f:facet name="AUDIO">
+                    <af:query id="q1" headerText="" disclosed="true" modeChangeVisible="false"
+                              inlineStyle="border:1px solid #e7e7e7;margin:2px;"
+                              value="#{bindings.findAudioOriginVCQuery.queryDescriptor}"
+                              model="#{bindings.findAudioOriginVCQuery.queryModel}"
+                              queryListener="#{bindings.findAudioOriginVCQuery.processQuery}"
+                              queryOperationListener="#{bindings.findAudioOriginVCQuery.processQueryOperation}"
+                              resultComponentId="::t1" maxColumns="3" rows="2" saveQueryMode="hidden"/>
+                </f:facet>
+                <f:facet name="VIDEO">
+                    <af:query id="q4" headerText="" disclosed="true" modeChangeVisible="false"
+                              inlineStyle="border:1px solid #e7e7e7;margin:2px;"
+                              value="#{bindings.findVideoOriginVCQuery.queryDescriptor}"
+                              model="#{bindings.findVideoOriginVCQuery.queryModel}"
+                              queryListener="#{bindings.findVideoOriginVCQuery.processQuery}"
+                              queryOperationListener="#{bindings.findVideoOriginVCQuery.processQueryOperation}"
+                              resultComponentId="::t1" maxColumns="3" rows="2" saveQueryMode="hidden"/>
+                </f:facet>
+                <f:facet name="ENCYCLOPEDIAS_ENTRY">
+                    <af:query id="q2" headerText="" disclosed="true" modeChangeVisible="false"
+                              inlineStyle="border:1px solid #e7e7e7;margin:2px;"
+                              value="#{bindings.findEncyclopediasEntryOriginVCQuery.queryDescriptor}"
+                              model="#{bindings.findEncyclopediasEntryOriginVCQuery.queryModel}"
+                              queryListener="#{bindings.findEncyclopediasEntryOriginVCQuery.processQuery}"
+                              queryOperationListener="#{bindings.findEncyclopediasEntryOriginVCQuery.processQueryOperation}"
+                              resultComponentId="::t1" maxColumns="3" rows="2" saveQueryMode="hidden"/>
+                </f:facet>
+                <f:facet name="WORKS_ENTRY">
+                    <af:query id="q3" headerText="" disclosed="true" modeChangeVisible="false"
+                              inlineStyle="border:1px solid #e7e7e7;margin:2px;"
+                              value="#{bindings.findWorksEntryOriginVCQuery.queryDescriptor}"
+                              model="#{bindings.findWorksEntryOriginVCQuery.queryModel}"
+                              queryListener="#{bindings.findWorksEntryOriginVCQuery.processQuery}"
+                              queryOperationListener="#{bindings.findWorksEntryOriginVCQuery.processQueryOperation}"
+                              resultComponentId="::t1" maxColumns="3" rows="2" saveQueryMode="hidden"/>
+                </f:facet>
+                <f:facet name="TEACHING_PLAN">
+                    <af:query id="q8" headerText="" disclosed="true" modeChangeVisible="false"
+                              inlineStyle="border:1px solid #e7e7e7;margin:2px;"
+                              value="#{bindings.findOriginTeachingPlanVCQuery.queryDescriptor}"
+                              model="#{bindings.findOriginTeachingPlanVCQuery.queryModel}"
+                              queryListener="#{bindings.findOriginTeachingPlanVCQuery.processQuery}"
+                              queryOperationListener="#{bindings.findOriginTeachingPlanVCQuery.processQueryOperation}"
+                              resultComponentId="::t1" maxColumns="3" rows="2" saveQueryMode="hidden"/>
+                </f:facet>
+                <f:facet name="COURSEWARE">
+                    <af:query id="q9" headerText="" disclosed="true" modeChangeVisible="false"
+                              inlineStyle="border:1px solid #e7e7e7;margin:2px;"
+                              value="#{bindings.findOriginCoursewareVCQuery.queryDescriptor}"
+                              model="#{bindings.findOriginCoursewareVCQuery.queryModel}"
+                              queryListener="#{bindings.findOriginCoursewareVCQuery.processQuery}"
+                              queryOperationListener="#{bindings.findOriginCoursewareVCQuery.processQueryOperation}"
+                              resultComponentId="::t1" maxColumns="3" rows="2" saveQueryMode="hidden"/>
+                </f:facet>
+                <f:facet name="PERIODICAL">
+                    <af:query id="q10" headerText="" disclosed="true" modeChangeVisible="false"
+                              inlineStyle="border:1px solid #e7e7e7;margin:2px;"
+                              value="#{bindings.findOriginPeriodicalVCQuery.queryDescriptor}"
+                              model="#{bindings.findOriginPeriodicalVCQuery.queryModel}"
+                              queryListener="#{bindings.findOriginPeriodicalVCQuery.processQuery}"
+                              queryOperationListener="#{bindings.findOriginPeriodicalVCQuery.processQueryOperation}"
+                              resultComponentId="::t1" maxColumns="3" rows="3" saveQueryMode="hidden"/>
+                </f:facet>
+                <f:facet name="NEWSPAPER">
+                    <af:query id="q11" headerText="" disclosed="true" modeChangeVisible="false"
+                              inlineStyle="border:1px solid #e7e7e7;margin:2px;"
+                              value="#{bindings.findOriginNewspaperVCQuery.queryDescriptor}"
+                              model="#{bindings.findOriginNewspaperVCQuery.queryModel}"
+                              queryListener="#{bindings.findOriginNewspaperVCQuery.processQuery}"
+                              queryOperationListener="#{bindings.findOriginNewspaperVCQuery.processQueryOperation}"
+                              resultComponentId="::t1" maxColumns="3" rows="3" saveQueryMode="hidden"/>
+                </f:facet>
+                <f:facet name="ELEC_PROD">
+                    <af:query id="q12" headerText="" disclosed="true" modeChangeVisible="false"
+                              inlineStyle="border:1px solid #e7e7e7;margin:2px;"
+                              value="#{bindings.findOriginElecProdVCQuery.queryDescriptor}"
+                              model="#{bindings.findOriginElecProdVCQuery.queryModel}"
+                              queryListener="#{bindings.findOriginElecProdVCQuery.processQuery}"
+                              queryOperationListener="#{bindings.findOriginElecProdVCQuery.processQueryOperation}"
+                              resultComponentId="::t1" maxColumns="3" rows="2" saveQueryMode="hidden"/>
+                </f:facet>
+            </af:switcher>
+        </f:facet>
+        <f:facet name="bottom"/>
+        <f:facet name="center">
+            <af:panelStretchLayout id="psl2" styleClass="AFStretchWidth" topHeight="30px">
+                <f:facet name="top">
+                    <af:panelStretchLayout id="psl3" inlineStyle="height:26px;background:#E7ECE5;margin-top:3px;"
+                                           topHeight="0px" bottomHeight="0px" startWidth="auto"
+                                           styleClass="AFStretchWidth"
+                                           partialTriggers="qryId1 q5 q6 q7 q1 q4 q2 q3 q8 q9 q10 q11 q12 t1 i1:cl1 i1:cl2 i1:soc1"
+                                           endWidth="auto">
+                        <f:facet name="top"/>
+                        <f:facet name="center"/>
+                        <f:facet name="start">
+                            <af:iterator value="#{backingBeanScope.themeResourceOriginManagedBean.tableModel.model}"
+                                         id="i1" rows="1">
+                                <af:panelGroupLayout id="pgl6" layout="horizontal"
+                                                     inlineStyle="padding-top:3px;padding-left:15px;">
+                                    <af:outputText value="总个数:#{backingBeanScope.themeResourceOriginManagedBean.tableModel.rowCount}"
+                                                   id="ot5"/>
+                                    <af:spacer width="10" height="10" id="s2"/>
+                                    <af:outputText value="每页[20]" id="ot3"/>
+                                    <af:spacer width="10" height="10" id="s7"/>
+                                    <af:outputText value="页数[" id="ot9"/>
+                                    <af:outputText value="#{backingBeanScope.themeResourceOriginManagedBean.tableModel.currPageIndex}"
+                                                   id="ot6" inlineStyle="color:Red;"/>
+                                    <af:outputText value="/#{backingBeanScope.themeResourceOriginManagedBean.tableModel.totalPageCount}]"
+                                                   id="ot4"/>
+                                    <af:spacer width="10" height="10" id="s6"/>
+                                    <af:commandLink text="前一页" id="cl1"
+                                                    disabled="#{backingBeanScope.themeResourceOriginManagedBean.tableModel.isPrevDisabled}"
+                                                    actionListener="#{backingBeanScope.themeResourceOriginManagedBean.prevPage}"/>
+                                    <af:spacer width="10" height="10" id="s8"/>
+                                    <af:commandLink text="后一页" id="cl2"
+                                                    disabled="#{backingBeanScope.themeResourceOriginManagedBean.tableModel.isNextDisabled}"
+                                                    actionListener="#{backingBeanScope.themeResourceOriginManagedBean.nextPage}"/>
+                                    <af:spacer width="10" height="10" id="s3"/>
+                                    <af:selectOneChoice valueChangeListener="#{backingBeanScope.themeResourceOriginManagedBean.goPageIndex}"
+                                                        id="soc1" simple="true" autoSubmit="true" shortDesc=" "
+                                                        value="#{backingBeanScope.themeResourceOriginManagedBean.tableModel.currItem.value}">
+                                        <f:selectItems value="#{backingBeanScope.themeResourceOriginManagedBean.tableModel.pageSelectItems}"
+                                                       id="si1"/>
+                                    </af:selectOneChoice>
+                                    <af:spacer width="10" height="10" id="s5"/>
+                                    <af:commandImageLink id="cl3" icon="/resources/images/shuaxin.gif"
+                                                         shortDesc="刷新"
+                                                         actionListener="#{backingBeanScope.themeResourceOriginManagedBean.refreshActionListener}"/>
+                                </af:panelGroupLayout>
+                            </af:iterator>
+                        </f:facet>
+                        <f:facet name="end">
+                            <af:panelGroupLayout id="pgl1" layout="horizontal"
+                                                 inlineStyle="margin-right:20px;margin-top:2px;">
+                                <af:commandButton text="#{pageFlowScope.goPage=='addResource' ?  '添加至资源':'添加至主题'}"
+                                                  id="cb1" styleClass="min-btn blue-min-btn" partialSubmit="true"
+                                                  actionListener="#{backingBeanScope.themeResourceOriginManagedBean.addToThemeActionListener}"/>
+                            </af:panelGroupLayout>
+                        </f:facet>
+                    </af:panelStretchLayout>
+                </f:facet>
+                <f:facet name="center">
+                    <af:switcher id="s10" facetName="#{pageFlowScope.displayModel}" defaultFacet="TABLE">
+                        <f:facet name="TABLE">
+                            <af:table var="row" rowBandingInterval="0" id="t1" varStatus="vs"
+                                      styleClass="AFStretchWidth custom_table_striped" contentDelivery="immediate"
+                                      inlineStyle="margin-top:2px;" autoHeightRows="0" emptyText=""
+                                      sortListener="#{backingBeanScope.themeResourceOriginManagedBean.commonRenderer.tableSortListener}"
+                                      value="#{backingBeanScope.themeResourceOriginManagedBean.tableModel.model}"
+                                      binding="#{backingBeanScope.themeResourceOriginManagedBean.table}"
+                                      partialTriggers="sbc1 ::i1:soc1 ::i1:cl2 ::i1:cl1" rowSelection="multiple"
+                                      columnStretching="last">
+                                <af:column width="25" align="center" id="c19" frozen="true">
+                                    <f:facet name="header">
+                                        <af:selectBooleanCheckbox label="Label 1" simple="true" id="sbc1"
+                                                                  value="#{pageFlowScope.allselect}" autoSubmit="true"
+                                                                  binding="#{backingBeanScope.themeResourceOriginManagedBean.selectAllCheckBox}">
+                                            <af:clientListener type="valueChange" method="clickSelectAllCheckBox"/>
+                                            <af:serverListener type="SelectAllCheckBoxClickEvent"
+                                                               method="#{backingBeanScope.themeResourceOriginManagedBean.selectAllAction}"/>
+                                        </af:selectBooleanCheckbox>
+                                    </f:facet>
+                                    <af:selectBooleanCheckbox id="sbc2" value="#{row['checked']}"
+                                                              label="#{row['checked']}" autoSubmit="true" simple="true">
+                                        <af:clientListener type="valueChange" method="clickSelectOneCheckBox"/>
+                                        <af:serverListener type="SelectCheckBoxClickEvent"
+                                                           method="#{backingBeanScope.themeResourceOriginManagedBean.selectOneAction}"/>
+                                        <af:clientAttribute name="docId" value="#{row['docId']}"/>
+                                    </af:selectBooleanCheckbox>
+                                </af:column>
+                                <af:column sortable="false" headerText="序号" id="c1" width="50">
+                                    <af:outputText value="#{vs.index+1}" id="ot18"/>
+                                </af:column>
+                                <af:forEach items="#{backingBeanScope.themeResourceOriginManagedBean.tableModel.allColumns}"
+                                            var="column">
+                                    <af:column sortable="false" headerText="#{column['label']}" id="c2"
+                                               width="#{column['width']}" rendered="#{column['width'] != null}">
+                                        <af:outputText value="#{row[column['QName']]}" id="ot7"/>
+                                    </af:column>
+                                </af:forEach>
+                            </af:table>
+                        </f:facet>
+                        <f:facet name="COVER">
+                            <af:table var="row" rowBandingInterval="0" id="t2" varStatus="vs"
+                                      styleClass="AFStretchWidth custom_table_striped" contentDelivery="immediate"
+                                      inlineStyle="margin-top:2px;" autoHeightRows="0" emptyText=""
+                                      sortListener="#{backingBeanScope.themeResourceOriginManagedBean.commonRenderer.tableSortListener}"
+                                      value="#{backingBeanScope.themeResourceOriginManagedBean.tableModel.model}"
+                                      partialTriggers="sbc3 ::i1:soc1 ::i1:cl2 ::i1:cl1" rowSelection="multiple"
+                                      columnStretching="last"
+                                      binding="#{backingBeanScope.themeResourceOriginManagedBean.coverTable}">
+                                <af:column width="25" align="center" id="c3" frozen="true">
+                                    <f:facet name="header">
+                                        <af:selectBooleanCheckbox label="Label 1" simple="true" id="sbc3"
+                                                                  value="#{pageFlowScope.allselect}" autoSubmit="true"
+                                                                  binding="#{backingBeanScope.themeResourceOriginManagedBean.selectAllCoverCheckBox}">
+                                            <af:clientListener type="valueChange" method="clickSelectAllCheckBox"/>
+                                            <af:serverListener type="SelectAllCheckBoxClickEvent"
+                                                               method="#{backingBeanScope.themeResourceOriginManagedBean.selectAllAction}"/>
+                                        </af:selectBooleanCheckbox>
+                                    </f:facet>
+                                    <af:selectBooleanCheckbox id="sbc4" value="#{row['checked']}"
+                                                              label="#{row['checked']}" autoSubmit="true" simple="true">
+                                        <af:clientListener type="valueChange" method="clickSelectOneCheckBox"/>
+                                        <af:serverListener type="SelectCheckBoxClickEvent"
+                                                           method="#{backingBeanScope.themeResourceOriginManagedBean.selectOneAction}"/>
+                                        <af:clientAttribute name="docId" value="#{row['docId']}"/>
+                                    </af:selectBooleanCheckbox>
+                                </af:column>
+                                <af:column sortable="false" headerText="序号" id="c4" width="50">
+                                    <af:outputText value="#{vs.index+1}" id="ot2"/>
+                                </af:column>
+                                <af:forEach items="#{backingBeanScope.themeResourceOriginManagedBean.tableModel.allColumns}"
+                                            var="column">
+                                    <af:column sortable="false" headerText="#{column['label']}" id="c5"
+                                               width="#{column['width']}"
+                                               rendered="#{column['width'] != null and column['QName'] == 'thumbnailUrl'}">
+                                        <af:image source="#{row[column['QName']]}" id="i2"
+                                                  inlineStyle="width:100px;height:80px;"/>
+                                    </af:column>
+                                    <af:column sortable="false" headerText="#{column['label']}" id="c6"
+                                               width="#{column['width']}"
+                                               rendered="#{column['width'] != null and column['QName'] != 'thumbnailUrl'}">
+                                        <af:outputText value="#{row[column['QName']]}" id="ot8"/>
+                                    </af:column>
+                                </af:forEach>
+                            </af:table>
+                        </f:facet>
+                    </af:switcher>
+                </f:facet>
+            </af:panelStretchLayout>
+        </f:facet>
+    </af:panelStretchLayout>
+</ui:composition>

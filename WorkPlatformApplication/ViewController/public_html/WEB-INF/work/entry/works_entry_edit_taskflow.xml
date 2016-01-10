@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="works_entry_edit_taskflow">
+    <default-activity>preEditWorksEntry</default-activity>
+    <input-parameter-definition id="__7">
+      <name>mode</name>
+      <value>#{pageFlowScope.mode}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__8">
+      <name>docId</name>
+      <value>#{pageFlowScope.docId}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__9">
+      <name>batchFlag</name>
+      <value>#{pageFlowScope.batchFlag}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__10">
+      <name>compCode</name>
+      <value>#{pageFlowScope.compCode}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__11">
+      <name>libCode</name>
+      <value>#{pageFlowScope.libCode}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__14">
+      <name>libTypeCode</name>
+      <value>#{pageFlowScope.libTypeCode}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <return-value-definition id="__17">
+      <name>comfirmFlag</name>
+      <value>#{pageFlowScope.comfirmFlag}</value>
+      <class>java.lang.String</class>
+    </return-value-definition>
+    <managed-bean id="__6">
+      <managed-bean-name>WorksEntryEditManagedBean</managed-bean-name>
+      <managed-bean-class>com.zypg.cms.work.view.bean.WorksEntryEditManagedBean</managed-bean-class>
+      <managed-bean-scope>backingBean</managed-bean-scope>
+    </managed-bean>
+    <task-flow-return id="taskFlowReturn1">
+      <outcome>
+        <name>taskFlowReturn1</name>
+      </outcome>
+    </task-flow-return>
+    <view id="worksEntryEdit">
+      <page>/work/entry/inline/worksEntryEdit.jsf</page>
+    </view>
+    <method-call id="preEditWorksEntry">
+      <method>#{backingBeanScope.WorksEntryEditManagedBean.preEditWorksEntry}</method>
+      <outcome>
+        <fixed-outcome>init</fixed-outcome>
+      </outcome>
+    </method-call>
+    <control-flow-rule id="__12">
+      <from-activity-id>worksEntryEdit</from-activity-id>
+      <control-flow-case id="__13">
+        <from-outcome>toReturn</from-outcome>
+        <to-activity-id>taskFlowReturn1</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__4">
+      <from-activity-id>preEditWorksEntry</from-activity-id>
+      <control-flow-case id="__5">
+        <from-outcome>init</from-outcome>
+        <to-activity-id>worksEntryEdit</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+  </task-flow-definition>
+</adfc-config>

@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="authorEditPageDef"
+                Package="work.copyright.inline">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="Root.CopyrightAM.CmsAuthorCopyrightTVO" DataControl="WorkAMDataControl" RangeSize="25"
+              id="CmsAuthorCopyrightTVOIterator"/>
+    <iterator Binds="Root.CopyrightAM.Lookup4Area" DataControl="WorkAMDataControl" RangeSize="25"
+              id="Lookup4AreaIterator"/>
+    <iterator Binds="Root.CopyrightAM.Lookup4Lang" DataControl="WorkAMDataControl" RangeSize="25"
+              id="Lookup4LangIterator"/>
+    <iterator Binds="Root.CopyrightAM.CmsBookEdit4CopyrightVO" DataControl="WorkAMDataControl" RangeSize="25"
+              id="CmsBookEdit4CopyrightVOIterator"/>
+    <taskFlow id="category_pick_taskflow1"
+              taskFlowId="/WEB-INF/common/category_pick_taskflow.xml#category_pick_taskflow" activation="deferred"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+    <taskFlow id="extend_attr_taskflow1" taskFlowId="/WEB-INF/common/extend_attr_taskflow.xml#extend_attr_taskflow"
+              activation="deferred" xmlns="http://xmlns.oracle.com/adf/controller/binding">
+      <parameters>
+        <parameter id="compCode" value="#{pageFlowScope.compCode}"/>
+        <parameter id="libCode" value="#{pageFlowScope.libCode}"/>
+        <parameter id="docId" value="#{pageFlowScope.docId}"/>
+        <parameter id="operType" value="#{pageFlowScope.mode}"/>
+        <parameter id="labelWidth" value="100"/>
+      </parameters>
+    </taskFlow>
+  </executables>
+  <bindings>
+    <list IterBinding="CmsAuthorCopyrightTVOIterator" StaticList="false" Uses="LOV_NetworkCopyrightFlag"
+          id="NetworkCopyrightFlag" DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <list IterBinding="CmsAuthorCopyrightTVOIterator" StaticList="false" Uses="LOV_ExclusiveCopyrightFlag"
+          id="ExclusiveCopyrightFlag" DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <list IterBinding="CmsAuthorCopyrightTVOIterator" StaticList="false" Uses="LOV_ElectronicCopyrightFlag"
+          id="ElectronicCopyrightFlag" DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <list IterBinding="CmsAuthorCopyrightTVOIterator" StaticList="false" Uses="LOV_BroadcastCopyrightFlag"
+          id="BroadcastCopyrightFlag" DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <list IterBinding="CmsAuthorCopyrightTVOIterator" StaticList="false" Uses="LOV_AudioVideoCopyrightFlag"
+          id="AudioVideoCopyrightFlag" DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <attributeValues IterBinding="CmsAuthorCopyrightTVOIterator" id="AudioVideoEndTime">
+      <AttrNames>
+        <Item Value="AudioVideoEndTime"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsAuthorCopyrightTVOIterator" id="AudioVideoStartTime">
+      <AttrNames>
+        <Item Value="AudioVideoStartTime"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="CmsAuthorCopyrightTVOIterator" StaticList="false" Uses="LOV_AuthorizedArea" id="AuthorizedArea"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <list IterBinding="CmsAuthorCopyrightTVOIterator" StaticList="false" Uses="LOV_AuthorizedLang" id="AuthorizedLang"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <attributeValues IterBinding="CmsAuthorCopyrightTVOIterator" id="BroadcastEndTime">
+      <AttrNames>
+        <Item Value="BroadcastEndTime"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsAuthorCopyrightTVOIterator" id="BroadcastStartTime">
+      <AttrNames>
+        <Item Value="BroadcastStartTime"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsAuthorCopyrightTVOIterator" id="CopyrightAgent">
+      <AttrNames>
+        <Item Value="CopyrightAgent"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsAuthorCopyrightTVOIterator" id="CopyrightCip">
+      <AttrNames>
+        <Item Value="CopyrightCip"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="CmsAuthorCopyrightTVOIterator" StaticList="false" Uses="LOV_CopyrightForm" id="CopyrightForm"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <attributeValues IterBinding="CmsAuthorCopyrightTVOIterator" id="CopyrightOwner">
+      <AttrNames>
+        <Item Value="CopyrightOwner"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsAuthorCopyrightTVOIterator" id="CopyrightRegistrationNumber">
+      <AttrNames>
+        <Item Value="CopyrightRegistrationNumber"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsAuthorCopyrightTVOIterator" id="DigitalRoyalty">
+      <AttrNames>
+        <Item Value="DigitalRoyalty"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsAuthorCopyrightTVOIterator" id="EBookMinPrice">
+      <AttrNames>
+        <Item Value="EBookMinPrice"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsAuthorCopyrightTVOIterator" id="EBookPrice">
+      <AttrNames>
+        <Item Value="EBookPrice"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsAuthorCopyrightTVOIterator" id="ElectronicEndTime">
+      <AttrNames>
+        <Item Value="ElectronicEndTime"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsAuthorCopyrightTVOIterator" id="ElectronicStartTime">
+      <AttrNames>
+        <Item Value="ElectronicStartTime"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsAuthorCopyrightTVOIterator" id="NetworkEndTime">
+      <AttrNames>
+        <Item Value="NetworkEndTime"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsAuthorCopyrightTVOIterator" id="NetworkStartTime">
+      <AttrNames>
+        <Item Value="NetworkStartTime"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsAuthorCopyrightTVOIterator" id="ObjectVersionNumber">
+      <AttrNames>
+        <Item Value="ObjectVersionNumber"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsAuthorCopyrightTVOIterator" id="OverseasRoyalty">
+      <AttrNames>
+        <Item Value="OverseasRoyalty"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="CmsAuthorCopyrightTVOIterator" StaticList="false" Uses="LOV_PaperMediumCopyrightFlag"
+          id="PaperMediumCopyrightFlag" DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <attributeValues IterBinding="CmsAuthorCopyrightTVOIterator" id="PaperMediumEndTime">
+      <AttrNames>
+        <Item Value="PaperMediumEndTime"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsAuthorCopyrightTVOIterator" id="PaperMediumStartTime">
+      <AttrNames>
+        <Item Value="PaperMediumStartTime"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="CmsAuthorCopyrightTVOIterator" StaticList="false" Uses="LOV_PartProbationFlag"
+          id="PartProbationFlag" DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <list IterBinding="CmsAuthorCopyrightTVOIterator" StaticList="false" Uses="LOV_PublicCopyrightFlag"
+          id="PublicCopyrightFlag" DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <attributeValues IterBinding="CmsAuthorCopyrightTVOIterator" id="Remarks">
+      <AttrNames>
+        <Item Value="Remarks"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsAuthorCopyrightTVOIterator" id="Translator">
+      <AttrNames>
+        <Item Value="Translator"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="Lookup4AreaIterator" ListOperMode="multiSelect" ListIter="Lookup4AreaIterator" id="Lookup4Area"
+          SelectItemValueMode="ListObject">
+      <AttrNames>
+        <Item Value="Meaning"/>
+      </AttrNames>
+      <ListDisplayAttrNames>
+        <Item Value="Meaning"/>
+      </ListDisplayAttrNames>
+    </list>
+    <list IterBinding="Lookup4LangIterator" ListOperMode="multiSelect" ListIter="Lookup4LangIterator" id="Lookup4Lang"
+          SelectItemValueMode="ListObject">
+      <AttrNames>
+        <Item Value="Meaning"/>
+      </AttrNames>
+      <ListDisplayAttrNames>
+        <Item Value="Meaning"/>
+      </ListDisplayAttrNames>
+    </list>
+    <listOfValues StaticList="false" IterBinding="CmsBookEdit4CopyrightVOIterator" Uses="LOV_BookName" id="BookName"/>
+    <attributeValues IterBinding="CmsBookEdit4CopyrightVOIterator" id="Author">
+      <AttrNames>
+        <Item Value="Author"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsBookEdit4CopyrightVOIterator" id="PublishingHouse">
+      <AttrNames>
+        <Item Value="PublishingHouse"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsBookEdit4CopyrightVOIterator" id="Price">
+      <AttrNames>
+        <Item Value="Price"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsBookEdit4CopyrightVOIterator" id="Edition">
+      <AttrNames>
+        <Item Value="Edition"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsBookEdit4CopyrightVOIterator" id="Isbn">
+      <AttrNames>
+        <Item Value="Isbn"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsBookEdit4CopyrightVOIterator" id="CompCode">
+      <AttrNames>
+        <Item Value="CompCode"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsBookEdit4CopyrightVOIterator" id="PubTime">
+      <AttrNames>
+        <Item Value="PubTime"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsBookEdit4CopyrightVOIterator" id="Impression">
+      <AttrNames>
+        <Item Value="Impression"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsBookEdit4CopyrightVOIterator" id="CategoryName">
+      <AttrNames>
+        <Item Value="CategoryName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsBookEdit4CopyrightVOIterator" id="CategoryId">
+      <AttrNames>
+        <Item Value="CategoryId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsBookEdit4CopyrightVOIterator" id="BookName1">
+      <AttrNames>
+        <Item Value="BookName"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="CmsAuthorCopyrightTVOIterator" StaticList="false" Uses="LOV_OverseasCopyrightFlag"
+          id="OverseasCopyrightFlag" DTSupportsMRU="true" SelectItemValueMode="ListObject"/>
+    <list IterBinding="CmsAuthorCopyrightTVOIterator" StaticList="false" Uses="LOV_Attribute1" id="Attribute1"
+          DTSupportsMRU="true" SelectItemValueMode="ListObject"/>
+    <list IterBinding="CmsAuthorCopyrightTVOIterator" StaticList="false" Uses="LOV_Attribute2" id="Attribute2"
+          DTSupportsMRU="true" SelectItemValueMode="ListObject"/>
+  </bindings>
+</pageDefinition>

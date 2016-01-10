@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="coursewareEditPageDef"
+                Package="work.courseware.inline">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="Root.CoursewareAM.CmsCoursewareTVO" DataControl="WorkAMDataControl" RangeSize="25"
+              id="CmsCoursewareTVOIterator"/>
+    <taskFlow id="extend_attr_taskflow1" taskFlowId="/WEB-INF/common/extend_attr_taskflow.xml#extend_attr_taskflow"
+              activation="deferred" xmlns="http://xmlns.oracle.com/adf/controller/binding">
+      <parameters>
+        <parameter id="compCode" value="#{pageFlowScope.compCode}"/>
+        <parameter id="libCode" value="#{pageFlowScope.libCode}"/>
+        <parameter id="docId" value="#{pageFlowScope.docId}"/>
+        <parameter id="operType" value="#{pageFlowScope.mode}"/>
+        <parameter id="labelWidth" value="100"/>
+      </parameters>
+    </taskFlow>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="CmsCoursewareTVOIterator" id="TeachingMaterialIsbn">
+      <AttrNames>
+        <Item Value="TeachingMaterialIsbn"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsCoursewareTVOIterator" id="TeachingMaterialAuthor">
+      <AttrNames>
+        <Item Value="TeachingMaterialAuthor"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsCoursewareTVOIterator" id="TeachingMaterialEditor">
+      <AttrNames>
+        <Item Value="TeachingMaterialEditor"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsCoursewareTVOIterator" id="TeachingMaterialSeriesName">
+      <AttrNames>
+        <Item Value="TeachingMaterialSeriesName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsCoursewareTVOIterator" id="TeachingMaterialType">
+      <AttrNames>
+        <Item Value="TeachingMaterialType"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsCoursewareTVOIterator" id="CompCode">
+      <AttrNames>
+        <Item Value="CompCode"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsCoursewareTVOIterator" id="CoursewareName">
+      <AttrNames>
+        <Item Value="CoursewareName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsCoursewareTVOIterator" id="Keyword">
+      <AttrNames>
+        <Item Value="Keyword"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsCoursewareTVOIterator" id="Remarks">
+      <AttrNames>
+        <Item Value="Remarks"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="CmsCoursewareTVOIterator" StaticList="false" Uses="LOV_CoursewareType" id="CoursewareType"
+          DTSupportsMRU="true" SelectItemValueMode="ListObject"/>
+    <list IterBinding="CmsCoursewareTVOIterator" StaticList="false" Uses="LOV_CopyrightFlag" id="CopyrightFlag"
+          DTSupportsMRU="true" SelectItemValueMode="ListObject"/>
+    <listOfValues StaticList="false" IterBinding="CmsCoursewareTVOIterator" Uses="LOV_TeachingMaterialName"
+                  id="TeachingMaterialName"/>
+  </bindings>
+</pageDefinition>

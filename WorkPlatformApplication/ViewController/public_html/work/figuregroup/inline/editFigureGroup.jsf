@@ -1,0 +1,122 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <af:document title="组标引" id="d1">
+        <af:messages id="m1"/>
+        <af:form id="f1">
+            <af:panelStretchLayout id="psl1" topHeight="auto" inlineStyle="background:#DEF1FD;" bottomHeight="35px">
+                <f:facet name="top"></f:facet>
+                <f:facet name="center">
+                    <af:panelGroupLayout id="pgl2" layout="scroll">
+                        <af:panelGroupLayout id="pgl9" layout="vertical" halign="center"
+                                             inlineStyle="background: url('./resources/images/import_item_top_bg.gif') repeat-x;height: 40px;"
+                                             styleClass="AFStretchWidth">
+                            <af:spacer width="10" height="3" id="s11"/>
+                            <af:panelGroupLayout id="pgl10" layout="horizontal" halign="center">
+                                <af:image source="/resources/images/write_item_icon.png" id="i3" partialTriggers="d2"/>
+                                <af:spacer width="15" height="10" id="s12"/>
+                                <af:outputText value="组图标引" id="ot1"
+                                               inlineStyle="font-size:16px; font-weight:bold;color:white;"/>
+                            </af:panelGroupLayout>
+                        </af:panelGroupLayout>
+                        <af:panelGroupLayout id="pgl1" layout="horizontal"
+                                             binding="#{backingBeanScope.editFigureGroupManagedBean.panelGroupLayout}">
+                            <af:spacer width="20" height="10" id="s1"/>
+                            <af:image id="i1" visible="#{pageFlowScope.selectedThumbnailUrl != null}"
+                                      source="#{pageFlowScope.selectedThumbnailUrl}"/>
+                            <af:image id="i2" visible="#{pageFlowScope.selectedThumbnailUrl == null}"
+                                      source="#{backingBeanScope.editFigureGroupManagedBean.indexFigureThumbnailUrl}"/>
+                            <af:spacer width="20" height="10" id="s3"/>
+                            <af:panelFormLayout id="pfl1">
+                                <af:panelLabelAndMessage label="#{bindings.GroupId.hints.label}"
+                                                         id="plam1">
+                                    <af:outputText value="#{bindings.GroupId.inputValue}"
+                                                   shortDesc="#{bindings.GroupId.hints.tooltip}" id="ot4">
+                                        <af:convertNumber groupingUsed="false" pattern="#{bindings.GroupId.format}"/>
+                                    </af:outputText>
+                                </af:panelLabelAndMessage>
+                                <af:panelLabelAndMessage label="#{bindings.DiplayName.hints.label}" id="plam2">
+                                    <af:outputText value="#{bindings.DiplayName.inputValue}"
+                                                   shortDesc="#{bindings.DiplayName.hints.tooltip}" id="ot2"/>
+                                </af:panelLabelAndMessage>
+                                <af:panelLabelAndMessage label="#{bindings.CreationDateDisplay.hints.label}" id="plam3">
+                                    <af:outputText value="#{bindings.CreationDateDisplay.inputValue}"
+                                                   shortDesc="#{bindings.CreationDateDisplay.hints.tooltip}" id="ot3"/>
+                                </af:panelLabelAndMessage>
+                                <af:inputText value="#{bindings.GroupName.inputValue}"
+                                              label="#{bindings.GroupName.hints.label}"
+                                              required="#{bindings.GroupName.hints.mandatory}"
+                                              contentStyle="width:450px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                              columns="#{bindings.GroupName.hints.displayWidth}"
+                                              maximumLength="#{bindings.GroupName.hints.precision}"
+                                              shortDesc="#{bindings.GroupName.hints.tooltip}" id="it1">
+                                    <f:validator binding="#{bindings.GroupName.validator}"/>
+                                </af:inputText>
+                                <af:inputText value="#{bindings.GroupDesc.inputValue}"
+                                              label="#{bindings.GroupDesc.hints.label}"
+                                              required="#{bindings.GroupDesc.hints.mandatory}"
+                                              styleClass="multipleRowsInputtext" rows="3"
+                                              contentStyle="width:450px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                              columns="#{bindings.GroupDesc.hints.displayWidth}"
+                                              maximumLength="#{bindings.GroupDesc.hints.precision}"
+                                              shortDesc="#{bindings.GroupDesc.hints.tooltip}" id="it2">
+                                    <f:validator binding="#{bindings.GroupDesc.validator}"/>
+                                </af:inputText>
+                            </af:panelFormLayout>
+                        </af:panelGroupLayout>
+                        <af:panelGridLayout id="pgl12" inlineStyle="border:1px solid #C8B9AE;">
+                            <af:forEach items="#{backingBeanScope.editFigureGroupManagedBean.figureList}"
+                                        var="figureList">
+                                <af:gridRow marginTop="5px" marginBottom="5px" height="auto" id="gr2">
+                                    <af:forEach items="#{figureList}" var="figure">
+                                        <af:gridCell marginStart="5px" marginEnd="5px" id="gc1" halign="center"
+                                                     valign="middle">
+                                            <af:panelGroupLayout id="pgl13" layout="vertical" halign="center"
+                                                                 inlineStyle="border:1px solid #C8B9AE;width:158px;"
+                                                                 visible="#{figure['docId'] == null ? 'false' : 'true'}">
+                                                <af:panelGroupLayout id="pgl11" layout="horizontal" halign="center"
+                                                                     inlineStyle="height:125px;">
+                                                    <af:commandImageLink id="cil1" partialSubmit="true"
+                                                                         clientComponent="true"
+                                                                         icon="#{figure['thumbnailUrl']== null ? '/resources/images/cover.jpg' : figure['thumbnailUrl']}"
+                                                                         actionListener="#{backingBeanScope.editFigureGroupManagedBean.setFigureToIndexActionListener}">
+                                                        <f:attribute name="docId" value="#{figure['docId']}"/>
+                                                        <f:attribute name="thumbnailUrl"
+                                                                     value="#{figure['thumbnailUrl']}"/>
+                                                    </af:commandImageLink>
+                                                </af:panelGroupLayout>
+                                                <af:outputText value="[#{figure['docId']}]" id="ot5"/>
+                                            </af:panelGroupLayout>
+                                        </af:gridCell>
+                                    </af:forEach>
+                                </af:gridRow>
+                            </af:forEach>
+                        </af:panelGridLayout>
+                    </af:panelGroupLayout>
+                </f:facet>
+                <f:facet name="start"/>
+                <f:facet name="end"/>
+                <f:facet name="bottom">
+                    <af:panelGroupLayout id="pgl4" layout="vertical" halign="center" inlineStyle="margin-top:5px;">
+                        <af:panelGroupLayout id="pgl3" layout="horizontal">
+                            <af:commandButton text="确定" id="cb1" action="toReturn" styleClass="popup-btn"
+                                              actionListener="#{backingBeanScope.editFigureGroupManagedBean.saveActionListener}"/>
+                            <af:spacer width="10" height="10" id="s2"/>
+                            <af:commandButton text="取消" id="cb2" action="toReturn" styleClass="popup-btn"
+                                              immediate="true"
+                                              actionListener="#{backingBeanScope.editFigureGroupManagedBean.cancelActionListener}"/>
+                        </af:panelGroupLayout>
+                        <af:popup childCreation="deferred" autoCancel="disabled" id="p1"
+                                  binding="#{backingBeanScope.editFigureGroupManagedBean.indexFigureSetPopup}">
+                            <af:dialog id="d2" title="提示"
+                                       dialogListener="#{backingBeanScope.editFigureGroupManagedBean.setFigureToIndexDialogListener}">
+                                <f:facet name="buttonBar"/>
+                                <af:outputText value="是否将当前图设置为索引图？" id="ot6"/>
+                            </af:dialog>
+                        </af:popup>
+                    </af:panelGroupLayout>
+                </f:facet>
+            </af:panelStretchLayout>
+        </af:form>
+    </af:document>
+</f:view>

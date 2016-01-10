@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE AppModule SYSTEM "jbo_03_01.dtd">
+<!---->
+<AppModule
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="DocBookAM"
+  Version="11.1.2.64.36"
+  ClearCacheOnRollback="true"
+  ComponentClass="com.zypg.cms.work.model.am.DocBookAMImpl"
+  ComponentInterface="com.zypg.cms.work.model.am.common.DocBookAM"
+  ClientProxyName="com.zypg.cms.work.model.am.client.DocBookAMClient">
+  <DesignTime>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="com.zypg.cms.work.model.am.DocBookAM_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <ViewUsage
+    Name="CmsDocBookMonitorVO"
+    ViewObjectName="com.zypg.cms.work.model.viewobject.docbook.query.CmsDocBookMonitorVO">
+    <ViewCriteriaUsage
+      Name="findMonitorByJobIdVC"
+      FullName="com.zypg.cms.work.model.viewobject.docbook.query.CmsDocBookMonitorVO.findMonitorByJobIdVC"/>
+  </ViewUsage>
+  <ViewUsage
+    Name="CmsDocBookJobTVO"
+    ViewObjectName="com.zypg.cms.work.model.viewobject.docbook.CmsDocBookJobTVO"/>
+  <ViewUsage
+    Name="CmsDocBookJobVO"
+    ViewObjectName="com.zypg.cms.work.model.viewobject.docbook.query.CmsDocBookJobVO">
+    <ViewCriteriaUsage
+      Name="findDocBookJobVC"
+      FullName="com.zypg.cms.work.model.viewobject.docbook.query.CmsDocBookJobVO.findDocBookJobVC"/>
+  </ViewUsage>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="com.zypg.cms.work.model.ModelBundle"/>
+  </ResourceBundle>
+  <ClientInterface>
+    <Method
+      Name="findMonitorByJobId"
+      MethodName="findMonitorByJobId">
+      <Return
+        Type="void"/>
+      <Parameter
+        Name="jobId"
+        Type="oracle.jbo.domain.Number"/>
+    </Method>
+  </ClientInterface>
+</AppModule>

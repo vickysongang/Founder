@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="categoryPickPageDef"
+                Package="work.common.fragment">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="CmsCategoryVO4Pick" RangeSize="25" DataControl="WorkAMDataControl"
+              id="CmsCategoryVO4PickIterator"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="CmsCategoryVO4PickIterator" id="CmsCategoryVO4Pick">
+      <nodeDefinition DefName="com.zypg.cms.work.model.viewobject.common.query.CmsCategoryVO" Name="CmsCategoryVO4Pick0">
+        <AttrNames>
+          <Item Value="CategoryId"/>
+          <Item Value="CategoryName"/>
+        </AttrNames>
+        <Accessors>
+          <Item Value="CategoryIdCmsCategoryVO"/>
+        </Accessors>
+      </nodeDefinition>
+    </tree>
+  </bindings>
+</pageDefinition>

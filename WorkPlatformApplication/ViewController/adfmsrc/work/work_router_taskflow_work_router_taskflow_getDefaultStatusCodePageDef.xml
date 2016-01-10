@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36"
+                id="work_router_taskflow_work_router_taskflow_getDefaultStatusCodePageDef" Package="work"
+                SkipValidation="true">
+  <parameters/>
+  <executables/>
+  <bindings>
+    <methodAction id="getDefaultStatusCode" RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="getDefaultStatusCode" IsViewObjectMethod="false" DataControl="WorkAMDataControl"
+                  InstanceName="data.WorkAMDataControl.dataProvider"
+                  ReturnName="data.WorkAMDataControl.methodResults.getDefaultStatusCode_WorkAMDataControl_dataProvider_getDefaultStatusCode_result">
+      <NamedData NDName="compCode" NDValue="#{pageFlowScope.compCode}" NDType="java.lang.String"/>
+      <NamedData NDName="libCode" NDValue="#{pageFlowScope.libCode}" NDType="java.lang.String"/>
+      <NamedData NDName="categoryId" NDValue="#{pageFlowScope.categoryId}" NDType="oracle.jbo.domain.Number"/>
+      <NamedData NDName="categoryGroupType" NDValue="#{pageFlowScope.categoryGroupType}" NDType="java.lang.String"/>
+      <NamedData NDName="deleteFlag" NDValue="#{pageFlowScope.deleteFlag}" NDType="java.lang.String"/>
+    </methodAction>
+  </bindings>
+</pageDefinition>

@@ -1,0 +1,103 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <af:document id="d1">
+        <f:facet name="metaContainer">
+            <af:resource type="javascript" source="/resources/js/work_platform.js"/>
+        </f:facet>
+        <af:form id="f1">
+            <af:panelStretchLayout id="psl1"
+                                   inlineStyle="background:url('../resources/images/import_item_bg.gif') repeat-x">
+                <f:facet name="bottom"/>
+                <f:facet name="center">
+                    <af:panelGroupLayout id="pgl3" layout="scroll" halign="center">
+                        <table style="width:490px" align="center" cellspacing="10" xmlns="http://www.w3.org/1999/xhtml">
+                            <tr>
+                                <td width="90px" align="right">
+                                    <af:outputText value="作者版权信息EXCEL导入样例：" id="ot2" inlineStyle="color:#cd6500;"/>
+                                </td>
+                                <td align="left">
+                                    <af:panelGroupLayout id="pgl5" layout="horizontal">
+                                        <af:outputText value="作者版权信息EXCEL导入样例.xls" id="ot5" inlineStyle="color:#cd6500;"/>
+                                        <af:spacer width="40" height="10" id="s3"/>
+                                        <af:commandButton text="下载" id="cb1" styleClass="min-btn blue-min-btn">
+                                            <af:fileDownloadActionListener contentType="application/vnd.ms-excel;charset=utf-8"
+                                                                           filename="作者版权信息EXCEL导入样例.xls"
+                                                                           method="#{backingBeanScope.copyrightAuthorImportManagedBean.authorTempleteDownLoadListener}"/>
+                                        </af:commandButton>
+                                    </af:panelGroupLayout>
+                                </td>
+                            </tr>
+                             
+                            <tr>
+                                <td align="right">
+                                    <af:outputText value="Excel文件：" id="ot3"/>
+                                </td>
+                                <td align="left">
+                                    <af:inputFile label="浏览" simple="true" id="if1"/>
+                                </td>
+                            </tr>
+                                <tr>
+                                <td align="right">
+                                    <af:outputText value="重复记录：" id="ot4"/>
+                                </td>
+                                <td align="left">
+                                    <af:selectOneRadio label="Label 1" simple="true" id="sor1" layout="horizontal"
+                                                       value="cover">
+                                        <af:selectItem label="覆盖" value="cover" id="si1"/>
+                                        <af:selectItem label="忽略" value="ignore" id="si2"/>
+                                    </af:selectOneRadio>
+                                </td>
+                            </tr>
+                             
+                            <tr align="center">
+                                <td colspan="2">
+                                    <af:panelGroupLayout id="pgl4" layout="horizontal">
+                                        <af:commandButton text="导入" id="cb2" styleClass="min-btn blue-min-btn">
+                                            <af:clientAttribute name="docFormId" value="f1"/>
+                                            <af:clientAttribute name="inputFileId" value="if1"/>
+                                            <af:clientAttribute name="format" value="xls"/>
+                                            <af:clientAttribute name="maxSize" value="5000000"/>
+                                            <af:clientAttribute name="serverListenerName"
+                                                                value="uploadFileServerListener"/>
+                                            <af:clientListener method="uploadFileListener" type="action"/>
+                                            <af:serverListener type="uploadFileServerListener"
+                                                               method="#{backingBeanScope.copyrightAuthorImportManagedBean.uploadFileServerListener}"/>
+                                        </af:commandButton>
+                                        <af:spacer width="25" height="10" id="s2"/>
+                                        <af:commandButton text="取消" id="cb3" immediate="true" action="toReturn"
+                                                          styleClass="min-btn blue-min-btn"/>
+                                    </af:panelGroupLayout>
+                                </td>
+                            </tr>
+                             
+                            <tr>
+                                <td colspan="2" align="left">
+                                    <span class="prompt" style="color:#636363;">提示：
+                                        <br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1. 如果文件数据量太大，处理时间会比较长，建议在10000条以内数据<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.
+                                                                                                                                   仅支持文件格式为xls，Excel2003以上版本请另存为Excel
+                                                                                                                                   97-2003
+                                                                                                                                   兼容格式</span>
+                                </td>
+                            </tr>
+                        </table>
+                    </af:panelGroupLayout>
+                </f:facet>
+                <f:facet name="start"/>
+                <f:facet name="end"/>
+                <f:facet name="top">
+                    <af:panelGroupLayout id="pgl1" layout="vertical" halign="center"
+                                         inlineStyle="background: url('../resources/images/import_item_top_bg.gif') repeat-x; height: 40px;"
+                                         styleClass="AFStretchWidth">
+                        <af:spacer width="15" height="3" id="s1"/>
+                        <af:panelGroupLayout id="pgl2" layout="horizontal" halign="center">
+                            <af:image source="/resources/images/write_item_icon.png" id="i1"/>
+                            <af:spacer width="15" height="10" id="s4"/>
+                            <af:outputText value="导入作者版权信息" id="ot1"
+                                           inlineStyle="font-size:20px; font-weight:900;color:white;"/>
+                        </af:panelGroupLayout>
+                    </af:panelGroupLayout>
+                </f:facet>
+            </af:panelStretchLayout>
+        </af:form>
+    </af:document>
+</f:view>

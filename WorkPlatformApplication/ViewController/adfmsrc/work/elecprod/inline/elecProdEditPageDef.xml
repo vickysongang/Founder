@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="elecProdEditPageDef"
+                Package="work.elecprod.inline">
+    <parameters/>
+    <executables>
+        <variableIterator id="variables"/>
+        <taskFlow id="category_pick_taskflow1"
+                  taskFlowId="/WEB-INF/common/category_pick_taskflow.xml#category_pick_taskflow" activation="deferred"
+                  xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+        <iterator id="CmsElecProdTVOIterator" Binds="Root.ElecProdAM.CmsElecProdTVO" DataControl="WorkAMDataControl"
+                  RangeSize="25"/>
+        <iterator id="CmsDocCategoryRelTVOIterator" Binds="Root.ElecProdAM.CmsDocCategoryRelTVO"
+                  DataControl="WorkAMDataControl" RangeSize="25"/>
+        <iterator Binds="Root.ElecProdAM.CmsElecProdEditVO" DataControl="WorkAMDataControl" RangeSize="25"
+                  id="CmsElecProdEditVOIterator"/>
+        <taskFlow id="extend_attr_taskflow1" taskFlowId="/WEB-INF/common/extend_attr_taskflow.xml#extend_attr_taskflow"
+                  activation="deferred" xmlns="http://xmlns.oracle.com/adf/controller/binding">
+            <parameters>
+                <parameter id="compCode" value="#{pageFlowScope.compCode}"/>
+                <parameter id="libCode" value="#{pageFlowScope.libCode}"/>
+                <parameter id="docId" value="#{pageFlowScope.docId}"/>
+                <parameter id="operType" value="#{pageFlowScope.mode}"/>
+                <parameter id="labelWidth" value="100"/>
+            </parameters>
+        </taskFlow>
+    </executables>
+    <bindings>
+        <attributeValues IterBinding="CmsElecProdTVOIterator" id="ElecProdName">
+            <AttrNames>
+                <Item Value="ElecProdName"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsElecProdTVOIterator" id="Isbn">
+            <AttrNames>
+                <Item Value="Isbn"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsElecProdTVOIterator" id="ItemCode">
+            <AttrNames>
+                <Item Value="ItemCode"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsElecProdTVOIterator" id="AssortBook">
+            <AttrNames>
+                <Item Value="AssortBook"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsElecProdTVOIterator" id="PublishingHouse">
+            <AttrNames>
+                <Item Value="PublishingHouse"/>
+            </AttrNames>
+        </attributeValues>
+        <list IterBinding="CmsElecProdTVOIterator" StaticList="false" Uses="LOV_Lang" id="Lang" DTSupportsMRU="false"
+              SelectItemValueMode="ListObject"/>
+        <list IterBinding="CmsElecProdTVOIterator" StaticList="false" Uses="LOV_CarrierType" id="CarrierType"
+              DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+        <attributeValues IterBinding="CmsElecProdTVOIterator" id="TimeLength">
+            <AttrNames>
+                <Item Value="TimeLength"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsElecProdTVOIterator" id="Amount">
+            <AttrNames>
+                <Item Value="Amount"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsElecProdTVOIterator" id="DiskDesign">
+            <AttrNames>
+                <Item Value="DiskDesign"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsElecProdTVOIterator" id="Editor">
+            <AttrNames>
+                <Item Value="Editor"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsElecProdTVOIterator" id="TextEditor">
+            <AttrNames>
+                <Item Value="TextEditor"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsElecProdTVOIterator" id="Producer">
+            <AttrNames>
+                <Item Value="Producer"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsElecProdTVOIterator" id="PubTime">
+            <AttrNames>
+                <Item Value="PubTime"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsElecProdTVOIterator" id="CompCode">
+            <AttrNames>
+                <Item Value="CompCode"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsElecProdTVOIterator" id="Keyword">
+            <AttrNames>
+                <Item Value="Keyword"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsElecProdTVOIterator" id="ContentDesc">
+            <AttrNames>
+                <Item Value="ContentDesc"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsElecProdTVOIterator" id="Remarks">
+            <AttrNames>
+                <Item Value="Remarks"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsElecProdTVOIterator" id="CategoryName">
+            <AttrNames>
+                <Item Value="CategoryName"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsDocCategoryRelTVOIterator" id="CategoryId">
+            <AttrNames>
+                <Item Value="CategoryId"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsElecProdEditVOIterator" id="AssortBook1">
+            <AttrNames>
+                <Item Value="AssortBook"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsElecProdEditVOIterator" id="PublishingHouse1">
+            <AttrNames>
+                <Item Value="PublishingHouse"/>
+            </AttrNames>
+        </attributeValues>
+        <list IterBinding="CmsElecProdEditVOIterator" StaticList="false" Uses="LOV_Lang" id="Lang1"
+              DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+        <list IterBinding="CmsElecProdEditVOIterator" StaticList="false" Uses="LOV_CarrierType" id="CarrierType1"
+              DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+        <attributeValues IterBinding="CmsElecProdEditVOIterator" id="Amount1">
+            <AttrNames>
+                <Item Value="Amount"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsElecProdEditVOIterator" id="DiskDesign1">
+            <AttrNames>
+                <Item Value="DiskDesign"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsElecProdEditVOIterator" id="Editor1">
+            <AttrNames>
+                <Item Value="Editor"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsElecProdEditVOIterator" id="TextEditor1">
+            <AttrNames>
+                <Item Value="TextEditor"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsElecProdEditVOIterator" id="Producer1">
+            <AttrNames>
+                <Item Value="Producer"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsElecProdEditVOIterator" id="PubTime1">
+            <AttrNames>
+                <Item Value="PubTime"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsElecProdEditVOIterator" id="CompCode1">
+            <AttrNames>
+                <Item Value="CompCode"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsElecProdEditVOIterator" id="Keyword1">
+            <AttrNames>
+                <Item Value="Keyword"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsElecProdEditVOIterator" id="ContentDesc1">
+            <AttrNames>
+                <Item Value="ContentDesc"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsElecProdEditVOIterator" id="Remarks1">
+            <AttrNames>
+                <Item Value="Remarks"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsElecProdEditVOIterator" id="CategoryName1">
+            <AttrNames>
+                <Item Value="CategoryName"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CmsElecProdEditVOIterator" id="CategoryId1">
+            <AttrNames>
+                <Item Value="CategoryId"/>
+            </AttrNames>
+        </attributeValues>
+    </bindings>
+</pageDefinition>

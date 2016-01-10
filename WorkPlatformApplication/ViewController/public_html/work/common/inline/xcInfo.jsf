@@ -1,0 +1,121 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <af:document title="宣传" id="d1">
+        <af:messages id="m1"/>
+        <af:form id="f1">
+            <af:panelStretchLayout id="psl1" styleClass="AFStretchWidth" bottomHeight="30px">
+                <f:facet name="bottom">
+                    <af:panelGroupLayout id="pgl1" layout="vertical" halign="center">
+                        <af:panelGroupLayout id="pgl3" layout="horizontal">
+                            <af:commandButton text="增加" id="cb1" styleClass="popup-btn" partialSubmit="true"
+                                              actionListener="#{backingBeanScope.xcInfoManagedBean.addXcInfoActionListener}"/>
+                            <af:spacer width="10" height="10" id="s1"/>
+                            <af:commandButton text="关闭" id="cb2" action="toReturn" immediate="true"
+                                              styleClass="popup-btn"
+                                              actionListener="#{backingBeanScope.xcInfoManagedBean.cancelActionListener}"/>
+                        </af:panelGroupLayout>
+                        <af:popup childCreation="deferred" autoCancel="disabled" id="p2" contentDelivery="lazyUncached"
+                                  binding="#{backingBeanScope.xcInfoManagedBean.deleteXcInfoPopup}">
+                            <af:dialog id="d3" title="提示"
+                                       dialogListener="#{backingBeanScope.xcInfoManagedBean.deleteXcInfoDialogListener}">
+                                <f:facet name="buttonBar"/>
+                                <af:panelGroupLayout id="pgl2" layout="horizontal">
+                                    <af:outputText value="您确定要删除该宣传信息吗？" id="ot3"/>
+                                </af:panelGroupLayout>
+                            </af:dialog>
+                        </af:popup>
+                        <af:popup childCreation="deferred" autoCancel="disabled" id="p1" contentDelivery="lazyUncached"
+                                  binding="#{backingBeanScope.xcInfoManagedBean.xcInfoPopup}"
+                                  popupCanceledListener="#{backingBeanScope.xcInfoManagedBean.popupCancelListener}">
+                            <af:dialog id="d2" title="宣传信息"
+                                       dialogListener="#{backingBeanScope.xcInfoManagedBean.operXcInfoDialogListener}">
+                                <f:facet name="buttonBar"/>
+                                <af:panelFormLayout id="pfl1">
+                                    <f:facet name="footer"/>
+                                    <af:inputText value="#{bindings.Title.inputValue}"
+                                                  label="#{bindings.Title.hints.label}" required="true"
+                                                  columns="#{bindings.Title.hints.displayWidth}"
+                                                  contentStyle="width:500px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  maximumLength="#{bindings.Title.hints.precision}"
+                                                  shortDesc="#{bindings.Title.hints.tooltip}" id="it1">
+                                        <f:validator binding="#{bindings.Title.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.Author.inputValue}"
+                                                  label="#{bindings.Author.hints.label}"
+                                                  required="#{bindings.Author.hints.mandatory}"
+                                                  contentStyle="width:500px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  columns="#{bindings.Author.hints.displayWidth}"
+                                                  maximumLength="#{bindings.Author.hints.precision}"
+                                                  shortDesc="#{bindings.Author.hints.tooltip}" id="it2">
+                                        <f:validator binding="#{bindings.Author.validator}"/>
+                                    </af:inputText>
+                                    <af:richTextEditor value="#{bindings.Content.inputValue}"
+                                                       contentStyle="width:500px;"
+                                                       label="#{bindings.Content.hints.label}" rows="10"
+                                                       required="#{bindings.Content.hints.mandatory}"
+                                                       columns="#{bindings.Content.hints.displayWidth}"
+                                                       shortDesc="#{bindings.Content.hints.tooltip}" id="rte1"
+                                                       converter="oracle.genericDomain"></af:richTextEditor>
+                                </af:panelFormLayout>
+                            </af:dialog>
+                        </af:popup>
+                    </af:panelGroupLayout>
+                </f:facet>
+                <f:facet name="center">
+                    <af:panelTabbed id="pt1" partialTriggers="d2 d3">
+                        <af:iterator id="i1" value="#{bindings.CmsXcInfoTypeVO.collectionModel}" var="row">
+                            <af:showDetailItem text="#{row.Meaning}" id="sdi1"
+                                               rendered="#{pageFlowScope.libCode == 'BOOK' or (pageFlowScope.libCode == 'ELEC_PROD' and row.LookupValueCode =='EDITOR_CHOICE')}"
+                                               disclosed="#{pageFlowScope.xcInfoType == row.LookupValueCode}"
+                                               disclosureListener="#{backingBeanScope.xcInfoManagedBean.tabDisclosureListener}">
+                                <af:setPropertyListener from="#{row.LookupValueCode}" to="#{pageFlowScope.xcInfoType}"
+                                                        type="disclosure"/>
+                                <af:table value="#{bindings.CmsXcInfoTVO4Query.collectionModel}" var="row"
+                                          rows="#{bindings.CmsXcInfoTVO4Query.rangeSize}" styleClass="AFStretchWidth"
+                                          autoHeightRows="0" contentDelivery="immediate" columnStretching="multiple"
+                                          emptyText="#{bindings.CmsXcInfoTVO4Query.viewable ? '' : 'Access Denied.'}"
+                                          fetchSize="#{bindings.CmsXcInfoTVO4Query.rangeSize}" rowBandingInterval="0"
+                                          selectedRowKeys="#{bindings.CmsXcInfoTVO4Query.collectionModel.selectedRow}"
+                                          selectionListener="#{bindings.CmsXcInfoTVO4Query.collectionModel.makeCurrent}"
+                                          rowSelection="single" id="t1"
+                                          binding="#{backingBeanScope.xcInfoManagedBean.xcInfoTable}">
+                                    <af:column sortProperty="#{bindings.CmsXcInfoTVO4Query.hints.Title.name}"
+                                               sortable="false" width="30%"
+                                               headerText="#{bindings.CmsXcInfoTVO4Query.hints.Title.label}" id="c1">
+                                        <af:outputText value="#{row.Title}"
+                                                       shortDesc="#{bindings.CmsXcInfoTVO4Query.hints.Title.tooltip}"
+                                                       id="ot1"/>
+                                    </af:column>
+                                    <af:column sortProperty="#{bindings.CmsXcInfoTVO4Query.hints.Author.name}"
+                                               sortable="false" width="30%"
+                                               headerText="#{bindings.CmsXcInfoTVO4Query.hints.Author.label}" id="c2">
+                                        <af:outputText value="#{row.Author}"
+                                                       shortDesc="#{bindings.CmsXcInfoTVO4Query.hints.Author.tooltip}"
+                                                       id="ot2"/>
+                                    </af:column>
+                                    <af:column headerText="操作" id="c19" width="40%">
+                                        <af:panelGroupLayout id="pgl11" layout="horizontal" halign="center">
+                                            <af:commandLink text="编辑" id="cl1" partialSubmit="true"
+                                                            actionListener="#{backingBeanScope.xcInfoManagedBean.updateXcInfoActionListener}">
+                                                <f:attribute name="xcInfoId" value="#{row.XcInfoId}"/>
+                                            </af:commandLink>
+                                            <af:spacer width="10" height="30" id="s2"/>
+                                            <af:commandLink text="删除" id="cl2" partialSubmit="true"
+                                                            actionListener="#{backingBeanScope.xcInfoManagedBean.deleteXcInfoActionListener}">
+                                                <f:attribute name="xcInfoId" value="#{row.XcInfoId}"/>
+                                            </af:commandLink>
+                                        </af:panelGroupLayout>
+                                    </af:column>
+                                </af:table>
+                            </af:showDetailItem>
+                        </af:iterator>
+                    </af:panelTabbed>
+                </f:facet>
+                <f:facet name="start"/>
+                <f:facet name="end"/>
+                <f:facet name="top"/>
+            </af:panelStretchLayout>
+        </af:form>
+    </af:document>
+</f:view>

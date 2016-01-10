@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36"
+                id="courseware_edit_taskflow_courseware_edit_taskflow_preEditCoursewarePageDef"
+                Package="work.courseware" SkipValidation="true">
+  <parameters/>
+  <executables/>
+  <bindings>
+    <action id="preEditCourseware" RequiresUpdateModel="true" Action="invokeMethod" MethodName="preEditCourseware"
+            IsViewObjectMethod="false" DataControl="WorkAMDataControl"
+            InstanceName="data.WorkAMDataControl.dataProvider.Root.CoursewareAM">
+      <NamedData NDName="mode" NDValue="#{pageFlowScope.mode}" NDType="java.lang.String"/>
+      <NamedData NDName="coursewareId" NDValue="#{pageFlowScope.coursewareId}" NDType="oracle.jbo.domain.Number"/>
+      <NamedData NDName="docId" NDValue="#{pageFlowScope.docId}" NDType="oracle.jbo.domain.Number"/>
+    </action>
+  </bindings>
+</pageDefinition>

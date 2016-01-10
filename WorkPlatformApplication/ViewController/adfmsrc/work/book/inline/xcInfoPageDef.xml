@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="xcInfoPageDef"
+                Package="work.book.inline">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="Root.BookAM.CmsXcInfoTVO4Query" DataControl="WorkAMDataControl" RangeSize="10"
+              id="CmsXcInfoTVO4QueryIterator" Refresh="always" ChangeEventPolicy="none"/>
+    <iterator Binds="Root.BookAM.CmsXcInfoTVO" DataControl="WorkAMDataControl" RangeSize="25"
+              id="CmsXcInfoTVOIterator"/>
+    <iterator Binds="Root.BookAM.CmsXcInfoTypeVO" DataControl="WorkAMDataControl" RangeSize="25"
+              id="CmsXcInfoTypeVOIterator"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="CmsXcInfoTVO4QueryIterator" id="CmsXcInfoTVO4Query">
+      <nodeDefinition DefName="com.zypg.cms.work.model.viewobject.book.CmsXcInfoTVO" Name="CmsXcInfoTVO4Query0">
+        <AttrNames>
+          <Item Value="XcInfoId"/>
+          <Item Value="Attribute1"/>
+          <Item Value="Attribute10"/>
+          <Item Value="Attribute11"/>
+          <Item Value="Attribute12"/>
+          <Item Value="Attribute13"/>
+          <Item Value="Attribute14"/>
+          <Item Value="Attribute15"/>
+          <Item Value="Attribute2"/>
+          <Item Value="Attribute3"/>
+          <Item Value="Attribute4"/>
+          <Item Value="Attribute5"/>
+          <Item Value="Attribute6"/>
+          <Item Value="Attribute7"/>
+          <Item Value="Attribute8"/>
+          <Item Value="Attribute9"/>
+          <Item Value="Author"/>
+          <Item Value="Content"/>
+          <Item Value="CreatedBy"/>
+          <Item Value="CreationDate"/>
+          <Item Value="DocId"/>
+          <Item Value="LastUpdateDate"/>
+          <Item Value="LastUpdatedBy"/>
+          <Item Value="ObjectVersionNumber"/>
+          <Item Value="Title"/>
+          <Item Value="Type"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="CmsXcInfoTVOIterator" id="Title">
+      <AttrNames>
+        <Item Value="Title"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsXcInfoTVOIterator" id="Author">
+      <AttrNames>
+        <Item Value="Author"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsXcInfoTVOIterator" id="Content">
+      <AttrNames>
+        <Item Value="Content"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="CmsXcInfoTypeVOIterator" id="CmsXcInfoTypeVO">
+      <nodeDefinition DefName="com.zypg.cms.work.model.viewobject.book.query.CmsXcInfoTypeVO" Name="CmsXcInfoTypeVO0">
+        <AttrNames>
+          <Item Value="LookupTypeCode"/>
+          <Item Value="LookupValueCode"/>
+          <Item Value="LookupValueId"/>
+          <Item Value="Meaning"/>
+          <Item Value="Seq"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+  </bindings>
+</pageDefinition>

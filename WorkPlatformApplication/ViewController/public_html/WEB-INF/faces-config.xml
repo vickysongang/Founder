@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config version="2.0" xmlns="http://java.sun.com/xml/ns/javaee">
+    <application>
+        <default-render-kit-id>oracle.adf.rich</default-render-kit-id>
+    </application>
+    <lifecycle>
+        <phase-listener>com.zypg.cms.work.view.util.IECompatibilityPhaseListener</phase-listener>
+    </lifecycle>
+</faces-config>

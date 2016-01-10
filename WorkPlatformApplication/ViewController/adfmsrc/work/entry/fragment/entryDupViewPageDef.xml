@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="entryDupViewPageDef"
+                Package="work.entry.fragment">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="Root.EntryAM.CmsEntryDupMasterEntryVO" DataControl="WorkAMDataControl" RangeSize="25"
+              id="CmsEntryDupMasterEntryVOIterator"/>
+    <iterator Binds="Root.EntryAM.CmsEntryDupSlaveEntryVO" DataControl="WorkAMDataControl" RangeSize="25"
+              id="CmsEntryDupSlaveEntryVOIterator"/>
+    <iterator Binds="Root.EntryAM.CmsEntryDupSimilarVO" DataControl="WorkAMDataControl" RangeSize="25"
+              id="CmsEntryDupSimilarVOIterator"/>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="CmsEntryDupMasterEntryVOIterator" id="EntryName">
+      <AttrNames>
+        <Item Value="EntryName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsEntryDupMasterEntryVOIterator" id="Source">
+      <AttrNames>
+        <Item Value="Source"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsEntryDupMasterEntryVOIterator" id="EntryContent">
+      <AttrNames>
+        <Item Value="EntryContent"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsEntryDupSlaveEntryVOIterator" id="EntryName1">
+      <AttrNames>
+        <Item Value="EntryName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsEntryDupSlaveEntryVOIterator" id="Source1">
+      <AttrNames>
+        <Item Value="Source"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsEntryDupSlaveEntryVOIterator" id="EntryContent1">
+      <AttrNames>
+        <Item Value="EntryContent"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="CmsEntryDupSimilarVOIterator" id="CmsEntryDupSimilarVO">
+      <nodeDefinition DefName="com.zypg.cms.work.model.viewobject.entry.query.CmsEntryDupSimilarVO"
+                      Name="CmsEntryDupSimilarVO0">
+        <AttrNames>
+          <Item Value="ThisItemId"/>
+          <Item Value="ThisDocId"/>
+          <Item Value="ThatItemId"/>
+          <Item Value="ThatDocId"/>
+          <Item Value="ThatFillTime"/>
+          <Item Value="FillTimeDisplay"/>
+          <Item Value="EntryName"/>
+          <Item Value="Source"/>
+          <Item Value="Rate"/>
+          <Item Value="EntryContent"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="CmsEntryDupMasterEntryVOIterator" id="DocId">
+      <AttrNames>
+        <Item Value="DocId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsEntryDupMasterEntryVOIterator" id="Status">
+      <AttrNames>
+        <Item Value="Status"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsEntryDupSlaveEntryVOIterator" id="Status1">
+      <AttrNames>
+        <Item Value="Status"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsEntryDupSlaveEntryVOIterator" id="ThatDocId">
+      <AttrNames>
+        <Item Value="ThatDocId"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

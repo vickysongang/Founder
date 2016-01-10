@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="third_authorization_item_main_taskflow">
+    <default-activity>initItem</default-activity>
+    <input-parameter-definition id="__10">
+      <name>compCode</name>
+      <value>#{pageFlowScope.compCode}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__8">
+      <name>libCode</name>
+      <value>#{pageFlowScope.libCode}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <managed-bean id="__1">
+      <managed-bean-name>itemMainManagedBean</managed-bean-name>
+      <managed-bean-class>com.zypg.cms.work.view.bean.ItemMainManagedBean</managed-bean-class>
+      <managed-bean-scope>backingBean</managed-bean-scope>
+    </managed-bean>
+    <method-call id="initItem">
+      <method>#{backingBeanScope.itemMainManagedBean.initItem}</method>
+      <outcome>
+        <fixed-outcome>toMain</fixed-outcome>
+      </outcome>
+    </method-call>
+    <view id="itemMain">
+      <page>/work/copyright/fragment/itemMain.jsff</page>
+    </view>
+    <task-flow-call id="third_authorization_item_import_taskflow">
+      <task-flow-reference>
+        <document>/WEB-INF/work/copyright/third_authorization_item_import_taskflow.xml</document>
+        <id>third_authorization_item_import_taskflow</id>
+      </task-flow-reference>
+      <run-as-dialog>
+        <display-type>
+          <inline-popup/>
+        </display-type>
+      </run-as-dialog>
+    </task-flow-call>
+    <task-flow-call id="third_authorization_item_template_taskflow">
+      <task-flow-reference>
+        <document>/WEB-INF/work/copyright/third_authorization_item_template_taskflow.xml</document>
+        <id>third_authorization_item_template_taskflow</id>
+      </task-flow-reference>
+      <input-parameter id="__7">
+        <name>compCode</name>
+        <value>#{pageFlowScope.compCode}</value>
+      </input-parameter>
+      <run-as-dialog>
+        <display-type>
+          <inline-popup/>
+        </display-type>
+      </run-as-dialog>
+    </task-flow-call>
+    <control-flow-rule id="__2">
+      <from-activity-id>initItem</from-activity-id>
+      <control-flow-case id="__3">
+        <from-outcome>toMain</from-outcome>
+        <to-activity-id>itemMain</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__4">
+      <from-activity-id>itemMain</from-activity-id>
+      <control-flow-case id="__5">
+        <from-outcome>toImport</from-outcome>
+        <to-activity-id>third_authorization_item_import_taskflow</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__6">
+        <from-outcome>toTemplate</from-outcome>
+        <to-activity-id>third_authorization_item_template_taskflow</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

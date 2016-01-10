@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="relationSetPageDef"
+                Package="work.relation.inline">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="Root.RelationAM.CmsLibRetrivalVO" DataControl="WorkAMDataControl" RangeSize="25"
+              id="CmsLibRetrivalVOIterator"/>
+    <iterator Binds="Root.RelationAM.CmsDoc4RelationQueryVO" DataControl="WorkAMDataControl" RangeSize="25"
+              id="CmsDoc4RelationQueryVOIterator"/>
+    <iterator Binds="Root.RelationAM.CmsDocRetrivalVO" DataControl="WorkAMDataControl" RangeSize="25"
+              id="CmsDocRetrivalVOIterator"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="CmsLibRetrivalVOIterator" id="CmsLibRetrivalVO">
+      <nodeDefinition DefName="com.zypg.cms.work.model.viewobject.relation.query.CmsLibRetrivalVO"
+                      Name="CmsLibRetrivalVO0">
+        <AttrNames>
+          <Item Value="Checked"/>
+          <Item Value="LibCode"/>
+          <Item Value="LibName"/>
+          <Item Value="RetrivalFlag"/>
+          <Item Value="Seq"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="CmsDoc4RelationQueryVOIterator" id="Title">
+      <AttrNames>
+        <Item Value="Title"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsDoc4RelationQueryVOIterator" id="StartTime">
+      <AttrNames>
+        <Item Value="StartTime"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsDoc4RelationQueryVOIterator" id="EndTime">
+      <AttrNames>
+        <Item Value="EndTime"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsDoc4RelationQueryVOIterator" id="Keyword">
+      <AttrNames>
+        <Item Value="Keyword"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsDoc4RelationQueryVOIterator" id="Author">
+      <AttrNames>
+        <Item Value="Author"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsDoc4RelationQueryVOIterator" id="Isbn">
+      <AttrNames>
+        <Item Value="Isbn"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="CmsDocRetrivalVOIterator" id="CmsDocRetrivalVO">
+      <nodeDefinition DefName="com.zypg.cms.work.model.viewobject.relation.query.CmsDocRetrivalVO"
+                      Name="CmsDocRetrivalVO0">
+        <AttrNames>
+          <Item Value="Title"/>
+          <Item Value="CreationDate"/>
+          <Item Value="LibName"/>
+          <Item Value="Author"/>
+          <Item Value="DocId"/>
+          <Item Value="DocIdDisplay"/>
+          <Item Value="LibCode"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+  </bindings>
+</pageDefinition>

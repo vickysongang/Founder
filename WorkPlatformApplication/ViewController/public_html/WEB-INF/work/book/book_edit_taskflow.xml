@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+    <task-flow-definition id="book_edit_taskflow">
+        <default-activity>preEditBook</default-activity>
+        <data-control-scope>
+            <isolated/>
+        </data-control-scope>
+        <input-parameter-definition id="__1">
+            <name>docId</name>
+            <value>#{pageFlowScope.docId}</value>
+            <class>java.lang.String</class>
+        </input-parameter-definition>
+        <input-parameter-definition id="__2">
+            <name>mode</name>
+            <value>#{pageFlowScope.mode}</value>
+            <class>java.lang.String</class>
+        </input-parameter-definition>
+        <input-parameter-definition id="__8">
+            <name>batchFlag</name>
+            <value>#{pageFlowScope.batchFlag}</value>
+            <class>java.lang.String</class>
+        </input-parameter-definition>
+        <input-parameter-definition id="__9">
+            <name>compCode</name>
+            <value>#{pageFlowScope.compCode}</value>
+            <class>java.lang.String</class>
+        </input-parameter-definition>
+        <input-parameter-definition id="__10">
+            <name>libCode</name>
+            <value>#{pageFlowScope.libCode}</value>
+            <class>java.lang.String</class>
+        </input-parameter-definition>
+        <input-parameter-definition id="__11">
+            <name>libTypeCode</name>
+            <value>#{pageFlowScope.libTypeCode}</value>
+            <class>java.lang.String</class>
+        </input-parameter-definition>
+        <return-value-definition id="__12">
+            <name>comfirmFlag</name>
+            <value>#{pageFlowScope.comfirmFlag}</value>
+            <class>java.lang.String</class>
+        </return-value-definition>
+        <managed-bean id="__3">
+            <managed-bean-name>bookEditManagedBean</managed-bean-name>
+            <managed-bean-class>com.zypg.cms.work.view.bean.BookEditManagedBean</managed-bean-class>
+            <managed-bean-scope>backingBean</managed-bean-scope>
+        </managed-bean>
+        <view id="bookEdit">
+            <page>/work/book/inline/bookEdit.jsf</page>
+        </view>
+        <task-flow-return id="taskFlowReturn">
+            <outcome>
+                <name>taskFlowReturn</name>
+            </outcome>
+        </task-flow-return>
+        <method-call id="preEditBook">
+            <method>#{backingBeanScope.bookEditManagedBean.preEditBook}</method>
+            <outcome>
+                <fixed-outcome>preEidtBook</fixed-outcome>
+            </outcome>
+        </method-call>
+        <control-flow-rule id="__6">
+            <from-activity-id>bookEdit</from-activity-id>
+            <control-flow-case id="__7">
+                <from-outcome>toReturn</from-outcome>
+                <to-activity-id>taskFlowReturn</to-activity-id>
+            </control-flow-case>
+        </control-flow-rule>
+        <control-flow-rule id="__4">
+            <from-activity-id>preEditBook</from-activity-id>
+            <control-flow-case id="__5">
+                <from-outcome>preEidtBook</from-outcome>
+                <to-activity-id>bookEdit</to-activity-id>
+            </control-flow-case>
+        </control-flow-rule>
+    </task-flow-definition>
+</adfc-config>
