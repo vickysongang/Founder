@@ -1,0 +1,6 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<ProviderSettings xmlns="http://xmlns.oracle.com/ide/hash">
+   <value n="id" v="6ebe81b6-d70f-4fbf-9639-34000ac2886b"/>
+   <value n="name" v="ZYPG_CMS"/>
+   <value n="offlineDBSchema" v="CMS"/>
+</ProviderSettings>

@@ -1,0 +1,18 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<sequence xmlns="http://xmlns.oracle.com/jdeveloper/1112/offlinedb">
+  <ID class="oracle.javatools.db.IdentifierBasedID">
+    <identifier class="java.lang.String">a423d418-4525-4129-8db9-60ac8ba14cbb</identifier>
+  </ID>
+  <name>CMS_EXTEND_ATTR_S</name>
+  <cacheFlag>true</cacheFlag>
+  <cacheSize>20</cacheSize>
+  <cycleFlag>false</cycleFlag>
+  <incrementBy>1</incrementBy>
+  <maxValue>99999999</maxValue>
+  <minValue>1</minValue>
+  <orderFlag>false</orderFlag>
+  <schema>
+    <name>CMS</name>
+  </schema>
+  <startWith>1</startWith>
+</sequence>

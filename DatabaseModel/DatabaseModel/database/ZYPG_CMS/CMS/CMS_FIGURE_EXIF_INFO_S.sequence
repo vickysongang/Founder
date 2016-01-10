@@ -1,0 +1,18 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<sequence xmlns="http://xmlns.oracle.com/jdeveloper/1112/offlinedb">
+  <ID class="oracle.javatools.db.IdentifierBasedID">
+    <identifier class="java.lang.String">40b5dfc5-d717-4346-bc16-0069c628d7a9</identifier>
+  </ID>
+  <name>CMS_FIGURE_EXIF_INFO_S</name>
+  <cacheFlag>true</cacheFlag>
+  <cacheSize>20</cacheSize>
+  <cycleFlag>false</cycleFlag>
+  <incrementBy>1</incrementBy>
+  <maxValue>9999999</maxValue>
+  <minValue>1</minValue>
+  <orderFlag>false</orderFlag>
+  <schema>
+    <name>CMS</name>
+  </schema>
+  <startWith>1</startWith>
+</sequence>

@@ -1,0 +1,18 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<sequence xmlns="http://xmlns.oracle.com/jdeveloper/1112/offlinedb">
+  <ID class="oracle.javatools.db.IdentifierBasedID">
+    <identifier class="java.lang.String">5d98d0ca-de77-429f-8d67-3b9b9d576ed1</identifier>
+  </ID>
+  <name>CMS_JB_INFO_S</name>
+  <cacheFlag>true</cacheFlag>
+  <cacheSize>20</cacheSize>
+  <cycleFlag>false</cycleFlag>
+  <incrementBy>1</incrementBy>
+  <maxValue>99999999</maxValue>
+  <minValue>1</minValue>
+  <orderFlag>false</orderFlag>
+  <schema>
+    <name>CMS</name>
+  </schema>
+  <startWith>1</startWith>
+</sequence>
