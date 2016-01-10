@@ -1,0 +1,113 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core" xmlns:tr="http://myfaces.apache.org/trinidad">
+    <af:panelSplitter id="ps1" splitterPosition="175" disabled="true">
+        <f:facet name="first">
+            <af:panelGroupLayout layout="vertical" id="pgl4" styleClass="AFStretchWidth"
+                                 inlineStyle="border:1px solid #BAC6CA;margin-right:1px;padding:10px 0px 5px 10px;">
+                <af:iterator id="i1" value="#{bindings.CmsCompVO4Common.collectionModel}" var="row" varStatus="vs">
+                    <af:commandLink text="#{row.CompName}" id="cl1" rendered="#{row.GroupFlag != 'Y'}"
+                                    inlineStyle="#{row.CompCode == pageFlowScope.compCode ? 'color:blue' : ''}"
+                                    styleClass="userAdmin_outputtext" partialSubmit="true"
+                                    actionListener="#{backingBeanScope.newspaperSetupManagedBean.switchCompActionListener}">
+                        <f:attribute name="compCode" value="#{row.CompCode}"/>
+                    </af:commandLink>
+                    <af:spacer height="5px" id="s1"/>
+                </af:iterator>
+            </af:panelGroupLayout>
+        </f:facet>
+        <f:facet name="second">
+            <af:panelStretchLayout id="psl1" topHeight="auto" bottomHeight="0">
+                <f:facet name="top">
+                    <af:panelGroupLayout id="pgl2" layout="vertical">
+                        <af:commandButton text="新增" id="cb1" partialSubmit="true" styleClass="min-btn green-min-btn"
+                                          action="toEdit" useWindow="true" windowHeight="400" windowWidth="650"
+                                          returnListener="#{backingBeanScope.newspaperSetupManagedBean.newOrEditReturnListener}">
+                            <af:setPropertyListener from="NEW" to="#{pageFlowScope.mode}" type="action"/>
+                        </af:commandButton>
+                        <tr:spacer height="4" width="10" id="s3"/>
+                    </af:panelGroupLayout>
+                </f:facet>
+                <f:facet name="center">
+                    <af:table value="#{bindings.CmsNewspaperSetupVO.collectionModel}" var="row"
+                              rows="#{bindings.CmsNewspaperSetupVO.rangeSize}" autoHeightRows="0"
+                              contentDelivery="immediate" columnStretching="column:c6" inlineStyle="margin-right:5px;"
+                              emptyText="#{bindings.CmsNewspaperSetupVO.viewable ? '' : 'Access Denied.'}"
+                              fetchSize="#{bindings.CmsNewspaperSetupVO.rangeSize}" rowBandingInterval="0"
+                              selectedRowKeys="#{bindings.CmsNewspaperSetupVO.collectionModel.selectedRow}"
+                              selectionListener="#{bindings.CmsNewspaperSetupVO.collectionModel.makeCurrent}"
+                              rowSelection="single" id="t1" partialTriggers="::i1:cl1 ::cb1 ::d1 cl2">
+                        <af:column sortProperty="#{bindings.CmsNewspaperSetupVO.hints.CategoryName.name}"
+                                   sortable="true" align="center"
+                                   headerText="#{bindings.CmsNewspaperSetupVO.hints.CategoryName.label}" id="c1">
+                            <af:outputText value="#{row.CategoryName}"
+                                           shortDesc="#{bindings.CmsNewspaperSetupVO.hints.CategoryName.tooltip}"
+                                           id="ot1"/>
+                        </af:column>
+                        <af:column sortProperty="#{bindings.CmsNewspaperSetupVO.hints.NewspaperTypeName.name}"
+                                   sortable="true" align="center"
+                                   headerText="#{bindings.CmsNewspaperSetupVO.hints.NewspaperTypeName.label}" id="c2">
+                            <af:outputText value="#{row.NewspaperTypeName}"
+                                           shortDesc="#{bindings.CmsNewspaperSetupVO.hints.NewspaperTypeName.tooltip}"
+                                           id="ot2"/>
+                        </af:column>
+                        <af:column sortProperty="#{bindings.CmsNewspaperSetupVO.hints.PaperTypeName.name}"
+                                   sortable="true" align="center"
+                                   headerText="#{bindings.CmsNewspaperSetupVO.hints.PaperTypeName.label}" id="c3">
+                            <af:outputText value="#{row.PaperTypeName}"
+                                           shortDesc="#{bindings.CmsNewspaperSetupVO.hints.PaperTypeName.tooltip}"
+                                           id="ot3"/>
+                        </af:column>
+                        <af:column sortProperty="#{bindings.CmsNewspaperSetupVO.hints.Words.name}" sortable="true"
+                                   align="center" headerText="#{bindings.CmsNewspaperSetupVO.hints.Words.label}"
+                                   id="c4">
+                            <af:outputText value="#{row.Words}"
+                                           shortDesc="#{bindings.CmsNewspaperSetupVO.hints.Words.tooltip}" id="ot4"/>
+                        </af:column>
+                        <af:column sortProperty="#{bindings.CmsNewspaperSetupVO.hints.PublishedDate.name}"
+                                   sortable="true" align="center" width="150" noWrap="false"
+                                   headerText="#{bindings.CmsNewspaperSetupVO.hints.PublishedDate.label}" id="c5">
+                            <af:outputText value="#{row.PublishedDate}"
+                                           shortDesc="#{bindings.CmsNewspaperSetupVO.hints.PublishedDate.tooltip}"
+                                           id="ot5"/>
+                        </af:column>
+                        <af:column sortProperty="#{bindings.CmsNewspaperSetupVO.hints.Description.name}" sortable="true"
+                                   headerText="#{bindings.CmsNewspaperSetupVO.hints.Description.label}" id="c6"
+                                   noWrap="false">
+                            <af:outputText value="#{row.Description}"
+                                           shortDesc="#{bindings.CmsNewspaperSetupVO.hints.Description.tooltip}"
+                                           id="ot6"/>
+                        </af:column>
+                        <af:column sortable="false" headerText="操作" id="c7" align="center">
+                            <af:panelGroupLayout id="pgl1" layout="horizontal">
+                                <af:commandLink text="编辑" id="cl2" partialSubmit="true" action="toEdit" useWindow="true"
+                                                windowHeight="400" windowWidth="650"
+                                                returnListener="#{backingBeanScope.newspaperSetupManagedBean.newOrEditReturnListener}">
+                                    <af:setPropertyListener from="EDIT" to="#{pageFlowScope.mode}" type="action"/>
+                                    <af:setPropertyListener from="#{row.CategoryId}" to="#{pageFlowScope.categoryId}"
+                                                            type="action"/>
+                                </af:commandLink>
+                                <tr:spacer height="10" width="10" id="s2"/>
+                                <af:commandLink text="删除" id="cl3" partialSubmit="true"
+                                                actionListener="#{backingBeanScope.newspaperSetupManagedBean.deleteActionListener}">
+                                    <f:attribute name="categoryId" value="#{row.CategoryId}"/>
+                                </af:commandLink>
+                            </af:panelGroupLayout>
+                        </af:column>
+                    </af:table>
+                </f:facet>
+                <f:facet name="start"/>
+                <f:facet name="bottom">
+                    <af:popup childCreation="deferred" autoCancel="disabled" id="p1"
+                              binding="#{backingBeanScope.newspaperSetupManagedBean.deletePopup}">
+                        <af:dialog id="d1" title="提示"
+                                   dialogListener="#{backingBeanScope.newspaperSetupManagedBean.deleteDialogListener}">
+                            <f:facet name="buttonBar"/>
+                            <af:outputText value="确定要删除该刊物吗？" id="ot7"/>
+                        </af:dialog>
+                    </af:popup>
+                </f:facet>
+            </af:panelStretchLayout>
+        </f:facet>
+    </af:panelSplitter>
+</ui:composition>

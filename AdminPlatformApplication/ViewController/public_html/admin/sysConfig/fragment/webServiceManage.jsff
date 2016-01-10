@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core">
+    <af:panelStretchLayout id="psl1" topHeight="30px">
+        <f:facet name="bottom"/>
+        <f:facet name="center">
+            <af:table value="#{bindings.CmsWsConfigTVO1.collectionModel}" var="row"
+                      rows="#{bindings.CmsWsConfigTVO1.rangeSize}" contentDelivery="immediate"
+                      emptyText="#{bindings.CmsWsConfigTVO1.viewable ? '' : 'Access Denied.'}"
+                      fetchSize="#{bindings.CmsWsConfigTVO1.rangeSize}" rowBandingInterval="0" inlineStyle="margin:5px;"
+                      columnStretching="multiple"
+                      selectedRowKeys="#{bindings.CmsWsConfigTVO1.collectionModel.selectedRow}"
+                      selectionListener="#{bindings.CmsWsConfigTVO1.collectionModel.makeCurrent}" rowSelection="single"
+                      varStatus="vs" id="t1" partialTriggers="cl2 cl3 ::cb2 ::cb1 ::cb3">
+                <af:column sortProperty="#{bindings.CmsWsConfigTVO1.hints.Code.name}" sortable="false" align="center"
+                           width="5%" headerText="#{bindings.CmsWsConfigTVO1.hints.Code.label}" id="c3">
+                    <af:inputText value="#{row.bindings.Code.inputValue}"
+                                  label="#{bindings.CmsWsConfigTVO1.hints.Code.label}"
+                                  required="#{bindings.CmsWsConfigTVO1.hints.Code.mandatory}"
+                                  readOnly="#{!(row.row.entities[0].entityState eq 0) and !(pageFlowScope.editCode eq  vs.index)}"
+                                  columns="#{bindings.CmsWsConfigTVO1.hints.Code.displayWidth}"
+                                  maximumLength="#{bindings.CmsWsConfigTVO1.hints.Code.precision}"
+                                  shortDesc="#{bindings.CmsWsConfigTVO1.hints.Code.tooltip}" id="it3">
+                        <f:validator binding="#{row.bindings.Code.validator}"/>
+                    </af:inputText>
+                </af:column>
+                <af:column sortProperty="#{bindings.CmsWsConfigTVO1.hints.Address.name}" sortable="false" align="center"
+                           headerText="#{bindings.CmsWsConfigTVO1.hints.Address.label}" id="c4" width="10%">
+                    <af:inputText value="#{row.bindings.Address.inputValue}"
+                                  label="#{bindings.CmsWsConfigTVO1.hints.Address.label}"
+                                  required="#{bindings.CmsWsConfigTVO1.hints.Address.mandatory}"
+                                  readOnly="#{!(pageFlowScope.editCode eq  vs.index) and !(row.row.entities[0].entityState eq 0)}"
+                                  columns="#{bindings.CmsWsConfigTVO1.hints.Address.displayWidth}"
+                                  maximumLength="#{bindings.CmsWsConfigTVO1.hints.Address.precision}"
+                                  shortDesc="#{bindings.CmsWsConfigTVO1.hints.Address.tooltip}" id="it4">
+                        <f:validator binding="#{row.bindings.Address.validator}"/>
+                    </af:inputText>
+                </af:column>
+                <af:column sortProperty="#{bindings.CmsWsConfigTVO1.hints.Remarks.name}" sortable="false" align="center"
+                           headerText="#{bindings.CmsWsConfigTVO1.hints.Remarks.label}" id="c5" width="10%">
+                    <af:inputText value="#{row.bindings.Remarks.inputValue}"
+                                  label="#{bindings.CmsWsConfigTVO1.hints.Remarks.label}"
+                                  required="#{bindings.CmsWsConfigTVO1.hints.Remarks.mandatory}"
+                                  readOnly="#{!(pageFlowScope.editCode eq  vs.index) and !(row.row.entities[0].entityState eq 0)}"
+                                  columns="#{bindings.CmsWsConfigTVO1.hints.Remarks.displayWidth}"
+                                  maximumLength="#{bindings.CmsWsConfigTVO1.hints.Remarks.precision}"
+                                  shortDesc="#{bindings.CmsWsConfigTVO1.hints.Remarks.tooltip}" id="it5">
+                        <f:validator binding="#{row.bindings.Remarks.validator}"/>
+                    </af:inputText>
+                </af:column>
+                <af:column sortProperty="#{bindings.CmsWsConfigTVO1.hints.EnableFlag.name}" sortable="false"
+                           headerText="#{bindings.CmsWsConfigTVO1.hints.EnableFlag.label}" align="center" id="c6"
+                           width="107">
+                    <af:selectOneChoice value="#{row.bindings.EnableFlag.inputValue}"
+                                        label="#{row.bindings.EnableFlag.label}"
+                                        readOnly="#{!(pageFlowScope.editCode eq  vs.index) and !(row.row.entities[0].entityState eq 0)}"
+                                        contentStyle="width:40px;height:22px;line-height:22px;border-color:#ABADB3;font-size:12px;"
+                                        required="#{bindings.CmsWsConfigTVO1.hints.EnableFlag.mandatory}"
+                                        shortDesc="#{bindings.CmsWsConfigTVO1.hints.EnableFlag.tooltip}" id="soc1">
+                        <f:selectItems value="#{row.bindings.EnableFlag.items}" id="si1"/>
+                    </af:selectOneChoice>
+                </af:column>
+                <af:column sortable="false" headerText="操作" id="c7" align="center">
+                    <af:panelGroupLayout id="pgl1" layout="horizontal">
+                        <af:commandLink text="编辑" id="cl2" partialSubmit="true">
+                            <af:setPropertyListener from="#{pageFlowScope.editCode eq vs.index ? '': vs.index}"
+                                                    to="#{pageFlowScope.editCode}" type="action"/>
+                        </af:commandLink>
+                        <af:spacer height="10" width="10" id="s2"/>
+                        <af:commandLink text="删除" id="cl3" actionListener="#{bindings.Delete.execute}"
+                                        partialSubmit="true"></af:commandLink>
+                    </af:panelGroupLayout>
+                </af:column>
+            </af:table>
+        </f:facet>
+        <f:facet name="start"/>
+        <f:facet name="end"/>
+        <f:facet name="top">
+            <af:panelGroupLayout id="pgl2" layout="horizontal" halign="start" inlineStyle="margin:5px">
+                <af:commandButton actionListener="#{bindings.CreateInsert.execute}" text="新增" partialSubmit="true"
+                                  styleClass="min-btn green-min-btn" id="cb2">
+                    <af:setPropertyListener from="" to="#{pageFlowScope.editCode}" type="action"/>
+                </af:commandButton>
+                <af:spacer width="10" height="10" id="s1"/>
+                <af:commandButton actionListener="#{bindings.Commit.execute}" text="保存"
+                                  styleClass="min-btn green-min-btn" id="cb1">
+                    <af:setPropertyListener from="" to="#{pageFlowScope.editCode}" type="action"/>
+                </af:commandButton>
+                <af:spacer width="10" height="10" id="s3"/>
+                <af:commandButton actionListener="#{bindings.Rollback.execute}" text="取消"
+                                  styleClass="min-btn green-min-btn" immediate="true" id="cb3">
+                    <af:setPropertyListener from="" to="#{pageFlowScope.editCode}" type="action"/>
+                </af:commandButton>
+            </af:panelGroupLayout>
+        </f:facet>
+    </af:panelStretchLayout>
+</ui:composition>

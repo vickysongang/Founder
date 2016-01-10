@@ -1,0 +1,72 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<SDM>
+   <OverallProperties
+      id="OverallProperties1"/>
+   <View
+      id="View2">
+      <property
+         name="activityId">roleMain</property>
+      <property
+         name="page">/admin/role/fragment/roleMain.jsff</property>
+      <property
+         name="start">false</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>roleMain&lt;/b>&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">161.44238</property>
+      <property
+         name="pageFragment">true</property>
+      <property
+         name="x">551.0</property>
+   </View>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase4"
+      from="MethodCall7"
+      to="MethodCall5">
+      <property
+         name="fromOutcome">findComp4RoleManage</property>
+      <property
+         name="sdm:polyPoints">R50,165.0,268.5459,385.0,278.84473,L50</property>
+   </ControlFlowCase>
+   <MethodCall
+      id="MethodCall5">
+      <property
+         name="activityId">init4RoleManage</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>init4RoleManage&lt;/b>&lt;/p>&lt;p>Activity Type:  Method Call&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">279.1953</property>
+      <property
+         name="x">426.0</property>
+   </MethodCall>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase6"
+      from="MethodCall5"
+      to="View2">
+      <property
+         name="fromOutcome">toRoleMain</property>
+      <property
+         name="sdm:polyPoints">T50,426.0,224.84473,510.0,161.0918,L50</property>
+   </ControlFlowCase>
+   <MethodCall
+      id="MethodCall7">
+      <property
+         name="activityId">findComp4RoleManage</property>
+      <property
+         name="start">true</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>findComp4RoleManage&lt;/b> (Default Activity)&lt;/p>&lt;p>Activity Type:  Method Call&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">268.89648</property>
+      <property
+         name="x">124.0</property>
+   </MethodCall>
+</SDM>

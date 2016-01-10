@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="resDownloadSettingPageDef"
+                Package="admin.role.fragment">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="CmsResDownloadVO" RangeSize="25" DataControl="AdminAMDataControl" id="CmsResDownloadVOIterator"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="CmsResDownloadVOIterator" id="CmsResDownloadVO">
+      <nodeDefinition DefName="com.zypg.cms.admin.model.viewobject.query.CmsResDownloadVO" Name="CmsResDownloadVO0">
+        <AttrNames>
+          <Item Value="ResName"/>
+          <Item Value="IsNo"/>
+          <Item Value="IsAuth"/>
+          <Item Value="IsFree"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <list IterBinding="CmsResDownloadVOIterator" id="IsNo" DTSupportsMRU="false" SelectItemValueMode="ListObject"
+          StaticList="true">
+      <AttrNames>
+        <Item Value="IsNo"/>
+      </AttrNames>
+    </list>
+    <methodAction id="batchSetResDownloadAuth" InstanceName="data.AdminAMDataControl.dataProvider"
+                  DataControl="AdminAMDataControl" RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="batchSetResDownloadAuth" IsViewObjectMethod="false">
+      <NamedData NDName="type" NDType="java.lang.String"/>
+      <NamedData NDName="value" NDType="boolean"/>
+    </methodAction>
+    <methodAction id="saveResDownloadAuth" InstanceName="data.AdminAMDataControl.dataProvider"
+                  DataControl="AdminAMDataControl" RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="saveResDownloadAuth" IsViewObjectMethod="false"
+                  ReturnName="data.AdminAMDataControl.methodResults.saveResDownloadAuth_AdminAMDataControl_dataProvider_saveResDownloadAuth_result">
+      <NamedData NDName="libCode" NDType="java.lang.String"/>
+      <NamedData NDName="roleId" NDType="oracle.jbo.domain.Number"/>
+    </methodAction>
+  </bindings>
+</pageDefinition>

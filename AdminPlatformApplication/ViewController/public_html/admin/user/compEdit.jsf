@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <af:document title="#{pageFlowScope.mode == 'EDIT' ? '出版社编辑':'分社新建'}" id="d1">
+        <af:messages id="m1"/>
+        <af:form id="f1">
+            <af:panelStretchLayout id="psl1">
+                <f:facet name="center">
+                    <af:panelFormLayout id="pfl1">
+                        <af:inputText value="#{bindings.CompCode.inputValue}" label="#{bindings.CompCode.hints.label}"
+                                      required="#{bindings.CompCode.hints.mandatory}"
+                                      disabled="#{pageFlowScope.mode =='EDIT'}" showRequired="true"
+                                      columns="#{bindings.CompCode.hints.displayWidth}"
+                                      contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                      maximumLength="#{bindings.CompCode.hints.precision}"
+                                      shortDesc="#{bindings.CompCode.hints.tooltip}" id="it1"
+                                      binding="#{backingBeanScope.compEditManagedBean.compCodeInputText}">
+                            <f:validator binding="#{bindings.CompCode.validator}"/>
+                        </af:inputText>
+                        <af:inputText value="#{bindings.CompName.inputValue}" label="#{bindings.CompName.hints.label}"
+                                      required="#{bindings.CompName.hints.mandatory}"
+                                      columns="#{bindings.CompName.hints.displayWidth}" showRequired="true"
+                                      contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                      maximumLength="#{bindings.CompName.hints.precision}"
+                                      shortDesc="#{bindings.CompName.hints.tooltip}" id="it2"
+                                      binding="#{backingBeanScope.compEditManagedBean.compNameInputText}">
+                            <f:validator binding="#{bindings.CompName.validator}"/>
+                        </af:inputText>
+                        <af:selectBooleanCheckbox value="#{bindings.GroupFlag.inputValue}"
+                                                  label="#{bindings.GroupFlag.label}"
+                                                  shortDesc="#{bindings.GroupFlag.hints.tooltip}" id="sbc1"/>
+                        <af:inputText value="#{bindings.CompDesc.inputValue}" label="#{bindings.CompDesc.hints.label}"
+                                      required="#{bindings.CompDesc.hints.mandatory}"
+                                      columns="#{bindings.CompDesc.hints.displayWidth}"
+                                      styleClass="multipleRowsInputtext" rows="8"
+                                      contentStyle="width:510px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                      maximumLength="#{bindings.CompDesc.hints.precision}"
+                                      shortDesc="#{bindings.CompDesc.hints.tooltip}" id="it3">
+                            <f:validator binding="#{bindings.CompDesc.validator}"/>
+                        </af:inputText>
+                    </af:panelFormLayout>
+                </f:facet>
+                <f:facet name="start"/>
+                <f:facet name="end"/>
+                <f:facet name="bottom">
+                    <af:panelGroupLayout id="pgl1" layout="vertical" halign="center">
+                        <af:panelGroupLayout id="pgl2" layout="horizontal">
+                            <af:commandButton text="保存" id="cb1" partialSubmit="true" styleClass="popup-btn"
+                                              action="#{backingBeanScope.compEditManagedBean.saveAction}"/>
+                            <af:spacer height="10" width="10" id="s1"/>
+                            <af:commandButton text="取消" id="cb2" styleClass="popup-btn"
+                                              action="#{backingBeanScope.compEditManagedBean.cancelAction}"/>
+                        </af:panelGroupLayout>
+                    </af:panelGroupLayout>
+                </f:facet>
+            </af:panelStretchLayout>
+        </af:form>
+    </af:document>
+</f:view>

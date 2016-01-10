@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewLink SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewLink
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="CmsCompUserNoRoleVL"
+  Version="11.1.2.64.36">
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="com.zypg.cms.admin.model.viewobject.viewlink.CmsCompUserNoRoleVL_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <ViewLinkDefEnd
+    Name="CmsCompVO"
+    Cardinality="1"
+    Source="true"
+    Owner="com.zypg.cms.admin.model.viewobject.query.CmsCompVO">
+    <DesignTime>
+      <Attr Name="_finderName" Value="CmsCompVO"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="com.zypg.cms.admin.model.viewobject.query.CmsCompVO.CompCode"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+  <ViewLinkDefEnd
+    Name="CmsUserNoRoleVO1"
+    Cardinality="-1"
+    Owner="com.zypg.cms.admin.model.viewobject.query.CmsUserNoRoleVO">
+    <DesignTime>
+      <Attr Name="_finderName" Value="CmsUserNoRoleVO"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="com.zypg.cms.admin.model.viewobject.query.CmsUserNoRoleVO.CompCode"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="com.zypg.cms.admin.model.ModelBundle"/>
+  </ResourceBundle>
+</ViewLink>

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="CmsUserNoRoleVO"
+  Version="11.1.2.64.36"
+  BindingStyle="OracleName"
+  CustomQuery="true"
+  RowClass="com.zypg.cms.admin.model.viewobject.query.CmsUserNoRoleVORowImpl"
+  ComponentClass="com.zypg.cms.admin.model.viewobject.query.CmsUserNoRoleVOImpl"
+  PageIterMode="Full"
+  UseGlueCode="false"
+  FetchMode="FETCH_AS_NEEDED"
+  Passivate="All">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="Access|Coll|VarAccess"/>
+    <Attr Name="_isExpertMode" Value="true"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="com.zypg.cms.admin.model.viewobject.query.CmsUserNoRoleVO_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <Variable
+    Name="bvRoleId"
+    Kind="where"
+    Type="oracle.jbo.domain.Number"/>
+  <ViewAccessor
+    Name="YNVO"
+    ViewObjectName="com.zypg.cms.admin.model.viewobject.lov.YNVO"
+    RowLevelBinds="true"/>
+  <SQLQuery><![CDATA[SELECT u.user_id,
+       u.diplay_name || '(' || u.user_name || ')' display_name,
+       u.comp_code,
+       u.user_name
+  FROM cms_user_t u
+ WHERE u.user_name NOT IN (SELECT 'SYSADMIN'
+                             FROM dual
+                           UNION ALL
+                           SELECT u.user_name
+                             FROM cms_role_user_rel_t rur, cms_user_t u
+                            WHERE rur.user_id = u.user_id
+                              AND rur.role_id = :bvRoleId)
+   AND u.enable_flag = 'Y']]></SQLQuery>
+  <ViewAttribute
+    Name="UserId"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="oracle.jbo.domain.Number"
+    ColumnType="NUMBER"
+    AliasName="USER_ID"
+    Expression="USER_ID"
+    SQLType="NUMERIC"/>
+  <ViewAttribute
+    Name="DisplayName"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="122"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="DISPLAY_NAME"
+    Expression="DISPLAY_NAME"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="122"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="CompCode"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="40"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="COMP_CODE"
+    Expression="COMP_CODE"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="40"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="UserName"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="40"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="USER_NAME"
+    Expression="USER_NAME"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="40"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="ChildCheckbox"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.Boolean"
+    ColumnType="NUMBER"
+    AliasName="VIEW_ATTR"
+    SQLType="BIT">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="check_box"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <AttrArray Name="KeyAttributes">
+    <Item Value="UserId"/>
+  </AttrArray>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="com.zypg.cms.admin.model.ModelBundle"/>
+  </ResourceBundle>
+</ViewObject>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="newsSetupBatchCreatePageDef"
+                Package="admin.newspaper.inline">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="CmsNewsEditVO" RangeSize="25" DataControl="AdminAMDataControl" id="CmsNewsEditVOIterator"/>
+  </executables>
+  <bindings>
+    <list IterBinding="CmsNewsEditVOIterator" StaticList="false" Uses="LOV_CategoryId" id="CategoryId"
+          DTSupportsMRU="true" SelectItemValueMode="ListObject"/>
+    <attributeValues IterBinding="CmsNewsEditVOIterator" id="NewsNum">
+      <AttrNames>
+        <Item Value="NewsNum"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="CmsNewsEditVOIterator" StaticList="false" Uses="LOV_Startyear" id="Startyear"
+          DTSupportsMRU="true" SelectItemValueMode="ListObject"/>
+    <list IterBinding="CmsNewsEditVOIterator" StaticList="false" Uses="LOV_Endyear" id="Endyear" DTSupportsMRU="true"
+          SelectItemValueMode="ListObject"/>
+  </bindings>
+</pageDefinition>

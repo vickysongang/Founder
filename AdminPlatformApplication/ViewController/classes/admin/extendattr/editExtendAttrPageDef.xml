@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="editExtendAttrPageDef"
+                Package="admin.extendattr">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="CmsExtendAttrTVO" RangeSize="25" DataControl="AdminAMDataControl" id="CmsExtendAttrTVOIterator"/>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="CmsExtendAttrTVOIterator" id="AttrCode">
+      <AttrNames>
+        <Item Value="AttrCode"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsExtendAttrTVOIterator" id="AttrMeaning">
+      <AttrNames>
+        <Item Value="AttrMeaning"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="CmsExtendAttrTVOIterator" StaticList="false" Uses="LOV_AttrType" id="AttrType"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+  </bindings>
+</pageDefinition>

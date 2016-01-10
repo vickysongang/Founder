@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core">
+    <af:panelStretchLayout id="psl1" styleClass="AFStretchWidth" startWidth="175">
+        <f:facet name="start">
+            <!--<af:panelGroupLayout layout="vertical" id="pgl4" styleClass="AFStretchWidth" partialTriggers="i1:cl1"
+                                 inlineStyle="border:1px solid #BAC6CA;margin-right:1px;padding:10px 0px 5px 10px;">
+                <af:iterator id="i1" value="#{bindings.CmsLib4ExtendAttrVO.collectionModel}" var="row" varStatus="vs">
+                    <af:commandLink text="#{row.LibName}" id="cl1"
+                                    inlineStyle="#{row.LibCode == pageFlowScope.libCode ? 'color:blue' : ''}"
+                                    styleClass="userAdmin_outputtext" partialSubmit="true"
+                                    actionListener="#{backingBeanScope.compExtendAttrManagedBean.switchLibActionListener}">
+                        <f:attribute name="libCode" value="#{row.LibCode}"/>
+                    </af:commandLink>
+                    <af:spacer height="5px" id="s1"/>
+                </af:iterator>
+            </af:panelGroupLayout>-->
+        </f:facet>
+        <f:facet name="center">
+            <af:panelStretchLayout id="psl2" styleClass="AFStretchWidth" topHeight="auto">
+                <f:facet name="top">
+                    <af:panelGroupLayout id="pgl2" layout="vertical" inlineStyle="margin:5px 0px 0px 5px;">
+                        <af:commandButton text="新增" id="cb1" partialSubmit="true" styleClass="min-btn green-min-btn"
+                                          action="toEditValueList" useWindow="true" windowHeight="200" windowWidth="400"
+                                          returnListener="#{backingBeanScope.compExtendAttrManagedBean.newOrEditValueListReturnListener}">
+                            <af:setPropertyListener from="CREATE" to="#{pageFlowScope.operType}" type="action"/>
+                        </af:commandButton>
+                        <af:spacer height="4" width="10" id="s3"/>
+                    </af:panelGroupLayout>
+                </f:facet>
+                <f:facet name="center">
+                    <af:table value="#{bindings.CmsExtendValueListVO.collectionModel}" var="row"
+                              rows="#{bindings.CmsExtendValueListVO.rangeSize}"
+                              emptyText="#{bindings.CmsExtendValueListVO.viewable ? '' : 'Access Denied.'}"
+                              fetchSize="#{bindings.CmsExtendValueListVO.rangeSize}" rowBandingInterval="0"
+                              varStatus="vs" autoHeightRows="0" contentDelivery="immediate"
+                              selectedRowKeys="#{bindings.CmsExtendValueListVO.collectionModel.selectedRow}"
+                              selectionListener="#{bindings.CmsExtendValueListVO.collectionModel.makeCurrent}"
+                              rowSelection="single" id="t1" partialTriggers="::cb1 ::d1">
+                        <af:column headerText="序号" id="c1" align="center" width="30">
+                            <af:outputText value="#{vs.index+1}" id="ot1"/>
+                        </af:column>
+                        <af:column sortProperty="#{bindings.CmsExtendValueListVO.hints.ValueCode.name}" sortable="false"
+                                   align="center" headerText="#{bindings.CmsExtendValueListVO.hints.ValueCode.label}"
+                                   width="150" id="c3">
+                            <af:outputText value="#{row.ValueCode}"
+                                           shortDesc="#{bindings.CmsExtendValueListVO.hints.ValueCode.tooltip}"
+                                           id="ot3"/>
+                        </af:column>
+                        <af:column sortProperty="#{bindings.CmsExtendValueListVO.hints.ValueMeaning.name}" width="250"
+                                   align="center" sortable="false"
+                                   headerText="#{bindings.CmsExtendValueListVO.hints.ValueMeaning.label}" id="c2">
+                            <af:outputText value="#{row.ValueMeaning}"
+                                           shortDesc="#{bindings.CmsExtendValueListVO.hints.ValueMeaning.tooltip}"
+                                           id="ot2"/>
+                        </af:column>
+                        <af:column sortable="false" headerText="操作" id="c7" align="center" width="150">
+                            <af:panelGroupLayout id="pgl1" layout="horizontal">
+                                <af:commandLink text="编辑" id="cl2" partialSubmit="true" action="toEditValueList"
+                                                useWindow="true"
+                                                returnListener="#{backingBeanScope.compExtendAttrManagedBean.newOrEditValueListReturnListener}"
+                                                windowHeight="200" windowWidth="400">
+                                    <af:setPropertyListener from="EDIT" to="#{pageFlowScope.operType}" type="action"/>
+                                    <af:setPropertyListener from="#{row.ListId}" to="#{pageFlowScope.listId}"
+                                                            type="action"/>
+                                </af:commandLink>
+                                <af:spacer height="10" width="10" id="s2"/>
+                                <af:commandLink text="删除" id="cl3" partialSubmit="true"
+                                                actionListener="#{backingBeanScope.compExtendAttrManagedBean.deleteValueListActionListener}">
+                                    <f:attribute name="listId" value="#{row.ListId}"/>
+                                </af:commandLink>
+                            </af:panelGroupLayout>
+                        </af:column>
+                    </af:table>
+                </f:facet>
+                <f:facet name="bottom">
+                    <af:panelGroupLayout id="pgl3" layout="vertical" halign="center">
+                        <af:panelGroupLayout id="pgl5" layout="horizontal">
+                            <af:commandButton text="返回" id="cb2" partialSubmit="true"
+                                              styleClass="min-btn blue-min-btn bottom_btn" action="toReturn"></af:commandButton>
+                        </af:panelGroupLayout>
+                        <af:popup childCreation="deferred" autoCancel="disabled" id="p1"
+                                  binding="#{backingBeanScope.compExtendAttrManagedBean.deleteValueListPopup}">
+                            <af:dialog id="d1" title="提示"
+                                       dialogListener="#{backingBeanScope.compExtendAttrManagedBean.deleteValueListDialogListener}">
+                                <f:facet name="buttonBar"/>
+                                <af:outputText value="确定要删除吗？" id="ot7"/>
+                            </af:dialog>
+                        </af:popup>
+                    </af:panelGroupLayout>
+                </f:facet>
+            </af:panelStretchLayout>
+        </f:facet>
+    </af:panelStretchLayout>
+</jsp:root>

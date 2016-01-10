@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="periodSetupEditPageDef"
+                Package="admin.periodical.inline">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="CmsPeriodEditVO" RangeSize="25" DataControl="AdminAMDataControl" id="CmsPeriodEditVOIterator"/>
+  </executables>
+  <bindings>
+    <list IterBinding="CmsPeriodEditVOIterator" StaticList="false" Uses="LOV_CategoryId" id="CategoryId"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <list IterBinding="CmsPeriodEditVOIterator" StaticList="false" Uses="LOV_Year" id="Year" DTSupportsMRU="false"
+          SelectItemValueMode="ListObject"/>
+    <attributeValues IterBinding="CmsPeriodEditVOIterator" id="CategoryNum">
+      <AttrNames>
+        <Item Value="CategoryNum"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsPeriodEditVOIterator" id="PublishedDate">
+      <AttrNames>
+        <Item Value="PublishedDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsPeriodEditVOIterator" id="Remarks">
+      <AttrNames>
+        <Item Value="Remarks"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

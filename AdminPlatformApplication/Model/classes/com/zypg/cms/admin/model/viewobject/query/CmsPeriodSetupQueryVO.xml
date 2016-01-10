@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="CmsPeriodSetupQueryVO"
+  Version="11.1.2.64.36"
+  BindingStyle="OracleName"
+  CustomQuery="true"
+  RowClass="com.zypg.cms.admin.model.viewobject.query.CmsPeriodSetupQueryVORowImpl"
+  ComponentClass="com.zypg.cms.admin.model.viewobject.query.CmsPeriodSetupQueryVOImpl"
+  PageIterMode="Full"
+  UseGlueCode="false">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="Access|Coll|VarAccess"/>
+    <Attr Name="_isExpertMode" Value="true"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="com.zypg.cms.admin.model.viewobject.query.CmsPeriodSetupQueryVO_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <ViewAccessor
+    Name="YearVO"
+    ViewObjectName="com.zypg.cms.admin.model.viewobject.lov.YearVO"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="CmsPeriodicalSetupLov"
+    ViewObjectName="com.zypg.cms.admin.model.viewobject.lov.CmsPeriodicalSetupLov"
+    RowLevelBinds="true"/>
+  <ListBinding
+    Name="LOV_Year"
+    ListVOName="YearVO"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="Year"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="CODE"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="NAME"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_CategoryId"
+    ListVOName="CmsPeriodicalSetupLov"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="CategoryId"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="CategoryId"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="CategoryName"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <SQLQuery><![CDATA[select null category_id,null year from dual]]></SQLQuery>
+  <ViewAttribute
+    Name="CategoryId"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="oracle.jbo.domain.Number"
+    ColumnType="NUMBER"
+    AliasName="CATEGORY_ID"
+    Expression="CATEGORY_ID"
+    SQLType="NUMERIC"
+    LOVName="LOV_CategoryId">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+        <LABEL
+          ResId="com.zypg.cms.admin.model.viewobject.query.CmsPeriodSetupQueryVO.CategoryId_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Year"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="oracle.jbo.domain.Number"
+    ColumnType="NUMBER"
+    AliasName="YEAR"
+    Expression="YEAR"
+    SQLType="VARCHAR"
+    LOVName="LOV_Year">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+        <LABEL
+          ResId="com.zypg.cms.admin.model.viewobject.query.CmsPeriodSetupQueryVO.Year_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <AttrArray Name="KeyAttributes">
+    <Item Value="CategoryId"/>
+  </AttrArray>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="com.zypg.cms.admin.model.ModelBundle"/>
+  </ResourceBundle>
+</ViewObject>

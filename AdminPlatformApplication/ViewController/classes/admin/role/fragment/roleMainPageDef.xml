@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="roleMainPageDef"
+                Package="admin.role.fragment">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="CmsCompVO4RoleManage" RangeSize="25" DataControl="AdminAMDataControl"
+              id="CmsCompVORoleManageIterator"/>
+    <iterator Binds="CmsRoleTVO" RangeSize="25" DataControl="AdminAMDataControl" id="CmsRoleTVOIterator"/>
+    <iterator Binds="CmsRoleUserVO" RangeSize="25" DataControl="AdminAMDataControl" id="CmsRoleUserVOIterator"/>
+    <taskFlow id="user_norole_taskflow1" taskFlowId="/WEB-INF/admin/user/user_norole_taskflow.xml#user_norole_taskflow"
+              activation="deferred" xmlns="http://xmlns.oracle.com/adf/controller/binding"
+              Refresh="ifNeeded">
+      <parameters>
+        <parameter id="roleId" value="#{pageFlowScope.roleId}"/>
+        <parameter id="compStr" value="#{pageFlowScope.compStr}"/>
+        <parameter id="currTime" value="#{pageFlowScope.currTime}"/>
+      </parameters>
+    </taskFlow>
+    <taskFlow id="role_router_taskflow1" taskFlowId="/WEB-INF/admin/role/role_router_taskflow.xml#role_router_taskflow"
+              activation="deferred" xmlns="http://xmlns.oracle.com/adf/controller/binding">
+      <parameters>
+        <parameter id="roleId" value="#{pageFlowScope.roleId}"/>
+        <parameter id="routType" value="#{pageFlowScope.routType}"/>
+        <parameter id="roleType" value="#{pageFlowScope.roleType}"/>
+        <parameter id="compCode" value="#{pageFlowScope.compCode}"/>
+        <parameter id="platformType" value="#{pageFlowScope.platformType}"/>
+        <parameter id="isApprover" value="#{pageFlowScope.isApprover}"/>
+      </parameters>
+    </taskFlow>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="CmsRoleTVOIterator" id="Remarks">
+      <AttrNames>
+        <Item Value="Remarks"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsRoleTVOIterator" id="RoleName">
+      <AttrNames>
+        <Item Value="RoleName"/>
+      </AttrNames>
+    </attributeValues>
+    <action id="Commit" InstanceName="AdminAMDataControl" DataControl="AdminAMDataControl" RequiresUpdateModel="true"
+            Action="commitTransaction"/>
+    <action id="Rollback" InstanceName="AdminAMDataControl" DataControl="AdminAMDataControl" RequiresUpdateModel="false"
+            Action="rollbackTransaction"/>
+    <button IterBinding="CmsRoleTVOIterator" StaticList="false" Uses="LOV_EnableFlag" id="EnableFlag"
+            DTSupportsMRU="false">
+      <AttrNames>
+        <Item Value="EnableFlag"/>
+      </AttrNames>
+    </button>
+    <methodAction id="preUpdateRole" InstanceName="data.AdminAMDataControl.dataProvider"
+                  DataControl="AdminAMDataControl" RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="preUpdateRole" IsViewObjectMethod="false">
+      <NamedData NDName="roleId" NDValue="#{pageFlowScope.roleId}" NDType="oracle.jbo.domain.Number"/>
+    </methodAction>
+    <methodAction id="findUserByRoleId" InstanceName="data.AdminAMDataControl.dataProvider"
+                  DataControl="AdminAMDataControl" RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="findUserByRoleId" IsViewObjectMethod="false">
+      <NamedData NDName="roleId" NDValue="#{pageFlowScope.roleId}" NDType="oracle.jbo.domain.Number"/>
+    </methodAction>
+    <tree IterBinding="CmsRoleUserVOIterator" id="CmsRoleUserVO">
+      <nodeDefinition DefName="com.zypg.cms.admin.model.viewobject.query.CmsRoleUserVO" Name="CmsRoleUserVO0">
+        <AttrNames>
+          <Item Value="UserName"/>
+          <Item Value="DiplayName"/>
+          <Item Value="EnableFlag"/>
+          <Item Value="UserId"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <methodAction id="createRole" InstanceName="data.AdminAMDataControl.dataProvider" DataControl="AdminAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod" MethodName="createRole" IsViewObjectMethod="false">
+      <NamedData NDName="roleType" NDValue="#{pageFlowScope.roleType}" NDType="java.lang.String"/>
+      <NamedData NDName="compCode" NDValue="#{pageFlowScope.compCode}" NDType="java.lang.String"/>
+    </methodAction>
+    <tree IterBinding="CmsCompVORoleManageIterator" id="CmsCompVO4AdminRoleManage">
+      <nodeDefinition DefName="com.zypg.cms.admin.model.viewobject.query.CmsCompVO" Name="CmsCompVO4RoleManage10">
+        <AttrNames>
+          <Item Value="CompName"/>
+        </AttrNames>
+        <Accessors>
+          <Item Value="CmsAdminRoleVO"/>
+        </Accessors>
+      </nodeDefinition>
+      <nodeDefinition DefName="com.zypg.cms.admin.model.viewobject.query.CmsRoleVO" Name="CmsCompVO4RoleManage11">
+        <AttrNames>
+          <Item Value="RoleName"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="CmsCompVORoleManageIterator" id="CmsCompVO4WorkRoleManage">
+      <nodeDefinition DefName="com.zypg.cms.admin.model.viewobject.query.CmsCompVO" Name="CmsCompVO4RoleManage0">
+        <AttrNames>
+          <Item Value="CompName"/>
+        </AttrNames>
+        <Accessors>
+          <Item Value="CmsWorkRoleVO"/>
+        </Accessors>
+      </nodeDefinition>
+      <nodeDefinition DefName="com.zypg.cms.admin.model.viewobject.query.CmsRoleVO" Name="CmsCompVO4RoleManage1">
+        <AttrNames>
+          <Item Value="RoleName"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <methodAction id="deleteRole" InstanceName="data.AdminAMDataControl.dataProvider" DataControl="AdminAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod" MethodName="deleteRole" IsViewObjectMethod="false">
+      <NamedData NDName="roleId" NDValue="#{pageFlowScope.roleId}" NDType="oracle.jbo.domain.Number"/>
+    </methodAction>
+    <methodAction id="deleteUserSesson4AuthorizeUser" InstanceName="data.AdminAMDataControl.dataProvider"
+                  DataControl="AdminAMDataControl" RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="deleteUserSesson4AuthorizeUser" IsViewObjectMethod="false"/>
+    <methodAction id="revokeRole" InstanceName="data.AdminAMDataControl.dataProvider" DataControl="AdminAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod" MethodName="revokeRole" IsViewObjectMethod="false">
+      <NamedData NDName="roleId" NDValue="" NDType="oracle.jbo.domain.Number"/>
+      <NamedData NDName="userId" NDType="oracle.jbo.domain.Number"/>
+    </methodAction>
+    <methodAction id="Authorize4GenerateUsers" InstanceName="data.AdminAMDataControl.dataProvider"
+                  DataControl="AdminAMDataControl" RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="Authorize4GenerateUsers" IsViewObjectMethod="false">
+      <NamedData NDName="roleId" NDType="oracle.jbo.domain.Number"/>
+    </methodAction>
+    <tree IterBinding="CmsCompVORoleManageIterator" id="CmsCompVO4PubRoleManage">
+      <nodeDefinition DefName="com.zypg.cms.admin.model.viewobject.query.CmsCompVO" Name="CmsCompVO4RoleManage0">
+        <AttrNames>
+          <Item Value="CompName"/>
+        </AttrNames>
+        <Accessors>
+          <Item Value="CmsPubRoleVO"/>
+        </Accessors>
+      </nodeDefinition>
+      <nodeDefinition DefName="com.zypg.cms.admin.model.viewobject.query.CmsRoleVO" Name="CmsCompVO4RoleManage1">
+        <AttrNames>
+          <Item Value="RoleName"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+  </bindings>
+</pageDefinition>

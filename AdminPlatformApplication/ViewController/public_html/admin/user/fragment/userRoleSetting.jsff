@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core">
+    <af:panelStretchLayout id="psl1" inlineStyle="margin:5px 0 0 10px;width:550px;">
+        <f:facet name="bottom"/>
+        <f:facet name="center">
+            <af:panelGroupLayout id="pgl1" layout="scroll" styleClass="AFStretchWidth">
+                <af:panelGroupLayout id="pgl3" layout="horizontal">
+                    <af:outputText value="工作管理平台角色" id="ot2" inlineStyle="font-weight:bold;"/>
+                </af:panelGroupLayout>
+                <af:panelFormLayout id="pfl1" maxColumns="2" rows="1" inlineStyle="margin:10px 0 10px 0">
+                    <af:iterator id="i1" value="#{bindings.CmsUserAllRoleVO4WorkPF.collectionModel}" var="row"
+                                 varStatus="vs" rows="1000">
+                        <af:panelGroupLayout id="pgl2">
+                            <af:selectBooleanCheckbox value="#{row.HasAuthority}" simple="true" autoSubmit="true"
+                                                      id="sbc1"/>
+                            <af:outputText value="#{row.RoleName}" id="ot1"/>
+                        </af:panelGroupLayout>
+                    </af:iterator>
+                </af:panelFormLayout>
+                <af:panelGroupLayout id="pgl4">
+                    <af:outputText value="发布平台角色" id="ot3" inlineStyle="font-size:small; font-weight:bold;"/>
+                </af:panelGroupLayout>
+                <af:panelFormLayout id="pfl2" maxColumns="2" rows="1" inlineStyle="margin:10px 0 10px 0">
+                    <af:iterator id="i2" value="#{bindings.CmsUserAllRoleVO4PubPF.collectionModel}" var="row1"
+                                 varStatus="vs1" rows="1000">
+                        <af:panelGroupLayout id="pgl5">
+                            <af:selectBooleanCheckbox value="#{row1.HasAuthority}" simple="true" autoSubmit="true"
+                                                      id="sbc2"/>
+                            <af:outputText value="#{row1.RoleName}" id="ot4"/>
+                        </af:panelGroupLayout>
+                    </af:iterator>
+                </af:panelFormLayout>
+                <af:panelGroupLayout id="pgl6">
+                    <af:outputText value="管理平台角色" id="ot5" inlineStyle="font-size:small; font-weight:bold;"/>
+                </af:panelGroupLayout>
+                <af:panelFormLayout id="pfl3" maxColumns="1" rows="1" inlineStyle="margin:10px 0 10px 0">
+                    <af:iterator id="i3" value="#{bindings.CmsUserAllRoleVO4AdminPF.collectionModel}" var="row2"
+                                 varStatus="vs2" rows="1000">
+                        <af:panelGroupLayout id="pgl7">
+                            <af:selectBooleanCheckbox value="#{row2.HasAuthority}" simple="true" autoSubmit="true"
+                                                      id="sbc3"/>
+                            <af:outputText value="#{row2.RoleName}" id="ot6"/>
+                        </af:panelGroupLayout>
+                    </af:iterator>
+                </af:panelFormLayout>
+            </af:panelGroupLayout>
+        </f:facet>
+        <f:facet name="start"/>
+        <f:facet name="end"/>
+        <f:facet name="top"/>
+    </af:panelStretchLayout>
+</ui:composition>

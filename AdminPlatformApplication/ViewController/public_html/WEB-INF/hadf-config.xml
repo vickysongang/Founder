@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="GBK"?>
+<hadf-config>
+    <user-config>
+        <username>sysadmin</username>
+        <password>123456</password>
+        <start-mode>TEST</start-mode>
+    </user-config>
+</hadf-config>
+

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="role_res_setting_taskflow">
+    <default-activity>initResSetting</default-activity>
+    <input-parameter-definition id="__2">
+      <name>roleId</name>
+      <value>#{pageFlowScope.roleId}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__3">
+      <name>currentLibCode</name>
+      <value>#{pageFlowScope.currentLibCode}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__4">
+      <name>isAllSelected</name>
+      <value>#{pageFlowScope.isAllSelected}</value>
+      <class>java.lang.Boolean</class>
+    </input-parameter-definition>
+    <managed-bean id="__1">
+      <managed-bean-name>roleResSettingBean</managed-bean-name>
+      <managed-bean-class>com.zypg.cms.admin.view.bean.RoleResSettingBean</managed-bean-class>
+      <managed-bean-scope>backingBean</managed-bean-scope>
+    </managed-bean>
+    <view id="roleResSetting">
+      <page>/admin/role/fragment/roleResSetting.jsff</page>
+    </view>
+    <method-call id="initResSetting">
+      <method>#{backingBeanScope.roleResSettingBean.initResSetting}</method>
+      <outcome>
+        <fixed-outcome>toRoleSetting</fixed-outcome>
+      </outcome>
+    </method-call>
+    <control-flow-rule id="__5">
+      <from-activity-id>initResSetting</from-activity-id>
+      <control-flow-case id="__6">
+        <from-outcome>toRoleSetting</from-outcome>
+        <to-activity-id>roleResSetting</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

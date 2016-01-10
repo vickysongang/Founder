@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core">
+    <af:panelTabbed id="pt1" styleClass="platform_panelTabbed">
+        <af:showDetailItem text="栏目显示权限" id="sdi1"
+                           disclosureListener="#{backingBeanScope.roleAuth4pbBean.displayAuthDiscloseListener}"
+                           stretchChildren="first">
+            <af:panelStretchLayout id="psl1">
+                <f:facet name="center">
+                    <af:panelGroupLayout id="pgl5" inlineStyle="border:1px solid #e7e7e7;" layout="scroll">
+                        <af:iterator value="#{bindings.CmsFirstLevelLibVO1.collectionModel}" var="row" varStatus="vs"
+                                     id="i1">
+                            <af:panelGroupLayout id="pgl1" layout="horizontal" halign="left"
+                                                 rendered="#{row.LibCode != 'COPYRIGHT_LIB' and row.LibCode != 'JOB_LIB' and row.LibCode != 'RES_EXP_LIB' and row.LibCode != 'THEME_LIB' and row.CmsSecondLevelLibVO != null}"
+                                                 inlineStyle="background:#e7e7e7;" styleClass="AFStretchWidth">
+                                <af:panelGroupLayout id="pgl3" layout="horizontal">
+                                    <af:selectBooleanCheckbox label="Label 1" id="sbc1" simple="true"
+                                                              value="#{row.IsSelected}" autoSubmit="true"
+                                                              valueChangeListener="#{backingBeanScope.roleAuth4pbBean.displayAuthSelectChangeListener}"
+                                                              partialTriggers="i2:sbc2">
+                                        <f:attribute name="row" value="#{row}"/>
+                                    </af:selectBooleanCheckbox>
+                                    <af:outputText value="#{row.LibName}" id="ot1"/>
+                                </af:panelGroupLayout>
+                            </af:panelGroupLayout>
+                            <af:panelFormLayout id="pfl1" rows="1" styleClass="AFStretchWidth" maxColumns="8"
+                                                partialTriggers="sbc1">
+                                <af:iterator value="#{row.CmsSecondLevelLibVO}" var="row2" varStatus="vs2" id="i2">
+                                    <af:panelGroupLayout id="pgl2" layout="horizontal" halign="left"
+                                                         rendered="#{row2.LibTypeCode != 'COPYRIGHT_LIB' and row2.LibTypeCode != 'JOB_LIB' and row2.LibTypeCode != 'RES_EXP_LIB' and row2.LibTypeCode != 'THEME_LIB' and row2.LibCode != 'DUPLICATE_CHECK_ENTRY'}"
+                                                         styleClass="AFStretchWidth">
+                                        <af:selectBooleanCheckbox label="Label 1" id="sbc2" simple="true"
+                                                                  value="#{row2.IsSelected}" autoSubmit="true"/>
+                                        <af:outputText value="#{row2.LibName}" id="ot2"/>
+                                    </af:panelGroupLayout>
+                                </af:iterator>
+                                <f:facet name="footer"/>
+                            </af:panelFormLayout>
+                            <af:spacer width="10" height="10" id="s3"
+                                       rendered="#{row.LibCode != 'COPYRIGHT_LIB' and row.LibCode != 'JOB_LIB' and row.LibCode != 'RES_EXP_LIB' and row.LibCode != 'THEME_LIB' and row.CmsSecondLevelLibVO != null}"/>
+                        </af:iterator>
+                        <af:panelGroupLayout id="pgl4" inlineStyle="margin-left:100px;" layout="horizontal">
+                            <af:commandButton text="保存" id="cb1" styleClass="min-btn blue-min-btn bottom_btn"
+                                              rendered="#{bindings.CmsFirstLevelLibVO1.estimatedRowCount > 0}"
+                                              actionListener="#{backingBeanScope.roleAuth4pbBean.saveDisplayAuthActionListener}"/>
+                        </af:panelGroupLayout>
+                    </af:panelGroupLayout>
+                </f:facet>
+            </af:panelStretchLayout>
+        </af:showDetailItem>
+        <af:showDetailItem text="资源下载权限" id="sdi2" rendered="#{pageFlowScope.roleType != 'ADMIN_PLATFORM'}"
+                           disclosureListener="#{backingBeanScope.roleAuth4pbBean.resDownloadDiscloseListener}"
+                           stretchChildren="first">
+            <af:panelStretchLayout id="psl2">
+                <f:facet name="center">
+                    <af:panelSplitter id="ps1" dimensionsFrom="children" disabled="true" splitterPosition="150">
+                        <f:facet name="first">
+                            <af:panelGroupLayout layout="scroll" id="pgl6" styleClass="AFStretchWidth"
+                                                 inlineStyle="margin:2px 0 0 0px;border:1px solid #e7e7e7;">
+                                <af:iterator value="#{bindings.CmsRoleLibVO1.collectionModel}" var="row" varStatus="vs"
+                                             id="i3">
+                                    <af:outputText value="#{row.LibName}" id="ot3" styleClass="userAdmin_outputtext"
+                                                   rendered="#{row.LibTypeCode != 'COPYRIGHT_LIB' and row.LibTypeCode != 'JOB_LIB' and row.LibTypeCode != 'RES_EXP_LIB'}"
+                                                   inlineStyle="#{pageFlowScope.currentLibCode == row.LibCode ? 'color:blue' : ''};padding:5px 0px 0px 15px;">
+                                        <f:attribute name="row" value="#{row}"/>
+                                        <af:clientListener method="selectRoleLib" type="click"/>
+                                        <af:serverListener type="selectRoleLibServer"
+                                                           method="#{backingBeanScope.roleAuth4pbBean.selectRoleLibServerListener}"/>
+                                    </af:outputText>
+                                    <af:spacer width="10" height="10" id="s2"
+                                               rendered="#{row.LibTypeCode != 'COPYRIGHT_LIB' and row.LibTypeCode != 'JOB_LIB' and row.LibTypeCode != 'RES_EXP_LIB'}"/>
+                                </af:iterator>
+                            </af:panelGroupLayout>
+                        </f:facet>
+                        <f:facet name="second">
+                            <af:region value="#{bindings.role_res_download_setting_taskflow1.regionModel}" id="r1"
+                                       rendered="#{bindings.CmsRoleLibVO1.estimatedRowCount > 0}"
+                                       binding="#{backingBeanScope.roleAuth4pbBean.resDownloadSetRegionBinding}"/>
+                        </f:facet>
+                    </af:panelSplitter>
+                </f:facet>
+            </af:panelStretchLayout>
+        </af:showDetailItem>
+    </af:panelTabbed>
+</ui:composition>

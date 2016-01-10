@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36"
+                id="role_router_taskflow_role_router_taskflow_initRoleAuthDisplayPageDef" Package="admin.role"
+                SkipValidation="true">
+  <parameters/>
+  <executables/>
+  <bindings>
+    <methodAction id="initRoleAuthDisplay" InstanceName="data.AdminAMDataControl.dataProvider"
+                  DataControl="AdminAMDataControl" RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="initRoleAuthDisplay" IsViewObjectMethod="false">
+      <NamedData NDName="compCode" NDValue="#{pageFlowScope.compCode}" NDType="java.lang.String"/>
+      <NamedData NDName="roleId" NDValue="#{pageFlowScope.roleId}" NDType="oracle.jbo.domain.Number"/>
+      <NamedData NDName="roleType" NDValue="#{pageFlowScope.roleType}" NDType="java.lang.String"/>
+      <NamedData NDName="platformType" NDValue="#{pageFlowScope.platformType}" NDType="java.lang.String"/>
+    </methodAction>
+  </bindings>
+</pageDefinition>

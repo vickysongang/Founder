@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="role_main_taskflow">
+    <default-activity>findComp4RoleManage</default-activity>
+    <input-parameter-definition id="__1">
+      <name>compStr</name>
+      <value>#{pageFlowScope.compStr}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__2">
+      <name>roleType</name>
+      <value>#{pageFlowScope.roleType}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__6">
+      <name>currTime</name>
+      <value>#{pageFlowScope.currTime}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <managed-bean id="__5">
+      <managed-bean-name>roleMainManagedBean</managed-bean-name>
+      <managed-bean-class>com.zypg.cms.admin.view.bean.RoleMainManagedBean</managed-bean-class>
+      <managed-bean-scope>backingBean</managed-bean-scope>
+    </managed-bean>
+    <view id="roleMain">
+      <page>/admin/role/fragment/roleMain.jsff</page>
+    </view>
+    <method-call id="init4RoleManage">
+      <method>#{backingBeanScope.roleMainManagedBean.init4RoleMain}</method>
+      <outcome>
+        <fixed-outcome>toRoleMain</fixed-outcome>
+      </outcome>
+    </method-call>
+    <method-call id="findComp4RoleManage">
+      <method>#{backingBeanScope.roleMainManagedBean.findComp4RoleManage}</method>
+      <outcome>
+        <fixed-outcome>findComp4RoleManage</fixed-outcome>
+      </outcome>
+    </method-call>
+    <control-flow-rule id="__7">
+      <from-activity-id>init4RoleManage</from-activity-id>
+      <control-flow-case id="__8">
+        <from-outcome>toRoleMain</from-outcome>
+        <to-activity-id>roleMain</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__3">
+      <from-activity-id>findComp4RoleManage</from-activity-id>
+      <control-flow-case id="__4">
+        <from-outcome>findComp4RoleManage</from-outcome>
+        <to-activity-id>init4RoleManage</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="newsSetupPageDef"
+                Package="admin.newspaper.fragment">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="CmsCompVO4NewsSetup" RangeSize="25" DataControl="AdminAMDataControl"
+              id="CmsCompVO4NewsSetupIterator"/>
+    <iterator Binds="CmsNewsSetupQueryVO" RangeSize="25" DataControl="AdminAMDataControl"
+              id="CmsNewsSetupQueryVOIterator"/>
+    <iterator Binds="CmsNewsSetupVO" RangeSize="25" DataControl="AdminAMDataControl" id="CmsNewsSetupVOIterator"/>
+    <iterator Binds="CmsCompVO4Common" RangeSize="25" DataControl="AdminAMDataControl" id="CmsCompVO4CommonIterator"/>
+  </executables>
+  <bindings>
+    <list IterBinding="CmsNewsSetupQueryVOIterator" StaticList="false" Uses="LOV_CategoryId" id="CategoryId"
+          DTSupportsMRU="true" SelectItemValueMode="ListObject"/>
+    <list IterBinding="CmsNewsSetupQueryVOIterator" StaticList="false" Uses="LOV_Year" id="Year" DTSupportsMRU="true"
+          SelectItemValueMode="ListObject"/>
+    <tree IterBinding="CmsNewsSetupVOIterator" id="CmsNewsSetupVO">
+      <nodeDefinition DefName="com.zypg.cms.admin.model.viewobject.query.CmsNewsSetupVO" Name="CmsNewsSetupVO0">
+        <AttrNames>
+          <Item Value="SetupId"/>
+          <Item Value="NewspaperCategoryId"/>
+          <Item Value="Year"/>
+          <Item Value="NewsNum"/>
+          <Item Value="PublicDate"/>
+          <Item Value="PublicDateDisplay"/>
+          <Item Value="Weekday"/>
+          <Item Value="Remarks"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="CmsCompVO4CommonIterator" id="CmsCompVO4Common">
+      <nodeDefinition DefName="com.zypg.cms.admin.model.viewobject.query.CmsCompVO" Name="CmsCompVO4Common0">
+        <AttrNames>
+          <Item Value="CompId"/>
+          <Item Value="CompCode"/>
+          <Item Value="CompName"/>
+          <Item Value="Seq"/>
+          <Item Value="CompDesc"/>
+          <Item Value="Checkbox"/>
+          <Item Value="DisplayName"/>
+          <Item Value="GroupFlag"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+  </bindings>
+</pageDefinition>

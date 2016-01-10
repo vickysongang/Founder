@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="sync_cancel_taskflow">
+    <default-activity>initSyncCancel</default-activity>
+    <input-parameter-definition id="__4">
+      <name>currTime</name>
+      <value>#{pageFlowScope.currTime}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__5">
+      <name>compStr</name>
+      <value>#{pageFlowScope.compStr}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <managed-bean id="__3">
+      <managed-bean-name>syncCancelManagedBean</managed-bean-name>
+      <managed-bean-class>com.zypg.cms.admin.view.bean.SyncCancelManagedBean</managed-bean-class>
+      <managed-bean-scope>backingBean</managed-bean-scope>
+    </managed-bean>
+    <method-call id="initSyncCancel">
+      <method>#{backingBeanScope.syncCancelManagedBean.initSyncCancel}</method>
+      <outcome>
+        <fixed-outcome>toSyncCancel</fixed-outcome>
+      </outcome>
+    </method-call>
+    <view id="syncCancel">
+      <page>/admin/openLog/syncCancel.jsff</page>
+    </view>
+    <control-flow-rule id="__1">
+      <from-activity-id>initSyncCancel</from-activity-id>
+      <control-flow-case id="__2">
+        <from-outcome>toSyncCancel</from-outcome>
+        <to-activity-id>syncCancel</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

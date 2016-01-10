@@ -1,0 +1,153 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core" xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <c:set var="viewcontrollerBundle" value="#{adfBundle['com.zypg.cms.admin.view.ViewControllerBundle']}"/>
+    <af:panelSplitter id="ps2" splitterPosition="200" disabled="true" inlineStyle="margin:0 0 5px 0;">
+        <f:facet name="first">
+            <af:switcher id="s5" facetName="#{pageFlowScope.roleType}" defaultFacet="WORK_PLATFORM">
+                <f:facet name="WORK_PLATFORM">
+                    <af:tree value="#{bindings.CmsCompVO4WorkRoleManage.treeModel}" var="node"
+                             selectionListener="#{backingBeanScope.roleMainManagedBean.compRoleTreeSelectionListener}"
+                             rowSelection="single" id="t1"
+                             disclosedRowKeys="#{backingBeanScope.roleMainManagedBean.rks}"
+                             inlineStyle="border:1px solid #BAC6CA;margin-right:1px;padding:10px 0px -5px 10px;"
+                             binding="#{backingBeanScope.roleMainManagedBean.compWorkRoleTree}"
+                             initiallyExpanded="true">
+                        <f:facet name="nodeStamp">
+                            <af:outputText value="#{node}" id="ot2"/>
+                        </f:facet>
+                    </af:tree>
+                </f:facet>
+                <f:facet name="ADMIN_PLATFORM">
+                    <af:tree value="#{bindings.CmsCompVO4AdminRoleManage.treeModel}" var="node"
+                             selectionListener="#{backingBeanScope.roleMainManagedBean.compRoleTreeSelectionListener}"
+                             rowSelection="single" id="t3" expandAllEnabled="true"
+                             inlineStyle="border:1px solid #BAC6CA;margin-right:1px;padding:10px 0px -5px 10px;"
+                             binding="#{backingBeanScope.roleMainManagedBean.compAdminRoleTree}"
+                             initiallyExpanded="true" disclosedRowKeys="#{backingBeanScope.roleMainManagedBean.rks}">
+                        <f:facet name="nodeStamp">
+                            <af:outputText value="#{node}" id="ot5"/>
+                        </f:facet>
+                    </af:tree>
+                </f:facet>
+                <f:facet name="PUB_PLATFORM">
+                    <af:tree value="#{bindings.CmsCompVO4PubRoleManage.treeModel}" var="node"
+                             selectionListener="#{backingBeanScope.roleMainManagedBean.compRoleTreeSelectionListener}"
+                             rowSelection="single" id="t2" expandAllEnabled="true"
+                             disclosedRowKeys="#{backingBeanScope.roleMainManagedBean.rks}"
+                             inlineStyle="border:1px solid #BAC6CA;margin-right:1px;padding:10px 0px -5px 10px;"
+                             binding="#{backingBeanScope.roleMainManagedBean.compPubRoleTree}" initiallyExpanded="true">
+                        <f:facet name="nodeStamp">
+                            <af:outputText value="#{node}" id="ot1"/>
+                        </f:facet>
+                    </af:tree>
+                </f:facet>
+            </af:switcher>
+        </f:facet>
+        <f:facet name="second">
+            <af:panelStretchLayout id="psl1" bottomHeight="auto" topHeight="auto">
+                <f:facet name="bottom"/>
+                <f:facet name="center">
+                    <af:region value="#{bindings.role_router_taskflow1.regionModel}" id="r2"
+                               binding="#{backingBeanScope.roleMainManagedBean.routRegion}"/>
+                </f:facet>
+                <f:facet name="top">
+                    <af:panelGroupLayout layout="horizontal" id="pgl1"
+                                         inlineStyle="margin:5px 0px 5px 0px;height:22px;" partialTriggers="t1 t3 t2">
+                        <af:popup childCreation="deferred" autoCancel="disabled" id="p1"
+                                  binding="#{backingBeanScope.roleMainManagedBean.roleManagePopup}"
+                                  contentDelivery="lazyUncached"
+                                  popupCanceledListener="#{backingBeanScope.roleMainManagedBean.roleManagePopupCanceledListener}">
+                            <af:dialog id="d1" title="角色维护"
+                                       dialogListener="#{backingBeanScope.roleMainManagedBean.roleManageDialogListener}">
+                                <f:facet name="buttonBar"/>
+                                <af:panelFormLayout id="pfl1">
+                                    <af:inputText value="#{bindings.RoleName.inputValue}"
+                                                  contentStyle="width:300px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  label="#{bindings.RoleName.hints.label}"
+                                                  required="#{bindings.RoleName.hints.mandatory}"
+                                                  columns="#{bindings.RoleName.hints.displayWidth}"
+                                                  maximumLength="#{bindings.RoleName.hints.precision}"
+                                                  shortDesc="#{bindings.RoleName.hints.tooltip}" id="it2">
+                                        <f:validator binding="#{bindings.RoleName.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.Remarks.inputValue}"
+                                                  label="#{bindings.Remarks.hints.label}"
+                                                  required="#{bindings.Remarks.hints.mandatory}"
+                                                  contentStyle="width:300px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  columns="#{bindings.Remarks.hints.displayWidth}"
+                                                  maximumLength="#{bindings.Remarks.hints.precision}"
+                                                  shortDesc="#{bindings.Remarks.hints.tooltip}" id="it1">
+                                        <f:validator binding="#{bindings.Remarks.validator}"/>
+                                    </af:inputText>
+                                    <af:selectBooleanCheckbox value="#{bindings.EnableFlag.inputValue}"
+                                                              label="#{bindings.EnableFlag.label}"
+                                                              shortDesc="#{bindings.EnableFlag.hints.tooltip}"
+                                                              id="sbc1"/>
+                                </af:panelFormLayout>
+                            </af:dialog>
+                        </af:popup>
+                        <af:popup childCreation="deferred" autoCancel="disabled" id="p2" contentDelivery="lazyUncached"
+                                  binding="#{backingBeanScope.roleMainManagedBean.userPickPopup}">
+                            <af:dialog id="d2" title="用户选择"
+                                       dialogListener="#{backingBeanScope.roleMainManagedBean.userPickupDialogListener}">
+                                <af:region value="#{bindings.user_norole_taskflow1.regionModel}" id="r1"/>
+                                <f:facet name="buttonBar"/>
+                            </af:dialog>
+                        </af:popup>
+                        <af:popup childCreation="deferred" autoCancel="disabled" id="p3"
+                                  binding="#{backingBeanScope.roleMainManagedBean.deleteRolePopup}">
+                            <af:dialog id="d3" title="提示"
+                                       dialogListener="#{backingBeanScope.roleMainManagedBean.deleteRoleDialogListener}">
+                                <f:facet name="buttonBar"/>
+                                <af:outputText value="确定要删除该角色？" id="ot3"/>
+                            </af:dialog>
+                        </af:popup>
+                        <af:commandButton text="新增角色" id="cb1" partialSubmit="true" styleClass="min-btn green-min-btn"
+                                          rendered="#{pageFlowScope.roleType != 'ADMIN_PLATFORM'}"
+                                          actionListener="#{backingBeanScope.roleMainManagedBean.createRoleActionListener}"/>
+                        <af:spacer width="3" height="10" id="s1"
+                                   rendered="#{pageFlowScope.roleType != 'ADMIN_PLATFORM'}"/>
+                        <af:commandButton text="修改角色" id="cb2" partialSubmit="true" styleClass="min-btn green-min-btn"
+                                          rendered="#{pageFlowScope.roleType != 'ADMIN_PLATFORM'}"
+                                          actionListener="#{backingBeanScope.roleMainManagedBean.updateRoleActionListener}">
+                            <f:attribute name="roleType" value="#{pageFlowScope.roleType}"/>
+                        </af:commandButton>
+                        <af:spacer width="3" height="10" id="s3"
+                                   rendered="#{pageFlowScope.roleType != 'ADMIN_PLATFORM'}"/>
+                        <af:commandButton text="删除角色" id="cb5" partialSubmit="true" styleClass="min-btn green-min-btn"
+                                          rendered="#{pageFlowScope.roleType != 'ADMIN_PLATFORM'}"
+                                          actionListener="#{backingBeanScope.roleMainManagedBean.deleteRoleActionListener}">
+                            <f:attribute name="roleType" value="#{pageFlowScope.roleType}"/>
+                        </af:commandButton>
+                        <af:spacer width="3" height="10" id="s2"
+                                   rendered="#{pageFlowScope.roleType != 'ADMIN_PLATFORM'}"/>
+                        <af:commandButton text="设置权限" id="cb3" partialSubmit="true" styleClass="min-btn green-min-btn"
+                                          inlineStyle="margin-right:3px;"
+                                          visible="#{pageFlowScope.roleType != 'ADMIN_PLATFORM' and !pageFlowScope.isApprover}"
+                                          actionListener="#{backingBeanScope.roleMainManagedBean.setRoleOperationActionListener}"
+                                          binding="#{backingBeanScope.roleMainManagedBean.roleSetButton}"/>
+                        <af:commandButton text="设置工作平台权限" id="cb6" partialSubmit="true"
+                                          styleClass="min-btn green-min-btn"
+                                          rendered="#{pageFlowScope.roleType == 'ADMIN_PLATFORM' and pageFlowScope.groupFlag != 'Y'}"
+                                          actionListener="#{backingBeanScope.roleMainManagedBean.setAdminRoleOperationActionListener}">
+                            <f:attribute name="platformType" value="WORK_PLATFORM"/>
+                        </af:commandButton>
+                        <af:spacer width="3" height="10" id="s6"
+                                   rendered="#{pageFlowScope.roleType == 'ADMIN_PLATFORM'}"/>
+                        <af:commandButton text="设置发布平台权限" id="cb7" partialSubmit="true"
+                                          styleClass="min-btn green-min-btn"
+                                          rendered="#{pageFlowScope.roleType == 'ADMIN_PLATFORM' and pageFlowScope.groupFlag != 'Y'}"
+                                          actionListener="#{backingBeanScope.roleMainManagedBean.setAdminRoleOperationActionListener}">
+                            <f:attribute name="platformType" value="PUB_PLATFORM"/>
+                        </af:commandButton>
+                        <af:spacer width="3" height="10" id="s7"
+                                   rendered="#{pageFlowScope.roleType == 'ADMIN_PLATFORM'}"/>
+                        <af:commandButton text="授权用户" id="cb4" partialSubmit="true" styleClass="min-btn green-min-btn"
+                                          actionListener="#{backingBeanScope.roleMainManagedBean.grantUserActionListener}"/>
+                    </af:panelGroupLayout>
+                </f:facet>
+            </af:panelStretchLayout>
+        </f:facet>
+    </af:panelSplitter>
+</ui:composition>

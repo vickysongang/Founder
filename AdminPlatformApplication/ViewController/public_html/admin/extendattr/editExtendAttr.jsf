@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <af:document title="#{pageFlowScope.operType == 'CREATE' ? '新增字段' : '编辑字段'}" id="d1">
+        <af:messages id="m1"/>
+        <af:form id="f1">
+            <af:panelStretchLayout id="psl1">
+                <f:facet name="center">
+                    <af:panelFormLayout id="pfl1" inlineStyle="margin-top:30px;">
+                        <af:inputText value="#{bindings.AttrCode.inputValue}" label="#{bindings.AttrCode.hints.label}"
+                                      contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                      columns="#{bindings.AttrCode.hints.displayWidth}" showRequired="true"
+                                      maximumLength="#{bindings.AttrCode.hints.precision}"
+                                      shortDesc="#{bindings.AttrCode.hints.tooltip}" id="it1"
+                                      disabled="#{pageFlowScope.operType == 'EDIT'}"
+                                      binding="#{backingBeanScope.extendAttrEditManagedBean.attrCodeInput}">
+                            <f:validator binding="#{bindings.AttrCode.validator}"/>
+                        </af:inputText>
+                        <af:inputText value="#{bindings.AttrMeaning.inputValue}"
+                                      label="#{bindings.AttrMeaning.hints.label}" showRequired="true"
+                                      contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                      columns="#{bindings.AttrMeaning.hints.displayWidth}"
+                                      maximumLength="#{bindings.AttrMeaning.hints.precision}"
+                                      shortDesc="#{bindings.AttrMeaning.hints.tooltip}" id="it2"
+                                      binding="#{backingBeanScope.extendAttrEditManagedBean.attrMeaningInput}">
+                            <f:validator binding="#{bindings.AttrMeaning.validator}"/>
+                        </af:inputText>
+                        <af:selectOneChoice value="#{bindings.AttrType.inputValue}" label="#{bindings.AttrType.label}"
+                                            required="#{bindings.AttrType.hints.mandatory}" showRequired="true"
+                                            contentStyle="width:207px;height:22px;line-height:22px;border-color:#ABADB3;font-size:12px;"
+                                            shortDesc="#{bindings.AttrType.hints.tooltip}" id="soc1"
+                                            binding="#{backingBeanScope.extendAttrEditManagedBean.attrTypeChoice}">
+                            <f:selectItems value="#{bindings.AttrType.items}" id="si1"/>
+                        </af:selectOneChoice>
+                    </af:panelFormLayout>
+                </f:facet>
+                <f:facet name="bottom">
+                    <af:panelGroupLayout id="pgl1" layout="vertical" halign="center">
+                        <af:panelGroupLayout id="pgl2" layout="horizontal">
+                            <af:commandButton text="保存" id="cb1" partialSubmit="true" styleClass="popup-btn"
+                                              action="#{backingBeanScope.extendAttrEditManagedBean.saveAction}">
+                                <af:setPropertyListener from="Y" to="#{pageFlowScope.saveFlag}" type="action"/>
+                            </af:commandButton>
+                            <af:spacer height="10" width="10" id="s1"/>
+                            <af:commandButton text="取消" id="cb2" styleClass="popup-btn"
+                                              action="#{backingBeanScope.extendAttrEditManagedBean.cancelAction}">
+                                <af:setPropertyListener from="N" to="#{pageFlowScope.saveFlag}" type="action"/>
+                            </af:commandButton>
+                        </af:panelGroupLayout>
+                    </af:panelGroupLayout>
+                </f:facet>
+            </af:panelStretchLayout>
+        </af:form>
+    </af:document>
+</f:view>

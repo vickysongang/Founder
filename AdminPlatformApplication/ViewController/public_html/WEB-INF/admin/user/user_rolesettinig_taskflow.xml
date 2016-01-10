@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="user_rolesettinig_taskflow">
+    <default-activity>initAllUserRole</default-activity>
+    <input-parameter-definition id="__1">
+      <name>userId</name>
+      <value>#{pageFlowScope.userId}</value>
+      <class>java.lang.String</class>
+      <required/>
+    </input-parameter-definition>
+    <input-parameter-definition id="__2">
+      <name>refreshValue</name>
+      <value>#{pageFlowScope.refreshValue}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__5">
+      <name>compStr</name>
+      <value>#{pageFlowScope.compStr}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <method-call id="initAllUserRole">
+      <method>#{bindings.initAllUserRole.execute}</method>
+      <outcome>
+        <fixed-outcome>initAllUserRole</fixed-outcome>
+      </outcome>
+    </method-call>
+    <view id="userRoleSetting">
+      <page>/admin/user/fragment/userRoleSetting.jsff</page>
+    </view>
+    <control-flow-rule id="__3">
+      <from-activity-id>initAllUserRole</from-activity-id>
+      <control-flow-case id="__4">
+        <from-outcome>initAllUserRole</from-outcome>
+        <to-activity-id>userRoleSetting</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

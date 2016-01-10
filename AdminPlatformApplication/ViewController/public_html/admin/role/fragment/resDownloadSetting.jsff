@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core" xmlns:trh="http://myfaces.apache.org/trinidad/html">
+    <af:panelGroupLayout id="pgl4" binding="#{backingBeanScope.resDownloadAuthBean.panelGroupBinding}">
+        <trh:tableLayout binding="#{backingBeanScope.resDownloadAuthBean.table}" cellPadding="5" id="tl1"
+                         borderWidth="1" inlineStyle="border-color:#eeeeee;">
+            <trh:rowLayout id="rl1" inlineStyle="background-color:#eeeeee;"
+                           rendered="#{bindings.CmsResDownloadVO.estimatedRowCount > 0}">
+                <trh:cellFormat id="cf1" inlineStyle="width:200px">全选</trh:cellFormat>
+                <trh:cellFormat id="cf2" inlineStyle="width:200px">
+                    <af:panelGroupLayout id="pgl1" layout="horizontal" halign="left">
+                        <af:selectBooleanRadio text="不下载" label="Label 1" id="sbr1" simple="true" group="titleGroup"
+                                               autoSubmit="true" value="#{pageFlowScope.isNoDownload}"
+                                               valueChangeListener="#{backingBeanScope.resDownloadAuthBean.allValueChangelistener}">
+                            <f:attribute name="downloadType" value="no"/>
+                        </af:selectBooleanRadio>
+                    </af:panelGroupLayout>
+                </trh:cellFormat>
+                <trh:cellFormat id="cf3" inlineStyle="width:200px">
+                    <af:panelGroupLayout id="pgl2" layout="horizontal" halign="left">
+                        <af:selectBooleanRadio text="审批下载" label="Label 1" id="sbr2" simple="true" group="titleGroup"
+                                               autoSubmit="true" value="#{pageFlowScope.isAuthDownload}"
+                                               valueChangeListener="#{backingBeanScope.resDownloadAuthBean.allValueChangelistener}">
+                            <f:attribute name="downloadType" value="auth"/>
+                        </af:selectBooleanRadio>
+                    </af:panelGroupLayout>
+                </trh:cellFormat>
+                <trh:cellFormat id="cf4" inlineStyle="width:200px">
+                    <af:panelGroupLayout id="pgl3" layout="horizontal" halign="left">
+                        <af:selectBooleanRadio text="自由下载" label="Label 1" id="sbr3" simple="true" group="titleGroup"
+                                               autoSubmit="true" value="#{pageFlowScope.isFreeDownload}"
+                                               valueChangeListener="#{backingBeanScope.resDownloadAuthBean.allValueChangelistener}">
+                            <f:attribute name="downloadType" value="free"/>
+                        </af:selectBooleanRadio>
+                    </af:panelGroupLayout>
+                </trh:cellFormat>
+            </trh:rowLayout>
+            <af:iterator value="#{bindings.CmsResDownloadVO.collectionModel}" var="row" varStatus="vs"
+                         binding="#{backingBeanScope.resDownloadAuthBean.downloadIterator}" id="i1">
+                <trh:rowLayout id="rl2">
+                    <trh:cellFormat id="cf5">
+                        <af:outputText value="#{row.ResName}" id="ot1"/>
+                    </trh:cellFormat>
+                    <trh:cellFormat id="cf6">
+                        <af:selectBooleanRadio value="#{row.IsNo}" text="不下载" label="Label 1" id="sbr4" simple="true"
+                                               group="rowGroup_#{vs.index}"/>
+                    </trh:cellFormat>
+                    <trh:cellFormat id="cf7">
+                        <af:selectBooleanRadio value="#{row.IsAuth}" text="申请下载" label="Label 1" id="sbr5" simple="true"
+                                               group="rowGroup_#{vs.index}"/>
+                    </trh:cellFormat>
+                    <trh:cellFormat id="cf8">
+                        <af:selectBooleanRadio value="#{row.IsFree}" text="自由下载" label="Label 1" id="sbr6" simple="true"
+                                               group="rowGroup_#{vs.index}"/>
+                    </trh:cellFormat>
+                </trh:rowLayout>
+            </af:iterator>
+        </trh:tableLayout>
+        <af:outputText value="没有可操作权限项！" id="ot2" rendered="#{bindings.CmsResDownloadVO.estimatedRowCount == 0 }"/>
+        <af:panelGroupLayout id="pgl5" halign="center" layout="horizontal" inlineStyle="padding:10px;">
+            <af:commandButton text="保存" id="cb1" inlineStyle="width:100px;height:20px;"
+                              styleClass="min-btn blue-min-btn bottom_btn"
+                              rendered="#{bindings.CmsResDownloadVO.estimatedRowCount > 0}"
+                              actionListener="#{backingBeanScope.resDownloadAuthBean.saveActionListener}"/>
+        </af:panelGroupLayout>
+    </af:panelGroupLayout>
+</ui:composition>

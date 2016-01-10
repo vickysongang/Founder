@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="periodicalSetupEditPageDef"
+                Package="admin.periodical.inline">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="CmsPeriodicalEditVO" RangeSize="25" DataControl="AdminAMDataControl"
+              id="CmsPeriodicalEditVOIterator"/>
+    <iterator Binds="WeeklyNewspaperVO" RangeSize="25" DataControl="AdminAMDataControl" id="WeeklyNewspaperVOIterator"/>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="CmsPeriodicalEditVOIterator" id="PeriodicalName">
+      <AttrNames>
+        <Item Value="PeriodicalName"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="CmsPeriodicalEditVOIterator" StaticList="false" Uses="LOV_PeriodicalType" id="PeriodicalType"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <list IterBinding="CmsPeriodicalEditVOIterator" StaticList="false" Uses="LOV_PaperType" id="PaperType"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <list IterBinding="CmsPeriodicalEditVOIterator" StaticList="false" Uses="LOV_Lang" id="Lang" DTSupportsMRU="false"
+          SelectItemValueMode="ListObject"/>
+    <attributeValues IterBinding="CmsPeriodicalEditVOIterator" id="ChiefEditor">
+      <AttrNames>
+        <Item Value="ChiefEditor"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsPeriodicalEditVOIterator" id="PublishedDate">
+      <AttrNames>
+        <Item Value="PublishedDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsPeriodicalEditVOIterator" id="Price">
+      <AttrNames>
+        <Item Value="Price"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsPeriodicalEditVOIterator" id="Cn">
+      <AttrNames>
+        <Item Value="Cn"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsPeriodicalEditVOIterator" id="Issn">
+      <AttrNames>
+        <Item Value="Issn"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="CmsPeriodicalEditVOIterator" StaticList="false" Uses="LOV_BookSize" id="BookSize"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <attributeValues IterBinding="CmsPeriodicalEditVOIterator" id="Words">
+      <AttrNames>
+        <Item Value="Words"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="CmsPeriodicalEditVOIterator" StaticList="false" Uses="LOV_ProdSize" id="ProdSize"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <list IterBinding="CmsPeriodicalEditVOIterator" StaticList="false" Uses="LOV_ReaderGroup" id="ReaderGroup"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <attributeValues IterBinding="CmsPeriodicalEditVOIterator" id="Org">
+      <AttrNames>
+        <Item Value="Org"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsPeriodicalEditVOIterator" id="Publishing">
+      <AttrNames>
+        <Item Value="Publishing"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsPeriodicalEditVOIterator" id="Description">
+      <AttrNames>
+        <Item Value="Description"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="CmsPeriodicalEditVOIterator" StaticList="false" Uses="LOV_Weekly1" id="Weekly1"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <list IterBinding="CmsPeriodicalEditVOIterator" StaticList="false" Uses="LOV_Monthly" id="Monthly"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <list IterBinding="CmsPeriodicalEditVOIterator" StaticList="false" Uses="LOV_OldEven" id="OldEven"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <list IterBinding="CmsPeriodicalEditVOIterator" StaticList="false" Uses="LOV_FirstTenDays" id="FirstTenDays"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <list IterBinding="CmsPeriodicalEditVOIterator" StaticList="false" Uses="LOV_SecondTenDays" id="SecondTenDays"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <list IterBinding="CmsPeriodicalEditVOIterator" StaticList="false" Uses="LOV_ThirdTenDays" id="ThirdTenDays"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <list IterBinding="CmsPeriodicalEditVOIterator" StaticList="false" Uses="LOV_Quarterly" id="Quarterly"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <list IterBinding="CmsPeriodicalEditVOIterator" StaticList="false" Uses="LOV_FisrtHalfMonth" id="FisrtHalfMonth"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <list IterBinding="CmsPeriodicalEditVOIterator" StaticList="false" Uses="LOV_SecondHalfMonth" id="SecondHalfMonth"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <attributeValues IterBinding="CmsPeriodicalEditVOIterator" id="Weekly2">
+      <AttrNames>
+        <Item Value="Weekly2"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="WeeklyNewspaperVOIterator" ListOperMode="multiSelect" ListIter="WeeklyNewspaperVOIterator"
+          id="WeeklyNewspaperVO" SelectItemValueMode="ListObject">
+      <AttrNames>
+        <Item Value="CODE"/>
+      </AttrNames>
+      <ListDisplayAttrNames>
+        <Item Value="NAME"/>
+      </ListDisplayAttrNames>
+    </list>
+    <attributeValues IterBinding="CmsPeriodicalEditVOIterator" id="Comp">
+      <AttrNames>
+        <Item Value="Comp"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

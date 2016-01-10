@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="userManagePageDef"
+                Package="admin.user.fragment">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator id="CmsUserTVOIterator" Binds="CmsUserTVO" DataControl="AdminAMDataControl" RangeSize="25"/>
+    <taskFlow id="user_rolesettinig_taskflow1"
+              taskFlowId="/WEB-INF/admin/user/user_rolesettinig_taskflow.xml#user_rolesettinig_taskflow"
+              activation="deferred" xmlns="http://xmlns.oracle.com/adf/controller/binding" Refresh="ifNeeded">
+      <parameters>
+        <parameter id="userId" value="#{pageFlowScope.userId}"/>
+        <parameter id="refreshValue" value="#{pageFlowScope.refreshTime}"/>
+        <parameter id="compStr" value="#{pageFlowScope.compStr}"/>
+      </parameters>
+    </taskFlow>
+    <iterator Binds="CmsCompVO4Common" RangeSize="25" DataControl="AdminAMDataControl" id="CmsCompVO4CommonIterator"/>
+    <iterator Binds="CmsUserTVO4Display" RangeSize="25" DataControl="AdminAMDataControl"
+              id="CmsUserTVO4DisplayIterator"/>
+  </executables>
+  <bindings>
+    <methodAction id="findUserByComp" InstanceName="data.AdminAMDataControl.dataProvider"
+                  DataControl="AdminAMDataControl" RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="findUserByComp" IsViewObjectMethod="false">
+      <NamedData NDName="compCode" NDValue="#{pageFlowScope.compCode}" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="createUser" InstanceName="data.AdminAMDataControl.dataProvider" DataControl="AdminAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod" MethodName="createUser" IsViewObjectMethod="false">
+      <NamedData NDName="compCode" NDValue="#{pageFlowScope.compCode}" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="deleteUser" InstanceName="data.AdminAMDataControl.dataProvider" DataControl="AdminAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod" MethodName="deleteUser" IsViewObjectMethod="false">
+      <NamedData NDName="userId" NDValue="#{pageFlowScope.userId}" NDType="oracle.jbo.domain.Number"/>
+    </methodAction>
+    <methodAction id="resetPassword" InstanceName="data.AdminAMDataControl.dataProvider"
+                  DataControl="AdminAMDataControl" RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="resetPassword" IsViewObjectMethod="false">
+      <NamedData NDName="userId" NDValue="#{pageFlowScope.userId}" NDType="oracle.jbo.domain.Number"/>
+    </methodAction>
+    <methodAction id="setUserRole" InstanceName="data.AdminAMDataControl.dataProvider" DataControl="AdminAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod" MethodName="setUserRole" IsViewObjectMethod="false"
+                  ReturnName="data.AdminAMDataControl.methodResults.setUserRole_AdminAMDataControl_dataProvider_setUserRole_result">
+      <NamedData NDName="userId" NDType="oracle.jbo.domain.Number"/>
+    </methodAction>
+    <tree IterBinding="CmsUserTVO4DisplayIterator" id="CmsUserTVO4Display">
+      <nodeDefinition DefName="com.zypg.cms.admin.model.viewobject.CmsUserTVO" Name="CmsUserTVO4Display0">
+        <AttrNames>
+          <Item Value="DiplayName"/>
+          <Item Value="EnableFlag"/>
+          <Item Value="UserName"/>
+          <Item Value="UserId"/>
+          <Item Value="CompCode"/>
+          <Item Value="Password"/>
+          <Item Value="Remarks"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="CmsCompVO4CommonIterator" id="CmsCompVO4Common">
+      <nodeDefinition DefName="com.zypg.cms.admin.model.viewobject.query.CmsCompVO" Name="CmsCompVO4Common0">
+        <AttrNames>
+          <Item Value="CompId"/>
+          <Item Value="CompCode"/>
+          <Item Value="CompName"/>
+          <Item Value="Seq"/>
+          <Item Value="CompDesc"/>
+          <Item Value="Checkbox"/>
+          <Item Value="DisplayName"/>
+          <Item Value="GroupFlag"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="CmsUserTVOIterator" id="UserName">
+      <AttrNames>
+        <Item Value="UserName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsUserTVOIterator" id="DiplayName">
+      <AttrNames>
+        <Item Value="DiplayName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsUserTVOIterator" id="Remarks">
+      <AttrNames>
+        <Item Value="Remarks"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core" xmlns:trh="http://myfaces.apache.org/trinidad/html"
+                xmlns:h="http://java.sun.com/jsf/html">
+    <af:panelGroupLayout layout="scroll" id="pgl8" inlineStyle="margin:10px 0 0 10px; ">
+        <trh:tableLayout id="tl1" cellPadding="5" borderWidth="1" inlineStyle="border-color:#eeeeee;">
+            <trh:rowLayout id="rl2" rendered="#{bindings.CmsResType4WPVO1.currentRow == null ? false : true }">
+                <trh:cellFormat id="cf2" inlineStyle="background-color:#eeeeee;" halign="center">
+                    <af:outputText value='#{bindings.CmsResType4WPVO1.currentRow == null ? "" : "全选" }' id="ot2"
+                                   styleClass="userAdmin_outputtext"/>
+                </trh:cellFormat>
+                <trh:cellFormat id="cf4">
+                    <af:panelGroupLayout id="pgl3" layout="horizontal">
+                        <af:selectBooleanCheckbox id="sbc1"
+                                                  valueChangeListener="#{backingBeanScope.roleResSettingBean.roleResSettingSelectChangeListener}"
+                                                  autoSubmit="true"
+                                                  visible="#{bindings.CmsResType4WPVO1.currentRow == null ? false : true }"
+                                                  binding="#{backingBeanScope.roleResSettingBean.isAllSelectedBox}"/>
+                    </af:panelGroupLayout>
+                </trh:cellFormat>
+            </trh:rowLayout>
+            <af:iterator value="#{bindings.CmsResType4WPVO1.collectionModel}" var="row" varStatus="vs" id="i4"
+                         binding="#{backingBeanScope.roleResSettingBean.cmsResSettingTypeIterator}">
+                <trh:rowLayout id="rl1">
+                    <trh:cellFormat id="cf1" inlineStyle="background-color:#eeeeee;" halign="center">
+                        <af:outputText value="#{row.ResTypeName}" id="ot4" styleClass="userAdmin_outputtext">
+                            <f:attribute name="node" value="#{row}"/>
+                            <af:clientListener method="selectAllRes" type="click"/>
+                            <af:serverListener type="selectAllResServer"
+                                               method="#{backingBeanScope.roleResSettingBean.selectAllResServerListener}"/>
+                        </af:outputText>
+                    </trh:cellFormat>
+                    <trh:cellFormat id="cf3">
+                        <af:panelFormLayout id="pfl1" rows="1" maxColumns="6">
+                            <af:iterator value="#{row.CmsRes4WPVO}" var="row2" varStatus="vs2" id="i5">
+                                <af:panelGroupLayout id="pgl9" layout="horizontal" halign="left"
+                                                     inlineStyle="width:100px;">
+                                    <af:panelGroupLayout id="pgl1" layout="horizontal" halign="left">
+                                        <af:selectBooleanCheckbox id="sbc3" value="#{row2.IsSelected}" simple="true"
+                                                                  autoSubmit="true"/>
+                                        <af:outputText value="#{row2.ResName}" id="ot6" inlineStyle="text-align:left;"/>
+                                    </af:panelGroupLayout>
+                                </af:panelGroupLayout>
+                            </af:iterator>
+                        </af:panelFormLayout>
+                    </trh:cellFormat>
+                </trh:rowLayout>
+            </af:iterator>
+        </trh:tableLayout>
+        <af:outputText value="没有可操作权限项！" id="ot1" rendered="#{bindings.CmsResType4WPVO1.estimatedRowCount == 0 }"/>
+        <af:spacer width="10" height="10" id="s3"/>
+        <af:panelGroupLayout id="pgl5" inlineStyle="margin:10px 0 0 60px;">
+            <af:commandButton text="保存" id="cb2" styleClass="min-btn blue-min-btn bottom_btn"
+                              rendered="#{bindings.CmsResType4WPVO1.estimatedRowCount > 0 }"
+                              actionListener="#{backingBeanScope.roleResSettingBean.saveRoleResActionListener}"/>
+        </af:panelGroupLayout>
+    </af:panelGroupLayout>
+</ui:composition>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+    <task-flow-definition id="newspaper_setup_taskflow">
+        <default-activity>initNewspaperSetup</default-activity>
+        <input-parameter-definition id="__9">
+            <name>currTime</name>
+            <value>#{pageFlowScope.currTime}</value>
+            <class>java.lang.String</class>
+        </input-parameter-definition>
+        <input-parameter-definition id="__10">
+            <name>compStr</name>
+            <value>#{pageFlowScope.compStr}</value>
+            <class>java.lang.String</class>
+        </input-parameter-definition>
+        <managed-bean id="__3">
+            <managed-bean-name>newspaperSetupManagedBean</managed-bean-name>
+            <managed-bean-class>com.zypg.cms.admin.view.bean.NewspaperSetupManagedBean</managed-bean-class>
+            <managed-bean-scope>backingBean</managed-bean-scope>
+        </managed-bean>
+        <view id="newspaperSetup">
+            <page>/admin/newspaper/fragment/newspaperSetup.jsff</page>
+        </view>
+        <method-call id="initNewspaperSetup">
+            <method>#{backingBeanScope.newspaperSetupManagedBean.initNewspaperSetup}</method>
+            <outcome>
+                <fixed-outcome>toNewspaperSetup</fixed-outcome>
+            </outcome>
+        </method-call>
+        <task-flow-call id="newspaper_setup_edit_taskflow">
+            <task-flow-reference>
+                <document>/WEB-INF/admin/newspaper/newspaper_setup_edit_taskflow.xml</document>
+                <id>newspaper_setup_edit_taskflow</id>
+            </task-flow-reference>
+            <input-parameter id="__6">
+                <name>mode</name>
+                <value>#{pageFlowScope.mode}</value>
+            </input-parameter>
+            <input-parameter id="__7">
+                <name>categoryId</name>
+                <value>#{pageFlowScope.categoryId}</value>
+            </input-parameter>
+            <input-parameter id="__8">
+                <name>compCode</name>
+                <value>#{pageFlowScope.compCode}</value>
+            </input-parameter>
+            <run-as-dialog>
+                <display-type>
+                    <inline-popup/>
+                </display-type>
+            </run-as-dialog>
+        </task-flow-call>
+        <control-flow-rule id="__1">
+            <from-activity-id>initNewspaperSetup</from-activity-id>
+            <control-flow-case id="__2">
+                <from-outcome>toNewspaperSetup</from-outcome>
+                <to-activity-id>newspaperSetup</to-activity-id>
+            </control-flow-case>
+        </control-flow-rule>
+        <control-flow-rule id="__4">
+            <from-activity-id>newspaperSetup</from-activity-id>
+            <control-flow-case id="__5">
+                <from-outcome>toEdit</from-outcome>
+                <to-activity-id>newspaper_setup_edit_taskflow</to-activity-id>
+            </control-flow-case>
+        </control-flow-rule>
+        <use-page-fragments/>
+    </task-flow-definition>
+</adfc-config>

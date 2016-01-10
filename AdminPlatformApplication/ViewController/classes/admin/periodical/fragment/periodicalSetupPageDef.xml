@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="periodicalSetupPageDef"
+                Package="admin.periodical.fragment">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="CmsCompVO4PeriodicalSetup" RangeSize="25" DataControl="AdminAMDataControl"
+              id="CmsCompVO4PeriodicalSetupIterator"/>
+    <iterator Binds="CmsPeriodicalSetupVO" RangeSize="25" DataControl="AdminAMDataControl"
+              id="CmsPeriodicalSetupVOIterator"/>
+    <iterator Binds="CmsCompVO4Common" RangeSize="25" DataControl="AdminAMDataControl" id="CmsCompVO4CommonIterator"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="CmsPeriodicalSetupVOIterator" id="CmsPeriodicalSetupVO">
+      <nodeDefinition DefName="com.zypg.cms.admin.model.viewobject.query.CmsPeriodicalSetupVO"
+                      Name="CmsPeriodicalSetupVO0">
+        <AttrNames>
+          <Item Value="CategoryName"/>
+          <Item Value="PeriodicalTypeName"/>
+          <Item Value="PaperTypeName"/>
+          <Item Value="Words"/>
+          <Item Value="PublishedDate"/>
+          <Item Value="Description"/>
+          <Item Value="CategoryId"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="CmsCompVO4CommonIterator" id="CmsCompVO4Common">
+      <nodeDefinition DefName="com.zypg.cms.admin.model.viewobject.query.CmsCompVO" Name="CmsCompVO4Common0">
+        <AttrNames>
+          <Item Value="CompId"/>
+          <Item Value="CompCode"/>
+          <Item Value="CompName"/>
+          <Item Value="Seq"/>
+          <Item Value="CompDesc"/>
+          <Item Value="Checkbox"/>
+          <Item Value="DisplayName"/>
+          <Item Value="GroupFlag"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+  </bindings>
+</pageDefinition>

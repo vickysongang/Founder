@@ -1,0 +1,105 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core">
+    <af:panelStretchLayout id="psl1" styleClass="AFStretchWidth" startWidth="175">
+        <f:facet name="start">
+            <af:panelGroupLayout layout="vertical" id="pgl4" styleClass="AFStretchWidth" partialTriggers="i1:cl1"
+                                 inlineStyle="border:1px solid #BAC6CA;margin-right:1px;padding:10px 0px 5px 10px;">
+                <af:iterator id="i1" value="#{bindings.CmsLib4ExtendAttrVO.collectionModel}" var="row" varStatus="vs">
+                    <af:commandLink text="#{row.LibName}" id="cl1"
+                                    inlineStyle="#{row.LibCode == pageFlowScope.libCode ? 'color:blue' : ''}"
+                                    styleClass="userAdmin_outputtext" partialSubmit="true"
+                                    actionListener="#{backingBeanScope.compExtendAttrManagedBean.switchLibActionListener}">
+                        <f:attribute name="libCode" value="#{row.LibCode}"/>
+                    </af:commandLink>
+                    <af:spacer height="5px" id="s1"/>
+                </af:iterator>
+            </af:panelGroupLayout>
+        </f:facet>
+        <f:facet name="center">
+            <af:panelStretchLayout id="psl2" styleClass="AFStretchWidth" topHeight="auto">
+                <f:facet name="top">
+                    <af:panelGroupLayout id="pgl2" layout="vertical" inlineStyle="margin:5px 0px 0px 5px;">
+                        <af:commandButton text="新增" id="cb1" partialSubmit="true" styleClass="min-btn green-min-btn"
+                                          action="toEdit" useWindow="true" windowHeight="200" windowWidth="400"
+                                          returnListener="#{backingBeanScope.compExtendAttrManagedBean.newOrEditReturnListener}">
+                            <af:setPropertyListener from="CREATE" to="#{pageFlowScope.operType}" type="action"/>
+                        </af:commandButton>
+                        <af:spacer height="4" width="10" id="s3"/>
+                    </af:panelGroupLayout>
+                </f:facet>
+                <f:facet name="center">
+                    <af:table value="#{bindings.CmsExtendAttrVO.collectionModel}" var="row"
+                              rows="#{bindings.CmsExtendAttrVO.rangeSize}" varStatus="vs" autoHeightRows="0"
+                              contentDelivery="immediate"
+                              emptyText="#{bindings.CmsExtendAttrVO.viewable ? '' : 'Access Denied.'}"
+                              fetchSize="#{bindings.CmsExtendAttrVO.rangeSize}" rowBandingInterval="0"
+                              selectedRowKeys="#{bindings.CmsExtendAttrVO.collectionModel.selectedRow}"
+                              selectionListener="#{bindings.CmsExtendAttrVO.collectionModel.makeCurrent}"
+                              inlineStyle="padding-top:5px;margin-left:5px;" rowSelection="single" id="t1"
+                              partialTriggers="::cb1 cl2 ::d1 ::i1:cl1">
+                        <af:column headerText="序号" id="c1" align="center" width="30">
+                            <af:outputText value="#{vs.index+1}" id="ot1"/>
+                        </af:column>
+                        <af:column sortProperty="#{bindings.CmsExtendAttrVO.hints.AttrCode.name}" sortable="false"
+                                   width="150" align="center"
+                                   headerText="#{bindings.CmsExtendAttrVO.hints.AttrCode.label}" id="c4">
+                            <af:outputText value="#{row.AttrCode}"
+                                           shortDesc="#{bindings.CmsExtendAttrVO.hints.AttrCode.tooltip}" id="ot3"/>
+                        </af:column>
+                        <af:column sortProperty="#{bindings.CmsExtendAttrVO.hints.AttrMeaning.name}" sortable="false"
+                                   width="150" align="center"
+                                   headerText="#{bindings.CmsExtendAttrVO.hints.AttrMeaning.label}" id="c2">
+                            <af:outputText value="#{row.AttrMeaning}"
+                                           shortDesc="#{bindings.CmsExtendAttrVO.hints.AttrMeaning.tooltip}" id="ot2"/>
+                        </af:column>
+                        <af:column sortProperty="#{bindings.CmsExtendAttrVO.hints.AttrType.name}" sortable="false"
+                                   width="150" align="center"
+                                   headerText="#{bindings.CmsExtendAttrVO.hints.AttrType.label}" id="c3">
+                            <af:selectOneChoice value="#{row.bindings.AttrType.inputValue}"
+                                                label="#{row.bindings.AttrType.label}"
+                                                required="#{bindings.CmsExtendAttrVO.hints.AttrType.mandatory}"
+                                                shortDesc="#{bindings.CmsExtendAttrVO.hints.AttrType.tooltip}"
+                                                readOnly="true" id="soc1">
+                                <f:selectItems value="#{row.bindings.AttrType.items}" id="si1"/>
+                            </af:selectOneChoice>
+                        </af:column>
+                        <af:column sortable="false" headerText="操作" id="c7" align="center" width="250">
+                            <af:panelGroupLayout id="pgl1" layout="horizontal">
+                                <af:commandLink text="编辑" id="cl2" partialSubmit="true" action="toEdit" useWindow="true"
+                                                returnListener="#{backingBeanScope.compExtendAttrManagedBean.newOrEditReturnListener}"
+                                                windowHeight="200" windowWidth="400">
+                                    <af:setPropertyListener from="EDIT" to="#{pageFlowScope.operType}" type="action"/>
+                                    <af:setPropertyListener from="#{row.ExtendAttrId}"
+                                                            to="#{pageFlowScope.extendAttrId}" type="action"/>
+                                </af:commandLink>
+                                <af:spacer height="10" width="10" id="s2"/>
+                                <af:commandLink text="删除" id="cl3" partialSubmit="true"
+                                                actionListener="#{backingBeanScope.compExtendAttrManagedBean.deleteActionListener}">
+                                    <f:attribute name="extendAttrId" value="#{row.ExtendAttrId}"/>
+                                </af:commandLink>
+                                <af:spacer height="10" width="10" id="s4"/>
+                                <af:commandLink text="维护值列表" id="cl4" partialSubmit="true"
+                                                rendered="#{row.AttrType == 'CHOICE'}"
+                                                action="#{backingBeanScope.compExtendAttrManagedBean.editExtendAttrValueListActionListener}">
+                                    <af:setPropertyListener from="#{row.ExtendAttrId}"
+                                                            to="#{pageFlowScope.extendAttrId}" type="action"/>
+                                </af:commandLink>
+                            </af:panelGroupLayout>
+                        </af:column>
+                    </af:table>
+                </f:facet>
+                <f:facet name="bottom">
+                    <af:popup childCreation="deferred" autoCancel="disabled" id="p1"
+                              binding="#{backingBeanScope.compExtendAttrManagedBean.deletePopup}">
+                        <af:dialog id="d1" title="提示"
+                                   dialogListener="#{backingBeanScope.compExtendAttrManagedBean.deleteDialogListener}">
+                            <f:facet name="buttonBar"/>
+                            <af:outputText value="确定要删除吗？" id="ot7"/>
+                        </af:dialog>
+                    </af:popup>
+                </f:facet>
+            </af:panelStretchLayout>
+        </f:facet>
+    </af:panelStretchLayout>
+</jsp:root>

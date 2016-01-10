@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="periodSetupPageDef"
+                Package="admin.periodical.fragment">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="CmsCompVO4PeriodSetup" RangeSize="25" DataControl="AdminAMDataControl"
+              id="CmsCompVO4PeriodSetupIterator"/>
+    <iterator Binds="CmsPeriodSetupVO" RangeSize="25" DataControl="AdminAMDataControl" id="CmsPeriodSetupVOIterator"/>
+    <iterator Binds="CmsPeriodSetupQueryVO" RangeSize="25" DataControl="AdminAMDataControl"
+              id="CmsPeriodSetupQueryVOIterator" Refresh="always"/>
+    <iterator Binds="CmsCompVO4Common" RangeSize="25" DataControl="AdminAMDataControl" id="CmsCompVO4CommonIterator"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="CmsPeriodSetupVOIterator" id="CmsPeriodSetupVO">
+      <nodeDefinition DefName="com.zypg.cms.admin.model.viewobject.query.CmsPeriodSetupVO" Name="CmsPeriodSetupVO0">
+        <AttrNames>
+          <Item Value="PeriodNum"/>
+          <Item Value="PublicDateDisplay"/>
+          <Item Value="Weekday"/>
+          <Item Value="Remarks"/>
+          <Item Value="PeriodicalCategoryId"/>
+          <Item Value="PublicDate"/>
+          <Item Value="SetupId"/>
+          <Item Value="Year"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <list IterBinding="CmsPeriodSetupQueryVOIterator" StaticList="false" Uses="LOV_CategoryId" id="CategoryId"
+          DTSupportsMRU="true" SelectItemValueMode="ListObject"/>
+    <list IterBinding="CmsPeriodSetupQueryVOIterator" StaticList="false" Uses="LOV_Year" id="Year"
+          DTSupportsMRU="true" SelectItemValueMode="ListObject"/>
+    <tree IterBinding="CmsCompVO4CommonIterator" id="CmsCompVO4Common">
+      <nodeDefinition DefName="com.zypg.cms.admin.model.viewobject.query.CmsCompVO" Name="CmsCompVO4Common0">
+        <AttrNames>
+          <Item Value="CompId"/>
+          <Item Value="CompCode"/>
+          <Item Value="CompName"/>
+          <Item Value="Seq"/>
+          <Item Value="CompDesc"/>
+          <Item Value="Checkbox"/>
+          <Item Value="DisplayName"/>
+          <Item Value="GroupFlag"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+  </bindings>
+</pageDefinition>

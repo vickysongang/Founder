@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36"
+                id="user_rolesettinig_taskflow_user_rolesettinig_taskflow_initAllUserRolePageDef" Package="admin.user"
+                SkipValidation="true">
+  <parameters/>
+  <executables/>
+  <bindings>
+    <methodAction id="initAllUserRole" RequiresUpdateModel="true" Action="invokeMethod" MethodName="initAllUserRole"
+                  IsViewObjectMethod="false" DataControl="AdminAMDataControl"
+                  InstanceName="data.AdminAMDataControl.dataProvider">
+      <NamedData NDName="userId" NDValue="#{pageFlowScope.userId}" NDType="oracle.jbo.domain.Number"/>
+      <NamedData NDName="compStr" NDValue="#{pageFlowScope.compStr}" NDType="java.lang.String"/>
+    </methodAction>
+  </bindings>
+</pageDefinition>

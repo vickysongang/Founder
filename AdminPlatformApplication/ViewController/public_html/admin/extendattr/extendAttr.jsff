@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core">
+    <af:panelSplitter id="ps1" splitterPosition="175" disabled="true">
+        <f:facet name="first">
+            <af:panelGroupLayout layout="vertical" id="pgl4" styleClass="AFStretchWidth" partialTriggers="i1:cl1"
+                                 inlineStyle="border:1px solid #BAC6CA;margin-right:1px;padding:10px 0px 5px 10px;">
+                <af:iterator id="i1" value="#{bindings.CmsCompVO4Common.collectionModel}" var="row" varStatus="vs">
+                    <af:commandLink text="#{row.CompName}" id="cl1" rendered="#{row.GroupFlag != 'Y'}"
+                                    inlineStyle="#{row.CompCode == pageFlowScope.compCode ? 'color:blue' : ''}"
+                                    styleClass="userAdmin_outputtext" partialSubmit="true"
+                                    actionListener="#{backingBeanScope.extendAttrManagedBean.switchCompActionListener}">
+                        <f:attribute name="compCode" value="#{row.CompCode}"/>
+                    </af:commandLink>
+                    <af:spacer height="5px" id="s1"/>
+                </af:iterator>
+            </af:panelGroupLayout>
+        </f:facet>
+        <f:facet name="second">
+            <af:region value="#{bindings.comp_extend_attr_taskflow1.regionModel}" id="r1"
+                       binding="#{backingBeanScope.extendAttrManagedBean.compExtendAttrRegion}"/>
+        </f:facet>
+    </af:panelSplitter>
+</jsp:root>

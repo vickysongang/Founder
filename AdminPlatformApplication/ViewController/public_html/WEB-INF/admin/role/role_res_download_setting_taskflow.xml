@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="role_res_download_setting_taskflow">
+    <default-activity>initResDownloadVO</default-activity>
+    <input-parameter-definition id="__1">
+      <name>libCode</name>
+      <value>#{pageFlowScope.libCode}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__2">
+      <name>roleId</name>
+      <value>#{pageFlowScope.roleId}</value>
+      <class>oracle.jbo.domain.Number</class>
+    </input-parameter-definition>
+    <managed-bean id="__5">
+      <managed-bean-name>resDownloadAuthBean</managed-bean-name>
+      <managed-bean-class>com.zypg.cms.admin.view.bean.ResDownloadAuthBean</managed-bean-class>
+      <managed-bean-scope>backingBean</managed-bean-scope>
+    </managed-bean>
+    <view id="resDownloadSetting">
+      <page>/admin/role/fragment/resDownloadSetting.jsff</page>
+    </view>
+    <method-call id="initResDownloadVO">
+      <method>#{bindings.initResDownloadVO.execute}</method>
+      <outcome>
+        <fixed-outcome>initResDownloadVO</fixed-outcome>
+      </outcome>
+    </method-call>
+    <control-flow-rule id="__3">
+      <from-activity-id>initResDownloadVO</from-activity-id>
+      <control-flow-case id="__4">
+        <from-outcome>initResDownloadVO</from-outcome>
+        <to-activity-id>resDownloadSetting</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

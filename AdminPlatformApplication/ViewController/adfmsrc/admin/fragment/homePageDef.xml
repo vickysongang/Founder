@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="homePageDef"
+                Package="admin.fragment">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <taskFlow id="admin_taskflow1" taskFlowId="/WEB-INF/admin/admin_taskflow.xml#admin_taskflow" activation="deferred"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding" Refresh="ifNeeded">
+      <parameters>
+        <parameter id="outcome" value="#{pageFlowScope.outcome}"/>
+        <parameter id="compStr" value="#{pageFlowScope.compStr}"/>
+        <parameter id="roleType" value="#{pageFlowScope.roleType}"/>
+        <parameter id="currTime" value="#{pageFlowScope.currTime}"/>
+      </parameters>
+    </taskFlow>
+  </executables>
+  <bindings>
+    <action id="Rollback" InstanceName="AdminAMDataControl" DataControl="AdminAMDataControl" RequiresUpdateModel="false"
+            Action="rollbackTransaction"/>
+  </bindings>
+</pageDefinition>

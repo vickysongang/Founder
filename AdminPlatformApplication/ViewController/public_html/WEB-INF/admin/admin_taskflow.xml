@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="admin_taskflow">
+    <default-activity>router</default-activity>
+    <input-parameter-definition id="__1">
+      <name>outcome</name>
+      <value>#{pageFlowScope.outcome}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__5">
+      <name>compStr</name>
+      <value>#{pageFlowScope.compStr}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__8">
+      <name>roleType</name>
+      <value>#{pageFlowScope.roleType}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__25">
+      <name>currTime</name>
+      <value>#{pageFlowScope.currTime}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <router id="router">
+      <case id="__4">
+        <expression>#{pageFlowScope.outcome == 'toUserManage'}</expression>
+        <outcome>toUserManage</outcome>
+      </case>
+      <case id="__7">
+        <expression>#{pageFlowScope.outcome == 'toRoleManage'}</expression>
+        <outcome>toRoleManage</outcome>
+      </case>
+      <case id="__13">
+        <expression>#{pageFlowScope.outcome == 'RES_CATEGORY'}</expression>
+        <outcome>toResCategory</outcome>
+      </case>
+      <case id="__15">
+        <expression>#{pageFlowScope.outcome == 'CHOICE_CATEGORY'}</expression>
+        <outcome>toChoiceCategory</outcome>
+      </case>
+      <case id="__18">
+        <expression>#{pageFlowScope.outcome == 'PERIOD_SETUP'}</expression>
+        <outcome>toPeriodSetup</outcome>
+      </case>
+      <case id="__19">
+        <expression>#{pageFlowScope.outcome == 'PERIODICAL_SETUP'}</expression>
+        <outcome>toPeriodicalSetup</outcome>
+      </case>
+      <case id="__22">
+        <expression>#{pageFlowScope.outcome == 'NEWSPAPER_SETUP'}</expression>
+        <outcome>toNewspaperSetup</outcome>
+      </case>
+      <case id="__23">
+        <expression>#{pageFlowScope.outcome == 'NEWS_SETUP'}</expression>
+        <outcome>toNewsSetup</outcome>
+      </case>
+      <case id="__39">
+        <expression>#{pageFlowScope.outcome=='WS_ADMIN'}</expression>
+        <outcome>toWebServiceManage</outcome>
+      </case>
+      <case id="__41">
+        <expression>#{pageFlowScope.outcome=='ADMIN_OPEN_LOG'}</expression>
+        <outcome>toAdminOpenLog</outcome>
+      </case>
+      <case id="__45">
+        <expression>#{pageFlowScope.outcome == 'SYNC_CANCEL'}</expression>
+        <outcome>toSyncCancel</outcome>
+      </case>
+      <case id="__47">
+        <expression>#{pageFlowScope.outcome == 'EXTEND_ATTR'}</expression>
+        <outcome>toExtendAttr</outcome>
+      </case>
+      <default-outcome>toUserManage</default-outcome>
+    </router>
+    <task-flow-call id="user_manage_taskflow">
+      <task-flow-reference>
+        <document>/WEB-INF/admin/user/user_manage_taskflow.xml</document>
+        <id>user_manage_taskflow</id>
+      </task-flow-reference>
+      <input-parameter id="__11">
+        <name>compStr</name>
+        <value>#{pageFlowScope.compStr}</value>
+      </input-parameter>
+      <input-parameter id="__32">
+        <name>currTime</name>
+        <value>#{pageFlowScope.currTime}</value>
+      </input-parameter>
+    </task-flow-call>
+    <task-flow-call id="role_main_taskflow">
+      <task-flow-reference>
+        <document>/WEB-INF/admin/role/role_main_taskflow.xml</document>
+        <id>role_main_taskflow</id>
+      </task-flow-reference>
+      <input-parameter id="__9">
+        <name>compStr</name>
+        <value>#{pageFlowScope.compStr}</value>
+      </input-parameter>
+      <input-parameter id="__10">
+        <name>roleType</name>
+        <value>#{pageFlowScope.roleType}</value>
+      </input-parameter>
+      <input-parameter id="__31">
+        <name>currTime</name>
+        <value>#{pageFlowScope.currTime}</value>
+      </input-parameter>
+    </task-flow-call>
+    <task-flow-call id="res_category_taskflow">
+      <task-flow-reference>
+        <document>/WEB-INF/admin/category/res_category_taskflow.xml</document>
+        <id>res_category_taskflow</id>
+      </task-flow-reference>
+      <input-parameter id="__30">
+        <name>currTime</name>
+        <value>#{pageFlowScope.currTime}</value>
+      </input-parameter>
+      <input-parameter id="__33">
+        <name>compStr</name>
+        <value>#{pageFlowScope.compStr}</value>
+      </input-parameter>
+    </task-flow-call>
+    <task-flow-call id="choice_category_taskflow">
+      <task-flow-reference>
+        <document>/WEB-INF/admin/category/choice_category_taskflow.xml</document>
+        <id>choice_category_taskflow</id>
+      </task-flow-reference>
+      <input-parameter id="__29">
+        <name>currTime</name>
+        <value>#{pageFlowScope.currTime}</value>
+      </input-parameter>
+    </task-flow-call>
+    <task-flow-call id="period_setup_taskflow">
+      <task-flow-reference>
+        <document>/WEB-INF/admin/periodical/period_setup_taskflow.xml</document>
+        <id>period_setup_taskflow</id>
+      </task-flow-reference>
+      <input-parameter id="__24">
+        <name>currTime</name>
+        <value>#{pageFlowScope.currTime}</value>
+      </input-parameter>
+      <input-parameter id="__34">
+        <name>compStr</name>
+        <value>#{pageFlowScope.compStr}</value>
+      </input-parameter>
+    </task-flow-call>
+    <task-flow-call id="periodical_setup_taskflow">
+      <task-flow-reference>
+        <document>/WEB-INF/admin/periodical/periodical_setup_taskflow.xml</document>
+        <id>periodical_setup_taskflow</id>
+      </task-flow-reference>
+      <input-parameter id="__26">
+        <name>currTime</name>
+        <value>#{pageFlowScope.currTime}</value>
+      </input-parameter>
+      <input-parameter id="__35">
+        <name>compStr</name>
+        <value>#{pageFlowScope.compStr}</value>
+      </input-parameter>
+    </task-flow-call>
+    <task-flow-call id="newspaper_setup_taskflow">
+      <task-flow-reference>
+        <document>/WEB-INF/admin/newspaper/newspaper_setup_taskflow.xml</document>
+        <id>newspaper_setup_taskflow</id>
+      </task-flow-reference>
+      <input-parameter id="__27">
+        <name>currTime</name>
+        <value>#{pageFlowScope.currTime}</value>
+      </input-parameter>
+      <input-parameter id="__36">
+        <name>compStr</name>
+        <value>#{pageFlowScope.compStr}</value>
+      </input-parameter>
+    </task-flow-call>
+    <task-flow-call id="news_setup_taskflow">
+      <task-flow-reference>
+        <document>/WEB-INF/admin/newspaper/news_setup_taskflow.xml</document>
+        <id>news_setup_taskflow</id>
+      </task-flow-reference>
+      <input-parameter id="__28">
+        <name>currTime</name>
+        <value>#{pageFlowScope.currTime}</value>
+      </input-parameter>
+      <input-parameter id="__37">
+        <name>compStr</name>
+        <value>#{pageFlowScope.compStr}</value>
+      </input-parameter>
+    </task-flow-call>
+    <task-flow-call id="webService-manage-task-flow">
+      <task-flow-reference>
+        <document>/WEB-INF/admin/sysConfig/webService-manage-task-flow.xml</document>
+        <id>webService-manage-task-flow</id>
+      </task-flow-reference>
+    </task-flow-call>
+    <task-flow-call id="adminOpenLog-task-flow">
+      <task-flow-reference>
+        <document>/WEB-INF/admin/openLog/adminOpenLog-task-flow.xml</document>
+        <id>adminOpenLog-task-flow</id>
+      </task-flow-reference>
+    </task-flow-call>
+    <task-flow-call id="sync_cancel_taskflow">
+      <task-flow-reference>
+        <document>/WEB-INF/admin/openLog/sync_cancel_taskflow.xml</document>
+        <id>sync_cancel_taskflow</id>
+      </task-flow-reference>
+      <input-parameter id="__43">
+        <name>compStr</name>
+        <value>#{pageFlowScope.compStr}</value>
+      </input-parameter>
+      <input-parameter id="__44">
+        <name>currTime</name>
+        <value>#{pageFlowScope.currTime}</value>
+      </input-parameter>
+    </task-flow-call>
+    <task-flow-call id="extend-attr-taskflow">
+      <task-flow-reference>
+        <document>/WEB-INF/admin/extendattr/extend-attr-taskflow.xml</document>
+        <id>extend-attr-taskflow</id>
+      </task-flow-reference>
+      <input-parameter id="__48">
+        <name>compStr</name>
+        <value>#{pageFlowScope.compStr}</value>
+      </input-parameter>
+      <input-parameter id="__49">
+        <name>currTime</name>
+        <value>#{pageFlowScope.currTime}</value>
+      </input-parameter>
+    </task-flow-call>
+    <control-flow-rule id="__2">
+      <from-activity-id>router</from-activity-id>
+      <control-flow-case id="__3">
+        <from-outcome>toUserManage</from-outcome>
+        <to-activity-id>user_manage_taskflow</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__6">
+        <from-outcome>toRoleManage</from-outcome>
+        <to-activity-id>role_main_taskflow</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__12">
+        <from-outcome>toResCategory</from-outcome>
+        <to-activity-id>res_category_taskflow</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__14">
+        <from-outcome>toChoiceCategory</from-outcome>
+        <to-activity-id>choice_category_taskflow</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__16">
+        <from-outcome>toPeriodSetup</from-outcome>
+        <to-activity-id>period_setup_taskflow</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__17">
+        <from-outcome>toPeriodicalSetup</from-outcome>
+        <to-activity-id>periodical_setup_taskflow</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__20">
+        <from-outcome>toNewspaperSetup</from-outcome>
+        <to-activity-id>newspaper_setup_taskflow</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__21">
+        <from-outcome>toNewsSetup</from-outcome>
+        <to-activity-id>news_setup_taskflow</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__38">
+        <from-outcome>toWebServiceManage</from-outcome>
+        <to-activity-id>webService-manage-task-flow</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__42">
+        <from-outcome>toAdminOpenLog</from-outcome>
+        <to-activity-id>adminOpenLog-task-flow</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__40">
+        <from-outcome>toSyncCancel</from-outcome>
+        <to-activity-id>sync_cancel_taskflow</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__46">
+        <from-outcome>toExtendAttr</from-outcome>
+        <to-activity-id>extend-attr-taskflow</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

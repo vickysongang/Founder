@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="syncCancelPageDef"
+                Package="admin.openLog">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="CmsCompVO4Common" RangeSize="25" DataControl="AdminAMDataControl" id="CmsCompVO4CommonIterator"/>
+    <iterator Binds="CmsSyncCancelVO" RangeSize="25" DataControl="AdminAMDataControl" id="CmsSyncCancelVOIterator"/>
+    <searchRegion Binds="CmsSyncCancelVOIterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer" id="CmsSyncCancelVOQuery"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="CmsCompVO4CommonIterator" id="CmsCompVO4Common">
+      <nodeDefinition DefName="com.zypg.cms.admin.model.viewobject.query.CmsCompVO" Name="CmsCompVO4Common0">
+        <AttrNames>
+          <Item Value="CompId"/>
+          <Item Value="CompCode"/>
+          <Item Value="CompName"/>
+          <Item Value="Seq"/>
+          <Item Value="CompDesc"/>
+          <Item Value="Checkbox"/>
+          <Item Value="DisplayName"/>
+          <Item Value="GroupFlag"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="CmsSyncCancelVOIterator" id="CmsSyncCancelVO">
+      <nodeDefinition DefName="com.zypg.cms.admin.model.viewobject.query.CmsSyncCancelVO" Name="CmsSyncCancelVO0">
+        <AttrNames>
+          <Item Value="UniqueResName"/>
+          <Item Value="StatusName"/>
+          <Item Value="LibName"/>
+          <Item Value="DiplayName"/>
+          <Item Value="CreationDate"/>
+          <Item Value="CompCode"/>
+          <Item Value="DocId"/>
+          <Item Value="Checked"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <methodAction id="querySyncCanel" InstanceName="data.AdminAMDataControl.dataProvider"
+                  DataControl="AdminAMDataControl" RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="querySyncCanel" IsViewObjectMethod="false"
+                  ReturnName="data.AdminAMDataControl.methodResults.querySyncCanel_AdminAMDataControl_dataProvider_querySyncCanel_result">
+      <NamedData NDName="uniqueResName" NDType="java.lang.String"/>
+      <NamedData NDName="libName" NDType="java.lang.String"/>
+      <NamedData NDName="status" NDType="java.lang.String"/>
+      <NamedData NDName="creater" NDType="java.lang.String"/>
+      <NamedData NDName="creationDate" NDType="java.lang.String"/>
+      <NamedData NDName="compCode" NDType="java.lang.String"/>
+    </methodAction>
+  </bindings>
+</pageDefinition>

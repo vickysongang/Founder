@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36"
+                id="adminOpenLog_task_flow_adminOpenLog_task_flow_initAdminOpenLogPageDef" Package="admin.openLog"
+                SkipValidation="true">
+  <parameters/>
+  <executables/>
+  <bindings>
+    <action id="initAdminOpenLog" RequiresUpdateModel="true" Action="invokeMethod" MethodName="initAdminOpenLog"
+            IsViewObjectMethod="false" DataControl="AdminAMDataControl"
+            InstanceName="data.AdminAMDataControl.dataProvider"/>
+  </bindings>
+</pageDefinition>

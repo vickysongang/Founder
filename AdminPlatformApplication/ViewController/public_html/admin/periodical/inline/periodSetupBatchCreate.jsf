@@ -1,0 +1,152 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+        xmlns:trh="http://myfaces.apache.org/trinidad/html" xmlns:h="http://java.sun.com/jsf/html">
+    <af:document title="刊期批量新建" id="d1">
+        <af:messages id="m1"/>
+        <af:form id="f1">
+            <af:panelStretchLayout id="psl1">
+                <f:facet name="top"/>
+                <f:facet name="center">
+                    <af:panelGroupLayout id="pgl5" layout="vertical">
+                        <af:spacer width="10" height="10" id="s13"/>
+                        <trh:tableLayout id="tl1">
+                            <trh:rowLayout id="rl4">
+                                <trh:cellFormat id="cf15">
+                                    <af:spacer width="10" height="10px" id="s7"/>
+                                </trh:cellFormat>
+                                <trh:cellFormat id="cf2" halign="end">
+                                    <h:outputLabel value="刊物：" id="ol1"/>
+                                </trh:cellFormat>
+                                <trh:cellFormat id="cf3">
+                                    <af:selectOneChoice value="#{bindings.CategoryId.inputValue}"
+                                                        contentStyle="width:207px;height:22px;line-height:22px;border-color:#ABADB3;font-size:12px;"
+                                                        label="#{bindings.CategoryId.label}" simple="true"
+                                                        required="#{bindings.CategoryId.hints.mandatory}"
+                                                        shortDesc="#{bindings.CategoryId.hints.tooltip}" id="soc1">
+                                        <f:selectItems value="#{bindings.CategoryId.items}" id="si1"/>
+                                    </af:selectOneChoice>
+                                </trh:cellFormat>
+                                <trh:cellFormat id="cf4" halign="end">
+                                    <h:outputLabel value="起始刊期：" id="ol2"/>
+                                </trh:cellFormat>
+                                <trh:cellFormat id="cf1"/>
+                                <af:inputText value="#{bindings.CategoryNum.inputValue}" simple="true"
+                                              required="#{bindings.CategoryNum.hints.mandatory}"
+                                              columns="#{bindings.CategoryNum.hints.displayWidth}"
+                                              contentStyle="width:200px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                              maximumLength="#{bindings.CategoryNum.hints.precision}"
+                                              shortDesc="#{bindings.CategoryNum.hints.tooltip}" id="it1">
+                                    <f:validator binding="#{bindings.CategoryNum.validator}"/>
+                                    <af:convertNumber groupingUsed="false" pattern="#{bindings.CategoryNum.format}"/>
+                                </af:inputText>
+                            </trh:rowLayout>
+                            <trh:rowLayout id="rl1">
+                                <trh:cellFormat id="cf14">
+                                    <af:spacer width="10" height="10" id="s8"/>
+                                </trh:cellFormat>
+                                <trh:cellFormat id="cf6" halign="end">
+                                    <h:outputLabel value="出版年份：" id="ol3"/>
+                                </trh:cellFormat>
+                                <trh:cellFormat id="cf7">
+                                    <af:selectOneChoice value="#{bindings.Startyear.inputValue}"
+                                                        label="#{bindings.Startyear.label}" autoSubmit="true"
+                                                        contentStyle="width:207px;height:22px;line-height:22px;border-color:#ABADB3;font-size:12px;"
+                                                        simple="true" required="#{bindings.Startyear.hints.mandatory}"
+                                                        shortDesc="#{bindings.Startyear.hints.tooltip}" id="soc4">
+                                        <f:selectItems value="#{bindings.Startyear.items}" id="si4"/>
+                                    </af:selectOneChoice>
+                                </trh:cellFormat>
+                                <trh:cellFormat id="cf8" halign="end">
+                                    <af:panelGroupLayout id="pgl3" layout="horizontal">
+                                        <h:outputText value="到:" id="ot1"/>
+                                        <af:selectOneChoice value="#{bindings.Endyear.inputValue}"
+                                                            label="#{bindings.Endyear.label}" autoSubmit="true"
+                                                            contentStyle="width:207px;height:22px;line-height:22px;border-color:#ABADB3;font-size:12px;"
+                                                            simple="true" required="#{bindings.Endyear.hints.mandatory}"
+                                                            shortDesc="#{bindings.Endyear.hints.tooltip}" id="soc2">
+                                            <f:selectItems value="#{bindings.Endyear.items}" id="si2"/>
+                                        </af:selectOneChoice>
+                                    </af:panelGroupLayout>
+                                </trh:cellFormat>
+                                <trh:cellFormat id="cf5"/>
+                            </trh:rowLayout>
+                        </trh:tableLayout>
+                        <af:spacer width="10" height="10" id="s4"/>
+                        <trh:tableLayout id="tl2">
+                            <trh:rowLayout id="rl3">
+                                <trh:cellFormat id="cf11">
+                                    <af:spacer width="10" height="10" id="s5"/>
+                                </trh:cellFormat>
+                                <trh:cellFormat id="cf10">
+                                    <trh:tableLayout id="tl3" inlineStyle="border:1px solid #C3C3C3;">
+                                        <trh:rowLayout id="rl2">
+                                            <trh:cellFormat id="cf13">
+                                                <af:table var="row" rowBandingInterval="0" width="545px"
+                                                          contentDelivery="immediate" inlineStyle="height:400px"
+                                                          styleClass="AFStrecthWidth" id="t1"
+                                                          value="#{pageFlowScope.model}" emptyText=""
+                                                          columnStretching="multiple" partialTriggers="::b1 ::b2 ::b3">
+                                                    <af:column sortable="false" headerText="" width="30px"
+                                                               align="center" id="c5">
+                                                        <af:selectBooleanCheckbox label="Label 1"
+                                                                                  disabled="#{row.isExist!=null}"
+                                                                                  simple="true" value="#{row.flag}"
+                                                                                  id="sbc1"/>
+                                                    </af:column>
+                                                    <af:column sortable="false" headerText="刊物名称" align="center"
+                                                               width="10%" id="c1">
+                                                        <af:outputText value="#{row.name}" id="ot2"/>
+                                                    </af:column>
+                                                    <af:column sortable="false" headerText="刊出日期" align="center"
+                                                               id="c2">
+                                                        <af:outputText value="#{row.date}" id="ot3"/>
+                                                    </af:column>
+                                                    <af:column sortable="false" headerText="刊期" align="center" id="c3">
+                                                        <af:outputText value="#{row.periodNum}" id="ot4"/>
+                                                    </af:column>
+                                                    <af:column sortable="false" headerText="" align="center" width="10%"
+                                                               id="c4">
+                                                        <af:outputText value="#{row.isExist}" id="ot5"/>
+                                                    </af:column>
+                                                </af:table>
+                                            </trh:cellFormat>
+                                        </trh:rowLayout>
+                                    </trh:tableLayout>
+                                </trh:cellFormat>
+                                <trh:cellFormat id="cf12">
+                                    <af:spacer width="10" height="10" id="s6"/>
+                                </trh:cellFormat>
+                                <trh:cellFormat id="cf9">
+                                    <af:panelGroupLayout id="pgl4" halign="center" valign="middle" layout="vertical">
+                                        <af:commandButton text="计算 " id="b1" styleClass="popup-btn"
+                                                          actionListener="#{backingBeanScope.periodSetupBatchCreateBean.calculatePeriod}"/>
+                                        <af:spacer width="10" height="30px" id="s2"/>
+                                        <af:commandButton text="全选" id="b2" styleClass="popup-btn"
+                                                          actionListener="#{backingBeanScope.periodSetupBatchCreateBean.allSelectChoice}"/>
+                                        <af:spacer width="10" height="30px" id="s3"/>
+                                        <af:commandButton text="全不选" id="b3" styleClass="popup-btn"
+                                                          actionListener="#{backingBeanScope.periodSetupBatchCreateBean.allNotSelect}"/>
+                                    </af:panelGroupLayout>
+                                </trh:cellFormat>
+                            </trh:rowLayout>
+                        </trh:tableLayout>
+                    </af:panelGroupLayout>
+                </f:facet>
+                <f:facet name="start"/>
+                <f:facet name="end"/>
+                <f:facet name="bottom">
+                    <af:panelGroupLayout id="pgl1" layout="vertical" halign="center">
+                        <af:panelGroupLayout id="pgl2" layout="horizontal">
+                            <af:commandButton text="保存" id="cb1" partialSubmit="true" styleClass="popup-btn"
+                                              action="#{backingBeanScope.periodSetupBatchCreateBean.saveAction}"/>
+                            <af:spacer height="10" width="10" id="s1"/>
+                            <af:commandButton text="取消" id="cb2" styleClass="popup-btn"
+                                              action="#{backingBeanScope.periodSetupBatchCreateBean.cancelAction}"/>
+                        </af:panelGroupLayout>
+                    </af:panelGroupLayout>
+                </f:facet>
+            </af:panelStretchLayout>
+        </af:form>
+    </af:document>
+</f:view>

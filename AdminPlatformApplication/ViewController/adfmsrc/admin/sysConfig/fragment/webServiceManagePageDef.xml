@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="webServiceManagePageDef"
+                Package="admin.sysConfig.fragment">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="CmsWsConfigTVO1" RangeSize="25" DataControl="AdminAMDataControl" id="CmsWsConfigTVO1Iterator"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="CmsWsConfigTVO1Iterator" id="CmsWsConfigTVO1">
+      <nodeDefinition DefName="com.zypg.cms.admin.model.viewobject.CmsWsConfigTVO" Name="CmsWsConfigTVO10">
+        <AttrNames>
+          <Item Value="ConfigId"/>
+          <Item Value="ObjectVersionNumber"/>
+          <Item Value="Code"/>
+          <Item Value="Address"/>
+          <Item Value="Remarks"/>
+          <Item Value="EnableFlag"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action IterBinding="CmsWsConfigTVO1Iterator" id="CreateInsert" RequiresUpdateModel="true"
+            Action="createInsertRow"/>
+    <action IterBinding="CmsWsConfigTVO1Iterator" id="Delete" RequiresUpdateModel="false" Action="removeCurrentRow"/>
+    <action id="Commit" RequiresUpdateModel="true" Action="commitTransaction" DataControl="AdminAMDataControl"/>
+    <action id="Rollback" RequiresUpdateModel="false" Action="rollbackTransaction" DataControl="AdminAMDataControl"/>
+  </bindings>
+</pageDefinition>

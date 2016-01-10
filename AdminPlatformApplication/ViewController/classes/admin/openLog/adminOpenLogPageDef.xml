@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="adminOpenLogPageDef"
+                Package="admin.openLog">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="CmsAdminOperLogTVO1" RangeSize="25" DataControl="AdminAMDataControl"
+              id="CmsAdminOperLogTVO1Iterator"/>
+    <searchRegion Binds="CmsAdminOperLogTVO1Iterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer" id="CmsAdminOperLogTVO1Query"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="CmsAdminOperLogTVO1Iterator" id="CmsAdminOperLogTVO1">
+      <nodeDefinition DefName="com.zypg.cms.admin.model.viewobject.CmsAdminOperLogTVO" Name="CmsAdminOperLogTVO10">
+        <AttrNames>
+          <Item Value="DisplayName"/>
+          <Item Value="LogContent"/>
+          <Item Value="CreationDateDisplay"/>
+          <Item Value="CompName"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <methodAction id="queryOpenLog" InstanceName="data.AdminAMDataControl.dataProvider" DataControl="AdminAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod" MethodName="queryOpenLog" IsViewObjectMethod="false"
+                  ReturnName="data.AdminAMDataControl.methodResults.queryOpenLog_AdminAMDataControl_dataProvider_queryOpenLog_result">
+      <NamedData NDName="operator" NDType="java.lang.String"/>
+      <NamedData NDName="operateTime" NDType="java.lang.String"/>
+      <NamedData NDName="compName" NDType="java.lang.String"/>
+      <NamedData NDName="operateDesc" NDType="java.lang.String"/>
+    </methodAction>
+  </bindings>
+</pageDefinition>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="compEditPageDef"
+                Package="admin.user">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="CmsCompEditVO" RangeSize="25" DataControl="AdminAMDataControl" id="CmsCompEditVOIterator"/>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="CmsCompEditVOIterator" id="CompCode">
+      <AttrNames>
+        <Item Value="CompCode"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsCompEditVOIterator" id="CompName">
+      <AttrNames>
+        <Item Value="CompName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CmsCompEditVOIterator" id="CompDesc">
+      <AttrNames>
+        <Item Value="CompDesc"/>
+      </AttrNames>
+    </attributeValues>
+    <button IterBinding="CmsCompEditVOIterator" StaticList="false" Uses="LOV_GroupFlag" id="GroupFlag"
+            DTSupportsMRU="false">
+      <AttrNames>
+        <Item Value="GroupFlag"/>
+      </AttrNames>
+    </button>
+  </bindings>
+</pageDefinition>

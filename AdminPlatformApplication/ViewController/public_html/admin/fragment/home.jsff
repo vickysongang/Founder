@@ -1,0 +1,174 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core">
+    <af:panelStretchLayout id="psl2" topHeight="0px" endWidth="0px">
+        <f:facet name="bottom"/>
+        <f:facet name="center">
+            <af:panelSplitter id="ps1" splitterPosition="175" inlineStyle="background:#F3F8FC;">
+                <f:facet name="first">
+                    <af:panelAccordion id="pa1" styleClass="AFStretchWidth" inlineStyle="margin:0px 2px 0px 0px;">
+                        <af:showDetailItem text="权限管理" id="sdi1" disclosed="#{pageFlowScope.tabCode == 'PRIVILEGE'}"
+                                           disclosureListener="#{backingBeanScope.homeManagedBean.detailItemDisclosureListener}">
+                            <f:attribute name="tabCode" value="PRIVILEGE"/>
+                            <af:panelGroupLayout id="pgl1" layout="vertical" styleClass="platform-left-nav"
+                                                 inlineStyle="margin-top:10px;">
+                                <af:panelGroupLayout id="pgl7" layout="horizontal" styleClass="platform-left-nav-ct">
+                                    <af:commandButton text="#{sessionScope.currUserName == 'SYSADMIN' ? '出版社/用户管理' : '用户管理'}"
+                                                      id="cb1"
+                                                      styleClass="#{(pageFlowScope.outcome == 'toUserManage' or pageFlowScope.outcome==null) ? 'platform-left-nav-tb-btn-selected':'platform-left-nav-tb-btn'}"
+                                                      actionListener="#{backingBeanScope.homeManagedBean.funcNavActionListener}">
+                                        <f:attribute name="outcome" value="toUserManage"/>
+                                    </af:commandButton>
+                                </af:panelGroupLayout>
+                                <af:panelGroupLayout id="pgl2" layout="horizontal" styleClass="platform-left-nav-ct"
+                                                     rendered="#{sessionScope.currUserName != 'SYSADMIN' and pageFlowScope.onlyHasGroupFlag != 'Y'}">
+                                    <af:commandButton text="工作平台角色管理" id="cb2"
+                                                      styleClass="#{pageFlowScope.outcome == 'toRoleManage' and  pageFlowScope.roleType=='WORK_PLATFORM' ? 'platform-left-nav-tb-btn-selected':'platform-left-nav-tb-btn'}"
+                                                      actionListener="#{backingBeanScope.homeManagedBean.funcNavActionListener}">
+                                        <f:attribute name="outcome" value="toRoleManage"/>
+                                        <f:attribute name="roleType" value="WORK_PLATFORM"/>
+                                    </af:commandButton>
+                                </af:panelGroupLayout>
+                                <af:panelGroupLayout id="pgl3" layout="horizontal" styleClass="platform-left-nav-ct"
+                                                     rendered="#{sessionScope.currUserName != 'SYSADMIN' and pageFlowScope.onlyHasGroupFlag != 'Y'}">
+                                    <af:commandButton text="发布平台角色管理" id="cb3"
+                                                      styleClass="#{pageFlowScope.outcome == 'toRoleManage' and pageFlowScope.roleType=='PUB_PLATFORM' ? 'platform-left-nav-tb-btn-selected':'platform-left-nav-tb-btn'}"
+                                                      actionListener="#{backingBeanScope.homeManagedBean.funcNavActionListener}">
+                                        <f:attribute name="outcome" value="toRoleManage"/>
+                                        <f:attribute name="roleType" value="PUB_PLATFORM"/>
+                                    </af:commandButton>
+                                </af:panelGroupLayout>
+                                <af:panelGroupLayout id="pgl4" layout="horizontal" styleClass="platform-left-nav-ct"
+                                                     rendered="#{sessionScope.currUserName == 'SYSADMIN'}">
+                                    <af:commandButton text="管理平台角色管理" id="cb4"
+                                                      styleClass="#{pageFlowScope.roleType=='ADMIN_PLATFORM' ? 'platform-left-nav-tb-btn-selected':'platform-left-nav-tb-btn'}"
+                                                      actionListener="#{backingBeanScope.homeManagedBean.funcNavActionListener}">
+                                        <f:attribute name="outcome" value="toRoleManage"/>
+                                        <f:attribute name="roleType" value="ADMIN_PLATFORM"/>
+                                    </af:commandButton>
+                                </af:panelGroupLayout>
+                            </af:panelGroupLayout>
+                        </af:showDetailItem>
+                        <af:showDetailItem text="分类管理" id="sdi2" disclosed="#{pageFlowScope.tabCode == 'CATEGORY'}"
+                                           disclosureListener="#{backingBeanScope.homeManagedBean.detailItemDisclosureListener}">
+                            <f:attribute name="tabCode" value="CATEGORY"/>
+                            <af:panelGroupLayout id="pgl5" layout="vertical" styleClass="platform-left-nav"
+                                                 inlineStyle="margin-top:10px;">
+                                <af:panelGroupLayout id="pgl6" layout="horizontal" styleClass="platform-left-nav-ct">
+                                    <af:commandButton text="资源分类" id="cb5"
+                                                      styleClass="#{pageFlowScope.outcome=='RES_CATEGORY' ? 'platform-left-nav-tb-btn-selected':'platform-left-nav-tb-btn'}"
+                                                      actionListener="#{backingBeanScope.homeManagedBean.funcNavActionListener}">
+                                        <f:attribute name="outcome" value="RES_CATEGORY"/>
+                                    </af:commandButton>
+                                </af:panelGroupLayout>
+                                <af:panelGroupLayout id="pgl8" layout="horizontal" styleClass="platform-left-nav-ct">
+                                    <af:commandButton text="下拉列表分类" id="cb6"
+                                                      styleClass="#{pageFlowScope.outcome=='CHOICE_CATEGORY' ? 'platform-left-nav-tb-btn-selected':'platform-left-nav-tb-btn'}"
+                                                      actionListener="#{backingBeanScope.homeManagedBean.funcNavActionListener}">
+                                        <f:attribute name="outcome" value="CHOICE_CATEGORY"/>
+                                    </af:commandButton>
+                                </af:panelGroupLayout>
+                            </af:panelGroupLayout>
+                        </af:showDetailItem>
+                        <af:showDetailItem text="自定义字段管理" id="sdi6" disclosed="#{pageFlowScope.tabCode == 'EXTENDATTR'}"
+                                           disclosureListener="#{backingBeanScope.homeManagedBean.detailItemDisclosureListener}">
+                            <f:attribute name="tabCode" value="EXTENDATTR"/>
+                            <af:panelGroupLayout id="pgl20" layout="horizontal" styleClass="platform-left-nav-ct"
+                                                 inlineStyle="margin-top:10px;">
+                                <af:commandButton text="自定义字段管理" id="cb14"
+                                                  styleClass="#{pageFlowScope.outcome=='EXTEND_ATTR' ? 'platform-left-nav-tb-btn-selected':'platform-left-nav-tb-btn'}"
+                                                  actionListener="#{backingBeanScope.homeManagedBean.funcNavActionListener}">
+                                    <f:attribute name="outcome" value="EXTEND_ATTR"/>
+                                </af:commandButton>
+                            </af:panelGroupLayout>
+                        </af:showDetailItem>
+                        <af:showDetailItem text="刊物管理" id="sdi3" disclosed="#{pageFlowScope.tabCode == 'PERIODICAL'}"
+                                           disclosureListener="#{backingBeanScope.homeManagedBean.detailItemDisclosureListener}">
+                            <f:attribute name="tabCode" value="PERIODICAL"/>
+                            <af:panelGroupLayout id="pgl12" layout="vertical" styleClass="platform-left-nav"
+                                                 inlineStyle="margin-top:10px;">
+                                <af:panelGroupLayout id="pgl10" layout="horizontal" styleClass="platform-left-nav-ct">
+                                    <af:commandButton text="期刊刊物设置" id="cb8"
+                                                      styleClass="#{pageFlowScope.outcome=='PERIODICAL_SETUP' ? 'platform-left-nav-tb-btn-selected':'platform-left-nav-tb-btn'}"
+                                                      actionListener="#{backingBeanScope.homeManagedBean.funcNavActionListener}">
+                                        <f:attribute name="outcome" value="PERIODICAL_SETUP"/>
+                                    </af:commandButton>
+                                </af:panelGroupLayout>
+                                <af:panelGroupLayout id="pgl11" layout="horizontal" styleClass="platform-left-nav-ct">
+                                    <af:commandButton text="期刊刊期设置" id="cb9"
+                                                      styleClass="#{pageFlowScope.outcome=='PERIOD_SETUP' ? 'platform-left-nav-tb-btn-selected':'platform-left-nav-tb-btn'}"
+                                                      actionListener="#{backingBeanScope.homeManagedBean.funcNavActionListener}">
+                                        <f:attribute name="outcome" value="PERIOD_SETUP"/>
+                                    </af:commandButton>
+                                </af:panelGroupLayout>
+                                <af:panelGroupLayout id="pgl14" layout="horizontal" styleClass="platform-left-nav-ct">
+                                    <af:commandButton text="报纸刊物设置" id="cb10"
+                                                      styleClass="#{pageFlowScope.outcome=='NEWSPAPER_SETUP' ? 'platform-left-nav-tb-btn-selected':'platform-left-nav-tb-btn'}"
+                                                      actionListener="#{backingBeanScope.homeManagedBean.funcNavActionListener}">
+                                        <f:attribute name="outcome" value="NEWSPAPER_SETUP"/>
+                                    </af:commandButton>
+                                </af:panelGroupLayout>
+                                <af:panelGroupLayout id="pgl15" layout="horizontal" styleClass="platform-left-nav-ct">
+                                    <af:commandButton text="报纸刊期设置" id="cb11"
+                                                      styleClass="#{pageFlowScope.outcome=='NEWS_SETUP' ? 'platform-left-nav-tb-btn-selected':'platform-left-nav-tb-btn'}"
+                                                      actionListener="#{backingBeanScope.homeManagedBean.funcNavActionListener}">
+                                        <f:attribute name="outcome" value="NEWS_SETUP"/>
+                                    </af:commandButton>
+                                </af:panelGroupLayout>
+                            </af:panelGroupLayout>
+                        </af:showDetailItem>
+                        <af:showDetailItem text="系统配置" id="sdi5" rendered="#{sessionScope.currUserName == 'SYSADMIN'}"
+                                           disclosureListener="#{backingBeanScope.homeManagedBean.detailItemDisclosureListener}">
+                            <af:panelGroupLayout id="pgl13" layout="vertical" styleClass="platform-left-nav"
+                                                 inlineStyle="margin-top:10px;">
+                                <af:panelGroupLayout id="pgl9" layout="horizontal" styleClass="platform-left-nav-ct">
+                                    <af:commandButton text="WebService管理" id="cb7"
+                                                      styleClass="#{pageFlowScope.outcome=='WS_ADMIN' ? 'platform-left-nav-tb-btn-selected':'platform-left-nav-tb-btn'}"
+                                                      actionListener="#{backingBeanScope.homeManagedBean.funcNavActionListener}">
+                                        <f:attribute name="outcome" value="WS_ADMIN"/>
+                                    </af:commandButton>
+                                </af:panelGroupLayout>
+                            </af:panelGroupLayout>
+                        </af:showDetailItem>
+                        <af:showDetailItem text="操作监控" id="sdi4"
+                                           disclosureListener="#{backingBeanScope.homeManagedBean.detailItemDisclosureListener}">
+                            <af:panelGroupLayout id="pgl17" layout="vertical" styleClass="platform-left-nav"
+                                                 inlineStyle="margin-top:10px;">
+                                <af:panelGroupLayout id="pgl16" layout="horizontal" styleClass="platform-left-nav-ct">
+                                    <af:commandButton text="管理操作日志查看" id="cb12"
+                                                      styleClass="#{pageFlowScope.outcome=='ADMIN_OPEN_LOG' ? 'platform-left-nav-tb-btn-selected':'platform-left-nav-tb-btn'}"
+                                                      actionListener="#{backingBeanScope.homeManagedBean.funcNavActionListener}">
+                                        <f:attribute name="outcome" value="ADMIN_OPEN_LOG"/>
+                                    </af:commandButton>
+                                </af:panelGroupLayout>
+                                <af:panelGroupLayout id="pgl18" layout="horizontal" styleClass="platform-left-nav-ct">
+                                    <af:commandButton text="同步操作取消" id="cb13"
+                                                      styleClass="#{pageFlowScope.outcome=='SYNC_CANCEL' ? 'platform-left-nav-tb-btn-selected':'platform-left-nav-tb-btn'}"
+                                                      actionListener="#{backingBeanScope.homeManagedBean.funcNavActionListener}">
+                                        <f:attribute name="outcome" value="SYNC_CANCEL"/>
+                                    </af:commandButton>
+                                </af:panelGroupLayout>
+                            </af:panelGroupLayout>
+                        </af:showDetailItem>
+                    </af:panelAccordion>
+                </f:facet>
+                <f:facet name="second">
+                    <af:region value="#{bindings.admin_taskflow1.regionModel}" id="r1"
+                               binding="#{backingBeanScope.homeManagedBean.adminRegion}"/>
+                </f:facet>
+            </af:panelSplitter>
+        </f:facet>
+        <f:facet name="start"/>
+        <f:facet name="end">
+            <af:panelGroupLayout id="pgl19" layout="horizontal" inlineStyle="position:fixed;top:26px;left:1150px;">
+                <af:goImageLink text="" id="cl3" destination="#{pageFlowScope.pubUrl}"
+                                inlineStyle="text-decoration:none;" visible="#{pageFlowScope.pubFlag == 'Y'}"
+                                icon="/resources/images/goPub.gif"/>
+                <af:goImageLink text="" id="gl1" destination="#{pageFlowScope.workUrl}"
+                                inlineStyle="text-decoration:none;" visible="#{pageFlowScope.workFlag == 'Y'}"
+                                icon="/resources/images/goWork.gif"/>
+            </af:panelGroupLayout>
+        </f:facet>
+        <f:facet name="top"></f:facet>
+    </af:panelStretchLayout>
+</ui:composition>

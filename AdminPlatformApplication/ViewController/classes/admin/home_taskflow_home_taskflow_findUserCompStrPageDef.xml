@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36"
+                id="home_taskflow_home_taskflow_findUserCompStrPageDef" Package="admin" SkipValidation="true">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+  </executables>
+  <bindings>
+    <methodAction id="findUserCompStr" InstanceName="data.AdminAMDataControl.dataProvider"
+                  DataControl="AdminAMDataControl" RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="findUserCompStr" IsViewObjectMethod="false"
+                  ReturnName="data.AdminAMDataControl.methodResults.findUserCompStr_AdminAMDataControl_dataProvider_findUserCompStr_result"/>
+  </bindings>
+</pageDefinition>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="workPlatformRoleAuthPageDef"
+                Package="admin.role.fragment">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="CmsFirstLevelLibVO1" RangeSize="25" DataControl="AdminAMDataControl"
+              id="CmsFirstLevelLibVO1Iterator"/>
+    <iterator Binds="CmsRoleLibVO1" RangeSize="25" DataControl="AdminAMDataControl" id="CmsRoleLibVO1Iterator"/>
+    <taskFlow id="role_res_setting_taskflow1"
+              taskFlowId="/WEB-INF/admin/role/role_res_setting_taskflow.xml#role_res_setting_taskflow"
+              activation="deferred" xmlns="http://xmlns.oracle.com/adf/controller/binding" Refresh="ifNeeded">
+      <parameters>
+        <parameter id="roleId" value="#{pageFlowScope.roleId}"/>
+        <parameter id="currentLibCode" value="#{pageFlowScope.currentLibCode}"/>
+      </parameters>
+    </taskFlow>
+  </executables>
+  <bindings>
+    <tree IterBinding="CmsFirstLevelLibVO1Iterator" id="CmsFirstLevelLibVO1">
+      <nodeDefinition DefName="com.zypg.cms.admin.model.viewobject.query.CmsFirstLevelLibVO"
+                      Name="CmsFirstLevelLibVO10">
+        <AttrNames>
+          <Item Value="LibCode"/>
+          <Item Value="LibName"/>
+          <Item Value="CompCode"/>
+          <Item Value="IsSelected"/>
+        </AttrNames>
+        <Accessors>
+          <Item Value="CmsSecondLevelLibVO"/>
+        </Accessors>
+      </nodeDefinition>
+      <nodeDefinition DefName="com.zypg.cms.admin.model.viewobject.query.CmsSecondLevelLibVO"
+                      Name="CmsFirstLevelLibVO11">
+        <AttrNames>
+          <Item Value="LibCode"/>
+          <Item Value="CompCode"/>
+          <Item Value="IsSelected"/>
+          <Item Value="LibName"/>
+          <Item Value="LibTypeCode"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action id="Commit" InstanceName="AdminAMDataControl" DataControl="AdminAMDataControl" RequiresUpdateModel="true"
+            Action="commitTransaction"/>
+    <action id="Rollback" InstanceName="AdminAMDataControl" DataControl="AdminAMDataControl" RequiresUpdateModel="false"
+            Action="rollbackTransaction"/>
+    <tree IterBinding="CmsRoleLibVO1Iterator" id="CmsRoleLibVO1">
+      <nodeDefinition DefName="com.zypg.cms.admin.model.viewobject.query.CmsRoleLibVO" Name="CmsRoleLibVO10">
+        <AttrNames>
+          <Item Value="LibCode"/>
+          <Item Value="LibName"/>
+          <Item Value="CompCode"/>
+          <Item Value="LibTypeCode"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <methodAction id="queryRes4WP" InstanceName="data.AdminAMDataControl.dataProvider" DataControl="AdminAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod" MethodName="queryRes4WP" IsViewObjectMethod="false">
+      <NamedData NDName="libCode" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="saveDisplayAuth" InstanceName="data.AdminAMDataControl.dataProvider"
+                  DataControl="AdminAMDataControl" RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="saveDisplayAuth" IsViewObjectMethod="false">
+      <NamedData NDName="roleId" NDValue="#{pageFlowScope.roleId}" NDType="oracle.jbo.domain.Number"/>
+      <NamedData NDName="roleType" NDValue="#{pageFlowScope.roleType}" NDType="java.lang.String"/>
+      <NamedData NDName="platformType" NDValue="#{pageFlowScope.platformType}" NDType="java.lang.String"/>
+      <NamedData NDName="compCode" NDValue="#{pageFlowScope.compCode}" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="queryRoleLib4WorkPlatform" InstanceName="data.AdminAMDataControl.dataProvider"
+                  DataControl="AdminAMDataControl" RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="queryRoleLib4WorkPlatform" IsViewObjectMethod="false">
+      <NamedData NDName="roleId" NDValue="#{pageFlowScope.roleId}" NDType="oracle.jbo.domain.Number"/>
+      <NamedData NDName="compCode" NDValue="#{pageFlowScope.compCode}" NDType="java.lang.String"/>
+      <NamedData NDName="platformType" NDValue="#{pageFlowScope.platformType}" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="queryRes4WPIsAllSelected" InstanceName="data.AdminAMDataControl.dataProvider"
+                  DataControl="AdminAMDataControl" RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="queryRes4WPIsAllSelected" IsViewObjectMethod="false"
+                  ReturnName="data.AdminAMDataControl.methodResults.queryRes4WPIsAllSelected_AdminAMDataControl_dataProvider_queryRes4WPIsAllSelected_result"/>
+  </bindings>
+</pageDefinition>

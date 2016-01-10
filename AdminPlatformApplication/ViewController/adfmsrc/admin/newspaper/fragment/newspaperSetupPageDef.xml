@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="newspaperSetupPageDef"
+                Package="admin.newspaper.fragment">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="CmsCompVO4NewspaperSetup" RangeSize="25" DataControl="AdminAMDataControl"
+              id="CmsCompVO4NewspaperSetupIterator"/>
+    <iterator Binds="CmsNewspaperSetupVO" RangeSize="25" DataControl="AdminAMDataControl"
+              id="CmsNewspaperSetupVOIterator"/>
+    <iterator Binds="CmsCompVO4Common" RangeSize="25" DataControl="AdminAMDataControl" id="CmsCompVO4CommonIterator"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="CmsNewspaperSetupVOIterator" id="CmsNewspaperSetupVO">
+      <nodeDefinition DefName="com.zypg.cms.admin.model.viewobject.query.CmsNewspaperSetupVO"
+                      Name="CmsNewspaperSetupVO0">
+        <AttrNames>
+          <Item Value="CategoryId"/>
+          <Item Value="CategoryName"/>
+          <Item Value="LibCode"/>
+          <Item Value="LibTypeCode"/>
+          <Item Value="CompCode"/>
+          <Item Value="NewspaperType"/>
+          <Item Value="NewspaperTypeName"/>
+          <Item Value="PaperType"/>
+          <Item Value="PaperTypeName"/>
+          <Item Value="ChiefEditor"/>
+          <Item Value="Price"/>
+          <Item Value="BookSize"/>
+          <Item Value="Cn"/>
+          <Item Value="Issn"/>
+          <Item Value="Words"/>
+          <Item Value="ProdSize"/>
+          <Item Value="ReaderGroup"/>
+          <Item Value="Org"/>
+          <Item Value="Publishing"/>
+          <Item Value="Description"/>
+          <Item Value="Total"/>
+          <Item Value="Lang"/>
+          <Item Value="Attribute1"/>
+          <Item Value="PublishedDate"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="CmsCompVO4CommonIterator" id="CmsCompVO4Common">
+      <nodeDefinition DefName="com.zypg.cms.admin.model.viewobject.query.CmsCompVO" Name="CmsCompVO4Common0">
+        <AttrNames>
+          <Item Value="CompId"/>
+          <Item Value="CompCode"/>
+          <Item Value="CompName"/>
+          <Item Value="Seq"/>
+          <Item Value="CompDesc"/>
+          <Item Value="Checkbox"/>
+          <Item Value="DisplayName"/>
+          <Item Value="GroupFlag"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+  </bindings>
+</pageDefinition>

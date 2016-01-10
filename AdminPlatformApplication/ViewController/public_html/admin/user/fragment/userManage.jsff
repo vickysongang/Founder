@@ -1,0 +1,220 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core">
+    <af:panelSplitter id="ps1" splitterPosition="150" disabled="true" inlineStyle="margin-top:0px">
+        <f:facet name="first">
+            <af:panelGroupLayout layout="vertical" id="pgl4" styleClass="AFStretchWidth"
+                                 inlineStyle="border:1px solid #BAC6CA;margin-right:1px;padding:10px 0px 5px 10px;"
+                                 partialTriggers="cb4 cb8 d2">
+                <af:iterator id="i1" value="#{bindings.CmsCompVO4Common.collectionModel}" var="row" varStatus="vs">
+                    <af:commandLink text="#{row.CompName}" id="cl1"
+                                    inlineStyle="#{row.CompCode == pageFlowScope.compCode ? 'color:blue' : ''}"
+                                    styleClass="userAdmin_outputtext" partialSubmit="true"
+                                    actionListener="#{backingBeanScope.userManageManagedBean.switchCompActionListener}">
+                        <f:attribute name="compCode" value="#{row.CompCode}"/>
+                        <f:attribute name="compName" value="#{row.CompName}"/>
+                        <f:attribute name="groupFlag" value="#{row.GroupFlag}"/>
+                    </af:commandLink>
+                    <af:spacer height="5px" id="s1"/>
+                </af:iterator>
+            </af:panelGroupLayout>
+        </f:facet>
+        <f:facet name="second">
+            <af:panelStretchLayout id="psl1" bottomHeight="auto" topHeight="auto">
+                <f:facet name="bottom">
+                    <af:panelGroupLayout id="pgl1" layout="vertical" halign="center"
+                                         inlineStyle="margin-top:10px;margin-bottom:10px;">
+                        <af:popup childCreation="deferred" autoCancel="disabled" id="p2"
+                                  binding="#{backingBeanScope.userManageManagedBean.deleteCompPopup}">
+                            <af:dialog id="d2" title="提示"
+                                       dialogListener="#{backingBeanScope.userManageManagedBean.deleteCompDialogListener}">
+                                <f:facet name="buttonBar"/>
+                                <af:outputText value="确定删除该出版社?删除分社会将该分社下的业务数据删除掉，删除后数据不能恢复，影响比较大，请谨慎操作！" id="ot2"/>
+                            </af:dialog>
+                        </af:popup>
+                        <af:popup childCreation="deferred" autoCancel="disabled" id="p4"
+                                  binding="#{backingBeanScope.userManageManagedBean.userManagePopup}"
+                                  contentDelivery="lazyUncached"
+                                  popupCanceledListener="#{backingBeanScope.userManageManagedBean.userManagePopupCanceledListener}">
+                            <af:dialog id="d4" title="用户维护" type="none">
+                                <f:facet name="buttonBar">
+                                    <af:panelGroupLayout id="pgl2" layout="horizontal" halign="center">
+                                        <af:commandButton text="确定" id="cb2" partialSubmit="true"
+                                                          actionListener="#{backingBeanScope.userManageManagedBean.comfirmActionListener}"/>
+                                        <af:commandButton text="取消" id="cb3" partialSubmit="true"
+                                                          actionListener="#{backingBeanScope.userManageManagedBean.cancelActionListener}"/>
+                                    </af:panelGroupLayout>
+                                </f:facet>
+                                <af:panelFormLayout id="pfl1">
+                                    <af:inputText value="#{bindings.UserName.inputValue}"
+                                                  contentStyle="width:300px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  label="#{bindings.UserName.hints.label}" showRequired="true"
+                                                  required="#{bindings.UserName.hints.mandatory}"
+                                                  columns="#{bindings.UserName.hints.displayWidth}"
+                                                  maximumLength="#{bindings.UserName.hints.precision}"
+                                                  shortDesc="#{bindings.UserName.hints.tooltip}" id="it4"
+                                                  binding="#{backingBeanScope.userManageManagedBean.userNameInput}">
+                                        <f:validator binding="#{bindings.UserName.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.DiplayName.inputValue}"
+                                                  contentStyle="width:300px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  label="#{bindings.DiplayName.hints.label}" showRequired="true"
+                                                  required="#{bindings.DiplayName.hints.mandatory}"
+                                                  columns="#{bindings.DiplayName.hints.displayWidth}"
+                                                  maximumLength="#{bindings.DiplayName.hints.precision}"
+                                                  shortDesc="#{bindings.DiplayName.hints.tooltip}" id="it6"
+                                                  binding="#{backingBeanScope.userManageManagedBean.diplayNameInput}">
+                                        <f:validator binding="#{bindings.DiplayName.validator}"/>
+                                    </af:inputText>
+                                    <af:inputText value="#{bindings.Remarks.inputValue}"
+                                                  label="#{bindings.Remarks.hints.label}"
+                                                  required="#{bindings.Remarks.hints.mandatory}"
+                                                  contentStyle="width:300px;height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                                  columns="#{bindings.Remarks.hints.displayWidth}"
+                                                  maximumLength="#{bindings.Remarks.hints.precision}"
+                                                  shortDesc="#{bindings.Remarks.hints.tooltip}" id="it5">
+                                        <f:validator binding="#{bindings.Remarks.validator}"/>
+                                    </af:inputText>
+                                </af:panelFormLayout>
+                            </af:dialog>
+                        </af:popup>
+                        <af:popup childCreation="deferred" autoCancel="disabled" id="p1"
+                                  binding="#{backingBeanScope.userManageManagedBean.selectRolePopup}">
+                            <af:dialog id="d1" title="角色设置(用户名：#{pageFlowScope.userName}/#{pageFlowScope.displayName})"
+                                       dialogListener="#{backingBeanScope.userManageManagedBean.setUserRoleDialogListener}">
+                                <af:region value="#{bindings.user_rolesettinig_taskflow1.regionModel}" id="r1"/>
+                                <f:facet name="buttonBar"/>
+                            </af:dialog>
+                        </af:popup>
+                    </af:panelGroupLayout>
+                </f:facet>
+                <f:facet name="center">
+                    <af:table value="#{bindings.CmsUserTVO4Display.collectionModel}" var="row"
+                              rows="#{bindings.CmsUserTVO4Display.rangeSize}" inlineStyle="margin:5px 5px 5px 0px;"
+                              emptyText="#{bindings.CmsUserTVO4Display.viewable ? '' : 'Access Denied.'}"
+                              fetchSize="#{bindings.CmsUserTVO4Display.rangeSize}" rowBandingInterval="0"
+                              autoHeightRows="0" styleClass="AFStretchWidth user_table" contentDelivery="immediate"
+                              selectedRowKeys="#{bindings.CmsUserTVO4Display.collectionModel.selectedRow}"
+                              selectionListener="#{bindings.CmsUserTVO4Display.collectionModel.makeCurrent}"
+                              rowSelection="single" id="t2" partialTriggers="::i1:cl1 ::cb2 ::cb3">
+                        <af:column sortProperty="#{bindings.CmsUserTVO4Display.hints.UserName.name}" sortable="false"
+                                   width="150" align="center"
+                                   headerText="#{bindings.CmsUserTVO4Display.hints.UserName.label}" id="c2">
+                            <af:inputText value="#{row.bindings.UserName.inputValue}" readOnly="true"
+                                          label="#{bindings.CmsUserTVO4Display.hints.UserName.label}"
+                                          required="#{bindings.CmsUserTVO4Display.hints.UserName.mandatory}"
+                                          columns="#{bindings.CmsUserTVO4Display.hints.UserName.displayWidth}"
+                                          contentStyle="height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                          maximumLength="#{bindings.CmsUserTVO4Display.hints.UserName.precision}"
+                                          shortDesc="#{bindings.CmsUserTVO4Display.hints.UserName.tooltip}" id="it1">
+                                <f:validator binding="#{row.bindings.UserName.validator}"/>
+                            </af:inputText>
+                        </af:column>
+                        <af:column sortProperty="#{bindings.CmsUserTVO4Display.hints.DiplayName.name}" sortable="false"
+                                   width="150" align="center"
+                                   headerText="#{bindings.CmsUserTVO4Display.hints.DiplayName.label}" id="c3">
+                            <af:inputText value="#{row.bindings.DiplayName.inputValue}" readOnly="true"
+                                          label="#{bindings.CmsUserTVO4Display.hints.DiplayName.label}"
+                                          required="#{bindings.CmsUserTVO4Display.hints.DiplayName.mandatory}"
+                                          columns="#{bindings.CmsUserTVO4Display.hints.DiplayName.displayWidth}"
+                                          contentStyle="height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                          maximumLength="#{bindings.CmsUserTVO4Display.hints.DiplayName.precision}"
+                                          shortDesc="#{bindings.CmsUserTVO4Display.hints.DiplayName.tooltip}" id="it2">
+                                <f:validator binding="#{row.bindings.DiplayName.validator}"/>
+                            </af:inputText>
+                        </af:column>
+                        <!--<af:column headerText="#{bindings.CmsUserTVO4Display.hints.EnableFlag.label}" id="c7" align="center">
+                            <af:selectBooleanCheckbox value="#{row.bindings.EnableFlag.inputValue}"
+                                                      label="#{row.bindings.EnableFlag.label}"
+                                                      shortDesc="#{bindings.CmsUserTVO4Display.hints.EnableFlag.tooltip}"
+                                                      id="sbc1"/>
+                        </af:column>-->
+                        <af:column headerText="#{bindings.CmsUserTVO4Display.hints.Remarks.label}" id="c8" width="300">
+                            <af:inputText value="#{row.bindings.Remarks.inputValue}" readOnly="true"
+                                          label="#{bindings.CmsUserTVO4Display.hints.Remarks.label}"
+                                          required="#{bindings.CmsUserTVO4Display.hints.Remarks.mandatory}"
+                                          columns="#{bindings.CmsUserTVO4Display.hints.Remarks.displayWidth}"
+                                          contentStyle="height:18px;line-height:18px;background-image:none;border-color:#ABADB3;"
+                                          maximumLength="#{bindings.CmsUserTVO4Display.hints.Remarks.precision}"
+                                          shortDesc="#{bindings.CmsUserTVO4Display.hints.Remarks.tooltip}" id="it3">
+                                <f:validator binding="#{row.bindings.Remarks.validator}"/>
+                            </af:inputText>
+                        </af:column>
+                        <af:column id="c9" headerText="操作" width="300" align="center">
+                            <af:group id="g1">
+                                <af:commandButton text="设置角色" id="cb7" partialSubmit="true"
+                                                  styleClass="min-btn blue-min-btn"
+                                                  rendered="#{backingBeanScope.userManageManagedBean.userManageFlag and pageFlowScope.compCode != null and pageFlowScope.groupFlag != 'Y'}"
+                                                  actionListener="#{backingBeanScope.userManageManagedBean.showSelectRolePopup}">
+                                    <f:attribute name="userId" value="#{row.UserId}"/>
+                                </af:commandButton>
+                                <af:spacer width="10" height="10" id="s3"
+                                           rendered="#{backingBeanScope.userManageManagedBean.userManageFlag and pageFlowScope.compCode != null and pageFlowScope.groupFlag != 'Y'}"/>
+                                <af:commandButton text="重置密码" id="cb6" styleClass="min-btn blue-min-btn"
+                                                  actionListener="#{backingBeanScope.userManageManagedBean.resetPasswordActionListener}"
+                                                  rendered="#{backingBeanScope.userManageManagedBean.userManageFlag}">
+                                    <f:attribute name="userId" value="#{row.UserId}"/>
+                                    <f:attribute name="userName" value="#{row.UserName}"/>
+                                </af:commandButton>
+                                <af:spacer width="10" height="10" id="s2"/>
+                                <af:commandButton text="编辑" id="cb10" styleClass="min-btn blue-min-btn"
+                                                  rendered="#{backingBeanScope.userManageManagedBean.userManageFlag}"
+                                                  actionListener="#{backingBeanScope.userManageManagedBean.editUserActionListenter}">
+                                    <f:attribute name="userId" value="#{row.UserId}"/>
+                                </af:commandButton>
+                                <af:spacer width="10" height="10" id="s8"/>
+                                <af:commandButton text="删除" id="cb5" styleClass="min-btn blue-min-btn"
+                                                  disabled="#{row.bindings.UserId.inputValue == pageFlowScope.roleUserID}"
+                                                  actionListener="#{backingBeanScope.userManageManagedBean.deleteUserActionListener}"
+                                                  rendered="#{backingBeanScope.userManageManagedBean.userManageFlag}">
+                                    <f:attribute name="userId" value="#{row.UserId}"/>
+                                    <f:attribute name="userName" value="#{row.UserName}"/>
+                                </af:commandButton>
+                                <af:popup childCreation="deferred" autoCancel="disabled" id="p3"
+                                          binding="#{backingBeanScope.userManageManagedBean.deleteUserPopup}">
+                                    <af:dialog id="d3" title="用户删除"
+                                               dialogListener="#{backingBeanScope.userManageManagedBean.deleteUserDialogListener}">
+                                        <f:facet name="buttonBar"/>
+                                        <af:outputText value="确定删除用户【#{pageFlowScope.userName}】吗?" id="ot1"/>
+                                    </af:dialog>
+                                </af:popup>
+                            </af:group>
+                        </af:column>
+                    </af:table>
+                </f:facet>
+                <f:facet name="top">
+                    <af:panelGroupLayout layout="horizontal" id="pgl3" inlineStyle="margin-top:5px;"
+                                         binding="#{backingBeanScope.userManageManagedBean.userManageBtnPanelGroupLayout}">
+                        <af:commandButton text="新增出版社" id="cb4" partialSubmit="true" styleClass="min-btn green-min-btn"
+                                          action="toEditComp" useWindow="true" windowHeight="350" windowWidth="650"
+                                          returnListener="#{backingBeanScope.userManageManagedBean.newOrEditReturnListener}"
+                                          rendered="#{sessionScope.currUserName == 'SYSADMIN'}">
+                            <af:setPropertyListener from="NEW" to="#{pageFlowScope.mode}" type="action"/>
+                        </af:commandButton>
+                        <!--  rendered="#{backingBeanScope.userManageManagedBean.userManageFlag and pageFlowScope.sysadminFlag == 'Y'}" -->
+                        <af:spacer width="3" height="10" id="s4"
+                                   rendered="#{backingBeanScope.userManageManagedBean.userManageFlag and pageFlowScope.sysadminFlag == 'Y'}"/>
+                        <af:commandButton text="编辑出版社" id="cb8" partialSubmit="true" styleClass="min-btn green-min-btn"
+                                          windowHeight="350" windowWidth="650" action="toEditComp" useWindow="true"
+                                          returnListener="#{backingBeanScope.userManageManagedBean.newOrEditReturnListener}"
+                                          rendered="#{sessionScope.currUserName == 'SYSADMIN' and pageFlowScope.compCode != null}">
+                            <af:setPropertyListener from="EDIT" to="#{pageFlowScope.mode}" type="action"/>
+                        </af:commandButton>
+                        <!--rendered="#{backingBeanScope.userManageManagedBean.userManageFlag and pageFlowScope.compCode != null  and pageFlowScope.sysadminFlag == 'Y'}" -->
+                        <af:spacer width="3" height="10" id="s6"
+                                   rendered="#{backingBeanScope.userManageManagedBean.userManageFlag and pageFlowScope.compCode != null  and pageFlowScope.sysadminFlag == 'Y'}"/>
+                        <af:commandButton text="删除出版社" id="cb9" partialSubmit="true" styleClass="min-btn green-min-btn"
+                                          actionListener="#{backingBeanScope.userManageManagedBean.deleteCompActionListener}"
+                                          rendered="#{sessionScope.currUserName == 'SYSADMIN' and pageFlowScope.compCode != null}"/>
+                        <af:spacer width="3" height="10" id="s7"
+                                   rendered="#{backingBeanScope.userManageManagedBean.userManageFlag and pageFlowScope.compCode != null and pageFlowScope.sysadminFlag == 'Y'}"/>
+                        <af:commandButton text="新增用户" id="cb1" partialSubmit="true" styleClass="min-btn green-min-btn"
+                                          actionListener="#{backingBeanScope.userManageManagedBean.createUserActionListener}"
+                                          rendered="#{backingBeanScope.userManageManagedBean.userManageFlag and pageFlowScope.compCode != null}"/>
+                        <af:spacer width="3" height="10" id="s5"/>
+                    </af:panelGroupLayout>
+                </f:facet>
+            </af:panelStretchLayout>
+        </f:facet>
+    </af:panelSplitter>
+</ui:composition>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="userNoRolePageDef"
+                Package="admin.user.fragment">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="CmsCompVO4RoleManage" RangeSize="25" DataControl="AdminAMDataControl"
+              id="CmsCompVO4RoleManageIterator" ChangeEventPolicy="none"/>
+    <iterator id="CmsCompVO4UserManageIterator" Binds="CmsCompVO4UserManage" DataControl="AdminAMDataControl"
+              RangeSize="25"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="CmsCompVO4UserManageIterator" id="CmsCompVO4UserManage">
+      <nodeDefinition DefName="com.zypg.cms.admin.model.viewobject.query.CmsCompVO4UserManage"
+                      Name="CmsCompVO4UserManage0">
+        <AttrNames>
+          <Item Value="CompName"/>
+          <Item Value="CompCode"/>
+          <Item Value="CompDesc"/>
+          <Item Value="CompId"/>
+          <Item Value="GroupFlag"/>
+          <Item Value="Seq"/>
+          <Item Value="Checkbox"/>
+          <Item Value="DisplayName"/>
+        </AttrNames>
+        <Accessors>
+          <Item Value="CmsUserNoRoleVO"/>
+        </Accessors>
+      </nodeDefinition>
+      <nodeDefinition DefName="com.zypg.cms.admin.model.viewobject.query.CmsUserNoRoleVO" Name="CmsCompVO4UserManage1">
+        <AttrNames>
+          <Item Value="UserId"/>
+          <Item Value="ChildCheckbox"/>
+          <Item Value="CompCode"/>
+          <Item Value="DisplayName"/>
+          <Item Value="UserName"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+  </bindings>
+</pageDefinition>

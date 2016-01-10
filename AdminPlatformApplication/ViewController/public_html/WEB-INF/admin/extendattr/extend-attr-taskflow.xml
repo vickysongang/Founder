@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+    <task-flow-definition id="extend-attr-taskflow">
+        <default-activity>initExtendAttr</default-activity>
+        <input-parameter-definition id="__4">
+            <name>compStr</name>
+            <value>#{pageFlowScope.compStr}</value>
+            <class>java.lang.String</class>
+        </input-parameter-definition>
+        <input-parameter-definition id="__5">
+            <name>currTime</name>
+            <value>#{pageFlowScope.currTime}</value>
+            <class>java.lang.String</class>
+        </input-parameter-definition>
+        <managed-bean id="__3">
+            <managed-bean-name>extendAttrManagedBean</managed-bean-name>
+            <managed-bean-class>com.zypg.cms.admin.view.bean.ExtendAttrManagedBean</managed-bean-class>
+            <managed-bean-scope>backingBean</managed-bean-scope>
+        </managed-bean>
+        <view id="extendAttr">
+            <page>/admin/extendattr/extendAttr.jsff</page>
+        </view>
+        <method-call id="initExtendAttr">
+            <method>#{backingBeanScope.extendAttrManagedBean.initExtendAttr}</method>
+            <outcome>
+                <fixed-outcome>toExtendAttr</fixed-outcome>
+            </outcome>
+        </method-call>
+        <control-flow-rule id="__1">
+            <from-activity-id>initExtendAttr</from-activity-id>
+            <control-flow-case id="__2">
+                <from-outcome>toExtendAttr</from-outcome>
+                <to-activity-id>extendAttr</to-activity-id>
+            </control-flow-case>
+        </control-flow-rule>
+        <use-page-fragments/>
+    </task-flow-definition>
+</adfc-config>

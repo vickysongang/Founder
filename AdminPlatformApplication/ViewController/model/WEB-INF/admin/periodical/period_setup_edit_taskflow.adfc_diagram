@@ -1,0 +1,70 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<SDM>
+   <OverallProperties
+      id="OverallProperties1"/>
+   <MethodCall
+      id="MethodCall2">
+      <property
+         name="activityId">init4PeriodSetupEdit</property>
+      <property
+         name="start">true</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>init4PeriodSetupEdit&lt;/b> (Default Activity)&lt;/p>&lt;p>Activity Type:  Method Call&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">138.24707</property>
+      <property
+         name="x">179.0</property>
+   </MethodCall>
+   <View
+      id="View3">
+      <property
+         name="activityId">periodSetupEdit</property>
+      <property
+         name="page">/admin/periodical/inline/periodSetupEdit.jsf</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>periodSetupEdit&lt;/b>&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">137.5459</property>
+      <property
+         name="x">392.0</property>
+   </View>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase4"
+      from="MethodCall2"
+      to="View3">
+      <property
+         name="fromOutcome">toEdit</property>
+      <property
+         name="sdm:polyPoints">R50,220.0,137.89648,351.0,137.5459,L50</property>
+   </ControlFlowCase>
+   <TaskFlowReturn
+      id="TaskFlowReturn5">
+      <property
+         name="activityId">taskFlowReturn1</property>
+      <property
+         name="finish">true</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>taskFlowReturn1&lt;/b>&lt;/p>&lt;p>Activity Type:  Task Flow Return&lt;/p>&lt;p>Outcome:  taskFlowReturn1&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">108.94824</property>
+      <property
+         name="x">584.0</property>
+   </TaskFlowReturn>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase6"
+      from="View3"
+      to="TaskFlowReturn5">
+      <property
+         name="fromOutcome">toReturn</property>
+      <property
+         name="sdm:polyPoints">R50,434.0,137.5459,543.0,108.59766,L50</property>
+   </ControlFlowCase>
+</SDM>

@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core">
+    <af:panelSplitter id="ps1" splitterPosition="175" disabled="true">
+        <f:facet name="first">
+            <af:panelGroupLayout layout="vertical" id="pgl4" styleClass="AFStretchWidth"
+                                 inlineStyle="border:1px solid #BAC6CA;margin-right:1px;padding:10px 0px 5px 10px;">
+                <af:iterator id="i1" value="#{bindings.CmsCompVO4Common.collectionModel}" var="row" varStatus="vs">
+                    <af:commandLink text="#{row.CompName}" id="cl1" rendered="#{row.GroupFlag != 'Y'}"
+                                    inlineStyle="#{row.CompCode == sessionScope.compCode ? 'color:blue' : ''}"
+                                    styleClass="userAdmin_outputtext" partialSubmit="true"
+                                    actionListener="#{backingBeanScope.resCategoryManagedBean.switchCompActionListener}">
+                        <f:attribute name="compCode" value="#{row.CompCode}"/>
+                    </af:commandLink>
+                    <af:spacer height="5px" id="s1"/>
+                </af:iterator>
+            </af:panelGroupLayout>
+        </f:facet>
+        <f:facet name="second">
+            <af:inlineFrame id="if1" source="/faces/admin/category/resCategory.jsp" partialTriggers="i1:cl1"></af:inlineFrame>
+        </f:facet>
+    </af:panelSplitter>
+</ui:composition>

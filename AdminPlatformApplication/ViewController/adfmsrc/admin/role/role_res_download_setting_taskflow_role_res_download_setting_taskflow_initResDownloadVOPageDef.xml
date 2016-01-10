@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36"
+                id="role_res_download_setting_taskflow_role_res_download_setting_taskflow_initResDownloadVOPageDef"
+                Package="admin.role" SkipValidation="true">
+  <parameters/>
+  <executables/>
+  <bindings>
+    <methodAction id="initResDownloadVO" RequiresUpdateModel="true" Action="invokeMethod" MethodName="initResDownloadVO"
+                  IsViewObjectMethod="false" DataControl="AdminAMDataControl"
+                  InstanceName="data.AdminAMDataControl.dataProvider">
+      <NamedData NDName="libCode" NDValue="#{pageFlowScope.libCode}" NDType="java.lang.String"/>
+      <NamedData NDName="roleId" NDValue="#{pageFlowScope.roleId}" NDType="oracle.jbo.domain.Number"/>
+    </methodAction>
+  </bindings>
+</pageDefinition>

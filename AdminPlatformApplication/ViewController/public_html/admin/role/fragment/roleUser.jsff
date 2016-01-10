@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core" xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <c:set var="viewcontrollerBundle" value="#{adfBundle['com.zypg.cms.admin.view.ViewControllerBundle']}"/>
+    <af:table value="#{bindings.CmsRoleUserVO.collectionModel}" var="row" rows="#{bindings.CmsRoleUserVO.rangeSize}"
+              emptyText="#{bindings.CmsRoleUserVO.viewable ? '' : 'Access Denied.'}"
+              fetchSize="#{bindings.CmsRoleUserVO.rangeSize}" rowBandingInterval="0"
+              selectedRowKeys="#{bindings.CmsRoleUserVO.collectionModel.selectedRow}" contentDelivery="immediate"
+              selectionListener="#{bindings.CmsRoleUserVO.collectionModel.makeCurrent}" rowSelection="single" id="t2">
+        <af:column sortProperty="#{bindings.CmsRoleUserVO.hints.UserName.name}" sortable="false" align="center"
+                   headerText="#{bindings.CmsRoleUserVO.hints.UserName.label}" id="c1" width="150">
+            <af:outputText value="#{row.UserName}" shortDesc="#{bindings.CmsRoleUserVO.hints.UserName.tooltip}"
+                           id="ot1"/>
+        </af:column>
+        <af:column sortProperty="#{bindings.CmsRoleUserVO.hints.DiplayName.name}" sortable="false" align="center"
+                   headerText="#{bindings.CmsRoleUserVO.hints.DiplayName.label}" id="c2" width="150">
+            <af:outputText value="#{row.DiplayName}" shortDesc="#{bindings.CmsRoleUserVO.hints.DiplayName.tooltip}"
+                           id="ot3"/>
+        </af:column>
+        <af:column headerText="#{bindings.CmsRoleUserVO.hints.EnableFlag.label}" id="c3" align="center">
+            <af:selectOneChoice value="#{row.bindings.EnableFlag.inputValue}" label="#{row.bindings.EnableFlag.label}"
+                                required="#{bindings.CmsRoleUserVO.hints.EnableFlag.mandatory}"
+                                shortDesc="#{bindings.CmsRoleUserVO.hints.EnableFlag.tooltip}" readOnly="true"
+                                id="soc2">
+                <f:selectItems value="#{row.bindings.EnableFlag.items}" id="si2"/>
+            </af:selectOneChoice>
+        </af:column>
+        <af:column id="c4" headerText="#{viewcontrollerBundle.ADMIN_ROLE_FRAGMENT_ROLEMAIN_OPER}" align="center"
+                   width="150">
+            <af:commandButton text="#{viewcontrollerBundle.ADMIN_ROLE_FRAGMENT_TACKBACKADMIN}" id="cb6"
+                              styleClass="min-btn blue-min-btn" 
+                              disabled="#{row.bindings.UserId.inputValue == pageFlowScope.roleUserID}"
+                              actionListener="#{backingBeanScope.roleUserBean.deleteUserPrivilegeActionListener}">
+                <f:attribute name="userId" value="#{row.UserId}"/>
+                <f:attribute name="userNmae" value="#{row.UserName}"/>
+            </af:commandButton>
+             <af:popup childCreation="deferred" autoCancel="disabled" id="p3"
+                                    binding="#{backingBeanScope.roleUserBean.deleteRolePopup}">
+                            <af:dialog id="d3" title="管理员回收"
+                                       dialogListener="#{backingBeanScope.roleUserBean.deleteRoleDialogListener}"> 
+                                <f:facet name="buttonBar"/>
+                             　<af:outputText value="确定回收该管理员?" id="ot2"/>　
+                            </af:dialog>
+                        </af:popup>
+        </af:column>
+    </af:table>
+</ui:composition>

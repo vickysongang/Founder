@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="roleResSettingPageDef"
+                Package="admin.role.fragment">
+  <parameters></parameters>
+  <executables>
+     <variableIterator id="variables"/>
+     <iterator Binds="CmsResType4WPVO1" RangeSize="25" DataControl="AdminAMDataControl" id="CmsResType4WPVO1Iterator"/>
+  </executables>
+  <bindings>
+  <tree IterBinding="CmsResType4WPVO1Iterator" id="CmsResType4WPVO1">
+      <nodeDefinition DefName="com.zypg.cms.admin.model.viewobject.query.CmsResType4WPVO" Name="CmsResType4WPVO10">
+        <AttrNames>
+          <Item Value="ResTypeCode"/>
+          <Item Value="ResTypeName"/>
+          <Item Value="LibCode"/>
+          <Item Value="IsSelected"/>
+        </AttrNames>
+        <Accessors>
+          <Item Value="CmsRes4WPVO"/>
+        </Accessors>
+      </nodeDefinition>
+      <nodeDefinition DefName="com.zypg.cms.admin.model.viewobject.query.CmsRes4WPVO" Name="CmsResType4WPVO11">
+        <AttrNames>
+          <Item Value="ResId"/>
+          <Item Value="IsSelected"/>
+          <Item Value="LibCode"/>
+          <Item Value="ProcessFlag"/>
+          <Item Value="ResCode"/>
+          <Item Value="ResName"/>
+          <Item Value="ResTypeCode"/>
+          <Item Value="ResTypeName"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <methodAction id="saveRoleAndRes4WP" InstanceName="data.AdminAMDataControl.dataProvider"
+                  DataControl="AdminAMDataControl" RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="saveRoleAndRes4WP" IsViewObjectMethod="false">
+      <NamedData NDName="roleId" NDValue="#{pageFlowScope.roleId}" NDType="oracle.jbo.domain.Number"/>
+      <NamedData NDName="libCode" NDValue="#{pageFlowScope.currentLibCode}" NDType="java.lang.String"/>
+    </methodAction>
+  </bindings>
+</pageDefinition>

@@ -1,0 +1,72 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<SDM>
+   <OverallProperties
+      id="OverallProperties1"/>
+   <View
+      id="View2">
+      <property
+         name="activityId">home</property>
+      <property
+         name="page">/admin/fragment/home.jsff</property>
+      <property
+         name="start">false</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>home&lt;/b>&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">147.0918</property>
+      <property
+         name="pageFragment">true</property>
+      <property
+         name="x">593.0</property>
+   </View>
+   <MethodCall
+      id="MethodCall5">
+      <property
+         name="activityId">findUserCompStr</property>
+      <property
+         name="start">true</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>findUserCompStr&lt;/b> (Default Activity)&lt;/p>&lt;p>Activity Type:  Method Call&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">149.79297</property>
+      <property
+         name="x">115.0</property>
+   </MethodCall>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase6"
+      from="MethodCall6"
+      to="View2">
+      <property
+         name="fromOutcome">toHome</property>
+      <property
+         name="sdm:polyPoints">R50,372.0,146.5459,552.0,146.74121,L50</property>
+   </ControlFlowCase>
+   <MethodCall
+      id="MethodCall6">
+      <property
+         name="activityId">initPlatformPrivilege</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>initPlatformPrivilege&lt;/b>&lt;/p>&lt;p>Activity Type:  Method Call&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">146.89648</property>
+      <property
+         name="x">331.0</property>
+   </MethodCall>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase7"
+      from="MethodCall5"
+      to="MethodCall6">
+      <property
+         name="fromOutcome">findUserCompStr</property>
+      <property
+         name="sdm:polyPoints">R50,156.0,149.44238,290.0,146.5459,L50</property>
+   </ControlFlowCase>
+</SDM>

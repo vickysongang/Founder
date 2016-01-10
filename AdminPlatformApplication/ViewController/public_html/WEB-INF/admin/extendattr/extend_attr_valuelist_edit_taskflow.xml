@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="extend_attr_valuelist_edit_taskflow">
+    <default-activity>initExtendAttrValueListEdit</default-activity>
+    <input-parameter-definition id="__6">
+      <name>operType</name>
+      <value>#{pageFlowScope.operType}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__7">
+      <name>listId</name>
+      <value>#{pageFlowScope.listId}</value>
+      <class>oracle.jbo.domain.Number</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__9">
+      <name>extendAttrId</name>
+      <value>#{pageFlowScope.extendAttrId}</value>
+      <class>oracle.jbo.domain.Number</class>
+    </input-parameter-definition>
+    <return-value-definition id="__8">
+      <name>saveFlag</name>
+      <value>#{pageFlowScope.saveFlag}</value>
+      <class>java.lang.String</class>
+    </return-value-definition>
+    <managed-bean id="__1">
+      <managed-bean-name>extendAttrValueListEditManagedBean</managed-bean-name>
+      <managed-bean-class>com.zypg.cms.admin.view.bean.ExtendAttrValueListEditManagedBean</managed-bean-class>
+      <managed-bean-scope>backingBean</managed-bean-scope>
+    </managed-bean>
+    <view id="extendAttrValueListEdit">
+      <page>/admin/extendattr/extendAttrValueListEdit.jsf</page>
+    </view>
+    <method-call id="initExtendAttrValueListEdit">
+      <method>#{backingBeanScope.extendAttrValueListEditManagedBean.initExtendAttrValueListEdit}</method>
+      <outcome>
+        <fixed-outcome>toExtendAttrValueListEdit</fixed-outcome>
+      </outcome>
+    </method-call>
+    <task-flow-return id="taskFlowReturn1">
+      <outcome>
+        <name>taskFlowReturn1</name>
+      </outcome>
+    </task-flow-return>
+    <control-flow-rule id="__2">
+      <from-activity-id>initExtendAttrValueListEdit</from-activity-id>
+      <control-flow-case id="__3">
+        <from-outcome>toExtendAttrValueListEdit</from-outcome>
+        <to-activity-id>extendAttrValueListEdit</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__4">
+      <from-activity-id>extendAttrValueListEdit</from-activity-id>
+      <control-flow-case id="__5">
+        <from-outcome>toReturn</from-outcome>
+        <to-activity-id>taskFlowReturn1</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+  </task-flow-definition>
+</adfc-config>

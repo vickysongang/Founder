@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="roleUserPageDef"
+                Package="admin.role.fragment">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="CmsRoleUserVO" RangeSize="25" DataControl="AdminAMDataControl" id="CmsRoleUserVOIterator"/>
+  </executables>
+  <bindings>
+     <tree IterBinding="CmsRoleUserVOIterator" id="CmsRoleUserVO">
+      <nodeDefinition DefName="com.zypg.cms.admin.model.viewobject.query.CmsRoleUserVO" Name="CmsRoleUserVO0">
+        <AttrNames>
+          <Item Value="UserName"/>
+          <Item Value="DiplayName"/>
+          <Item Value="EnableFlag"/>
+          <Item Value="UserId"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action id="Commit" InstanceName="AdminAMDataControl" DataControl="AdminAMDataControl" RequiresUpdateModel="true"
+            Action="commitTransaction"/>
+    <methodAction id="revokeRole" InstanceName="data.AdminAMDataControl.dataProvider" DataControl="AdminAMDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod" MethodName="revokeRole" IsViewObjectMethod="false"
+                  ReturnName="data.AdminAMDataControl.methodResults.revokeRole_AdminAMDataControl_dataProvider_revokeRole_result">
+      <NamedData NDName="roleId" NDType="oracle.jbo.domain.Number"/>
+      <NamedData NDName="userId" NDType="oracle.jbo.domain.Number"/>
+    </methodAction>
+  </bindings>
+</pageDefinition>

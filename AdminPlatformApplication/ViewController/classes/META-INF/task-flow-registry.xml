@@ -1,0 +1,137 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<task-flow-registry xmlns="http://xmlns.oracle.com/adf/controller/rc">
+   <task-flow-descriptor path="WEB-INF/admin/user/user_manage_taskflow.xml" id="user_manage_taskflow" type="task-flow-definition" uses-page-fragments="true" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="currTime"/>
+      <input-parameter name="compStr"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/admin/extendattr/extend-attr-taskflow.xml" id="extend-attr-taskflow" type="task-flow-definition" uses-page-fragments="true" library-internal="false" train="false" page-type="jsp">
+      <input-parameter name="currTime"/>
+      <input-parameter name="compStr"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/admin/periodical/period_setup_batch_create_task-flow.xml" id="period_setup_batch_create_task-flow" type="task-flow-definition" uses-page-fragments="false" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="categoryId"/>
+      <input-parameter name="year"/>
+      <input-parameter name="compCode"/>
+      <input-parameter name="setupId"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/admin/newspaper/news_setup_batch_create_task-flow.xml" id="news_setup_batch_create_task-flow" type="task-flow-definition" uses-page-fragments="false" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="categoryId"/>
+      <input-parameter name="year"/>
+      <input-parameter name="compCode"/>
+      <input-parameter name="setupId"/>
+      <input-parameter name="mode"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/admin/admin_taskflow.xml" id="admin_taskflow" type="task-flow-definition" uses-page-fragments="true" library-internal="false" train="false" page-type="unspecified">
+      <input-parameter name="roleType"/>
+      <input-parameter name="currTime"/>
+      <input-parameter name="outcome"/>
+      <input-parameter name="compStr"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/admin/user/user_norole_taskflow.xml" id="user_norole_taskflow" type="task-flow-definition" uses-page-fragments="true" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="currTime"/>
+      <input-parameter name="compStr"/>
+      <input-parameter name="roleId"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/admin/newspaper/news_setup_edit_taskflow.xml" id="news_setup_edit_taskflow" type="task-flow-definition" uses-page-fragments="false" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="categoryId"/>
+      <input-parameter name="year"/>
+      <input-parameter name="compCode"/>
+      <input-parameter name="setupId"/>
+      <input-parameter name="mode"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/admin/category/choice_category_taskflow.xml" id="choice_category_taskflow" type="task-flow-definition" uses-page-fragments="true" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="currTime"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/admin/category/res_category_taskflow.xml" id="res_category_taskflow" type="task-flow-definition" uses-page-fragments="true" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="currTime"/>
+      <input-parameter name="compStr"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/admin/role/role_router_taskflow.xml" id="role_router_taskflow" type="task-flow-definition" uses-page-fragments="true" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="platformType"/>
+      <input-parameter name="routType"/>
+      <input-parameter name="roleType"/>
+      <input-parameter name="compCode"/>
+      <input-parameter name="roleId"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/admin/periodical/period_setup_taskflow.xml" id="period_setup_taskflow" type="task-flow-definition" uses-page-fragments="true" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="currTime"/>
+      <input-parameter name="compStr"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/admin/periodical/period_setup_edit_taskflow.xml" id="period_setup_edit_taskflow" type="task-flow-definition" uses-page-fragments="false" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="categoryId"/>
+      <input-parameter name="year"/>
+      <input-parameter name="compCode"/>
+      <input-parameter name="setupId"/>
+      <input-parameter name="mode"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/admin/newspaper/newspaper_setup_taskflow.xml" id="newspaper_setup_taskflow" type="task-flow-definition" uses-page-fragments="true" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="currTime"/>
+      <input-parameter name="compStr"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/admin/sysConfig/webService-manage-task-flow.xml" id="webService-manage-task-flow" type="task-flow-definition" uses-page-fragments="true" library-internal="false" train="false" page-type="facelets"/>
+   <task-flow-descriptor path="WEB-INF/admin/periodical/periodical_setup_edit_taskflow.xml" id="periodical_setup_edit_taskflow" type="task-flow-definition" uses-page-fragments="false" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="categoryId"/>
+      <input-parameter name="compCode"/>
+      <input-parameter name="mode"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/admin/periodical/periodical_setup_taskflow.xml" id="periodical_setup_taskflow" type="task-flow-definition" uses-page-fragments="true" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="currTime"/>
+      <input-parameter name="compStr"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/admin/newspaper/news_setup_taskflow.xml" id="news_setup_taskflow" type="task-flow-definition" uses-page-fragments="true" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="currTime"/>
+      <input-parameter name="compStr"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/admin/newspaper/newspaper_setup_edit_taskflow.xml" id="newspaper_setup_edit_taskflow" type="task-flow-definition" uses-page-fragments="false" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="categoryId"/>
+      <input-parameter name="compCode"/>
+      <input-parameter name="mode"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/admin/role/role_main_taskflow.xml" id="role_main_taskflow" type="task-flow-definition" uses-page-fragments="true" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="roleType"/>
+      <input-parameter name="currTime"/>
+      <input-parameter name="compStr"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/admin/role/role_res_download_setting_taskflow.xml" id="role_res_download_setting_taskflow" type="task-flow-definition" uses-page-fragments="true" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="libCode"/>
+      <input-parameter name="roleId"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/admin/openLog/adminOpenLog-task-flow.xml" id="adminOpenLog-task-flow" type="task-flow-definition" uses-page-fragments="true" library-internal="false" train="false" page-type="facelets"/>
+   <task-flow-descriptor path="WEB-INF/admin/extendattr/extend_attr_valuelist_edit_taskflow.xml" id="extend_attr_valuelist_edit_taskflow" type="task-flow-definition" uses-page-fragments="false" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="listId"/>
+      <input-parameter name="operType"/>
+      <input-parameter name="extendAttrId"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/admin/role/role_res_setting_taskflow.xml" id="role_res_setting_taskflow" type="task-flow-definition" uses-page-fragments="true" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="isAllSelected"/>
+      <input-parameter name="currentLibCode"/>
+      <input-parameter name="roleId"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/admin/extendattr/comp_extend_attr_taskflow.xml" id="comp_extend_attr_taskflow" type="task-flow-definition" uses-page-fragments="true" library-internal="false" train="false" page-type="jsp">
+      <input-parameter name="currTime"/>
+      <input-parameter name="compCode"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/admin/home_taskflow.xml" id="home_taskflow" type="task-flow-definition" uses-page-fragments="true" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="workFlag"/>
+      <input-parameter name="pubFlag"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/admin/extendattr/extend_attr_edit_taskflow.xml" id="extend_attr_edit_taskflow" type="task-flow-definition" uses-page-fragments="false" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="libCode"/>
+      <input-parameter name="compCode"/>
+      <input-parameter name="operType"/>
+      <input-parameter name="extendAttrId"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/admin/openLog/sync_cancel_taskflow.xml" id="sync_cancel_taskflow" type="task-flow-definition" uses-page-fragments="true" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="currTime"/>
+      <input-parameter name="compStr"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/admin/user/comp_edit_taskflow.xml" id="comp_edit_taskflow" type="task-flow-definition" uses-page-fragments="false" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="compCode"/>
+      <input-parameter name="mode"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/admin/user/user_rolesettinig_taskflow.xml" id="user_rolesettinig_taskflow" type="task-flow-definition" uses-page-fragments="true" library-internal="false" train="false" page-type="facelets">
+      <input-parameter name="userId"/>
+      <input-parameter name="refreshValue"/>
+      <input-parameter name="compStr"/>
+   </task-flow-descriptor>
+</task-flow-registry>

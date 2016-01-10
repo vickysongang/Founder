@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+    <task-flow-definition id="news_setup_taskflow">
+        <default-activity>initNewsSetup</default-activity>
+        <input-parameter-definition id="__10">
+            <name>currTime</name>
+            <value>#{pageFlowScope.currTime}</value>
+            <class>java.lang.String</class>
+        </input-parameter-definition>
+        <input-parameter-definition id="__11">
+            <name>compStr</name>
+            <value>#{pageFlowScope.compStr}</value>
+            <class>java.lang.String</class>
+        </input-parameter-definition>
+        <managed-bean id="__3">
+            <managed-bean-name>newsSetupManagedBean</managed-bean-name>
+            <managed-bean-class>com.zypg.cms.admin.view.bean.NewsSetupManagedBean</managed-bean-class>
+            <managed-bean-scope>backingBean</managed-bean-scope>
+        </managed-bean>
+        <view id="newsSetup">
+            <page>/admin/newspaper/fragment/newsSetup.jsff</page>
+        </view>
+        <method-call id="initNewsSetup">
+            <method>#{backingBeanScope.newsSetupManagedBean.initNewsSetup}</method>
+            <outcome>
+                <fixed-outcome>toNewsSetup</fixed-outcome>
+            </outcome>
+        </method-call>
+        <task-flow-call id="news_setup_edit_taskflow">
+            <task-flow-reference>
+                <document>/WEB-INF/admin/newspaper/news_setup_edit_taskflow.xml</document>
+                <id>news_setup_edit_taskflow</id>
+            </task-flow-reference>
+            <input-parameter id="__6">
+                <name>mode</name>
+                <value>#{pageFlowScope.mode}</value>
+            </input-parameter>
+            <input-parameter id="__7">
+                <name>categoryId</name>
+                <value>#{pageFlowScope.categoryId}</value>
+            </input-parameter>
+            <input-parameter id="__8">
+                <name>setupId</name>
+                <value>#{pageFlowScope.setupId}</value>
+            </input-parameter>
+            <input-parameter id="__9">
+                <name>year</name>
+                <value>#{pageFlowScope.year}</value>
+            </input-parameter>
+            <input-parameter id="__18">
+                <name>compCode</name>
+                <value>#{pageFlowScope.compCode}</value>
+            </input-parameter>
+            <run-as-dialog>
+                <display-type>
+                    <inline-popup/>
+                </display-type>
+            </run-as-dialog>
+        </task-flow-call>
+        <task-flow-call id="news_setup_batch_create_task-flow">
+            <task-flow-reference>
+                <document>/WEB-INF/admin/newspaper/news_setup_batch_create_task-flow.xml</document>
+                <id>news_setup_batch_create_task-flow</id>
+            </task-flow-reference>
+            <input-parameter id="__13">
+                <name>mode</name>
+                <value>#{pageFlowScope.mode}</value>
+            </input-parameter>
+            <input-parameter id="__14">
+                <name>categoryId</name>
+                <value>#{pageFlowScope.categoryId}</value>
+            </input-parameter>
+            <input-parameter id="__15">
+                <name>setupId</name>
+                <value>#{pageFlowScope.setupId}</value>
+            </input-parameter>
+            <input-parameter id="__16">
+                <name>year</name>
+                <value>#{pageFlowScope.year}</value>
+            </input-parameter>
+            <input-parameter id="__17">
+                <name>compCode</name>
+                <value>#{pageFlowScope.compCode}</value>
+            </input-parameter>
+            <run-as-dialog>
+                <display-type>
+                    <inline-popup/>
+                </display-type>
+            </run-as-dialog>
+        </task-flow-call>
+        <control-flow-rule id="__1">
+            <from-activity-id>initNewsSetup</from-activity-id>
+            <control-flow-case id="__2">
+                <from-outcome>toNewsSetup</from-outcome>
+                <to-activity-id>newsSetup</to-activity-id>
+            </control-flow-case>
+        </control-flow-rule>
+        <control-flow-rule id="__4">
+            <from-activity-id>newsSetup</from-activity-id>
+            <control-flow-case id="__5">
+                <from-outcome>toEdit</from-outcome>
+                <to-activity-id>news_setup_edit_taskflow</to-activity-id>
+            </control-flow-case>
+            <control-flow-case id="__12">
+                <from-outcome>batchCreate</from-outcome>
+                <to-activity-id>news_setup_batch_create_task-flow</to-activity-id>
+            </control-flow-case>
+        </control-flow-rule>
+        <use-page-fragments/>
+    </task-flow-definition>
+</adfc-config>

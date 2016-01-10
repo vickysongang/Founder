@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.64.36" id="extendAttrValueListPageDef"
+                Package="admin.extendattr">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="CmsLib4ExtendAttrVO" RangeSize="25" DataControl="AdminAMDataControl"
+              id="CmsLib4ExtendAttrVOIterator"/>
+    <iterator Binds="CmsExtendValueListVO" RangeSize="25" DataControl="AdminAMDataControl"
+              id="CmsExtendValueListVOIterator"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="CmsLib4ExtendAttrVOIterator" id="CmsLib4ExtendAttrVO">
+      <nodeDefinition DefName="com.zypg.cms.admin.model.viewobject.query.CmsLib4ExtendAttrVO"
+                      Name="CmsLib4ExtendAttrVO0">
+        <AttrNames>
+          <Item Value="LibId"/>
+          <Item Value="LibCode"/>
+          <Item Value="LibName"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="CmsExtendValueListVOIterator" id="CmsExtendValueListVO">
+      <nodeDefinition DefName="com.zypg.cms.admin.model.viewobject.query.CmsExtendValueListVO"
+                      Name="CmsExtendValueListVO0">
+        <AttrNames>
+          <Item Value="ValueCode"/>
+          <Item Value="ValueMeaning"/>
+          <Item Value="ExtendAttrId"/>
+          <Item Value="ListId"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+  </bindings>
+</pageDefinition>

@@ -1,0 +1,849 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="CmsNewspaperEditVO"
+  Version="11.1.2.64.36"
+  BindingStyle="OracleName"
+  CustomQuery="true"
+  RowClass="com.zypg.cms.admin.model.viewobject.CmsNewspaperEditVORowImpl"
+  ComponentClass="com.zypg.cms.admin.model.viewobject.CmsNewspaperEditVOImpl"
+  PageIterMode="Full"
+  UseGlueCode="false">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="Access|Coll|VarAccess"/>
+    <Attr Name="_isExpertMode" Value="true"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="com.zypg.cms.admin.model.viewobject.CmsNewspaperEditVO_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <ViewAccessor
+    Name="Lookup4NewspaperType"
+    ViewObjectName="com.zypg.cms.admin.model.viewobject.lov.CmsLookupValueVO"
+    RowLevelBinds="true">
+    <ViewCriteriaUsage
+      Name="findPeriodicalTypeVC"
+      FullName="com.zypg.cms.admin.model.viewobject.lov.CmsLookupValueVO.findPeriodicalTypeVC"/>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="Lookup4PaperType"
+    ViewObjectName="com.zypg.cms.admin.model.viewobject.lov.CmsLookupValueVO"
+    RowLevelBinds="true">
+    <ViewCriteriaUsage
+      Name="findPeriodicalPaperTypeVC"
+      FullName="com.zypg.cms.admin.model.viewobject.lov.CmsLookupValueVO.findPeriodicalPaperTypeVC"/>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="Lookup4Lang"
+    ViewObjectName="com.zypg.cms.admin.model.viewobject.lov.CmsLookupValueVO"
+    RowLevelBinds="true">
+    <ViewCriteriaUsage
+      Name="findLangVC"
+      FullName="com.zypg.cms.admin.model.viewobject.lov.CmsLookupValueVO.findLangVC"/>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="Lookup4BookSize"
+    ViewObjectName="com.zypg.cms.admin.model.viewobject.lov.CmsLookupValueVO"
+    RowLevelBinds="true">
+    <ViewCriteriaUsage
+      Name="findBookSizeVC"
+      FullName="com.zypg.cms.admin.model.viewobject.lov.CmsLookupValueVO.findBookSizeVC"/>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="Lookup4ProdSize"
+    ViewObjectName="com.zypg.cms.admin.model.viewobject.lov.CmsLookupValueVO"
+    RowLevelBinds="true">
+    <ViewCriteriaUsage
+      Name="findProdSizeVC"
+      FullName="com.zypg.cms.admin.model.viewobject.lov.CmsLookupValueVO.findProdSizeVC"/>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="Lookup4ReaderGroup"
+    ViewObjectName="com.zypg.cms.admin.model.viewobject.lov.CmsLookupValueVO"
+    RowLevelBinds="true">
+    <ViewCriteriaUsage
+      Name="findReaderGroupVC"
+      FullName="com.zypg.cms.admin.model.viewobject.lov.CmsLookupValueVO.findReaderGroupVC"/>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="WeekVO"
+    ViewObjectName="com.zypg.cms.admin.model.viewobject.lov.WeekVO"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="MonthVO"
+    ViewObjectName="com.zypg.cms.admin.model.viewobject.lov.MonthVO"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="OddEvenVO"
+    ViewObjectName="com.zypg.cms.admin.model.viewobject.lov.OddEvenVO"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="FisrtTenDaysVO"
+    ViewObjectName="com.zypg.cms.admin.model.viewobject.lov.FisrtTenDaysVO"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="SecondTenDaysVO"
+    ViewObjectName="com.zypg.cms.admin.model.viewobject.lov.SecondTenDaysVO"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="ThirdTenDaysVO"
+    ViewObjectName="com.zypg.cms.admin.model.viewobject.lov.ThirdTenDaysVO"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="QuarterlyVO"
+    ViewObjectName="com.zypg.cms.admin.model.viewobject.lov.QuarterlyVO"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="FisrtHalfMonthVO"
+    ViewObjectName="com.zypg.cms.admin.model.viewobject.lov.FisrtHalfMonthVO"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="SecondHalfMonthVO"
+    ViewObjectName="com.zypg.cms.admin.model.viewobject.lov.SecondHalfMonthVO"
+    RowLevelBinds="true"/>
+  <ListBinding
+    Name="LOV_NewspaperType"
+    ListVOName="Lookup4NewspaperType"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="NewspaperType"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="LookupValueCode"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Meaning"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_PaperType"
+    ListVOName="Lookup4PaperType"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="PaperType"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="LookupValueCode"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Meaning"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_Lang"
+    ListVOName="Lookup4Lang"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="Lang"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="LookupValueCode"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Meaning"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_BookSize"
+    ListVOName="Lookup4BookSize"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="BookSize"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="LookupValueCode"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Meaning"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_ProdSize"
+    ListVOName="Lookup4ProdSize"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="ProdSize"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="LookupValueCode"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Meaning"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_ReaderGroup"
+    ListVOName="Lookup4ReaderGroup"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="ReaderGroup"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="LookupValueCode"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Meaning"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_Weekly1"
+    ListVOName="WeekVO"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="Weekly1"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="CODE"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="NAME"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_Monthly"
+    ListVOName="MonthVO"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="Monthly"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="CODE"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="NAME"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_OldEven"
+    ListVOName="OddEvenVO"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="OldEven"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="CODE"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="NAME"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_FirstTenDays"
+    ListVOName="FisrtTenDaysVO"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="FirstTenDays"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="CODE"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="NAME"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_SecondTenDays"
+    ListVOName="SecondTenDaysVO"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="SecondTenDays"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="CODE"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="NAME"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_ThirdTenDays"
+    ListVOName="ThirdTenDaysVO"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="ThirdTenDays"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="CODE"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="NAME"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_Quarterly"
+    ListVOName="QuarterlyVO"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="Quarterly"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="CODE"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="NAME"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_FisrtHalfMonth"
+    ListVOName="FisrtHalfMonthVO"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="FisrtHalfMonth"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="CODE"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="NAME"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_SecondHalfMonth"
+    ListVOName="SecondHalfMonthVO"
+    ListRangeSize="-1"
+    NullValueFlag="none"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="SecondHalfMonth"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="CODE"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="NAME"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <SQLQuery><![CDATA[SELECT NULL newspaper_name,
+       NULL newspaper_type,
+       NULL paper_type,
+       NULL lang,
+       NULL chief_editor,
+       NULL published_date,
+       NULL price,
+       NULL cn,
+       NULL issn,
+       NULL book_size,
+       NULL words,
+       NULL prod_size,
+       NULL reader_group,
+       NULL comp, --主办单位
+       NULL org, --主管单位
+       NULL publishing, --出版发行
+       NULL DESCRIPTION,
+       NULL WEEKLY1, --周刊
+       NULL MONTHLY, --月刊
+       NULL old_even, --奇偶数
+       NULL first_ten_days, --旬刊 第一个十天
+       NULL second_ten_days, --旬刊 第二个十天
+       NULL third_ten_days, --旬刊 第三个十天
+       NULL QUARTERLY, --季刊
+       NULL fisrt_half_month, --半月刊上半月
+       NULL second_half_month, --半月刊下半月
+       NULL WEEKLY2 --周报
+  FROM dual]]></SQLQuery>
+  <ViewAttribute
+    Name="NewspaperName"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="255"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="NEWSPAPER_NAME"
+    Expression="NEWSPAPER_NAME"
+    SQLType="VARCHAR">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.admin.model.viewobject.CmsNewspaperEditVO.NewspaperName_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="NewspaperType"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="NEWSPAPER_TYPE"
+    Expression="NEWSPAPER_TYPE"
+    SQLType="VARCHAR"
+    LOVName="LOV_NewspaperType">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+        <LABEL
+          ResId="com.zypg.cms.admin.model.viewobject.CmsNewspaperEditVO.NewspaperType_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PaperType"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="PAPER_TYPE"
+    Expression="PAPER_TYPE"
+    SQLType="VARCHAR"
+    LOVName="LOV_PaperType">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+        <LABEL
+          ResId="com.zypg.cms.admin.model.viewobject.CmsNewspaperEditVO.PaperType_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Lang"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="LANG"
+    Expression="LANG"
+    SQLType="VARCHAR"
+    LOVName="LOV_Lang">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+        <LABEL
+          ResId="com.zypg.cms.admin.model.viewobject.CmsNewspaperEditVO.Lang_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="ChiefEditor"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="CHIEF_EDITOR"
+    Expression="CHIEF_EDITOR"
+    SQLType="VARCHAR">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.admin.model.viewobject.CmsNewspaperEditVO.ChiefEditor_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PublishedDate"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="PUBLISHED_DATE"
+    Expression="PUBLISHED_DATE"
+    SQLType="VARCHAR">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.admin.model.viewobject.CmsNewspaperEditVO.PublishedDate_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Price"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="oracle.jbo.domain.Number"
+    ColumnType="NUMBER"
+    AliasName="PRICE"
+    Expression="PRICE"
+    SQLType="NUMERIC">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.admin.model.viewobject.CmsNewspaperEditVO.Price_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Cn"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="CN"
+    Expression="CN"
+    SQLType="VARCHAR">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.admin.model.viewobject.CmsNewspaperEditVO.Cn_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Issn"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="ISSN"
+    Expression="ISSN"
+    SQLType="VARCHAR">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.admin.model.viewobject.CmsNewspaperEditVO.Issn_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="BookSize"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="BOOK_SIZE"
+    Expression="BOOK_SIZE"
+    SQLType="VARCHAR"
+    LOVName="LOV_BookSize">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.admin.model.viewobject.CmsNewspaperEditVO.BookSize_LABEL"/>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Words"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="oracle.jbo.domain.Number"
+    ColumnType="NUMBER"
+    AliasName="WORDS"
+    Expression="WORDS"
+    SQLType="NUMERIC">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.admin.model.viewobject.CmsNewspaperEditVO.Words_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="ProdSize"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="PROD_SIZE"
+    Expression="PROD_SIZE"
+    SQLType="VARCHAR"
+    LOVName="LOV_ProdSize">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.admin.model.viewobject.CmsNewspaperEditVO.ProdSize_LABEL"/>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="ReaderGroup"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="READER_GROUP"
+    Expression="READER_GROUP"
+    SQLType="VARCHAR"
+    LOVName="LOV_ReaderGroup">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.admin.model.viewobject.CmsNewspaperEditVO.ReaderGroup_LABEL"/>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Comp"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="COMP"
+    Expression="COMP"
+    SQLType="VARCHAR">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.admin.model.viewobject.CmsNewspaperEditVO.Comp_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Org"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="ORG"
+    Expression="ORG"
+    SQLType="VARCHAR">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.admin.model.viewobject.CmsNewspaperEditVO.Org_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Publishing"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="PUBLISHING"
+    Expression="PUBLISHING"
+    SQLType="VARCHAR">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.admin.model.viewobject.CmsNewspaperEditVO.Publishing_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Description"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="DESCRIPTION"
+    Expression="DESCRIPTION"
+    SQLType="VARCHAR">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="com.zypg.cms.admin.model.viewobject.CmsNewspaperEditVO.Description_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Weekly1"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="WEEKLY1"
+    Expression="WEEKLY1"
+    SQLType="VARCHAR"
+    LOVName="LOV_Weekly1">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Monthly"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="MONTHLY"
+    Expression="MONTHLY"
+    SQLType="VARCHAR"
+    LOVName="LOV_Monthly">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="OldEven"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="OLD_EVEN"
+    Expression="OLD_EVEN"
+    SQLType="VARCHAR"
+    LOVName="LOV_OldEven">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="FirstTenDays"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="FIRST_TEN_DAYS"
+    Expression="FIRST_TEN_DAYS"
+    SQLType="VARCHAR"
+    LOVName="LOV_FirstTenDays">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="SecondTenDays"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="SECOND_TEN_DAYS"
+    Expression="SECOND_TEN_DAYS"
+    SQLType="VARCHAR"
+    LOVName="LOV_SecondTenDays">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="ThirdTenDays"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="THIRD_TEN_DAYS"
+    Expression="THIRD_TEN_DAYS"
+    SQLType="VARCHAR"
+    LOVName="LOV_ThirdTenDays">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Quarterly"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="QUARTERLY"
+    Expression="QUARTERLY"
+    SQLType="VARCHAR"
+    LOVName="LOV_Quarterly">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="FisrtHalfMonth"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="FISRT_HALF_MONTH"
+    Expression="FISRT_HALF_MONTH"
+    SQLType="VARCHAR"
+    LOVName="LOV_FisrtHalfMonth">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="SecondHalfMonth"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="SECOND_HALF_MONTH"
+    Expression="SECOND_HALF_MONTH"
+    SQLType="VARCHAR"
+    LOVName="LOV_SecondHalfMonth">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Weekly2"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="WEEKLY2"
+    Expression="WEEKLY2"
+    SQLType="VARCHAR"/>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="com.zypg.cms.admin.model.ModelBundle"/>
+  </ResourceBundle>
+</ViewObject>

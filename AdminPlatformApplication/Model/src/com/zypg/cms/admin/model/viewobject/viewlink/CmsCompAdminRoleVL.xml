@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewLink SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewLink
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="CmsCompAdminRoleVL"
+  Version="11.1.2.64.36"
+  Where=":Bind_CompCode = COMP_CODE AND ROLE_TYPE = 'ADMIN_PLATFORM'">
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="com.zypg.cms.admin.model.viewobject.viewlink.CmsCompAdminRoleVL_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <ViewLinkDefEnd
+    Name="CmsCompVO"
+    Cardinality="1"
+    Source="true"
+    Owner="com.zypg.cms.admin.model.viewobject.query.CmsCompVO">
+    <DesignTime>
+      <Attr Name="_finderName" Value="CmsCompVO"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="com.zypg.cms.admin.model.viewobject.query.CmsCompVO.CompCode"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+  <ViewLinkDefEnd
+    Name="CmsAdminRoleVO"
+    Cardinality="-1"
+    Owner="com.zypg.cms.admin.model.viewobject.query.CmsRoleVO">
+    <DesignTime>
+      <Attr Name="_finderName" Value="CmsAdminRoleVO"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="com.zypg.cms.admin.model.viewobject.query.CmsRoleVO.CompCode"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="com.zypg.cms.admin.model.ModelBundle"/>
+  </ResourceBundle>
+</ViewLink>

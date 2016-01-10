@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="adminOpenLog-task-flow">
+    <default-activity>initAdminOpenLog</default-activity>
+    <managed-bean id="__3">
+      <managed-bean-name>adminOpenLogManagedBean</managed-bean-name>
+      <managed-bean-class>com.zypg.cms.admin.view.bean.adminOpenLogManagedBean</managed-bean-class>
+      <managed-bean-scope>backingBean</managed-bean-scope>
+    </managed-bean>
+    <view id="adminOpenLog">
+      <page>/admin/openLog/adminOpenLog.jsff</page>
+    </view>
+    <method-call id="initAdminOpenLog">
+      <method>#{bindings.initAdminOpenLog.execute}</method>
+      <outcome>
+        <fixed-outcome>initAdminOpenLog</fixed-outcome>
+      </outcome>
+    </method-call>
+    <control-flow-rule id="__1">
+      <from-activity-id>initAdminOpenLog</from-activity-id>
+      <control-flow-case id="__2">
+        <from-outcome>initAdminOpenLog</from-outcome>
+        <to-activity-id>adminOpenLog</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

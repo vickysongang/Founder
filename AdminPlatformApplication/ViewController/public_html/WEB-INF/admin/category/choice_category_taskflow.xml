@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+    <task-flow-definition id="choice_category_taskflow">
+        <default-activity>choiceCategory</default-activity>
+        <input-parameter-definition id="__1">
+            <name>currTime</name>
+            <value>#{pageFlowScope.currTime}</value>
+            <class>java.lang.String</class>
+        </input-parameter-definition>
+        <view id="choiceCategory">
+            <page>/admin/category/choiceCategory.jsff</page>
+        </view>
+        <use-page-fragments/>
+    </task-flow-definition>
+</adfc-config>

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Application xmlns="http://xmlns.oracle.com/adfm/application" version="11.1.2.64.36" id="DataBindings"
+             SeparateXMLFiles="false" Package="com.zypg.cms.admin.view" ClientType="Generic">
+    <definitionFactories>
+        <factory nameSpace="http://xmlns.oracle.com/adf/controller/binding"
+                 className="oracle.adf.controller.internal.binding.TaskFlowBindingDefFactoryImpl"/>
+        <dtfactory className="oracle.adf.controller.internal.dtrt.binding.BindingDTObjectFactory"/>
+    </definitionFactories>
+    <pageMap>
+        <page path="/admin/user/fragment/userManage.jsff" usageId="com_zypg_cms_admin_view_userManagePageDef"/>
+        <page path="/admin/fragment/home.jsff" usageId="com_zypg_cms_admin_view_homePageDef"/>
+        <page path="/admin/homeTest.jsf" usageId="com_zypg_cms_admin_view_homeTestPageDef"/>
+        <page path="/admin/role/fragment/roleMain.jsff" usageId="com_zypg_cms_admin_view_roleMainPageDef"/>
+        <page path="/admin/user/fragment/userNoRole.jsff" usageId="com_zypg_cms_admin_view_userNoRolePageDef"/>
+        <page path="/WEB-INF/admin/user/user_rolesettinig_taskflow.xml#user_rolesettinig_taskflow@initAllUserRole"
+              usageId="com_zypg_cms_admin_view_user_rolesettinig_taskflow_user_rolesettinig_taskflow_initAllUserRolePageDef"/>
+        <page path="/admin/user/fragment/userRoleSetting.jsff"
+              usageId="com_zypg_cms_admin_view_userRoleSettingPageDef"/>
+        <page path="/WEB-INF/admin/home_taskflow.xml#home_taskflow@findUserCompStr"
+              usageId="com_zypg_cms_admin_view_home_taskflow_home_taskflow_findUserCompStrPageDef"/>
+        <page path="/admin/role/fragment/roleUser.jsff" usageId="com_zypg_cms_admin_view_roleUserPageDef"/>
+        <page path="/admin/role/fragment/workPlatformRoleAuth.jsff"
+              usageId="com_zypg_cms_admin_view_workPlatformRoleAuthPageDef"/>
+        <page path="/admin/role/fragment/roleResSetting.jsff"
+              usageId="com_zypg_cms_admin_view_roleResSettingPageDef"/>
+        <page path="/admin/role/fragment/pubPlatformRoleAuth.jsff"
+              usageId="com_zypg_cms_admin_view_pubPlatformRoleAuthPageDef"/>
+        <page path="/WEB-INF/admin/role/role_res_download_setting_taskflow.xml#role_res_download_setting_taskflow@initResDownloadVO"
+              usageId="com_zypg_cms_admin_view_role_res_download_setting_taskflow_role_res_download_setting_taskflow_initResDownloadVOPageDef"/>
+        <page path="/admin/role/fragment/resDownloadSetting.jsff"
+              usageId="com_zypg_cms_admin_view_resDownloadSettingPageDef"/>
+        <page path="/admin/category/resCategory.jsff" usageId="com_zypg_cms_admin_view_resCategoryPageDef"/>
+        <page path="/WEB-INF/admin/periodical/periodical_setup_taskflow.xml#periodical_setup_taskflow@initPeriodicalSetup"
+              usageId="com_zypg_cms_admin_view_periodical_setup_taskflow_periodical_setup_taskflow_initPeriodicalSetupPageDef"/>
+        <page path="/admin/periodical/fragment/periodicalSetup.jsff"
+              usageId="com_zypg_cms_admin_view_periodicalSetupPageDef"/>
+        <page path="/admin/periodical/inline/periodicalSetupEdit.jsf"
+              usageId="com_zypg_cms_admin_view_periodicalSetupEditPageDef"/>
+        <page path="/admin/periodical/fragment/periodSetup.jsff" usageId="com_zypg_cms_admin_view_periodSetupPageDef"/>
+        <page path="/admin/periodical/inline/periodSetupEdit.jsf"
+              usageId="com_zypg_cms_admin_view_periodSetupEditPageDef"/>
+        <page path="/admin/newspaper/fragment/newspaperSetup.jsff"
+              usageId="com_zypg_cms_admin_view_newspaperSetupPageDef"/>
+        <page path="/admin/newspaper/inline/newspaperSetupEdit.jsf"
+              usageId="com_zypg_cms_admin_view_newspaperSetupEditPageDef"/>
+        <page path="/admin/newspaper/fragment/newsSetup.jsff" usageId="com_zypg_cms_admin_view_newsSetupPageDef"/>
+        <page path="/admin/newspaper/inline/newsSetupEdit.jsf" usageId="com_zypg_cms_admin_view_newsSetupEditPageDef"/>
+        <page path="/admin/user/compEdit.jsf" usageId="com_zypg_cms_admin_view_compEditPageDef"/>
+        <page path="/admin/periodical/inline/periodSetupBatchCreate.jsf"
+              usageId="com_zypg_cms_admin_view_periodSetupBatchCreatePageDef"/>
+        <page path="/admin/newspaper/inline/newsSetupBatchCreate.jsf"
+              usageId="com_zypg_cms_admin_view_newsSetupBatchCreatePageDef"/>
+        <page path="/admin/sysConfig/fragment/webServiceManage.jsff"
+              usageId="com_zypg_cms_admin_view_webServiceManagePageDef"/>
+        <page path="/admin/openLog/adminOpenLog.jsff" usageId="com_zypg_cms_admin_view_adminOpenLogPageDef"/>
+        <page path="/WEB-INF/admin/user/user_norole_taskflow.xml#user_norole_taskflow@findUserNoRole"
+              usageId="com_zypg_cms_admin_view_user_norole_taskflow_user_norole_taskflow_findUserNoRolePageDef"/>
+        <page path="/admin/openLog/syncCancel.jsff" usageId="com_zypg_cms_admin_view_syncCancelPageDef"/>
+        <page path="/WEB-INF/admin/openLog/adminOpenLog-task-flow.xml#adminOpenLog-task-flow@initAdminOpenLog"
+              usageId="com_zypg_cms_admin_view_adminOpenLog_task_flow_adminOpenLog_task_flow_initAdminOpenLogPageDef"/>
+        <page path="/WEB-INF/admin/role/role_router_taskflow.xml#role_router_taskflow@initRoleAuthDisplay"
+              usageId="com_zypg_cms_admin_view_role_router_taskflow_role_router_taskflow_initRoleAuthDisplayPageDef"/>
+        <page path="/admin/extendattr/extendAttr.jsff" usageId="com_zypg_cms_admin_view_extendAttrPageDef"/>
+        <page path="/admin/extendattr/compExtendAttr.jsff" usageId="com_zypg_cms_admin_view_compExtendAttrPageDef"/>
+        <page path="/admin/extendattr/editExtendAttr.jsf" usageId="com_zypg_cms_admin_view_editExtendAttrPageDef"/>
+        <page path="/admin/extendattr/extendAttrValueList.jsff"
+              usageId="com_zypg_cms_admin_view_extendAttrValueListPageDef"/>
+        <page path="/admin/extendattr/extendAttrValueListEdit.jsf"
+              usageId="com_zypg_cms_admin_view_extendAttrValueListEditPageDef"/>
+        <page path="/WEB-INF/admin/role/role_main_taskflow.xml#role_main_taskflow@findComp4RoleManage"
+              usageId="com_zypg_cms_admin_view_role_main_taskflow_role_main_taskflow_findComp4RoleManagePageDef"/>
+    </pageMap>
+    <pageDefinitionUsages>
+        <page id="com_zypg_cms_admin_view_userManagePageDef" path="admin.user.fragment.userManagePageDef"/>
+        <page id="com_zypg_cms_admin_view_homePageDef" path="admin.fragment.homePageDef"/>
+        <page id="com_zypg_cms_admin_view_homeTestPageDef" path="admin.homeTestPageDef"/>
+        <page id="com_zypg_cms_admin_view_roleMainPageDef" path="admin.role.fragment.roleMainPageDef"/>
+        <page id="com_zypg_cms_admin_view_userNoRolePageDef" path="admin.user.fragment.userNoRolePageDef"/>
+        <page id="com_zypg_cms_admin_view_user_rolesettinig_taskflow_user_rolesettinig_taskflow_initAllUserRolePageDef"
+              path="admin.user.user_rolesettinig_taskflow_user_rolesettinig_taskflow_initAllUserRolePageDef"/>
+        <page id="com_zypg_cms_admin_view_userRoleSettingPageDef" path="admin.user.fragment.userRoleSettingPageDef"/>
+        <page id="com_zypg_cms_admin_view_home_taskflow_home_taskflow_findUserCompStrPageDef"
+              path="admin.home_taskflow_home_taskflow_findUserCompStrPageDef"/>
+        <page id="com_zypg_cms_admin_view_roleUserPageDef" path="admin.role.fragment.roleUserPageDef"/>
+        <page id="com_zypg_cms_admin_view_workPlatformRoleAuthPageDef"
+              path="admin.role.fragment.workPlatformRoleAuthPageDef"/>
+         <page id="com_zypg_cms_admin_view_roleResSettingPageDef"
+              path="admin.role.fragment.roleResSettingPageDef"/>
+        <page id="com_zypg_cms_admin_view_pubPlatformRoleAuthPageDef"
+              path="admin.role.fragment.pubPlatformRoleAuthPageDef"/>
+        <page id="com_zypg_cms_admin_view_role_res_download_setting_taskflow_role_res_download_setting_taskflow_initResDownloadVOPageDef"
+              path="admin.role.role_res_download_setting_taskflow_role_res_download_setting_taskflow_initResDownloadVOPageDef"/>
+        <page id="com_zypg_cms_admin_view_resDownloadSettingPageDef"
+              path="admin.role.fragment.resDownloadSettingPageDef"/>
+        <page id="com_zypg_cms_admin_view_resCategoryPageDef" path="admin.category.resCategoryPageDef"/>
+        <page id="com_zypg_cms_admin_view_periodical_setup_taskflow_periodical_setup_taskflow_initPeriodicalSetupPageDef"
+              path="admin.periodical.periodical_setup_taskflow_periodical_setup_taskflow_initPeriodicalSetupPageDef"/>
+        <page id="com_zypg_cms_admin_view_periodicalSetupPageDef"
+              path="admin.periodical.fragment.periodicalSetupPageDef"/>
+        <page id="com_zypg_cms_admin_view_periodicalSetupEditPageDef"
+              path="admin.periodical.inline.periodicalSetupEditPageDef"/>
+        <page id="com_zypg_cms_admin_view_periodSetupPageDef" path="admin.periodical.fragment.periodSetupPageDef"/>
+        <page id="com_zypg_cms_admin_view_periodSetupEditPageDef"
+              path="admin.periodical.inline.periodSetupEditPageDef"/>
+        <page id="com_zypg_cms_admin_view_newspaperSetupPageDef" path="admin.newspaper.fragment.newspaperSetupPageDef"/>
+        <page id="com_zypg_cms_admin_view_newspaperSetupEditPageDef"
+              path="admin.newspaper.inline.newspaperSetupEditPageDef"/>
+        <page id="com_zypg_cms_admin_view_newsSetupPageDef" path="admin.newspaper.fragment.newsSetupPageDef"/>
+        <page id="com_zypg_cms_admin_view_newsSetupEditPageDef" path="admin.newspaper.inline.newsSetupEditPageDef"/>
+        <page id="com_zypg_cms_admin_view_compEditPageDef" path="admin.user.compEditPageDef"/>
+        <page id="com_zypg_cms_admin_view_periodSetupBatchCreatePageDef"
+              path="admin.periodical.inline.periodSetupBatchCreatePageDef"/>
+        <page id="com_zypg_cms_admin_view_newsSetupBatchCreatePageDef"
+              path="admin.newspaper.inline.newsSetupBatchCreatePageDef"/>
+        <page id="com_zypg_cms_admin_view_webServiceManagePageDef"
+              path="admin.sysConfig.fragment.webServiceManagePageDef"/>
+        <page id="com_zypg_cms_admin_view_adminOpenLogPageDef" path="admin.openLog.adminOpenLogPageDef"/>
+        <page id="com_zypg_cms_admin_view_user_norole_taskflow_user_norole_taskflow_findUserNoRolePageDef"
+              path="admin.user.user_norole_taskflow_user_norole_taskflow_findUserNoRolePageDef"/>
+        <page id="com_zypg_cms_admin_view_syncCancelPageDef" path="admin.openLog.syncCancelPageDef"/>
+        <page id="com_zypg_cms_admin_view_adminOpenLog_task_flow_adminOpenLog_task_flow_initAdminOpenLogPageDef"
+              path="admin.openLog.adminOpenLog_task_flow_adminOpenLog_task_flow_initAdminOpenLogPageDef"/>
+        <page id="com_zypg_cms_admin_view_role_router_taskflow_role_router_taskflow_initRoleAuthDisplayPageDef"
+              path="admin.role.role_router_taskflow_role_router_taskflow_initRoleAuthDisplayPageDef"/>
+        <page id="com_zypg_cms_admin_view_extendAttrPageDef" path="admin.extendattr.extendAttrPageDef"/>
+        <page id="com_zypg_cms_admin_view_compExtendAttrPageDef" path="admin.extendattr.compExtendAttrPageDef"/>
+        <page id="com_zypg_cms_admin_view_editExtendAttrPageDef" path="admin.extendattr.editExtendAttrPageDef"/>
+        <page id="com_zypg_cms_admin_view_extendAttrValueListPageDef"
+              path="admin.extendattr.extendAttrValueListPageDef"/>
+        <page id="com_zypg_cms_admin_view_extendAttrValueListEditPageDef"
+              path="admin.extendattr.extendAttrValueListEditPageDef"/>
+        <page id="com_zypg_cms_admin_view_role_main_taskflow_role_main_taskflow_findComp4RoleManagePageDef"
+              path="admin.role.role_main_taskflow_role_main_taskflow_findComp4RoleManagePageDef"/>
+    </pageDefinitionUsages>
+    <dataControlUsages>
+        <BC4JDataControl id="AdminAMDataControl" Package="com.zypg.cms.admin.model"
+                         FactoryClass="oracle.adf.model.bc4j.DataControlFactoryImpl" SupportsTransactions="true"
+                         SupportsFindMode="true" SupportsRangesize="true" SupportsResetState="true"
+                         SupportsSortCollection="true" Configuration="AdminAMLocal" syncMode="Immediate"
+                         xmlns="http://xmlns.oracle.com/adfm/datacontrol"/>
+    </dataControlUsages>
+</Application>

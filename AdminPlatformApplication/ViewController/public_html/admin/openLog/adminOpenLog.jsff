@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core">
+    <af:panelStretchLayout id="psl1" topHeight="auto" startWidth="0px" endWidth="0px">
+        <f:facet name="top">
+        
+            <af:panelGroupLayout id="pgl1" layout="vertical" halign="center" inlineStyle="background-color:White;">
+                <af:subform id="s3" defaultCommand="cb1">
+                    <af:panelBox text="筛选条件" id="pb1"
+                                 inlineStyle="border-color:#E4E8E8; border-width:1px; border-style:solid;"
+                                 styleClass="collapse_panelBox">
+                        <f:facet name="toolbar"/>
+                        <af:panelGroupLayout id="pgl4" layout="horizontal" halign="center">
+                            <af:panelFormLayout id="pfl1" rows="2" maxColumns="2" labelWidth="65">
+                                <f:facet name="footer">
+                                    <af:panelGroupLayout id="pgl2" layout="vertical">
+                                        <af:spacer width="10" height="5" id="s1"/>
+                                        <af:panelGroupLayout id="pgl3" layout="horizontal" halign="center">
+                                            <af:commandButton text="查询" id="cb1"
+                                                              action="#{backingBeanScope.adminOpenLogManagedBean.selectAdminOpenLogAction}"
+                                                              styleClass="min-btn green-min-btn"/>
+                                            <af:spacer width="10" height="10" id="s2"/>
+                                            <af:commandButton text="重置" id="cb2"
+                                                              action="#{backingBeanScope.adminOpenLogManagedBean.resetQueryAction}"
+                                                              styleClass="min-btn green-min-btn"/>
+                                        </af:panelGroupLayout>
+                                    </af:panelGroupLayout>
+                                </f:facet>
+                                <af:inputText label="操作人:" id="it4"
+                                              binding="#{backingBeanScope.adminOpenLogManagedBean.operatorInputText}"
+                                              contentStyle="width:200px;height:20px;"/>
+                                <af:inputText label="操作时间:" id="it1"
+                                              binding="#{backingBeanScope.adminOpenLogManagedBean.operateTimeInputText}"
+                                              contentStyle="width:200px;height:20px;"/>
+                                <af:inputText label="出版社名称:" id="it2"
+                                              binding="#{backingBeanScope.adminOpenLogManagedBean.compNameInputText}"
+                                              contentStyle="width:200px;height:20px;"/>
+                                <af:inputText label="操作内容:" id="it3"
+                                              binding="#{backingBeanScope.adminOpenLogManagedBean.operateDescInputText}"
+                                              contentStyle="width:200px;height:20px;"/>
+                            </af:panelFormLayout>
+                        </af:panelGroupLayout>
+                    </af:panelBox>
+                </af:subform>
+            </af:panelGroupLayout>
+        </f:facet>
+        <f:facet name="center">
+            <af:table value="#{bindings.CmsAdminOperLogTVO1.collectionModel}" var="row"
+                      rows="#{bindings.CmsAdminOperLogTVO1.rangeSize}"
+                      columnStretching="column:c1" contentDelivery="immediate"
+                      emptyText="#{bindings.CmsAdminOperLogTVO1.viewable ? '' : 'Access Denied.'}"
+                      fetchSize="#{bindings.CmsAdminOperLogTVO1.rangeSize}" rowBandingInterval="0"
+                      filterModel="#{bindings.CmsAdminOperLogTVO1Query.queryDescriptor}"
+                      queryListener="#{bindings.CmsAdminOperLogTVO1Query.processQuery}"
+                      varStatus="vs" selectedRowKeys="#{bindings.CmsAdminOperLogTVO1.collectionModel.selectedRow}"
+                      selectionListener="#{bindings.CmsAdminOperLogTVO1.collectionModel.makeCurrent}"
+                      rowSelection="single" id="t1" width="100%" inlineStyle="margin:15px 0px 0px;">
+                <af:column sortProperty="#{bindings.CmsAdminOperLogTVO1.hints.DisplayName.name}" filterable="true" headerText="#{bindings.CmsAdminOperLogTVO1.hints.DisplayName.label}"
+                           width="150" align="center" id="c2">
+                    <af:outputText value="#{row.DisplayName}"
+                                   shortDesc="#{bindings.CmsAdminOperLogTVO1.hints.DisplayName.tooltip}" id="ot2"></af:outputText>
+                </af:column>
+                <af:column sortProperty="#{bindings.CmsAdminOperLogTVO1.hints.CreationDateDisplay.name}"
+                           filterable="true"
+                           headerText="#{bindings.CmsAdminOperLogTVO1.hints.CreationDateDisplay.label}" align="center"
+                           id="c3">
+                    <af:outputText value="#{row.CreationDateDisplay}"
+                                   shortDesc="#{bindings.CmsAdminOperLogTVO1.hints.CreationDateDisplay.tooltip}"
+                                   id="ot3">
+                        <af:convertDateTime pattern="#{bindings.CmsAdminOperLogTVO1.hints.CreationDateDisplay.format}"/>
+                    </af:outputText>
+                </af:column>
+                <af:column sortProperty="#{bindings.CmsAdminOperLogTVO1.hints.CompName.name}" filterable="true"
+                           width="200" headerText="#{bindings.CmsAdminOperLogTVO1.hints.CompName.label}"
+                           align="center" id="c4">
+                    <af:outputText value="#{row.CompName}"
+                                   shortDesc="#{bindings.CmsAdminOperLogTVO1.hints.CompName.tooltip}" id="ot4">
+                        <af:convertDateTime pattern="#{bindings.CmsAdminOperLogTVO1.hints.CompName.format}"/>
+                    </af:outputText>
+                </af:column>
+                <af:column sortProperty="#{bindings.CmsAdminOperLogTVO1.hints.LogContent.name}" filterable="true" headerText="#{bindings.CmsAdminOperLogTVO1.hints.LogContent.label}" id="c1">
+                    <af:outputText value="#{row.LogContent}"
+                                   shortDesc="#{bindings.CmsAdminOperLogTVO1.hints.LogContent.tooltip}" id="ot1"/>
+                </af:column>
+            </af:table>
+        </f:facet>
+        <f:facet name="start"/>
+        <f:facet name="end"/>
+    </af:panelStretchLayout>
+</ui:composition>

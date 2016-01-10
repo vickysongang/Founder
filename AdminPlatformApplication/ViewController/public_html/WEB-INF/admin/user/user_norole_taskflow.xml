@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="user_norole_taskflow">
+    <default-activity>findUserNoRole</default-activity>
+    <input-parameter-definition id="__3">
+      <name>roleId</name>
+      <value>#{pageFlowScope.roleId}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__5">
+      <name>compStr</name>
+      <value>#{pageFlowScope.compStr}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__1">
+      <name>currTime</name>
+      <value>#{pageFlowScope.currTime}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <managed-bean id="__4">
+      <managed-bean-name>userNoRoleManagedBean</managed-bean-name>
+      <managed-bean-class>com.zypg.cms.admin.view.bean.UserNoRoleManagedBean</managed-bean-class>
+      <managed-bean-scope>backingBean</managed-bean-scope>
+    </managed-bean>
+    <view id="userNoRole">
+      <page>/admin/user/fragment/userNoRole.jsff</page>
+    </view>
+    <method-call id="findUserNoRole">
+      <method>#{bindings.findUserNoRole.execute}</method>
+      <outcome>
+        <fixed-outcome>findUserNoRole</fixed-outcome>
+      </outcome>
+    </method-call>
+    <control-flow-rule id="__6">
+      <from-activity-id>findUserNoRole</from-activity-id>
+      <control-flow-case id="__7">
+        <from-outcome>findUserNoRole</from-outcome>
+        <to-activity-id>userNoRole</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

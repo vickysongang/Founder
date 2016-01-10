@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="role_router_taskflow">
+    <default-activity>router</default-activity>
+    <input-parameter-definition id="__2">
+      <name>roleId</name>
+      <value>#{pageFlowScope.roleId}</value>
+      <class>oracle.jbo.domain.Number</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__3">
+      <name>routType</name>
+      <value>#{pageFlowScope.routType}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__9">
+      <name>roleType</name>
+      <value>#{pageFlowScope.roleType}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__10">
+      <name>compCode</name>
+      <value>#{pageFlowScope.compCode}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__22">
+      <name>platformType</name>
+      <value>#{pageFlowScope.platformType}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <managed-bean id="__1">
+      <managed-bean-name>roleUserBean</managed-bean-name>
+      <managed-bean-class>com.zypg.cms.admin.view.bean.RoleUserBean</managed-bean-class>
+      <managed-bean-scope>backingBean</managed-bean-scope>
+    </managed-bean>
+    <managed-bean id="__18">
+      <managed-bean-name>roleAuth4wpBean</managed-bean-name>
+      <managed-bean-class>com.zypg.cms.admin.view.bean.RoleAuth4wpBean</managed-bean-class>
+      <managed-bean-scope>backingBean</managed-bean-scope>
+    </managed-bean>
+    <managed-bean id="__19">
+      <managed-bean-name>roleAuth4pbBean</managed-bean-name>
+      <managed-bean-class>com.zypg.cms.admin.view.bean.RoleAuth4pbBean</managed-bean-class>
+      <managed-bean-scope>backingBean</managed-bean-scope>
+    </managed-bean>
+    <router id="router">
+      <case id="__4">
+        <expression>#{pageFlowScope.routType == 'ROLEUSER'}</expression>
+        <outcome>user</outcome>
+      </case>
+      <case id="__5">
+        <expression>#{pageFlowScope.routType == 'ROLEAUTH'}</expression>
+        <outcome>auth</outcome>
+      </case>
+      <default-outcome>user</default-outcome>
+    </router>
+    <view id="roleUser">
+      <page>/admin/role/fragment/roleUser.jsff</page>
+    </view>
+    <view id="workPlatformRoleAuth">
+      <page>/admin/role/fragment/workPlatformRoleAuth.jsff</page>
+    </view>
+    <router id="roleTypeRouter">
+      <case id="__14">
+        <expression>#{pageFlowScope.platformType == 'WORK_PLATFORM'}</expression>
+        <outcome>work</outcome>
+      </case>
+      <case id="__15">
+        <expression>#{pageFlowScope.platformType == 'PUB_PLATFORM'}</expression>
+        <outcome>pub</outcome>
+      </case>
+      <default-outcome>work</default-outcome>
+    </router>
+    <view id="pubPlatformRoleAuth">
+      <page>/admin/role/fragment/pubPlatformRoleAuth.jsff</page>
+    </view>
+    <method-call id="getUerid">
+      <method>#{backingBeanScope.roleUserBean.initRoleUser}</method>
+      <outcome>
+        <fixed-outcome>userPage</fixed-outcome>
+      </outcome>
+    </method-call>
+    <method-call id="initRoleAuthDisplay">
+      <method>#{bindings.initRoleAuthDisplay.execute}</method>
+      <outcome>
+        <fixed-outcome>initRoleAuthDisplay</fixed-outcome>
+      </outcome>
+    </method-call>
+    <control-flow-rule id="__6">
+      <from-activity-id>router</from-activity-id>
+      <control-flow-case id="__7">
+        <from-outcome>auth</from-outcome>
+        <to-activity-id>initRoleAuthDisplay</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__8">
+        <from-outcome>user</from-outcome>
+        <to-activity-id>getUerid</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__11">
+      <from-activity-id>roleTypeRouter</from-activity-id>
+      <control-flow-case id="__12">
+        <from-outcome>work</from-outcome>
+        <to-activity-id>workPlatformRoleAuth</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__13">
+        <from-outcome>pub</from-outcome>
+        <to-activity-id>pubPlatformRoleAuth</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__20">
+      <from-activity-id>getUerid</from-activity-id>
+      <control-flow-case id="__21">
+        <from-outcome>userPage</from-outcome>
+        <to-activity-id>roleUser</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__23">
+      <from-activity-id>initRoleAuthDisplay</from-activity-id>
+      <control-flow-case id="__24">
+        <from-outcome>initRoleAuthDisplay</from-outcome>
+        <to-activity-id>roleTypeRouter</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="CmsUserAllRoleVO"
+  Version="11.1.2.64.36"
+  BindingStyle="OracleName"
+  CustomQuery="true"
+  PageIterMode="Full"
+  UseGlueCode="false"
+  RowClass="com.zypg.cms.admin.model.viewobject.query.CmsUserAllRoleVORowImpl"
+  ComponentClass="com.zypg.cms.admin.model.viewobject.query.CmsUserAllRoleVOImpl">
+  <DesignTime>
+    <Attr Name="_isExpertMode" Value="true"/>
+    <Attr Name="_codeGenFlag2" Value="Access|Coll|VarAccess"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="com.zypg.cms.admin.model.viewobject.query.CmsUserAllRoleVO_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <Variable
+    Name="bvUserId"
+    Kind="where"
+    Type="oracle.jbo.domain.Number"/>
+  <Variable
+    Name="bvRoleType"
+    Kind="viewcriteria"
+    Type="java.lang.String"/>
+  <Variable
+    Name="bvCompStr"
+    Kind="where"
+    Type="java.lang.String"/>
+  <SQLQuery><![CDATA[SELECT rol.role_id,
+       rol.role_name || '(' || c.comp_name || ')' role_name,
+       rol.comp_code,
+       rol.role_type,
+       (SELECT 'true'
+          FROM cms_role_user_rel_t rel
+         WHERE rel.role_id = rol.role_id
+           AND rel.user_id = :bvUserId) has_authority
+  FROM cms_role_t rol, cms_comp_v c
+ WHERE rol.enable_flag = 'Y'
+   AND rol.comp_code = c.comp_code
+   AND (:bvCompStr = 'ALL' OR
+       c.comp_code IN (SELECT *
+                          FROM TABLE(CAST(cms_common_pkg.parse_string(:bvCompStr) AS
+                                          cms_table_type))))]]></SQLQuery>
+  <ViewAttribute
+    Name="RoleId"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="oracle.jbo.domain.Number"
+    ColumnType="NUMBER"
+    AliasName="ROLE_ID"
+    Expression="ROLE_ID"
+    SQLType="NUMERIC"/>
+  <ViewAttribute
+    Name="RoleName"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="80"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="ROLE_NAME"
+    Expression="ROLE_NAME"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="80"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="CompCode"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="40"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="COMP_CODE"
+    Expression="COMP_CODE"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="40"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="RoleType"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="20"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="ROLE_TYPE"
+    Expression="ROLE_TYPE"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="HasAuthority"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.Boolean"
+    ColumnType="NUMBER"
+    AliasName="HAS_AUTHORITY"
+    Expression="HAS_AUTHORITY"
+    SQLType="BIT">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="1"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewCriteria
+    Name="findRoleByRoleType"
+    ViewObjectName="com.zypg.cms.admin.model.viewobject.query.CmsUserAllRoleVO"
+    Conjunction="AND">
+    <Properties>
+      <CustomProperties>
+        <Property
+          Name="displayOperators"
+          Value="InAdvancedMode"/>
+        <Property
+          Name="autoExecute"
+          Value="false"/>
+        <Property
+          Name="allowConjunctionOverride"
+          Value="true"/>
+        <Property
+          Name="showInList"
+          Value="true"/>
+        <Property
+          Name="mode"
+          Value="Basic"/>
+      </CustomProperties>
+    </Properties>
+    <ViewCriteriaRow
+      Name="CuxUserAllRoleVOCriteria_row_0"
+      UpperColumns="1">
+      <ViewCriteriaItem
+        Name="RoleType"
+        ViewAttribute="RoleType"
+        Operator="="
+        Conjunction="AND"
+        GenerateIsNullClauseForBindVars="false"
+        Required="Optional"
+        Value=":bvRoleType"
+        IsBindVarValue="true"
+        UpperColumns="0"/>
+    </ViewCriteriaRow>
+  </ViewCriteria>
+  <AttrArray Name="KeyAttributes">
+    <Item Value="RoleId"/>
+  </AttrArray>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="com.zypg.cms.admin.model.ModelBundle"/>
+  </ResourceBundle>
+</ViewObject>

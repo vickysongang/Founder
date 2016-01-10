@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="periodical_setup_taskflow">
+    <default-activity>initPeriodicalSetup</default-activity>
+    <input-parameter-definition id="__9">
+      <name>currTime</name>
+      <value>#{pageFlowScope.currTime}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__10">
+      <name>compStr</name>
+      <value>#{pageFlowScope.compStr}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <managed-bean id="__3">
+      <managed-bean-name>periodicalSetupManagedBean</managed-bean-name>
+      <managed-bean-class>com.zypg.cms.admin.view.bean.PeriodicalSetupManagedBean</managed-bean-class>
+      <managed-bean-scope>backingBean</managed-bean-scope>
+    </managed-bean>
+    <view id="periodicalSetup">
+      <page>/admin/periodical/fragment/periodicalSetup.jsff</page>
+    </view>
+    <method-call id="initPeriodicalSetup">
+      <method>#{backingBeanScope.periodicalSetupManagedBean.initPeriodicalSetup}</method>
+      <outcome>
+        <fixed-outcome>toPeriodicalSetup</fixed-outcome>
+      </outcome>
+    </method-call>
+    <task-flow-call id="periodical_setup_edit_taskflow">
+      <task-flow-reference>
+        <document>/WEB-INF/admin/periodical/periodical_setup_edit_taskflow.xml</document>
+        <id>periodical_setup_edit_taskflow</id>
+      </task-flow-reference>
+      <input-parameter id="__6">
+        <name>mode</name>
+        <value>#{pageFlowScope.mode}</value>
+      </input-parameter>
+      <input-parameter id="__7">
+        <name>categoryId</name>
+        <value>#{pageFlowScope.categoryId}</value>
+      </input-parameter>
+      <input-parameter id="__8">
+        <name>compCode</name>
+        <value>#{pageFlowScope.compCode}</value>
+      </input-parameter>
+      <run-as-dialog>
+        <display-type>
+          <inline-popup/>
+        </display-type>
+      </run-as-dialog>
+    </task-flow-call>
+    <control-flow-rule id="__1">
+      <from-activity-id>initPeriodicalSetup</from-activity-id>
+      <control-flow-case id="__2">
+        <from-outcome>toPeriodicalSetup</from-outcome>
+        <to-activity-id>periodicalSetup</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__4">
+      <from-activity-id>periodicalSetup</from-activity-id>
+      <control-flow-case id="__5">
+        <from-outcome>toEdit</from-outcome>
+        <to-activity-id>periodical_setup_edit_taskflow</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

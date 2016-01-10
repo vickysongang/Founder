@@ -1,0 +1,49 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<SDM>
+   <OverallProperties
+      id="OverallProperties1"/>
+   <View
+      id="View2">
+      <property
+         name="activityId">adminOpenLog</property>
+      <property
+         name="page">/admin/openLog/adminOpenLog.jsff</property>
+      <property
+         name="start">false</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>adminOpenLog&lt;/b>&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">192.89648</property>
+      <property
+         name="x">397.0</property>
+      <property
+         name="pageFragment">true</property>
+   </View>
+   <MethodCall
+      id="MethodCall4">
+      <property
+         name="activityId">initAdminOpenLog</property>
+      <property
+         name="start">true</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>initAdminOpenLog&lt;/b> (Default Activity)&lt;/p>&lt;p>Activity Type:  Method Call&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">196.44824</property>
+      <property
+         name="x">131.36523</property>
+   </MethodCall>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase5"
+      from="MethodCall4"
+      to="View2">
+      <property
+         name="fromOutcome">initAdminOpenLog</property>
+      <property
+         name="sdm:polyPoints">R50,172.36523,196.09766,356.0,192.5459,L50</property>
+   </ControlFlowCase>
+</SDM>

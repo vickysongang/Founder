@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewLink SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewLink
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="CmsResAndType4WPVL"
+  Version="11.1.2.64.36">
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="com.zypg.cms.admin.model.viewobject.viewlink.CmsResAndType4WPVL_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <ViewLinkDefEnd
+    Name="CmsResType4WPVO"
+    Cardinality="1"
+    Source="true"
+    Owner="com.zypg.cms.admin.model.viewobject.query.CmsResType4WPVO">
+    <DesignTime>
+      <Attr Name="_finderName" Value="CmsResType4WPVO"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="com.zypg.cms.admin.model.viewobject.query.CmsResType4WPVO.ResTypeCode"/>
+      <Item Value="com.zypg.cms.admin.model.viewobject.query.CmsResType4WPVO.LibCode"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+  <ViewLinkDefEnd
+    Name="CmsRes4WPVO"
+    Cardinality="-1"
+    Owner="com.zypg.cms.admin.model.viewobject.query.CmsRes4WPVO">
+    <DesignTime>
+      <Attr Name="_finderName" Value="CmsRes4WPVO"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="com.zypg.cms.admin.model.viewobject.query.CmsRes4WPVO.ResTypeCode"/>
+      <Item Value="com.zypg.cms.admin.model.viewobject.query.CmsRes4WPVO.LibCode"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="com.zypg.cms.admin.model.ModelBundle"/>
+  </ResourceBundle>
+</ViewLink>
