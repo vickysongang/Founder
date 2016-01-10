@@ -1,0 +1,84 @@
+-- Create table
+create table CMS_SERVER_CONFIG_T
+(
+  config_id      NUMBER not null,
+  host           VARCHAR2(80),
+  port           NUMBER,
+  admin_username VARCHAR2(40),
+  admin_password VARCHAR2(40),
+  server_type    VARCHAR2(20),
+  enable_flag    VARCHAR2(10),
+  version        NUMBER,
+  attribute1     VARCHAR2(240),
+  attribute2     VARCHAR2(240),
+  attribute3     VARCHAR2(240),
+  attribute4     VARCHAR2(240),
+  attribute5     VARCHAR2(240),
+  attribute6     VARCHAR2(240),
+  attribute7     VARCHAR2(240),
+  attribute8     VARCHAR2(240),
+  attribute9     VARCHAR2(240),
+  attribute10    VARCHAR2(240),
+  attribute11    VARCHAR2(240),
+  attribute12    VARCHAR2(240),
+  attribute13    VARCHAR2(240),
+  attribute14    VARCHAR2(240),
+  attribute15    VARCHAR2(240)
+)
+tablespace USERS
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+-- Add comments to the columns 
+comment on column CMS_SERVER_CONFIG_T.config_id
+  is '主键ID。';
+comment on column CMS_SERVER_CONFIG_T.host
+  is '服务器域名/IP';
+comment on column CMS_SERVER_CONFIG_T.port
+  is '端口号。';
+comment on column CMS_SERVER_CONFIG_T.admin_username
+  is '管理员用户名。';
+comment on column CMS_SERVER_CONFIG_T.admin_password
+  is '管理员密码。';
+comment on column CMS_SERVER_CONFIG_T.server_type
+  is '服务器类型。';
+comment on column CMS_SERVER_CONFIG_T.enable_flag
+  is '是否有效。';
+comment on column CMS_SERVER_CONFIG_T.version
+  is '版本号';
+-- Create/Recreate primary, unique and foreign key constraints 
+alter table CMS_SERVER_CONFIG_T
+  add constraint CMS_SERVER_CONFIG_T_PK primary key (CONFIG_ID)
+  using index 
+  tablespace USERS
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
+alter table CMS_SERVER_CONFIG_T
+  add constraint CMS_SERVER_CONFIG_T_UK1 unique (HOST, PORT, SERVER_TYPE, ENABLE_FLAG, VERSION)
+  using index 
+  tablespace USERS
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    next 1M
+    minextents 1
+    maxextents unlimited
+  );
